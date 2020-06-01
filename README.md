@@ -16,40 +16,54 @@ By the end of the course, students are expected to be able to:
 4. Use version control software (e.g., Git) including distributed version control and remote servers (e.g., GitHub).
 5. Automate data science workflows (using e.g., Make).
 
+## Teaching Team
+
+| Position | Name  | Slack Handle | GHE Handle | Office Hour |
+| :------: | :---: | :----------: | :--------: | :----------:|
+| Instructor & Teaching Fellow | Tiffany Timbers | `@tiffany` |  `@timberst` | Thurs 12:30 - 13:30 |
+| Teaching Assistant | Gursimran Singh | `@msimar` | `@msimar` | Thurs 16:00 - 17:00 |
+| Teaching Assistant | Joseph Khoury | `@joseph`  | `@josephjk` | Mon 13:00 - 14:00 |
+
+*note - see Calendar for office hour location and exact dates*
+
 ## Schedule
 
-| Lecture|      Date| Day |  Topic  | Reading(s) |
-|--------|----------|-----|---------|------------|
-|   1   | 2016-09-27 | Tue | Project and file management 101 + Version control via RStudio | <ul><li>[Good Enough Practices in Scientific Computing](https://swcarpentry.github.io/good-enough-practices-in-scientific-computing/)</li><li>[R workspace and working directory](http://stat545.com/block002_hello-r-workspace-wd-project.html#workspace-and-working-directory)</li><li>[RStudio Projects](http://stat545.com/block002_hello-r-workspace-wd-project.html#rstudio-projects)</li><li>[Happy Git with R Chapters 13, 16-18](http://happygitwithr.com/)</li></ul> | projects](http://stat545.com/block002_hello-r-workspace-wd-project.html#workspace-and-working-directory)
-| 2     | 2016-09-29 | Thu | Scaling up: read-eval-print-loop (REPL) processes versus non-interactive scripts | <ul><li>[Command line arguments in R (the basics)](https://www.vscentrum.be/cluster-doc/software/r-cla-in-scripts)</li><li>[Software Carpentry lesson: Command line arguments with R](http://swcarpentry.github.io/r-novice-inflammation/05-cmdline/)</li><li>[Command line arguments with Python](https://docs.python.org/3.5/howto/argparse.html)</li></ul> |
-|   3   | 2016-10-04  | Tue | Scaling up cont'd: Create reproducible reports and workflows in R | <ul><li>[Intro to R Markdown](https://rstudio-pubs-static.s3.amazonaws.com/105639_5c0a8f83c268447d8e9ea334e37e3ce1.html#rmarkdown-time)<li>[R Markdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)</li><li>[knitr::spin](http://deanattali.com/2015/03/24/knitrs-best-hidden-gem-spin/)</li><li>[ezknitr](https://github.com/ropenscilabs/ezknitr/blob/master/README.md)<li>[Use other languages in knitr](http://yihui.name/knitr/demo/engines/)</li></ul> |
-| 4     | 2016-10-06 | Thu | Scaling up cont'd: Create reproducible reports and workflows in Python | <ul><li>[jupyter nbconvert](http://nbconvert.readthedocs.io/en/latest/usage.html)<li>[Pweave example gallery](http://mpastell.com/pweave/examples/)</li></ul> |
-|   5   | 2016-10-11 | Tue | Automated workflows; introduction to build/automation tool (Guest lecture: Shaun Jackman) <ul><li> [Slides](http://sjackman.ca/makefile-slides/)</li><li>[Makefile example](http://sjackman.ca/makefile-example/)</li></ul> | <ul><li>[Software Carpentry Make lesson](http://swcarpentry.github.io/make-novice/)</li><li>[How to do Reproducible Computational  Analysis](https://www.youtube.com/watch?v=SRItP6PSu4U&feature=youtu.be)</li></ul> |
-|   6   | 2016-10-18 | Tue | Environment management (package dependencies, managing versions) | <ul><li>[`packrat`](https://rstudio.github.io/packrat/walkthrough.html)</li><li>[virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/)</li><li>[conda's YAML file](http://conda.pydata.org/docs/using/envs.html)</li></ul> |
-|7	| 2016-10-20 | Thu | Environment management: containerization with Docker | <ul><li>[R Docker tutorial](http://ropenscilabs.github.io/r-docker-tutorial/)</li></ul> |
-|8      | 2016-10-13 | Thu | Project and file management 102 + more version control (branching) | <ul><li>[branching in Git](http://rogerdudler.github.io/git-guide/#branching)</li></ul> |
+
+| Lecture|      Date  | Day |  Topic  | Reading(s) |
+|--------|------------|-----|---------|------------|
+| 1      | 2017-11-16 | Thu | Introduction to Data Science Workflows and project & file management 101 | <ul><li>[Good Enough Practices in Scientific Computing](https://swcarpentry.github.io/good-enough-practices-in-scientific-computing/)</li><li>[Best Practices for Scientific Computing](http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745)</li><li>[A Quick Guide to Organizing Computational Biology Projects](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424)</li><li>[Nine simple ways to make it easier to (re)use your data](https://ojs.library.queensu.ca/index.php/IEE/article/view/4608/0)</li></ul> |
+| 2      | 2017-11-21 | Tue |  Scaling up: read-eval-print-loop (REPL) processes versus non-interactive scripts | <ul><li>[Software Carpentry lesson: Command line arguments with R](http://swcarpentry.github.io/r-novice-inflammation/05-cmdline/)</li><li>[Command line arguments with Python](https://docs.python.org/3.5/howto/argparse.html)</li></ul>  |
+| 3      | 2017-11-23 | Thu |  Scaling up cont'd: Create reproducible reports and workflows in R & Python | <ul><li>[Intro to R Markdown](https://rstudio-pubs-static.s3.amazonaws.com/105639_5c0a8f83c268447d8e9ea334e37e3ce1.html#rmarkdown-time)<li>[R Markdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)</li><li>[Use other languages in knitr](http://yihui.name/knitr/demo/engines/)</li><li>[jupyter nbconvert](http://nbconvert.readthedocs.io/en/latest/usage.html)</li></ul> |
+| 4      | 2017-11-28 | Tue |  Data Analysis pipelines | |
+| 5      | 2017-11-30 | Thu | Automated workflows; introduction to build/automation tools | <ul><li>[Software Carpentry Make lesson](http://swcarpentry.github.io/make-novice/)</li><li>[How to do Reproducible Computational  Analysis](https://www.youtube.com/watch?v=SRItP6PSu4U&feature=youtu.be)</li></ul> |
+| 6      | 2017-12-05 | Tue | Environment management (package dependencies, managing versions) | <ul><li>[`packrat`](https://rstudio.github.io/packrat/walkthrough.html)</li><li>[virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/)</li><li>[conda's YAML file](http://conda.pydata.org/docs/using/envs.html)</li></ul> |
+| 7      | 2017-12-07 | Thu |  Environment management: containerization with Docker part I | <ul><li>[An Introduction to Rocker: Docker Containers for R](https://arxiv.org/pdf/1710.03675.pdf)</li></ul> |
+| 8      | 2017-12-12 | Tue |  Environment management: containerization with Docker part II | |
 
 Time: 9:30am-10:50am
+
+## Assessment
+| Deliverable | % grade |
+|------------|----------|
+| Lab 1           | 25  |
+| Milestone 1 | 5 |
+| Milestone 2 (project at halfway point) &ast; | 30 |
+| Milestone 3 (complete project) | 40 |
+
+&ast; This will be peer reviewed
 
 ## Labs
 
 | Week  | Lab topic   | Lab Due Date | Peer Review Due Date |
 |-------|-------------|----------|--------------------------|
-| [1](labs/lab1.md) | Project organization and management + writing scripts with arguments | 2016-10-04 | NA |
-| [2](labs/lab2.md) | Creating reports with R Markdown, Pweave and Jupyter notebook | 2016-10-11 | NA |
-| [3](labs/lab3.md) | Project management, collaboration and automation | 2016-10-18 | 2016-10-21 (2:00 pm)|
-| [4](labs/lab4.md) | Managing your environment | 2016-10-25 | NA |
+| [1](labs/lab1/lab1.md) | Data Science workflows, project organization and management exercises | 2017-11-19 | NA |
 
-notes:
-- all labs and peer review(s) are due at 2:00 pm
-- for labs with peer review, peer review is worth 15% of the lab grade
-
-## Quizzes
-|     | Time | Date | Location |
-|-----|------|------|----------|
-| 1 | 14:00 - 14:30 | 2016-10-11 | ESB 1042 |
-| 2 | 15:00 - 15:30 | 2016-10-26 | ESB 1042 |
-
+## Project
+| Week  | Milestone   | Due Date | Peer Review Due Date |
+|-------|-------------|----------|--------------------------|
+| [2](milestones/milestone1/milestone1.md) | 1. Project set-up & identify the dataset, question, hypothesis and plan of action | 2017-12-03 | NA |
+| [3](milestones/milestone2/milestone2.md) | 2. Data Analysis pipeline draft | 2017-12-10 | 2017-12-12 |
+| [4](milestones/milestone3/milestone3.md) | 3. Fully automated and reproducible Data Analysis pipeline | 2017-12-17 | NA |
 
 ## Prerequisites
 * DSCI 511 (Programming for Data Science)
@@ -57,61 +71,57 @@ notes:
 
 
 ## Lecture Learning Objectives:
-1. Project and file management 101 + Version control via RStudio
+1. Introduction to Data Science Workflows and project & file management 101
 
 	By the end of the lecture, students are expected to be able to:
-	- Create a well-organized data analysis project directory structure
-	- Write appropriate documentation (*e.g.,* README.md)
-	- Set-up an R project
-	- Set-up a project with distributed version control and remote servers (*e.g.,* GitHub) through RStudio
+	- Outline and identify the key components to a Data Science Workflow
+	- Explain the importance of using version control (with meaningful commit messages) throughout a project
+	- Create a well-organized data analysis project directory structure with good filenames
 
 2. Scaling up: read-eval-print-loop (REPL) processes versus non-interactive scripts
 
 	By the end of the lecture, students are expected to be able to:
 	- Explain when it is optimal to work in a read-eval-print-loop (REPL) framework and when it is optimal to shift to using non-interactive scripts
-	- Be able to create simple scripts in Python and R that can take input and be run from the command line
+	- Be able to create simple scripts in Python and R that can take input and be executed from the command line
 
-3. Scaling up cont'd: Create reproducible reports and workflows in R Markdown and R Notebook
+3. Scaling up cont'd: Create reproducible reports and workflows in R & Python
 
 	By the end of the lecture, students are expected to be able to:
-	- Describe situations where they would choose to write a script versus a R Markdown report
+	- Describe situations where they would choose to write a script versus a Markdown report
 	- Use R Markdown to create reports that runs simple analysis, the displays code outputs as stdout, tables and figures
 	- Describe the situations when they would want to use R Markdown outputs of html_document, pdf_document, and github_document
 	- Run R Markdown files from the command line
-	- Write scripts that are documented so that reports can be generated from them (via `knitr::spin`)
 	- Use ezknitr to manage where documents are rendered to
-
-4. Scaling up cont'd: Create reproducible reports and workflows in Python's Pweave & Jupyter notebook
-
-	By the end of the lecture, students are expected to be able to:
-	- Write scripts in Python that are documented so that reports can be generated from them (via `Pweave`) to various outputs (e.g., html, pdf, Markdown)
 	- Create reports in the Jupyter notebook
 	- Working with/running Jupyter notebooks non-interactively (batch, scheduling, and reports)
 
-6. Automated workflows; introduction to build/automation tool
+4. Data Analysis pipelines
+
+	By the end of the lecture, students are expected to be able to:
+	- Create a data analysis pipeline using R, Python and the Unix shell to run multiple scripts
+	- Hand Draw manual dependency diagrams
+	- Write code where they wrap something in another language inside of Python or R
+
+5. Automated workflows; introduction to build/automation tool
 
 	By the end of the lecture, students are expected to be able to:
 	- Write a simple automated analysis pipeline using Make
-	- Generate graph of dependencies from GNU-Make
 
-7. Environment management (package dependencies, managing versions)
+6. Environment management (package dependencies, managing versions)
 
 	By the end of the lecture, students are expected to be able to:
-	- Write code where they wrap something in another language inside of Python or R
-	- Correctly document analysis dependencies and load them in a logical place in the script/report
+	- Correctly document and manage analysis dependencies, as well as load them in a logical place in the script/report
 	- Use language specific tools to manage package dependencies (packrat (R), conda's yaml file, virtualenv)
 
-8. Environment management: containerization with Docker
+7. Environment management: containerization with Docker part I
 
 	By the end of the lecture, students are expected to be able to:
-	- Use pre-existing Docker images to perform read-eval-print-loop (REPL) analysis in a reproducible environment
+	- Use pre-existing Docker images to run software (GUI and command line, e.g., Generate graph of dependencies from GNU-Make)
+	- Use pre-existing Docker to perform read-eval-print-loop (REPL) analysis in a reproducible environment
+
+7. Environment management: containerization with Docker part II
+
+	By the end of the lecture, students are expected to be able to:
 	- Batch run analysis scripts and reports in a Docker container
 	- Write dockerfiles to modify pre-existing containers
 	- Share containers on Docker Hub
-
-5. Project and file management 102 + more version control
-
-	By the end of the lecture, students are expected to be able to:
-	- Why, Where and What to document
-	- Organize files with appropriate naming conventions
-	- More version control: introduction to branches
