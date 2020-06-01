@@ -1,4 +1,5 @@
 # Team project reflection
+rubric={raw:20}
 
 The purpose of this individual report is to give you an avenue to present your viewpoint as to how the capstone project went, how the group worked together, and your role in the group. Each group member must complete this form to report on the contributions of **yourself** and the other group members. That information can, if needed, be used to adjust final grades of individuals. This is a private report, meaning that none of your classmates will see this report.
 
@@ -57,3 +58,5 @@ Below,	briefly	describe	the	specific	contribution(s)	each	team	member (**includi
     - what was your role in the group? That is, what sort of things did you do to contribute to the evolution of the project?
     - what were the roles of others in your group?
 - what went well and poorly throughout the team project experience?
+
+**(Optional) Feedback for teammates.** Is there anything you would like us to share with your teammates?
