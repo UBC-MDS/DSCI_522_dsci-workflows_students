@@ -1,22 +1,21 @@
 # DSCI 522
 ## Lecture 5 - Data Analysis pipelines
-### 2017-11-30
+### 2018-11-27
 
 # Learning Objectives
 ## By the end of the lecture, students should be able to:
 By the end of the lecture, students are expected to be able to:
 
 - Write a simple automated analysis pipeline using Make
-- Hand Draw manual dependency diagrams
 
 ## Building a Data Analysis pipeline using Make, a tutorial
 adapted from [Software Carpentry](http://software-carpentry.org/)
 
 ### Set-up instructions
 
-- Clone (data_analysis_pipeline_eg)[https://github.ubc.ca/timberst/data_analysis_pipeline_eg]
-- Change into the `data_analysis_pipeline_eg` directory.
-- Follow the tutorial in [lecture 4](lecture/lecture4.md) as a prerequisite
+- Download [data_analysis_pipeline_eg-2.0.zip](https://github.com/ttimbers/data_analysis_pipeline_eg/archive/v2.0.zip)
+- Unzip it and change into the `data_analysis_pipeline_eg-2.0` directory.
+- note - the tutorial in [lecture 4](lecture/04_lecture-shell-driver-scripts.md) is a prerequisite
 
 ## Why Make?
 
@@ -43,15 +42,24 @@ file_to_create.png : data_it_depends_on.dat script_it_depends_on.py
 * `python script_it_depends_on.py data_it_depends_on.dat file_to_create.png` is an action, a command to run to build or update the target using the dependencies. Targets can have zero or more actions. Actions are indented using the TAB character, not 8 spaces.
 * Together, the target, dependencies, and actions form a rule.
 
+### Structure if you have multiple targets from a scripts
+
+~~~
+file_to_create_1.png file_to_create_1.png : data_it_depends_on.dat script_it_depends_on.py
+	python script_it_depends_on.py data_it_depends_on.dat file_to_create
+~~~
+
 
 ### Let's do some analysis!
+
+Good reference: http://swcarpentry.github.io/make-novice/reference
 
 Create a file, called `Makefile`, with the following content:
 
 ~~~
 # Count words.
-isles.dat : books/isles.txt
-	python wordcount.py books/isles.txt isles.dat
+results/isles.dat : data/isles.txt src/wordcount.py
+	python src/wordcount.py data/isles.txt results/isles.dat
 ~~~
 
 This is a simple build file, which for
@@ -60,23 +68,23 @@ by Make. Let us go through each line in turn:
 
 * `#` denotes a *comment*. Any text from `#` to the end of the line is
   ignored by Make.
-* `isles.dat` is a [target](reference.html#target), a file to be
+* `results/isles.dat` is a [target](http://swcarpentry.github.io/make-novice/reference#target), a file to be
   created, or built.
-* `books/isles.txt` is a [dependency](reference.html#dependency), a
+* `data/isles.txt` and `src/wordcount.py` are [dependencies](http://swcarpentry.github.io/make-novice/reference#dependency), a
   file that is needed to build or update the target. Targets can have
   zero or more dependencies.
 * `:` separates targets from dependencies.
-* `python wordcount.py books/isles.txt isles.dat` is an
-  [action](reference.html#action), a command to run to build or update
+* `python src/wordcount.py data/isles.txt isles.dat` is an
+  [action](http://swcarpentry.github.io/make-novice/reference#action), a command to run to build or update
   the target using the dependencies. Targets can have zero or more
   actions.
 * Actions are indented using the TAB character, *not* 8 spaces. This
   is a legacy of Make's 1970's origins.
 * Together, the target, dependencies, and actions form a
-  [rule](reference.html#rule).
+  [rule](http://swcarpentry.github.io/make-novice/reference#rule).
 
-Our rule above describes how to build the target `isles.dat` using the
-action `python wordcount.py` and the dependency `books/isles.txt`.
+Our rule above describes how to build the target `results/isles.dat` using the
+action `python src/wordcount.py` and the dependency `data/isles.txt`.
 
 By default, Make looks for a Makefile, called `Makefile`, and we can
 run Make as follows:
@@ -88,7 +96,7 @@ $ make
 Make prints out the actions it executes:
 
 ~~~
-python wordcount.py books/isles.txt isles.dat
+python src/wordcount.py data/isles.txt results/isles.dat
 ~~~
 
 If we see,
@@ -111,27 +119,27 @@ $ make -f Makefile
 As we have re-run our Makefile, Make now informs us that:
 
 ~~~
-make: `isles.dat' is up to date.
+make: `results/isles.dat' is up to date.
 ~~~
 
-This is because our target, `isles.dat`, has now been created, and
+This is because our target, `results/isles.dat`, has now been created, and
 Make will not create it again. To see how this works, let's pretend to
 update one of the text files. Rather than opening the file in an
 editor, we can use the shell `touch` command to update its timestamp
 (which would happen if we did edit the file):
 
 ~~~
-$ touch books/isles.txt
+$ touch data/isles.txt
 ~~~
 
-If we compare the timestamps of `books/isles.txt` and `isles.dat`,
+If we compare the timestamps of `data/isles.txt` and `results/isles.dat`,
 
 ~~~
-$ ls -l books/isles.txt isles.dat
+$ ls -l data/isles.txt results/isles.dat
 ~~~
 
-then we see that `isles.dat`, the target, is now older
-than`books/isles.txt`, its dependency:
+then we see that `results/isles.dat`, the target, is now older
+than`data/isles.txt`, its dependency:
 
 ~~~
 -rw-r--r--    1 mjj      Administ   323972 Jun 12 10:35 books/isles.txt
@@ -144,10 +152,10 @@ If we run Make again,
 $ make
 ~~~
 
-then it recreates `isles.dat`:
+then it recreates `results/isles.dat`:
 
 ~~~
-python wordcount.py books/isles.txt isles.dat
+python src/wordcount.py data/isles.txt results/isles.dat
 ~~~
 
 When it is asked to build a target, Make checks the 'last modification
@@ -159,11 +167,11 @@ We may want to remove all our data files so we can explicitly recreate
 them all. We can introduce a new target, and associated rule, `clean`:
 
 ~~~
-isles.dat : books/isles.txt wordcount.py
-	python wordcount.py books/isles.txt isles.dat
+results/isles.dat : data/isles.txt
+	python src/wordcount.py data/isles.txt results/isles.dat
 
 clean :
-	rm -f *.dat
+	rm -f results/*.dat
 ~~~
 
 This is an example of a rule that has no dependencies. `clean` has no
@@ -188,7 +196,7 @@ example, let us recreate our data files, create a directory called
 `clean`, then run Make:
 
 ~~~
-$ make isles.dat
+$ make results/isles.dat
 $ mkdir clean
 $ make clean
 ~~~
@@ -203,15 +211,15 @@ make: `clean' is up to date.
 Let's add another rule to the end of `Makefile`:
 
 ~~~
-isles.dat : books/isles.txt wordcount.py
-	python wordcount.py books/isles.txt isles.dat
+results/isles.dat : data/isles.txt src/wordcount.py
+	python src/wordcount.py data/isles.txt results/isles.dat
 
-isles.png : isles.dat plotcount.py
-	python plotcount.py isles.dat isles.png
+results/figure/isles.png : results/isles.dat src/plotcount.py
+	python src/plotcount.py results/isles.dat results/figure/isles.png
 
 clean :
-	rm -f *.dat
-	rm -f *.png
+	rm -f results/*.dat
+	rm -f results/figure/*.png
 ~~~
 
 the new target isles.png depends on the target isles.dat. So to make both, we can simply
@@ -222,43 +230,36 @@ $ make isles.dat
 $ ls
 ~~~
 
-Let's add a some more processes for other books:
+Let's add another book:
 
 ~~~
-isles.dat : books/isles.txt wordcount.py
-	python wordcount.py books/isles.txt isles.dat
+results/isles.dat : data/isles.txt src/wordcount.py
+	python src/wordcount.py data/isles.txt results/isles.dat
 
-isles.png : isles.dat plotcount.py
-	python plotcount.py isles.dat isles.png
+results/abyss.dat : data/abyss.txt src/wordcount.py
+  python src/wordcount.py data/abyss.txt results/abyss.dat
 
-abyss.dat : books/abyss.txt wordcount.py
-    python wordcount.py books/abyss.txt abyss.dat
+results/figure/isles.png : results/isles.dat src/plotcount.py
+	python src/plotcount.py results/isles.dat results/figure/isles.png
 
-abyss.png : abyss.dat plotcount.py
-	python plotcount.py abyss.dat abyss.png
-
-last.dat : books/last.txt wordcount.py
-    python wordcount.py books/last.txt last.dat
-
-last.png : last.dat plotcount.py
-	python plotcount.py last.dat last.png
+results/figure/abyss.png : results/abyss.dat src/plotcount.py
+  python src/plotcount.py results/abyss.dat results/figure/abyss.png
 
 clean :
-	rm -f *.dat
-	rm -f *.png
+	rm -f results/*.dat
+	rm -f results/figure/*.png
 ~~~
 
 To run all of the commands, we need to type make <TARGET> for each one:
 ~~~
 $ make isles.png
 $ make abyss.png
-$ make last.png
 ~~~
 
 OR we can add a target `all` which will build the last of the dependencies.
 
 ~~~
-all: isles.png abyss.png last.png
+all: isles.png abyss.png
 
 isles.dat : books/isles.txt wordcount.py
 	python wordcount.py books/isles.txt isles.dat
@@ -272,82 +273,17 @@ abyss.dat : books/abyss.txt wordcount.py
 abyss.png : abyss.dat plotcount.py
 	python plotcount.py abyss.dat abyss.png
 
-last.dat : books/last.txt wordcount.py
-	python wordcount.py books/last.txt last.dat
-
-last.png : last.dat plotcount.py
-	python plotcount.py last.dat last.png
-
 clean :
 	rm -f *.dat
 	rm -f *.png
 ~~~
 
-## Optional - Makefile variables to reduce duplication
+## Finish off the Makefile!
 
-Our Makefile has a lot of duplication. For example, the names of text
-files and data files are repeated in many places throughout the
-Makefile. Makefiles are a form of code and, in any code, repeated code
-can lead to problems e.g. we rename a data file in one part of the
-Makefile but forget the rename it elsewhere. Let us set about removing
-some of this repetition.
+1. Try to add the other books to the Makefile.
 
-Make provides an automatic variable for this, `$@` which means the target of
-the current rule. We can use this to make our Makefile more concise:
+2. Add the final report.
 
-~~~
-all: isles.png abyss.png last.png
+## Start a Makefile for your project!
 
-isles.dat : books/isles.txt wordcount.py
-	python wordcount.py books/isles.txt $@
-
-isles.png : isles.dat plotcount.py
-	python plotcount.py isles.dat $@
-
-abyss.dat : books/abyss.txt wordcount.py
-	python wordcount.py books/abyss.txt $@
-
-abyss.png : abyss.dat plotcount.py
-	python plotcount.py abyss.dat $@
-
-last.dat : books/last.txt wordcount.py
-	python wordcount.py books/last.txt $@
-
-last.png : last.dat plotcount.py
-	python plotcount.py last.dat $@
-
-clean :
-	rm -f *.dat
-	rm -f *.png
-~~~
-
-Another automatic variable is, `$<` which means the first dependency of
-the current rule. We can use this to make our Makefile more concise:
-
-~~~
-all: isles.png abyss.png last.png
-
-isles.dat : books/isles.txt wordcount.py
-	python wordcount.py $< $@
-
-isles.png : isles.dat plotcount.py
-	python plotcount.py $< $@
-
-abyss.dat : books/abyss.txt wordcount.py
-	python wordcount.py $< $@
-
-abyss.png : abyss.dat plotcount.py
-	python plotcount.py $< $@
-
-last.dat : books/last.txt wordcount.py
-	python wordcount.py $< $@
-
-last.png : last.dat plotcount.py
-	python plotcount.py $< $@
-
-clean :
-	rm -f *.dat
-	rm -f *.png
-~~~
-
-*A word of caution - although these Makefile variables reduce typing, few people in Data Science are real Make experts, so using them can make your code less readable to others...*
+Create a Makefile for your project and add at least one rule.
