@@ -1,25 +1,52 @@
 # author: Tiffany Timbers
 # date: 2020-01-15
-#
-# This script calculates the standard error for the fare (ticket price) 
-# from titanic.csv. This script takes no arguments.
-#
-# Usage: Rscript quick_csv_stat.R
+
+"This script calculates a specified summary stat for a specified 
+variable from a .csv file. This script takes a filename, 
+a summary stat and a column name as the arguments.
+
+Usage: quick_csv_stat.R --file_path=<file_path> --statistic=<statistic> --var=<var>
+" -> doc
 
 library(tidyverse)
 library(testthat)
+library(docopt)
 
-main <- function(){
-  
+opt <- docopt(doc)
+
+main <- function(file_path, statistic, var){
+
   # read in data
-data <- read.csv("data/titanic.csv")
-  
-  # print out the standard error of fare
-  out <- data %>% 
-    select(fare) %>% 
-    pull() %>% 
-    sterror()
-  print(out)
+  data <- read.csv(file_path)
+
+  # print out appropriate statistic based on command line args
+  if (statistic == 'mean'){
+    out <- data %>% 
+      select(!!var) %>% 
+      pull() %>% 
+      mean(na.rm = TRUE)
+    print(out)
+  } else if (statistic == 'median'){
+    out <- data %>% 
+      select(!!var) %>% 
+      pull() %>% 
+      median(na.rm = TRUE)
+    print(out)
+  } else if (statistic == 'sd'){
+    out <- data %>% 
+      select(!!var) %>% 
+      pull() %>% 
+      sd(na.rm = TRUE)
+    print(out)
+  } else if (statistic == 'se'){
+    out <- data %>% 
+      select(!!var) %>% 
+      pull() %>% 
+      sterror(na.rm = TRUE)
+    print(out)
+  } else {
+    print("You should provide an argument for what statistic to get (e.g., mean, median, sd or se)")
+  }
 }
 
 #' calculate standard error
@@ -38,6 +65,6 @@ test_sterror <- function(){
   })
 }
 
-test_sterror
+test_sterror()
 
-main()
+main(opt$file_path, opt$statistic, opt$var)

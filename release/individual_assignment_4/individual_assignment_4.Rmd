@@ -1,0 +1,40 @@
+## Individual assignment 4
+rubric={correctness:1}
+
+The purpose of this assignment is to ensure that every gets more feedback on their
+projects, as well as gives everyone the opportunity to practice giving feedback. 
+**Peer review is due Friday, December 11 at 11:59 pm PT** so that it might be useful in improving the final project. Providing it even earlier would be even more useful, so please do this if you can! *The peer review activity should take no more than 45-60 min to complete.
+
+**Important: Your feedback must be respectful and polite while being constructive.**
+
+### Submission instructions
+
+You must submit a `.html` version of this homework to Canvas. To programmatically render your notebook to html and submit the assignment to Canvas, open [submit.ipynb](submit.ipynb) and use the instructions there.
+
+### Exercise 1
+
+Look up the project you were assigned to review here: [https://github.ubc.ca/MDS-2020-21/DSCI_522_dsci-workflows_students/issues/17](https://github.ubc.ca/MDS-2020-21/DSCI_522_dsci-workflows_students/issues/17)
+
+Spend 30-45 min reviewing the project, and then spend ~ 15 min opening a GitHub issue and giving 2-3 
+pieces of polite, respectful and constructive feedback.
+
+When completing your peer review consider the project rubric which it will be graded on, as well as the guidelines outlined below:
+
+-	Documentation: Is the project properly documented? (Possible answers: It needs more work / Somewhat / Yes it is great). Where should the documentation be better?
+-	Code: Does the code work? Is it readable? Are the results from it reproducible? (Possible answers: It needs more work / Somewhat / Yes it is great). How could the code be improved?
+-	Analysis and reasoning: Is the analysis correct? (Possible answers: It needs more work / Somewhat / Yes it is great). Are there any errors in the analysis/reasoning that should be fixed/improved? 
+-	Communication: Is the report clear and easy to follow? Are the aims of the analysis and conclusions communicated correctly?
+-	Suggestions: Provide a specific suggestion for the author on how to improve any of the categories listed above where there is room for improvement.
+
+
+
+To prove that you did this, paste your url to the GitHub issue you opened below **and** include a screenshot of the issue in the rendered version of the markdown document. 
+
+> Your GitHub issue URL here
+
+```{r}
+# knitr::include_graphics("PATH_TO_SCREENSHOT")
+```
+
+
+**Attribution:** the peer review guidelines above were derived from: https://www.eduflow.com/blog/teaching-code-review-to-university-students
