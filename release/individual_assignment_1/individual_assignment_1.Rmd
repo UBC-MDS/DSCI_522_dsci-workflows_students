@@ -5,7 +5,7 @@ The purpose of this assignment is to ensure that everyone does some self-learnin
 
 ### Submission instructions
 
-You must also submit a `.html` version of this homework to Canvas. To programmatically render your notebook to html and submit the assignment to Canvas, open [submit.ipynb](submit.ipynb) and use the instructions there.
+You must also submit a `.html` version of this homework to Canvas.
 
 ### Exercise 1
 
@@ -17,7 +17,7 @@ Create a public repository on GitHub.com called `docopt_demo`. Paste the url bel
 
 **Getting documentation from a {docopt} R script**
 
-In [this repo](https://github.ubc.ca/MDS-2020-21/DSCI_522_dsci-workflows_students), in the `src` directory, you will find a script named `demo.R`. Access the documentation for that script from the command line by running the script with the `--help` option (and no other options or arguments). Paste the documentation that was printed out to your terminal below.
+In [this repo](https://github.ubc.ca/MDS-2021-22/DSCI_522_dsci-workflows_students), in the `src` directory, you will find a script named `demo.R`. Access the documentation for that script from the command line by running the script with the `--help` option (and no other options or arguments). Paste the documentation that was printed out to your terminal below.
 
 > ```
 > Your answer here
@@ -66,7 +66,7 @@ Modify the `demo.R` script further so that the three print statements happen ins
 
 **What does `docopt` return in Python?**
 
-In [this repo](https://github.ubc.ca/MDS-2020-21/DSCI_522_dsci-workflows_students), in the `src` directory, you will find a script named `demo.py`. Run the `demo.py` script giving it appropriate arguments to see what the `docopt` function in Python returns. Try setting and not setting a value for `arg3`. How does this differ from what `docopt` returns in R? Describe what you observed below.
+In [this repo](https://github.ubc.ca/MDS-2021-22/DSCI_522_dsci-workflows_students), in the `src` directory, you will find a script named `demo.py`. Run the `demo.py` script giving it appropriate arguments to see what the `docopt` function in Python returns. Try setting and not setting a value for `arg3`. How does this differ from what `docopt` returns in R? Describe what you observed below.
 
 > Your answer here
 

@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DSCI 522: Data Science Workflows &#8212; DSCI 522 Data Science Workflows</title>
     
-  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -34,19 +31,18 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
@@ -55,15 +51,18 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Lecture 1 - Intro to Data Science Workflows" href="lectures/01_lecture-intro-to-ds-workflows.html" />
-
+    <link rel="next" title="Lecture 1 - Intro to Data Science Workflows" href="materials/lectures/01_lecture-intro-to-ds-workflows.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
 
-
-
+    <!-- Google Analytics -->
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -72,24 +71,25 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="index.html">
-  
-  <img src="_static/UBC_MDS_logo.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">DSCI 522 Data Science Workflows</h1>
-  
-</a>
-</div>
-
-<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/UBC_MDS_logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">DSCI 522 Data Science Workflows</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <ul class="nav sidenav_l1">
- <li class="toctree-l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1 current">
   <a class="reference internal" href="#">
    DSCI 522: Data Science Workflows
   </a>
@@ -100,57 +100,122 @@
   Lectures
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="lectures/01_lecture-intro-to-ds-workflows.html">
+  <a class="reference internal" href="materials/lectures/01_lecture-intro-to-ds-workflows.html">
    Lecture 1 - Intro to Data Science Workflows
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="lectures/02_lecture-intro-to-scripts.html">
+  <a class="reference internal" href="materials/lectures/02_lecture-intro-to-scripts.html">
    Lecture 2 - Scaling up: read-eval-print-loop (REPL) processes versus non-interactive scripts
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="lectures/03_lecture-advanced-reporting.html">
+  <a class="reference internal" href="materials/lectures/03_lecture-advanced-reporting.html">
    Lecture 3 - Advanced reporting in R Markdown (and a bit about Jupyter)
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="lectures/04_lecture-shell-driver-scripts.html">
+  <a class="reference internal" href="materials/lectures/04_lecture-shell-driver-scripts.html">
    Lecture 4 - Data Analysis pipelines using a shell script
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="lectures/05_lecture-make-driver-script.html">
+  <a class="reference internal" href="materials/lectures/05_lecture-make-driver-script.html">
    Lecture 5 - Data Analysis pipelines using Make
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="lectures/06_lecture-intro-to-docker.html">
+  <a class="reference internal" href="materials/lectures/06_lecture-intro-to-docker.html">
    Lecture 6 - Introduction to Docker
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="lectures/07_lecture_writing_dockerfiles.html">
+  <a class="reference internal" href="materials/lectures/07_lecture_writing_dockerfiles.html">
    Lecture 7 - Writing your own Dockerfile!
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="lectures/08_repro_wrap_up.html">
+  <a class="reference internal" href="materials/lectures/08_repro_wrap_up.html">
    Lecture 8 - Reproducibility wrap-up
   </a>
  </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Individual Assignments
+ </span>
+</p>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="lectures/appendix.html">
+  <a class="reference internal" href="materials/assignments/individual_assignment_1.html">
+   Individual assignment 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="materials/assignments/individual_assignment_2.html">
+   Individual assignment 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="materials/assignments/peer-review/peer-review.html">
+   Peer review: Constructively reviewing data analysis projects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="materials/assignments/individual_assignment_4.html">
+   Individual assignment 4
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Group Project Milestones
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="materials/assignments/milestone1.html">
+   Milestone 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="materials/assignments/milestone2.html">
+   Milestone 2 - A data analysis project with multiple scripts and a final report
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="materials/assignments/milestone3.html">
+   Milestone 3 - Building an automated data analysis pipeline
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="materials/assignments/milestone4.html">
+   Milestone 4 - Building a reproducible and fully automated data analysis pipeline
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Appendices
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="materials/appendices/appendix.html">
    Appendix
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="materials/assignments/team_work.html">
+   Team project reflection
   </a>
  </li>
 </ul>
 
-</nav>
-
- <!-- To handle the deprecated key -->
+    </div>
+</nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
   Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
@@ -165,25 +230,25 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        <div class="dropdown-buttons-trigger">
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
 
-    
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
         
@@ -195,45 +260,45 @@
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
-    
 </div>
-        <!-- Source interaction buttons -->
+
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
         <a class="repository-button"
-            href="https://github.ubc.ca/MDS-2020-21/DSCI_522_dsci-workflows_students"><button type="button" class="btn btn-secondary topbarbtn"
+            href="https://github.ubc.ca/mds-2021-22/DSCI_522_dsci-workflows_students"><button type="button" class="btn btn-secondary topbarbtn"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.ubc.ca/MDS-2020-21/DSCI_522_dsci-workflows_students/issues/new?title=Issue%20on%20page%20%2FREADME.html&body=Your%20issue%20content%20here."><button
+            href="https://github.ubc.ca/mds-2021-22/DSCI_522_dsci-workflows_students/issues/new?title=Issue%20on%20page%20%2FREADME.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
    Introduction
@@ -286,8 +351,8 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -295,13 +360,13 @@
         
               <div>
                 
-  <div class="section" id="dsci-522-data-science-workflows">
+  <div class="tex2jax_ignore mathjax_ignore section" id="dsci-522-data-science-workflows">
 <h1>DSCI 522: Data Science Workflows<a class="headerlink" href="#dsci-522-data-science-workflows" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>Data-rich projects can quickly grow out-of-hand and become irreproducible in the absence of deliberate effort at organization, tool choice, and process. This course will teach basic principles of sound data scientific workflows and will develop skills implementing them in appropriate state-of-the-art systems and languages (e.g., Python and R).</p>
-<p><strong>Course website</strong>: https://pages.github.ubc.ca/MDS-2020-21/DSCI_522_dsci-workflows_students</p>
-<p><strong>Course webpage</strong>: https://github.ubc.ca/MDS-2020-21/DSCI_522_dsci-workflows_students</p>
+<p><strong>Course website</strong>: https://pages.github.ubc.ca/MDS-2021-22/DSCI_522_dsci-workflows_students</p>
+<p><strong>Course webpage</strong>: https://github.ubc.ca/MDS-2021-22/DSCI_522_dsci-workflows_students</p>
 <p><strong>Slack Channel</strong>: https://ubc-mds.slack.com/messages/522_dsci-workflows</p>
 </div>
 <div class="section" id="learning-outcomes">
@@ -328,35 +393,45 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-align:center"><p>Lecture &amp; Lab Instructor</p></td>
-<td class="text-align:center"><p>Tiffany</p></td>
+<tr class="row-even"><td class="text-align:center"><p>Lecture Instructor</p></td>
+<td class="text-align:center"><p>Tiffany Timbers</p></td>
 <td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&#64;tiffany</span></code></p></td>
 <td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&#64;timberst</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p>Teaching Assistant</p></td>
-<td class="text-align:center"><p>Arjun Baghela</p></td>
-<td class="text-align:center"><p>&#64;abaghela</p></td>
-<td class="text-align:center"><p>&#64;abaghela</p></td>
+<tr class="row-odd"><td class="text-align:center"><p>Lab Instructor</p></td>
+<td class="text-align:center"><p>Florencia D’Andrea</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&#64;Florencia</span></code></p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&#64;fdandrea</span></code></p></td>
 </tr>
 <tr class="row-even"><td class="text-align:center"><p>Teaching Assistant</p></td>
-<td class="text-align:center"><p>Jordan Bourak</p></td>
-<td class="text-align:center"><p>&#64;Jordan Bourak</p></td>
-<td class="text-align:center"><p>&#64;jnbk</p></td>
+<td class="text-align:center"><p>Andy Man Yeung Tai</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&#64;Andy</span> <span class="pre">Tai</span></code></p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&#64;andytai7</span></code></p></td>
 </tr>
 <tr class="row-odd"><td class="text-align:center"><p>Teaching Assistant</p></td>
-<td class="text-align:center"><p>Analise Hofmann</p></td>
-<td class="text-align:center"><p>&#64;(TA) Analise 521</p></td>
-<td class="text-align:center"><p>&#64;ahofmann</p></td>
+<td class="text-align:center"><p>Ivy He</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&#64;Ivy</span> <span class="pre">He</span></code></p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&#64;ivy0qhe</span></code></p></td>
 </tr>
 <tr class="row-even"><td class="text-align:center"><p>Teaching Assistant</p></td>
+<td class="text-align:center"><p>Peter Gysbers</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&#64;Peter</span> <span class="pre">(TA)</span></code></p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&#64;gysberph</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>Teaching Assistant</p></td>
 <td class="text-align:center"><p>Eric Lee</p></td>
-<td class="text-align:center"><p>&#64;Eric</p></td>
-<td class="text-align:center"><p>&#64;elee0920</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&#64;Eric</span></code></p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&#64;elee0920</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>Teaching Assistant</p></td>
+<td class="text-align:center"><p>Mohamad Amin Mohamadi</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&#64;Amin</span></code></p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&#64;lemohama</span></code></p></td>
 </tr>
 <tr class="row-odd"><td class="text-align:center"><p>Teaching Assistant</p></td>
-<td class="text-align:center"><p>Hossameldin Mohammed</p></td>
-<td class="text-align:center"><p>&#64;Hossam</p></td>
-<td class="text-align:center"><p>&#64;hos40044</p></td>
+<td class="text-align:center"><p>Abdul Muntakim Rafi</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&#64;Rafi</span></code></p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&#64;rafi11</span></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -372,41 +447,45 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Milestone 1 - Proposal and data download scipt</p></td>
-<td><p>12%</p></td>
-<td><p>2020-11-21 11:59 PT</p></td>
+<tr class="row-even"><td><p>Milestone 1 - Proposal and data download script</p></td>
+<td><p>20%</p></td>
+<td><p>2021-11-21 18:00 PT</p></td>
 </tr>
 <tr class="row-odd"><td><p>Milestone 2 -  Working analysis scripts and report draft</p></td>
 <td><p>20%</p></td>
-<td><p>2020-11-28 11:59 PT</p></td>
+<td><p>2021-11-27 18:00 PT</p></td>
 </tr>
 <tr class="row-even"><td><p>Milestone 3 - Data analysis pipeline with Make</p></td>
 <td><p>20%</p></td>
-<td><p>2020-12-05 &#64; 11:59 PT</p></td>
+<td><p>2021-12-04 18:00 PT</p></td>
 </tr>
 <tr class="row-odd"><td><p>Milestone 4 - Final project submission (with ultimate reproducibility)</p></td>
 <td><p>20%</p></td>
-<td><p>2020-12-12 11:59 PT</p></td>
+<td><p>2021-12-11 18:00 PT</p></td>
 </tr>
 <tr class="row-even"><td><p>Individual assignment 1</p></td>
 <td><p>2%</p></td>
-<td><p>2020-11-21 11:59 PT</p></td>
+<td><p>2021-11-21 18:00 PT</p></td>
 </tr>
 <tr class="row-odd"><td><p>Individual assignment 2</p></td>
 <td><p>2%</p></td>
-<td><p>2020-11-28 11:59 PT</p></td>
+<td><p>2021-11-27 18:00 PT</p></td>
 </tr>
-<tr class="row-even"><td><p>Individual assignment 3</p></td>
-<td><p>2%</p></td>
-<td><p>2020-12-05 11:59 PT</p></td>
+<tr class="row-even"><td><p>Peer Review</p></td>
+<td><p>10%</p></td>
+<td><p>2021-12-04 18:00 PT</p></td>
 </tr>
 <tr class="row-odd"><td><p>Individual assignment 4</p></td>
 <td><p>2%</p></td>
-<td><p><strong>2020-12-11 11:59 PT</strong></p></td>
+<td><p><strong>2021-12-11 18:00 PT</strong></p></td>
 </tr>
 <tr class="row-even"><td><p>Team work</p></td>
-<td><p>20%</p></td>
-<td><p><strong>2020-12-13 11:59 PT</strong></p></td>
+<td><p>4%</p></td>
+<td><p><strong>2021-12-14 18:00 PT</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Team work multiplier</p></td>
+<td><p>final grade * multiplier</p></td>
+<td><p>NA</p></td>
 </tr>
 </tbody>
 </table>
@@ -435,7 +514,7 @@
 <tr class="row-even"><td><p>3</p></td>
 <td><p>Scaling up cont’d: using literate coding documents (Jupyter notebooks and R Markdown documents) non-interactively</p></td>
 <td><p><ul><li><a class="reference external" href="https://leanpub.com/artofdatascience">Art of Data Science Chapter 5 - 6</a></li></ul></p></td>
-<td><p><ul><li><a class="reference external" href="https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf">R Markdown Cheatsheet</a></li><li><a class="reference external" href="http://nbconvert.readthedocs.io/en/latest/usage.html">jupyter nbconvert</a></li><li><a class="reference external" href="https://github.com/rstudio/cheatsheets/raw/master/reticulate.pdf">Using Python and R in harmony - the reticulate cheat sheet</a></li></ul></p></td>
+<td><p><ul><li><a class="reference external" href="https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf">R Markdown Cheatsheet</a></li><li><a class="reference external" href="https://bookdown.org/yihui/bookdown/"><code class="docutils literal notranslate"><span class="pre">bookdown</span></code></a></li><li><a class="reference external" href="https://jupyterbook.org/intro.html">Jupyter book</a></li><li><a class="reference external" href="http://nbconvert.readthedocs.io/en/latest/usage.html">jupyter nbconvert</a></li><li><a class="reference external" href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/reticulate.pdf">Using Python and R in harmony - the reticulate cheat sheet</a></li></ul></p></td>
 </tr>
 <tr class="row-odd"><td><p>4</p></td>
 <td><p>Data Analysis pipelines and shell scripting</p></td>
@@ -504,8 +583,14 @@ A statistics blog by Rafa Irizarry, Roger Peng, and Jeff Leek</p></li>
 <blockquote>
 <div><p><em>During this pandemic, the shift to online learning has greatly altered teaching and studying at UBC, including changes to health and safety considerations. Keep in mind that some UBC courses might cover topics that are censored or considered illegal by non-Canadian governments. This may include, but is not limited to, human rights, representative government, defamation, obscenity, gender or sexuality, and historical or current geopolitical controversies. If you are a student living abroad, you will be subject to the laws of your local jurisdiction, and your local authorities might limit your access to course material or take punitive action against you. UBC is strongly committed to academic freedom, but has no control over foreign authorities (please visit http://www.calendar.ubc.ca/vancouver/index.cfm?tree=3,33,86,0 for an articulation of the values of the University conveyed in the Senate Statement on Academic Freedom). Thus, we recognize that students will have legitimate reason to exercise caution in studying certain subjects. If you have concerns regarding your personal situation, consider postponing taking a course with manifest risks, until you are back on campus or reach out to your academic advisor to find substitute courses. For further information and support, please visit: http://academic.ubc.ca/support-resources/freedom-expression.</em></p>
 </div></blockquote>
+</div>
 <div class="toctree-wrapper compound">
 </div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
 </div>
 </div>
 
@@ -531,22 +616,27 @@ A statistics blog by Rafa Irizarry, Roger Peng, and Jeff Leek</p></li>
 
               </div>
               
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='right-next' id="next-link" href="materials/lectures/01_lecture-intro-to-ds-workflows.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lecture 1 - Intro to Data Science Workflows</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
         </div>
     </div>
-    
-    
-    <div class='prev-next-bottom'>
-        
-    <a class='right-next' id="next-link" href="lectures/01_lecture-intro-to-ds-workflows.html" title="next page">Lecture 1 - Intro to Data Science Workflows</a>
-
-    </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
-          By Tiffany Timbers<br/>
+          By Tiffany Timbers and Florencia D'Andrea<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>
@@ -555,11 +645,8 @@ A statistics blog by Rafa Irizarry, Roger Peng, and Jeff Leek</p></li>
 
       </div>
     </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-    
-  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
-
-
-    
   </body>
 </html>

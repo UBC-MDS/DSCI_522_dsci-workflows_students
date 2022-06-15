@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>DSCI 522 - LABS</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="MDS 2021/22" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <script src="libs/js-cookie/js.cookie.js"></script>
+    <script src="libs/peerjs/peerjs.min.js"></script>
+    <script src="libs/tiny.toast/toast.min.js"></script>
+    <link href="libs/xaringanExtra-broadcast/broadcast.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-broadcast/broadcast.js"></script>
+    <script src="libs/clipboard/clipboard.min.js"></script>
+    <link href="libs/shareon/shareon.min.css" rel="stylesheet" />
+    <script src="libs/shareon/shareon.min.js"></script>
+    <link href="libs/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-shareagain/shareagain.js"></script>
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra_fit-screen/fit-screen.js"></script>
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+---
+
+&lt;img src="img/reproducible-pipeline.jpg" width="7875" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+class: middle, center
+
+&lt;img src="img/hex.png" width="150" style="display: block; margin: auto;" /&gt;
+
+
+.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
+####    
+### DSCI 522 **LABS**
+
+ .large[ ####Data Science Workflows - UBC - MDS 2021/22
+]]
+
+
+---
+
+
+class: inverse, middle, center
+
+
+## Welcome back!
+
+
+---
+
+### How are we going to work in the labs?
+
+--
+
+#### Situation 1 - IN PERSON - **All the students of the group are present in the classroom**.    
+
+- **Zoom** There is not necessary to join.   
+- **Questions**  TAs in the classroom.  
+
+--
+
+####  Situation 2 - HYBRID -  **Part of the students of the group are online, part in person**.
+- **Zoom** All the students of the group join the Zoom meeting in the break out room of the group. For example, group 21 will join break out room 21. 
+- **Questions** These students can ask questions to the TAs in the classroom or online.
+
+--
+
+#### Situation 3 - ONLINE -  **All the students of the group are online**.
+- **Zoom meeting** They will join their break out room. 
+- **Questions** TA online.
+
+
+---
+
+### Material
+
+#### Video lectures 
+https://canvas.ubc.ca/courses/78161/external_tools/187
+
+#### Milestone 3 - DSCI 522 Jupyter Book
+https://pages.github.ubc.ca/mds-2021-22/DSCI_522_dsci-workflows_students/materials/assignments/milestone3.html#
+
+.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
+#### Where will be the recorded lab videos?
+Lab recorded videos will be in `Canvas -&gt; Media Gallery`, named as `zoom_lab*_milestone*`
+]
+
+
+---
+
+class: inverse, middle, center
+
+### Grading
+
+#### Remember to improve your work based on any feedback you received from the TAs.
+
+---
+
+### Peer review activity
+
+
+![](https://www.google.com/url?sa=i&amp;url=https%3A%2F%2Fconference.letterwest.com%2Fletterwest-conference-2%2Fletter-west-any-questions-gif%2F&amp;psig=AOvVaw2ztGjLrW7f-g8Ba5YXehRD&amp;ust=1638464196564000&amp;source=images&amp;cd=vfe&amp;ved=0CAsQjRxqFwoTCJCMofWIw_QCFQAAAAAdAAAAABAJ)
+---
+
+&lt;img src="img/milestones.jpg" width="1000" /&gt;
+.footnote[[The Turing Way &amp; Scriberia (2021)](https://zenodo.org/record/5706310#.YZRLSLqIZPY)]
+
+
+
+---
+
+
+class: inverse, middle
+
+
+### Today
+## Milestone 3
+
+- Create a Makefile / some common errors
+- Tips to improve your project
+- How to share your report easily
+
+Bonus track: Sharing art with GitHub codespaces
+
+---
+
+### Milestone 2
+
+
+```bash
+project/          
+├── data/  
+│   └── processed/ # processed data sets (eg train and test)  
+│   └── raw/ # downloaded data set           
+├── src/  # scripts (now you will have more!)
+├── doc/  # documents (final report and files associated)
+├── results/  # figures and data sets with the results
+├── README.md # Project proposal (Include usage!)
+├── LICENCE
+├── CONTRIBUTING.md
+└── CODE_OF_CONDUCT.md
+``` 
+
+
+.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
+#### What we need to include for milestone3 ?
+]
+
+
+---
+
+### Milestone 3
+#### Example: [breast_cancer_predictor project repo for milestone3]()
+
+
+```bash
+project/          
+├── data/  
+│   └── processed/ # processed data sets (eg train and test)  
+│   └── raw/ # downloaded data set           
+├── src/  # scripts (now you will have more!)
+├── doc/  # documents (final report and files associated)
+├── results/  # figures and data sets with the results
+├── README.md # Project proposal (Include usage!)
+├── LICENCE
+*├── Makefile
+├── CONTRIBUTING.md
+└── CODE_OF_CONDUCT.md
+``` 
+
+
+---
+
+### Create a Makefile!
+#### First step: Milestone 2 `Usage` section
+
+https://github.com/ttimbers/breast_cancer_predictor/tree/v2.0#usage
+
+
+
+&lt;img src="img/usage.png" width="600" /&gt;
+
+---
+
+### Create a Makefile!
+
+* This is a **build file**, which for Make is called a `Makefile` 
+
+
+```bash
+# Count words.
+isles.dat : books/isles.txt
+	python countwords.py books/isles.txt isles.dat
+
+```
+
+&lt;img src="img/make.png" width="800" /&gt;
+
+---
+
+### Create a Makefile!
+
+* By default, **Make** looks for a file called `Makefile` when you run:
+
+```bash
+make
+```
+
+.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
+What happens if you don't name the build file `Makefile`?
+Does it runs?
+]
+
+.footnote[[Software Carpentry - Automation and Make](https://swcarpentry.github.io/make-novice/02-makefiles/index.html)]
+
+---
+
+
+### What happens if you don't name the build file `Makefile`?
+
+* We need to tell **Make** where to find it. 
+* We can do this using the `-f` flag. 
+
+--
+
+For example, if our `Makefile` is named `MyOtherMakefile`:
+
+```bash
+make -f MyOtherMakefile
+```
+
+.footnote[[Software Carpentry - Automation and Make](https://swcarpentry.github.io/make-novice/02-makefiles/index.html)]
+
+---
+class: inverse, middle, center
+
+### For your project your file should be named **Makefile**
+
+---
+
+### “Up to Date” Versus “Nothing to be Done” 
+
+#### Up to date
+
+```bash
+$ make 
+make: 'isles.dat' is up to date.
+```
+--
+#### Nothing to be Done
+
+```bash
+$ make countwords.py
+make: Nothing to be done for 'countwords.py'.
+```
+
+.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
+
+What is going on? 
+
+]
+
+.footnote[[Software Carpentry - Automation and Make](https://swcarpentry.github.io/make-novice/02-makefiles/index.html)]
+---
+
+### “Up to Date” Versus “Nothing to be Done”
+#### Up to date
+
+
+```bash
+make: 'isles.dat' is up to date.
+```
+Means that the Makefile has a rule with one or more actions whose target is the name of a file (or directory) and the file is up to date.
+
+
+.footnote[[Software Carpentry - Automation and Make](https://swcarpentry.github.io/make-novice/02-makefiles/index.html)]
+---
+
+### “Up to Date” Versus “Nothing to be Done”
+#### Nothing to be Done
+
+```bash
+make: Nothing to be done for 'countwords.py'
+```
+
+`Nothing to be done` means that the file exists but either:
+
+* the Makefile has no rule for it, or
+* the Makefile has a rule for it, but that rule has no actions
+
+.footnote[[Software Carpentry - Automation and Make](https://swcarpentry.github.io/make-novice/02-makefiles/index.html)]
+
+---
+
+class: inverse, middle, center
+
+### Tips to improve your project
+
+
+---
+
+### Activity (5 min)
+
+#### Find 4 things that can be improved in https://github.ubc.ca/fdandrea/project_to_improve 
+
+```bash
+project/          
+├── data/  
+│   └── processed/ # processed data sets (eg train and test)  
+│   └── raw/ # downloaded data set           
+├── src/  # scripts (now you will have more!)
+*├── doc/  # documents (final report and files associated)
+├── results/  # figures and data sets with the results
+├── README.md # Project proposal (Include usage!)
+*├── LICENCE
+├── CONTRIBUTING.md
+*└── CODE_OF_CONDUCT.md
+``` 
+
+---
+
+### Activity (5 min)
+
+#### Find 4 things that can be improved in https://github.ubc.ca/fdandrea/project_to_improve (in relation to milestone1)
+
+1. License: copy-wright holder -&gt; Your names!
+--
+
+2. Code of Conduct -&gt; Include an email 
+--
+
+3. Figure Captions -&gt; Should be included in the report
+
+--
+4. Reports should have an executive summary or abstract.
+
+**Example** https://github.com/ttimbers/breast_cancer_predictor/tree/v2.0
+---
+
+## 📜🖥️💾🖱
+
+#### Why the following files are often written in uppercase letters?
+
+* `README.md`
+* `CODE_OF_CONDUCT.md` and
+* `CONTRIBUTE.md` 
+* `LICENSE`
+
+--
+  
+What I found  
+**In the past**: The order of the files when listed using the command line. In `ASCII` systems capital letters comes before small ones.  
+**Today**: Writing these files in uppercase letters helps to promote their visibility within your repository.
+
+.footnote[https://en.wikipedia.org/wiki/README]
+---
+
+### Should I always use the extension `.md` for these files?
+
+No, plain text files also work.
+
+##### Benefit:
+* README.md -&gt; GitHub displays the file.
+
+---
+
+### Figures
+
+&lt;img src="img/legends.png" width="1160" /&gt;
+
+.footnote[https://www.internationalscienceediting.com/how-to-write-a-figure-caption]
+---
+
+### Other tips!
+
+#### If you are using Jupyter Books
+- In reports, we typically do not have a side-bar for the tables of contents.
+
+---
+
+class: inverse, middle
+
+### GitHub Pages
+#### I want an easier way to share my report!
+
+* Render your report in `.html`
+* Activate GitHub Pages. 
+* Add at the end of the URL generated by GitHub the name of the report. For example here I added `help.html` at the end:
+`https://ubc-mds.github.io/group_project_name_dsci_522/help.html`
+* The file you want to use should be in the root of your project (or you should specify GitHub Pages where to find it)
+* Be patient. 
+
+
+
+---
+
+class: inverse, middle, center
+
+
+## Questions?
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,518 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Milestone 2 - A data analysis project with multiple scripts and a final report &#8212; DSCI 522 Data Science Workflows</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Milestone 3 - Building an automated data analysis pipeline" href="milestone3.html" />
+    <link rel="prev" title="Milestone 1" href="milestone1.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/UBC_MDS_logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">DSCI 522 Data Science Workflows</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../README.html">
+   DSCI 522: Data Science Workflows
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lectures/01_lecture-intro-to-ds-workflows.html">
+   Lecture 1 - Intro to Data Science Workflows
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lectures/02_lecture-intro-to-scripts.html">
+   Lecture 2 - Scaling up: read-eval-print-loop (REPL) processes versus non-interactive scripts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lectures/03_lecture-advanced-reporting.html">
+   Lecture 3 - Advanced reporting in R Markdown (and a bit about Jupyter)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lectures/04_lecture-shell-driver-scripts.html">
+   Lecture 4 - Data Analysis pipelines using a shell script
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lectures/05_lecture-make-driver-script.html">
+   Lecture 5 - Data Analysis pipelines using Make
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lectures/06_lecture-intro-to-docker.html">
+   Lecture 6 - Introduction to Docker
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lectures/07_lecture_writing_dockerfiles.html">
+   Lecture 7 - Writing your own Dockerfile!
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lectures/08_repro_wrap_up.html">
+   Lecture 8 - Reproducibility wrap-up
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Individual Assignments
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="individual_assignment_1.html">
+   Individual assignment 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="individual_assignment_2.html">
+   Individual assignment 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="peer-review/peer-review.html">
+   Peer review: Constructively reviewing data analysis projects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="individual_assignment_4.html">
+   Individual assignment 4
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Group Project Milestones
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="milestone1.html">
+   Milestone 1
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Milestone 2 - A data analysis project with multiple scripts and a final report
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="milestone3.html">
+   Milestone 3 - Building an automated data analysis pipeline
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="milestone4.html">
+   Milestone 4 - Building a reproducible and fully automated data analysis pipeline
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Appendices
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendices/appendix.html">
+   Appendix
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="team_work.html">
+   Team project reflection
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/materials/assignments/milestone2.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.ubc.ca/mds-2021-22/DSCI_522_dsci-workflows_students"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.ubc.ca/mds-2021-22/DSCI_522_dsci-workflows_students/issues/new?title=Issue%20on%20page%20%2Fmaterials/assignments/milestone2.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overall-project-summary">
+   Overall project summary
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#milestone-2-summary">
+   Milestone 2 summary
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#submission-instructions">
+   Submission Instructions:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#writing-an-analysis-that-uses-multiple-scripts">
+   Writing an analysis that uses multiple scripts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#expectations">
+   Expectations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#version-control-and-submission-expectations">
+     Version control and submission expectations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#project-organization-and-documentation-expectations">
+     Project organization and documentation expectations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#submission-expectations">
+     Submission expectations
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="milestone-2-a-data-analysis-project-with-multiple-scripts-and-a-final-report">
+<h1>Milestone 2 - A data analysis project with multiple scripts and a final report<a class="headerlink" href="#milestone-2-a-data-analysis-project-with-multiple-scripts-and-a-final-report" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overall-project-summary">
+<h2>Overall project summary<a class="headerlink" href="#overall-project-summary" title="Permalink to this headline">¶</a></h2>
+<p>In this course you will work in assigned teams of three or four (see group assignments in Canvas) to answer a statistical question using a publicly available data set that will allow you to answer that question. To answer this question, you will perform a complete data analysis, from data import to communication of results, while placing significant emphasis on reproducibility and transparency. To complete the analysis you will write 4-5 R and/or Python scripts, create a reproducible report (in Jupyter or R Markdown), as well as automate your data analysis workflow using GNU Make. Software and environment dependencies are to be made shippable and shareable via containerization with Docker.</p>
+<p>An example final project can be seen here: <a class="reference external" href="https://github.com/ttimbers/breast_cancer_predictor">https://github.com/ttimbers/breast_cancer_predictor</a></p>
+</div>
+<div class="section" id="milestone-2-summary">
+<h2>Milestone 2 summary<a class="headerlink" href="#milestone-2-summary" title="Permalink to this headline">¶</a></h2>
+<p>In this milestone, you will:</p>
+<ol class="simple">
+<li><p>Write a script that reads the downloaded data and performs and data cleaning/pre-processing, transforming, and/or splitting</p></li>
+<li><p>Write a script which creates exploratory data visualization(s) and table(s) that are useful to help the reader/consumer understand that data set</p></li>
+<li><p>Write a script that performs some statistical or machine learning analysis and summarizes the results as a figure(s) and a table(s)</p></li>
+<li><p>Write a literate code document which presents your analysis and findings</p></li>
+<li><p>Iterate on work done for milestone 1 as required per TA feedback</p></li>
+</ol>
+<p>An example project milestone 2 can be seen here: <a class="reference external" href="https://github.com/ttimbers/breast_cancer_predictor/tree/v2.0">https://github.com/ttimbers/breast_cancer_predictor/tree/v2.0</a></p>
+</div>
+<div class="section" id="submission-instructions">
+<h2>Submission Instructions:<a class="headerlink" href="#submission-instructions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Be sure to follow the <a class="reference external" href="https://ubc-mds.github.io/resources_pages/general_lab_instructions/">general lab instructions</a> that are relevant, while also following the specific instructions described in the <a class="reference external" href="#expectations">expectations</a> section below.</p></li>
+</ul>
+</div>
+<div class="section" id="writing-an-analysis-that-uses-multiple-scripts">
+<h2>Writing an analysis that uses multiple scripts<a class="headerlink" href="#writing-an-analysis-that-uses-multiple-scripts" title="Permalink to this headline">¶</a></h2>
+<p>rubric={mechanics:5,accuracy:20,quality:20,reasoning:10,viz:10,writing:5}</p>
+<p>Write the following five files (4 R or Python scripts and an R Markdown or Jupyter notebook report) to carry out your planned data analysis. If you would like to have more than 4 scripts, by all means, go ahead. Four scripts are the minimum however.</p>
+<p>The output of the first script must be the input of the second, and so on.
+All scripts should have command line arguments and we expect you to use the <code class="docutils literal notranslate"><span class="pre">docopt</span></code> R and Python packages for parsing command line arguments.
+All functions written for the project scripts should have sensible tests.</p>
+<p>They should be organized something like this:</p>
+<ol class="simple">
+<li><p>A first script that downloads some data from the internet and saves it locally. This should take at least two arguments:</p>
+<ul class="simple">
+<li><p>the path to the input file (a URL or a relative local path, such as <code class="docutils literal notranslate"><span class="pre">data/file.csv</span></code>)</p></li>
+<li><p>a path/filename where to write the file to and what to call it (<em>e.g.,</em> <code class="docutils literal notranslate"><span class="pre">data/cleaned_data.csv</span></code>)</p></li>
+<li><p><em>Note 1 - you already wrote this script for your last milestone</em></p></li>
+<li><p><em>Note 2 - choose more descriptive filenames than the ones used here for illustrative purposes.</em></p></li>
+</ul>
+</li>
+<li><p>A second script that reads the data from the first script and performs and data cleaning/pre-processing, transforming, and/or paritionting that needs to happen before exploratory data analysis or modeling takes place. This should take at least two arguments:</p>
+<ul class="simple">
+<li><p>a path/filename pointing to the data to be read in</p></li>
+<li><p>a path/filename pointing to where the cleaned/processed/transformed/paritioned data should live</p></li>
+</ul>
+</li>
+<li><p>A third script which creates exploratory data visualization(s) and table(s) that are useful to help the reader/consumer understand that dataset. This should take two arguments:</p>
+<ul class="simple">
+<li><p>a path/filename pointing to the data</p></li>
+<li><p>a path/filename prefix where to write the figure to and what to call it (<em>e.g.,</em> <code class="docutils literal notranslate"><span class="pre">results/this_eda.png</span></code>)</p></li>
+</ul>
+</li>
+<li><p>A fourth script that reads the data from the second script, performs some statistical or machine learning analysis and summarizes the results as a figure(s) and a table(s).  These should be written to files. This should take two arguments:</p>
+<ul class="simple">
+<li><p>a path/filename pointing to the data</p></li>
+<li><p>a path/filename prefix where to write the figure(s)/table(s) to and what to call it (<em>e.g.,</em> <code class="docutils literal notranslate"><span class="pre">results/this_analysis</span></code>)</p></li>
+</ul>
+</li>
+<li><p>A fifth script: an <code class="docutils literal notranslate"><span class="pre">.Rmd</span></code> or <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> files that presents the key useful (not all!) exploratory data analysis as well as the statistical summaries and figures in a little report. There should be a written narrative in this document that introduces and justifies your question, introduces the data set, presents the findings/results, and interprets the findings/results in context of the question. Some critique of the analysis is also expected (limitations, assumptions, etc) and a statement of future directions (what would you do next if you had more time to work on this). The report is expected to be 1-2 written pages (excluding figures, tables and references). You are expected to have a reference section and cite 2-3 external sources (data source can be one of these citations) in addition to citing the programming languages and packages used. <em>Yes, you need to cite the programming languages and packages used in your project. You will learn how to do this in lecture.</em></p></li>
+</ol>
+<p><em>Note - feel free to re-use R or Python code from previous assignments in this class or others.</em></p>
+</div>
+<div class="section" id="expectations">
+<h2>Expectations<a class="headerlink" href="#expectations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="version-control-and-submission-expectations">
+<h3>Version control and submission expectations<a class="headerlink" href="#version-control-and-submission-expectations" title="Permalink to this headline">¶</a></h3>
+<p>rubric={mechanics:10}</p>
+<ul class="simple">
+<li><p><strong>Everyone should contribute equally to all aspects of the project (e.g., code, writing, project management). This should be evidenced by a roughly equal number of commits, pull request reviews and participation in communication via GitHub issues.</strong></p></li>
+<li><p>You should be committing to Git every time you work on this project. Thus, we expect to see 10+ commits in your git log by the time you submit this milestone.</p></li>
+<li><p>git commit messages should be meaningful. These will be marked. It’s OK if one or two are less meaningful, but most should be.</p></li>
+<li><p>Each team member is expected to work in their personal fork of the repository, and then frequently send pull-requests of their work to the upstream repo (the one they forked). The other teammates should review, critique (if necessary) and finally accept their teammate’s pull request.</p></li>
+<li><p>Use GitHub issues to communicate to their team mate (as opposed to email or Slack)</p></li>
+<li><p>Just before submitting, create a release on your project repo named 0.1.0.</p></li>
+</ul>
+</div>
+<div class="section" id="project-organization-and-documentation-expectations">
+<h3>Project organization and documentation expectations<a class="headerlink" href="#project-organization-and-documentation-expectations" title="Permalink to this headline">¶</a></h3>
+<p>rubric={mechanics:5,writing:5,reasoning:5}</p>
+<ul class="simple">
+<li><p>In the main <code class="docutils literal notranslate"><span class="pre">README.md</span></code> file for this project you should explain the project in a short summary (view from 10,000 feet) and also explain how to run your data analysis (which order scripts are run in, what expected inputs are). Your explanation could include a flow chart/dependecy diagram. This should be an evolution of what was submitted at the proposal stage. <em>Yes, we are asking you to overwrite your proposal here, and so if you want to keep that in a more findable place than in the Git history, do create a new file in the <code class="docutils literal notranslate"><span class="pre">doc</span></code> directory to archive it there (e.g., <code class="docutils literal notranslate"><span class="pre">proposal.md</span></code>).</em></p></li>
+<li><p>List the software dependencies for your analysis in the README (or if you use conda, point to the <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file)</p></li>
+<li><p>Each individual script must be well documented. This means comments throughout, readable code and a brief summary at the top of each file that answers who wrote it, when it was written and what it does. Additionally, in your project’s README.md file, explain how to reproducibly run your scripts from top to bottom, including the arguments that need to be provided to each script.</p></li>
+<li><p>Your question, analysis and visualization should make sense. It doesn’t have to be complicated, but you should tell a story and have a narrative. Specifically, this should come through in your README and final report file.</p></li>
+<li><p>You should use proper grammar and full sentences in your README and report. Point form may occur, but should be less than 10% of your written documents.</p></li>
+</ul>
+</div>
+<div class="section" id="submission-expectations">
+<h3>Submission expectations<a class="headerlink" href="#submission-expectations" title="Permalink to this headline">¶</a></h3>
+<p>rubric={mechanics:5}</p>
+<ul class="simple">
+<li><p>You <strong>must</strong> include the URL of your public project’s repository in your milestone 2 submission on Canvas, so we know where to find it.</p></li>
+<li><p>Just before you submit the milestone 2, create a release on your project repository on GitHub and name it 0.1.0. Include the URL to this release in your milestone 2 submission on Canvas, so we can easily jump to the state of your repository at the time of submission for grading purposes, while you continue to work on your project for the next milestone.</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./materials/assignments"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="milestone1.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Milestone 1</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="milestone3.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Milestone 3 - Building an automated data analysis pipeline</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Tiffany Timbers and Florencia D'Andrea<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

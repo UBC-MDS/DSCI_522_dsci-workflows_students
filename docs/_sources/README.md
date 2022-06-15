@@ -3,9 +3,9 @@
 ## Introduction
 Data-rich projects can quickly grow out-of-hand and become irreproducible in the absence of deliberate effort at organization, tool choice, and process. This course will teach basic principles of sound data scientific workflows and will develop skills implementing them in appropriate state-of-the-art systems and languages (e.g., Python and R).
 
-__Course website__: https://pages.github.ubc.ca/MDS-2020-21/DSCI_522_dsci-workflows_students
+__Course website__: https://pages.github.ubc.ca/MDS-2021-22/DSCI_522_dsci-workflows_students
 
-__Course webpage__: https://github.ubc.ca/MDS-2020-21/DSCI_522_dsci-workflows_students
+__Course webpage__: https://github.ubc.ca/MDS-2021-22/DSCI_522_dsci-workflows_students
 
 __Slack Channel__: https://ubc-mds.slack.com/messages/522_dsci-workflows
 
@@ -26,12 +26,14 @@ At your service!
 
 | Position           | Name    | Slack Handle | GHE Handle | 
 | :----------------: | :-----: | :----------: | :--------: | 
-| Lecture & Lab Instructor | Tiffany | `@tiffany`   | `@timberst` | 
-| Teaching Assistant | Arjun Baghela | @abaghela | @abaghela |
-| Teaching Assistant | Jordan Bourak | @Jordan Bourak   | @jnbk |
-| Teaching Assistant | 	Analise Hofmann | @(TA) Analise 521 | @ahofmann | 
-| Teaching Assistant | Eric Lee | @Eric | @elee0920 |
-| Teaching Assistant | Hossameldin Mohammed | @Hossam | @hos40044 |
+| Lecture Instructor | Tiffany Timbers | `@tiffany`   | `@timberst` | 
+| Lab Instructor | Florencia D'Andrea | `@Florencia`   | `@fdandrea` |
+| Teaching Assistant | Andy Man Yeung Tai | `@Andy Tai` | `@andytai7` |
+| Teaching Assistant | Ivy He | `@Ivy He`   | `@ivy0qhe` |
+| Teaching Assistant | 	Peter Gysbers | `@Peter (TA)` | `@gysberph` | 
+| Teaching Assistant | Eric Lee | `@Eric` | `@elee0920` |
+| Teaching Assistant | Mohamad Amin Mohamadi | `@Amin` | `@lemohama` |
+| Teaching Assistant | Abdul Muntakim Rafi | `@Rafi` | `@rafi11` |
 
 
 ## Deliverables
@@ -40,23 +42,23 @@ This is a __project-based course__. You will work in randomly assigned groups of
 
 | Assessment       | Weight  | Deadline        | 
 |------------------|---------|------------------|
-| Milestone 1 - Proposal and data download scipt | 12%     | 2020-11-21 11:59 PT | 
-| Milestone 2 -  Working analysis scripts and report draft | 20%     | 2020-11-28 11:59 PT |
-| Milestone 3 - Data analysis pipeline with Make | 20%     | 2020-12-05 @ 11:59 PT | 
-| Milestone 4 - Final project submission (with ultimate reproducibility) | 20%     | 2020-12-12 11:59 PT     | 
-| Individual assignment 1 | 2%     | 2020-11-21 11:59 PT |
-| Individual assignment 2 | 2%     | 2020-11-28 11:59 PT |
-| Individual assignment 3 | 2%     | 2020-12-05 11:59 PT |
-| Individual assignment 4 | 2%     | **2020-12-11 11:59 PT** |
-| Team work |  20% | **2020-12-13 11:59 PT** |
-
+| Milestone 1 - Proposal and data download script | 20%     | 2021-11-21 18:00 PT | 
+| Milestone 2 -  Working analysis scripts and report draft | 20%     | 2021-11-27 18:00 PT |
+| Milestone 3 - Data analysis pipeline with Make | 20%     | 2021-12-04 18:00 PT | 
+| Milestone 4 - Final project submission (with ultimate reproducibility) | 20%     | 2021-12-11 18:00 PT     | 
+| Individual assignment 1 | 2%     | 2021-11-21 18:00 PT |
+| Individual assignment 2 | 2%     | 2021-11-27 18:00 PT |
+| Peer Review | 10%     | 2021-12-04 18:00 PT |
+| Individual assignment 4 | 2%     | **2021-12-11 18:00 PT** |
+| Team work |  4% | **2021-12-14 18:00 PT** |
+| Team work multiplier |  final grade * multiplier | NA |
 ## Schedule
 
 | Lecture|   Topic  | Required Readings | Additional Readings |
 |--------|---------|------------|-----------------------------|
 | 1 | Introduction to Data Science Workflows | <ul><li>[Art of Data Science Chapters 1 - 3](https://leanpub.com/artofdatascience)</li><li>[Best Practices for Scientific Computing](http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745)</li></ul> |<ul><li>[Hilary Parker's Opinionated Analysis Development paper](https://peerj.com/preprints/3210/)</li><li>[A Quick Guide to Organizing Computational Biology Projects](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424)</li></ul> |
 | 2 |  Scaling up: read-eval-print-loop (REPL) processes versus non-interactive scripts | <ul><li>[Art of Data Science Chapters 4](https://leanpub.com/artofdatascience)</li></ul> | <ul><li>[`docopt` python documentation](http://docopt.org/)</li><li>[Docopt, beautiful command-line options for R talk slides](https://www.slideshare.net/EdwindeJonge1/docopt-user2014)</li></ul>|
-| 3 |  Scaling up cont'd: using literate coding documents (Jupyter notebooks and R Markdown documents) non-interactively| <ul><li>[Art of Data Science Chapter 5 - 6](https://leanpub.com/artofdatascience)</li></ul> | <ul><li>[R Markdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)</li><li>[jupyter nbconvert](http://nbconvert.readthedocs.io/en/latest/usage.html)</li><li>[Using Python and R in harmony - the reticulate cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/reticulate.pdf)</li></ul> |
+| 3 |  Scaling up cont'd: using literate coding documents (Jupyter notebooks and R Markdown documents) non-interactively| <ul><li>[Art of Data Science Chapter 5 - 6](https://leanpub.com/artofdatascience)</li></ul> | <ul><li>[R Markdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)</li><li>[`bookdown`](https://bookdown.org/yihui/bookdown/)</li><li>[Jupyter book](https://jupyterbook.org/intro.html)</li><li>[jupyter nbconvert](http://nbconvert.readthedocs.io/en/latest/usage.html)</li><li>[Using Python and R in harmony - the reticulate cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/reticulate.pdf)</li></ul> |
 | 4 |  Data Analysis pipelines and shell scripting | <ul><li>[Art of Data Science Chapter 7 - 8](https://leanpub.com/artofdatascience)</li></ul>|  |
 | 5 | Automated workflows; introduction to the build/automation tool Make | <ul><li>[Art of Data Science Chapters 9](https://leanpub.com/artofdatascience)</li></ul> | <ul><li>[STAT 545 - Chapter 36: Automating data-analysis pipelines](https://stat545.com/automating-pipeline.html)</li><li>[Software Carpentry Make lesson](http://swcarpentry.github.io/make-novice/)</li><li>[Make reference sheet](http://swcarpentry.github.io/make-novice/reference)<li>[How to do Reproducible Computational  Analysis](https://www.youtube.com/watch?v=SRItP6PSu4U&feature=youtu.be)</li></ul> |
 | 6 | Environment management: containerization with Docker part I| <ul><li>[Art of Data Science Chapter 10](https://leanpub.com/artofdatascience)</li></ul> | <ul><li>[What is a Container](https://www.docker.com/resources/what-container)</li><li>[An Introduction to Rocker: Docker Containers for R](https://arxiv.org/pdf/1710.03675.pdf)</li></ul> |
