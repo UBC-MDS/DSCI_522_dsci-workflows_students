@@ -1,6 +1,6 @@
 # Team project reflection
 
-*You can acces an editable version of this file [here](https://github.ubc.ca/mds-2021-22/DSCI_522_dsci-workflows_students/blob/master/materials/materials/assignments/team_work.md).*
+*You can acces an editable version of this file [here](https://github.ubc.ca/mds-2022-23/DSCI_522_dsci-workflows_students/blob/master/materials/materials/assignments/team_work.md).*
 
 The purpose of this individual report
 is to give you an avenue to present your viewpoint
@@ -98,4 +98,4 @@ comment on the following areas:
 
 ## Submission instructions
 
-- Fill out this form (editable version of the form available [here](https://pages.github.ubc.ca/mds-2021-22/DSCI_522_dsci-workflows_students/materials/assignments/team_work.md) and convert it to an `.html` document. Finally submit it to Canvas.
+- Fill out this form (editable version of the form available [here](https://github.ubc.ca/mds-2021-22/DSCI_522_dsci-workflows_students/blob/master/materials/materials/assignments/team_work.md) and convert it to an `.html` document. Finally submit it to Canvas.

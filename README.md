@@ -3,9 +3,9 @@
 ## Introduction
 Data-rich projects can quickly grow out-of-hand and become irreproducible in the absence of deliberate effort at organization, tool choice, and process. This course will teach basic principles of sound data scientific workflows and will develop skills implementing them in appropriate state-of-the-art systems and languages (e.g., Python and R).
 
-__Course website__: https://pages.github.ubc.ca/MDS-2021-22/DSCI_522_dsci-workflows_students
+__Course website__: https://pages.github.ubc.ca/MDS-2022-23/DSCI_522_dsci-workflows_students
 
-__Course webpage__: https://github.ubc.ca/MDS-2021-22/DSCI_522_dsci-workflows_students
+__Course webpage__: https://github.ubc.ca/MDS-2022-23/DSCI_522_dsci-workflows_students
 
 __Slack Channel__: https://ubc-mds.slack.com/messages/522_dsci-workflows
 
@@ -16,7 +16,7 @@ By the end of the course, students are expected to be able to:
 1. Map a data analysis question to appropriate analysis.
 1. Write R, Python and shell scripts for non-interactive data analysis.
 1. Run literate coding documents (Jupyter notebooks and R Markdown documents) non-interactively.
-1. Use a Git/GitHub forking-pull request collaboration approach to collaboratively work on a data analysis project.
+1. Use a Git/GitHub to collaboratively work on a data analysis project.
 1. Automate data science workflows (using e.g., Make).
 1. Manage project software and environment dependencies (using e.g., Docker)
 
@@ -26,13 +26,12 @@ At your service!
 
 | Position           | Name    | Slack Handle | GHE Handle | 
 | :----------------: | :-----: | :----------: | :--------: | 
-| Lecture Instructor | Tiffany Timbers | `@tiffany`   | `@timberst` | 
-| Lab Instructor | Florencia D'Andrea | `@Florencia`   | `@fdandrea` |
-| Teaching Assistant | Andy Man Yeung Tai | `@Andy Tai` | `@andytai7` |
-| Teaching Assistant | Ivy He | `@Ivy He`   | `@ivy0qhe` |
-| Teaching Assistant | 	Peter Gysbers | `@Peter (TA)` | `@gysberph` | 
+| Lecture and Lab Instructor | Florencia D'Andrea | `@Florencia`   | `@fdandrea` |
+| Teaching Assistant | Daniel Ramandi | `@Daniel (TA)` | `@dani014` |
+| Teaching Assistant | Aditi Nagaraj Nallan | `@Aditi Nallan (TA)`   | `@aditi48n` |
+| Teaching Assistant | Mohamad Amin Mohamadi | `@Amin` | `@lemohama` | 
 | Teaching Assistant | Eric Lee | `@Eric` | `@elee0920` |
-| Teaching Assistant | Mohamad Amin Mohamadi | `@Amin` | `@lemohama` |
+| Teaching Assistant | Keng Man Glenn Chang | `@Glenn Chang (TA)` | `@glenn03` |
 | Teaching Assistant | Abdul Muntakim Rafi | `@Rafi` | `@rafi11` |
 
 
@@ -42,15 +41,15 @@ This is a __project-based course__. You will work in randomly assigned groups of
 
 | Assessment       | Weight  | Deadline        | 
 |------------------|---------|------------------|
-| Milestone 1 - Proposal and data download script | 20%     | 2021-11-21 18:00 PT | 
-| Milestone 2 -  Working analysis scripts and report draft | 20%     | 2021-11-27 18:00 PT |
-| Milestone 3 - Data analysis pipeline with Make | 20%     | 2021-12-04 18:00 PT | 
-| Milestone 4 - Final project submission (with ultimate reproducibility) | 20%     | 2021-12-11 18:00 PT     | 
-| Individual assignment 1 | 2%     | 2021-11-21 18:00 PT |
-| Individual assignment 2 | 2%     | 2021-11-27 18:00 PT |
-| Peer Review | 10%     | 2021-12-04 18:00 PT |
-| Individual assignment 4 | 2%     | **2021-12-11 18:00 PT** |
-| Team work |  4% | **2021-12-14 18:00 PT** |
+| Milestone 1 - Proposal and data download script | 20%     | 2022-11-19 18:00 PT | 
+| Milestone 2 -  Working analysis scripts and report draft | 20%     | 2022-11-26 18:00 PT |
+| Milestone 3 - Data analysis pipeline with Make | 20%     | 2022-12-03 18:00 PT | 
+| Milestone 4 - Final project submission (with ultimate reproducibility) | 20%     | 2022-12-10 18:00 PT     | 
+| Individual assignment 1 | 2%     | 2022-11-19 18:00 PT |
+| Individual assignment 2 | 2%     | 2022-11-26 18:00 PT |
+| Peer Review | 10%     | 2022-12-03 18:00 PT |
+| Individual assignment 4 | 2%     | 2022-12-10 18:00 PT |
+| Team work |  4% | 2022-12-14 18:00 PT** |
 | Team work multiplier |  final grade * multiplier | NA |
 ## Schedule
 
@@ -82,19 +81,31 @@ See [calendar](https://ubc-mds.github.io/calendar/).
 
 Please see the general [MDS policies](https://ubc-mds.github.io/policies/).
 
-## Dealing With COVID-19
+### Where to find help?
 
-The [COVID-19 pandemic](https://www.who.int/emergencies/diseases/novel-coronavirus-2019/events-as-they-happen) has affected us all in different ways: it's okay to not be okay, and we all need to support each other during this time. With that said:
+If you are struggling eith any situation, please, be free to contact me in a direct message via Slack. I will reply as soon as possible.
 
-- My (virtual) door is always open, please feel free to talk to me about how you're doing and if/how I can help you (and if I can't help you, I can point you in the direction of someone who can);
-- You don't ever need to explain yourself; if you need support, need to miss a class, or need extra time for an assignment, just ask;
-- UBC has [great student support resources](https://students.ubc.ca/covid19) related to COVID-19 (and otherwise).
+## Working during the COVID-19 global pandemic
 
-Further, teaching/learning an intense graduate course like MDS online is a very new concept to all of us. If you have feedback on how I can improve the teaching experience, don't hesitate to reach out - I'm sure things won't be perfect from the get-go.
+We are working together on this course during this transition period between hybrid to in-person teaching and learning. Everyone is struggling to some extent. If you tell me you are having trouble, I am not going to judge you or think less of you. I hope you will extend me the same grace! Let's try to be open with each other and help each other. 
 
-Finally, here is an official statement from UBC regarding the online learning experience:
+Here are some ground rules:
 
->*During this pandemic, the shift to online learning has greatly altered teaching and studying at UBC, including changes to health and safety considerations. Keep in mind that some UBC courses might cover topics that are censored or considered illegal by non-Canadian governments. This may include, but is not limited to, human rights, representative government, defamation, obscenity, gender or sexuality, and historical or current geopolitical controversies. If you are a student living abroad, you will be subject to the laws of your local jurisdiction, and your local authorities might limit your access to course material or take punitive action against you. UBC is strongly committed to academic freedom, but has no control over foreign authorities (please visit http://www.calendar.ubc.ca/vancouver/index.cfm?tree=3,33,86,0 for an articulation of the values of the University conveyed in the Senate Statement on Academic Freedom). Thus, we recognize that students will have legitimate reason to exercise caution in studying certain subjects. If you have concerns regarding your personal situation, consider postponing taking a course with manifest risks, until you are back on campus or reach out to your academic advisor to find substitute courses. For further information and support, please visit: http://academic.ubc.ca/support-resources/freedom-expression.*
+- If you are unable to submit a deliverable on time, please reach out **before** the deliverable is due.
+- If you need extra support, the teaching team is here to work with you. Our goal is to help each of you succeed in the course.
+- If you are struggling with the material, getting back to in-person teaching and learning, or anything else, please reach out. I will try to find time and listen to you empathetically.
+- If I am unable to help you, I might know someone who can. UBC has some [great student support resources](https://students.ubc.ca/support).
+
+### [Covid Safety at UBC](https://srs.ubc.ca/covid-19/ubc-campus-rules-guidance-documents/#COVID-19%20Campus%20Rules)
+
+Please read [Covid Campus Rules](https://srs.ubc.ca/covid-19/ubc-campus-rules-guidance-documents/#COVID-19%20Campus%20Rules).  
+
+**Masks:** This class is going to be in person. UBC no longer requires students, faculty and staff to wear non-medical masks, but continues to recommend that masks be worn in indoor public spaces. 
+
+**Your personal health:**
+If you are ill or believe you have COVID-19 symptoms or been exposed to SARS-CoV-2 use the [Thrive Health](https://bc.thrive.health/covid19/en) self-assessment tool for guidance, or download the [BC COVID-19 Support App](https://welcome.thrive.health/bc-covid19-app) for iOS or Android device and follow the instructions provided. Follow the advice from [Public Health](https://www2.gov.bc.ca/gov/content/covid-19/info/restrictions).
+
+Stay home if you have recently tested positive for COVID-19 or are required to quarantine. You can check [this website](http://www.bccdc.ca/health-info/diseases-conditions/covid-19/self-isolation#Who) to find out if you should self-isolate or self-monitor. If you are unable to submit a deliverable on time or unable to appear for an in-person quiz, check out [MDS policies](https://ubc-mds.github.io/policies/) on academic concession and remote quiz requests. 
 
 ---
 
@@ -102,9 +113,6 @@ Authors: Tiffany A. Timbers, Firas Moovsi, Florencia D'Andrea
 
 ## License: 
 Software licensed under the [MIT License](https://spdx.org/licenses/MIT.html), non-software content licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License](https://creativecommons.org/licenses/by-nc-sa/4.0/). See the [license file](LICENSE.md) for more information.
-
-
-
 
 
 

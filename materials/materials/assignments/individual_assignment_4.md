@@ -14,11 +14,11 @@ as well as the link to your Docker image on DockerHub.
 1. Create a public repository on GitHub.com repo called `dockerfile-practice`
 
 2. Add a `Dockerfile` to it. This Dockerfile should:
-    - Be based off of one of the Jupyter docker-stacks images ([link to Jupyter docker-stacks documentation](https://jupyter-docker-stacks.readthedocs.io/en/latest/index.html), [link to repo of Jupyter docker-stacks Dockerfiles](https://github.com/jupyter/docker-stacks))
-    - Add at least one new R or Python package to the Dockerfile (ensure that you pin the version of the package you add).
+    - Be based off of one of the Jupyter docker-stacks images ([link to repo of Jupyter docker-stacks Dockerfiles](https://github.com/jupyter/docker-stacks))
+    - Add at least one package to the Dockerfile (ensure that you pin the version of the package you add)
 
-3. Add a GitHub Actions workflow to automatically build the image, push it to DockerHub, and version the image and GitHub repo when changes are pushed to the Dockerfile ([link to a GitHub Actions Workflow you should use for this](https://github.com/ttimbers/dockerfile-practice/blob/main/.github/workflows/publish_docker_image.yml)).
+3. Add a GitHub Actions workflow to automatically build the image, push it to DockerHub, and version the image and GitHub repo when changes are pushed to the Dockerfile ([link to a GitHub Actions Workflow you should use for this](https://github.com/flor14/example-ga-file-dockerhub/tree/main/.github/workflows)).
 Note 1: When setting up the workflow on GitHub Actions, be sure to click "Skip this and setup a workflow yourself".
 Note 2: You will need to add your DockerHub username and password (naming them `DOCKER_USERNAME` and `DOCKER_PASSWORD`, respectively) as GitHub secrets to this repository for this to work.
 
-4. Make sure you make at least one change to the `Dockerfile` once the GitHub Actions have been setup so that you get the image automatically built and pushed to DockerHub at least once.
+Make at least one change to the `Dockerfile` once the GitHub Actions have been setup so that you get the image automatically built and pushed to DockerHub at least once.

@@ -566,8 +566,4 @@
 # - Scripts in Python
 # - Command line arguments in R & Python
 
-# ## What's next?
 # 
-# - running literate code documents interactively
-# - more advanced R Markdown (figure and table formatting, citation)
-# - flexible R Markdown reports with parameterization

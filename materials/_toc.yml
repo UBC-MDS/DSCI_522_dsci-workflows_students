@@ -1,13 +1,16 @@
 format: jb-book
 root: README
 parts:
+  - caption: Slides
+    chapters:
+    - file: materials/appendices/slides
   - caption: Lectures
     numbered: False
     chapters:
     - file: materials/lectures/01_lecture-intro-to-ds-workflows
     - file: materials/lectures/02_lecture-intro-to-scripts
-    - file: materials/lectures/03_lecture-advanced-reporting
-    - file: materials/lectures/04_lecture-shell-driver-scripts
+    - file: materials/lectures/03_lecture-shell-driver-scripts
+    - file: materials/lectures/04_lecture-advanced-reporting 
     - file: materials/lectures/05_lecture-make-driver-script
     - file: materials/lectures/06_lecture-intro-to-docker
     - file: materials/lectures/07_lecture_writing_dockerfiles
@@ -24,7 +27,10 @@ parts:
     - file: materials/assignments/milestone2
     - file: materials/assignments/milestone3
     - file: materials/assignments/milestone4
-  - caption: Appendices
+  - caption: Teamwork documents
     chapters:
     - file: materials/appendices/appendix
     - file: materials/assignments/team_work
+  - caption: Datasets
+    chapters:
+    - file: materials/appendices/datasets

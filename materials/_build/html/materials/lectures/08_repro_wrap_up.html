@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Lecture 8 - Reproducibility wrap-up &#8212; DSCI 522 Data Science Workflows</title>
     
-  <link href="../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,37 +20,37 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Individual assignment 1" href="../assignments/individual_assignment_1.html" />
@@ -60,7 +62,21 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -69,9 +85,10 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -89,14 +106,27 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../README.html">
+                    DSCI 522: Data Science Workflows
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Slides
+ </span>
+</p>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../README.html">
-   DSCI 522: Data Science Workflows
+  <a class="reference internal" href="../appendices/slides.html">
+   Slides
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Lectures
  </span>
@@ -113,13 +143,13 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="03_lecture-advanced-reporting.html">
-   Lecture 3 - Advanced reporting in R Markdown (and a bit about Jupyter)
+  <a class="reference internal" href="03_lecture-shell-driver-scripts.html">
+   Lecture 3 - Data Analysis pipelines using a shell script
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="04_lecture-shell-driver-scripts.html">
-   Lecture 4 - Data Analysis pipelines using a shell script
+  <a class="reference internal" href="04_lecture-advanced-reporting.html">
+   Lecture 4 - Advanced reporting in R Markdown (and a bit about Jupyter)
   </a>
  </li>
  <li class="toctree-l1">
@@ -143,7 +173,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Individual Assignments
  </span>
@@ -170,7 +200,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Group Project Milestones
  </span>
@@ -197,9 +227,9 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Appendices
+  Teamwork documents
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -214,92 +244,162 @@
   </a>
  </li>
 </ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Datasets
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendices/datasets.html">
+   Datasets
+  </a>
+ </li>
+</ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/materials/lectures/08_repro_wrap_up.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.ubc.ca/mds-2021-22/DSCI_522_dsci-workflows_students"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.ubc.ca/mds-2021-22/DSCI_522_dsci-workflows_students/issues/new?title=Issue%20on%20page%20%2Fmaterials/lectures/08_repro_wrap_up.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.ubc.ca/MDS-2022-23/DSCI_522_dsci-workflows_students/issues/new?title=Issue%20on%20page%20%2Fmaterials/lectures/08_repro_wrap_up.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/materials/lectures/08_repro_wrap_up.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#learning-objectives">
    Learning Objectives
@@ -410,19 +510,145 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Lecture 8 - Reproducibility wrap-up</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-objectives">
+   Learning Objectives
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#build-a-docker-image-from-a-dockerfile-on-github-actions">
+   Build a Docker image from a Dockerfile on GitHub Actions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-a-docker-container-non-interactively">
+   Running a Docker container non-interactively
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-1">
+     Exercise 1:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-2">
+     Exercise 2:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-3">
+     Exercise 3:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-4">
+     Exercise 4:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#version-docker-images-and-report-software-and-package-versions">
+   Version Docker images and report software and package versions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-get-the-versions-of-your-software-in-your-container">
+     How to get the versions of your software in your container
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#but-i-want-to-control-the-versions">
+     But I want to control the versions!
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-in-r">
+     How to in R:
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-rocker-team-s-strategy">
+       The Rocker team’s strategy
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#a-new-thing-that-might-be-useful-in-the-future">
+       A new thing that might be useful in the future?
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-in-python">
+     How to in Python:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#take-home-messages">
+     Take home messages:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-tips-and-tricks">
+   Some tips and tricks:
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#docker-compose">
+     Docker compose
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-make-a-trustworthy-analysis">
+   How to make a trustworthy analysis:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#discussion">
+   Discussion
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#course-learning-objectives">
+   Course learning objectives:
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="lecture-8-reproducibility-wrap-up">
-<h1>Lecture 8 - Reproducibility wrap-up<a class="headerlink" href="#lecture-8-reproducibility-wrap-up" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="learning-objectives">
-<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Permalink to this headline">¶</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="lecture-8-reproducibility-wrap-up">
+<h1>Lecture 8 - Reproducibility wrap-up<a class="headerlink" href="#lecture-8-reproducibility-wrap-up" title="Permalink to this headline">#</a></h1>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Permalink to this headline">#</a></h2>
 <p>By the end of the lecture, students should be able to:</p>
 <ul class="simple">
 <li><p>Build a Docker image from a Dockerfile using GitHub Actions</p></li>
@@ -431,16 +657,16 @@
 <li><p>Articulate why reproducibility is important for data analysis</p></li>
 <li><p>Choose the appropriate level or reproducibility workflows/tooling based on project complexity and desired shareability</p></li>
 </ul>
-</div>
-<div class="section" id="build-a-docker-image-from-a-dockerfile-on-github-actions">
-<h2>Build a Docker image from a Dockerfile on GitHub Actions<a class="headerlink" href="#build-a-docker-image-from-a-dockerfile-on-github-actions" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="build-a-docker-image-from-a-dockerfile-on-github-actions">
+<h2>Build a Docker image from a Dockerfile on GitHub Actions<a class="headerlink" href="#build-a-docker-image-from-a-dockerfile-on-github-actions" title="Permalink to this headline">#</a></h2>
 <p>Building a Docker image from a Dockerfile using an automated tool (e.g., DockerHub or GitHub Actions) lets others trust your image as they can clearly see which Dockerfile was used to build which image.</p>
 <p>We will do this in this course by using GitHub Actions (a continuous integration tool) because is provides a great deal of nuanced control over when to trigger the automated builds of the Docker image, and how to tag them.</p>
 <p>An example GitHub repository that uses GitHub Actions to build a Docker image from a Dockerfile and publish it on DockerHub is available here: <a class="reference external" href="https://github.com/ttimbers/gha_docker_build">https://github.com/ttimbers/gha_docker_build</a></p>
 <p>We will work through a demonstration of this now starting here: <a class="reference external" href="https://github.com/ttimbers/dockerfile-practice">https://github.com/ttimbers/dockerfile-practice</a></p>
-</div>
-<div class="section" id="running-a-docker-container-non-interactively">
-<h2>Running a Docker container non-interactively<a class="headerlink" href="#running-a-docker-container-non-interactively" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="running-a-docker-container-non-interactively">
+<h2>Running a Docker container non-interactively<a class="headerlink" href="#running-a-docker-container-non-interactively" title="Permalink to this headline">#</a></h2>
 <p>So far we have been running our containers interactively, but sometimes we want to automate further and run things non interactively. We do this be dropping the <code class="docutils literal notranslate"><span class="pre">-it</span></code> flag from our <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> command as well as calling a command or a script after the docker image is specified.</p>
 <p>The general form for for running things non-interactively is this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">rm</span> <span class="o">-</span><span class="n">v</span> <span class="n">PATH_ON_YOUR_COMPUTER</span><span class="p">:</span><span class="n">VOLUME_ON_CONTAINER</span> <span class="n">DOCKER_IMAGE</span> <span class="n">PROGRAM_TO_RUN</span> <span class="n">PROGRAM_ARGUMENTS</span>
@@ -468,12 +694,12 @@ Snow again this week?
 </div>
 <p><em>note - I will use the version of the image that exists on Docker Hub, but you are free to use the one we built last class, they should be the same.</em></p>
 <p>Now that was a silly example, but this can be made powerful so that we can run an analysis pipeline, such as a Makefile non-interactively using Docker! Here’s a demo we can try: https://github.com/ttimbers/data_analysis_pipeline_eg/tree/v4.0</p>
-<div class="section" id="exercise-1">
-<h3>Exercise 1:<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h3>
+<section id="exercise-1">
+<h3>Exercise 1:<a class="headerlink" href="#exercise-1" title="Permalink to this headline">#</a></h3>
 <p>Download https://github.com/ttimbers/data_analysis_pipeline_eg/archive/v4.0.zip, unzip it and navigate to the root of the project directory, try to run the analysis via <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">all</span></code>.</p>
-</div>
-<div class="section" id="exercise-2">
-<h3>Exercise 2:<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="exercise-2">
+<h3>Exercise 2:<a class="headerlink" href="#exercise-2" title="Permalink to this headline">#</a></h3>
 <p>Now try to run the analysis using Docker via:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker run --rm -v /$(pwd):/home/rstudio/data_analysis_eg ttimbers/data_analysis_pipeline_eg make -C /home/rstudio/data_analysis_eg all
 </pre></div>
@@ -481,13 +707,13 @@ Snow again this week?
 <p><em>note - windows users must use Git Bash, set Docker to use Linux containers, and have shared their drives with Docker (see docs <a class="reference external" href="https://token2shell.com/howto/docker/sharing-windows-folders-with-containers/">here</a>) for this to work</em></p>
 <p>If that was too easy (i.e., both worked), try running this analysis with and without Docker: https://github.com/ttimbers/breast_cancer_predictor</p>
 <p>Now let’s try a more complex project (the breast cancer predictor):</p>
-</div>
-<div class="section" id="exercise-3">
-<h3>Exercise 3:<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="exercise-3">
+<h3>Exercise 3:<a class="headerlink" href="#exercise-3" title="Permalink to this headline">#</a></h3>
 <p>Download https://github.com/ttimbers/breast_cancer_predictor/archive/v4.0.zip, unzip it and navigate to the root of the project directory, try to run the analysis via <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span></code> (to reset the project state) and <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">all</span></code> (to run the analysis).</p>
-</div>
-<div class="section" id="exercise-4">
-<h3>Exercise 4:<a class="headerlink" href="#exercise-4" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="exercise-4">
+<h3>Exercise 4:<a class="headerlink" href="#exercise-4" title="Permalink to this headline">#</a></h3>
 <p>Now try to run reset the project state using Docker via:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker run --rm -v /$(pwd):/home/rstudio/breast_cancer_predictor ttimbers/bc_predictor:v4.0 make -C /home/rstudio/breast_cancer_predictor clean
 </pre></div>
@@ -503,10 +729,10 @@ Snow again this week?
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker run --rm -v /$(pwd):/home/rstudio/data_analysis_eg ttimbers/data_analysis_pipeline_eg make -C /home/rstudio/data_analysis_eg make
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="version-docker-images-and-report-software-and-package-versions">
-<h2>Version Docker images and report software and package versions<a class="headerlink" href="#version-docker-images-and-report-software-and-package-versions" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="version-docker-images-and-report-software-and-package-versions">
+<h2>Version Docker images and report software and package versions<a class="headerlink" href="#version-docker-images-and-report-software-and-package-versions" title="Permalink to this headline">#</a></h2>
 <p>It is easier to create a Docker image from a Dockerfile and tag it (or use it’s digest) than to control the version of each thing that goes into your Docker image.</p>
 <ul class="simple">
 <li><p>tags are human readable, however they can be associated with different builds of the image (potentially using different Dockerfiles…)</p></li>
@@ -521,22 +747,22 @@ Snow again this week?
 </pre></div>
 </div>
 <p>Tags are specified when you build on Docker Hub on the Builds tab under the Configure automated builds options. Digests are assigned to a build. You can see the digests on the Tags tab, by clicking on the “Digest” link for a specific tag of the image.</p>
-<div class="section" id="how-to-get-the-versions-of-your-software-in-your-container">
-<h3>How to get the versions of your software in your container<a class="headerlink" href="#how-to-get-the-versions-of-your-software-in-your-container" title="Permalink to this headline">¶</a></h3>
+<section id="how-to-get-the-versions-of-your-software-in-your-container">
+<h3>How to get the versions of your software in your container<a class="headerlink" href="#how-to-get-the-versions-of-your-software-in-your-container" title="Permalink to this headline">#</a></h3>
 <p>Easiest is to enter the container interactively and poke around using the following commands:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code> and <code class="docutils literal notranslate"><span class="pre">R</span> <span class="pre">--version</span></code> to find out the versions of Python and R, respectively</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">freeze</span></code> in the bash shell to find out Python package versions</p></li>
 <li><p>Enter R and load the libraries used in your scripts, then use <code class="docutils literal notranslate"><span class="pre">sessionInfo()</span></code> to print the package versions</p></li>
 </ul>
-</div>
-<div class="section" id="but-i-want-to-control-the-versions">
-<h3>But I want to control the versions!<a class="headerlink" href="#but-i-want-to-control-the-versions" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="how-to-in-r">
-<h3>How to in R:<a class="headerlink" href="#how-to-in-r" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="the-rocker-team-s-strategy">
-<h4>The Rocker team’s strategy<a class="headerlink" href="#the-rocker-team-s-strategy" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="but-i-want-to-control-the-versions">
+<h3>But I want to control the versions!<a class="headerlink" href="#but-i-want-to-control-the-versions" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="how-to-in-r">
+<h3>How to in R:<a class="headerlink" href="#how-to-in-r" title="Permalink to this headline">#</a></h3>
+<section id="the-rocker-team-s-strategy">
+<h4>The Rocker team’s strategy<a class="headerlink" href="#the-rocker-team-s-strategy" title="Permalink to this headline">#</a></h4>
 <p>This is not an easy thing, but the Rocker team has made a concerted effort to do this. Below is their strategy:</p>
 <blockquote>
 <div><p>Using the R version tag will naturally lock the R version, and also lock the install date of any R packages on the image. For example, rocker/tidyverse:3.3.1 Docker image will always rebuild with R 3.3.1 and R packages installed from the 2016-10-31 MRAN snapshot, corresponding to the last day that version of R was the most recent release. Meanwhile rocker/tidyverse:latest will always have both the latest R version and latest versions of the R packages, built nightly.</p>
@@ -554,43 +780,42 @@ Snow again this week?
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RUN</span> <span class="n">Rscript</span> <span class="o">-</span><span class="n">e</span> <span class="s2">&quot;install.packages(&#39;gapminder&#39;, repos = &#39;https://mran.revolutionanalytics.com/snapshot/2016-10-19&#39;)&quot;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="a-new-thing-that-might-be-useful-in-the-future">
-<h4>A new thing that might be useful in the future?<a class="headerlink" href="#a-new-thing-that-might-be-useful-in-the-future" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="a-new-thing-that-might-be-useful-in-the-future">
+<h4>A new thing that might be useful in the future?<a class="headerlink" href="#a-new-thing-that-might-be-useful-in-the-future" title="Permalink to this headline">#</a></h4>
 <p><a class="reference external" href="https://rstudio.github.io/renv/articles/renv.html">renv</a> - this is new! 🎉</p>
-</div>
-</div>
-<div class="section" id="how-to-in-python">
-<h3>How to in Python:<a class="headerlink" href="#how-to-in-python" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="how-to-in-python">
+<h3>How to in Python:<a class="headerlink" href="#how-to-in-python" title="Permalink to this headline">#</a></h3>
 <p>Python version:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">conda</span></code>  to specify an install of specific Python version, either when downloading (see example <a class="reference external" href="https://github.com/ContinuumIO/docker-images/blob/8e10242c6d7804a0e991a9d9d758e25b340f4fce/miniconda3/debian/Dockerfile#L10">here</a>, or after downloading with <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">python=3.6</span></code>).</p></li>
-<li><p>Or you can install a specific version of Python yourself, as they do in the Python official images (see <a class="reference external" href="https://github.com/docker-library/python/blob/master/3.7/stretch/slim/Dockerfile">here</a> for example), but this is more complicated.</p></li>
 </ul>
 <p>For Python packages, there are a few tools:</p>
 <ul class="simple">
 <li><p>conda (via <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">scipy=0.15.0</span></code> for example)</p></li>
 <li><p>pip (via <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">scipy=0.15.0</span></code> for example)</p></li>
 </ul>
-</div>
-<div class="section" id="take-home-messages">
-<h3>Take home messages:<a class="headerlink" href="#take-home-messages" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="take-home-messages">
+<h3>Take home messages:<a class="headerlink" href="#take-home-messages" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>At a minimum, tag your Docker images or reference image digests</p></li>
 <li><p>If you want to version installs inside the container, use base images that version R &amp; Python, and add what you need on top in a versioned manner!</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="some-tips-and-tricks">
-<h2>Some tips and tricks:<a class="headerlink" href="#some-tips-and-tricks" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="some-tips-and-tricks">
+<h2>Some tips and tricks:<a class="headerlink" href="#some-tips-and-tricks" title="Permalink to this headline">#</a></h2>
 <ol class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">...</span> <span class="pre">-p</span> <span class="pre">8888:8888</span></code> hard codes the port! If you already are using the port (i.e., already running Jupyter on your laptop you will get an error… <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span> <span class="pre">list</span></code> will list all running instances of Jupyter on your machine. To stop all jupyter notebook processes on your laptop, type: <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span> <span class="pre">stop</span></code>.</p></li>
 <li><p>How to see all docker images installed on your computer: <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">images</span></code>. Want to delete and image? <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">rmi</span> <span class="pre">&lt;IMAGE</span> <span class="pre">name&gt;</span></code> or <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">rmi</span> <span class="pre">&lt;IMAGE</span> <span class="pre">ID&gt;</span></code>.</p></li>
 <li><p>How to see any running and stopped but still dangling containers: <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span> <span class="pre">-a</span></code></p></li>
 <li><p>How to stop a running container: <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">stop</span> <span class="pre">&lt;CONTAINER</span> <span class="pre">ID&gt;</span></code>. If that doesn’t work, you can be more forceful with <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">kill</span> <span class="pre">&lt;CONTAINER</span> <span class="pre">ID&gt;</span></code>. Finally, to remove the stopped container: <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">rm</span>&#160; <span class="pre">&lt;CONTAINER</span> <span class="pre">ID&gt;</span></code> (again, you can be more forceful by adding the <code class="docutils literal notranslate"><span class="pre">--force</span></code> flag).</p></li>
 </ol>
-<div class="section" id="docker-compose">
-<h3>Docker compose<a class="headerlink" href="#docker-compose" title="Permalink to this headline">¶</a></h3>
+<section id="docker-compose">
+<h3>Docker compose<a class="headerlink" href="#docker-compose" title="Permalink to this headline">#</a></h3>
 <p>Docker compose is a tool that uses a <code class="docutils literal notranslate"><span class="pre">YAML</span></code> file to configure/specify how you want to run one or more Docker containers. To use Docker compose, we create a <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file that specifies things such as:</p>
 <ul class="simple">
 <li><p>the Docker images (and version)</p></li>
@@ -629,10 +854,10 @@ Snow again this week?
 <li><p>environment variables</p></li>
 <li><p>and potentially more!</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="how-to-make-a-trustworthy-analysis">
-<h2>How to make a trustworthy analysis:<a class="headerlink" href="#how-to-make-a-trustworthy-analysis" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="how-to-make-a-trustworthy-analysis">
+<h2>How to make a trustworthy analysis:<a class="headerlink" href="#how-to-make-a-trustworthy-analysis" title="Permalink to this headline">#</a></h2>
 <ol class="simple">
 <li><p>It should be reproducible and transparent</p></li>
 </ol>
@@ -642,16 +867,16 @@ Snow again this week?
 <ol class="simple">
 <li><p>It should be fair, equitable and honest</p></li>
 </ol>
-</div>
-<div class="section" id="discussion">
-<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="discussion">
+<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Why is reproducibility is important for data analysis?</p></li>
 <li><p>How do I choose the level of investment of reproducibility for a given project?</p></li>
 </ul>
-</div>
-<div class="section" id="course-learning-objectives">
-<h2>Course learning objectives:<a class="headerlink" href="#course-learning-objectives" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="course-learning-objectives">
+<h2>Course learning objectives:<a class="headerlink" href="#course-learning-objectives" title="Permalink to this headline">#</a></h2>
 <p>By the end of the course, students are expected to be able to:</p>
 <ul class="simple">
 <li><p>Map a data analysis question to appropriate analysis</p></li>
@@ -661,8 +886,8 @@ Snow again this week?
 <li><p>Automate data science workflows (using e.g., Make).</p></li>
 <li><p>Manage project software and environment dependencies (using e.g., Docker)</p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -686,9 +911,11 @@ Snow again this week?
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="07_lecture_writing_dockerfiles.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -704,26 +931,28 @@ Snow again this week?
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Tiffany Timbers and Florencia D'Andrea<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Florencia D'Andrea<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
     </div>
-  </footer>
-</main>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

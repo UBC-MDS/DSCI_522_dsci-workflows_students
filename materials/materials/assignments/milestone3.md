@@ -6,7 +6,7 @@ In this course you will work in assigned teams of three or four (see group assig
 
 An example final project can be seen here: [https://github.com/ttimbers/breast_cancer_predictor](https://github.com/ttimbers/breast_cancer_predictor)
 
-The slides of the lab are in the following link: [https://pages.github.ubc.ca/fdandrea/DSCI-522_milestone3/slides.html#1](https://pages.github.ubc.ca/fdandrea/DSCI-522_milestone1/slides.html#1)
+An example project in milestone3 could be seen here: [https://github.com/ttimbers/breast_cancer_predictor/tree/v3.0](https://github.com/ttimbers/breast_cancer_predictor/tree/v3.0)
 #### Goal
 
 Here you will take the data analysis scripts that you built previously and use the build/automation tool Make to create a fully automated data analysis pipeline. 
@@ -16,10 +16,10 @@ Additionally, you will review and address feedback received on your project from
 
 - Be sure to follow the [general lab instructions](https://ubc-mds.github.io/resources_pages/general_lab_instructions/) that are relevant, while also following the specific instructions described in the [expectations](#expectations) section below.
 
- *Note - Remember to improve your work based on any feedback you received from the TAs.*
+ *Note - It is a good idea to improve your work based on any feedback you received from the TAs as soon as you get it.*
 
 ## Automating the data-analysis pipeline using Make
-rubric={mechanics:20,accuracy:30,quality:30}   
+rubric={mechanics:20,accuracy:20,quality:17}   
 
 Write another script, a Makefile (literally called `Makefile`), to act as a driver script to rule them all. This script should run the others in sequence, hard coding in the appropriate arguments.
 This script should:
@@ -30,9 +30,8 @@ This script should:
 
 
 ## Expectations
-rubric={mechanics:20}  
-  - **Everyone should contribute equally to all aspects of the project (e.g., code, writing, project management). This should be evidenced by a roughly equal number of commits, pull request reviews and participation in communication via GitHub issues.** Thus, by the time you finish your final project, we expect to see 20+ commits in your git log. Make your commit messages meaningful!
-  - This is an extension of Milestone 2, so keep working in the public repo you set up for that. You do however, still need to resubmit the URL to your project in your `milestone3` repo's `README.md` file so we can easily find it when we're marking.
+rubric={mechanics:15}  
+  - **Everyone should contribute equally to all aspects of the project (e.g., code, writing, project management). This should be evidenced by a roughly equal number of commits, pull request reviews and participation in communication via GitHub issues.** Thus, by the time you finish your final project, we expect to see 20+ commits in your `git log`. Make your commit messages meaningful!
   - Create another release for your project repo (0.2.0) and submit both the URL of the release and URL of the repository to Canvas.
   - You should still have a well organized lab repo/directory structure.
   - The Makefile must be well documented. This means comments throughout, readable code and a brief summary at the top of each file that answers who wrote it, when it was written and what it does.

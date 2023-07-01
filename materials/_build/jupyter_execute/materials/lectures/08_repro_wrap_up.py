@@ -182,7 +182,6 @@
 # Python version:
 # 
 # - `conda`  to specify an install of specific Python version, either when downloading (see example [here](https://github.com/ContinuumIO/docker-images/blob/8e10242c6d7804a0e991a9d9d758e25b340f4fce/miniconda3/debian/Dockerfile#L10), or after downloading with `conda install python=3.6`).
-# - Or you can install a specific version of Python yourself, as they do in the Python official images (see [here](https://github.com/docker-library/python/blob/master/3.7/stretch/slim/Dockerfile) for example), but this is more complicated.
 # 
 # For Python packages, there are a few tools:
 # - conda (via `conda install scipy=0.15.0` for example)

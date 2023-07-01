@@ -56,7 +56,7 @@
 #     
 #     *--Tiffany Timbers*
 # 
-# 2. When prompted, paste your story in the Google doc here: https://docs.google.com/document/d/15IxmzW2RrhXbCrdbWI1w8xNeRBKNhj8s1oQkJ8XZbyc/edit?usp=sharing
+# 2. When prompted, paste your story in the Google doc here: https://docs.google.com/document/d/1l3kRxYogPqquYSJYeAW4mD3ws6pCD1hU6_qniWRfQUU/edit?usp=sharing
 # 
 # 3. Finally, we will take 10 minutes to read at least 3 other stories from the trenches that have been shared.
 
@@ -565,33 +565,6 @@
 # - How do changes in diet lead to a reduction in the number of viral illnesses?
 # 
 # - How does how airplane wing design changes air flow over a wing, leading to decreased drag?
-# 
-
-# #### Challenge #1
-# 
-# What kind of statistical question is this?
-# 
-# *Is a yet undiagnosed patient's breast cancer tumor malignant or benign?* 
-
-# #### Challenge #2
-# 
-# What kind of statistical question is this?
-# 
-# *Is inhalation of marijuana associated with lung cancer?* 
-# 
-
-# #### Challenge #2
-# 
-# What kind of statistical question is this?
-# 
-# *Does a truncation of the BRCA2 gene cause cancer?* 
-# 
-
-# #### Challenge #4
-# 
-# What kind of statistical question is this?
-# 
-# *Are there sub-types of ovarian tumors?*
 # 
 
 # ### So you know the type of question, now what?

@@ -11,7 +11,9 @@ to get the grade.
 
 ### Submission instructions
 
-You must also submit a `.html` version of this homework to Canvas.
+-   You should commit and push your changes to the public GitHub.com
+    repository you created in exercise 1.
+-   You should submit a `.html` version of this assignment to Canvas.
 
 ### Exercise 1
 
@@ -25,7 +27,7 @@ url below:
 **Getting documentation from a {docopt} R script**
 
 In [this
-repo](https://github.ubc.ca/MDS-2021-22/DSCI_522_dsci-workflows_students),
+repo](https://github.ubc.ca/MDS-2022-23/DSCI_522_dsci-workflows_students),
 in the `src` directory, you will find a script named `demo.R`. Access
 the documentation for that script from the command line by running the
 script with the `--help` option (and no other options or arguments).
@@ -66,11 +68,9 @@ below.
 **Add a new optional positional argument**
 
 Copy the `demo.R` script into your `docopt_demo` repo, and then edit it
-to add a new positional argument that is optional. Also modify the
-script so that it prints out the value for this new argument in addition
-to the entire `docopt` object and `docopt` object type. Commit this
-change and push it to your `docopt_demo` repository. Paste the URL to
-this commit below:
+to add a new positional argument that is optional. Commit this change
+and push it to your `docopt_demo` repository. Paste the URL to this
+commit below:
 
 > Your answer here
 
@@ -78,8 +78,8 @@ this commit below:
 
 **Add a main function**
 
-Modify the `demo.R` script further so that the three print statements
-happen inside a main function. Commit this change and push it to your
+Modify the `demo.R` script further so that the print statements happen
+inside a main function. Commit this change and push it to your
 `docopt_demo` repository. Paste the URL to this commit below:
 
 > Your answer here
@@ -89,7 +89,7 @@ happen inside a main function. Commit this change and push it to your
 **What does `docopt` return in Python?**
 
 In [this
-repo](https://github.ubc.ca/MDS-2021-22/DSCI_522_dsci-workflows_students),
+repo](https://github.ubc.ca/MDS-2022-23/DSCI_522_dsci-workflows_students),
 in the `src` directory, you will find a script named `demo.py`. Run the
 `demo.py` script giving it appropriate arguments to see what the
 `docopt` function in Python returns. Try setting and not setting a value
@@ -103,18 +103,16 @@ Describe what you observed below.
 **Add a new optional positional argument**
 
 Copy the `demo.py` script into your `docopt_demo` repo, and then edit it
-to add a new positional argument that is optional. Also modify the
-script so that it prints out the value for this new argument in addition
-to the entire `docopt` object and `docopt` object type. Commit this
-change and push it to your `docopt_demo` repository. Paste the URL to
-this commit below:
+to add a new positional argument that is optional. Commit this change
+and push it to your `docopt_demo` repository. Paste the URL to this
+commit below:
 
 > Your answer here
 
 ### Exercise 9
 
-Modify the `demo.py` script further so that the three print statements
-happen inside a main function. Commit this change and push it to your
+Modify the `demo.py` script further so that the print statements happen
+inside a main function. Commit this change and push it to your
 `docopt_demo` repository. Paste the URL to this commit below:
 
 > Your answer here
