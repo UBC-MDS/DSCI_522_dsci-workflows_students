@@ -1,0 +1,36 @@
+---
+title: "Individual assignment 2"
+---
+
+## Practice building Docker images
+
+The purpose of this assignment is to ensure that everyone gains hands-on practice on creating Docker images from `Dockerfile`s.
+
+### Exercise instructions
+
+1.  Create a public repository on GitHub.com repo under your personal username called `dsci522-dockerfile-practice`
+    -   You can choose a pre-made `.gitignore` or manually create one yourself
+2.  Add a `Dockerfile` to it. This Dockerfile should extend the Jupyter team's minimal-notebook image. In particular, the `quay.io/jupyter/minimal-notebook:2023-11-19` image. This is the image you should refer to in the `FROM` statement in your Dockerfile.
+    -   [Docs about the `jupyter/minimal-notebook` image](https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html#jupyter-minimal-notebook)
+    -   [link to `jupyter/minimal-notebook` Dockerfile](https://github.com/jupyter/docker-stacks/blob/main/images/minimal-notebook/Dockerfile)
+3.  Add at least one new Python package to the `Dockerfile` through `conda`. Ensure that you pin the version of the package you add. There are 3 ways of doing this. There are different benefits to each of the methods depicted. You only need to do one of them for the assignment.
+    1.  Directly install the Python package(s) via `conda` inside the Dockerfile.
+    2.  Create an `environment.yml` file that lists the package(s) you want installed in your Docker image (note that it is important to rename the environment in that file to base, or to even remove the environment name part of the file). Use the Dockerfile `COPY` command to copy the `environment.yml` file to the container at build time. Then run a `conda env update` command to update the base environment of the container to include the package(s).
+    3.  Create an `environment.yml` file that lists the package(s) you want installed in your Docker image. Use [conda-lock](https://conda.github.io/conda-lock/) to create a conda lockfile. Then run a `conda update` command to update the base environment of the container to include the package(s).
+4.  Build your `Dockerfile` and test it locally.
+5.  Add a GitHub Actions workflow to automatically build the image, push it to DockerHub, and version the image and GitHub repo when changes are pushed to the Dockerfile. We recommend doing this by:
+    - by clicking the Actions tab and selecting "Skip this and setup a workflow yourself"
+    - paste this workflow into the empty file: <https://github.com/ttimbers/dsci522-dockerfile-practice/blob/main/.github/workflows/docker-publish.yml> (also edit the name to edit the name of the file to be docker-publish.yml instead of main.yml).
+    -   add your DockerHub username and password (naming them `DOCKER_USERNAME` and `DOCKER_PASSWORD`, respectively) as GitHub secret (Under Settings > Secrets and variables > Actions > New repository secret) to this repository for this to work.
+    -   Here are some resources to help you create your own Github Action Workflow:
+        - https://docs.github.com/en/actions/publishing-packages/publishing-docker-images
+
+(As Needed): Make sure you make at least one change to the `Dockerfile` once the GitHub Actions have been setup so that you get the image automatically built and pushed to DockerHub at least once. You can also add a `workflow_dispatch:` trigger and manually trigger a workflow.
+
+### Submission instructions
+
+You will submit a PDF to Gradescope for individual assignment 2 that includes:
+
+1.  A link to the GitHub.com repository that you create for this assignment.
+    -   You should name your GitHub.com repository `dsci522-dockerfile-practice`.
+2.  A the link to your Docker image on DockerHub. You should name your DockerHub repository `dsci522-dockerfile-practice`.

@@ -1,0 +1,32 @@
+---
+title: "Individual assignment 4"
+---
+
+## Practice building data analysis pipelines using GNU Make
+
+The purpose of this assignment is to ensure that everyone gains hands-on practice 
+building data analysis pipelines using GNU Make.
+
+### Exercise instructions
+
+1.  Visit [this template GitHub repository](https://github.com/ttimbers/data_analysis_pipeline_practice) 
+and click the green "Use this template" button 
+to get your own copy of the `data_analysis_pipeline_practice` repository.
+
+2.  Your task is to add a "smarter" data analysis pipeline using GNU Make! 
+It should accomplish the same task as `bash runall.sh` when you type `make all`.
+It should also reset the analysis the starting point 
+(the state when you first copied this repo) when you type `make clean`.
+
+3. After you have the `Makefile` working locally, 
+for both the `all` and `clean` targets, 
+push your changes to your copy of the `data_analysis_pipeline_practice` 
+GitHub repository.
+
+### Submission instructions
+
+You will submit a PDF to Gradescope for individual assignment 4 that includes:
+
+1.  A link to your copy of the GitHub.com repository 
+that you created and worked on for this assignment.
+    -   It should be named `data_analysis_pipeline_practice`.
