@@ -10,17 +10,17 @@ editor_options:
 
 ## Overall project summary
 
-In this course you will work in assigned teams of three or four (see group assignments on [GitHub](https://github.ubc.ca/MDS-2023-24/lab-sections)) to answer a predictive question using a publicly available data set that will allow you to answer that question. To answer this question, you will perform a complete data analysis in R and/or Python, from data import to communication of results, while placing significant emphasis on reproducible and trustworthy workflows.
+In this course you will work in assigned teams of three or four (see group assignments on GitHub) to answer a predictive statistical/machine learning question using a publicly available data set that will allow you to answer that question. To answer this question, you will perform a complete data analysis in R and/or Python, from data import to communication of results, while placing significant emphasis on reproducible and trustworthy workflows.
 
 Your data analysis project will evolve throughout the course from a single, monolithic Jupyter notebook, to a fully reproducible and robust data data analysis project, comprised of:
 
 -   a well documented and modularized scripts written in R and/or Python,
 -   a data analysis pipeline automated with GNU Make,
--   a reproducible report powered by either Jupyter book or Quarto,
+-   a reproducible report powered by Quarto,
 -   a containerized computational environment created and made shareable by Docker
 -   a remote version control repository on GitHub for project collaboration, sharing, and documentation.
 
-An example final project from past years can be seen here: [Breast Cancer Predictor](https://github.com/ttimbers/breast_cancer_predictor)
+An example final project from past years can be seen here: [Breast Cancer Predictor](https://github.com/ttimbers/breast_cancer_predictor_py)
 
 ## Milestone 1 summary
 
@@ -29,20 +29,10 @@ In this milestone, you will:
 1.  Draft a team work contract
 2.  Set-up a public GitHub repository
 3.  Create an appropriate file and directory structure for a data analysis project
-4.  Add the data analysis as a literate code document
+4.  Add the data analysis as a literate code document (Jupyter or Quarto)
 5.  Ensure the computation environment reproducible through a virtual environment (e.g., conda or renv) - hint do this as you create the analysis, don't wait until the end!
 
-An example Milestone 1 that corresponds to our expectations from this year is here: [Breast Cancer Predictor in Python v0.0.4](https://github.com/ttimbers/breast_cancer_predictor_py/tree/v0.0.4)
-
-> Note 1: Joel and I made a small update over the weekend to the example project 
-and so I created a newer release incorporating these changes.
-
-> Note 2: In the example project we render the analysis to an `.html` file
-and served it up with GitHub pages. 
-Given that I did not explicitly ask you to do this when I first shared this milestone 1 document, you do not have to do this for milestone 1. 
-However, I recommend you do this (or render to PDF) 
-if you can as it makes it easier for others to read your analysis.
-Additionally, you will need to do this for milestone 2 anyways.
+An example Milestone 1 that corresponds to our expectations from this year is here: [Breast Cancer Predictor in Python 0.0.1](https://github.com/ttimbers/breast-cancer-predictor/tree/0.0.1)
 
 ### 1. Draft a team work contract
 
@@ -68,7 +58,7 @@ Use this opportunity to use your prior knowledge/experience to improve your team
 
 ### 2. Set-up a GitHub repository
 
-Fill out this survey to provide us your GitHub.com username: https://ubc.ca1.qualtrics.com/jfe/form/SV_8cCRmyxpbch5uxU
+Fill out this survey to provide us your GitHub.com username: <https://ubc.ca1.qualtrics.com/jfe/form/SV_8cCRmyxpbch5uxU>
 
 After we add you to the [UBC MDS organization on GitHub.com](https://github.com/UBC-MDS), set-up a public GitHub repository for your group under that organization being sure to add all team members as collaborators. Once you have decided on a project question and data set, make sure your repository has a name that is relevant to that question. *Note: if you need to change the name of your project repository later, you can!*
 
@@ -82,11 +72,13 @@ For this project, you are expected to follow the best practices we have learned 
 -   `CODE_OF_CONDUCT.md`
 -   `CONTRIBUTING.md`
 -   `data/`
--   `<analysis>.ipynb` (give it a meaningful name!)
--   `environment.yml` (or the corresponding `renv` files)
+-   `<analysis>.ipynb` or `<analysis>.qmd` (give it a meaningful name!)
+-   `environment.yml` & Conda lock files for each major operating system (or the corresponding `renv` files)
 -   `LICENSE.md`
 
 The description of each of them follows.
+
+**Note - You should push both the source analysis document (`<analysis>.ipynb` or `<analysis>.qmd` file) AND the rendered document (PDF or HTML). If you choose to render to HTML, please setup GitHub pages to serve your html documents so that it is easily readable in the repository and share its URL in the README of your GitHub.com repo.**
 
 #### i. `README.md`
 
@@ -124,18 +116,6 @@ It is a good practice to include information about how others, outside the core 
 -   [dplyr](https://github.com/tidyverse/dplyr/blob/master/.github/CONTRIBUTING.md)
 -   [Atom editor](https://github.com/atom/atom/blob/master/CONTRIBUTING.md) (very comprehensive)
 
-If you're interested in this, [here's a quick guide](https://help.github.com/en/github/building-a-strong-community/setting-guidelines-for-repository-contributors) to creating this file from GitHub, but in the meantime, you can use the following snippet as a template:
-
-```         
-We welcome all contributions to this project!
-If you notice a bug, or have a feature request,
-please open up an issue [here](https://github.com/UBC-DSCI/REPOSITORY_NAME/issues).
-If you'd like to contribute a feature or bug fix,
-you can fork our repo and submit a pull request.
-We will review pull requests within 7 days.
-All contributors must abide by our [code of conduct](CODE_OF_CONDUCT.md).
-```
-
 **Note - this document should live in the root of your public GitHub.com repository.**
 
 #### iv. `data/`
@@ -144,11 +124,11 @@ The `data` directory should contain a copy of the downloaded data (it should get
 
 #### v. `analysis.ipynb` / `analysis.qmd`
 
-For this milestone, the analysis code and narration should be contained within a single literate code document (e.g., Jupyter notebook, RMarkdown file, or Quarto document). This document should not actually be named `analysis.***`, but have a more descriptive title, related to the project title.
+For this milestone, the analysis code and narration should be contained within a single literate code document (e.g., Jupyter notebook or Quarto document). This document should not actually be named `analysis.***`, but have a more descriptive title, related to the project title.
 
-#### vi. `environment.yml` (or the corresponding `renv` files)
+#### vi. `environment.yml` & conda lock files for the major operating systems (or the corresponding `renv` files)
 
-Include the necessary files (e.g., `environment.yml`) so others can reproduce your work on their machine.
+Include the necessary files (e.g., `environment.yml` & conda lock files for the major operating systems) so others can reproduce your work on their machine.
 
 **Note - this document should live in the root of your public GitHub.com repository.**
 
@@ -197,7 +177,7 @@ The data for the project should be publicly available, and clearly licensed to b
 -   [BC Data Catalogue](https://catalogue.data.gov.bc.ca/)
 -   [Government of Canada open data](https://open.canada.ca/en/open-data)
 -   [GitHub repo of awesome public datasets](https://github.com/awesomedata/awesome-public-datasets)
--   [UCI Machine Learning Repository: Data Sets](https://archive-beta.ics.uci.edu/ml/datasets)
+-   [UCI Machine Learning Repository: Data Sets](https://archive.ics.uci.edu/)
 -   [tidytuesday data set](https://github.com/rfordatascience/tidytuesday)
 -   [Google Data set search engine](https://toolbox.google.com/datasetsearch)
 -   [fivethirtyeight R package](https://cran.r-project.org/web/packages/fivethirtyeight/vignettes/fivethirtyeight.html) (if you use this, see the note below!)
@@ -206,7 +186,9 @@ The data for the project should be publicly available, and clearly licensed to b
 
 ### 6. Ensure the computation environment reproducible through a virtual environment
 
-For this project, we will eventually be making the computation environment reproducible through containerization with Docker. For milestone 1 however, we will start with using a virtual environment as our first step towards this. You can use either `conda` or `renv` for this. Be sure to include the necessary files (e.g., `environment.yml`) so others can reproduce your work. Be sure to include documentation of how to use the environment with your project as well in the `README.md` file.
+For this project, we will eventually be making the computation environment reproducible through containerization with Docker. For milestone 1 however, we will start with using a virtual environment as our first step towards this. You can use either `conda` or `renv` for this. Be sure to include the necessary files so others can reproduce your work. Be sure to include documentation of how to use the environment with your project as well in the `README.md` file.
+
+> Note: if you choose to do a project that uses conda as the virtual environment tool, you are expected to share `environment.yml` and the conda lock files for each major operating system (Windows, Linux and Mac, and for Mac you should share the intel and ARM versions).
 
 ## Submission Instructions
 

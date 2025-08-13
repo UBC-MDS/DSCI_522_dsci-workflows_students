@@ -16,10 +16,13 @@ website:
           - release/milestone1/milestone1.qmd
           - release/individual_assignment2/individual_assignment2.qmd
           - release/milestone2/milestone2.qmd
+          - release/individual_assignment3/individual_assignment3.qmd
           - release/milestone3/milestone3.qmd
-          - release/peer_review/peer_review.qmd
           - release/individual_assignment4/individual_assignment4.qmd
           - release/milestone4/milestone4.qmd
+      - section: "Team Work Reflection"
+        contents:
+          - release/peer_review/peer_review.qmd
           - release/team_work/team_work.qmd
 
 format:
@@ -29,4 +32,3 @@ format:
     toc: true
 
 editor: visual
-

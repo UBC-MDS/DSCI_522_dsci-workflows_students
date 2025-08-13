@@ -10,49 +10,44 @@ editor_options:
 
 ## Overall project summary
 
-In this course you will work in assigned teams of three or four (see group assignments on [GitHub](https://github.ubc.ca/MDS-2023-24/lab-sections)) to answer a predictive question using a publicly available data set that will allow you to answer that question. To answer this question, you will perform a complete data analysis in R and/or Python, from data import to communication of results, while placing significant emphasis on reproducible and trustworthy workflows.
+In this course you will work in assigned teams of three or four (see group assignments on GitHub) to answer a predictive statistical/machine learning question using a publicly available data set that will allow you to answer that question. To answer this question, you will perform a complete data analysis in R and/or Python, from data import to communication of results, while placing significant emphasis on reproducible and trustworthy workflows.
 
 Your data analysis project will evolve throughout the course from a single, monolithic Jupyter notebook, to a fully reproducible and robust data data analysis project, comprised of:
 
 -   a well documented and modularized scripts written in R and/or Python,
 -   a data analysis pipeline automated with GNU Make,
--   a reproducible report powered by either Jupyter book or Quarto,
+-   a reproducible report powered by Quarto,
 -   a containerized computational environment created and made shareable by Docker
 -   a remote version control repository on GitHub for project collaboration, sharing, and documentation.
 
-An example final project from past years can be seen here: [Breast Cancer Predictor](https://github.com/ttimbers/breast_cancer_predictor)
+An example final project from past years can be seen here: [Breast Cancer Predictor](https://github.com/ttimbers/breast_cancer_predictor_py)
 
 ## Milestone 3 summary
 
-1.  
+1.  Abstract code from your report literate code document (`*.ipynb`, `*.qmd` or `*.Rmd`) to scripts (e.g., `.R` or `.py`). This code need not be converted to a function, but can simply be files that call the functions needed to run your analysis. You should aim to split the analysis code into 4, or more, R or Python scripts. Where the code in each script is contributing to a related step in your analysis. Your scripts should take command line arguments. **You must document in your `README.md` how to call each script, including what arguments you pass each script.**
 
-    1.  Abstract more code from your literate code document (`*.ipynb` or `*.Rmd`) to scripts (e.g., `.R` or `.py`). This code need not be converted to a function, but can simply be files that call the functions needed to run your analysis. You should aim to split the analysis code into 4, or more, R or Python scripts. Where the code in each script is contributing to a related step in your analysis. **You must document in your `README.md` how to call each script, including what arguments you pass each script.**
+2.  If your report literate code document is not already a `*.qmd` file, convert it so that it is.
 
-2.  Edit your literate code document (`*.ipynb` or `*.Rmd`) so that it's sole job is to narrate your analysis, display your analysis artifacts (i.e., figures and tables), and nicely format the report. The goal is that non-data scientists would not be able to tell that code was used to perform your analysis or format your report (i.e., no code should be visible in the rendered report).
+3.  Edit your report literate code document (`*.qmd` file) so that it's sole job is to narrate your analysis, display your analysis artifacts (i.e., figures and tables), and nicely format the report. The goal is that non-data scientists would not be able to tell that code was used to perform your analysis or format your report (i.e., no code should be visible in the rendered report).
 
-3.  Update your project's computational environment as you add dependencies to your project
+4.  Update your project's computational environment as you add dependencies to your project
 
-An example Milestone 3 that corresponds to our expectations from this year will soon live here: [Breast Cancer Predictor in Python v2.0.0](https://github.com/ttimbers/breast_cancer_predictor_py/tree/v2.0.0)
+An example Milestone 3 that corresponds to our expectations from this year is available here: [Breast Cancer Predictor 2.0.0](https://github.com/ttimbers/breast-cancer-predictor/tree/2.0.0)
 
-For now, you can see a similar project that uses R, that has both a container for a computational environment, and a function abstracted out of the literate code document as well as it's corresponding tests: <https://github.com/UBC-DSCI/predict-airbnb-nightly-price>
-
-### 1. Abstract more code from your literate code document (`*.ipynb`, `*.Rmd`, or `.qmd`) to scripts (e.g., `.R` or `.py`).
+### 1. Abstract code from your literate code document (`*.ipynb`, `*.qmd` or `*.Rmd`) to scripts (e.g., `.R` or `.py`).
 
 This code need not be converted to a function, but can simply be files that call the functions needed to run your analysis. You should aim to split the analysis code into 4, or more, R or Python scripts. Where the code in each script is contributing to a related step in your analysis.
 
-Examples of steps in your current document that can be broken up into steps:
+Below we list some examples of steps that your current report document can be broken up into. It is not critical you split your code up exaclty as we list below, but you must somehow split your analysis code up into 4, or more, R or Python scripts.
 
--   Load
--   Clean
--   Tidy
--   EDA
--   Figures
--   Analysis
--   Modeling
--   Results
--   Findings
+-   Download/extract data
+-   Clean/transform data
+-   Split and pre-process data
+-   Exploratory data analysis
+-   Model fitting
+-   Model evaluation
 
-The output of the first script must be the input of the second, and so on. All scripts should have command line arguments and we expect you to use the `docopt` R package for parsing command line arguments (if you are using Python, we recommend [`click`](https://click.palletsprojects.com/en/8.0.x/)).
+The output of the first script must be the input of the second, and so on. All scripts should have command line arguments and we expect you to use the [`click`](https://click.palletsprojects.com/en/8.0.x/)) Python package for parsing command line arguments for Python projects, and the `docopt` R package for parsing command line arguments for R projects.
 
 They scripts could be organized something like this:
 
@@ -80,21 +75,34 @@ They scripts could be organized something like this:
 
 -   You are welcome to have any additional scripts as needed, or modify how you organize the splitting up of your code a little differently than suggested. What is important is that you have \~ 4 different scripts so you get practice setting them up in a data analysis pipeline (next milestone).
 
+::: callout-important
 **You must document in your `README.md` how to call each script, including what arguments you pass each script.**
+:::
 
-### 2. Edit your literate code document (`*.ipynb`, `*Qmd` or `*.Rmd`) so that it's sole job is to narrate your analysis, display your analysis artifacts (i.e., figures and tables), and nicely format the report.
+### 2. If your report literate code document is not already a `*.qmd` file, convert it so that it is.
+
+You can use `quarto convert notebook.ipynb --to qmd` to convert Jupyter notebooks to `*.qmd` files. If you were using an `.Rmd` file, you can simply rename the file so that it has a `.qmd` file extension. Much of the `.Rmd` syntax is backwards compatible, so this should mostly work.
+
+### 3. Edit your report literate code document (`*.qmd`) so that it's sole job is to narrate your analysis, display your analysis artifacts (i.e., figures and tables), and nicely format the report.
 
 The goal is that non-data scientists would not be able to tell that code was used to perform your analysis or format your report (i.e., no code should be visible in the rendered report).
 
-You should render your report to either `html` or `PDF`. Quarto has all the features needed to make your report satisfy our expectations (bibliography, automatic numbering of figures and tables, inline code rendering, etc).
+You should render your report to either `html` or `PDF`. Quarto has all the features needed to make your report satisfy our expectations (bibliography, automatic numbering of figures and tables, inline code rendering, etc). In particular, we expect you to:
 
-However, if you are using Jupyter for your final report, you should use [Jupyter book](https://jupyterbook.org/intro.html), again so you can reference figures, tables and sections effectively.
-
-Similarly, if you are using R Markdown, you should use the [`bookdown`](https://bookdown.org/yihui/bookdown/) outputs (e.g., `bookdown::html2` or `bookdown::pdf2`) so you can reference figures, tables and sections effectively. PDF output needs a TeXLive installation to render the PDF. You did this locally in the computer setup at the beginning of the course, for your container, you may want to look into the [`rocker/verse` base image](https://rocker-project.org/images/#the-versioned-stack).
+-   Use markdown headers and Quarto configuration so that a table of contents will be created when the document is rendered.
+-   Add correctly formatted inline BibTeX references so that a nicely formatted reference list will be present at the end of the document.
+-   Edit the figure formatting so that Quarto:
+    -   automatically numbers them,
+    -   has a label for easy cross referencing, and
+    -   controls the figure sizes so the figures are not too big.
+-   Add a table description argument so that they are automatically numbered by Quarto and use cross referencing to link to the table when it is discussed in the text.
+-   Edit the narrative so it uses cross-referencing to refer to the figures and tables instead of having their reference hardcode the figure and table numbers.
+-   Replace any hard-coded values in the Quarto report narrative text with inline Quarto code, so that the text will be automatically updated with the correct value.
+-   Change the code chunk options so that no code is viewable in the rendered report, just the code outputs where needed (e.g., figures and tables).
 
 ### 3. Update your project's computational environment as you add dependencies to your project
 
-At a minimum, you will be adding either Quarto, `bookdown` or `jupyter-book` as a new dependency to your project. Thus, you will need to update your project's computational environment as you add this (and potentially other) dependencies to your project. This means that your `Dockerfile` will need to have this package added, with the version pinned, and the Docker container image will need to be rebuilt and published to DockerHub. Do not forget to update your project's documentation to reflect these changes.
+At a minimum, you will be adding either Quarto as a new dependency to your project. Thus, you will need to update your project's computational environment as you add this (and potentially other) dependencies to your project. This means that your environment specification files will need to have this package added, with the version pinned, and the Docker container image will need to be rebuilt and published to DockerHub. Do not forget to update your project's documentation to reflect these changes.
 
 ## Submission Instructions
 

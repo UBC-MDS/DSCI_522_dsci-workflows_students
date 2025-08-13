@@ -36,3 +36,15 @@ You will submit a PDF to Gradescope for individual assignment 1 that includes:
 1.  the URL of the commit history of GitHub.com repository you created and worked on for this assignment (it will be something like: `https://github.com/<YOURUSERNAME>/learning-about-version-control/commits/main`)
 2.  the screenshot of your resolved merge conflict
 3.  an explanation (2-3 sentences and in your own words) of why it is useful to work in a branch-pull-request workflow instead of working by directly committing each change to the main branch.
+
+## Rubric 
+
+This assignment will be graded for completion as follows:
+
+|Grade | Description |
+|------|-------------|
+| 100% | GitHub history (check under pull request tab in repo) indicates a successfully merged pull request from opinions into main, clearly demonstrated solving the merge conflict in screenshot and well explained why it is useful to work in a branch-pull-request workflow |
+| -25%  | GitHub history (check under pull request tab in repo) does not indicate a successfully merged pull request from opinions into main |
+| -25%  | Did not clearly demonstrate solving the merge conflict in screenshot. |
+| -25%  | Did not well explain why it is useful to work in a branch-pull-request workflow. |
+| -100%  | No repository or attempt |

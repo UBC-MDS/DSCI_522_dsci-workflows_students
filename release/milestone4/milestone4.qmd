@@ -10,7 +10,7 @@ editor_options:
 
 ## Overall project summary
 
-In this course you will work in assigned teams of three or four (see group assignments on [GitHub](https://github.ubc.ca/MDS-2023-24/lab-sections)) to answer a predictive question using a publicly available data set that will allow you to answer that question. To answer this question, you will perform a complete data analysis in R and/or Python, from data import to communication of results, while placing significant emphasis on reproducible and trustworthy workflows.
+In this course you will work in assigned teams of three or four (see group assignments on [GitHub](https://github.ubc.ca/MDS-2024-25/lab-sections)) to answer a predictive question using a publicly available data set that will allow you to answer that question. To answer this question, you will perform a complete data analysis in R and/or Python, from data import to communication of results, while placing significant emphasis on reproducible and trustworthy workflows.
 
 Your data analysis project will evolve throughout the course from a single, monolithic Jupyter notebook, to a fully reproducible and robust data data analysis project, comprised of:
 
@@ -24,60 +24,70 @@ An example final project from past years can be seen here: [Breast Cancer Predic
 
 ## Milestone 4 summary
 
-1. Write a new script, a `Makefile` (literally called `Makefile`), 
-to act as a driver script to rule them all. 
-This script should run the others in sequence, 
-hard coding in the appropriate arguments. 
+1.  Write a new script, a `Makefile` (literally called `Makefile`), to act as a driver script to rule them all. This script should run the others in sequence, hard coding in the appropriate arguments.
 
-2. Address any feedback received in earlier milestones 
-and from the peer review to improve the project
+2.  Abstract some code from your scripts to functions in a separate file, and write tests for those functions.
 
+3.  Address any feedback received in earlier milestones and from the peer review to improve the project.
 
-## 1. Creat a `Makefile` to act as a driver script to rule them all
+An example Milestone 4 that corresponds to our expectations from this year lives here: [Breast Cancer Predictor in Python 3.0.0](https://github.com/ttimbers/breast-cancer-predictor/tree/3.0.0)
+
+## 1. Create a `Makefile` to act as a driver script to rule them all
 
 This script should run the others in sequence, hard coding in the appropriate arguments. This script should:
 
-- live in the project's root directory and be named Makefile
+-   live in the project's root directory and be named Makefile
 
-- be well documented (using the project `README` and comments inside the `Makefile` to explain what it does and how to use it)
+-   be well documented (using the project `README` and comments inside the `Makefile` to explain what it does and how to use it)
 
-- have a `all` target so that you can easily run the entire analysis from top to bottom by running `make all` at the command line
+-   have an `all` target so that you can easily run the entire analysis from top to bottom by running `make all` at the command line
 
-- have a `clean` target so that you can easily "undo" your analysis by running `make clean` at the command line (e.g., deletes all generate data and files).
+-   have a `clean` target so that you can easily "undo" your analysis by running `make clean` at the command line (e.g., deletes all generate data and files).
 
-Tip:
+:::{.callout-tip}
+-   The `all` and `clean` target can be a `.PHONY` target
+-   You can create other targets that link up all the dependencies
+    -   For example, `data`, `analysis`, `figures`, `pdf`, etc, so your build process only runs what's necessary during development
+:::
 
-- The `all` target can be a `.PHONY` target
-- You can create other targets that link up all the dependencies
-  - For example, `data`, `analysis`, `figures`, `pdf`, etc, so your build process only runs what's necessary during development
+## 2. Abstract some code from your scripts to functions in a separate file, and write tests for those functions
 
-## 2. Address feedback to improve the project
+In every data science project, there is some code that is repetitive, and other code that may not be repetitive in the current project, but would likely be very useful in other, related future projects. It is well worth it to abstract such code to functions, making it easily reuseable in the future in other work. Examples of code that often repetitive in a data analysis projects:
 
-Revise your data analysis project to address feedback received
-from the DSCI 522 teaching team from past milestones, 
-as well as feedback received from the peer review.
-50% of your final grade for this milestone will be assessing 
-whether you have addressed this feedback to improve your project.
+-   data wrangling, cleaning or transformation code that gets applied to multiple columns or multiple data sets
+-   data visualization code when many versions of a similar plot-type is used (e.g., many scatter plots with similar formatting)
+-   data modeling workflow/pipeline code when tuning different models on the same data set
 
-To help us easily, and correctly, assess this, 
-please create a file called `CHANGELOG.md`
-that lives in the root of your repository.
-In this file describe any improvements you made to the project based on feedback, 
-and point to evidence of these improvements.
-You can point us to evidence of addressing it 
-by providing URLs to reference 
-specific lines of code, commit messages, pull requests, etc.
-Be sure to add some narration when sharing these URLs 
-so that it is easy for us to identify which changes to your work 
-addressed which pieces of feedback.
+Abstracting our analysis code into functions also makes it testable! Meaning you can assess whether your code works as expected. This alone is reason enough to use functions in your analysis code.
 
-You will be graded on a sliding scale for this,
-the more improvements you make, 
-the higher your grade for this part of the milestone will be.
-The improvements should be at least one per team member, 
-and they should significantly improve the project.
-This minimum could earn at most 37.5/50.
-To earn more, you need to exceed these minimum improvements.
+Your job here is to **create at least 3-4 functions from your scripts.** **One per group member is the minimum.** When doing this task, follow the [workflow for writing functions and tests for data science](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/140-intro-to-testing-code.html#workflow-for-writing-functions-and-tests-for-data-science), remember this process will include:
+
+-   writing thorough function specifications & documentation
+-   writing robust unit tests for these functions to ensure they work as expected
+-   writing the code that makes up the function body
+
+If you are using Python, these functions will live in an `.py` file (whose filename will be named after the function, or functions). Again, it is OK to have one function per file, or all functions in one file. This/these file(s) will live in a sub-directory called `src`. If you are using R, these functions will live in an `.R` file (whose filename will be named after the function, or functions). It is OK to have one function per file, or all functions in one file. This/these file(s) will live in a sub-directory called `R`.
+
+You will `import` (in the case of Python) or `source` (in the case of R) these functions in your scripts to use them in your analysis. Tests will live in a `test` directory, with files/subdirectories organized as per the testing framework you are using. If you are using Python, we expect you to use the [`pytest`](https://docs.pytest.org/en/7.0.x/) Python package framework. If you are using R for your data analysis code, we expect you to use the [`testthat`](https://testthat.r-lib.org/) R package framework for writing software tests.
+
+Of course, if it makes sense to have more than 3-4 you are welcome to increase the number!
+However, all functions must have the same standards in regards to software robustness.
+Your functions will be assessed for their quality
+(e.g., functions should do one thing,
+and generally return an object unless they were specifically designed for side-effects),
+usability,
+readability (follow the
+[black style guide](https://black.readthedocs.io/en/stable/the_black_code_style/index.html) for Python,
+or the [tidyverse style guide](https://style.tidyverse.org/) for R),
+documentation and quality of the test suite.
+
+## 3. Address feedback to improve the project
+
+Revise your data analysis project to address feedback received from the DSCI 522 teaching team from past milestones, as well as feedback received from the peer review. 50% of your final grade for this milestone will be assessing whether you have addressed this feedback to improve your project.
+
+To help us easily, and correctly, assess this, please create a file called `CHANGELOG.md` that lives in the root of your repository. In this file describe any improvements you made to the project based on feedback, and point to evidence of these improvements. You can point us to evidence of addressing it by providing URLs to reference specific lines of code, commit messages, pull requests, etc. Be sure to add some narration when sharing these URLs so that it is easy for us to identify which changes to your work addressed which pieces of feedback.
+
+You will be graded on a sliding scale for this, the more improvements you make, the higher your grade for this part of the milestone will be. The improvements should be at least one per team member, and they should significantly improve the project. This minimum could earn at most 75% of the points on the assignment rubric mapped to this part of the analysis. To earn more, you need to exceed these minimum improvements.
 
 ## Submission Instructions
 

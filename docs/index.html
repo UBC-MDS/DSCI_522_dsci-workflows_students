@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.54">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -45,7 +45,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -54,6 +60,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -70,13 +77,13 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Syllabus</a></li><li class="breadcrumb-item"><a href="./index.html">DSCI 522: Data Science Workflows</a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Syllabus</a></li><li class="breadcrumb-item"><a href="./index.html">DSCI 522: Data Science Workflows</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -85,7 +92,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -95,9 +102,9 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Syllabus</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -112,9 +119,9 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Assessments</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -145,14 +152,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./release/milestone3/milestone3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Milestone 3</span></a>
+  <a href="./release/individual_assignment3/individual_assignment3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Individual assignment 3</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./release/peer_review/peer_review.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Peer review</span></a>
+  <a href="./release/milestone3/milestone3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Milestone 3</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -167,6 +174,23 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Milestone 4</span></a>
   </div>
 </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Team Work Reflection</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./release/peer_review/peer_review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Peer review</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./release/team_work/team_work.html" class="sidebar-item-text sidebar-link">
@@ -178,7 +202,7 @@ ul.task-list li input[type="checkbox"] {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -200,7 +224,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Syllabus</a></li><li class="breadcrumb-item"><a href="./index.html">DSCI 522: Data Science Workflows</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">DSCI 522: Data Science Workflows</h1>
 </div>
@@ -215,12 +239,14 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header>
+
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>Data-rich projects can quickly grow out-of-hand and become irreproducible in the absence of deliberate effort at organization, tool choice, and process. This course will teach basic principles of sound data scientific workflows and will develop skills implementing them in appropriate state-of-the-art systems and languages (e.g., Python and R).</p>
-<p><strong>Course syllabus</strong>: <a href="https://pages.github.ubc.ca/MDS-2023-24/DSCI_522_dsci-workflows_students/" class="uri">https://pages.github.ubc.ca/MDS-2023-24/DSCI_522_dsci-workflows_students/</a></p>
+<p><strong>Course syllabus</strong>: <a href="https://pages.github.ubc.ca/MDS-2024-25/DSCI_522_dsci-workflows_students/" class="uri">https://pages.github.ubc.ca/MDS-2024-25/DSCI_522_dsci-workflows_students/</a></p>
 <p><strong>Course notes/book</strong>: <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science" class="uri">https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science</a></p>
 <p><strong>Slack Channel</strong>: <a href="https://ubc-mds.slack.com/messages/522_dsci-workflows" class="uri">https://ubc-mds.slack.com/messages/522_dsci-workflows</a></p>
 </section>
@@ -239,12 +265,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="teaching-team" class="level2">
 <h2 class="anchored" data-anchor-id="teaching-team">Teaching Team</h2>
 <p>At your service!</p>
-<table class="table">
-<colgroup>
-<col style="width: 38%">
-<col style="width: 29%">
-<col style="width: 31%">
-</colgroup>
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th style="text-align: center;">Position</th>
@@ -259,34 +280,9 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: center;"><code>@tiff</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">Teaching Assistant</td>
-<td style="text-align: center;">Andy Tai</td>
-<td style="text-align: center;"><code>@Andy Tai</code></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Teaching Assistant</td>
-<td style="text-align: center;">Armin Saadat</td>
-<td style="text-align: center;"><code>@Armin Saadat</code></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Teaching Assistant</td>
-<td style="text-align: center;">Jordan Yu</td>
-<td style="text-align: center;"><code>@Jordan Yu (TA)</code></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Teaching Assistant</td>
-<td style="text-align: center;">Kate Manskaia</td>
-<td style="text-align: center;"><code>@Kate Manskaia - TA</code></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Teaching Assistant</td>
-<td style="text-align: center;">Negar Sadr</td>
-<td style="text-align: center;"><code>@Negar Sadr (TA)</code></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Teaching Assistant</td>
-<td style="text-align: center;">Abdul Muntakim Rafi</td>
-<td style="text-align: center;"><code>@Rafi</code></td>
+<td style="text-align: center;">Lecture and Lab Instructor</td>
+<td style="text-align: center;">Daniel Chen</td>
+<td style="text-align: center;"><code>@Daniel</code></td>
 </tr>
 </tbody>
 </table>
@@ -294,7 +290,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="deliverables" class="level2">
 <h2 class="anchored" data-anchor-id="deliverables">Deliverables</h2>
 <p>This is a <strong>project-based course</strong>. You will work in randomly assigned groups of three (or four, if needed) for the project milestones. There are also individual weekly assignments that act as stepping stones to the project milestones. Finally, because collaboration is so important in data science, we will be using a team work multiplier to adjust individual grades. A combination of peer evaluation and GitHub history will be used to evaluate this.</p>
-<table class="table">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Assessment</th>
@@ -305,53 +301,63 @@ ul.task-list li input[type="checkbox"] {
 <tbody>
 <tr class="odd">
 <td>iClicker</td>
-<td>3%</td>
+<td>2%</td>
 <td>Every lecture</td>
 </tr>
 <tr class="even">
-<td><a href="./release/individual_assignment1/individual_assignment1.html">Individual assignment 1</a> - version control workflows</td>
-<td>3%</td>
-<td>2023-11-19 11:59 PT</td>
+<td>Pre-lecture quizzes</td>
+<td>2%</td>
+<td>Every lecture</td>
 </tr>
 <tr class="odd">
+<td><a href="./release/individual_assignment1/individual_assignment1.html">Individual assignment 1</a> - version control workflows</td>
+<td>2%</td>
+<td>2024-11-23 18:00 PT</td>
+</tr>
+<tr class="even">
 <td><a href="./release/milestone1/milestone1.html">Milestone 1</a> - Setup project on GitHub, draft of analysis in a notebook &amp; virtual environment</td>
 <td>20%</td>
-<td>2023-11-19 11:59 PT</td>
-</tr>
-<tr class="even">
-<td><a href="./release/individual_assignment2/individual_assignment2.html">Individual assignment 2</a> - container workflows</td>
-<td>3%</td>
-<td>2023-11-25 18:00 PT</td>
+<td>2024-11-23 18:00 PT</td>
 </tr>
 <tr class="odd">
-<td><a href="./release/milestone2/milestone2.html">Milestone 2</a> - Modularize code into functions, test code &amp; container</td>
-<td>20%</td>
-<td>2023-11-25 18:00 PT</td>
+<td><a href="./release/individual_assignment2/individual_assignment2.html">Individual assignment 2</a> - container workflows</td>
+<td>2%</td>
+<td>2024-11-30 18:00 PT</td>
 </tr>
 <tr class="even">
-<td><a href="./release/milestone3/milestone3.html">Milestone 3</a> - Move code into scripts and polish report</td>
+<td><a href="./release/milestone2/milestone2.html">Milestone 2</a> - Modularize code into functions, test code &amp; container</td>
 <td>20%</td>
-<td>2023-12-02 18:00 PT</td>
+<td>2024-11-30 18:00 PT</td>
+</tr>
+<tr class="odd">
+<td><a href="./release/individual_assignment3/individual_assignment3.html">Individual assignment 3</a> - Quarto practice</td>
+<td>2%</td>
+<td>2024-11-08 11:59 PT</td>
+</tr>
+<tr class="even">
+<td><a href="./release/milestone2/milestone2.html">Milestone 2</a> - Move code into scripts and polish report</td>
+<td>20%</td>
+<td>2024-12-08 11:59 PT</td>
 </tr>
 <tr class="odd">
 <td><a href="./release/peer_review/peer_review.html">Peer Review</a></td>
 <td>5%</td>
-<td>2023-12-05 16:00 PT</td>
+<td>2024-12-12 23:59 PT</td>
 </tr>
 <tr class="even">
-<td><a href="./release/individual_assignment4/individual_assignment4.html">Individual assignment 4</a> - Pipeline practice</td>
-<td>3%</td>
-<td>2023-12-09 18:00 PT</td>
+<td>Individual assignment 4 - Pipeline practice</td>
+<td>2%</td>
+<td>2024-12-16 23:59 PT</td>
 </tr>
 <tr class="odd">
-<td><a href="./release/milestone4/milestone4.html">Milestone 4</a> - Data analysis pipeline and revise project in response to feedback</td>
+<td>Milestone 4 - Data analysis pipeline and revise project in response to feedback</td>
 <td>20%</td>
-<td>2023-12-09 18:00 PT</td>
+<td>2024-12-16 23:59 PT</td>
 </tr>
 <tr class="even">
 <td><a href="./release/team_work/team_work.html">Team work reflection</a></td>
 <td>3%</td>
-<td>2023-12-12 18:00 PT**</td>
+<td>2024-12-17 23:59 PT**</td>
 </tr>
 <tr class="odd">
 <td>Team work multiplier</td>
@@ -363,7 +369,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="schedule" class="level2">
 <h2 class="anchored" data-anchor-id="schedule">Schedule</h2>
-<table class="table">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Lecture</th>
@@ -376,49 +382,49 @@ ul.task-list li input[type="checkbox"] {
 <tr class="odd">
 <td>1</td>
 <td>Reproducibility &amp; trustworthy workflows intro, git branches</td>
-<td><a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/materials/lectures/01-intro-to-ds-workflows.html">How do reproducible and trustworthy workflows impact data science?</a>, <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/materials/lectures/02-version-control-1.html#git-branches">Git Branches</a>, and <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/materials/lectures/02-version-control-1.html#git-and-github-flow">GitHub &amp; Git Flow</a></td>
+<td><a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/010-intro-to-ds-workflows.html">How do reproducible and trustworthy workflows impact data science?</a>, <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/050-version-control-2.html">Version control (for transparency and collaboration) II</a>, and <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/080-conda-lock.html">conda-lock</a></td>
 <td>3. Stating and Refining the Question from <a href="https://leanpub.com/artofdatascience">The Art of Data Science</a></td>
 </tr>
 <tr class="even">
 <td>2</td>
-<td>Computational environments I</td>
-<td><a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/materials/lectures/05-containerization.html">Managing dependencies using containerization</a></td>
+<td>Introduction to containerization</td>
+<td><a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/100-containerization-1.html">Introduction to containerization</a>, <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/110-containerization-2.html">Using and running containers</a></td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>3</td>
-<td>Computational environments II</td>
-<td><a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/materials/lectures/05-containerization.html">Managing dependencies using containerization</a></td>
+<td>Customizing, versioning and sharing containers</td>
+<td><a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/120-containerization-3.html">Customizing and building containers</a></td>
 <td><a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008316">Ten simple rules for writing Dockerfiles for reproducible data science</a></td>
 </tr>
 <tr class="even">
 <td>4</td>
-<td>Testing code for data science</td>
-<td><a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/materials/lectures/06-intro-to-testing-code.html">Introduction to testing code for data science</a></td>
+<td>Data validation</td>
+<td><a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/130-data-validation.html">Data validation</a></td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>5</td>
 <td>Scripts</td>
-<td><a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/materials/lectures/07-scripts-and-pipelines.html#">Non-interactive scripts and data analysis pipelines</a></td>
+<td><a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/150-scripts.html">Non-interactive scripts</a></td>
 <td></td>
 </tr>
 <tr class="even">
 <td>6</td>
 <td>Advanced reproducible reports</td>
-<td><a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/materials/lectures/08-reproducible-reports.html">Reproducible reports</a></td>
+<td><a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/160-reproducible-reports.html">Reproducible reports</a></td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>7</td>
 <td>Data analysis pipelines</td>
-<td><a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/materials/lectures/07-scripts-and-pipelines.html#data-analysis-pipelines">Data analysis pipelines</a></td>
+<td><a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/170-pipelines-scripts.html">Introduction to Data analysis pipelines</a>, <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/180-pipelines-make.html">Data analysis pipelines with GNU Make</a></td>
 <td></td>
 </tr>
 <tr class="even">
 <td>8</td>
-<td>Reproducibility &amp; Trustworthy workflows wrap up</td>
-<td></td>
+<td>Testing for data analysis</td>
+<td><a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/140-intro-to-testing-code.html">Introduction to testing code for data science</a>, <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/141-python-testing-example.html">Python testing example</a> or <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/141-R-testing-example.html">R testing example</a>, <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/143-observability-of-code-outputs.html">Observability of unit outputs in data science</a></td>
 <td></td>
 </tr>
 </tbody>
@@ -427,7 +433,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="textbooks" class="level2">
 <h2 class="anchored" data-anchor-id="textbooks">Textbooks:</h2>
 <ul>
-<li><a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/README.html">Reproducible and Trustworthy workflows for data science</a> by Tiffany Timbers et al (this is where our course notes are, plus additional gems)</li>
+<li><a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science">Reproducible and Trustworthy workflows for data science</a> by Tiffany Timbers et al (this is where our course notes are, plus additional gems)</li>
 <li><a href="https://leanpub.com/artofdatascience">Art of Data Science</a> by Roger Peng &amp; Elizabeth Matsui (a companion guide for graduate students doing research projects in data science - highly recommended reading!)</li>
 </ul>
 </section>
@@ -482,18 +488,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -525,11 +520,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -539,8 +573,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -552,7 +595,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -596,6 +762,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -621,6 +788,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -681,6 +874,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

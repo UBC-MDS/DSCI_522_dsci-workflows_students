@@ -30,12 +30,6 @@ At your service!
 |          Position          |        Name         |     Slack Handle      |
 |:--------------------------:|:-------------------:|:---------------------:|
 | Lecture and Lab Instructor |   Tiffany Timbers   |        `@tiff`        |
-|     Teaching Assistant     |      Andy Tai       |      `@Andy Tai`      |
-|     Teaching Assistant     |    Armin Saadat     |    `@Armin Saadat`    |
-|     Teaching Assistant     |      Jordan Yu      |   `@Jordan Yu (TA)`   |
-|     Teaching Assistant     |    Kate Manskaia    | `@Kate Manskaia - TA` |
-|     Teaching Assistant     |     Negar Sadr      |  `@Negar Sadr (TA)`   |
-|     Teaching Assistant     | Abdul Muntakim Rafi |        `@Rafi`        |
 
 ## Deliverables
 
