@@ -9,21 +9,38 @@ website:
     contents:
       - section: "Syllabus"
         contents:
-          - index.qmd
-      - section: "Assessments"
+          - text: Syllabus
+            href: index.qmd
+      - section: "Week 1"
         contents:
-          - release/individual_assignment1/individual_assignment1.qmd
-          - release/milestone1/milestone1.qmd
-          - release/individual_assignment2/individual_assignment2.qmd
-          - release/milestone2/milestone2.qmd
-          - release/individual_assignment3/individual_assignment3.qmd
-          - release/milestone3/milestone3.qmd
-          - release/individual_assignment4/individual_assignment4.qmd
-          - release/milestone4/milestone4.qmd
-      - section: "Team Work Reflection"
+          - text: Individual Assignment 1
+            href: release/ia1/ia1.qmd
+          - text: Milestone 1
+            href: release/m1/m1.qmd
+          - text: Teamwork Contract
+            href: release/team_work/contract.qmd
+      - section: "Week 2"
         contents:
-          - release/peer_review/peer_review.qmd
-          - release/team_work/team_work.qmd
+          - text: Individual Assignment 2
+            href: release/ia2/ia2.qmd
+          - text: Milestone 2
+            href: release/m2/m2.qmd
+      - section: "Week 3"
+        contents:
+          - text: Individual Assignment 3
+            href: release/ia3/ia3.qmd
+          - text: Milestone 3
+            href: release/m3/m3.qmd
+      - section: "Week 4"
+        contents:
+          - text: Individual Assignment 4
+            href: release/ia4/ia4.qmd
+          - text: Milestone 4
+            href: release/m4/m4.qmd
+          - text: Peer Review
+            href: release/peer_review/peer_review.qmd
+          - text: Teamwork Reflection
+            href: release/teamwork_reflection/reflection.qmd
 
 format:
   html:

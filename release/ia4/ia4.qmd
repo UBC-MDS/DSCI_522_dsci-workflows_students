@@ -1,0 +1,41 @@
+---
+title: "Individual assignment 4"
+---
+
+## Practice building data analysis pipelines using GNU Make
+
+::: callout-tip
+Deadline: **Saturday, December 13, 2025 at 6PM.**
+:::
+
+The purpose of this assignment is to ensure that everyone gains hands-on practice building data analysis pipelines using GNU Make.
+
+### Exercise instructions
+
+1.  Visit [this template GitHub repository](https://github.com/skysheng7/ia4.git) and click the green "Use this template" button to get your own copy of the `ia4` repository, call it `data_analysis_pipeline_practice`.
+
+2.  Your task is to add a "smarter" data analysis pipeline using GNU Make! It should accomplish the same task as `bash runall.sh` when you type `make all`. It should also reset the analysis the starting point (the state when you first copied this repo) when you type `make clean`.
+
+3.  After you have the `Makefile` working locally, for both the `all` and `clean` targets, push your changes to your copy of the `data_analysis_pipeline_practice` GitHub repository.
+
+### Submission instructions
+
+You will submit a PDF to Gradescope for individual assignment 4 that includes:
+
+1.  A link to your copy of the GitHub.com repository that you created and worked on for this assignment.
+    -   It should be named `data_analysis_pipeline_practice`.
+
+## Rubric
+
+This assignment will be graded for completion as follows:
+
+| Grade | Description |
+|-----------------------|------------------------------------------------|
+| 100% | Working data analysis pipeline via a `Makefile` file exists and it contains both `all` and `clean` targets. |
+| -25% | There are errors in the `Makefile` that prevent it from running as expected |
+| -25% | The `all` target is missing from the `Makefile` |
+| -25% | The `clean` target is missing from the `Makefile` |
+| -25% | The `Makefile` dependency tree is incorrect in some way |
+| 0% | The assignment was not attempted. |
+
+-   You will only get the extra points for serving up the HTML version of the report on GitHub pages if all of the main assignment components were completed.
