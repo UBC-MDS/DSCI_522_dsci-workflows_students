@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.20">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Milestone 4 – DSCI 522: Data Science Workflows (Students)</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-17888a1159294d3eb470f19f6f52f5a5.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-166690b9c768161ed89deb9505a7d440.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">DSCI 522: Data Science Workflows (Students)</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/"> 
+<span class="menu-text">Textbook</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students"> <i class="bi bi-github" role="img" aria-label="Course GitHub repository">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../assignments/individual4.html">Week 4</a></li><li class="breadcrumb-item"><a href="../assignments/milestone4.html">Milestone 4</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Week 1</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/individual1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Individual Assignment 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/milestone1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Milestone 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/teamwork-contract.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Teamwork Contract</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Week 2</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/individual2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Individual Assignment 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/milestone2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Milestone 2</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Week 3</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/individual3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Individual Assignment 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/milestone3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Milestone 3</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Week 4</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/individual4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Individual Assignment 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/milestone4.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Milestone 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/peer-review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Peer Review</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/teamwork-reflection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Teamwork Reflection</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overall-project-summary" id="toc-overall-project-summary" class="nav-link active" data-scroll-target="#overall-project-summary">Overall project summary</a></li>
+  <li><a href="#milestone-4-summary" id="toc-milestone-4-summary" class="nav-link" data-scroll-target="#milestone-4-summary">Milestone 4 summary</a></li>
+  <li><a href="#create-a-makefile-to-act-as-a-driver-script-to-rule-them-all" id="toc-create-a-makefile-to-act-as-a-driver-script-to-rule-them-all" class="nav-link" data-scroll-target="#create-a-makefile-to-act-as-a-driver-script-to-rule-them-all">1. Create a <code>Makefile</code> to act as a driver script to rule them all</a></li>
+  <li><a href="#abstract-some-code-from-your-scripts-to-functions-in-a-separate-file-and-write-tests-for-those-functions" id="toc-abstract-some-code-from-your-scripts-to-functions-in-a-separate-file-and-write-tests-for-those-functions" class="nav-link" data-scroll-target="#abstract-some-code-from-your-scripts-to-functions-in-a-separate-file-and-write-tests-for-those-functions">2. Abstract some code from your scripts to functions in a separate file, and write tests for those functions</a></li>
+  <li><a href="#address-feedback-to-improve-the-project" id="toc-address-feedback-to-improve-the-project" class="nav-link" data-scroll-target="#address-feedback-to-improve-the-project">3. Address feedback to improve the project</a>
+  <ul class="collapse">
+  <li><a href="#address-feedback-from-tas" id="toc-address-feedback-from-tas" class="nav-link" data-scroll-target="#address-feedback-from-tas">3.1 Address feedback from TAs</a></li>
+  <li><a href="#address-feedback-from-peer-review" id="toc-address-feedback-from-peer-review" class="nav-link" data-scroll-target="#address-feedback-from-peer-review">3.2 Address feedback from peer review</a></li>
+  <li><a href="#reproducible-and-repliciable-workflow" id="toc-reproducible-and-repliciable-workflow" class="nav-link" data-scroll-target="#reproducible-and-repliciable-workflow">4. Reproducible and repliciable workflow</a></li>
+  </ul></li>
+  <li><a href="#submission-instructions" id="toc-submission-instructions" class="nav-link" data-scroll-target="#submission-instructions">Submission Instructions</a></li>
+  <li><a href="#expectations" id="toc-expectations" class="nav-link" data-scroll-target="#expectations">Expectations</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students/edit/main/assignments/milestone4.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../assignments/individual4.html">Week 4</a></li><li class="breadcrumb-item"><a href="../assignments/milestone4.html">Milestone 4</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Milestone 4</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overall-project-summary" class="level2">
+<h2 class="anchored" data-anchor-id="overall-project-summary">Overall project summary</h2>
+<p>In this course you will work in assigned teams of three or four to answer a predictive question using a publicly available data set that will allow you to answer that question. To answer this question, you will perform a complete data analysis in R and/or Python, from data import to communication of results, while placing significant emphasis on reproducible and trustworthy workflows.</p>
+<p>Your data analysis project will evolve throughout the course from a single, monolithic Jupyter notebook, to a fully reproducible and robust data data analysis project, comprised of:</p>
+<ul>
+<li>A reproducible report powered by either Jupyter book or Quarto,</li>
+<li>A containerized computational environment created and made shareable by Docker</li>
+<li>A remote version control repository on GitHub for project collaboration, sharing, and documentation.</li>
+<li>A well documented and modularized scripts written in R and/or Python,</li>
+<li>A data analysis pipeline automated with GNU Make,</li>
+</ul>
+<p>An example final project from past years can be seen here: <a href="https://github.com/ttimbers/breast-cancer-predictor">Breast Cancer Predictor</a></p>
+</section>
+<section id="milestone-4-summary" class="level2">
+<h2 class="anchored" data-anchor-id="milestone-4-summary">Milestone 4 summary</h2>
+<ul>
+<li>Write a new script, a <code>Makefile</code> (literally called <code>Makefile</code>), to act as a driver script to rule them all. This script should run the others in sequence, hard coding in the appropriate arguments.</li>
+<li>Abstract some code from your scripts to functions in a separate file, and write tests for those functions.</li>
+<li>Address any feedback received in earlier milestones and from the peer review to improve the project.</li>
+</ul>
+<p>An example Milestone 4 that corresponds to our expectations from this year lives here: <a href="https://github.com/ttimbers/breast-cancer-predictor/tree/3.0.0">Breast Cancer Predictor in Python 3.0.0</a></p>
+</section>
+<section id="create-a-makefile-to-act-as-a-driver-script-to-rule-them-all" class="level2">
+<h2 class="anchored" data-anchor-id="create-a-makefile-to-act-as-a-driver-script-to-rule-them-all">1. Create a <code>Makefile</code> to act as a driver script to rule them all</h2>
+<p>This script should run the others in sequence, hard coding in the appropriate arguments. This script should:</p>
+<ul>
+<li>live in the project’s root directory and be named Makefile</li>
+<li>be well documented (using the project <code>README</code> and comments inside the <code>Makefile</code> to explain what it does and how to use it)</li>
+<li>have an <code>all</code> target so that you can easily run the entire analysis from top to bottom by running <code>make all</code> at the command line</li>
+<li>have a <code>clean</code> target so that you can easily “undo” your analysis by running <code>make clean</code> at the command line (e.g., deletes all generated data and files).</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Phony targets
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>The <code>all</code> and <code>clean</code> targets may be <code>.PHONY</code> targets</li>
+<li>You can create other targets that link up all the dependencies
+<ul>
+<li>For example, <code>data</code>, <code>analysis</code>, <code>figures</code>, <code>pdf</code>, etc, so your build process only runs what’s necessary during development</li>
+<li>Your other targets should be using make dependencies, i.e., not all your targets are allowed to be phony targets.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="abstract-some-code-from-your-scripts-to-functions-in-a-separate-file-and-write-tests-for-those-functions" class="level2">
+<h2 class="anchored" data-anchor-id="abstract-some-code-from-your-scripts-to-functions-in-a-separate-file-and-write-tests-for-those-functions">2. Abstract some code from your scripts to functions in a separate file, and write tests for those functions</h2>
+<p>In every data science project, there is some code that is repetitive, and other code that may not be repetitive in the current project, but would likely be very useful in other, related future projects. It is well worth it to abstract such code to functions, making it easily reuseable in the future in other work. Examples of code that often repetitive in a data analysis projects:</p>
+<ul>
+<li>data wrangling, cleaning or transformation code that gets applied to multiple columns or multiple data sets</li>
+<li>data visualization code when many versions of a similar plot-type is used (e.g., many scatter plots with similar formatting)</li>
+<li>data modeling workflow/pipeline code when tuning different models on the same data set</li>
+</ul>
+<p>Abstracting our analysis code into functions also makes it testable! Meaning you can assess whether your code works as expected. This alone is reason enough to use functions in your analysis code.</p>
+<p>Your job here is to <strong>create at least 3-4 functions from your scripts.</strong> <strong>One per group member is the minimum.</strong> When doing this task, follow the <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/140-intro-to-testing-code.html#workflow-for-writing-functions-and-tests-for-data-science">workflow for writing functions and tests for data science</a>, remember this process will include:</p>
+<ul>
+<li>writing thorough function specifications &amp; documentation</li>
+<li>writing robust unit tests for these functions to ensure they work as expected</li>
+<li>writing the code that makes up the function body</li>
+</ul>
+<p>If you are using Python, these functions will live in an <code>.py</code> file (whose filename will be named after the function, or functions). Again, it is OK to have one function per file, or all functions in one file. This/these file(s) will live in a sub-directory called <code>src</code>. If you are using R, these functions will live in an <code>.R</code> file (whose filename will be named after the function, or functions). It is OK to have one function per file, or all functions in one file. This/these file(s) will live in a sub-directory called <code>R</code>.</p>
+<p>You will <code>import</code> (in the case of Python) or <code>source</code> (in the case of R) these functions in your scripts to use them in your analysis. Tests will live in a <code>test</code> directory, with files/subdirectories organized as per the testing framework you are using. If you are using Python, we expect you to use the <a href="https://docs.pytest.org/en/7.0.x/"><code>pytest</code></a> Python package framework. If you are using R for your data analysis code, we expect you to use the <a href="https://testthat.r-lib.org/"><code>testthat</code></a> R package framework for writing software tests.</p>
+<p>Of course, if it makes sense to have more than 3-4 functions, you are welcome to increase the number! However, all functions must have the same standards in regards to software robustness. Your functions will be assessed for their quality (e.g., functions should do one thing, and generally return an object unless they were specifically designed for side-effects), usability, readability (follow the <a href="https://black.readthedocs.io/en/stable/the_black_code_style/index.html">black style guide</a> for Python, or the <a href="https://style.tidyverse.org/">tidyverse style guide</a> for R), documentation and quality of the test suite.</p>
+</section>
+<section id="address-feedback-to-improve-the-project" class="level2">
+<h2 class="anchored" data-anchor-id="address-feedback-to-improve-the-project">3. Address feedback to improve the project</h2>
+<p>Revise your data analysis project to address feedback received from the DSCI 522 teaching team from past milestones, as well as feedback received from the peer review.</p>
+<section id="address-feedback-from-tas" class="level3">
+<h3 class="anchored" data-anchor-id="address-feedback-from-tas">3.1 Address feedback from TAs</h3>
+<p>After you make changes based on feedback from your TAs, please raise a regrade requests on Gradescope for the corresponding question, <strong>provide links to the PRs, commit history to demonstrate the changes you made</strong>. After the TA confirm your changes are made correctly, you will be awarded <strong>50% of the points you lost for that question</strong>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>⚠️ Important:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Deadline for Milestone 1 + 2 regrade requests: <strong>Saturday, December 13, 2025 at 6PM.</strong></li>
+<li>Deadline for Milestone 3 regrade requests: <strong>Wednesday, December 17th, 2025 at 11:59 AM</strong>.</li>
+<li>Your regrade request should be clear to read, easy to track your changes, otherwise we will not be able to give points back.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="address-feedback-from-peer-review" class="level3">
+<h3 class="anchored" data-anchor-id="address-feedback-from-peer-review">3.2 Address feedback from peer review</h3>
+<p>After you receive feedback from your peers, each group member should at least address one feedback item from the peer review. If you are in a group of 3, you should address at least 3 feedback items from the peer review. If you are in a group of 4, you should address at least 4 feedback items from the peer review.</p>
+<p>To help us easily, and correctly, assess changes you made based on peer feedback, please create a file called <code>CHANGELOG.md</code> that lives in the root of your repository. In this file, please describe any improvements you made to the project based on peer feedback (if peer feedback is the same as feedback from your TAs, that is ok to include them in CHANGELOG too), and point to evidence of these improvements.</p>
+<p>You can point us to evidence of addressing it by creating an repository issue, and linking to another issue and pull request. providing URLs, links to PRs, links to commits, reference specific lines of code, etc can all be used to track how a feature/bug was fixed. Be sure to add some narration when sharing these URLs so that it is easy for us to identify which changes to your work addressed which pieces of feedback.</p>
+<p>See this page for an example of a changelog and how you can reference fixes: <a href="https://keepachangelog.com/" class="uri">https://keepachangelog.com/</a></p>
+</section>
+<section id="reproducible-and-repliciable-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="reproducible-and-repliciable-workflow">4. Reproducible and repliciable workflow</h3>
+<p>5% of your grade will be graded on the reproduciblity of your work and its documentation. We will grade you by following your instructions as you have it written. There is no point recuperation from this section of the grading.</p>
+</section>
+</section>
+<section id="submission-instructions" class="level2">
+<h2 class="anchored" data-anchor-id="submission-instructions">Submission Instructions</h2>
+<p>Just before you submit the milestone 4, create a release on your project repository on GitHub and name it exactly <code>3.0.0</code> (<a href="https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release">how to create a release</a>). This release allows us and you to easily jump to the state of your repository at the time of submission for grading purposes, while you continue to work on your project for the next milestone.</p>
+<p>Follow the instructions for submission on Gradescope. We only need URLs, entered into Gradescope directly: there is no PDF to make. You will submit:</p>
+<ol type="1">
+<li>the URL of your project’s GitHub.com repository</li>
+<li>the URL of a GitHub release of your project’s GitHub.com repository</li>
+</ol>
+</section>
+<section id="expectations" class="level2">
+<h2 class="anchored" data-anchor-id="expectations">Expectations</h2>
+<ul>
+<li><strong>Everyone should contribute equally to all aspects of the project</strong> <strong>(e.g., code, writing, project management).</strong> <strong>This should be evidenced by a roughly equal number of commits,</strong> <strong>pull request reviews and participation in communication via GitHub issues.</strong></li>
+<li>Each group member should work in a <a href="https://docs.github.com/en/get-started/quickstart/github-flow">GitHub flow workflow</a>; where they create branches for each feature or fix, which are reviewed and critiqued by at least one other teammate before the the pull request is accepted.</li>
+<li>You should be committing to git and pushing to GitHub.com every time you work on this project.</li>
+<li>Git commit messages should be meaningful. These will be marked. It’s OK if one or two are less meaningful, but most should be.</li>
+<li>Use GitHub issues to communicate to their team mate (as opposed to email or Slack).</li>
+<li>Your question, analysis and visualization should make sense. It doesn’t have to be complicated.</li>
+<li>You should use proper grammar and full sentences in your README. Point form may occur, but should be less than 10% of your written documents.</li>
+<li><strong>Your analysis should be correct, and run reproducibly given the instructions provided in the README.</strong></li>
+<li>You should use proper grammar and full sentences in your README. Point form may occur, but should be less than 10% of your written documents.</li>
+<li>R code should follow the <a href="https://style.tidyverse.org/">tidyverse style guide</a>, and Python code should follow the <a href="https://black.readthedocs.io/en/stable/the_black_code_style/index.html">black style guide</a> for Python)</li>
+<li>You should not have extraneous files in your repository that should be ignored.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/UBC-MDS\.github\.io\/DSCI_522_dsci-workflows_students\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students/edit/main/assignments/milestone4.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
