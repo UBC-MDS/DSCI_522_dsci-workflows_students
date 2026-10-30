@@ -1,0 +1,120 @@
+---
+title: "Teamwork Contract"
+---
+
+[Milestone 1](milestone1.qmd) asks your team to draft a team work contract.
+Below is a Quarto template to start from.
+It is based on a contract a past MDS team wrote for their DSCI 524 group project.
+
+## How to use the template
+
+1.  Create a file named `team-contract.qmd`.
+    The contract is fairly personal,
+    so it does not need to be in your public project repository.
+2.  Copy the template below (the button at the top right of the block copies it)
+    and paste it into `team-contract.qmd`.
+3.  Replace everything in `[square brackets]`.
+    The template is a starting point, not a form:
+    change, add or remove anything so it describes how *your* team will work.
+    See [Milestone 1](milestone1.qmd#draft-a-team-work-contract) for what a contract could cover.
+4.  Render it to PDF from the terminal:
+
+    ``` bash
+    quarto render team-contract.qmd
+    ```
+
+    This creates `team-contract.pdf` next to it.
+    The template uses Quarto's built-in Typst format,
+    so you do not need LaTeX installed.
+5.  Upload `team-contract.pdf` to Gradescope with your Milestone 1 submission.
+
+## Template
+
+``` markdown
+---
+title: "Team contract"
+subtitle: "DSCI 522, group [NUMBER]"
+author:
+  - "[TEAM MEMBER 1]"
+  - "[TEAM MEMBER 2]"
+  - "[TEAM MEMBER 3]"
+  - "[TEAM MEMBER 4]" # delete this line for a team of three
+date: today
+format: typst
+---
+
+## Expectations
+
+The time expected for group members to work on DSCI 522
+will be a maximum of [NUMBER] hours a week,
+unless all the team members agree to lengthen the time expected.
+If team members cannot complete their sections within the maximum hours,
+members should give notice on Slack at least 24 hours before the group submission deadline
+to see if work should be redistributed or if the expected time should be increased.
+
+All submissions are expected to meet the criteria of the milestones
+as set out in the instructions.
+This includes making sure all scripts are working,
+creating tests for all our functions,
+and using proper grammar in written submissions.
+
+## Meetings
+
+Meeting times were established during the initial team meeting held on [DATE].
+Meetings will be held [PLACE, OR ONLINE ON ...] at the following times:
+
+- [DAY]: [TIME]
+- [DAY]: [TIME] (if needed)
+
+The group will have a second formal meeting during the DSCI 522 lab on [DAY] at [TIME].
+All members are expected to attend the meetings.
+If a member cannot make a meeting,
+written notice must be given 24 hours before the meeting to discuss alternative options.
+
+## Communication
+
+All communication outside of the meetings will be through Slack or GitHub.
+GitHub will be the primary communication tool for ideas, suggestions,
+submitting work and reviewing work.
+Slack will be the primary communication tool for informal communication
+and scheduling meetings.
+
+## Reviews
+
+All members are expected to submit a pull request for their work
+on the group project's repository on GitHub.com.
+Members are expected to add teammates as reviewers,
+so that every pull request is reviewed by another teammate.
+Pull requests should be reviewed within [NUMBER] hours after creation.
+
+## Roles
+
+There are two roles team members will be responsible for each week:
+
+1. Scribe:
+    - Responsible for taking notes at the meetings and in-class lab sessions,
+      and adding them as a GitHub issue.
+    - Responsible for sharing all notes and in-class activities with teammates.
+2. Proof-reader:
+    - Responsible for doing a final check of the submission before the deadline,
+      to make sure all requirements are satisfied.
+
+Roles will be rotated each week, so that each team member does each role at least once.
+
+## Deadlines
+
+Deadlines for individual items will be assigned during meetings.
+The proof-reader will review the work on [DAY]
+and ensure that the final version is ready for submission,
+and will create the required GitHub release.
+
+## Breach of contract
+
+Failure to follow the team contract will result in a three-step warning system:
+
+1. A written Slack notice that outlines the violation of the team contract
+   and reminds the member of the team contract's conditions.
+2. A meeting to discuss the behaviour,
+   after which the member writes an agreement to follow the team contract.
+3. Reaching out to the lab instructor or TAs about the issues with the teammate.
+```

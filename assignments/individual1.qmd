@@ -1,0 +1,59 @@
+---
+title: "Individual assignment 1"
+---
+
+## Version control knowledge check and practice
+
+This assignment will provide practice in the context of version control and will prepare you to collaborate on your group projects for this course. Follow the instructions listed below. You will be graded for completion.
+
+1.  Create a new public repository on GitHub.com named `learning-about-version-control`. Make sure the repository:
+
+    -   Includes a `README.md` that has a header that says "Learning about Version Control" and has your name listed as the author.
+    -   Is public
+
+::: callout-important
+## github.com *not* https://github.ubc.ca/
+
+Make sure you do this in your own personal public GitHub account. Do not make this in the UBC github.
+:::
+
+2.  Clone your `learning-about-version-control` repository to your local computer.
+
+3.  Create and resolve a merge conflict 😱!
+
+    -   On your remote version control repository, use the pen tool to add a line to the README that says "Solving merge conflicts is easy!"
+    -   On your local version control repository, edit the same line in the README that you just edited, but this time write "Solving merge conflicts is soooooo hard!"
+    -   Add and commit your local changes to the `README.md`, and the try to push the file so that you create the merge conflict.
+    -   Resolve the merge conflict on your local computer so that the line reads "Solving merge conflicts takes conscious effort, but I can do it!". Take a screen shot while you are resolving the conflict to document you did this.
+    -   Push the local changes to your remote version control repository.
+
+4.  Create and accept a pull request!
+
+    -   Create a new Git branch on your local version control repository named `opinions` and switch to that branch.
+    -   Edit your `README.md` so that you add at least one sentence about what you like most about version control, and add at least one sentence about what you find most challenging/confusing/frustrating about version control (we all have opinions on this one...). Add and commit your changes to local version control.
+    -   Push the changes to the `README.md` that you made on the `opinions` branch to the remote repository on GitHub.com.
+    -   Visit GitHub.com and create a pull request to suggest that the changes on the opinions branch should be merged into the main branch.
+    -   Accept the pull request you opened to merge your changes from the `opinions` branch into the `main` branch.
+
+## Submission Instructions
+
+Follow the instructions for submission on Gradescope.
+Enter the URL and your explanation into Gradescope directly,
+and upload the screenshot there: there is no PDF to make.
+You will submit:
+
+1.  the URL of the commit history of GitHub.com repository you created and worked on for this assignment (it will be something like: `https://github.com/<YOURUSERNAME>/learning-about-version-control/commits/main`)
+2.  the screenshot of your resolved merge conflict
+3.  an explanation (2-3 sentences and in your own words) of why it is useful to work in a branch-pull-request workflow instead of working by directly committing each change to the main branch.
+
+## Rubric
+
+This assignment will be graded for completion as follows:
+
+| Grade | Description |
+|------------------------|------------------------------------------------|
+| 100% | GitHub history (check under pull request tab in repo) indicates a successfully merged pull request from opinions into main, clearly demonstrated solving the merge conflict in screenshot and well explained why it is useful to work in a branch-pull-request workflow |
+| -25% | GitHub history (check under pull request tab in repo) does not indicate a successfully merged pull request from opinions into main |
+| -25% | Did not clearly demonstrate solving the merge conflict in screenshot. |
+| -25% | Did not well explain why it is useful to work in a branch-pull-request workflow. |
+| -100% | No repository or attempt |

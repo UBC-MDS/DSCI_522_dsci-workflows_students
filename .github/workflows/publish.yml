@@ -1,0 +1,43 @@
+# Renders the Quarto site and publishes it to the gh-pages branch on every
+# push to main. GitHub Pages then serves that branch.
+#
+# Copied from UBC-MDS/DSCI_521_platforms-dsci, itself adapted from
+# chendaniely/chendaniely.github.io. The submodule caching and the
+# R / Python setup steps in that workflow are dropped here: this repo has no
+# submodules, and the site is pure markdown with no executed code. If a page
+# ever gains an R or Python code cell, add those steps back to BOTH this file
+# and preview.yml so the two builds stay identical.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+name: Publish to GitHub Pages
+
+# Never let two deploys write gh-pages at the same time. Queue instead of
+# cancelling, so an in-flight deploy is allowed to finish cleanly.
+concurrency:
+  group: publish-gh-pages
+  cancel-in-progress: false
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@8a96df13519ee81fd526f2dfca5962811136661b # v2.2.0
+        with:
+          version: release
+
+      - name: Publish to GitHub Pages
+        uses: quarto-dev/quarto-actions/publish@8a96df13519ee81fd526f2dfca5962811136661b # v2.2.0
+        with:
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

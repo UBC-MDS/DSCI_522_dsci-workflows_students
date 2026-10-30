@@ -1,0 +1,11 @@
+_site
+/.quarto/
+**/*.quarto_ipynb
+**_files
+*.html
+.DS_Store
+
+/.luarc.json
+
+# student data read by scripts/peer_review_assign.py: never commit it
+data/

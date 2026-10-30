@@ -1,46 +1,57 @@
 project:
   type: website
-  output-dir: docs
 
 website:
+  title: "DSCI 522: Data Science Workflows (Students)"
+  repo-url: https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students
+  repo-branch: main
+  repo-actions: [edit]
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/
+        text: Textbook
+    right:
+      - icon: github
+        href: https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students
+        aria-label: "Course GitHub repository"
   sidebar:
-    style: "docked"
+    style: floating
     search: true
     contents:
-      - section: "Syllabus"
-        contents:
-          - text: Syllabus
-            href: index.qmd
+      - href: index.qmd
+        text: Syllabus
       - section: "Week 1"
         contents:
-          - text: Individual Assignment 1
-            href: release/ia1/ia1.qmd
-          - text: Milestone 1
-            href: release/m1/m1.qmd
-          - text: Teamwork Contract
-            href: release/team_work/contract.qmd
+          - href: assignments/individual1.qmd
+            text: "Individual Assignment 1"
+          - href: assignments/milestone1.qmd
+            text: "Milestone 1"
+          - href: assignments/teamwork-contract.qmd
+            text: "Teamwork Contract"
       - section: "Week 2"
         contents:
-          - text: Individual Assignment 2
-            href: release/ia2/ia2.qmd
-          - text: Milestone 2
-            href: release/m2/m2.qmd
+          - href: assignments/individual2.qmd
+            text: "Individual Assignment 2"
+          - href: assignments/milestone2.qmd
+            text: "Milestone 2"
       - section: "Week 3"
         contents:
-          - text: Individual Assignment 3
-            href: release/ia3/ia3.qmd
-          - text: Milestone 3
-            href: release/m3/m3.qmd
+          - href: assignments/individual3.qmd
+            text: "Individual Assignment 3"
+          - href: assignments/milestone3.qmd
+            text: "Milestone 3"
       - section: "Week 4"
         contents:
-          - text: Individual Assignment 4
-            href: release/ia4/ia4.qmd
-          - text: Milestone 4
-            href: release/m4/m4.qmd
-          - text: Peer Review
-            href: release/peer_review/peer_review.qmd
-          - text: Teamwork Reflection
-            href: release/teamwork_reflection/reflection.qmd
+          - href: assignments/individual4.qmd
+            text: "Individual Assignment 4"
+          - href: assignments/milestone4.qmd
+            text: "Milestone 4"
+          - href: assignments/peer-review.qmd
+            text: "Peer Review"
+          - href: assignments/teamwork-reflection.qmd
+            text: "Teamwork Reflection"
 
 format:
   html:
