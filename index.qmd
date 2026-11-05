@@ -75,8 +75,6 @@ For all other policies, please see the general MDS policies.
 
 | Assessment                                                                                                                  | Weight                    | Deadline                |
 | --------------------------------------------------------------------------------------------------------------------------- | ------------------------- | ----------------------- |
-| iClicker                                                                                                                    | 2%                        | Every lecture           |
-| Pre-lecture quizzes                                                                                                         | 2%                        | Every lecture           |
 | [Individual assignment 1](assignments/individual1.qmd) - version control workflows                                          | 2%                        | 2025-11-22 18:00 PT     |
 | [Milestone 1](assignments/milestone1.qmd) - Setup project on GitHub, draft of analysis in a notebook & virtual environment | 20%                       | 2025-11-22 18:00 PT     |
 | [Individual assignment 2](assignments/individual2.qmd) - container workflows                                                | 2%                        | 2025-11-29 18:00 PT     |
@@ -85,7 +83,7 @@ For all other policies, please see the general MDS policies.
 | [Milestone 3](assignments/milestone3.qmd) - Move code into scripts and polish report                                       | 20%                       | 2025-12-07 11:59 PT     |
 | [Peer Review](assignments/peer-review.qmd)                                                                                  | 5%                        | 2025-12-11 18:00 PT     |
 | [Individual assignment 4](assignments/individual4.qmd) - Pipeline practice                                                  | 2%                        | 2025-12-13 18:00 PT     |
-| [Milestone 4](assignments/milestone4.qmd) - Data analysis pipeline and revise project in response to feedback              | 20%                       | 2025-12-13 18:00 PT     |
+| [Milestone 4](assignments/milestone4.qmd) - Data analysis pipeline and revise project in response to feedback              | 24%                       | 2025-12-13 18:00 PT     |
 | [Team work reflection](assignments/teamwork-reflection.qmd)                                                                 | 3%                        | 2025-12-14 18:00 PT\*\* |
 | Team work multiplier                                                                                                        | final grade \* multiplier | NA                      |
 
