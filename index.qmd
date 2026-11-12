@@ -39,6 +39,7 @@ At your service!
 | :----------------: | :--------------------: | :----------------------: |
 |     Instructor     |      Daniel Chen       |  `@Daniel (Instructor)`  |
 |     Instructor     |    Sky Kehan Sheng     |          `@Sky`          |
+| Teaching Assistant |     Agam Sanghera      |         `@Agam`          |
 | Teaching Assistant |   Cynthia Limantono    |     `@Cynthia (TA)`      |
 | Teaching Assistant |    Foroogh Najafi      |      `@Foroogh(TA)`      |
 | Teaching Assistant |      Jiyoung Han       |   `@Jiyoung Han (TA)`    |
