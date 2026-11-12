@@ -35,18 +35,18 @@ By the end of the course, students are expected to be able to:
 
 At your service!
 
-|      Position      |          Name          |      Slack Handle      |
-| :----------------: | :--------------------: | :--------------------: |
-|     Instructor     |      Daniel Chen       | `@Daniel (Instructor)` |
-|     Instructor     |    Sky Kehan Sheng     |         `@Sky`         |
-| Teaching Assistant |                        |                        |
-| Teaching Assistant |                        |                        |
-| Teaching Assistant |                        |                        |
-| Teaching Assistant |                        |                        |
-| Teaching Assistant |                        |                        |
-| Teaching Assistant |                        |                        |
-| Teaching Assistant |                        |                        |
-| Teaching Assistant |                        |                        |
+|      Position      |          Name          |       Slack Handle       |
+| :----------------: | :--------------------: | :----------------------: |
+|     Instructor     |      Daniel Chen       |  `@Daniel (Instructor)`  |
+|     Instructor     |    Sky Kehan Sheng     |          `@Sky`          |
+| Teaching Assistant |   Cynthia Limantono    |     `@Cynthia (TA)`      |
+| Teaching Assistant |    Foroogh Najafi      |      `@Foroogh(TA)`      |
+| Teaching Assistant |      Jiyoung Han       |   `@Jiyoung Han (TA)`    |
+| Teaching Assistant |     Lavanya Gupta      |     `@Lavanya (TA)`      |
+| Teaching Assistant |    Parsa Seyfourian    | `@Parsa Seyfourian (TA)` |
+| Teaching Assistant |      Rúbia Guerra      |      `@Rubia (TA)`       |
+| Teaching Assistant |     Sahar Sattari      |     `@Sahar Sattari`     |
+| Teaching Assistant |       Tony Fong        |    `@Tony Fong (TA)`     |
 
 ## Deliverables
 
@@ -70,6 +70,21 @@ Applying for academic concession does not promise the granting of academic conce
 Each application will be evaluated in the context of UBC’s Academic concession policy.
 Students missing more than **20% of the total scheduled lab hours** for a course without having received an academic concession will receive a possible maximum course grade of 50% and an “F” standing for the course on the transcript.
 For all other policies, please see the general MDS policies.
+
+:::
+
+:::{.callout-note}
+
+## Weekly oral check-ins
+
+Each week during lab, a member of the teaching team will have a short oral check-in
+(about 5 minutes) with you.
+Think of it as practice for a technical interview:
+we will ask you to walk us through part of your project,
+such as what a script does, how a test works, or why you made a particular design choice.
+These check-ins are **not graded**.
+They are a low-stakes chance to practice explaining your technical work out loud
+and to get feedback and help along the way.
 
 :::
 
@@ -237,6 +252,106 @@ so push it before you submit.
 See [calendar](https://ubc-mds.github.io/calendar/).
 
 ## Policies
+
+### Academic Integrity
+
+Academic integrity is a commitment to honesty, respect, responsibility, and accountability in academic work.
+It is foundational to teaching and learning and is a shared value of all members of the UBC community.
+In a project course, it also means being transparent with your teammates and the teaching team
+about how your work was produced.
+
+**Academic integrity in this course includes:**
+
+- Submitting individual assignments that reflect your own understanding and intellectual contribution.
+- Contributing your fair share to your group's project,
+  and making sure your commits, pull requests, and reviews honestly represent the work you did.
+- Citing any code, text, or ideas you draw on from elsewhere
+  (classmates outside your group, documentation, Stack Overflow, blog posts, generative AI tools, etc.),
+  following the [MDS program policy](https://ubc-mds.github.io/policies/).
+- Respecting the licenses of any code, data, or other material you reuse in your project.
+- Following the generative AI policy below, including disclosing AI use for every deliverable.
+
+### Use of Generative AI
+
+This course follows the MDS program's
+[Academic Integrity and Use of Generative AI policy](https://ubc-mds.github.io/policies/#academic-integrity-and-use-of-generative-ai).
+Assessment-specific instructions always take precedence over the general guidance below.
+
+**AI assistance is allowed.**
+Generative AI tools (e.g., ChatGPT, Claude, GitHub Copilot, Cursor) are a real part of modern data science workflows,
+and you may use them in this course to brainstorm, explain concepts, debug errors, or help write code and documentation.
+That said, this course is about building your own skills in version control, environments, containers, testing, and pipelines.
+We strongly encourage you to attempt the work yourself first,
+and to use AI to support your learning rather than replace it.
+A useful question to ask yourself is:
+*is this tool helping me understand the problem, or is it doing the thinking I am here to learn to do?*
+
+**Disclose your AI use.**
+For every milestone and individual assignment, you must state whether generative AI was used,
+including when it was not.
+If AI was used, please share:
+
+- which tool(s) and model(s) you used;
+- which parts of the work they were used for, and how; and
+- the instructions you gave the tool, such as any system prompt or agent configuration file
+  (e.g., `CLAUDE.md`, `AGENTS.md`, `.cursor/rules/`, `.github/copilot-instructions.md`),
+  or, if you did not use one, a few representative example prompts.
+
+For group milestones, please keep this disclosure in an **`AI_USAGE.md`** file in the root of your project repository
+and update it as the project evolves.
+For individual assignments, include the disclosure with your Gradescope submission.
+Disclosing AI use is not penalized, and it helps us give you useful feedback.
+
+**You remain responsible for everything you submit.**
+Whether code was written by you, a teammate, or an AI tool,
+everyone in the group is responsible for its correctness, quality, and licensing.
+You should be able to explain what your code does, why it is designed that way,
+and how it fits into the rest of your project.
+Please do not merge code you have not read and understood.
+
+**A human opens every pull request.**
+AI agents may help you write code, but a group member must review any generated changes
+and open, review, and merge pull requests themselves.
+Please do not let an AI agent push to your repository, open pull requests, or merge them on its own.
+Because GitHub history is used to evaluate teamwork,
+it should accurately reflect who did the work.
+
+**Communicate in your own words.**
+When writing issues, pull request descriptions, code reviews, peer reviews, and team work reflections,
+please use your own words.
+AI may help with translation or grammar editing.
+Much of what you learn in this course comes from these conversations with your teammates.
+
+**Weekly check-ins.**
+As described in [Deliverables](#deliverables),
+the teaching team will have a short, ungraded oral check-in with each of you during lab every week,
+as practice for technical interviews.
+We may ask you to walk us through any part of your project,
+including code that was written with the help of AI.
+If someone is not yet able to explain work they contributed,
+we will follow up to better understand how the work was produced and to support their learning.
+Where needed, this may also include steps under UBC's academic misconduct procedures.
+
+**Protect private information.**
+Do not share confidential, private, or sensitive information with AI tools,
+including personal information about yourself, your teammates, or other students
+(for example, peer review content or team work reflections).
+
+If you are unsure whether a particular use of AI is appropriate,
+please ask the teaching team before you submit your work.
+
+**Academic misconduct**
+
+Violations of academic integrity (i.e., academic misconduct) may lead to serious consequences.
+For more details, please see UBC's [Academic Integrity website](https://academicintegrity.ubc.ca/),
+the [Academic Calendar Statement on Academic Misconduct](https://vancouver.calendar.ubc.ca/campus-wide-policies-and-regulations/student-conduct-and-discipline/discipline-academic-misconduct),
+and [UBC's guidance on Generative AI](https://genai.ubc.ca/).
+
+*Parts of this AI policy are adapted from the [earthaccess AI policy](https://github.com/earthaccess-dev/earthaccess/blob/main/docs/contributor/ai-policy.md),
+which is based on the [SciPy](https://scipy.github.io/devdocs/dev/conduct/ai_policy.html)
+and [SymPy](https://docs.sympy.org/dev/contributing/ai-generated-code-policy.html) AI policies.*
+
+### General Program Policies
 
 - Please see the general and genAI use policies in [MDS policies](https://ubc-mds.github.io/policies/).
 - Please review [General Lab Instructions](https://ubc-mds.github.io/resources_pages/general_lab_instructions/)
