@@ -1,5 +1,10 @@
 project:
   type: website
+  render:
+    - index.qmd
+    - assignments/individual1.qmd
+    - assignments/milestone1.qmd
+    - assignments/teamwork-contract.qmd
 
 website:
   title: "DSCI 522: Data Science Workflows (Students)"
@@ -30,28 +35,28 @@ website:
             text: "Milestone 1"
           - href: assignments/teamwork-contract.qmd
             text: "Teamwork Contract"
-      - section: "Week 2"
-        contents:
-          - href: assignments/individual2.qmd
-            text: "Individual Assignment 2"
-          - href: assignments/milestone2.qmd
-            text: "Milestone 2"
-      - section: "Week 3"
-        contents:
-          - href: assignments/individual3.qmd
-            text: "Individual Assignment 3"
-          - href: assignments/milestone3.qmd
-            text: "Milestone 3"
-      - section: "Week 4"
-        contents:
-          - href: assignments/individual4.qmd
-            text: "Individual Assignment 4"
-          - href: assignments/milestone4.qmd
-            text: "Milestone 4"
-          - href: assignments/peer-review.qmd
-            text: "Peer Review"
-          - href: assignments/teamwork-reflection.qmd
-            text: "Teamwork Reflection"
+      # - section: "Week 2"
+      #   contents:
+      #     - href: assignments/individual2.qmd
+      #       text: "Individual Assignment 2"
+      #     - href: assignments/milestone2.qmd
+      #       text: "Milestone 2"
+      # - section: "Week 3"
+      #   contents:
+      #     - href: assignments/individual3.qmd
+      #       text: "Individual Assignment 3"
+      #     - href: assignments/milestone3.qmd
+      #       text: "Milestone 3"
+      # - section: "Week 4"
+      #   contents:
+      #     - href: assignments/individual4.qmd
+      #       text: "Individual Assignment 4"
+      #     - href: assignments/milestone4.qmd
+      #       text: "Milestone 4"
+      #     - href: assignments/peer-review.qmd
+      #       text: "Peer Review"
+      #     - href: assignments/teamwork-reflection.qmd
+      #       text: "Teamwork Reflection"
 
 format:
   html:
