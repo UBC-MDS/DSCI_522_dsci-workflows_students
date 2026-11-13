@@ -16,5 +16,6 @@ Instructor: [Sky (Kehan) Sheng](https://www.skysheng.io/)
     - [Course website](https://ubc-mds.github.io/DSCI_522_dsci-workflows_students/): course description and assignment releases
     - [Canvas](https://canvas.ubc.ca/courses/191038)
     - [Gradescope](https://www.gradescope.ca/courses/42925)
+    - [iClicker](https://join.iclicker.com/VAVK)
 
 *This work is licensed under the MIT License.*
