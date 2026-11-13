@@ -150,7 +150,7 @@ Source: [Raya and the Last Dragon](https://www.imdb.com/title/tt5109280/)
 - **Classification OR regression** only
 - Don't use crazy models
 - This is NOT for job interviews
-- Groups that achieve a MVP (**M**inimum **V**iable **P**roduct) at the end of the lab will get stickers and Posit cheatsheet!
+- Groups that achieve a MVP (**M**inimum **V**iable **P**roduct) at the end of the lab will get stickers!
 :::
 
 ::: {layout-ncol=3}
