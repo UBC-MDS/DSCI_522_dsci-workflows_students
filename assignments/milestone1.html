@@ -258,7 +258,7 @@ ul.task-list li input[type="checkbox"] {
 <li>Set-up a public GitHub repository</li>
 <li>Create an appropriate file and directory structure for a data analysis project</li>
 <li>Add the data analysis as a literate code document (Jupyter or Quarto)</li>
-<li>Ensure the computation environment reproducible through a virtual environment (e.g., conda or renv) - hint do this as you create the analysis, don’t wait until the end!</li>
+<li>Ensure the computation environment reproducible through a virtual environment (e.g., uv or renv) - hint do this as you create the analysis, don’t wait until the end!</li>
 </ol>
 <p>An example Milestone 1 that corresponds to our expectations from this year is here: <a href="https://github.com/ttimbers/breast-cancer-predictor/tree/0.0.1">Breast Cancer Predictor in Python 0.0.1</a></p>
 <section id="draft-a-team-work-contract" class="level3">
@@ -299,7 +299,7 @@ ul.task-list li input[type="checkbox"] {
 <li><code>CONTRIBUTING.md</code></li>
 <li><code>data/</code></li>
 <li><code>&lt;analysis&gt;.ipynb</code> or <code>&lt;analysis&gt;.qmd</code> (give it a meaningful name!)</li>
-<li><code>environment.yml</code> &amp; Conda lock files for each major operating system (or the corresponding <code>renv</code> files)</li>
+<li><code>pyproject.toml</code>, <code>uv.lock</code> &amp; <code>.python-version</code> (or the corresponding <code>renv</code> files)</li>
 <li><code>LICENSE.md</code></li>
 </ul>
 <p>The description of each of them follows.</p>
@@ -350,9 +350,9 @@ ul.task-list li input[type="checkbox"] {
 <h4 class="anchored" data-anchor-id="v.-analysis.ipynb-analysis.qmd">v. <code>analysis.ipynb</code> / <code>analysis.qmd</code></h4>
 <p>For this milestone, the analysis code and narration should be contained within a single literate code document (e.g., Jupyter notebook or Quarto document). This document should not actually be named <code>analysis.***</code>, but have a more descriptive title, related to the project title.</p>
 </section>
-<section id="vi.-environment.yml-conda-lock-files-for-the-major-operating-systems-or-the-corresponding-renv-files" class="level4">
-<h4 class="anchored" data-anchor-id="vi.-environment.yml-conda-lock-files-for-the-major-operating-systems-or-the-corresponding-renv-files">vi. <code>environment.yml</code> &amp; conda lock files for the major operating systems (or the corresponding <code>renv</code> files)</h4>
-<p>Include the necessary files (e.g., <code>environment.yml</code> &amp; conda lock files for the major operating systems) so others can reproduce your work on their machine.</p>
+<section id="vi.-pyproject.toml-uv.lock-.python-version-or-the-corresponding-renv-files" class="level4">
+<h4 class="anchored" data-anchor-id="vi.-pyproject.toml-uv.lock-.python-version-or-the-corresponding-renv-files">vi. <code>pyproject.toml</code>, <code>uv.lock</code> &amp; <code>.python-version</code> (or the corresponding <code>renv</code> files)</h4>
+<p>Include the necessary files (e.g., <code>pyproject.toml</code>, <code>uv.lock</code> and <code>.python-version</code>) so others can reproduce your work on their machine. Do not commit the <code>.venv/</code> folder: others rebuild it from your lockfile with <code>uv sync</code>.</p>
 <p><strong>Note - this document should live in the root of your public GitHub.com repository.</strong></p>
 </section>
 <section id="viii.-license.md" class="level4">
@@ -421,9 +421,9 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="ensure-the-computation-environment-reproducible-through-a-virtual-environment" class="level3">
 <h3 class="anchored" data-anchor-id="ensure-the-computation-environment-reproducible-through-a-virtual-environment">6. Ensure the computation environment reproducible through a virtual environment</h3>
-<p>For this project, we will eventually be making the computation environment reproducible through containerization with Docker. For milestone 1 however, we will start with using a virtual environment as our first step towards this. You can use either <code>conda</code> or <code>renv</code> for this. Be sure to include the necessary files so others can reproduce your work. Be sure to include documentation of how to use the environment with your project as well in the <code>README.md</code> file.</p>
+<p>For this project, we will eventually be making the computation environment reproducible through containerization with Docker. For milestone 1 however, we will start with using a virtual environment as our first step towards this. You can use either <code>uv</code> (Python) or <code>renv</code> (R) for this. Be sure to include the necessary files so others can reproduce your work. Be sure to include documentation of how to use the environment with your project as well in the <code>README.md</code> file.</p>
 <blockquote class="blockquote">
-<p>Note: if you choose to do a project that uses conda as the virtual environment tool, you are expected to share <code>environment.yml</code> and the conda lock files for each major operating system (Windows, Linux and Mac, and for Mac you should share the intel and ARM versions).</p>
+<p>Note: if you use uv, you are expected to share <code>pyproject.toml</code>, <code>uv.lock</code> and <code>.python-version</code>. A single <code>uv.lock</code> covers all major operating systems (Windows, Linux and Mac), so you do not need a separate lock file for each one. See the <a href="https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/virtual-environments-uv.html">DSCI 521 uv lecture notes</a> for how to set up and share a uv environment.</p>
 </blockquote>
 </section>
 </section>
