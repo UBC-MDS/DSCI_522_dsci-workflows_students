@@ -92,7 +92,7 @@ and to get feedback and help along the way.
 | Assessment                                                                                                                  | Weight                    | Deadline                |
 | --------------------------------------------------------------------------------------------------------------------------- | ------------------------- | ----------------------- |
 | [Individual assignment 1](assignments/individual1.qmd) - version control workflows                                          | 2%                        | 2025-11-22 18:00 PT     |
-| [Milestone 1](assignments/milestone1.qmd) - Setup project on GitHub, draft of analysis in a notebook & virtual environment | 20%                       | 2025-11-22 18:00 PT     |
+| Milestone 1 - Setup project on GitHub, draft of analysis in a notebook & virtual environment | 20%                       | 2025-11-22 18:00 PT     |
 | Individual assignment 2 - container workflows                                                | 2%                        | 2025-11-29 18:00 PT     |
 | Milestone 2 - Modularize code into functions, test code & container                          | 20%                       | 2025-11-29 18:00 PT     |
 | Individual assignment 3 - Quarto practice                                                    | 2%                        | 2025-12-07 11:59 PT     |

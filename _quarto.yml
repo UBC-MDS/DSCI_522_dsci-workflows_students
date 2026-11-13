@@ -3,7 +3,7 @@ project:
   render:
     - index.qmd
     - assignments/individual1.qmd
-    - assignments/milestone1.qmd
+    # - assignments/milestone1.qmd
     - assignments/teamwork-contract.qmd
 
 website:
@@ -31,8 +31,8 @@ website:
         contents:
           - href: assignments/individual1.qmd
             text: "Individual Assignment 1"
-          - href: assignments/milestone1.qmd
-            text: "Milestone 1"
+          # - href: assignments/milestone1.qmd
+          #   text: "Milestone 1"
           - href: assignments/teamwork-contract.qmd
             text: "Teamwork Contract"
       # - section: "Week 2"
