@@ -36,7 +36,7 @@ In this milestone, you will:
 2.  Set-up a public GitHub repository
 3.  Create an appropriate file and directory structure for a data analysis project
 4.  Add the data analysis as a literate code document (Jupyter or Quarto)
-5.  Ensure the computation environment reproducible through a virtual environment (e.g., conda or renv) - hint do this as you create the analysis, don't wait until the end!
+5.  Ensure the computation environment reproducible through a virtual environment (e.g., uv or renv) - hint do this as you create the analysis, don't wait until the end!
 
 An example Milestone 1 that corresponds to our expectations from this year is here: [Breast Cancer Predictor in Python 0.0.1](https://github.com/ttimbers/breast-cancer-predictor/tree/0.0.1)
 
@@ -79,7 +79,7 @@ For this project, you are expected to follow the best practices we have learned 
 -   `CONTRIBUTING.md`
 -   `data/`
 -   `<analysis>.ipynb` or `<analysis>.qmd` (give it a meaningful name!)
--   `environment.yml` & Conda lock files for each major operating system (or the corresponding `renv` files)
+-   `pyproject.toml`, `uv.lock` & `.python-version` (or the corresponding `renv` files)
 -   `LICENSE.md`
 
 The description of each of them follows.
@@ -136,9 +136,9 @@ The `data` directory should contain a copy of the downloaded data (it should get
 
 For this milestone, the analysis code and narration should be contained within a single literate code document (e.g., Jupyter notebook or Quarto document). This document should not actually be named `analysis.***`, but have a more descriptive title, related to the project title.
 
-#### vi. `environment.yml` & conda lock files for the major operating systems (or the corresponding `renv` files)
+#### vi. `pyproject.toml`, `uv.lock` & `.python-version` (or the corresponding `renv` files)
 
-Include the necessary files (e.g., `environment.yml` & conda lock files for the major operating systems) so others can reproduce your work on their machine.
+Include the necessary files (e.g., `pyproject.toml`, `uv.lock` and `.python-version`) so others can reproduce your work on their machine. Do not commit the `.venv/` folder: others rebuild it from your lockfile with `uv sync`.
 
 **Note - this document should live in the root of your public GitHub.com repository.**
 
@@ -196,9 +196,9 @@ The data for the project should be publicly available, and clearly licensed to b
 
 ### 6. Ensure the computation environment reproducible through a virtual environment
 
-For this project, we will eventually be making the computation environment reproducible through containerization with Docker. For milestone 1 however, we will start with using a virtual environment as our first step towards this. You can use either `conda` or `renv` for this. Be sure to include the necessary files so others can reproduce your work. Be sure to include documentation of how to use the environment with your project as well in the `README.md` file.
+For this project, we will eventually be making the computation environment reproducible through containerization with Docker. For milestone 1 however, we will start with using a virtual environment as our first step towards this. You can use either `uv` (Python) or `renv` (R) for this. Be sure to include the necessary files so others can reproduce your work. Be sure to include documentation of how to use the environment with your project as well in the `README.md` file.
 
-> Note: if you choose to do a project that uses conda as the virtual environment tool, you are expected to share `environment.yml` and the conda lock files for each major operating system (Windows, Linux and Mac, and for Mac you should share the intel and ARM versions).
+> Note: if you use uv, you are expected to share `pyproject.toml`, `uv.lock` and `.python-version`. A single `uv.lock` covers all major operating systems (Windows, Linux and Mac), so you do not need a separate lock file for each one. See the [DSCI 521 uv lecture notes](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/virtual-environments-uv.html) for how to set up and share a uv environment.
 
 ## Submission Instructions
 

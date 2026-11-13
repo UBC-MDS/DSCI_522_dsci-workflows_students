@@ -126,12 +126,13 @@ so push it before you submit.
   </tr>
   <tr>
     <td>1</td>
-    <td>Reproducibility & trustworthy workflows intro, git branches</td>
+    <td>Reproducibility & trustworthy workflows intro, git branches, virtual environments with uv</td>
     <td>
       <ul>
-        <li>[How do reproducible and trustworthy workflows impact data science?](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/010-intro-to-ds-workflows.html)</li>
-        <li>[Version control (for transparency and collaboration) II](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/050-version-control-2.html)</li>
-        <li>[conda-lock](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/090-conda-lock.html)</li>
+        <li>[How do reproducible and trustworthy workflows impact data science?](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/data-science-workflows.html)</li>
+        <li>[Merge conflicts](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-merge-conflicts.html)</li>
+        <li>[Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html)</li>
+        <li>[Virtual environments: Python + uv](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/virtual-environments-uv.html) (DSCI 521 notes)</li>
       </ul>
     </td>
     <td>
@@ -148,8 +149,8 @@ so push it before you submit.
     <td>Introduction to containerization</td>
     <td>
       <ul>
-        <li>[Introduction to containerization](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/100-containerization-1.html)</li>
-        <li>[Using and running containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/110-containerization-2.html)</li>
+        <li>[Introduction to containerization](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html)</li>
+        <li>[Using and running containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html)</li>
       </ul>
     </td>
     <td></td>
@@ -160,7 +161,7 @@ so push it before you submit.
     <td>Customizing, versioning and sharing containers</td>
     <td>
       <ul>
-        <li>[Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/120-containerization-3.html)
+        <li>[Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html)
         </li>
       </ul>
     </td>
@@ -178,7 +179,7 @@ so push it before you submit.
     <td>
       <ul>
         <li>
-          [Data validation](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/130-data-validation.html)
+          [Data validation](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/data-validation.html)
         </li>
       </ul>
     </td>
@@ -191,7 +192,7 @@ so push it before you submit.
     <td>
       <ul>
         <li>
-        [Non-interactive scripts](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/150-scripts.html)
+        [Non-interactive scripts](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/scripts.html)
         </li>
         </ul>
       </td>
@@ -204,7 +205,7 @@ so push it before you submit.
     <td>
       <ul>
         <li>
-          [Reproducible reports](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/160-reproducible-reports.html)
+          [Reproducible reports](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/reproducible-reports-quarto.html)
         </li>
       </ul>
     </td>
@@ -216,8 +217,8 @@ so push it before you submit.
     <td>Data analysis pipelines</td>
     <td>
       <ul>
-        <li>[Introduction to Data analysis pipelines](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/170-pipelines-scripts.html)</li>
-        <li>[Data analysis pipelines with GNU Make](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/180-pipelines-make.html)</li>
+        <li>[Introduction to Data analysis pipelines](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/pipelines-scripts.html)</li>
+        <li>[Data analysis pipelines with GNU Make](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/pipelines-make.html)</li>
       </ul>
     </td>
     <td></td>
@@ -228,9 +229,9 @@ so push it before you submit.
     <td>Testing for data analysis</td>
     <td>
       <ul>
-        <li>[Introduction to testing code for data science](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/140-intro-to-testing-code.html)</li>
-        <li>[Python testing example](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/141-python-testing-example.html) or [R testing example](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/142-R-testing-example.html)</li>
-        <li>[Observability of unit outputs in data science](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/147-testing-images.html)</li>
+        <li>[Introduction to testing code for data science](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/testing.html)</li>
+        <li>[Python testing example](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/testing-python-pytest.html) or [R testing example](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/testing-r-testthat.html)</li>
+        <li>[Observability of unit outputs in data science](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/testing-images.html)</li>
       </ul>
     </td>
     <td></td>

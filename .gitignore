@@ -9,3 +9,4 @@ _site
 
 # student data read by scripts/peer_review_assign.py: never commit it
 data/
+CLAUDE.md
