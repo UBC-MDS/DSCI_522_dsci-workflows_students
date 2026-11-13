@@ -1,0 +1,15 @@
+/* Shared styles for every deck (same base as the DSCI 512 decks). Reuse these before adding new ones. */
+
+/* Title slide heading, 85% of the theme default (2.5em) */
+.reveal #title-slide .title { font-size: 2.0em; }
+
+/* A footer that sits on top of a busy background image: a soft white backing so it stays readable. */
+.reveal .footer.footer-on-image {
+  width: fit-content;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  padding: 0 10px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 6px;
+}

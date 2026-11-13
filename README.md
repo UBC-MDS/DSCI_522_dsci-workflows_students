@@ -2,7 +2,7 @@
 
 Author: Sky Sheng
 
-This repository contains the lab slides for DSCI 522, reproducible and trustworthy data science workflow, Section 001, for 2025W1. The instructor for this section is Sky Sheng.
+This repository contains the lab slides for DSCI 522, reproducible and trustworthy data science workflow, Section 001, for 2026W1. The instructor for this section is Sky Sheng.
 
 ## View Slides Online
 
@@ -12,12 +12,14 @@ The slides are hosted on GitHub Pages:
 
 ## Local Development
 
-To render the slides locally:
+The site is a [Quarto](https://quarto.org/docs/download/) website in `website/`. Slide decks are in `website/slides/`, and each lecture or lab has a page (`lec_NN.qmd`, `lab_NN.qmd`) that embeds its deck. To preview locally:
 
-1. Install [Quarto](https://quarto.org/docs/download/)
-2. Clone this repository
-3. Run `quarto render` in the repository root
-4. Open `docs/lab1-intro.html` in your browser
+```bash
+cd website
+quarto preview
+```
+
+Pushing to `main` renders `website/` and publishes it to GitHub Pages with the GitHub Actions workflow in `.github/workflows/publish_website.yml`. The header comment in `website/_quarto.yml` explains how to release a lecture.
 
 ## License
 

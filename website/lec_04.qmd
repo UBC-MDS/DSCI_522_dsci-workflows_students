@@ -1,0 +1,9 @@
+---
+title: "4. Data Validation with Pandera"
+description: "Publishing Docker images with GitHub Actions, and validating data with Pandera."
+description-short: "Automate building and pushing a Docker image to Docker Hub with GitHub Actions, organize the complete workflow, then walk through the data validation checklist and check a dataset with Pandera."
+---
+
+## Slides for Section 001
+
+{{< revealjs "slides/slides_04.html" height="600px" class="ratio ratio-16x9" >}}

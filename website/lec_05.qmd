@@ -1,0 +1,9 @@
+---
+title: "5. Non-interactive scripts"
+description: "Moving from notebooks to command line scripts in Python and R."
+description-short: "Wrap up Docker, then compare interactive (REPL) work with scripts. Organize a Python script, write docstrings, parse command line arguments with click, and save model objects."
+---
+
+## Slides for Section 001
+
+{{< revealjs "slides/slides_05.html" height="600px" class="ratio ratio-16x9" >}}

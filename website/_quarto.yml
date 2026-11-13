@@ -1,0 +1,88 @@
+# ============================== RELEASE CONTROL ==============================
+# A lecture (or lab) counts as "released" when its slide deck is listed under
+# `project: render:` below. To release lecture N, make these two edits:
+#
+#   1. add  "slides/slides_NN.qmd"  to `project: render:`
+#   2. uncomment  - lec_NN.qmd  under `website: sidebar: contents:`
+#
+# Labs work the same way, with "slides/slides_lab_NN.qmd" and  - lab_NN.qmd.
+#
+# The schedule tables on lecture.qmd and lab.qmd (built by _schedule.ejs) read
+# this same render list: they link a lecture only when its deck is rendered.
+# Unreleased lectures still appear in the table with their title and
+# description, as plain text with a "coming soon" badge, and their decks are
+# never rendered, so there is nothing to link to or guess the URL of.
+# ============================================================================
+
+project:
+  type: website
+  render:
+    - "./*.qmd"
+    - "system_prompt/cursor_rule.md"
+    # Released slide decks only — add one line per release:
+    - "slides/slides_01.qmd"
+    - "slides/slides_02.qmd"
+    - "slides/slides_03.qmd"
+    - "slides/slides_04.qmd"
+    - "slides/slides_05.qmd"
+    - "slides/slides_06.qmd"
+    - "slides/slides_07.qmd"
+    - "slides/slides_08.qmd"
+    - "slides/slides_lab_01.qmd"
+    - "slides/slides_lab_04.qmd"
+
+website:
+  title: "DSCI 522: Reproducible and Trustworthy Data Science Workflow"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: lecture.qmd
+        text: "Lectures"
+      - href: lab.qmd
+        text: "Labs"
+      - text: "Cheatsheets"
+        menu:
+          - href: cheatsheet_command_line.qmd
+            text: "Command Line"
+          - href: cheatsheet_docker.qmd
+            text: "Docker & Docker Compose"
+          - href: cheatsheet_quarto.qmd
+            text: "Quarto"
+          - href: cheatsheet_makefile.qmd
+            text: "Makefile"
+
+  page-navigation: true
+
+  sidebar:
+      contents:
+        - section: "Lectures"
+          contents:
+            - lecture.qmd
+            - lec_01.qmd
+            - lec_02.qmd
+            - lec_03.qmd
+            - lec_04.qmd
+            - lec_05.qmd
+            - lec_06.qmd
+            - lec_07.qmd
+            - lec_08.qmd
+        - section: "Labs"
+          contents:
+            - lab.qmd
+            - lab_01.qmd
+            - lab_04.qmd
+        - section: "Cheatsheets"
+          contents:
+            - cheatsheet_command_line.qmd
+            - cheatsheet_docker.qmd
+            - cheatsheet_quarto.qmd
+            - cheatsheet_makefile.qmd
+
+format:
+  html:
+    theme: [minty, brand]
+    toc: true
+
+execute:
+  freeze: auto

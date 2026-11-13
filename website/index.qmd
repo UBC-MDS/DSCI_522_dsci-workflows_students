@@ -1,0 +1,28 @@
+---
+title: "DSCI 522 Section 001"
+---
+
+Welcome to DSCI 522! Here, you'll find lecture and lab slides for DSCI 522 (Reproducible and Trustworthy Data Science Workflow) Section 001, for 2026W1.
+
+Instructor: [Sky (Kehan) Sheng](https://www.skysheng.io/)
+
+- **Lectures** 🧑‍🏫
+    Slides for all 8 lectures are on the [Lectures](lecture.qmd) page.
+
+- **Labs** 🧪
+    Slides for the lab sessions are on the [Labs](lab.qmd) page.
+
+- **Cheatsheets** 📜
+    Quick references for the tools we use in this course:
+    [Command Line](cheatsheet_command_line.qmd),
+    [Docker & Docker Compose](cheatsheet_docker.qmd),
+    [Quarto](cheatsheet_quarto.qmd) and
+    [Makefile](cheatsheet_makefile.qmd).
+
+- **Course links** 🔗
+    - [Textbook](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/): Reproducible and Trustworthy Workflows for Data Science
+    - [Course website](https://ubc-mds.github.io/DSCI_522_dsci-workflows_students/): course description and assignment releases
+    - [Canvas](https://canvas.ubc.ca/courses/191038)
+    - [Gradescope](https://www.gradescope.ca/courses/42925)
+
+*This work is licensed under the MIT License.*

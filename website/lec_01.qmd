@@ -1,0 +1,9 @@
+---
+title: "1. Introduction to Reproducible and Trustworthy Data Science Workflow"
+description: "Why reproducibility matters, version control, and virtual environments."
+description-short: "See what goes wrong when analyses are untested or cannot be reproduced. Learn what makes an analysis reproducible, auditable and trustworthy, and create your first virtual environment with uv."
+---
+
+## Slides for Section 001
+
+{{< revealjs "slides/slides_01.html" height="600px" class="ratio ratio-16x9" >}}

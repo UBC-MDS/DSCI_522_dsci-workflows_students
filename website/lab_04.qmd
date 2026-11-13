@@ -1,0 +1,9 @@
+---
+title: "Lab 4. Peer review, teamwork reflection, and Santa Otter's gift bag"
+description: "Peer review, final deadlines, and teamwork reflection."
+description-short: "Review another group's project step by step, check the final deadlines, reflect on your teamwork, and open Santa Otter's gift bag."
+---
+
+## Slides for Section 001
+
+{{< revealjs "slides/slides_lab_04.html" height="600px" class="ratio ratio-16x9" >}}

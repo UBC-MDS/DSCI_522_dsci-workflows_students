@@ -1,0 +1,43 @@
+<%
+// Schedule table for lecture.qmd and lab.qmd.
+//
+// A lecture is "released" when its slide deck appears in `project: render:` in
+// _quarto.yml — that render list is the single source of truth, so a deck that
+// is not rendered can never be linked to here. Released lectures link to their
+// page; upcoming ones show the same title and description as plain text with a
+// "coming soon" badge.
+//
+// Page to deck: lec_NN.qmd -> slides/slides_NN.qmd, lab_NN.qmd -> slides/slides_lab_NN.qmd.
+const rendered = (items[0] && items[0].project && items[0].project.render) || [];
+const deckFor = (filename) => "slides/" + filename.replace(/^lec_/, "slides_").replace(/^lab_/, "slides_lab_");
+// The Recording column only shows once a page sets `recording:` in its front matter.
+const hasRecording = items.some((item) => item.recording);
+%>
+<table class="quarto-listing-table table">
+<thead>
+<tr><th>Title</th><th>Description</th><% if (hasRecording) { %><th>Recording</th><% } %></tr>
+</thead>
+<tbody class="list">
+<% for (const item of items) { %>
+<% const released = item.outputHref && rendered.includes(deckFor(item.filename)); %>
+<tr <%- metadataAttrs(item) %>>
+<td>
+<% if (released) { %>
+<a href="<%- item.outputHref %>" class="title listing-title"><%= item.title %></a>
+<% } else { %>
+<span class="title listing-title text-muted"><%= item.title %></span>
+<span class="badge bg-secondary align-middle">coming soon</span>
+<% } %>
+</td>
+<td><span class="listing-description-short<%= released ? "" : " text-muted" %>"><%= item["description-short"] %></span></td>
+<% if (hasRecording) { %>
+<td class="text-nowrap">
+<% if (item.recording) { %>
+<a href="<%- item.recording %>" target="_blank" rel="noopener">▶ Watch</a>
+<% } %>
+</td>
+<% } %>
+</tr>
+<% } %>
+</tbody>
+</table>

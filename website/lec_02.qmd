@@ -1,0 +1,9 @@
+---
+title: "2. uv Lock Files, Containerization, and Docker"
+description: "Locking dependencies with uv and a first look at Docker containers."
+description-short: "Pin exact package versions with a uv lock file so the same environment can be rebuilt on every platform, and meet Docker: what a container is and how it differs from a virtual machine."
+---
+
+## Slides for Section 001
+
+{{< revealjs "slides/slides_02.html" height="600px" class="ratio ratio-16x9" >}}
