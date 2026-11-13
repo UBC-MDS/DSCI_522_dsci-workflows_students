@@ -27,6 +27,11 @@ Hope you had a nice readings week!
 :::: {.columns style="margin-top: -50px; padding-top: -10;"}
 <p></p>
 ::: {.column width="50%"}
+::: {style="text-align: center; margin-top: 60px;"}
+Join iClicker: <https://join.iclicker.com/VAVK>
+
+![](images/iclicerk_qr.png){width="60%" style="margin-top: 0px; margin-bottom: 0px;"}
+:::
 :::
 
 ::: {.column width="50%"}
