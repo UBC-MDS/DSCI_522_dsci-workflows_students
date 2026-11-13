@@ -182,7 +182,6 @@ Time to get to know each other!
 ::: {style="font-size: 0.85em;"}
 - Include **estimated computation time** if analysis is expected to take long
 - Round numbers to 2 decimal places when appropriate
-- Make sure packages listed under `environment.yml` has exact version numbers listed. For example, `pandas==2.2.3` instead of `pandas>=2.2.3`.
 - Do not copy and paste data description from the internet, that would be plagiarism. Write your own descriptions, and cite the source you used.
 - How to cite packages? 
   - R : `citation(package = "<package_name>")`

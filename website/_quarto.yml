@@ -19,17 +19,22 @@ project:
   render:
     - "./*.qmd"
     - "system_prompt/cursor_rule.md"
+    # Hidden cheatsheets: not rendered at all. Delete a line here (and add the page
+    # back to the navbar menu and the sidebar below) to show it again.
+    - "!cheatsheet_conda.qmd"
+    - "!cheatsheet_quarto.qmd"
+    - "!cheatsheet_makefile.qmd"
     # Released slide decks only — add one line per release:
     - "slides/slides_01.qmd"
-    - "slides/slides_02.qmd"
-    - "slides/slides_03.qmd"
-    - "slides/slides_04.qmd"
-    - "slides/slides_05.qmd"
-    - "slides/slides_06.qmd"
-    - "slides/slides_07.qmd"
-    - "slides/slides_08.qmd"
+    # - "slides/slides_02.qmd"
+    # - "slides/slides_03.qmd"
+    # - "slides/slides_04.qmd"
+    # - "slides/slides_05.qmd"
+    # - "slides/slides_06.qmd"
+    # - "slides/slides_07.qmd"
+    # - "slides/slides_08.qmd"
     - "slides/slides_lab_01.qmd"
-    - "slides/slides_lab_04.qmd"
+    # - "slides/slides_lab_04.qmd"
 
 website:
   title: "DSCI 522: Reproducible and Trustworthy Data Science Workflow"
@@ -47,10 +52,10 @@ website:
             text: "Command Line"
           - href: cheatsheet_docker.qmd
             text: "Docker & Docker Compose"
-          - href: cheatsheet_quarto.qmd
-            text: "Quarto"
-          - href: cheatsheet_makefile.qmd
-            text: "Makefile"
+          # - href: cheatsheet_quarto.qmd
+          #   text: "Quarto"
+          # - href: cheatsheet_makefile.qmd
+          #   text: "Makefile"
 
   page-navigation: true
 
@@ -60,24 +65,24 @@ website:
           contents:
             - lecture.qmd
             - lec_01.qmd
-            - lec_02.qmd
-            - lec_03.qmd
-            - lec_04.qmd
-            - lec_05.qmd
-            - lec_06.qmd
-            - lec_07.qmd
-            - lec_08.qmd
+            # - lec_02.qmd
+            # - lec_03.qmd
+            # - lec_04.qmd
+            # - lec_05.qmd
+            # - lec_06.qmd
+            # - lec_07.qmd
+            # - lec_08.qmd
         - section: "Labs"
           contents:
             - lab.qmd
             - lab_01.qmd
-            - lab_04.qmd
+            # - lab_04.qmd
         - section: "Cheatsheets"
           contents:
             - cheatsheet_command_line.qmd
             - cheatsheet_docker.qmd
-            - cheatsheet_quarto.qmd
-            - cheatsheet_makefile.qmd
+            # - cheatsheet_quarto.qmd
+            # - cheatsheet_makefile.qmd
 
 format:
   html:
