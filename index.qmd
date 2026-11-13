@@ -93,14 +93,14 @@ and to get feedback and help along the way.
 | --------------------------------------------------------------------------------------------------------------------------- | ------------------------- | ----------------------- |
 | [Individual assignment 1](assignments/individual1.qmd) - version control workflows                                          | 2%                        | 2025-11-22 18:00 PT     |
 | [Milestone 1](assignments/milestone1.qmd) - Setup project on GitHub, draft of analysis in a notebook & virtual environment | 20%                       | 2025-11-22 18:00 PT     |
-| [Individual assignment 2](assignments/individual2.qmd) - container workflows                                                | 2%                        | 2025-11-29 18:00 PT     |
-| [Milestone 2](assignments/milestone2.qmd) - Modularize code into functions, test code & container                          | 20%                       | 2025-11-29 18:00 PT     |
-| [Individual assignment 3](assignments/individual3.qmd) - Quarto practice                                                    | 2%                        | 2025-12-07 11:59 PT     |
-| [Milestone 3](assignments/milestone3.qmd) - Move code into scripts and polish report                                       | 20%                       | 2025-12-07 11:59 PT     |
-| [Peer Review](assignments/peer-review.qmd)                                                                                  | 5%                        | 2025-12-11 18:00 PT     |
-| [Individual assignment 4](assignments/individual4.qmd) - Pipeline practice                                                  | 2%                        | 2025-12-13 18:00 PT     |
-| [Milestone 4](assignments/milestone4.qmd) - Data analysis pipeline and revise project in response to feedback              | 24%                       | 2025-12-13 18:00 PT     |
-| [Team work reflection](assignments/teamwork-reflection.qmd)                                                                 | 3%                        | 2025-12-14 18:00 PT\*\* |
+| Individual assignment 2 - container workflows                                                | 2%                        | 2025-11-29 18:00 PT     |
+| Milestone 2 - Modularize code into functions, test code & container                          | 20%                       | 2025-11-29 18:00 PT     |
+| Individual assignment 3 - Quarto practice                                                    | 2%                        | 2025-12-07 11:59 PT     |
+| Milestone 3 - Move code into scripts and polish report                                       | 20%                       | 2025-12-07 11:59 PT     |
+| Peer Review                                                                                  | 5%                        | 2025-12-11 18:00 PT     |
+| Individual assignment 4 - Pipeline practice                                                  | 2%                        | 2025-12-13 18:00 PT     |
+| Milestone 4 - Data analysis pipeline and revise project in response to feedback              | 24%                       | 2025-12-13 18:00 PT     |
+| Team work reflection                                                                 | 3%                        | 2025-12-14 18:00 PT\*\* |
 | Team work multiplier                                                                                                        | final grade \* multiplier | NA                      |
 
 ### How to submit
