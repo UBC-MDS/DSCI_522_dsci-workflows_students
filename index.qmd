@@ -299,7 +299,7 @@ If AI was used, please share:
   (e.g., `CLAUDE.md`, `AGENTS.md`, `.cursor/rules/`, `.github/copilot-instructions.md`),
   or, if you did not use one, a few representative example prompts.
 
-For group milestones, please keep this disclosure in an **`AI_USAGE.md`** file in the root of your project repository
+For group milestones, please keep this disclosure in an **`AI_USAGE.md`** file or `CLAUDE.md` (or other file names that indicate AI was used) in the root of your project repository
 and update it as the project evolves.
 For individual assignments, include the disclosure with your Gradescope submission.
 Disclosing AI use is not penalized, and it helps us give you useful feedback.
