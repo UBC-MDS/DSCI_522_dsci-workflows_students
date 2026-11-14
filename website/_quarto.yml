@@ -3,9 +3,10 @@
 # `project: render:` below. To release lecture N, make these two edits:
 #
 #   1. add  "slides/slides_NN.qmd"  to `project: render:`
-#   2. uncomment  - lec_NN.qmd  under `website: sidebar: contents:`
+#   2. uncomment  - lec_NN.qmd  in the `lectures` sidebar under `website: sidebar:`
 #
-# Labs work the same way, with "slides/slides_lab_NN.qmd" and  - lab_NN.qmd.
+# Labs work the same way, with "slides/slides_lab_NN.qmd" and  - lab_NN.qmd
+# in the `labs` sidebar.
 #
 # The schedule tables on lecture.qmd and lab.qmd (built by _schedule.ejs) read
 # this same render list: they link a lecture only when its deck is rendered.
@@ -18,12 +19,6 @@ project:
   type: website
   render:
     - "./*.qmd"
-    # Hidden cheatsheets: not rendered at all. Delete a line here (and add the page
-    # back to the navbar menu and the sidebar below) to show it again.
-    - "!cheatsheet_conda.qmd"
-    - "!cheatsheet_quarto.qmd"
-    - "!cheatsheet_makefile.qmd"
-    - "!cheatsheet_docker.qmd"
     # Released slide decks only — add one line per release:
     - "slides/slides_01.qmd"
     # - "slides/slides_02.qmd"
@@ -46,43 +41,32 @@ website:
         text: "Lectures"
       - href: lab.qmd
         text: "Labs"
-      - text: "Cheatsheets"
-        menu:
-          - href: cheatsheet_command_line.qmd
-            text: "Command Line"
-          #- href: cheatsheet_docker.qmd
-          #  text: "Docker & Docker Compose"
-          # - href: cheatsheet_quarto.qmd
-          #   text: "Quarto"
-          # - href: cheatsheet_makefile.qmd
-          #   text: "Makefile"
+      # Cheatsheets are shared across sections and live on the student site.
+      - href: https://ubc-mds.github.io/DSCI_522_dsci-workflows_students/cheatsheets/command_line.html
+        text: "Cheatsheets"
 
   page-navigation: true
 
+  # One sidebar per navbar tab (Lectures, Labs): a page shows only the sidebar that lists it.
   sidebar:
+    - id: lectures
+      title: "Lectures"
       contents:
-        - section: "Lectures"
-          contents:
-            - lecture.qmd
-            - lec_01.qmd
-            # - lec_02.qmd
-            # - lec_03.qmd
-            # - lec_04.qmd
-            # - lec_05.qmd
-            # - lec_06.qmd
-            # - lec_07.qmd
-            # - lec_08.qmd
-        - section: "Labs"
-          contents:
-            - lab.qmd
-            - lab_01.qmd
-            # - lab_04.qmd
-        - section: "Cheatsheets"
-          contents:
-            - cheatsheet_command_line.qmd
-            #- cheatsheet_docker.qmd
-            # - cheatsheet_quarto.qmd
-            # - cheatsheet_makefile.qmd
+        - lecture.qmd
+        - lec_01.qmd
+        # - lec_02.qmd
+        # - lec_03.qmd
+        # - lec_04.qmd
+        # - lec_05.qmd
+        # - lec_06.qmd
+        # - lec_07.qmd
+        # - lec_08.qmd
+    - id: labs
+      title: "Labs"
+      contents:
+        - lab.qmd
+        - lab_01.qmd
+        # - lab_04.qmd
 
 format:
   html:
