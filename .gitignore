@@ -3,3 +3,10 @@ docs/
 _site/
 .quarto/
 **/*.quarto_ipynb
+.venv/
+
+# OpenAI API key for scripts/generate_images.py
+.env
+scripts/__pycache__/
+
+CLAUDE.md
