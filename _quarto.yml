@@ -5,6 +5,14 @@ project:
     - assignments/individual1.qmd
     - assignments/milestone1.qmd
     - assignments/teamwork-contract.qmd
+    # Cheatsheets: only the files listed here are rendered. To show a hidden
+    # cheatsheet, add it here and uncomment it in the navbar menu and the
+    # `cheatsheets` sidebar below.
+    - cheatsheets/command_line.qmd
+    # - cheatsheets/docker.qmd
+    # - cheatsheets/quarto.qmd
+    # - cheatsheets/makefile.qmd
+    # - cheatsheets/conda.qmd
 
 website:
   title: "DSCI 522: Data Science Workflows (Students)"
@@ -17,46 +25,72 @@ website:
         text: Home
       - href: https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/
         text: Textbook
+      - text: Cheatsheets
+        menu:
+          - href: cheatsheets/command_line.qmd
+            text: "Command Line"
+          # - href: cheatsheets/docker.qmd
+          #   text: "Docker & Docker Compose"
+          # - href: cheatsheets/quarto.qmd
+          #   text: "Quarto"
+          # - href: cheatsheets/makefile.qmd
+          #   text: "Makefile"
     right:
       - icon: github
         href: https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students
         aria-label: "Course GitHub repository"
+  # Two sidebars: a page shows only the sidebar that lists it, so the
+  # cheatsheet pages get their own sidebar instead of the syllabus one.
   sidebar:
-    style: floating
-    search: true
-    contents:
-      - href: index.qmd
-        text: Syllabus
-      - section: "Week 1"
-        contents:
-          - href: assignments/individual1.qmd
-            text: "Individual Assignment 1"
-          - href: assignments/milestone1.qmd
-            text: "Milestone 1"
-          - href: assignments/teamwork-contract.qmd
-            text: "Teamwork Contract"
-      # - section: "Week 2"
-      #   contents:
-      #     - href: assignments/individual2.qmd
-      #       text: "Individual Assignment 2"
-      #     - href: assignments/milestone2.qmd
-      #       text: "Milestone 2"
-      # - section: "Week 3"
-      #   contents:
-      #     - href: assignments/individual3.qmd
-      #       text: "Individual Assignment 3"
-      #     - href: assignments/milestone3.qmd
-      #       text: "Milestone 3"
-      # - section: "Week 4"
-      #   contents:
-      #     - href: assignments/individual4.qmd
-      #       text: "Individual Assignment 4"
-      #     - href: assignments/milestone4.qmd
-      #       text: "Milestone 4"
-      #     - href: assignments/peer-review.qmd
-      #       text: "Peer Review"
-      #     - href: assignments/teamwork-reflection.qmd
-      #       text: "Teamwork Reflection"
+    - id: course
+      style: floating
+      search: true
+      contents:
+        - href: index.qmd
+          text: Syllabus
+        - section: "Week 1"
+          contents:
+            - href: assignments/individual1.qmd
+              text: "Individual Assignment 1"
+            - href: assignments/milestone1.qmd
+              text: "Milestone 1"
+            - href: assignments/teamwork-contract.qmd
+              text: "Teamwork Contract"
+        # - section: "Week 2"
+        #   contents:
+        #     - href: assignments/individual2.qmd
+        #       text: "Individual Assignment 2"
+        #     - href: assignments/milestone2.qmd
+        #       text: "Milestone 2"
+        # - section: "Week 3"
+        #   contents:
+        #     - href: assignments/individual3.qmd
+        #       text: "Individual Assignment 3"
+        #     - href: assignments/milestone3.qmd
+        #       text: "Milestone 3"
+        # - section: "Week 4"
+        #   contents:
+        #     - href: assignments/individual4.qmd
+        #       text: "Individual Assignment 4"
+        #     - href: assignments/milestone4.qmd
+        #       text: "Milestone 4"
+        #     - href: assignments/peer-review.qmd
+        #       text: "Peer Review"
+        #     - href: assignments/teamwork-reflection.qmd
+        #       text: "Teamwork Reflection"
+    - id: cheatsheets
+      title: "Cheatsheets"
+      style: floating
+      search: true
+      contents:
+        - href: cheatsheets/command_line.qmd
+          text: "Command Line"
+        # - href: cheatsheets/docker.qmd
+        #   text: "Docker & Docker Compose"
+        # - href: cheatsheets/quarto.qmd
+        #   text: "Quarto"
+        # - href: cheatsheets/makefile.qmd
+        #   text: "Makefile"
 
 format:
   html:
