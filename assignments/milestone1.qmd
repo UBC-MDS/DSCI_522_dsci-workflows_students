@@ -30,7 +30,7 @@ Your data analysis project will evolve throughout the course from a single, mono
 
 In this milestone, you will:
 
-1.  Draft a team work contract
+1.  Draft a teamwork contract
 2.  Set up a public GitHub repository
 3.  Create an appropriate file and directory structure for a data analysis project
 4.  Write the data analysis as a Quarto document (`.qmd`)
@@ -38,13 +38,13 @@ In this milestone, you will:
 
 An example Milestone 1 that corresponds to our expectations from this year is here: [Breast Cancer Predictor in Python 0.0.1](https://github.com/ttimbers/breast-cancer-predictor/tree/0.0.1)
 
-### 1. Draft a team work contract
+### 1. Draft a teamwork contract
 
 This document will govern the working relationships on your team, and if done correctly, it should help you manage and resolve any issues that might arise when working in a group. Start from the [teamwork contract template](teamwork-contract.qmd), based on a contract from a past data science project: copy it into a Quarto document, make it your team's own, and render it to PDF.
 
-A team work contract communicates how the group will work together. It includes details about the logistics of working together, the expectations you have for each other, and how you plan to navigate conflicts.
+A teamwork contract communicates how the group will work together. It includes details about the logistics of working together, the expectations you have for each other, and how you plan to navigate conflicts.
 
-Some aspects of the team work contract could be:
+Some aspects of the teamwork contract could be:
 
 -   How will work be distributed in a fair and equitable way?
 -   What are the expected work hours for the project?
@@ -111,7 +111,7 @@ Click every link in your README to make sure it works, and proofread for spellin
 
 #### ii. `CODE_OF_CONDUCT.md`
 
-In an attempt to create a safe, positive, productive, and happy community, many organizations and developers create a code of conduct for their projects. A code of conduct in a Data Science project informs others of social norms, acceptable behaviour and general etiquette. It is more outward facing than the team work contract discussed above. We recommend [Project Include](https://projectinclude.org/writing_cocs) for a comprehensive guide to writing an effective Code of Conduct.
+In an attempt to create a safe, positive, productive, and happy community, many organizations and developers create a code of conduct for their projects. A code of conduct in a Data Science project informs others of social norms, acceptable behaviour and general etiquette. It is more outward facing than the teamwork contract discussed above. We recommend [Project Include](https://projectinclude.org/writing_cocs) for a comprehensive guide to writing an effective Code of Conduct.
 
 At minimum, we believe that a good/effective code of conduct should include:
 
