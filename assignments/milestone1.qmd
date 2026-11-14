@@ -36,7 +36,7 @@ In this milestone, you will:
 4.  Write the data analysis as a Quarto document (`.qmd`)
 5.  Make the computational environment reproducible with a virtual environment (uv or renv). Hint: do this as you create the analysis, don't wait until the end!
 
-An example Milestone 1 that corresponds to our expectations from this year is here: [Breast Cancer Predictor in Python 0.0.1](https://github.com/ttimbers/breast-cancer-predictor/tree/0.0.1)
+An example Milestone 1 that corresponds to our expectations from this year is here: [Breast Cancer Predictor in Python 0.0.1](https://github.com/UBC-MDS/DSCI_522_project-template-breast-cancer-predictor/tree/0.0.1)
 
 ### 1. Draft a teamwork contract
 
