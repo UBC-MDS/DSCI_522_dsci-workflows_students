@@ -1,0 +1,310 @@
+---
+title: "Milestone 1"
+format:
+  html:
+    toc: true
+editor_options:
+  markdown:
+    wrap: none
+---
+
+## Overall project summary
+
+::: callout-important
+## Find your group
+
+Please make sure you are in the right group with the right teammates! [Check here](https://github.ubc.ca/mds-2026-27/lab-sections/blob/main/lab_section_block3_2026-27.csv).
+:::
+
+In this course you will work in assigned teams of three or four (see group assignments on GitHub) to answer a predictive statistical/machine learning question using a publicly available data set that will allow you to answer that question. To answer this question, you will perform a complete data analysis in R and/or Python, from data import to communication of results, while placing significant emphasis on reproducible and trustworthy workflows.
+
+Your data analysis project will evolve throughout the course from a single, monolithic Quarto document, to a fully reproducible and robust data analysis project, comprised of:
+
+-   a well documented and modularized scripts written in R and/or Python,
+-   a data analysis pipeline automated with GNU Make,
+-   a reproducible report powered by Quarto,
+-   a containerized computational environment created and made shareable by Docker
+-   a remote version control repository on GitHub for project collaboration, sharing, and documentation.
+
+## Milestone 1 summary
+
+In this milestone, you will:
+
+1.  Draft a teamwork contract
+2.  Set up a public GitHub repository
+3.  Create an appropriate file and directory structure for a data analysis project
+4.  Write the data analysis as a Quarto document (`.qmd`)
+5.  Make the computational environment reproducible with a virtual environment (uv or renv). Hint: do this as you create the analysis, don't wait until the end!
+
+An example Milestone 1 that corresponds to our expectations from this year is here: [Breast Cancer Predictor in Python 0.0.1](https://github.com/UBC-MDS/DSCI_522_project-template-breast-cancer-predictor/tree/0.0.1)
+
+### 1. Draft a teamwork contract
+
+This document will govern the working relationships on your team, and if done correctly, it should help you manage and resolve any issues that might arise when working in a group. Start from the [teamwork contract template](teamwork-contract.qmd), based on a contract from a past data science project: copy it into a Quarto document, make it your team's own, and render it to PDF.
+
+A teamwork contract communicates how the group will work together. It includes details about the logistics of working together, the expectations you have for each other, and how you plan to navigate conflicts.
+
+Some aspects of the teamwork contract could be:
+
+-   How will work be distributed in a fair and equitable way?
+-   What are the expected work hours for the project?
+-   How often will group meetings occur?
+-   Will you have meeting agendas and minutes? If so, what will be the system for rotating through these responsibilities?
+-   What will be the style of working?
+    -   Will you start each day with [stand-ups](https://www.atlassian.com/agile/scrum/standups), or submit a summary of your contributions 4 hours before each meeting? or something else?
+-   What is the quality of work each team member expects from themselves and each other?
+-   When are team members not available (e.g., evenings and Sundays because of family obligations).
+-   And any other similar things that govern your working relationships.
+
+Use this opportunity to use your prior knowledge/experience to improve your teamwork, communication, leadership, and organizational skills. You will need all of these for your capstone projects (and beyond)! Please actually talk this through as a team and fill it in with care. A contract that is clearly rushed or left mostly as the template will lose marks.
+
+> Note - this document is fairly personal and does NOT need to reside in your public GitHub.com repo. Instead you can prove that you created this by submitting a copy of it to Gradescope under the Milestone 1 assignment.
+
+### 2. Set up a GitHub repository
+
+After we add you to the [UBC MDS organization on GitHub.com](https://github.com/UBC-MDS-2026-27), set up a **public** GitHub repository for your group **under that organization** (not under one of your personal accounts), and add all team members as collaborators. Once you have decided on a project question and data set, make sure your repository has a name that is relevant to that question. *Note: if you need to change the name of your project repository later, you can!*
+
+We are using github.com and public repositories because we will eventually be using some fancy tooling (*e.g.,* GitHub Actions) in this project. For this to work, all your work for this project (including scripts) should be developed and live in this repository on GitHub.com. Additionally, this will help you build a portfolio of your work you can share with others.
+
+### 3. Create an appropriate file & directory structure for a data analysis project
+
+For this project, you are expected to follow the best practices we have learned about in regards to project directory and file structures. For this milestone, your repository should look something like this:
+
+```
+your-project-name/
+├── README.md
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+├── LICENSE.md
+├── pyproject.toml          # or the renv files if you use R
+├── uv.lock
+├── .python-version
+├── .gitignore
+├── data/
+│   ├── raw/                # data exactly as downloaded
+│   └── processed/          # cleaned / intermediate data
+└── analysis/               # or reports/, src/
+    ├── <descriptive-name>.qmd
+    └── <descriptive-name>.html  # or .pdf
+```
+
+Keep the project root tidy: only the files above should live there. Put the analysis document in a sub-folder with a sensible name (e.g., `analysis/`, `reports/`), not in the root. Too many files in the root makes it hard for collaborators (including future you!) to find things.
+
+Add a `.gitignore` so that system and temporary files never get committed. At minimum, it should ignore `.DS_Store` and `.venv/`.
+
+The description of each file and folder follows.
+
+#### i. `README.md`
+
+The `README.md` lives in the root of your repository. It is the first thing people see, so it should tell a stranger what this project is and how to run it. Include:
+
+-   **Project title** that matches your project topic.
+-   **Authors**: the names of all team members.
+-   **Summary**: a short paragraph (view from 10,000 feet) that says what question you asked, what you found at a high level, and 1-2 sentences on what the findings might mean.
+-   **How to run the analysis**: step-by-step instructions that someone who has never seen your project can follow, from cloning the repo to rendering the report. Tell them how to set up the environment (e.g., `uv sync`) and which command to run. Don't make the reader guess.
+-   **Dependencies**: list them (e.g., uv, Quarto) or link to where they are listed (e.g., `pyproject.toml`).
+-   **Licenses**: the names of the licenses in `LICENSE.md` (e.g., MIT and CC BY-NC-ND 4.0).
+-   **AI use statement**: say whether you used generative AI (e.g., ChatGPT, Claude, Copilot) in this project. If you did, say how. If you used instruction files (e.g., `CLAUDE.md`, a system prompt file), commit them to the repo and point to them. Also include a few example prompts.
+-   **Link to the rendered report** (e.g., your GitHub Pages URL).
+
+Click every link in your README to make sure it works, and proofread for spelling and grammar.
+
+#### ii. `CODE_OF_CONDUCT.md`
+
+In an attempt to create a safe, positive, productive, and happy community, many organizations and developers create a code of conduct for their projects. A code of conduct in a Data Science project informs others of social norms, acceptable behaviour and general etiquette. It is more outward facing than the teamwork contract discussed above. We recommend [Project Include](https://projectinclude.org/writing_cocs) for a comprehensive guide to writing an effective Code of Conduct.
+
+At minimum, we believe that a good/effective code of conduct should include:
+
+-   A statement on diversity and inclusivity
+-   Details on expected, and unacceptable behaviour
+-   A list of consequences for unacceptable behaviour
+-   A procedure for reporting and dealing with unacceptable behaviour
+
+It is fine to adapt an existing code of conduct, but you **must cite the original source** (its name and a link) in the file. If you adapt one, update the contact email in the reporting/enforcement section so it reaches your team, not the original project. Proofread it.
+
+##### Sample Codes of Conduct:
+
+-   [idocde Coc](http://www.idocde.net/pages/35)
+
+-   [Python Community CoC](https://www.python.org/psf/conduct/)
+
+-   [Tidyverse CoC](https://github.com/tidyverse/tidyverse.org/blob/master/CODE_OF_CONDUCT.md)
+
+-   [Pandas CoC](https://github.com/pandas-dev/pandas-governance/blob/master/code-of-conduct.md)
+
+-   [Vox Media CoC](http://code-of-conduct.voxmedia.com/?_ga=1.62865454.308680892.1455143920)
+
+**Note - this document should live in the root of your public GitHub.com repository.**
+
+#### iii. `CONTRIBUTING.md`
+
+It is a good practice to include information about how others, outside the core team, can contribute to your project somewhere in your repository. This is typically done as a separate file in the repository called `CONTRIBUTING.md`. After reading it, someone should know how to report a bug, suggest a change, and submit their work (e.g., open an issue, make a branch, open a pull request). Here are some examples of this file:
+
+-   [Altair](https://github.com/altair-viz/altair/blob/master/CONTRIBUTING.md)
+-   [dplyr](https://github.com/tidyverse/dplyr/blob/master/.github/CONTRIBUTING.md)
+-   [Atom editor](https://github.com/atom/atom/blob/master/CONTRIBUTING.md) (very comprehensive)
+-   [AI fairness research paper](https://github.com/skysheng7/AI_bias_in_farming/blob/main/CONTRIBUTING.md)
+
+Same rule as the code of conduct: if you adapt one, **cite the original source**. Fill in every section (no leftover template placeholders) and check that all links work.
+
+**Note - this document should live in the root of your public GitHub.com repository.**
+
+#### iv. `data/`
+
+The `data/` folder should contain a copy of the downloaded data, and it should get written there by code in your analysis (not downloaded by hand). Keep raw data and processed data separate: put the data exactly as you downloaded it in `data/raw/`, and anything you clean or create from it in `data/processed/`.
+
+An exception can be made if the data set is extremely large (\> 100 MB per file). In that case, reach out to the instructional team to make an alternative plan, and explain in your README why the data is not in the repo.
+
+#### v. `analysis/<descriptive-name>.qmd`
+
+For this milestone, the analysis code and narration should be contained within a single Quarto document (`.qmd`). See [section 4](#write-the-data-analysis) for what goes inside it. A few rules for the file itself:
+
+-   Put it in a sub-folder (e.g., `analysis/`), not the project root.
+-   Give it a descriptive name related to your project (e.g., `penguin-species-classification.qmd`), not `analysis.qmd`.
+-   Push both the source document AND the rendered version (HTML or PDF). If you render to HTML, set up GitHub Pages so the report is easy to read online, and put its URL in your README.
+-   Keep only one report. Delete drafts and scratch files so it is obvious which document is the real one.
+-   Make sure it renders without errors. 
+
+#### vi. `pyproject.toml`, `uv.lock` & `.python-version` (or the corresponding `renv` files)
+
+These files let others recreate your computational environment. See [section 5](#make-the-computational-environment-reproducible) for details.
+
+**Note - these files should live in the root of your public GitHub.com repository.**
+
+#### vii. `LICENSE.md`
+
+Licenses tell others how they may (or may not) use your work. We will learn more about licenses later in the course, and for now we recommend using an [MIT license](https://opensource.org/licenses/MIT) for the project code and a Creative Commons [Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)](https://creativecommons.org/licenses/by-nc-nd/4.0/) license for the project report. As long as your group agrees, these can be changed later in the course when you learn more about licenses. If you want to spend some time choosing different licenses now, we can recommend these two websites to help get you started:
+
+-   <https://choosealicense.com/>
+-   <https://chooser-beta.creativecommons.org/>
+
+Your `LICENSE.md` needs:
+
+-   **Two licenses**: one software license for the code (e.g., MIT) and one Creative Commons license for the report (e.g., CC BY-NC-ND 4.0).
+-   **The actual license text** pasted into the file, not just a link to it.
+-   **The names of all team members** in the copyright line.
+
+The licenses named in your README should match the ones in `LICENSE.md`. Name the file exactly `LICENSE.md`.
+
+### 4. Write the data analysis as a Quarto document {#write-the-data-analysis}
+
+The content of this analysis project should be a narrated analysis that asks and answers a predictive or inferential question using a method you have already learned in MDS. For milestone 1, the code and analysis narrative should be contained within a single Quarto document (`.qmd`), using either Python or R code chunks.
+
+Write it like a short scientific report. Your report should have the following sections:
+
+-   **Title**
+-   **Summary**: one paragraph that says what question you asked, what you found, and why it matters, plus the main limitations.
+-   **Introduction:**
+    -   give enough background on the topic that someone unfamiliar with it can follow the rest of your report
+    -   explain why this problem is important or interesting. Don't stop at one sentence; convince the reader it is worth answering.
+    -   clearly state the question you are trying to answer
+    -   describe the data set you used: where it comes from, what each row is, and which variables you use. Cite the data set.
+    -   clearly define your target/response variable (what you are predicting)
+    -   make sure your question can actually be answered with this data
+-   **Methods:**
+    -   in written English, walk the reader through what you did from beginning to end, and why
+    -   name the model or method you used and explain why it fits your question
+    -   name the metric you used to evaluate it (e.g., accuracy, F1, RMSE) and explain why you chose it
+    -   your report should include code which:
+        -   downloads the data from its original source on the web and saves a copy to `data/raw/`
+        -   wrangles and cleans the data from its original (downloaded) format to the format needed for your analysis, and saves it to `data/processed/`
+        -   splits the data into training and test sets **before** doing any exploratory data analysis or preprocessing. Don't break the golden rule of machine learning: the test set should not influence any decision you make.
+        -   summarizes the training data in a way that is relevant to your question (exploratory data analysis)
+        -   creates a visualization of the training data that is relevant to your question
+        -   performs the classification or regression analysis
+-   **Results:**
+    -   show all the key results that answer your question, using figures and tables
+    -   make figures readable in the rendered HTML: label the axes in plain English (with units), include a legend when there is more than one colour or group, use a text size people can read, and avoid overplotting (e.g., with transparency)
+    -   keep tables clean: show the rows and columns that matter, with clear column names. Don't dump a giant data frame.
+    -   give every figure and table a number and a caption (it's ok to manually write down the figure/table number and caption for now, you do not need to use Quarto syntax for this yet), and refer to them in the text
+    -   double-check that what you say about the results matches what the figures and tables show
+-   **Discussion:**
+    -   summarize what you found, and link it back to the question you asked
+    -   discuss what the findings mean in the real-world context of the problem (the domain)
+    -   discuss whether this is what you expected to find
+    -   discuss the assumptions and limitations of your methods and findings
+    -   discuss what impact such findings could have
+    -   discuss what future questions this could lead to
+-   **References:**
+    -   at least 4 citations relevant to the project, including the data set (format is your choice, just be consistent across the references)
+    -   every reference in the list should be cited somewhere in the text
+    -   references should be actual peer-reviewed publications or reputable sources, not AI hallucinations!
+
+A few writing rules that apply to the whole report:
+
+-   Write in full sentences. Point form is OK in a few places, but most of your report should be paragraphs.
+-   Don't use code-style variable names in your writing. Write "flipper length", not `flipper_length_mm`.
+-   Spell out acronyms the first time you use them.
+-   Proofread for spelling and grammar before you submit.
+
+The analysis can be performed in either R or Python. The restrictions on the analysis methods and programming language are put in place to ensure that all group members can contribute equally to the project.
+
+The data for the project should be publicly available, and clearly licensed to be shared and used openly on the internet. We strongly suggest you avoid using data sets where authentication is needed for access (e.g., Kaggle) as this adds another layer of complexity when making these projects reproducible. If you do use one, your README must walk the reader through every step of getting and setting up the API token.
+
+#### Possible data set sources
+
+-   [City of Vancouver Open Data Portal](https://opendata.vancouver.ca/pages/home/)
+-   [BC Data Catalogue](https://catalogue.data.gov.bc.ca/)
+-   [Government of Canada open data](https://open.canada.ca/en/open-data)
+-   [GitHub repo of awesome public datasets](https://github.com/awesomedata/awesome-public-datasets)
+-   [UCI Machine Learning Repository: Data Sets](https://archive.ics.uci.edu/)
+-   [tidytuesday data set](https://github.com/rfordatascience/tidytuesday)
+-   [Google Data set search engine](https://toolbox.google.com/datasetsearch)
+-   [fivethirtyeight R package](https://cran.r-project.org/web/packages/fivethirtyeight/vignettes/fivethirtyeight.html) (if you use this, see the note below!)
+
+**Note: if you choose a data set from the fivethirtyeight R package, you cannot copy their scientific question, visualizations or methods from the original FiveThirtyEight articles from where the data sets were first reported on. Finally, with the fivethirtyeight R package data sets, we want you to get practice reading them using the `read_*` functions in R or Python, so please use the versions of the data sets listed here: https://github.com/rudeboybert/fivethirtyeight/tree/master/data-raw**
+
+### 5. Make the computational environment reproducible {#make-the-computational-environment-reproducible}
+
+For this project, we will eventually be making the computation environment reproducible through containerization with Docker. For milestone 1 however, we will start with using a virtual environment as our first step towards this. You can use either `uv` (Python) or `renv` (R) for this.
+
+If you use uv:
+
+-   Commit `pyproject.toml`, `uv.lock` and `.python-version`. A single `uv.lock` covers Windows, Linux and Mac, so you do not need a separate lock file for each operating system.
+-   Do **not** commit the `.venv/` folder. Others rebuild it from your lockfile with `uv sync`.
+-   Add every package your analysis uses with `uv add`, so that it is recorded with its version. If one package is missing, your analysis won't run on someone else's computer.
+-   Don't copy someone else's environment files. If you start from one, cite where it came from.
+
+See the [DSCI 521 uv lecture notes](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/virtual-environments-uv.html) for how to set up and share a uv environment.
+
+In your README, explain how to set up and use the environment with your project. Then test it: have a teammate clone the repo fresh, follow only your README, and render the report. If they get stuck, fix the README. Common problems we see:
+
+-   missing packages
+-   absolute file paths (e.g., `/Users/yourname/...`) or typos in file paths. Use relative paths, and remember that paths are relative to where your analysis document lives (e.g., `../data/raw/` from inside `analysis/`).
+-   the data download step not working
+
+## Submission Instructions
+
+Follow the instructions for submission on Gradescope.
+Enter the URLs into Gradescope directly,
+and upload your teamwork contract there: there is no PDF of links to make.
+You will submit:
+
+1.  the URL of your project's GitHub.com repository
+2.  the URL of a GitHub release of your project's GitHub.com repository
+3.  your teamwork contract, rendered to PDF from the [template](teamwork-contract.qmd)
+
+### Creating a release on GitHub.com
+
+Just before you submit milestone 1, create a release on your project repository on GitHub and name it exactly `0.0.1` ([how to create a release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release)). This release allows us and you to easily jump to the state of your repository at the time of submission for grading purposes, while you continue to work on your project for the next milestone. Make sure the release points to the final version of your milestone 1 work, and submit its URL on Gradescope.
+
+### Additional resources
+
+-   [How to write better commit messages?](https://thoughtbot.com/blog/better-commit-messages-with-a-gitmessage-template)
+
+-   [How to create good pull request with empathy, with focused content and proper context?](https://slack.engineering/on-empathy-pull-requests/)
+
+## Expectations
+
+-   **Everyone should contribute equally to all aspects of the project** **(e.g., code, writing, project management).** **This should be evidenced by a roughly equal number of commits,** **pull request reviews and participation in communication via GitHub issues.**
+-   After the repository is set up, each group member should work in a [GitHub flow workflow](https://docs.github.com/en/get-started/quickstart/github-flow):
+    -   create a branch in your team's repository (not a fork) for each feature or fix
+    -   give branches meaningful names that describe the work (e.g., `add-eda-plot`, not `branch1` or `alice`)
+    -   keep each branch small: one independent piece of work, not half the project
+    -   open a pull request, and have at least one other teammate review it before it is merged. Don't push straight to `main`.
+-   You should be committing to git and pushing to GitHub.com every time you work on this project.
+-   Git commit messages should be meaningful. These will be marked. It's OK if one or two are less meaningful, but most should be.
+-   Use GitHub issues to communicate with your teammates (as opposed to email or Slack). Use them for planning, splitting up tasks, and discussing decisions. We expect more than 3 issues per person on average.
+-   Pull requests and issues must be opened, reviewed and merged by you, not by an AI agent or chat bot.
+-   Your question, analysis and visualization should make sense. It doesn't have to be complicated.
+-   You should use proper grammar and full sentences in your README and report. Point form may occur, but should be less than 10% of your written documents.
