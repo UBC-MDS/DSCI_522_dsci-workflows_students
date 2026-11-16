@@ -40,7 +40,7 @@ title-slide-attributes:
 - Document:
   - which tool you used?
   - how you interacted with it?
-  - what is your prompts?
+  - what is your prompts? e.g., `CLAUDE.md` or `AGENTS.md` files
   - how do you verify the output?
   - ...
 - Everyone in your team holds the **equal responsibility** for the code and documentation you submit as a group.
