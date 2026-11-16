@@ -497,6 +497,20 @@ Use one of:
 -   **uv** (Python): [Virtual environments: Python + uv](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/virtual-environments-uv.html) (DSCI 521 notes)
 -   **renv** (R): [Virtual environments: R](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/virtual-environments-renv.html) (DSCI 521 notes)
 
+::: callout-important
+## Your README instructions are worth 5 all-or-nothing points
+
+5 points of this milestone are for the reproducibility of your README instructions:
+whether someone can follow them to set up your environment and run your analysis.
+These points are all-or-nothing.
+If your instructions do not work exactly as you have written them,
+you will lose all 5 points.
+
+Make sure your instructions work on both Windows and Mac computers.
+If your team does not have both,
+work with another team to test them.
+:::
+
 ## Submission Instructions
 
 Follow the instructions for submission on Gradescope.

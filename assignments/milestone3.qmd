@@ -169,8 +169,21 @@ Update instructions and/or commands in your `README.md`
 and documention to run your analysis in your compute environment.
 You may combine commands within `make`.
 But instructions in the `README.md` file should include how to run the make target
-and rule. 5% of your project grade this week is going to be dedicated to whether your analysis runs as documented.
-These points are unrecoverable and all-or-none.
+and rule.
+
+::: callout-important
+## Your README instructions are worth 5 all-or-nothing points
+
+5 points of this milestone are for the reproducibility of your README instructions:
+whether someone can follow them to run your analysis, including each of your scripts, in your computational environment.
+These points are all-or-nothing, and they cannot be recovered later.
+If your instructions do not work exactly as you have written them,
+you will lose all 5 points.
+
+Make sure your instructions work on both Windows and Mac computers.
+If your team does not have both,
+work with another team to test them.
+:::
 
 ## Submission Instructions
 

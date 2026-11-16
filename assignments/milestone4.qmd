@@ -156,9 +156,20 @@ See this page for an example of a changelog and how you can reference fixes:
 
 ### 4. Reproducible and repliciable workflow
 
-5% of your grade will be graded on the reproduciblity of your work and its documentation.
-We will grade you by following your instructions as you have it written.
-There is no point recuperation from this section of the grading.
+::: callout-important
+## Your README instructions are worth 5 all-or-nothing points
+
+5 points of this milestone are for the reproducibility of your README instructions:
+whether someone can follow them to run your whole analysis pipeline, from a fresh clone to the rendered report.
+We will grade you by following your instructions exactly as you have written them.
+These points are all-or-nothing, and they cannot be recovered later.
+If your instructions do not work exactly as you have written them,
+you will lose all 5 points.
+
+Make sure your instructions work on both Windows and Mac computers.
+If your team does not have both,
+work with another team to test them.
+:::
 
 ## Submission Instructions
 

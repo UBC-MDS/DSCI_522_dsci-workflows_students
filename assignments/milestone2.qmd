@@ -82,6 +82,20 @@ and your team to shift to a container solution for your computational environmen
 We also expect you will use Docker Compose
 so that launching your containers is as frictionless as possible (which makes you more likely to use this tool in your workflow)!
 
+::: callout-important
+## Your README instructions are worth 5 all-or-nothing points
+
+5 points of this milestone are for the reproducibility of your README instructions:
+whether someone can follow them to launch your container and run your analysis in it.
+These points are all-or-nothing.
+If your instructions do not work exactly as you have written them,
+you will lose all 5 points.
+
+Make sure your instructions work on both Windows and Mac computers.
+If your team does not have both,
+work with another team to test them.
+:::
+
 ### 2. Add data validation checks to your data analysis.
 
 Thus, to ensure that your data visualization and modeling results are correct,
