@@ -368,23 +368,26 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="create-an-appropriate-file-directory-structure-for-a-data-analysis-project" class="level3">
 <h3 class="anchored" data-anchor-id="create-an-appropriate-file-directory-structure-for-a-data-analysis-project">3. Create an appropriate file &amp; directory structure for a data analysis project</h3>
-<p>For this project, you are expected to follow the best practices we have learned about in regards to project directory and file structures. For this milestone, your repository should look something like this:</p>
+<p>For this project, you are expected to follow the best practices we have learned about in regards to project directory and file structures. For this milestone, your repository should look something like this. Include whichever of these files are relevant to your project: for example, the uv files if you use Python, the renv files if you use R, or both if you use both.</p>
 <pre><code>your-project-name/
 ├── README.md
 ├── CODE_OF_CONDUCT.md
 ├── CONTRIBUTING.md
 ├── LICENSE.md
-├── pyproject.toml          # or the renv files if you use R
-├── uv.lock
-├── .python-version
 ├── .gitignore
+├── pyproject.toml          # Python (uv)
+├── uv.lock                 # Python (uv)
+├── .python-version         # Python (uv)
+├── renv.lock               # R (renv)
+├── .Rprofile               # R (renv)
+├── renv/                   # R (renv): follow the .gitignore in here
 ├── data/
 │   ├── raw/                # data exactly as downloaded
 │   └── processed/          # cleaned / intermediate data
 └── analysis/               # or reports/, src/
     ├── &lt;descriptive-name&gt;.qmd
     └── &lt;descriptive-name&gt;.html  # or .pdf</code></pre>
-<p>Keep the project root tidy: only the files above should live there. Put the analysis document in a sub-folder with a sensible name (e.g., <code>analysis/</code>, <code>reports/</code>), not in the root. Too many files in the root makes it hard for collaborators (including future you!) to find things.</p>
+<p>Keep the project root tidy: only the files above that are relevant to your project should live there. Put the analysis document in a sub-folder with a sensible name (e.g., <code>analysis/</code>, <code>reports/</code>), not in the root. Too many files in the root makes it hard for collaborators (including future you!) to find things.</p>
 <p>Add a <code>.gitignore</code> so that system and temporary files never get committed. At minimum, it should ignore <code>.DS_Store</code> and <code>.venv/</code>.</p>
 <p>The description of each file and folder follows.</p>
 <section id="i.-readme.md" class="level4">
@@ -561,21 +564,25 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="make-the-computational-environment-reproducible" class="level3">
 <h3 class="anchored" data-anchor-id="make-the-computational-environment-reproducible">5. Make the computational environment reproducible</h3>
-<p>For this project, we will eventually be making the computation environment reproducible through containerization with Docker. For milestone 1 however, we will start with using a virtual environment as our first step towards this. You can use either <code>uv</code> (Python) or <code>renv</code> (R) for this.</p>
-<p>If you use uv:</p>
+<p>For this project, we will eventually be making the computation environment reproducible through containerization with Docker. For milestone 1 however, we will start with using a virtual environment as our first step towards this. Use one of:</p>
 <ul>
-<li>Commit <code>pyproject.toml</code>, <code>uv.lock</code> and <code>.python-version</code>. A single <code>uv.lock</code> covers Windows, Linux and Mac, so you do not need a separate lock file for each operating system.</li>
-<li>Do <strong>not</strong> commit the <code>.venv/</code> folder. Others rebuild it from your lockfile with <code>uv sync</code>.</li>
-<li>Add every package your analysis uses with <code>uv add</code>, so that it is recorded with its version. If one package is missing, your analysis won’t run on someone else’s computer.</li>
-<li>Don’t copy someone else’s environment files. If you start from one, cite where it came from.</li>
+<li><strong>uv</strong> (Python): <a href="https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/virtual-environments-uv.html">Virtual environments: Python + uv</a> (DSCI 521 notes)</li>
+<li><strong>renv</strong> (R): <a href="https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/virtual-environments-renv.html">Virtual environments: R</a> (DSCI 521 notes)</li>
 </ul>
-<p>See the <a href="https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/virtual-environments-uv.html">DSCI 521 uv lecture notes</a> for how to set up and share a uv environment.</p>
-<p>In your README, explain how to set up and use the environment with your project. Then test it: have a teammate clone the repo fresh, follow only your README, and render the report. If they get stuck, fix the README. Common problems we see:</p>
-<ul>
-<li>missing packages</li>
-<li>absolute file paths (e.g., <code>/Users/yourname/...</code>) or typos in file paths. Use relative paths, and remember that paths are relative to where your analysis document lives (e.g., <code>../data/raw/</code> from inside <code>analysis/</code>).</li>
-<li>the data download step not working</li>
-</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Your README instructions are worth 5 all-or-nothing points
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>5 points of this milestone are for the reproducibility of your README instructions: whether someone can follow them to set up your environment and run your analysis. These points are all-or-nothing. If your instructions do not work exactly as you have written them, you will lose all 5 points.</p>
+<p>Make sure your instructions work on both Windows and Mac computers. If your team does not have both, work with another team to test them.</p>
+</div>
+</div>
 </section>
 </section>
 <section id="submission-instructions" class="level2">
