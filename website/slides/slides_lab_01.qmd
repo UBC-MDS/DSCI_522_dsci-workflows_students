@@ -32,6 +32,18 @@ title-slide-attributes:
 > ‼️ Students are expected to attend 100% of their scheduled lab hours and attendance will be taken at the beginning of each lab session. Students must make formal requests for academic concession in the event that they cannot attend a lab session by filling out the academic concession form and sending it to the course instructor. Applying for academic concession does not promise the granting of academic concession. Each application will be evaluated in the context of UBC's Academic concession policy. Students missing **more than 20% of the total scheduled lab hours** for a course without having received an academic concession will receive a possible maximum course grade of 50% and an "F" standing for the course on the transcript. For all other policies, please see the general MDS policies.
 :::
 
+## Weekly Oral Check-in
+
+::: {.incremental}
+- Every lab, you have a short check-in with the teaching team
+- About 5 minutes: walk us through a part of your project
+- **Not graded.** Think of it as practice for a technical interview
+:::
+
+::: {.notes}
+Explain that the check-in is low stakes. The goal is to get used to explaining your own project out loud.
+:::
+
 ## AI Tools Policy🤖
 
 ::: {.callout-important}
