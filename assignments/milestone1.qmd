@@ -195,7 +195,9 @@ and the repository must stay in both teams.
 ### 3. Create an appropriate file & directory structure for a data analysis project
 
 For this project, you are expected to follow the best practices we have learned about in regards to project directory and file structures.
-For this milestone, your repository should look something like this:
+For this milestone, your repository should look something like this.
+Include whichever of these files are relevant to your project:
+for example, the uv files if you use Python, the renv files if you use R, or both if you use both.
 
 ```
 your-project-name/
@@ -203,10 +205,13 @@ your-project-name/
 ├── CODE_OF_CONDUCT.md
 ├── CONTRIBUTING.md
 ├── LICENSE.md
-├── pyproject.toml          # or the renv files if you use R
-├── uv.lock
-├── .python-version
 ├── .gitignore
+├── pyproject.toml          # Python (uv)
+├── uv.lock                 # Python (uv)
+├── .python-version         # Python (uv)
+├── renv.lock               # R (renv)
+├── .Rprofile               # R (renv)
+├── renv/                   # R (renv): follow the .gitignore in here
 ├── data/
 │   ├── raw/                # data exactly as downloaded
 │   └── processed/          # cleaned / intermediate data
@@ -215,7 +220,7 @@ your-project-name/
     └── <descriptive-name>.html  # or .pdf
 ```
 
-Keep the project root tidy: only the files above should live there.
+Keep the project root tidy: only the files above that are relevant to your project should live there.
 Put the analysis document in a sub-folder with a sensible name (e.g., `analysis/`, `reports/`), not in the root.
 Too many files in the root makes it hard for collaborators (including future you!) to find things.
 
