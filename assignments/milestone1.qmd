@@ -13,7 +13,7 @@ editor_options:
 ::: callout-important
 ## Find your group
 
-Please make sure you are in the right group with the right teammates! [Check here](https://github.ubc.ca/mds-2025-26/lab-sections/blob/main/lab_section_block3_2025-26.csv).
+Please make sure you are in the right group with the right teammates! [Check here](https://github.ubc.ca/mds-2026-27/lab-sections/blob/main/lab_section_block3_2026-27.csv).
 :::
 
 In this course you will work in assigned teams of three or four (see group assignments on GitHub) to answer a predictive statistical/machine learning question using a publicly available data set that will allow you to answer that question. To answer this question, you will perform a complete data analysis in R and/or Python, from data import to communication of results, while placing significant emphasis on reproducible and trustworthy workflows.
@@ -33,7 +33,7 @@ An example final project from past years can be seen here: [Breast Cancer Predic
 In this milestone, you will:
 
 1.  Draft a team work contract
-2.  Set-up a public GitHub repository
+2.  Set-up a public GitHub repository in the course organization, with its required metadata
 3.  Create an appropriate file and directory structure for a data analysis project
 4.  Add the data analysis as a literate code document (Jupyter or Quarto)
 5.  Ensure the computation environment reproducible through a virtual environment (e.g., conda or renv) - hint do this as you create the analysis, don't wait until the end!
@@ -66,9 +66,56 @@ Use this opportunity to use your prior knowledge/experience to improve your team
 
 Fill out this survey to provide us your GitHub.com username:<https://ubc.ca1.qualtrics.com/jfe/form/SV_5p4MY2OnARUImy2>
 
-After we add you to the [UBC MDS organization on GitHub.com](https://github.com/UBC-MDS), set-up a public GitHub repository for your group under that organization being sure to add all team members as collaborators. Once you have decided on a project question and data set, make sure your repository has a name that is relevant to that question. *Note: if you need to change the name of your project repository later, you can!*
+After we add you to the [UBC-MDS-2026-27 organization on GitHub.com](https://github.com/UBC-MDS-2026-27), set-up a public GitHub repository for your group under that organization, and give your whole team access to it (see [Repository metadata](#repository-metadata) below). Once you have decided on a project question and data set, make sure your repository has a name that is relevant to that question. *Note: if you need to change the name of your project repository later, you can!*
 
 We are using github.com and public repositories because we will eventually be using some fancy tooling (*e.g.,* GitHub Actions) in this project. For this to work, all your work for this project (including scripts) should be developed and live in this repository on GitHub.com. Additionally, this will help you build a portfolio of your work you can share with others.
+
+#### Repository metadata {#repository-metadata}
+
+::: callout-important
+## This metadata is used for the class automatons, and it is also worth points
+
+Proper metadata setup is also graded, on top of the rest of this milestone. Metadata that is not fixed in week 1 (by the Milestone 1 deadline) will continue to lose points in each milestone until it is fixed.
+
+Lab attendance is mandatory, and the teaching team is there with you. There is no reason for a username or metadata problem to be left unresolved, or at least undocumented, after your week 1 lab session.
+:::
+
+Your group's repository needs all three of the following:
+
+1.  **It lives in the course organization.** Create it in [UBC-MDS-2026-27](https://github.com/orgs/UBC-MDS-2026-27), not under a personal account or the `UBC-MDS` organization.
+
+2.  **Its Description begins with `DSCI 522`.** It must be literally these characters: capital `DSCI`, one space, `522`, at the very start of the description. The rest of the description is up to your group; use it to say what your project is about. To edit it, click the gear icon next to **About** on your repository's main page.
+
+    -   Correct: `DSCI 522: Predicting wine quality from its chemistry`
+    -   Incorrect: `dsci 522 ...`, `DSCI522 ...`, `DSCI-522 ...`, `Predicting wine quality (DSCI 522)`, or a description with a space before `DSCI 522`
+
+3.  **It is added to two teams:** `522-students`, and your group's own team.
+
+    | Team | Where to check it | Role to give it |
+    |------------------------|------------------------|------------------------|
+    | `522-students` | <https://github.com/orgs/UBC-MDS-2026-27/teams/522-students/repositories> | Read |
+    | your group's team, `522-team-XX` | e.g., group 1's is <https://github.com/orgs/UBC-MDS-2026-27/teams/522-team-01/repositories> | Admin |
+
+    Your group's team is named `522-team-` followed by your group number as two digits: group 1 is `522-team-01`, group 12 is `522-team-12`. To find it, go to the [organization](https://github.com/orgs/UBC-MDS-2026-27), open **Teams**, click **522-students**, and your group's team is listed under it as a sub-team.
+
+    To add the teams, open your repository's **Settings → Collaborators and teams → Add teams**, search for the team, and pick the role in the table. You need admin access to the repository to see this page; whoever created the repository has it. Giving your group's team the Admin role gives every member of your group admin access too, which you will need later (e.g., to add GitHub secrets in Milestone 2).
+
+    When you are done, open both team links: your repository should be listed under each team's **Repositories** tab.
+
+Every member of your group also needs all three of the following. Each member should check their own:
+
+1.  **You are a member of the organization.** Accept your invitation to [UBC-MDS-2026-27](https://github.com/orgs/UBC-MDS-2026-27): it is in your email, or at <https://github.com/orgs/UBC-MDS-2026-27/invitation>.
+
+2.  **You are a member of `522-students` and of your group's `522-team-XX` sub-team.** Check that you are listed under the **Members** tab of each, e.g., for group 1:
+
+    -   <https://github.com/orgs/UBC-MDS-2026-27/teams/522-students/members>
+    -   <https://github.com/orgs/UBC-MDS-2026-27/teams/522-team-01/members>
+
+3.  **Your GitHub.com username is listed correctly in the [lab sections file](https://github.ubc.ca/mds-2026-27/lab-sections/blob/main/lab_section_block3_2026-27.csv).** It must match the username on your github.com profile exactly, and you must be listed in the right group.
+
+Check all of this during your week 1 lab session. If any of it is wrong for you (an invitation you can't find, a team you are not in, or a missing or misspelled username), raise it with the teaching team in that lab, so that it is either fixed there or documented as something still to fix.
+
+Keep this metadata in place for the rest of the course. Renaming the repository is fine, but the description must keep starting with `DSCI 522`, and the repository must stay in both teams.
 
 ### 4. Create an appropriate file & directory structure for a data analysis project
 
@@ -207,7 +254,7 @@ Enter the URLs into Gradescope directly,
 and upload your teamwork contract there: there is no PDF of links to make.
 You will submit:
 
-1.  the URL of your project's GitHub.com repository
+1.  the URL of your project's GitHub.com repository, in the UBC-MDS-2026-27 organization with its [repository metadata](#repository-metadata) set up (the metadata is also graded)
 2.  the URL of a GitHub release of your project's GitHub.com repository
 3.  your teamwork contract, rendered to PDF from the [template](teamwork-contract.qmd)
 
