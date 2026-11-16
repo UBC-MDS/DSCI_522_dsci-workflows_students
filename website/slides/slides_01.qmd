@@ -319,7 +319,7 @@ Source: [Timbers, T. A., Ostblom, J., D'Andrea, F., Lourenzutti, R., & Chen, D. 
 
 ## what is version control?
 
-* [Version control (for transparency and collaboration)](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/050-version-control-2.html)
+* [Version control (for transparency and collaboration)](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-basics.html)
 
 ![](images/Github.png){width=120 fig-align="center"}
 
@@ -338,13 +338,15 @@ Source: [Timbers, T. A., Ostblom, J., D'Andrea, F., Lourenzutti, R., & Chen, D. 
 [Individual assignment 1](https://ubc-mds.github.io/DSCI_522_dsci-workflows_students/assignments/individual1.html)
 
 
-## 💭 Share your story
+## 💭 Share your story {style="font-size: 0.8em;"}
 
 * Think and write down a non-reproducible, or non-auditable, workflow you have used before at work, on a personal project, or in course work, that negatively impacted your work somehow (make sure to include this in the story).
 
-* **Share your story in the [Google Doc](https://docs.google.com/document/d/1VzhEGG2NF6d-SSoslFrSNqe1cHDYa1Mc2t8N5XnCkPU/edit?usp=sharing)** 
+* **Share your story in the [Google Doc](https://docs.google.com/document/d/1Eo5zS1CdFjaXv8tfohn6Nry3YMaCrnPnel1Kjyki7Q0/edit?usp=sharing)** 
 
-* Activity in [textbook](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/010-intro-to-ds-workflows.html)
+* Activity in [textbook](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/data-science-workflows.html)
+
+![](images/google_doc_qr.png){width="70%" style="margin-top: 0px; margin-bottom: 0px;"}
 
 
 ## ✨ Clean, well documented and distributable code
