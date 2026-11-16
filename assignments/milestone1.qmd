@@ -492,33 +492,10 @@ https://github.com/rudeboybert/fivethirtyeight/tree/master/data-raw**
 For this project, we will eventually be making the computation environment reproducible through containerization with Docker.
 For milestone 1 however, we will start with
 using a virtual environment as our first step towards this.
-You can use either `uv` (Python) or `renv` (R) for this.
+Use one of:
 
-If you use uv:
-
--   Commit `pyproject.toml`, `uv.lock` and `.python-version`.
-    A single `uv.lock` covers Windows, Linux and Mac,
-    so you do not need a separate lock file for each operating system.
--   Do **not** commit the `.venv/` folder.
-    Others rebuild it from your lockfile with `uv sync`.
--   Add every package your analysis uses with `uv add`, so that it is recorded with its version.
-    If one package is missing, your analysis won't run on someone else's computer.
--   Don't copy someone else's environment files.
-    If you start from one, cite where it came from.
-
-See the [DSCI 521 uv lecture notes](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/virtual-environments-uv.html) for how to set up
-and share a uv environment.
-
-In your README, explain how to set up and use the environment with your project.
-Then test it: have a teammate clone the repo fresh, follow only your README, and render the report.
-If they get stuck, fix the README.
-Common problems we see:
-
--   missing packages
--   absolute file paths (e.g., `/Users/yourname/...`) or typos in file paths.
-    Use relative paths, and remember that paths are relative to
-    where your analysis document lives (e.g., `../data/raw/` from inside `analysis/`).
--   the data download step not working
+-   **uv** (Python): [Virtual environments: Python + uv](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/virtual-environments-uv.html) (DSCI 521 notes)
+-   **renv** (R): [Virtual environments: R](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/virtual-environments-renv.html) (DSCI 521 notes)
 
 ## Submission Instructions
 
