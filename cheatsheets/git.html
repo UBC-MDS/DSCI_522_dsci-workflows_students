@@ -185,9 +185,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#staging-and-committing" id="toc-staging-and-committing" class="nav-link" data-scroll-target="#staging-and-committing"><span class="header-section-number">4</span> 📍 Staging and Committing</a></li>
   <li><a href="#syncing-with-github" id="toc-syncing-with-github" class="nav-link" data-scroll-target="#syncing-with-github"><span class="header-section-number">5</span> 📍 Syncing with GitHub</a></li>
   <li><a href="#viewing-the-history" id="toc-viewing-the-history" class="nav-link" data-scroll-target="#viewing-the-history"><span class="header-section-number">6</span> 📍 Viewing the History</a></li>
-  <li><a href="#branches" id="toc-branches" class="nav-link" data-scroll-target="#branches"><span class="header-section-number">7</span> 📍 Branches</a></li>
-  <li><a href="#ignoring-files" id="toc-ignoring-files" class="nav-link" data-scroll-target="#ignoring-files"><span class="header-section-number">8</span> 📍 Ignoring Files</a></li>
-  <li><a href="#common-problems" id="toc-common-problems" class="nav-link" data-scroll-target="#common-problems"><span class="header-section-number">9</span> 📍 Common Problems</a></li>
+  <li><a href="#going-back-in-time" id="toc-going-back-in-time" class="nav-link" data-scroll-target="#going-back-in-time"><span class="header-section-number">7</span> 📍 Going Back in Time</a></li>
+  <li><a href="#branches" id="toc-branches" class="nav-link" data-scroll-target="#branches"><span class="header-section-number">8</span> 📍 Branches</a></li>
+  <li><a href="#ignoring-files" id="toc-ignoring-files" class="nav-link" data-scroll-target="#ignoring-files"><span class="header-section-number">9</span> 📍 Ignoring Files</a></li>
+  <li><a href="#common-problems" id="toc-common-problems" class="nav-link" data-scroll-target="#common-problems"><span class="header-section-number">10</span> 📍 Common Problems</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students/edit/main/cheatsheets/git.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -324,7 +325,7 @@ ul.task-list li input[type="checkbox"] {
 <ol start="9" type="1">
 <li><code>git push</code> — Send your local commits to the remote repository on GitHub.com
 <ul>
-<li>First push of a new branch: <code>git push -u origin &lt;BRANCH_NAME&gt;</code> (<code>-u</code> stands for <code>--set-upstream</code>)</li>
+<li>First push of a new branch: <code>git push -u origin &lt;BRANCH_NAME&gt;</code> (<code>-u</code> stands for <code>--set-upstream</code>). See the branches section below for the difference between this and <code>git push origin &lt;BRANCH_NAME&gt;</code>.</li>
 </ul></li>
 <li><code>git pull</code> — Get changes from the remote repository on GitHub.com and merge them into your local repository
 <ul>
@@ -340,7 +341,9 @@ ul.task-list li input[type="checkbox"] {
 <ol start="13" type="1">
 <li><code>git log</code> — View the version control history
 <ul>
-<li>Press <code>q</code> to exit the log.<br>
+<li>Press <code>q</code> to exit the log. Use the arrow keys, <code>b</code>, or the space bar to scroll.<br>
+</li>
+<li>Press <code>/</code> + a search term + <code>Enter</code> to search the log; <code>n</code> / <code>N</code> jump to the next / previous match.<br>
 </li>
 <li><code>git log -n 3</code> — Show only the last 3 commits<br>
 </li>
@@ -348,20 +351,78 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 <li><code>git show &lt;COMMIT_ID&gt;</code> — Show the changes made in one commit
 <ul>
-<li>The commit ID (also called the commit hash) is the long string of letters and numbers after <code>commit</code> in <code>git log</code>. It is a hash of the commit’s contents, so each commit has a unique one. The first 7 characters are usually enough.</li>
+<li>The commit ID (also called the commit hash, or SHA) is the long string of letters and numbers after <code>commit</code> in <code>git log</code>. It is a hash of the commit’s contents, so each commit has a unique one.<br>
+</li>
+<li>The first 7 characters (the short SHA) are usually enough: <code>git show 238dbcb</code></li>
+</ul></li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>💡 Just want a look at the past?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>On GitHub.com, click the <strong>commits</strong> link on the repository’s main page to see the history and commit messages. Click the <strong>&lt;&gt;</strong> button next to a commit to view the state of the whole repository at that point in time.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="going-back-in-time" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="going-back-in-time"><span class="header-section-number">7</span> 📍 Going Back in Time</h2>
+<p>Use these in your local repository when you want to run or explore files from the past, or bring a past version of a file into the present.</p>
+<ol start="15" type="1">
+<li><code>git checkout &lt;COMMIT_ID&gt; .</code> — Move the whole project (all files and directories) back to the state of that commit
+<ul>
+<li>The last <code>.</code> is really important, so don’t forget it!<br>
+</li>
+<li>Example: <code>git checkout 9b4af1d .</code><br>
+</li>
+<li>The files now look like they did at that commit, so you can explore and run them.</li>
+</ul></li>
+<li><code>git checkout HEAD .</code> — Go back to the future: return to the most recent commit
+<ul>
+<li><code>HEAD</code> is the nickname for the most recent commit.<br>
+</li>
+<li>Run <code>git log</code> afterwards to check you returned safely.</li>
+</ul></li>
+<li><code>git checkout &lt;COMMIT_ID&gt; &lt;FILENAME&gt;</code> — Bring back the version of a single file from a past commit
+<ul>
+<li>Example: <code>git checkout 5837143 doc/count_report.Rmd</code></li>
 </ul></li>
 </ol>
 <hr>
 </section>
-<section id="branches" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="branches"><span class="header-section-number">7</span> 📍 Branches</h2>
-<ol start="15" type="1">
+<section id="branches" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="branches"><span class="header-section-number">8</span> 📍 Branches</h2>
+<ol start="18" type="1">
 <li><code>git branch</code> — List the local branches (the current one is marked with <code>*</code>)
 <ul>
+<li><code>git branch -v</code> — Also show the SHA and message of the last commit on each branch (<code>-v</code> stands for <code>--verbose</code>)</li>
 <li><code>git branch -a</code> — Also list the branches on the remote</li>
 </ul></li>
-<li><code>git switch -c &lt;BRANCH_NAME&gt;</code> — Create a new branch and switch to it</li>
-<li><code>git switch &lt;BRANCH_NAME&gt;</code> — Switch to an existing branch</li>
+<li><code>git switch -c &lt;BRANCH_NAME&gt;</code> — Create a new branch and switch to it
+<ul>
+<li>Same as <code>git checkout -b &lt;BRANCH_NAME&gt;</code><br>
+</li>
+<li>Use a descriptive name, e.g.&nbsp;<code>patch-docs</code> for a fix to the documentation.</li>
+</ul></li>
+<li><code>git switch &lt;BRANCH_NAME&gt;</code> — Switch to an existing branch (no <code>-c</code>, since we are not creating one)
+<ul>
+<li>Same as <code>git checkout &lt;BRANCH_NAME&gt;</code></li>
+</ul></li>
+<li><code>git fetch --all</code> — Download all changes to all branches from the remote, so you can switch to a branch a collaborator created</li>
+<li><code>git push origin &lt;BRANCH_NAME&gt;</code> — Push the changes on a branch to the remote repository (usually named <code>origin</code>)
+<ul>
+<li>This pushes once. Git does not remember the connection, so a plain <code>git push</code> on that branch fails with <code>fatal: The current branch &lt;BRANCH_NAME&gt; has no upstream branch</code>, and you have to type <code>git push origin &lt;BRANCH_NAME&gt;</code> every time.<br>
+</li>
+<li><code>git push -u origin &lt;BRANCH_NAME&gt;</code> — Push <em>and</em> link your local branch to the remote branch of the same name (<code>-u</code> stands for <code>--set-upstream</code>). After this, plain <code>git push</code> and <code>git pull</code> work on that branch, and <code>git status</code> tells you whether you are ahead of or behind the remote.<br>
+</li>
+<li>You only need <code>-u</code> the first time you push a new branch.</li>
+</ul></li>
 <li><code>git merge &lt;BRANCH_NAME&gt;</code> — Merge the branch <code>&lt;BRANCH_NAME&gt;</code> into the branch you are currently on
 <ul>
 <li>If the same lines were changed in both branches, Git stops with a <strong>merge conflict</strong>. Open the files with <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code> markers, choose what to keep, then <code>git add</code> and <code>git commit</code>.</li>
@@ -390,20 +451,15 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <hr>
 </section>
-<section id="ignoring-files" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="ignoring-files"><span class="header-section-number">8</span> 📍 Ignoring Files</h2>
-<ol start="20" type="1">
-<li><code>.gitignore</code> — A text file in the root of the repository listing files and folders that Git should not track
-<ul>
-<li>One pattern per line, e.g.&nbsp;<code>.venv/</code>, <code>*.log</code>, <code>.DS_Store</code><br>
-</li>
-<li>Prepend <code>**/</code> to a file or folder name (e.g.&nbsp;<code>**/.venv/</code>, <code>**/.DS_Store</code>) to also ignore it in subdirectories anywhere within the repository</li>
-</ul></li>
-</ol>
+<section id="ignoring-files" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="ignoring-files"><span class="header-section-number">9</span> 📍 Ignoring Files</h2>
+<p><code>.gitignore</code> — A text file in the root of the repository listing files and folders that Git should not track<br>
+- One pattern per line, e.g.&nbsp;<code>.venv/</code>, <code>*.log</code>, <code>.DS_Store</code><br>
+- Prepend <code>**/</code> to a file or folder name (e.g.&nbsp;<code>**/.venv/</code>, <code>**/.DS_Store</code>) to also ignore it in subdirectories anywhere within the repository</p>
 <hr>
 </section>
-<section id="common-problems" class="level2" data-number="9">
-<h2 data-number="9" class="anchored" data-anchor-id="common-problems"><span class="header-section-number">9</span> 📍 Common Problems</h2>
+<section id="common-problems" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="common-problems"><span class="header-section-number">10</span> 📍 Common Problems</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 64%">

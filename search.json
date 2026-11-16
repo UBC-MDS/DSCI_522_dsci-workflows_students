@@ -54,7 +54,7 @@
     "href": "cheatsheets/git.html#syncing-with-github",
     "title": "Git Cheatsheet",
     "section": "5 📍 Syncing with GitHub",
-    "text": "5 📍 Syncing with GitHub\n\ngit push — Send your local commits to the remote repository on GitHub.com\n\nFirst push of a new branch: git push -u origin &lt;BRANCH_NAME&gt; (-u stands for --set-upstream)\n\ngit pull — Get changes from the remote repository on GitHub.com and merge them into your local repository\n\nPull before you start working, and before you push, to avoid conflicts.\n\ngit fetch — Download the latest changes from GitHub.com without merging them into your files\ngit remote -v — Show the URL of the remote repository your local repository is connected to",
+    "text": "5 📍 Syncing with GitHub\n\ngit push — Send your local commits to the remote repository on GitHub.com\n\nFirst push of a new branch: git push -u origin &lt;BRANCH_NAME&gt; (-u stands for --set-upstream). See the branches section below for the difference between this and git push origin &lt;BRANCH_NAME&gt;.\n\ngit pull — Get changes from the remote repository on GitHub.com and merge them into your local repository\n\nPull before you start working, and before you push, to avoid conflicts.\n\ngit fetch — Download the latest changes from GitHub.com without merging them into your files\ngit remote -v — Show the URL of the remote repository your local repository is connected to",
     "crumbs": [
       "Git"
     ]
@@ -64,7 +64,17 @@
     "href": "cheatsheets/git.html#viewing-the-history",
     "title": "Git Cheatsheet",
     "section": "6 📍 Viewing the History",
-    "text": "6 📍 Viewing the History\n\ngit log — View the version control history\n\nPress q to exit the log.\n\ngit log -n 3 — Show only the last 3 commits\n\ngit log &lt;FILENAME&gt; — Show only the commits that changed this file\n\ngit show &lt;COMMIT_ID&gt; — Show the changes made in one commit\n\nThe commit ID (also called the commit hash) is the long string of letters and numbers after commit in git log. It is a hash of the commit’s contents, so each commit has a unique one. The first 7 characters are usually enough.",
+    "text": "6 📍 Viewing the History\n\ngit log — View the version control history\n\nPress q to exit the log. Use the arrow keys, b, or the space bar to scroll.\n\nPress / + a search term + Enter to search the log; n / N jump to the next / previous match.\n\ngit log -n 3 — Show only the last 3 commits\n\ngit log &lt;FILENAME&gt; — Show only the commits that changed this file\n\ngit show &lt;COMMIT_ID&gt; — Show the changes made in one commit\n\nThe commit ID (also called the commit hash, or SHA) is the long string of letters and numbers after commit in git log. It is a hash of the commit’s contents, so each commit has a unique one.\n\nThe first 7 characters (the short SHA) are usually enough: git show 238dbcb\n\n\n\n\n\n\n\n\nTip💡 Just want a look at the past?\n\n\n\nOn GitHub.com, click the commits link on the repository’s main page to see the history and commit messages. Click the &lt;&gt; button next to a commit to view the state of the whole repository at that point in time.",
+    "crumbs": [
+      "Git"
+    ]
+  },
+  {
+    "objectID": "cheatsheets/git.html#going-back-in-time",
+    "href": "cheatsheets/git.html#going-back-in-time",
+    "title": "Git Cheatsheet",
+    "section": "7 📍 Going Back in Time",
+    "text": "7 📍 Going Back in Time\nUse these in your local repository when you want to run or explore files from the past, or bring a past version of a file into the present.\n\ngit checkout &lt;COMMIT_ID&gt; . — Move the whole project (all files and directories) back to the state of that commit\n\nThe last . is really important, so don’t forget it!\n\nExample: git checkout 9b4af1d .\n\nThe files now look like they did at that commit, so you can explore and run them.\n\ngit checkout HEAD . — Go back to the future: return to the most recent commit\n\nHEAD is the nickname for the most recent commit.\n\nRun git log afterwards to check you returned safely.\n\ngit checkout &lt;COMMIT_ID&gt; &lt;FILENAME&gt; — Bring back the version of a single file from a past commit\n\nExample: git checkout 5837143 doc/count_report.Rmd",
     "crumbs": [
       "Git"
     ]
@@ -73,8 +83,8 @@
     "objectID": "cheatsheets/git.html#branches",
     "href": "cheatsheets/git.html#branches",
     "title": "Git Cheatsheet",
-    "section": "7 📍 Branches",
-    "text": "7 📍 Branches\n\ngit branch — List the local branches (the current one is marked with *)\n\ngit branch -a — Also list the branches on the remote\n\ngit switch -c &lt;BRANCH_NAME&gt; — Create a new branch and switch to it\ngit switch &lt;BRANCH_NAME&gt; — Switch to an existing branch\ngit merge &lt;BRANCH_NAME&gt; — Merge the branch &lt;BRANCH_NAME&gt; into the branch you are currently on\n\nIf the same lines were changed in both branches, Git stops with a merge conflict. Open the files with &lt;&lt;&lt;&lt;&lt;&lt;&lt; markers, choose what to keep, then git add and git commit.\n\ngit branch -d &lt;BRANCH_NAME&gt; — Delete a local branch that has been merged\n\n\n\n\n\n\n\nTip💡 Typical branch workflow\n\n\n\n\ngit switch main and git pull — start from the latest main\ngit switch -c my-new-feature — create a branch\nEdit, git add, git commit (repeat as needed)\ngit push -u origin my-new-feature — push the branch\nOpen a pull request on GitHub.com, get it reviewed, and merge it there\ngit switch main and git pull — bring the merged work back to your computer",
+    "section": "8 📍 Branches",
+    "text": "8 📍 Branches\n\ngit branch — List the local branches (the current one is marked with *)\n\ngit branch -v — Also show the SHA and message of the last commit on each branch (-v stands for --verbose)\ngit branch -a — Also list the branches on the remote\n\ngit switch -c &lt;BRANCH_NAME&gt; — Create a new branch and switch to it\n\nSame as git checkout -b &lt;BRANCH_NAME&gt;\n\nUse a descriptive name, e.g. patch-docs for a fix to the documentation.\n\ngit switch &lt;BRANCH_NAME&gt; — Switch to an existing branch (no -c, since we are not creating one)\n\nSame as git checkout &lt;BRANCH_NAME&gt;\n\ngit fetch --all — Download all changes to all branches from the remote, so you can switch to a branch a collaborator created\ngit push origin &lt;BRANCH_NAME&gt; — Push the changes on a branch to the remote repository (usually named origin)\n\nThis pushes once. Git does not remember the connection, so a plain git push on that branch fails with fatal: The current branch &lt;BRANCH_NAME&gt; has no upstream branch, and you have to type git push origin &lt;BRANCH_NAME&gt; every time.\n\ngit push -u origin &lt;BRANCH_NAME&gt; — Push and link your local branch to the remote branch of the same name (-u stands for --set-upstream). After this, plain git push and git pull work on that branch, and git status tells you whether you are ahead of or behind the remote.\n\nYou only need -u the first time you push a new branch.\n\ngit merge &lt;BRANCH_NAME&gt; — Merge the branch &lt;BRANCH_NAME&gt; into the branch you are currently on\n\nIf the same lines were changed in both branches, Git stops with a merge conflict. Open the files with &lt;&lt;&lt;&lt;&lt;&lt;&lt; markers, choose what to keep, then git add and git commit.\n\ngit branch -d &lt;BRANCH_NAME&gt; — Delete a local branch that has been merged\n\n\n\n\n\n\n\nTip💡 Typical branch workflow\n\n\n\n\ngit switch main and git pull — start from the latest main\ngit switch -c my-new-feature — create a branch\nEdit, git add, git commit (repeat as needed)\ngit push -u origin my-new-feature — push the branch\nOpen a pull request on GitHub.com, get it reviewed, and merge it there\ngit switch main and git pull — bring the merged work back to your computer",
     "crumbs": [
       "Git"
     ]
@@ -83,8 +93,8 @@
     "objectID": "cheatsheets/git.html#ignoring-files",
     "href": "cheatsheets/git.html#ignoring-files",
     "title": "Git Cheatsheet",
-    "section": "8 📍 Ignoring Files",
-    "text": "8 📍 Ignoring Files\n\n.gitignore — A text file in the root of the repository listing files and folders that Git should not track\n\nOne pattern per line, e.g. .venv/, *.log, .DS_Store\n\nPrepend **/ to a file or folder name (e.g. **/.venv/, **/.DS_Store) to also ignore it in subdirectories anywhere within the repository",
+    "section": "9 📍 Ignoring Files",
+    "text": "9 📍 Ignoring Files\n.gitignore — A text file in the root of the repository listing files and folders that Git should not track\n- One pattern per line, e.g. .venv/, *.log, .DS_Store\n- Prepend **/ to a file or folder name (e.g. **/.venv/, **/.DS_Store) to also ignore it in subdirectories anywhere within the repository",
     "crumbs": [
       "Git"
     ]
@@ -93,8 +103,8 @@
     "objectID": "cheatsheets/git.html#common-problems",
     "href": "cheatsheets/git.html#common-problems",
     "title": "Git Cheatsheet",
-    "section": "9 📍 Common Problems",
-    "text": "9 📍 Common Problems\n\n\n\n\n\n\n\nMessage or situation\nWhat to do\n\n\n\n\nfatal: not a git repository\nYou are not inside a repository folder. Use pwd and cd to find your project folder.\n\n\nYour branch is behind 'origin/main'\nRun git pull.\n\n\nrejected ... failed to push some refs\nThe remote has commits you do not have. Run git pull, fix any conflicts, then git push again.\n\n\nCONFLICT (content): Merge conflict in &lt;file&gt;\nOpen the file, resolve the &lt;&lt;&lt;&lt;&lt;&lt;&lt; / ======= / &gt;&gt;&gt;&gt;&gt;&gt;&gt; sections, then git add &lt;file&gt; and git commit.\n\n\nnothing to commit, working tree clean\nNothing has changed since the last commit. Nothing to do.\n\n\ngit commit opens a strange text editor (Vim)\nYou forgot -m \"message\". In Vim, type :q! and press Enter to quit, then run the command again with -m.",
+    "section": "10 📍 Common Problems",
+    "text": "10 📍 Common Problems\n\n\n\n\n\n\n\nMessage or situation\nWhat to do\n\n\n\n\nfatal: not a git repository\nYou are not inside a repository folder. Use pwd and cd to find your project folder.\n\n\nYour branch is behind 'origin/main'\nRun git pull.\n\n\nrejected ... failed to push some refs\nThe remote has commits you do not have. Run git pull, fix any conflicts, then git push again.\n\n\nCONFLICT (content): Merge conflict in &lt;file&gt;\nOpen the file, resolve the &lt;&lt;&lt;&lt;&lt;&lt;&lt; / ======= / &gt;&gt;&gt;&gt;&gt;&gt;&gt; sections, then git add &lt;file&gt; and git commit.\n\n\nnothing to commit, working tree clean\nNothing has changed since the last commit. Nothing to do.\n\n\ngit commit opens a strange text editor (Vim)\nYou forgot -m \"message\". In Vim, type :q! and press Enter to quit, then run the command again with -m.",
     "crumbs": [
       "Git"
     ]
