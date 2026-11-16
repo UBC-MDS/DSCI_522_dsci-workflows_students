@@ -193,7 +193,7 @@ Time to get to know each other!
 - Do not copy and paste data description from the internet, that would be plagiarism. Write your own descriptions, and cite the source you used.
 - How to cite packages? 
   - R : `citation(package = "<package_name>")`
-  - Python : `pip show --verbose <package_name>`
+  - Python : `uv pip show <package_name>` (then use the author, version and home page to write the citation)
 :::
 
 
