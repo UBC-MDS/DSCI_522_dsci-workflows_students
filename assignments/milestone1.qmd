@@ -192,7 +192,13 @@ It is a good practice to include information about how others, outside the core 
 -   [Atom editor](https://github.com/atom/atom/blob/master/CONTRIBUTING.md) (very comprehensive)
 -   [AI fairness research paper](https://github.com/skysheng7/AI_bias_in_farming/blob/main/CONTRIBUTING.md)
 
-Same rule as the code of conduct: if you adapt one, **cite the original source**. Fill in every section (no leftover template placeholders) and check that all links work.
+Your `CONTRIBUTING.md` is **also required to have an AI policy section**. It tells contributors whether and how they may use generative AI tools (e.g., ChatGPT, Copilot, Claude) when they contribute to your project: what is allowed, what they must disclose, and who is responsible for the result. Your policy must be consistent with this course's expectations (see [Expectations](#expectations): pull requests and issues are opened, reviewed and merged by you, not by an AI agent). Here are some examples of AI policies from open source projects:
+
+-   [earthaccess](https://earthaccess.readthedocs.io/en/latest/contributor/ai-policy/)
+-   [SciPy](https://scipy.github.io/devdocs/dev/conduct/ai_policy.html)
+-   [SymPy](https://docs.sympy.org/dev/contributing/ai-generated-code-policy.html)
+
+Same rule as the code of conduct: if you adapt any of these, **cite the original source**. Fill in every section (no leftover template placeholders) and check that all links work.
 
 **Note - this document should live in the root of your public GitHub.com repository.**
 
