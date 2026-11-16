@@ -46,7 +46,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-8d3ad9c781c51ccd60b292c95058b2c2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f35a81a4717690815b2013502477d714.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -269,7 +269,7 @@ ul.task-list li input[type="checkbox"] {
 <p>In this milestone, you will:</p>
 <ol type="1">
 <li>Draft a teamwork contract</li>
-<li>Set up a public GitHub repository</li>
+<li>Set up a public GitHub repository in the course organization, with its required metadata</li>
 <li>Create an appropriate file and directory structure for a data analysis project</li>
 <li>Write the data analysis as a Quarto document (<code>.qmd</code>)</li>
 <li>Make the computational environment reproducible with a virtual environment (uv or renv). Hint: do this as you create the analysis, don’t wait until the end!</li>
@@ -300,8 +300,71 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="set-up-a-github-repository" class="level3">
 <h3 class="anchored" data-anchor-id="set-up-a-github-repository">2. Set up a GitHub repository</h3>
-<p>After we add you to the <a href="https://github.com/UBC-MDS-2026-27">UBC MDS organization on GitHub.com</a>, set up a <strong>public</strong> GitHub repository for your group <strong>under that organization</strong> (not under one of your personal accounts), and add all team members as collaborators. Once you have decided on a project question and data set, make sure your repository has a name that is relevant to that question. <em>Note: if you need to change the name of your project repository later, you can!</em></p>
+<p>After we add you to the <a href="https://github.com/UBC-MDS-2026-27">UBC-MDS-2026-27 organization on GitHub.com</a>, set up a <strong>public</strong> GitHub repository for your group <strong>under that organization</strong> (not under one of your personal accounts), and give your whole team access to it (see <a href="#repository-metadata">Repository metadata</a> below). Once you have decided on a project question and data set, make sure your repository has a name that is relevant to that question. <em>Note: if you need to change the name of your project repository later, you can!</em></p>
 <p>We are using github.com and public repositories because we will eventually be using some fancy tooling (<em>e.g.,</em> GitHub Actions) in this project. For this to work, all your work for this project (including scripts) should be developed and live in this repository on GitHub.com. Additionally, this will help you build a portfolio of your work you can share with others.</p>
+<section id="repository-metadata" class="level4">
+<h4 class="anchored" data-anchor-id="repository-metadata">Repository metadata</h4>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>This metadata is used for the class automatons, and it is also worth points
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Proper metadata setup is also graded, on top of the rest of this milestone. Metadata that is not fixed in week 1 (by the Milestone 1 deadline) will continue to lose points in each milestone until it is fixed.</p>
+<p>Lab attendance is mandatory, and the teaching team is there with you. There is no reason for a username or metadata problem to be left unresolved, or at least undocumented, after your week 1 lab session.</p>
+</div>
+</div>
+<p>Your group’s repository needs all three of the following:</p>
+<ol type="1">
+<li><p><strong>It lives in the course organization.</strong> Create it in <a href="https://github.com/orgs/UBC-MDS-2026-27">UBC-MDS-2026-27</a>, not under a personal account or the <code>UBC-MDS</code> organization.</p></li>
+<li><p><strong>Its Description begins with <code>DSCI 522</code>.</strong> It must be literally these characters: capital <code>DSCI</code>, one space, <code>522</code>, at the very start of the description. The rest of the description is up to your group; use it to say what your project is about. To edit it, click the gear icon next to <strong>About</strong> on your repository’s main page.</p>
+<ul>
+<li>Correct: <code>DSCI 522: Predicting wine quality from its chemistry</code></li>
+<li>Incorrect: <code>dsci 522 ...</code>, <code>DSCI522 ...</code>, <code>DSCI-522 ...</code>, <code>Predicting wine quality (DSCI 522)</code>, or a description with a space before <code>DSCI 522</code></li>
+</ul></li>
+<li><p><strong>It is added to two teams:</strong> <code>522-students</code>, and your group’s own team.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Team</th>
+<th>Where to check it</th>
+<th>Role to give it</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>522-students</code></td>
+<td><a href="https://github.com/orgs/UBC-MDS-2026-27/teams/522-students/repositories" class="uri">https://github.com/orgs/UBC-MDS-2026-27/teams/522-students/repositories</a></td>
+<td>Read</td>
+</tr>
+<tr class="even">
+<td>your group’s team, <code>522-team-XX</code></td>
+<td>e.g., group 1’s is <a href="https://github.com/orgs/UBC-MDS-2026-27/teams/522-team-01/repositories" class="uri">https://github.com/orgs/UBC-MDS-2026-27/teams/522-team-01/repositories</a></td>
+<td>Admin</td>
+</tr>
+</tbody>
+</table>
+<p>Your group’s team is named <code>522-team-</code> followed by your group number as two digits: group 1 is <code>522-team-01</code>, group 12 is <code>522-team-12</code>. To find it, go to the <a href="https://github.com/orgs/UBC-MDS-2026-27">organization</a>, open <strong>Teams</strong>, click <strong>522-students</strong>, and your group’s team is listed under it as a sub-team.</p>
+<p>To add the teams, open your repository’s <strong>Settings → Collaborators and teams → Add teams</strong>, search for the team, and pick the role in the table. You need admin access to the repository to see this page; whoever created the repository has it. Giving your group’s team the Admin role gives every member of your group admin access too, which you will need later (e.g., to add GitHub secrets in Milestone 2).</p>
+<p>When you are done, open both team links: your repository should be listed under each team’s <strong>Repositories</strong> tab.</p></li>
+</ol>
+<p>Every member of your group also needs all three of the following. Each member should check their own:</p>
+<ol type="1">
+<li><p><strong>You are a member of the organization.</strong> Accept your invitation to <a href="https://github.com/orgs/UBC-MDS-2026-27">UBC-MDS-2026-27</a>: it is in your email, or at <a href="https://github.com/orgs/UBC-MDS-2026-27/invitation" class="uri">https://github.com/orgs/UBC-MDS-2026-27/invitation</a>.</p></li>
+<li><p><strong>You are a member of <code>522-students</code> and of your group’s <code>522-team-XX</code> sub-team.</strong> Check that you are listed under the <strong>Members</strong> tab of each, e.g., for group 1:</p>
+<ul>
+<li><a href="https://github.com/orgs/UBC-MDS-2026-27/teams/522-students/members" class="uri">https://github.com/orgs/UBC-MDS-2026-27/teams/522-students/members</a></li>
+<li><a href="https://github.com/orgs/UBC-MDS-2026-27/teams/522-team-01/members" class="uri">https://github.com/orgs/UBC-MDS-2026-27/teams/522-team-01/members</a></li>
+</ul></li>
+<li><p><strong>Your GitHub.com username is listed correctly in the <a href="https://github.ubc.ca/mds-2026-27/lab-sections/blob/main/lab_section_block3_2026-27.csv">lab sections file</a>.</strong> It must match the username on your github.com profile exactly, and you must be listed in the right group.</p></li>
+</ol>
+<p>Check all of this during your week 1 lab session. If any of it is wrong for you (an invitation you can’t find, a team you are not in, or a missing or misspelled username), raise it with the teaching team in that lab, so that it is either fixed there or documented as something still to fix.</p>
+<p>Keep this metadata in place for the rest of the course. Renaming the repository is fine, but the description must keep starting with <code>DSCI 522</code>, and the repository must stay in both teams.</p>
+</section>
 </section>
 <section id="create-an-appropriate-file-directory-structure-for-a-data-analysis-project" class="level3">
 <h3 class="anchored" data-anchor-id="create-an-appropriate-file-directory-structure-for-a-data-analysis-project">3. Create an appropriate file &amp; directory structure for a data analysis project</h3>
@@ -513,7 +576,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="submission-instructions">Submission Instructions</h2>
 <p>Follow the instructions for submission on Gradescope. Enter the URLs into Gradescope directly, and upload your teamwork contract there: there is no PDF of links to make. You will submit:</p>
 <ol type="1">
-<li>the URL of your project’s GitHub.com repository</li>
+<li>the URL of your project’s GitHub.com repository, in the UBC-MDS-2026-27 organization with its <a href="#repository-metadata">repository metadata</a> set up (the metadata is also graded)</li>
 <li>the URL of a GitHub release of your project’s GitHub.com repository</li>
 <li>your teamwork contract, rendered to PDF from the <a href="../assignments/teamwork-contract.html">template</a></li>
 </ol>
