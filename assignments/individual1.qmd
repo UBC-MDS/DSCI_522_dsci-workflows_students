@@ -14,7 +14,7 @@ This assignment will provide practice in the context of version control and will
 ::: callout-important
 ## github.com *not* https://github.ubc.ca/
 
-Make sure you do this in your own personal public GitHub account. Do not make this in the UBC github.
+Make sure you do this in your own personal public GitHub account. Do **not** make this in the UBC github.
 :::
 
 2.  Clone your `learning-about-version-control` repository to your local computer.
