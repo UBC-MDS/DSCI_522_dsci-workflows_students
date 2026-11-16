@@ -311,10 +311,12 @@ You should be able to explain what your code does, why it is designed that way,
 and how it fits into the rest of your project.
 Please do not merge code you have not read and understood.
 
-**A human opens every pull request.**
-AI agents may help you write code, but a group member must review any generated changes
-and open, review, and merge pull requests themselves.
-Please do not let an AI agent push to your repository, open pull requests, or merge them on its own.
+**Humans open pull requests and issues, and make the final merge decisions.**
+AI agents may help you review or generate some code, and may help double-check code before pull requests are merged
+(e.g., an automated review bot such as Cursor Bugbot or GitHub Copilot code review),
+but a group member must review any generated changes and open every pull request and issue themselves.
+Ultimately, it is human reviewers who make the final decisions and merge the pull requests.
+Please do not let an AI agent push to your repository, open pull requests or issues, or merge pull requests on its own.
 Because GitHub history is used to evaluate teamwork,
 it should accurately reflect who did the work.
 

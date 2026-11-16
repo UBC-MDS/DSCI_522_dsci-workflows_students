@@ -115,8 +115,9 @@ Pull requests should be reviewed within [NUMBER] hours after creation.
 AND FOR WHAT KINDS OF TASKS.]
 Every team member is responsible for understanding and checking
 any code or text they submit, whether or not AI helped write it.
-Pull requests and GitHub issues are opened, reviewed, and merged by team members,
-never by an AI agent or chat bot.
+Pull requests and GitHub issues are opened by team members, never by an AI agent or chat bot.
+We may use AI agents to help double-check the code before merging pull requests,
+but ultimately it is human reviewers who make the final decisions and merge the pull requests.
 We will keep track of how we use AI so we can write the AI use statement in our README.
 
 ## Roles
