@@ -353,7 +353,7 @@ Source: [Timbers, T. A., Ostblom, J., D'Andrea, F., Lourenzutti, R., & Chen, D. 
 ![](images/Github.png){width=120 fig-align="center"}
 
 
-# Let's use version control, and work on merge conflicts together!
+# Demo: version control and merge conflicts {style="font-size: 0.8em;"}
 
 [Individual assignment 1](https://ubc-mds.github.io/DSCI_522_dsci-workflows_students/assignments/individual1.html)
 
@@ -362,23 +362,36 @@ make those changes, then locally
 
 * **Part 1:**
 
--1. `git log` --> use arrow keys to navigate, `q` to quit, use `/` and a word to search, then use `n` to jump to the next match 
-0. `git status` to check the changes
+- `git log` --> use arrow keys to navigate, `q` to quit, use `/` and a word to search, then use `n` to jump to the next match 
+
+- `git status` to check the changes
+
 1. `git add .`
+
 2. `git commit -m "commit locally"`
+
 3. `git push` --> error 
+
 4. `git pull`
+
 5. `git config pull.rebase false` --> solve merge conflict manually 
+
 6. `git add .`
+
 7. `git commit -m "solve merge conflict manually"`
+
 8. `git push` --> success!
 
 *Optional: show going back to history with :*
+
 1. `git log` --> find the first commit
+
 2. `git checkout <commit hash>` to go back in time
+
 3. `git switch main` to go back to the real head of the main branch
 
 * **Part 2:** 
+
 1. `git switch -c "opinions"` or `git checkout -b "opinions"`  to create a new branch locally
 2. `git branch -v` to see all branches, v is verbose mode
 3. `git branch -a` to see all branches, a is all mode
