@@ -76,7 +76,8 @@ format:
 ## 📍 Directory Management
 
 22. `mkdir new_folder` — Create a new folder  
-23. `mkdir -p parent/child` — Create nested folders including parent folders if parent folders do not exist yet
+23. `mkdir -p parent/child` — Create nested folders including parent folders
+    if parent folders do not exist yet
 24. `rmdir empty_folder` — Remove empty folder  
 
 ---
@@ -84,13 +85,15 @@ format:
 ## 📍 Permissions & Ownership
 
 25. `chmod 400 key.pem` — Change file permission  
-    - first digit = privillage of owner of the file; second digit = other people in the same group; third digit = everyone else in the world
+    - first digit = privillage of owner of the file;
+      second digit = other people in the same group; third digit = everyone else in the world
     - 4 = read, 2 = write, 1 = execute  
     - 7 = 4 + 2 + 1 = read & write & execute
     - Examples:  
         - `400` = read-only by owner  
         - `600` = read/write by owner  
-        - `756` = full access for owner, read & execute for others in the same group, read & write for everyone else in the world
+        - `756` = full access for owner, read & execute for others in the same group,
+          read & write for everyone else in the world
 26. `chown user:group folder/` — Change ownership of the folder 
 27. `sudo` — Run command with superuser privileges, "super user do" 
 

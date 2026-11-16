@@ -17,7 +17,8 @@ format:
 
 ## Makefile Structure
 
-A Makefile consists of **rules** that tell GNU Make how to build targets. Each rule follows this structure:
+A Makefile consists of **rules** that tell GNU Make how to build targets.
+Each rule follows this structure:
 
 ```makefile
 target : dependencies
@@ -53,7 +54,9 @@ results/isles.dat : data/isles.txt scripts/wordcount.py
 ## ⚠️ High bug zone: TAB required
 
 * Actions MUST be indented using the **TAB**, not spaces!
-* Depending on which computer you are using, sometimes TAB can still be auto-converted to 4 spaces if you are editing Makefile in VS Code or Jupyter Lab. 
+* Depending on which computer you are using,
+  sometimes TAB can still be auto-converted to 4 spaces
+  if you are editing Makefile in VS Code or Jupyter Lab. 
 * 🍀 **Safest choice**: create and edit Makefile in command line using `nano` or `vim` from terminal.
 :::
 
@@ -66,10 +69,13 @@ results/isles.dat : data/isles.txt scripts/wordcount.py
 ::: {.callout-important}
 ## ⭐️ New repo for Individual Assignment 4
 
-Please use this new repository I created for Individual Assignment 4: [https://github.com/skysheng7/ia4.git](https://github.com/skysheng7/ia4.git)
+Please use this new repository I created for Individual Assignment 4:
+[https://github.com/skysheng7/ia4.git](https://github.com/skysheng7/ia4.git)
 :::
 
-Use this repository, click on "Use this template", create a new repository under your own account called `data_analysis_pipeline_practice`. Clone your new repository and navigate to the root directory using the command line:
+Use this repository, click on "Use this template",
+create a new repository under your own account called `data_analysis_pipeline_practice`.
+Clone your new repository and navigate to the root directory using the command line:
 
 ```bash
 git clone <repo_name>
@@ -129,19 +135,23 @@ bash runall.sh
 <details>
 <summary><b>Option 3: Use `docker-compose.yml`</b></summary>
 
-1. Pull and launch the docker container. This will direct you to the terminal of the container. 
+1. Pull and launch the docker container.
+   This will direct you to the terminal of the container. 
 
 ::: {.callout-note}
 ## ⚠️ NOT `docker compose up`
 
-Please note you need to run `docker compose run --rm ia4` instead of `docker compose up` to launch the container. We are only using this container's terminal, there will be no graphical user interface (GUI).
+Please note you need to run `docker compose run --rm ia4`
+instead of `docker compose up` to launch the container.
+We are only using this container's terminal, there will be no graphical user interface (GUI).
 :::
 
 ```bash
 docker compose run --rm ia4
 ```
 
-2. You will land directly in the terminal of the container. Run the analysis:
+2. You will land directly in the terminal of the container.
+   Run the analysis:
 
 ```bash
 bash runall.sh
@@ -153,7 +163,10 @@ bash runall.sh
 
 ## Step 2: Create a Makefile
 
-> TODO: Your task is to add a “smarter” data analysis pipeline using GNU Make! It should accomplish the same task as bash runall.sh when you type make all. It should also reset the analysis the starting point (the state when you first copied this repo) when you type make clean.
+> TODO: Your task is to add a “smarter” data analysis pipeline using GNU Make!
+> It should accomplish the same task as bash runall.sh when you type make all.
+> It should also reset the analysis the starting point (the state when you first copied this repo)
+> when you type make clean.
 
 We will convert every commands in `run_all.sh` script into rules in Makefile.
 
@@ -194,27 +207,35 @@ $ make results/isles.dat
 make: Nothing to be done for `results/isles.dat'.
 ```
 
-This means you are not using the correct **TAB** indentation. Try edit the Makefile in your terminal and redo all **TAB** key there.
+This means you are not using the correct **TAB** indentation.
+Try edit the Makefile in your terminal and redo all **TAB** key there.
 
 :::
 
 ::: {.callout-warning collapse="true"}
 ## 🐛 Debug message: `make: 'results/isles.dat' is up to date.`
 
-If you succeed the first time you run the command above, but the second time you run the same command, it says: 
+If you succeed the first time you run the command above,
+but the second time you run the same command, it says: 
 
 ```bash
 $ make results/isles.dat
 make: `results/isles.dat' is up to date.
 ```
 
-This is normal, because your output file already exists, and the timestamp of that output file is more recent than the timestamp of the input file. Makefile will not re-run the command if you did not make any changes to the input file. If you update the timestamp of the input file using `touch`: 
+This is normal, because your output file already exists,
+and the timestamp of that output file is more recent than the timestamp of the input file.
+Makefile will not re-run the command if you did not make any changes to the input file.
+If you update the timestamp of the input file using `touch`: 
 
 ```bash
 touch data/isles.txt
 ```
 
-then rerun `make results/isles.dat`, it will run again, because now the timestamp of the input file is more recent than the timestamp of the output file, meaning that new changes have been made to the input file after you generated the output file last time. 
+then rerun `make results/isles.dat`, it will run again,
+because now the timestamp of the input file is more recent than the timestamp of the output file,
+meaning that new changes have been made to the input file
+after you generated the output file last time. 
 
 :::
 
@@ -222,7 +243,9 @@ then rerun `make results/isles.dat`, it will run again, because now the timestam
 ::: {.callout-tip collapse="true"}
 ## 🙋‍♀️ Question: Can I call `Makefile` something else?
 
-Yes you can, for example, if we call it `random_name`, you will just need to run the following command to generate the target output: 
+Yes you can, for example,
+if we call it `random_name`,
+you will just need to run the following command to generate the target output: 
 
 ```bash
 make -f random_name results/isles.dat
@@ -231,7 +254,8 @@ make -f random_name results/isles.dat
 
 ### Create target and PHONY targets
 
-1. It's tedious to always type long file path & name, like `results/isles.dat`. You can create a target that is a short name for the long file path & name.
+1. It's tedious to always type long file path & name, like `results/isles.dat`.
+   You can create a target that is a short name for the long file path & name.
 
 ```makefile
 result : results/isles.dat
@@ -246,7 +270,8 @@ result : results/isles.dat
 We use PHONY targets because:
 
 * It's good practice to document and list all your target names in the begining of the Makefile.
-* If you have a file that is called the same name as a target, PHONY targets will tell GNU Make to ignore the file and use the target instead.
+* If you have a file that is called the same name as a target,
+  PHONY targets will tell GNU Make to ignore the file and use the target instead.
 
 3. You can also add the `clean` target to delete everything: 
 
@@ -255,7 +280,8 @@ clean:
     rm -f results/isles.dat
 ```
 
-4. We update the Makefile to include new target, PHONY targets, clean target, and add a new rule to create the plot too: 
+4. We update the Makefile to include new target, PHONY targets, clean target,
+   and add a new rule to create the plot too: 
 
 ```makefile
 .PHONY : result clean
@@ -284,13 +310,17 @@ clean :
 make clean
 ```
 
-* Would this run? Although we did not create `results/isles.dat` yet? 
+* Would this run?
+  Although we did not create `results/isles.dat` yet? 
 
 ```bash
 make results/figure/isles.png
 ```
 
-* 🤩 Yes it will run! If GNU Make detects that you are missing the input file needed to create the target, it will try to find which rule can create this missing input file, and execute that rule first!
+* 🤩 Yes it will run!
+  If GNU Make detects that you are missing the input file needed to create the target,
+  it will try to find which rule can create this missing input file,
+  and execute that rule first!
 
 * Clean everything again: 
 
@@ -391,7 +421,8 @@ clean-all : clean-dats \
 	rm -rf report/count_report_files
 ```
 
-🎉 Congratulations! You have completed the Makefile for the Individual Assignment 4!
+🎉 Congratulations!
+You have completed the Makefile for the Individual Assignment 4!
 
 Test it out by running:
 

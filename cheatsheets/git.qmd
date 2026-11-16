@@ -12,7 +12,8 @@ format:
     code-block-border-left: "#e0cfea"
 ---
 
-Run all of these commands in your terminal, from inside your project folder (except `git clone`, which creates the folder for you).
+Run all of these commands in your terminal,
+from inside your project folder (except `git clone`, which creates the folder for you).
 For the full explanations, see the textbook chapters on
 [Git basics](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-basics.html),
 [Git history](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-history.html),
@@ -41,10 +42,12 @@ The usual loop is: `git pull` → edit files → `git status` → `git add` → 
 
 1. `git clone <URL>` — Copy a remote repository from GitHub.com to your computer  
     - Example: `git clone https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students.git`  
-    - This creates a new folder named after the repository. Use `cd <folder_name>` to go into it.  
+    - This creates a new folder named after the repository.
+      Use `cd <folder_name>` to go into it.  
     - Do not clone a repository inside another repository.
 2. `git init` — Turn the current folder into a new, empty Git repository  
-    - Only needed when you start a project locally. If you start on GitHub.com and then `git clone`, you do not need it.
+    - Only needed when you start a project locally.
+      If you start on GitHub.com and then `git clone`, you do not need it.
 
 ---
 
@@ -75,8 +78,10 @@ The usual loop is: `git pull` → edit files → `git status` → `git add` → 
 ## 📍 Syncing with GitHub
 
 9. `git push` — Send your local commits to the remote repository on GitHub.com  
-    - First push of a new branch: `git push -u origin <BRANCH_NAME>` (`-u` stands for `--set-upstream`). See the branches section below for the difference between this and `git push origin <BRANCH_NAME>`.
-10. `git pull` — Get changes from the remote repository on GitHub.com and merge them into your local repository  
+    - First push of a new branch: `git push -u origin <BRANCH_NAME>` (`-u` stands for `--set-upstream`).
+      See the branches section below for the difference between this and `git push origin <BRANCH_NAME>`.
+10. `git pull` — Get changes from the remote repository on GitHub.com
+    and merge them into your local repository  
     - Pull before you start working, and before you push, to avoid conflicts.
 11. `git fetch` — Download the latest changes from GitHub.com without merging them into your files
 12. `git remote -v` — Show the URL of the remote repository your local repository is connected to
@@ -86,25 +91,30 @@ The usual loop is: `git pull` → edit files → `git status` → `git add` → 
 ## 📍 Viewing the History
 
 13. `git log` — View the version control history  
-    - Press `q` to exit the log. Use the arrow keys, `b`, or the space bar to scroll.  
+    - Press `q` to exit the log.
+      Use the arrow keys, `b`, or the space bar to scroll.  
     - Press `/` + a search term + `Enter` to search the log; `n` / `N` jump to the next / previous match.  
     - `git log -n 3` — Show only the last 3 commits  
     - `git log <FILENAME>` — Show only the commits that changed this file
 14. `git show <COMMIT_ID>` — Show the changes made in one commit  
-    - The commit ID (also called the commit hash, or SHA) is the long string of letters and numbers after `commit` in `git log`. It is a hash of the commit's contents, so each commit has a unique one.  
+    - The commit ID (also called the commit hash, or SHA) is the long string of letters
+      and numbers after `commit` in `git log`.
+      It is a hash of the commit's contents, so each commit has a unique one.  
     - The first 7 characters (the short SHA) are usually enough: `git show 238dbcb`
 
 ::: callout-tip
 ## 💡 Just want a look at the past?
 
-On GitHub.com, click the **commits** link on the repository's main page to see the history and commit messages. Click the **<>** button next to a commit to view the state of the whole repository at that point in time.
+On GitHub.com, click the **commits** link on the repository's main page to see the history and commit messages.
+Click the **<>** button next to a commit to view the state of the whole repository at that point in time.
 :::
 
 ---
 
 ## 📍 Going Back in Time
 
-Use these in your local repository when you want to run or explore files from the past, or bring a past version of a file into the present.
+Use these in your local repository when you want to run or explore files from the past,
+or bring a past version of a file into the present.
 
 15. `git checkout <COMMIT_ID> .` — Move the whole project (all files and directories) back to the state of that commit  
     - The last `.` is really important, so don't forget it!  
@@ -121,20 +131,28 @@ Use these in your local repository when you want to run or explore files from th
 ## 📍 Branches
 
 18. `git branch` — List the local branches (the current one is marked with `*`)  
-    - `git branch -v` — Also show the SHA and message of the last commit on each branch (`-v` stands for `--verbose`)
+    - `git branch -v` — Also show the SHA
+      and message of the last commit on each branch (`-v` stands for `--verbose`)
     - `git branch -a` — Also list the branches on the remote
 19. `git switch -c <BRANCH_NAME>` — Create a new branch and switch to it  
     - Same as `git checkout -b <BRANCH_NAME>`  
     - Use a descriptive name, e.g. `patch-docs` for a fix to the documentation.
 20. `git switch <BRANCH_NAME>` — Switch to an existing branch (no `-c`, since we are not creating one)  
     - Same as `git checkout <BRANCH_NAME>`
-21. `git fetch --all` — Download all changes to all branches from the remote, so you can switch to a branch a collaborator created
+21. `git fetch --all` — Download all changes to all branches from the remote,
+    so you can switch to a branch a collaborator created
 22. `git push origin <BRANCH_NAME>` — Push the changes on a branch to the remote repository (usually named `origin`)  
-    - This pushes once. Git does not remember the connection, so a plain `git push` on that branch fails with `fatal: The current branch <BRANCH_NAME> has no upstream branch`, and you have to type `git push origin <BRANCH_NAME>` every time.  
-    - `git push -u origin <BRANCH_NAME>` — Push *and* link your local branch to the remote branch of the same name (`-u` stands for `--set-upstream`). After this, plain `git push` and `git pull` work on that branch, and `git status` tells you whether you are ahead of or behind the remote.  
+    - This pushes once.
+      Git does not remember the connection,
+      so a plain `git push` on that branch fails with `fatal: The current branch <BRANCH_NAME> has no upstream branch`,
+      and you have to type `git push origin <BRANCH_NAME>` every time.  
+    - `git push -u origin <BRANCH_NAME>` — Push *and* link your local branch to the remote branch of the same name (`-u` stands for `--set-upstream`).
+      After this, plain `git push` and `git pull` work on that branch,
+      and `git status` tells you whether you are ahead of or behind the remote.  
     - You only need `-u` the first time you push a new branch.
 23. `git merge <BRANCH_NAME>` — Merge the branch `<BRANCH_NAME>` into the branch you are currently on  
-    - If the same lines were changed in both branches, Git stops with a **merge conflict**. Open the files with `<<<<<<<` markers, choose what to keep, then `git add` and `git commit`.
+    - If the same lines were changed in both branches, Git stops with a **merge conflict**.
+      Open the files with `<<<<<<<` markers, choose what to keep, then `git add` and `git commit`.
 25. `git branch -d <BRANCH_NAME>` — Delete a local branch that has been merged
 
 
@@ -153,7 +171,8 @@ Use these in your local repository when you want to run or explore files from th
 
 ## 📍 Ignoring Files
 
-`.gitignore` — A text file in the root of the repository listing files and folders that Git should not track  
+`.gitignore` — A text file in the root of the repository listing files
+and folders that Git should not track  
     - One pattern per line, e.g. `.venv/`, `*.log`, `.DS_Store`  
     - Prepend `**/` to a file or folder name (e.g. `**/.venv/`, `**/.DS_Store`) to also ignore it in subdirectories anywhere within the repository
 

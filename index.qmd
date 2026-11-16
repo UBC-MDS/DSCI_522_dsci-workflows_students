@@ -65,11 +65,15 @@ and GitHub history will be used to evaluate this.
 
 ## Lab attendance is mandatory
 
-Students are expected to attend 100% of their scheduled lab hours and attendance will be taken at the beginning of each lab session.
-Students must make formal requests for academic concession in the event that they cannot attend a lab session by filling out this [academic concession form](https://github.com/UBC-MDS/UBC-MDS.github.io/blob/master/img/Template%20-%20In-Term%20Academic%20Concessions%20Self%20Declaration.pdf?raw=1) and sending it to the course instructor.
+Students are expected to attend 100% of their scheduled lab hours
+and attendance will be taken at the beginning of each lab session.
+Students must make formal requests for academic concession in the event that they cannot attend a lab session by filling out this [academic concession form](https://github.com/UBC-MDS/UBC-MDS.github.io/blob/master/img/Template%20-%20In-Term%20Academic%20Concessions%20Self%20Declaration.pdf?raw=1)
+and sending it to the course instructor.
 Applying for academic concession does not promise the granting of academic concession.
 Each application will be evaluated in the context of UBC’s Academic concession policy.
-Students missing more than **20% of the total scheduled lab hours** for a course without having received an academic concession will receive a possible maximum course grade of 50% and an “F” standing for the course on the transcript.
+Students missing more than **20% of the total scheduled lab hours** for a course
+without having received an academic concession will receive a possible maximum course grade of 50%
+and an “F” standing for the course on the transcript.
 For all other policies, please see the general MDS policies.
 
 :::
@@ -257,8 +261,10 @@ See [calendar](https://ubc-mds.github.io/calendar/).
 
 ### Academic Integrity
 
-Academic integrity is a commitment to honesty, respect, responsibility, and accountability in academic work.
-It is foundational to teaching and learning and is a shared value of all members of the UBC community.
+Academic integrity is a commitment to honesty, respect, responsibility,
+and accountability in academic work.
+It is foundational to teaching and learning
+and is a shared value of all members of the UBC community.
 In a project course, it also means being transparent with your teammates and the teaching team
 about how your work was produced.
 
@@ -281,12 +287,15 @@ Assessment-specific instructions always take precedence over the general guidanc
 
 **AI assistance is allowed.**
 Generative AI tools (e.g., ChatGPT, Claude, GitHub Copilot, Cursor) are a real part of modern data science workflows,
-and you may use them in this course to brainstorm, explain concepts, debug errors, or help write code and documentation.
-That said, this course is about building your own skills in version control, environments, containers, testing, and pipelines.
+and you may use them in this course to brainstorm, explain concepts, debug errors,
+or help write code and documentation.
+That said, this course is about building your own skills in version control,
+environments, containers, testing, and pipelines.
 We strongly encourage you to attempt the work yourself first,
 and to use AI to support your learning rather than replace it.
 A useful question to ask yourself is:
-*is this tool helping me understand the problem, or is it doing the thinking I am here to learn to do?*
+*is this tool helping me understand the problem,
+or is it doing the thinking I am here to learn to do?*
 
 **Disclose your AI use.**
 For every milestone and individual assignment, you must state whether generative AI was used,
@@ -299,7 +308,8 @@ If AI was used, please share:
   (e.g., `CLAUDE.md`, `AGENTS.md`, `.cursor/rules/`, `.github/copilot-instructions.md`),
   or, if you did not use one, a few representative example prompts.
 
-For group milestones, please keep this disclosure in an **`AI_USAGE.md`** file or `CLAUDE.md` (or other file names that indicate AI was used) in the root of your project repository
+For group milestones, please keep this disclosure in an **`AI_USAGE.md`** file
+or `CLAUDE.md` (or other file names that indicate AI was used) in the root of your project repository
 and update it as the project evolves.
 For individual assignments, include the disclosure with your Gradescope submission.
 Disclosing AI use is not penalized, and it helps us give you useful feedback.
@@ -319,7 +329,8 @@ Because GitHub history is used to evaluate teamwork,
 it should accurately reflect who did the work.
 
 **Communicate in your own words.**
-When writing issues, pull request descriptions, code reviews, peer reviews, and team work reflections,
+When writing issues, pull request descriptions, code reviews, peer reviews,
+and team work reflections,
 please use your own words.
 AI may help with translation or grammar editing.
 Much of what you learn in this course comes from these conversations with your teammates.

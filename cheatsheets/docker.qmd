@@ -18,12 +18,14 @@ format:
 
 ::: {.callout-warning}
 ## Command Line Sensitivity
-Command lines are **very sensitive** to whitespace and quotation marks! Pay close attention to syntax.
+Command lines are **very sensitive** to whitespace and quotation marks!
+Pay close attention to syntax.
 :::
 
 ::: {.callout-tip}
 ## Version Tags
-Don't use the TAG `latest` for images. Always use **specific version tags** instead for reproducibility.
+Don't use the TAG `latest` for images.
+Always use **specific version tags** instead for reproducibility.
 :::
 
 ### 📜 Basic Docker Run
@@ -74,7 +76,8 @@ docker run \
 
 ### Why use Docker Compose?
 
-We use `docker-compose.yml` file because it simplifies the process of typing complex `docker run` commands.
+We use `docker-compose.yml` file
+because it simplifies the process of typing complex `docker run` commands.
 
 ### Basic Commands
 
@@ -112,7 +115,8 @@ cd demo_docker
 nano docker-compose.yml
 ```
 
-5. Copy and paste the following code into the `docker-compose.yml` file. Local port is set at 8789, password is set to `password`, username is `rstudio`.
+5. Copy and paste the following code into the `docker-compose.yml` file.
+   Local port is set at 8789, password is set to `password`, username is `rstudio`.
 
 ```yaml
 services:
@@ -131,7 +135,9 @@ services:
 ```
 
    * You can also create this file using Graphical user interface (GUI) like VSCode. 
-   * If you used `nano` to create this file, you need to press `Cntrl + X` to attempt exit, by default it will ask you to save the file. Press `Y` and then press `Enter` to save the file. 
+   * If you used `nano` to create this file, you need to press `Cntrl + X` to attempt exit,
+     by default it will ask you to save the file.
+     Press `Y` and then press `Enter` to save the file. 
 
 6. Print out the content of the file to make sure it is correct.
 
@@ -145,9 +151,11 @@ cat docker-compose.yml
 docker compose up
 ```
 
-8. After the container is launched, your terminal will be hanging. You can open your browser and go to `http://localhost:8789` to access RStudio.
+8. After the container is launched, your terminal will be hanging.
+   You can open your browser and go to `http://localhost:8789` to access RStudio.
 
-9. To stop the container, you need to type `Cntrl + C` in the terminal where you launched the container, and then type: 
+9. To stop the container, you need to type `Cntrl + C` in the terminal
+   where you launched the container, and then type: 
 
 ```bash
 docker-compose rm
@@ -218,7 +226,9 @@ dependencies:
 ```
 
    * You can also create this file using Graphical user interface (GUI) like VSCode. 
-   * If you used `nano` to create this file, you need to press `Cntrl + X` to attempt exit, by default it will ask you to save the file. Press `Y` and then press `Enter` to save the file. 
+   * If you used `nano` to create this file, you need to press `Cntrl + X` to attempt exit,
+     by default it will ask you to save the file.
+     Press `Y` and then press `Enter` to save the file. 
 
 6. Print out the content of the file to make sure it is correct.
 
@@ -250,7 +260,8 @@ conda-lock -k explicit --file environment.yml -p linux-64
 nano Dockerfile 
 ```
 
-9. Copy and paste the following code into the `Dockerfile` file. We use jupyter minimal notebook image as an example, and copy the conda-lock file to the container.
+9. Copy and paste the following code into the `Dockerfile` file.
+   We use jupyter minimal notebook image as an example, and copy the conda-lock file to the container.
 
    * Macbook users with Apple Silicon chips will need to:
       * For **Local Dockerfile testing:** Use the following code (Dockerfile 1) to copy the conda-linux-aarch64.lock file to the container.
@@ -284,7 +295,9 @@ docker build --tag testing_cmds .
 
    * If you want to launch container's terminal only:
 
-   *Note: For Macbook users with Apple Silicon chips M4 chip, you may run into bugs here. The terminal may open, but once you try to type something, it will crash and come back to the base terminal environment.*
+   *Note: For Macbook users with Apple Silicon chips M4 chip, you may run into bugs here.
+   The terminal may open, but once you try to type something,
+   it will crash and come back to the base terminal environment.*
 
 ```bash
 docker run --rm -it testing_cmds ../../bin/bash
@@ -298,11 +311,14 @@ docker run --rm -it testing_cmds ../../bin/bash
 docker run --rm -it -p 8888:8888 testing_cmds
 ```
 
-Watch your terminal output for a unique URL beginning with http://127.0.0.1:8888/lab?token=. You'll see it displayed as highlighted in the example screenshot below. Copy this URL and open it in your web browser to access the Jupyter Lab interface. You can access the terminal by clicking on the terminal icon inside of the Jupyter Lab interface.
+Watch your terminal output for a unique URL beginning with http://127.0.0.1:8888/lab?token=. You'll see it displayed as highlighted in the example screenshot below.
+Copy this URL and open it in your web browser to access the Jupyter Lab interface.
+You can access the terminal by clicking on the terminal icon inside of the Jupyter Lab interface.
 
 ![](images/jupyter_example.png)
 
-12. Once you are in the terminal, you can test if this command works. This command will update the base environment with the packages you specified in the conda-lock file.
+12. Once you are in the terminal, you can test if this command works.
+    This command will update the base environment with the packages you specified in the conda-lock file.
 
 ```bash
 conda update --quiet --file /tmp/conda-linux-64.lock
@@ -310,7 +326,8 @@ conda update --quiet --file /tmp/conda-linux-64.lock
 
 13. If the above command works, you can exit the terminal by typing `exit`. 
 
-14. Update the `Dockerfile` to include this newly tested command. `Dockerfile` now should look like this for Macbook users with Apple Silicon chips M1-M4 chip to test the command locally:
+14. Update the `Dockerfile` to include this newly tested command.
+    `Dockerfile` now should look like this for Macbook users with Apple Silicon chips M1-M4 chip to test the command locally:
 
 ```dockerfile
 # Dockerfile 1
@@ -340,7 +357,10 @@ RUN conda update --quiet --file /tmp/conda-linux-64.lock
 docker build --tag testing_cmds .
 ```
 
-16. Run the docker image you just built using the same command as step 11. Then continue to test the following commands line by line in the terminal. Iterate through steps 12-14 (build a docker image --> run the docker container's terminal --> test new command --> update the Dockerfile to include the new command --> build docker image again ...) until you are happy with your Dockerfile. 
+16. Run the docker image you just built using the same command as step 11.
+    Then continue to test the following commands line by line in the terminal.
+    Iterate through steps 12-14 (build a docker image --> run the docker container's terminal --> test new command --> update the Dockerfile to include the new command --> build docker image again ...)
+    until you are happy with your Dockerfile. 
 
 ```bash
 # Clean up the cache files in building conda environment.
