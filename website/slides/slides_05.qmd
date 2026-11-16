@@ -20,6 +20,8 @@ format:
       width: wide
 resources:
   - assets/helper.js
+title-slide-attributes:
+  data-notes: "[1] iClicker Cloud open<br>[2] Encourage questions: if one student has a question, likely others do too.<br>[3] Connect my logitech highlighter<br>[4] Connect my writing notepad to the laptop"
 ---
 
 ## iClicker: How are you getting along with Docker?
