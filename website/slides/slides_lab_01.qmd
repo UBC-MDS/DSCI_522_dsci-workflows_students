@@ -57,7 +57,7 @@ title-slide-attributes:
 Source: [Raya and the Last Dragon](https://www.imdb.com/title/tt5109280/)
 :::
 
----
+##
 
 ![](images/2.JPG)
 
@@ -65,7 +65,7 @@ Source: [Raya and the Last Dragon](https://www.imdb.com/title/tt5109280/)
 Source: [Raya and the Last Dragon](https://www.imdb.com/title/tt5109280/)
 :::
 
----
+##
 
 ![](images/3.JPG)
 
@@ -73,7 +73,7 @@ Source: [Raya and the Last Dragon](https://www.imdb.com/title/tt5109280/)
 Source: [Raya and the Last Dragon](https://www.imdb.com/title/tt5109280/)
 :::
 
----
+##
 
 ![](images/4.JPG)
 
@@ -81,7 +81,7 @@ Source: [Raya and the Last Dragon](https://www.imdb.com/title/tt5109280/)
 Source: [Raya and the Last Dragon](https://www.imdb.com/title/tt5109280/)
 :::
 
----
+##
 
 ![](images/5.JPG)
 
@@ -123,6 +123,7 @@ Source: [Raya and the Last Dragon](https://www.imdb.com/title/tt5109280/)
 
 ::: {style="font-size: 0.95em;"}
 ::: {.callout-tip}
+
 ## Why GitHub Issues?
 - Transparent and trackable: TAs and instructors can see communications and contributions
 - Everyone is **included** in the loop
