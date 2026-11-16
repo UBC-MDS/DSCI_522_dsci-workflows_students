@@ -196,6 +196,12 @@ Time to get to know each other!
 :::
 
 
-# Questions? 🤔
+# Questions? 
 
 Feel free to ask for help throughout the lab!
+
+<center>![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeGtmcWw5dWZvN2VwNHhhaW80eG1wM2hld3RyOWZyYjE5empuY2RtayZlcD12MV9naWZzX3NlYXJjaCZjdD1n/NS7gPxeumewkWDOIxi/giphy.gif){width="600"}</center>
+
+::: footer
+[GIPHY](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeGtmcWw5dWZvN2VwNHhhaW80eG1wM2hld3RyOWZyYjE5empuY2RtayZlcD12MV9naWZzX3NlYXJjaCZjdD1n/NS7gPxeumewkWDOIxi/giphy.gif)
+:::
