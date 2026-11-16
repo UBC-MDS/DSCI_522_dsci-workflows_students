@@ -1,7 +1,6 @@
 ---
 title: "Linux Command Line Cheatsheet"
 subtitle: "Quick Reference Guide for Command Line Operations"
-author: "Sky (Kehan) Sheng"
 execute:
   eval: false
 format:

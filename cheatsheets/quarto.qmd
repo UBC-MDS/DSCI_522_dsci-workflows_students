@@ -1,7 +1,6 @@
 ---
 title: "Quarto Cheatsheet"
 subtitle: "Quick Reference Guide for Quarto"
-author: "Sky (Kehan) Sheng"
 execute:
   eval: false
 format:

@@ -9,6 +9,7 @@ project:
     # cheatsheet, add it here and uncomment it in the navbar menu and the
     # `cheatsheets` sidebar below.
     - cheatsheets/command_line.qmd
+    - cheatsheets/git.qmd
     # - cheatsheets/docker.qmd
     # - cheatsheets/quarto.qmd
     # - cheatsheets/makefile.qmd
@@ -29,6 +30,8 @@ website:
         menu:
           - href: cheatsheets/command_line.qmd
             text: "Command Line"
+          - href: cheatsheets/git.qmd
+            text: "Git"
           # - href: cheatsheets/docker.qmd
           #   text: "Docker & Docker Compose"
           # - href: cheatsheets/quarto.qmd
@@ -85,6 +88,8 @@ website:
       contents:
         - href: cheatsheets/command_line.qmd
           text: "Command Line"
+        - href: cheatsheets/git.qmd
+          text: "Git"
         # - href: cheatsheets/docker.qmd
         #   text: "Docker & Docker Compose"
         # - href: cheatsheets/quarto.qmd

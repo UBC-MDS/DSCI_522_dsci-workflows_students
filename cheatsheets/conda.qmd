@@ -1,7 +1,6 @@
 ---
 title: "Conda & Conda-lock Cheatsheet"
 subtitle: "Quick Reference Guide for Conda Environment Management"
-author: "Sky (Kehan) Sheng"
 execute:
   eval: false
 format:

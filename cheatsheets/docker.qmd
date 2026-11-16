@@ -1,7 +1,6 @@
 ---
 title: "Docker & Docker Compose Cheatsheet"
 subtitle: "Quick Reference Guide for Docker Containerization"
-author: "Sky (Kehan) Sheng"
 execute:
   eval: false
 format:

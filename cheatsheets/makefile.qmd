@@ -1,7 +1,6 @@
 ---
 title: "Makefile Cheatsheet"
 subtitle: "Quick Reference Guide for Makefile"
-author: "Sky (Kehan) Sheng"
 execute:
   eval: false
 format:
