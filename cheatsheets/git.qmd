@@ -1,0 +1,171 @@
+---
+title: "Git Cheatsheet"
+subtitle: "Quick Reference Guide for Version Control with Git and GitHub"
+execute:
+  eval: false
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-block-bg: true
+    code-block-border-left: "#e0cfea"
+---
+
+Run all of these commands in your terminal, from inside your project folder (except `git clone`, which creates the folder for you).
+For the full explanations, see the textbook chapters on
+[Git basics](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-basics.html),
+[Git history](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-history.html),
+[Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html), and
+[merge conflicts](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-merge-conflicts.html).
+
+---
+
+## 📍 The Everyday Workflow
+
+| Task | Command |
+|------|---------|
+| Clone a remote version control repository from GitHub.com to your local computer | `git clone <URL>` |
+| Check the status of the local version control repository | `git status` |
+| Add a file to the staging area | `git add <FILENAME>` |
+| Commit staged files to the version control history | `git commit -m "Some relevant message about the changes"` |
+| Push changes from the local repository to the remote repository on GitHub.com | `git push` |
+| Pull changes from the remote repository on GitHub.com to the local repository | `git pull` |
+| View the version control history | `git log` |
+
+The usual loop is: `git pull` → edit files → `git status` → `git add` → `git commit` → `git push`.
+
+---
+
+## 📍 Getting a Repository
+
+1. `git clone <URL>` — Copy a remote repository from GitHub.com to your computer  
+    - Example: `git clone https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students.git`  
+    - This creates a new folder named after the repository. Use `cd <folder_name>` to go into it.  
+    - Do not clone a repository inside another repository.
+2. `git init` — Turn the current folder into a new, empty Git repository  
+    - Only needed when you start a project locally. If you start on GitHub.com and then `git clone`, you do not need it.
+
+---
+
+## 📍 Checking the Status
+
+3. `git status` — Show which files are modified, staged, or not tracked yet  
+    - Run it often, especially before `git add` and `git commit`.
+4. `git diff` — Show the changes you made that are not staged yet  
+    - `git diff --staged` — Show the changes that are staged and will go into the next commit
+
+---
+
+## 📍 Staging and Committing
+
+5. `git add <FILENAME>` — Add a file to the staging area  
+    - `git add <FILE1> <FILE2>` — Add several files at once  
+    - `git add <FOLDER>/` — Add everything in a folder  
+    - `git add .` — Add all changes in the current folder (check `git status` first so you only stage what you mean to)
+6. `git commit -m "Some relevant message about the changes"` — Commit the staged files to the version control history  
+    - Write a short, specific message that says what changed and why.
+    - Only staged files are committed.
+7. `git restore --staged <FILENAME>` — Unstage a file (your edits to the file are kept)
+8. `git restore <FILENAME>` — Discard your unstaged edits to a file and go back to the last commit  
+    - ⚠️ This cannot be undone.
+
+---
+
+## 📍 Syncing with GitHub
+
+9. `git push` — Send your local commits to the remote repository on GitHub.com  
+    - First push of a new branch: `git push -u origin <BRANCH_NAME>` (`-u` stands for `--set-upstream`). See the branches section below for the difference between this and `git push origin <BRANCH_NAME>`.
+10. `git pull` — Get changes from the remote repository on GitHub.com and merge them into your local repository  
+    - Pull before you start working, and before you push, to avoid conflicts.
+11. `git fetch` — Download the latest changes from GitHub.com without merging them into your files
+12. `git remote -v` — Show the URL of the remote repository your local repository is connected to
+
+---
+
+## 📍 Viewing the History
+
+13. `git log` — View the version control history  
+    - Press `q` to exit the log. Use the arrow keys, `b`, or the space bar to scroll.  
+    - Press `/` + a search term + `Enter` to search the log; `n` / `N` jump to the next / previous match.  
+    - `git log -n 3` — Show only the last 3 commits  
+    - `git log <FILENAME>` — Show only the commits that changed this file
+14. `git show <COMMIT_ID>` — Show the changes made in one commit  
+    - The commit ID (also called the commit hash, or SHA) is the long string of letters and numbers after `commit` in `git log`. It is a hash of the commit's contents, so each commit has a unique one.  
+    - The first 7 characters (the short SHA) are usually enough: `git show 238dbcb`
+
+::: callout-tip
+## 💡 Just want a look at the past?
+
+On GitHub.com, click the **commits** link on the repository's main page to see the history and commit messages. Click the **<>** button next to a commit to view the state of the whole repository at that point in time.
+:::
+
+---
+
+## 📍 Going Back in Time
+
+Use these in your local repository when you want to run or explore files from the past, or bring a past version of a file into the present.
+
+15. `git checkout <COMMIT_ID> .` — Move the whole project (all files and directories) back to the state of that commit  
+    - The last `.` is really important, so don't forget it!  
+    - Example: `git checkout 9b4af1d .`  
+    - The files now look like they did at that commit, so you can explore and run them.
+16. `git checkout HEAD .` — Go back to the future: return to the most recent commit  
+    - `HEAD` is the nickname for the most recent commit.  
+    - Run `git log` afterwards to check you returned safely.
+17. `git checkout <COMMIT_ID> <FILENAME>` — Bring back the version of a single file from a past commit  
+    - Example: `git checkout 5837143 doc/count_report.Rmd`  
+
+---
+
+## 📍 Branches
+
+18. `git branch` — List the local branches (the current one is marked with `*`)  
+    - `git branch -v` — Also show the SHA and message of the last commit on each branch (`-v` stands for `--verbose`)
+    - `git branch -a` — Also list the branches on the remote
+19. `git switch -c <BRANCH_NAME>` — Create a new branch and switch to it  
+    - Same as `git checkout -b <BRANCH_NAME>`  
+    - Use a descriptive name, e.g. `patch-docs` for a fix to the documentation.
+20. `git switch <BRANCH_NAME>` — Switch to an existing branch (no `-c`, since we are not creating one)  
+    - Same as `git checkout <BRANCH_NAME>`
+21. `git fetch --all` — Download all changes to all branches from the remote, so you can switch to a branch a collaborator created
+22. `git push origin <BRANCH_NAME>` — Push the changes on a branch to the remote repository (usually named `origin`)  
+    - This pushes once. Git does not remember the connection, so a plain `git push` on that branch fails with `fatal: The current branch <BRANCH_NAME> has no upstream branch`, and you have to type `git push origin <BRANCH_NAME>` every time.  
+    - `git push -u origin <BRANCH_NAME>` — Push *and* link your local branch to the remote branch of the same name (`-u` stands for `--set-upstream`). After this, plain `git push` and `git pull` work on that branch, and `git status` tells you whether you are ahead of or behind the remote.  
+    - You only need `-u` the first time you push a new branch.
+23. `git merge <BRANCH_NAME>` — Merge the branch `<BRANCH_NAME>` into the branch you are currently on  
+    - If the same lines were changed in both branches, Git stops with a **merge conflict**. Open the files with `<<<<<<<` markers, choose what to keep, then `git add` and `git commit`.
+25. `git branch -d <BRANCH_NAME>` — Delete a local branch that has been merged
+
+
+::: callout-tip
+## 💡 Typical branch workflow
+
+1. `git switch main` and `git pull` — start from the latest `main`
+2. `git switch -c my-new-feature` — create a branch
+3. Edit, `git add`, `git commit` (repeat as needed)
+4. `git push -u origin my-new-feature` — push the branch
+5. Open a pull request on GitHub.com, get it reviewed, and merge it there
+6. `git switch main` and `git pull` — bring the merged work back to your computer
+:::
+
+---
+
+## 📍 Ignoring Files
+
+`.gitignore` — A text file in the root of the repository listing files and folders that Git should not track  
+    - One pattern per line, e.g. `.venv/`, `*.log`, `.DS_Store`  
+    - Prepend `**/` to a file or folder name (e.g. `**/.venv/`, `**/.DS_Store`) to also ignore it in subdirectories anywhere within the repository
+
+---
+
+## 📍 Common Problems
+
+| Message or situation | What to do |
+|----------------------|------------|
+| `fatal: not a git repository` | You are not inside a repository folder. Use `pwd` and `cd` to find your project folder. |
+| `Your branch is behind 'origin/main'` | Run `git pull`. |
+| `rejected ... failed to push some refs` | The remote has commits you do not have. Run `git pull`, fix any conflicts, then `git push` again. |
+| `CONFLICT (content): Merge conflict in <file>` | Open the file, resolve the `<<<<<<<` / `=======` / `>>>>>>>` sections, then `git add <file>` and `git commit`. |
+| `nothing to commit, working tree clean` | Nothing has changed since the last commit. Nothing to do. |
+| `git commit` opens a strange text editor (Vim) | You forgot `-m "message"`. In Vim, type `:q!` and press `Enter` to quit, then run the command again with `-m`. |

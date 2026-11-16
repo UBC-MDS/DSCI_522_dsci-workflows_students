@@ -2,7 +2,7 @@
 title: "Teamwork Contract"
 ---
 
-[Milestone 1](milestone1.qmd) asks your team to draft a team work contract.
+[Milestone 1](milestone1.qmd) asks your team to draft a teamwork contract.
 Below is a Quarto template to start from.
 It is based on a contract a past MDS team wrote for their DSCI 524 group project.
 
@@ -16,7 +16,9 @@ It is based on a contract a past MDS team wrote for their DSCI 524 group project
 3.  Replace everything in `[square brackets]`.
     The template is a starting point, not a form:
     change, add or remove anything so it describes how *your* team will work.
-    See [Milestone 1](milestone1.qmd#draft-a-team-work-contract) for what a contract could cover.
+    Talk it through as a team before you write it down.
+    A contract that is mostly the template with the brackets filled in will lose marks.
+    See [Milestone 1](milestone1.qmd#draft-a-teamwork-contract) for what a contract could cover.
 4.  Render it to PDF from the terminal:
 
     ``` bash
@@ -58,6 +60,26 @@ This includes making sure all scripts are working,
 creating tests for all our functions,
 and using proper grammar in written submissions.
 
+## Work distribution
+
+At each weekly meeting, we will split the milestone into small tasks,
+open a GitHub issue for each one, and assign it to a team member.
+Over the course, everyone should do a similar amount of
+coding, writing, and reviewing.
+[DESCRIBE HOW YOUR TEAM WILL MAKE SURE THE WORK STAYS FAIR,
+E.G., ROTATING WHO WRITES CODE VS. WHO WRITES THE REPORT.]
+
+## Availability
+
+Team members are not available at the following times:
+
+- [TEAM MEMBER 1]: [E.G., EVENINGS AFTER 8 PM, SUNDAYS]
+- [TEAM MEMBER 2]: [...]
+- [TEAM MEMBER 3]: [...]
+- [TEAM MEMBER 4]: [...]
+
+We will not expect replies or reviews from someone during their unavailable times.
+
 ## Meetings
 
 Meeting times were established during the initial team meeting held on [DATE].
@@ -73,11 +95,11 @@ written notice must be given 24 hours before the meeting to discuss alternative 
 
 ## Communication
 
-All communication outside of the meetings will be through Slack or GitHub.
-GitHub will be the primary communication tool for ideas, suggestions,
-submitting work and reviewing work.
-Slack will be the primary communication tool for informal communication
-and scheduling meetings.
+All project discussion outside of meetings will happen in GitHub issues:
+ideas, suggestions, decisions, splitting up tasks, and meeting notes.
+Work is submitted and reviewed through pull requests.
+Slack is only for scheduling meetings and quick informal messages.
+If an important decision is made on Slack, we will record it in a GitHub issue.
 
 ## Reviews
 
@@ -86,6 +108,16 @@ on the group project's repository on GitHub.com.
 Members are expected to add teammates as reviewers,
 so that every pull request is reviewed by another teammate.
 Pull requests should be reviewed within [NUMBER] hours after creation.
+
+## Use of AI
+
+[DESCRIBE IF AND HOW YOUR TEAM WILL USE GENERATIVE AI (E.G., CHATGPT, CLAUDE, COPILOT),
+AND FOR WHAT KINDS OF TASKS.]
+Every team member is responsible for understanding and checking
+any code or text they submit, whether or not AI helped write it.
+Pull requests and GitHub issues are opened, reviewed, and merged by team members,
+never by an AI agent or chat bot.
+We will keep track of how we use AI so we can write the AI use statement in our README.
 
 ## Roles
 
