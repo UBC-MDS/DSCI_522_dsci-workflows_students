@@ -318,27 +318,80 @@ Source: [Timbers, T. A., Ostblom, J., D'Andrea, F., Lourenzutti, R., & Chen, D. 
 
 ::::
 
-## what is version control?
+## 💭 Share your story {style="font-size: 0.8em;"}
 
-* [Version control (for transparency and collaboration)](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-basics.html)
+* Think and write down a non-reproducible, or non-auditable, workflow you have used before at work, on a personal project, or in course work, that negatively impacted your work somehow (make sure to include this in the story).
 
-![](images/Github.png){width=120 fig-align="center"}
+* **Share your story in the [Google Doc](https://docs.google.com/document/d/1Eo5zS1CdFjaXv8tfohn6Nry3YMaCrnPnel1Kjyki7Q0/edit?usp=sharing)** 
 
-# Demo and activity time!
+* Activity in [textbook](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/data-science-workflows.html)
 
-- [Going back in time with Git](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-history.html)
-- [Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html)
+![](images/google_doc_qr.png){width="85%" style="display: block; margin: 0px auto;"}
+
+
+
+## What is version control?
+
+* [An example of collaborative version control: `moo4feed` R package development](https://github.com/skysheng7/moo4feed.git)
+
+* [Going back in time with Git](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-history.html)
+
+* [Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html)
 
 ::: {.notes}
 
-
-
+1.  landing page, functions, tutorials etc
+2.  Travel back in time: `commits` --> time to "April 2025" --> `< >`
+3.  **issues** for communication --> "labels", "assignees", "@someone"
+4.  **project** for organizing issues 
+5.  **branches** for developing new features --> meaningful name (what are you doing), not your own name
+6.  **PR** show number 83 --> communication, human review, cursor bugbot review double check 
+7.  show the branch history and merge history on cursor for `moo4feed`
+8.  `.gitignore` file
 :::
 
+![](images/Github.png){width=120 fig-align="center"}
 
-# Let's work on merge conflicts together!
+
+# Let's use version control, and work on merge conflicts together!
 
 [Individual assignment 1](https://ubc-mds.github.io/DSCI_522_dsci-workflows_students/assignments/individual1.html)
+
+::: {.notes}
+make those changes, then locally
+
+* **Part 1:**
+
+-1. `git log` --> use arrow keys to navigate, `q` to quit, use `/` and a word to search, then use `n` to jump to the next match 
+0. `git status` to check the changes
+1. `git add .`
+2. `git commit -m "commit locally"`
+3. `git push` --> error 
+4. `git pull`
+5. `git config pull.rebase false` --> solve merge conflict manually 
+6. `git add .`
+7. `git commit -m "solve merge conflict manually"`
+8. `git push` --> success!
+
+*Optional: show going back to history with :*
+1. `git log` --> find the first commit
+2. `git checkout <commit hash>` to go back in time
+3. `git switch main` to go back to the real head of the main branch
+
+* **Part 2:** 
+1. `git switch -c "opinions"` or `git checkout -b "opinions"`  to create a new branch locally
+2. `git branch -v` to see all branches, v is verbose mode
+3. `git branch -a` to see all branches, a is all mode
+4.  after you make all the changes, `git add .` and `git commit -m "make all the changes"`
+5. `git push` --> error 
+6. `git push -u origin opinions` to set upstream to the remote branch 
+7. `git branch -a` to check all branches, or just use GitHub to check 
+8. `git switch main` --> **what we added in the other branch is NOT in the main branch!**
+9. create PR --> show **code review** use **"+"** to add comments
+10. `git pull` locally
+11. `git branch -d opinions` but only deleted local branch
+12. `git push origin -d opinions` will remove the remote branch or just use the **trash can icon** on GitHub
+:::
 
 ## ✨ Clean, well documented and distributable code
 
@@ -352,17 +405,6 @@ Source: [Timbers, T. A., Ostblom, J., D'Andrea, F., Lourenzutti, R., & Chen, D. 
 ::: footer
 Source: Ma, E. J. (2024, October 25). The Human Dimension to Clean, Distributable, and Documented Data Science Code.
 :::
-
-## 💭 Share your story {style="font-size: 0.8em;"}
-
-* Think and write down a non-reproducible, or non-auditable, workflow you have used before at work, on a personal project, or in course work, that negatively impacted your work somehow (make sure to include this in the story).
-
-* **Share your story in the [Google Doc](https://docs.google.com/document/d/1Eo5zS1CdFjaXv8tfohn6Nry3YMaCrnPnel1Kjyki7Q0/edit?usp=sharing)** 
-
-* Activity in [textbook](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/data-science-workflows.html)
-
-![](images/google_doc_qr.png){width="85%" style="display: block; margin: 0px auto;"}
-
 
 ## Why do we need virtual environment?
 
