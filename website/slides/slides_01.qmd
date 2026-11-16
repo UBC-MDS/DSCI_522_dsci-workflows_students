@@ -330,24 +330,14 @@ Source: [Timbers, T. A., Ostblom, J., D'Andrea, F., Lourenzutti, R., & Chen, D. 
 
 ::: {.notes}
 
+
+
 :::
 
 
 # Let's work on merge conflicts together!
 
 [Individual assignment 1](https://ubc-mds.github.io/DSCI_522_dsci-workflows_students/assignments/individual1.html)
-
-
-## 💭 Share your story {style="font-size: 0.8em;"}
-
-* Think and write down a non-reproducible, or non-auditable, workflow you have used before at work, on a personal project, or in course work, that negatively impacted your work somehow (make sure to include this in the story).
-
-* **Share your story in the [Google Doc](https://docs.google.com/document/d/1Eo5zS1CdFjaXv8tfohn6Nry3YMaCrnPnel1Kjyki7Q0/edit?usp=sharing)** 
-
-* Activity in [textbook](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/data-science-workflows.html)
-
-![](images/google_doc_qr.png){width="70%" style="margin-top: 0px; margin-bottom: 0px;"}
-
 
 ## ✨ Clean, well documented and distributable code
 
@@ -361,6 +351,17 @@ Source: [Timbers, T. A., Ostblom, J., D'Andrea, F., Lourenzutti, R., & Chen, D. 
 ::: footer
 Source: Ma, E. J. (2024, October 25). The Human Dimension to Clean, Distributable, and Documented Data Science Code.
 :::
+
+## 💭 Share your story {style="font-size: 0.8em;"}
+
+* Think and write down a non-reproducible, or non-auditable, workflow you have used before at work, on a personal project, or in course work, that negatively impacted your work somehow (make sure to include this in the story).
+
+* **Share your story in the [Google Doc](https://docs.google.com/document/d/1Eo5zS1CdFjaXv8tfohn6Nry3YMaCrnPnel1Kjyki7Q0/edit?usp=sharing)** 
+
+* Activity in [textbook](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/data-science-workflows.html)
+
+![](images/google_doc_qr.png){width="85%" style="display: block; margin: 0px auto;"}
+
 
 ## Why do we need virtual environment?
 
@@ -382,7 +383,7 @@ Source: Ma, E. J. (2024, October 25). The Human Dimension to Clean, Distributabl
 
 ![](images/slide18.png){style="display: block; margin-left: auto; margin-right: auto; margin-bottom: 0px;"}
 
-## 🔧 Different virtual environment management tools
+## 🔧 Different virtual environment management tools {style="font-size: 0.8em;"}
 
 :::: {.columns}
 
