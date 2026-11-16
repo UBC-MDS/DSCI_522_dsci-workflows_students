@@ -72,17 +72,18 @@ introduce TA parsa
 ## Where do I find things? {style="font-size: 0.8em;"}
 
 ::: {.fragment}
-**Links you need!** bookmark on Slack channel `#522_dsci-workflows`
+- **Links you need!** bookmark on Slack channel `#522_dsci-workflows`
 :::
 
 ::: {.fragment}
-**Deadlines** should be found in [MDS calendar](https://ubc-mds.github.io/calendar/) (Gradescope is struggling with daylight saving time change issues with US VS Canada)
+- **Deadlines** should be found in [MDS calendar](https://ubc-mds.github.io/calendar/) (Gradescope is struggling with daylight saving time change issues with US VS Canada)
 :::
 
 ::: {.fragment}
 | What | Where |
 |---|---|
 | Syllabus, schedule, assignments | [Course website](https://ubc-mds.github.io/DSCI_522_dsci-workflows_students/) |
+| Cheatsheet | [Cheatsheet](https://ubc-mds.github.io/DSCI_522_dsci-workflows_students/cheatsheets/command_line.html) |
 | Lecture slides | [Slides website](https://skysheng7.github.io/DSCI_522-001-slides/) |
 | Course notes | [Textbook](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science) |
 | Questions | Slack channel [`#522_dsci-workflows`](https://ubc-mds.slack.com/messages/522_dsci-workflows) |
