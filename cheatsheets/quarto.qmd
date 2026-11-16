@@ -23,8 +23,10 @@ format:
 conda install quarto
 ```
 
-* Note: Please remember to redo conda lock of your enviornment, rebuild docker image after instaling quarto.
-* If you are running things locally, you may need to manually convert your conda enviornment to jupyter kernel: 
+* Note: Please remember to redo conda lock of your enviornment,
+  rebuild docker image after instaling quarto.
+* If you are running things locally,
+  you may need to manually convert your conda enviornment to jupyter kernel: 
 
 ```bash
 python -m ipykernel install --user --name <conda_env_name> --display-name "Python (<conda_env_name>)"
@@ -40,9 +42,12 @@ quarto convert notebook.ipynb
 
 ## Create a new repository
 
-1.  Use this [github repository](https://github.com/UBC-MDS/dsci-522-individual-assignment-quarto-python) as a template, and create a new repository under your own GitHub account.
+1.  Use this [github repository](https://github.com/UBC-MDS/dsci-522-individual-assignment-quarto-python) as a template,
+    and create a new repository under your own GitHub account.
 
-Click on "Use this template" button, and then click "create a new repository" button to create a public repository using default settings under your own GitHub account.
+Click on "Use this template" button,
+and then click "create a new repository" button to create a public repository
+using default settings under your own GitHub account.
 
 ![](images/ia3-1.png)
 
@@ -59,7 +64,8 @@ cd <repository_name>
 docker compose up
 ```
 
-4.  Copy and open the URL that starts with `http://127.0.0.1:8888/lab?token=` in your browser, to launch jupyter lab docker container.
+4.  Copy and open the URL that starts with `http://127.0.0.1:8888/lab?token=` in your browser,
+    to launch jupyter lab docker container.
 
 5.  Run the python script in the terminal to generate the plots and tables in the results folder.
 
@@ -74,9 +80,13 @@ You will see the results folder now has new plots and csv files saved.
 
 ### Header formatting & table of contents
 
-> **TODO**: Add header formatting to sections (e.g., “Aim”, “Data”, “Methods”, “Results”, “References”) and Quarto configuration so that a table of contents that is automatically generated from the document headers will be created when the document is rendered
+> **TODO**: Add header formatting to sections (e.g., “Aim”, “Data”, “Methods”, “Results”, “References”) and Quarto configuration
+> so that a table of contents that is automatically generated from the document headers will be created
+> when the document is rendered
 
-We will update the `yml` header to add table of contents. We will add table of content (toc) with depth 3 for both html and pdf formats. Your `yml` header at the begining of the file (i.e., `qmd_example.qmd`) should be updated to look like this:
+We will update the `yml` header to add table of contents.
+We will add table of content (toc) with depth 3 for both html and pdf formats.
+Your `yml` header at the begining of the file (i.e., `qmd_example.qmd`) should be updated to look like this:
 
 ``` yaml
 title: "DSCI 310: Historical Horse Population in Canada"
@@ -92,7 +102,8 @@ format:
     toc-depth: 3
 ```
 
-You will format header sections using `#`, `##`, `###`, etc. For example, I've added the following header sections to the `qmd_example.qmd` file:
+You will format header sections using `#`, `##`, `###`, etc. For example,
+I've added the following header sections to the `qmd_example.qmd` file:
 
 ``` markdown
 # Aim
@@ -108,9 +119,11 @@ You will format header sections using `#`, `##`, `###`, etc. For example, I've a
 
 ### References
 
-> **TODO**: Add correctly formatted inline BibTeX references so that a nicely formatted reference list will be present at the end of the document.
+> **TODO**: Add correctly formatted inline BibTeX references
+> so that a nicely formatted reference list will be present at the end of the document.
 
-You already have a `references.bib` file in the repository under the `reports` folder. We will point `bibliography` to look for references in this file in the `yml` header as follows:
+You already have a `references.bib` file in the repository under the `reports` folder.
+We will point `bibliography` to look for references in this file in the `yml` header as follows:
 
 ``` yaml
 title: "DSCI 310: Historical Horse Population in Canada"
@@ -134,7 +147,8 @@ bibliography: references.bib
 -   Please use `:` to separate the field name and the field value.
 :::
 
-Let's render what we have so far to see the result. In your terminal, please run the following commands:
+Let's render what we have so far to see the result.
+In your terminal, please run the following commands:
 
 ``` bash
 # go to the reports directory if you are in the root directory
@@ -147,10 +161,17 @@ quarto render qmd_example.qmd
 ::: callout-note
 ## 😵 No references listed in the rendered report??
 
-You will notice that no references are listed in the rendered pdf or html file. This is because we have not added in-text citations to the `.qmd` file. You can list as many BibTex references as you want in your `references.bib` file. However, only the references that are cited in the `.qmd` file will be listed in the rendered pdf or html file under "References" section.
+You will notice that no references are listed in the rendered pdf or html file.
+This is because we have not added in-text citations to the `.qmd` file.
+You can list as many BibTex references as you want in your `references.bib` file.
+However, only the references that are cited in the `.qmd` file will be listed in the rendered pdf
+or html file under "References" section.
 :::
 
-Let's add in-text citations to the `.qmd` file. We will use the `[@reference_key]` syntax (or `[@reference_key1; @reference_key2]` when you have more than 1 reference) to cite references. Please note the `reference_key` is the first phrase after `{` in the BibTex entry. For example, for this entry in the `references.bib` file:
+Let's add in-text citations to the `.qmd` file.
+We will use the `[@reference_key]` syntax (or `[@reference_key1; @reference_key2]` when you have more than 1 reference) to cite references.
+Please note the `reference_key` is the first phrase after `{` in the BibTex entry.
+For example, for this entry in the `references.bib` file:
 
 ``` bibtex
 @Manual{click,
@@ -161,9 +182,11 @@ Let's add in-text citations to the `.qmd` file. We will use the `[@reference_key
 }
 ```
 
-The `reference_key` is `click`. We will use `[@click]` to cite this reference in the `.qmd` file.
+The `reference_key` is `click`.
+We will use `[@click]` to cite this reference in the `.qmd` file.
 
-For example, I've added the following in-text citations to the `.qmd` file. Please complete all other in-text citations yourself:
+For example, I've added the following in-text citations to the `.qmd` file.
+Please complete all other in-text citations yourself:
 
 ``` markdown
 Horse population data were sourced from the 
@@ -178,7 +201,11 @@ Horse population data were sourced from the
 > -   has a label for easy cross referencing
 > -   controls the figure sizes so the figures are not too big (in particular the second figure in the report should be only 60-70% of the default width)
 
-We use the syntax `![description](relative/path/to/figure.png){#fig-label width=950%}` to format the figure. For example, I've added the following figure to the `.qmd` file, and I use `@fig-label` to refer to it in the text. This will be rendered as `Figure 1` in the rendered pdf or html file. You will do so for both Figure 1 + 2.
+We use the syntax `![description](relative/path/to/figure.png){#fig-label width=950%}` to format the figure.
+For example, I've added the following figure to the `.qmd` file,
+and I use `@fig-label` to refer to it in the text.
+This will be rendered as `Figure 1` in the rendered pdf or html file.
+You will do so for both Figure 1 + 2.
 
 ``` markdown
 # Results
@@ -198,7 +225,8 @@ We can see from @fig-horse-pop that Ontario, Saskatchewan and Alberta
 
 ### Table formatting
 
-> **TODO**: add a table description argument so that they are automatically numbered by Quarto and use cross referencing to link to the table if/when it is discussed in the text
+> **TODO**: add a table description argument so that they are automatically numbered by Quarto
+> and use cross referencing to link to the table if/when it is discussed in the text
 
 We use the syntax below inside of python code block to format the table:
 
@@ -207,7 +235,8 @@ We use the syntax below inside of python code block to format the table:
 #| tbl-cap: Table description
 ```
 
-For example, I've added the following table to the `.qmd` file. `@tbl-horse-sd` will be rendered as `Table 1` in the rendered pdf or html file.
+For example, I've added the following table to the `.qmd` file.
+`@tbl-horse-sd` will be rendered as `Table 1` in the rendered pdf or html file.
 
 ```` markdown
 We present the standard deviations in @tbl-horse-sd.
@@ -232,15 +261,20 @@ Markdown(horses_sd_table.to_markdown(index = False))
 
 ### Cross-referencing
 
-> **TODO**: Edit the narrative so it uses cross-referencing to refer to the figures and tables instead of having their reference hardcode the figure and table numbers.
+> **TODO**: Edit the narrative so it uses cross-referencing to refer to the figures
+> and tables instead of having their reference hardcode the figure and table numbers.
 
-In the steps above, we have already used cross-referencing to refer to the figures and tables (e.g., `@fig-horse-pop` and `@tbl-horse-sd`).
+In the steps above, we have already used cross-referencing to refer to the figures
+and tables (e.g., `@fig-horse-pop` and `@tbl-horse-sd`).
 
 ### Inline Quarto code
 
-> **TODO**: replace the ??? in the Quarto report narrative text with inline Quarto code, so that the text will be automatically updated with the correct value
+> **TODO**: replace the ??? in the Quarto report narrative text with inline Quarto code,
+> so that the text will be automatically updated with the correct value
 
-We use the syntax below to do inline Quarto code. It will execute the python / R code inside of the code block and resulting value will be displayed in the text.
+We use the syntax below to do inline Quarto code.
+It will execute the python / R code inside of the code block
+and resulting value will be displayed in the text.
 
 ``` markdown
 `{python} <python_code>`
@@ -266,7 +300,8 @@ In @fig-horse-largest we zoom in and look at the province of `{python} largest_s
 
 ### No code chunk visible
 
-> **TODO**: change the code chunk options so that no code is viewable in the rendered report, just the code outputs where needed (e.g., figures and tables)
+> **TODO**: change the code chunk options so that no code is viewable in the rendered report,
+> just the code outputs where needed (e.g., figures and tables)
 
 We will set `echo: false` in the `yml` header to hide the code chunk in the rendered report.
 
@@ -289,9 +324,11 @@ execute:
 
 ### GitHub Pages
 
-> **TODO**: (optional/bonus) Turn on GitHub pages so that it serves up the docs directory so that the report is viewable on the web.
+> **TODO**: (optional/bonus) Turn on GitHub pages
+> so that it serves up the docs directory so that the report is viewable on the web.
 
-At the **root directoy** of your repository, please create a new file called `_quarto.yml` and add the following content:
+At the **root directoy** of your repository,
+please create a new file called `_quarto.yml` and add the following content:
 
 ``` yaml
 project:
@@ -301,23 +338,31 @@ project:
 
 This file will tell Quarto to output the rendered report to the `docs` folder, as a website.
 
-Then, at the **root directoy** of your repository, please run the following command to render the report in the terminal:
+Then, at the **root directoy** of your repository,
+please run the following command to render the report in the terminal:
 
 ``` bash
 quarto render
 ```
 
-You will see that the rendered report is now all in the `docs` folder. There is a `index.html` file in the `docs` folder, you can open it in your browser to view the report.
+You will see that the rendered report is now all in the `docs` folder.
+There is a `index.html` file in the `docs` folder,
+you can open it in your browser to view the report.
 
 ::: callout-note
 ## 😵 No image showing in Jupyter lab??
 
-It is normal to not see figures being rendered inside of Jupyter lab. You will need to go to local folder, and double click on the `index.html` file to view the report in a browser.
+It is normal to not see figures being rendered inside of Jupyter lab.
+You will need to go to local folder,
+and double click on the `index.html` file to view the report in a browser.
 :::
 
 ## Clean up
 
-1.  After you are sure that you have completed everything. Close the jupyter lab docker container. In your terminal, press `Ctrol + C` to stop the container. Then run `docker compose rm` to remove the docker container.
+1.  After you are sure that you have completed everything.
+    Close the jupyter lab docker container.
+    In your terminal, press `Ctrol + C` to stop the container.
+    Then run `docker compose rm` to remove the docker container.
 
 2.  Push your changes to github as usual.
 
@@ -335,7 +380,8 @@ It is normal to not see figures being rendered inside of Jupyter lab. You will n
 
 ![GitHub Pages](images/ia3-3.png)
 
-2.  Wait a few minutes, and refresh the page. You will see that github now says something like the message shown below:
+2.  Wait a few minutes, and refresh the page.
+    You will see that github now says something like the message shown below:
 
 ![](images/ia3-4.png)
 
@@ -343,4 +389,6 @@ It is normal to not see figures being rendered inside of Jupyter lab. You will n
 
 You have successfully fixed the Quarto report and hosted it on GitHub Pages!
 
-If you want to see all the changes I made in the `qmd_example.qmd` file, please click on the "Commits" tab in the repository and you will see the changes I made in the [commit history](https://github.com/skysheng7/dsci-522-ia3/commit/47c14fc98aba0696ff899f7b8ed0599162dabea8).
+If you want to see all the changes I made in the `qmd_example.qmd` file,
+please click on the "Commits" tab in the repository
+and you will see the changes I made in the [commit history](https://github.com/skysheng7/dsci-522-ia3/commit/47c14fc98aba0696ff899f7b8ed0599162dabea8).

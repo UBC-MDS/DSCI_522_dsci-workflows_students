@@ -51,7 +51,8 @@ format:
 
 * `--name` and `-n` are equivalent
 * `--file` and `-f` are equivalent
-* `--platform` and `-p` are equivalent, this is used to specify the platform (e.g., `linux-64`, `osx-arm64`, `win-64`)
+* `--platform` and `-p` are equivalent,
+  this is used to specify the platform (e.g., `linux-64`, `osx-arm64`, `win-64`)
 * More command line review cheatsheet is available [here](https://github.com/skysheng7/linux_command_in_aws_ec2/blob/main/linux_cheatsheet/basic_command_line.md)
 
 ## Conda-lock
