@@ -336,7 +336,7 @@ Source: [Timbers, T. A., Ostblom, J., D'Andrea, F., Lourenzutti, R., & Chen, D. 
 ::::
 
 
----
+##
 
 :::: {.columns}
 
@@ -378,6 +378,21 @@ Source: [Timbers, T. A., Ostblom, J., D'Andrea, F., Lourenzutti, R., & Chen, D. 
 * [Version control (for transparency and collaboration)](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/050-version-control-2.html)
 
 ![](images/Github.png){width=120 fig-align="center"}
+
+# Demo and activity time!
+
+- [Going back in time with Git](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-history.html)
+- [Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html)
+
+::: {.notes}
+
+:::
+
+
+# Let's work on merge conflicts together!
+
+[Individual assignment 1](https://ubc-mds.github.io/DSCI_522_dsci-workflows_students/assignments/individual1.html)
+
 
 ## 💭 Share your story
 
@@ -448,4 +463,3 @@ Source: Ma, E. J. (2024, October 25). The Human Dimension to Clean, Distributabl
 :::
 
 ::::
-
