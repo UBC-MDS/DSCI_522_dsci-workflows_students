@@ -18,8 +18,6 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/
-        text: Textbook
       - text: Cheatsheets
         menu:
           - href: cheatsheets/command_line.qmd
@@ -33,6 +31,8 @@ website:
           - href: cheatsheets/makefile.qmd
             text: "Makefile"
     right:
+      - href: https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/
+        text: Textbook
       - icon: github
         href: https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students
         aria-label: "Course GitHub repository"
