@@ -26,6 +26,8 @@ website:
             text: "Git"
           - href: cheatsheets/docker.qmd
             text: "Docker & Docker Compose"
+          - href: cheatsheets/uv.qmd
+            text: "uv"
           - href: cheatsheets/quarto.qmd
             text: "Quarto"
           - href: cheatsheets/makefile.qmd
@@ -88,6 +90,8 @@ website:
           text: "Git"
         - href: cheatsheets/docker.qmd
           text: "Docker & Docker Compose"
+        - href: cheatsheets/uv.qmd
+          text: "uv"
         - href: cheatsheets/quarto.qmd
           text: "Quarto"
         - href: cheatsheets/makefile.qmd

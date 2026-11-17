@@ -70,7 +70,7 @@ docker run \
 | `-e <VAR>=<value>` | Set environment variable |
 | `--platform <platform>` or `-p <platform>` | Specify platform (e.g., `linux/amd64`) |
 
-* Read the full docker cheatsheet in [textbook](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/110-containerization-2.html)
+* Read the full docker cheatsheet in [textbook](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html)
 
 ## Docker Compose
 
@@ -83,7 +83,7 @@ because it simplifies the process of typing complex `docker run` commands.
 
 | Task | Command |
 |------|---------|
-| Stark docker container | `docker compose up` |
+| Start docker container | `docker compose up` |
 | Stop docker container | `Ctrl + C` (then `docker compose rm`) |
 
 ### Code we run in class: `docker-compose.yml` practice
@@ -158,7 +158,7 @@ docker compose up
    where you launched the container, and then type: 
 
 ```bash
-docker-compose rm
+docker compose rm
 ```
 
 ## Dockerfile
@@ -183,246 +183,143 @@ ENV VAR_NAME=value
 
 ### Code we run in class: `Dockerfile` practice
 
+We build an image that has our Python packages from `uv.lock` installed.
+We work like the textbook suggests: start small, build the image, try the next command
+inside the container, and only then add it to the `Dockerfile`.
+
 **Step-by-step instructions:**
 
 1. Please first `cd` to a local folder of your choice, don't put all files in your home directory!
 
 ```bash
-# Example `cd` command: 
+# Example `cd` command:
 cd /Users/skysheng/Desktop/github/dsci522
 ```
 
-2. Make a new folder called `demo_docker` (or any other name you like)
+2. Make a new folder called `demo_docker` (or any other name you like), and move into it
 
 ```bash
 mkdir demo_docker
-```
-
-3. Move into that folder we just created
-
-```bash
 cd demo_docker
 ```
 
-4. Create a environment.yml file using nano
+3. Create a uv project with one package.
+   This makes `pyproject.toml`, `.python-version` and `uv.lock`
+   (see the [uv cheatsheet](uv.qmd) for what each file holds).
 
 ```bash
-nano environment.yml
+uv init --bare
+uv python pin 3.14
+uv add "pandas==3.1.1"
 ```
 
-5. Copy and paste the following code into the `environment.yml` file.
-```yaml
-name: my_env
-channels:
-- conda-forge
-dependencies:
-- conda-lock=3.0.4
-- pandas=2.3.3
-- pandera=0.26.1
-- pip=25.3
-- python=3.11.14
-- pip:
-  - deepchecks==0.19.1
+4. Print out the files to make sure they are correct.
+
+```bash
+cat pyproject.toml
+cat .python-version
 ```
 
-   * You can also create this file using Graphical user interface (GUI) like VSCode. 
+5. Create a `Dockerfile` using nano (or a GUI like VS Code).
+
+```bash
+nano Dockerfile
+```
+
+6. Copy and paste the following code into the `Dockerfile`.
+   It starts from the official Python image (the same Python version as `.python-version`),
+   copies the `uv` program into the image,
+   and copies our three uv files into the folder `/home/project`.
+
+```dockerfile
+FROM python:3.14-slim
+
+COPY --from=ghcr.io/astral-sh/uv:0.13.7 /uv /uvx /usr/local/bin/
+
+WORKDIR /home/project
+COPY pyproject.toml uv.lock .python-version ./
+```
+
    * If you used `nano` to create this file, you need to press `Cntrl + X` to attempt exit,
      by default it will ask you to save the file.
-     Press `Y` and then press `Enter` to save the file. 
+     Press `Y` and then press `Enter` to save the file.
 
-6. Print out the content of the file to make sure it is correct.
-
-```bash
-cat environment.yml
-```
-
-7. Create an explicit conda-lock file for linux OS using the following command: 
-
-   * Macbook users with Apple Silicon chips (M1-M4 chips):
-      * For **Local testing:** You will need to use the following command (command 1) to test the conda-lock file locally on your machine. 
-      * For **Remote GitHub deployment:** You will need to run command 2 to create a conda-linux64.lock file for deployment on GitHub Actions using Ubuntu machine.
+7. Build the docker image locally:
 
 ```bash
-# command 1: 
-conda-lock -k explicit --file environment.yml -p linux-aarch64
-```
-
-   * Everyone else can use the following command for both local testing and Remote GitHub deployment: 
-
-```bash
-# command 2: 
-conda-lock -k explicit --file environment.yml -p linux-64
-```
-
-8. Create a Dockerfile file using nano, or you can use GUI like VSCode.
-
-```bash
-nano Dockerfile 
-```
-
-9. Copy and paste the following code into the `Dockerfile` file.
-   We use jupyter minimal notebook image as an example, and copy the conda-lock file to the container.
-
-   * Macbook users with Apple Silicon chips will need to:
-      * For **Local Dockerfile testing:** Use the following code (Dockerfile 1) to copy the conda-linux-aarch64.lock file to the container.
-      * For **Remote GitHub deployment:** Use the other code (Dockerfile 2) to copy the conda-linux64.lock file to the container for deployment on GitHub Actions using Ubuntu machine.
-
-```dockerfile
-# Dockerfile 1
-FROM quay.io/jupyter/minimal-notebook:afe30f0c9ad8
-
-COPY conda-linux-aarch64.lock /tmp/conda-linux-aarch64.lock
-```
-
-   * Everyone else can use the following code for both local testing and Remote GitHub deployment: 
-
-```dockerfile
-# Dockerfile 2
-FROM quay.io/jupyter/minimal-notebook:afe30f0c9ad8
-
-COPY conda-linux-64.lock /tmp/conda-linux-64.lock
-```
-
-10. Build the docker image locally using the following command: 
-
-```bash
-# 10. Build the docker image locally, with the tag name `testing_cmds`. 
-# pay attention to the dot at the end of the command! 
+# Build the docker image locally, with the tag name `testing_cmds`.
+# pay attention to the dot at the end of the command!
 docker build --tag testing_cmds .
 ```
 
-11. Run the docker image you just built using the following command: 
-
-   * If you want to launch container's terminal only:
-
-   *Note: For Macbook users with Apple Silicon chips M4 chip, you may run into bugs here.
-   The terminal may open, but once you try to type something,
-   it will crash and come back to the base terminal environment.*
+8. Run the image you just built, and open a terminal inside the container:
 
 ```bash
-docker run --rm -it testing_cmds ../../bin/bash
+docker run --rm -it testing_cmds bash
 ```
 
-   * Launch interactive terminal on web browser:
-
-   *Note: For Macbook users with Apple Silicon chips M4 chip, this will work for you.*
+9. Inside the container, test the command that installs our packages, and check that it worked.
+   `--locked` makes `uv sync` stop with an error if `uv.lock` does not match `pyproject.toml`.
 
 ```bash
-docker run --rm -it -p 8888:8888 testing_cmds
+uv sync --locked
+uv run python -c "import pandas; print(pandas.__version__)"
 ```
 
-Watch your terminal output for a unique URL beginning with http://127.0.0.1:8888/lab?token=. You'll see it displayed as highlighted in the example screenshot below.
-Copy this URL and open it in your web browser to access the Jupyter Lab interface.
-You can access the terminal by clicking on the terminal icon inside of the Jupyter Lab interface.
+10. If the above commands work, exit the container by typing `exit`.
 
-![](images/jupyter_example.png)
-
-12. Once you are in the terminal, you can test if this command works.
-    This command will update the base environment with the packages you specified in the conda-lock file.
-
-```bash
-conda update --quiet --file /tmp/conda-linux-64.lock
-```
-
-13. If the above command works, you can exit the terminal by typing `exit`. 
-
-14. Update the `Dockerfile` to include this newly tested command.
-    `Dockerfile` now should look like this for Macbook users with Apple Silicon chips M1-M4 chip to test the command locally:
+11. Update the `Dockerfile` to include the newly tested command.
+    We also tell uv to put the environment in `/opt/venv` instead of `/home/project/.venv`,
+    so it is not hidden when we later mount our project folder over `/home/project`,
+    and we put `/opt/venv/bin` first on the `PATH`, so `python` means the environment's Python.
 
 ```dockerfile
-# Dockerfile 1
-FROM quay.io/jupyter/minimal-notebook:afe30f0c9ad8
+FROM python:3.14-slim
 
-COPY conda-linux-aarch64.lock /tmp/conda-linux-aarch64.lock
+COPY --from=ghcr.io/astral-sh/uv:0.13.7 /uv /uvx /usr/local/bin/
 
-RUN conda update --quiet --file /tmp/conda-linux-aarch64.lock
+WORKDIR /home/project
+
+ENV UV_PROJECT_ENVIRONMENT=/opt/venv
+COPY pyproject.toml uv.lock .python-version ./
+RUN uv sync --locked
+ENV PATH="/opt/venv/bin:$PATH"
 ```
 
-`Dockerfile` now should look like this for everyone else:
-
-```dockerfile
-# Dockerfile 2
-FROM quay.io/jupyter/minimal-notebook:afe30f0c9ad8
-
-COPY conda-linux-64.lock /tmp/conda-linux-64.lock
-
-RUN conda update --quiet --file /tmp/conda-linux-64.lock
-```
-
-15. Re-build the docker image locally using the following command: 
+12. Re-build the docker image (same command as step 7), then check that pandas is installed:
 
 ```bash
-# 15. Re-build the docker image locally, with the tag name `testing_cmds`. 
-# pay attention to the dot at the end of the command! 
 docker build --tag testing_cmds .
+docker run --rm testing_cmds python -c "import pandas; print(pandas.__version__)"
 ```
 
-16. Run the docker image you just built using the same command as step 11.
-    Then continue to test the following commands line by line in the terminal.
-    Iterate through steps 12-14 (build a docker image --> run the docker container's terminal --> test new command --> update the Dockerfile to include the new command --> build docker image again ...)
-    until you are happy with your Dockerfile. 
+13. Iterate through steps 7 to 12 (build the image, run the container's terminal, test a new command,
+    add it to the `Dockerfile`, build again ...) until you are happy with your `Dockerfile`.
+
+14. Use the image with your project folder mounted, so the container can see your files:
 
 ```bash
-# Clean up the cache files in building conda environment.
-conda clean --all -y -f
+docker run --rm -it -v "/$(pwd)":/home/project testing_cmds bash
 ```
 
-```bash
-# Fix file permissions for the conda directory so all users can access it
-fix-permissions "${CONDA_DIR}"
-```
+::: {.callout-tip}
+## Adding a package later
+Add it on your computer with `uv add <package>`, which updates `pyproject.toml` and `uv.lock`,
+then rebuild the image (step 7).
+:::
 
-```bash
-# Fix file permissions for the user's home directory so the notebook user can read/write files
-fix-permissions "/home/${NB_USER}"
-```
+## uv + Docker + GitHub Actions Workflow
 
-17. 🎉 Final Dockerfile should look like this:
-
-   * Dockerfile for Macbook users with Apple Silicon chips M1-M4 chip testing locally: 
-```dockerfile
-# Final Dockerfile
-FROM quay.io/jupyter/minimal-notebook:afe30f0c9ad8
-
-COPY conda-linux-aarch64.lock /tmp/conda-linux-aarch64.lock
-
-RUN conda update --quiet --file /tmp/conda-linux-aarch64.lock
-RUN conda clean --all -y -f
-RUN fix-permissions "${CONDA_DIR}"
-RUN fix-permissions "/home/${NB_USER}"
-```
-
-   * Dockerfile for everyone else & Macbook user using GitHub Actions to deploy docker image remotely: 
-```dockerfile
-# Final Dockerfile
-FROM quay.io/jupyter/minimal-notebook:afe30f0c9ad8
-
-COPY conda-linux-64.lock /tmp/conda-linux-64.lock
-
-RUN conda update --quiet --file /tmp/conda-linux-64.lock
-RUN conda clean --all -y -f
-RUN fix-permissions "${CONDA_DIR}"
-RUN fix-permissions "/home/${NB_USER}"
-```
-
-18. Follow the same command in steps 10-11 to build and run the docker image you just built.
-
-## Conda + Docker + GitHub Actions Workflow
-
-![](images/docker4.png){width="3600px" style="margin-bottom: 0px;"}
-
-1. `conda create` & `conda install`
-2. Create `environment.yml`
-3. Add version numbers
-4. Generate `conda-lock` file
-5. Write `Dockerfile`
-6. Create `docker-compose.yml`
-7. Push to GitHub
-8. Add GitHub Actions workflow yml file
-9. Add Docker Hub Personal Access Token (PAT)
-10. Configure GitHub Secrets
-11. Workflow runs (auto/manual)
-12. Check Docker Hub for new image
-13. Locally, `docker pull` new image
-14. Locally, command line `docker run`
-
+1. `uv init --bare` & `uv python pin`
+2. `uv add` your packages (this writes `pyproject.toml` and `uv.lock`)
+3. Push `pyproject.toml`, `uv.lock` and `.python-version` to GitHub (not `.venv/`)
+4. Write `Dockerfile`
+5. Create `docker-compose.yml`
+6. Push to GitHub
+7. Add GitHub Actions workflow yml file
+8. Add Docker Hub Personal Access Token (PAT)
+9. Configure GitHub Secrets
+10. Workflow runs (auto/manual)
+11. Check Docker Hub for new image
+12. Locally, `docker pull` new image
+13. Locally, command line `docker run`

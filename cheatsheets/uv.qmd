@@ -1,0 +1,120 @@
+---
+title: "uv Cheatsheet"
+subtitle: "Quick Reference Guide for Python Environments with uv"
+execute:
+  eval: false
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-block-bg: true
+    code-block-border-left: "#e0cfea"
+---
+
+Run all of these commands in your terminal, from inside your project folder.
+You learnt uv in DSCI 521: for the full explanations, see the
+[DSCI 521 notes on virtual environments with uv](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/virtual-environments-uv.html).
+
+---
+
+## The files in a uv project
+
+| File | What it holds | Push to GitHub? |
+|------|---------------|:---:|
+| `pyproject.toml` | The packages **you asked for** (your shopping list) | ✅ |
+| `uv.lock` | Every package **you got**, with exact versions and hashes, for every operating system (the receipt). Written by uv, never edit it by hand | ✅ |
+| `.python-version` | The Python version for this project, e.g. `3.14` | ✅ |
+| `.venv/` | The installed packages for **your** computer. Rebuilt with `uv sync` | ❌ |
+
+## Start a new project
+
+| Task | Command |
+|------|---------|
+| Create a project (only makes `pyproject.toml`) | `uv init --bare` |
+| Choose the Python version (makes `.python-version`) | `uv python pin 3.14` |
+| Add a package (updates `pyproject.toml` and `uv.lock`, builds `.venv/`) | `uv add pandas` |
+| Add a specific version | `uv add "pandas==3.1.1"` |
+| Add a package only needed for development, like testing | `uv add --dev pytest` |
+| Remove a package | `uv remove pandas` |
+
+### Make `uv add` write exact versions
+
+By default `uv add pandas` writes `"pandas>=3.1.1"` (this version or newer) into `pyproject.toml`.
+For a data analysis project, add these lines to `pyproject.toml`
+so every `uv add` from now on writes an exact version (`"pandas==3.1.1"`):
+
+```toml
+[tool.uv]
+add-bounds = "exact"
+```
+
+The setting only changes packages you add after it.
+
+## Work on a project someone else made
+
+```bash
+git clone <URL>
+cd <project folder>
+
+# build .venv/ from uv.lock, exactly as on your teammate's computer
+uv sync
+```
+
+## Run things in the environment
+
+You do not need to activate the environment: put `uv run` in front of the command.
+
+| Task | Command |
+|------|---------|
+| Run a Python script | `uv run python script.py` |
+| Run a one-line Python check | `uv run python -c "import pandas; print(pandas.__version__)"` |
+| Render a Quarto report | `uv run quarto render report.qmd` |
+| Run the tests | `uv run pytest` |
+
+## Inspect and update
+
+| Task | Command |
+|------|---------|
+| Show which package pulls in which | `uv tree` |
+| List what is installed in `.venv/` | `uv pip list` |
+| Upgrade one package in `uv.lock`, then install it | `uv lock --upgrade-package pandas`, then `uv sync` |
+| Check that `uv.lock` matches `pyproject.toml` (fails if not) | `uv lock --check` |
+| Delete the environment and rebuild it | `rm -rf .venv`, then `uv sync` |
+
+::: {.callout-warning}
+## Add packages with `uv add`, not `uv pip install`
+`uv pip install` does not write the package into `pyproject.toml` or `uv.lock`,
+and the next `uv sync` removes it again.
+:::
+
+## Commands we ran in class (lecture 2)
+
+```bash
+# 1. make a new folder for the project and move into it
+cd ~/Desktop/github/dsci522
+mkdir uv_demo
+cd uv_demo
+
+# 2. create the project and choose the Python version
+uv init --bare
+uv python pin 3.14
+
+# 3. add a package, then look at what we got
+uv add pandas
+ls -a
+cat pyproject.toml
+cat .python-version
+
+# 4. run Python inside the environment
+uv run python -c "import pandas; print(pandas.__version__)"
+
+# 5. pretend we just cloned the repository: delete the environment and rebuild it
+rm -rf .venv
+uv sync
+uv tree
+```
+
+## uv inside a Docker image
+
+See the [Docker cheatsheet](docker.qmd#dockerfile) for a `Dockerfile` that installs your `uv.lock` into an image.
