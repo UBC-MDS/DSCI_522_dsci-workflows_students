@@ -141,7 +141,7 @@ bibliography: references.bib
 ```
 
 ::: callout-note
-## ⚠️ High bug zone: indentation & missing colon:
+## High bug zone: indentation & missing colon:
 
 -   Quarto's yaml uses 2 whitespaces to indent the yaml fields (not 4 whitespaces!! not tab!!).
 -   Please use `:` to separate the field name and the field value.
@@ -159,7 +159,7 @@ quarto render qmd_example.qmd
 ```
 
 ::: callout-note
-## 😵 No references listed in the rendered report??
+## No references listed in the rendered report??
 
 You will notice that no references are listed in the rendered pdf or html file.
 This is because we have not added in-text citations to the `.qmd` file.
@@ -216,7 +216,7 @@ We can see from @fig-horse-pop that Ontario, Saskatchewan and Alberta
 ```
 
 ::: callout-note
-## ⚠️ High bug zone: Pay attention to using `fig-label`
+## High bug zone: Pay attention to using `fig-label`
 
 -   You have to name your figure with starting with a `fig` prefix (sorry for my mistakes in class!).
 -   You have to use `-` instead of `_` in the figure label.
@@ -252,7 +252,7 @@ Markdown(horses_sd_table.to_markdown(index = False))
 ````
 
 ::: callout-note
-## ⚠️ High bug zone: Pay attention to using `tbl-label`
+## High bug zone: Pay attention to using `tbl-label`
 
 -   You have to name your table with starting with a `tbl` prefix (sorry for my mistakes in class!).
 -   You have to use `-` instead of `_` in the table label.
@@ -350,7 +350,7 @@ There is a `index.html` file in the `docs` folder,
 you can open it in your browser to view the report.
 
 ::: callout-note
-## 😵 No image showing in Jupyter lab??
+## No image showing in Jupyter lab??
 
 It is normal to not see figures being rendered inside of Jupyter lab.
 You will need to go to local folder,
@@ -385,7 +385,7 @@ and double click on the `index.html` file to view the report in a browser.
 
 ![](images/ia3-4.png)
 
-# 🎊 Congratulations!
+# Congratulations!
 
 You have successfully fixed the Quarto report and hosted it on GitHub Pages!
 

@@ -57,7 +57,7 @@ format:
 
 ## Conda-lock
 
-### 📜 Basic Commands
+### Basic Commands
 
 | Command | Output | Description |
 |---------|--------|-------------|
@@ -66,7 +66,7 @@ format:
 | `conda-lock -k explicit --file environment.yml -p linux-64` | `conda-linux-64.lock` | Explicit lock file for one platform (Linux) |
 | `conda-lock render -p linux-64` | `conda-linux-64.lock` | Explicit lock file from existing `conda-lock.yml` |
 
-### 🙀 Comparing `conda-lock.yml` vs `conda-linux-64.lock`
+### Comparing `conda-lock.yml` vs `conda-linux-64.lock`
 
 | Feature | `conda-lock.yml` | `conda-linux-64.lock` |
 |------|-----------------------|----------------------------|

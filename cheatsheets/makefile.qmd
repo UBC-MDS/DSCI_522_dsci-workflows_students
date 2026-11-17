@@ -51,7 +51,7 @@ results/isles.dat : data/isles.txt scripts/wordcount.py
 
 
 ::: callout-note
-## ⚠️ High bug zone: TAB required
+## High bug zone: TAB required
 
 * Actions MUST be indented using the **TAB**, not spaces!
 * Depending on which computer you are using,
@@ -67,7 +67,7 @@ results/isles.dat : data/isles.txt scripts/wordcount.py
 ### Clone repository
 
 ::: {.callout-important}
-## ⭐️ New repo for Individual Assignment 4
+## New repo for Individual Assignment 4
 
 Please use this new repository I created for Individual Assignment 4:
 [https://github.com/skysheng7/ia4.git](https://github.com/skysheng7/ia4.git)
@@ -139,7 +139,7 @@ bash runall.sh
    This will direct you to the terminal of the container. 
 
 ::: {.callout-note}
-## ⚠️ NOT `docker compose up`
+## NOT `docker compose up`
 
 Please note you need to run `docker compose run --rm ia4`
 instead of `docker compose up` to launch the container.
@@ -198,7 +198,7 @@ make results/isles.dat
 ```
 
 ::: {.callout-warning collapse="true"}
-## 🐛 Debug error: `make: Nothing to be done for 'results/isles.dat'.`
+## Debug error: `make: Nothing to be done for 'results/isles.dat'.`
 
 If you see the following output: 
 
@@ -213,7 +213,7 @@ Try edit the Makefile in your terminal and redo all **TAB** key there.
 :::
 
 ::: {.callout-warning collapse="true"}
-## 🐛 Debug message: `make: 'results/isles.dat' is up to date.`
+## Debug message: `make: 'results/isles.dat' is up to date.`
 
 If you succeed the first time you run the command above,
 but the second time you run the same command, it says: 
@@ -241,7 +241,7 @@ after you generated the output file last time.
 
 
 ::: {.callout-tip collapse="true"}
-## 🙋‍♀️ Question: Can I call `Makefile` something else?
+## Question: Can I call `Makefile` something else?
 
 Yes you can, for example,
 if we call it `random_name`,

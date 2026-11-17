@@ -28,7 +28,7 @@ Don't use the TAG `latest` for images.
 Always use **specific version tags** instead for reproducibility.
 :::
 
-### 📜 Basic Docker Run
+### Basic Docker Run
 
 * Example command to run a docker container:
 

@@ -12,7 +12,7 @@ format:
     code-block-border-left: "#e0cfea"
 ---
 
-## 📍 Basic Navigation & File Inspection
+## Basic Navigation & File Inspection
 
 1. `~` — Home directory  
 2. `pwd` — Print current working directory  
@@ -32,7 +32,7 @@ format:
 
 ---
 
-## 📍 Viewing File Content
+## Viewing File Content
 
 5. `cat file.txt` — Print entire content  
 6. `head file.txt` — Print first 10 lines  
@@ -40,7 +40,7 @@ format:
 
 ---
 
-## 📍 Editing Files
+## Editing Files
 
 8. `nano file.txt` — Open file in Nano editor  
     - Ctrl+O to save, Ctrl+X to exit, Ctrl+K to delete a line  
@@ -51,7 +51,7 @@ format:
 
 ---
 
-## 📍 Creating and Modifying Files
+## Creating and Modifying Files
 
 10. `touch file.txt` — Create an empty file or update timestamp if the file already exist
 11. `echo "text" > file.txt` — Write text to file (overwrite)  
@@ -60,7 +60,7 @@ format:
 
 ---
 
-## 📍 File Movement, Copying, and Deletion
+## File Movement, Copying, and Deletion
 
 14. `mv oldname.txt newname.txt` — Rename a file  
 15. `mv file.txt folder/` — Move file to folder  
@@ -73,7 +73,7 @@ format:
 
 ---
 
-## 📍 Directory Management
+## Directory Management
 
 22. `mkdir new_folder` — Create a new folder  
 23. `mkdir -p parent/child` — Create nested folders including parent folders
@@ -82,7 +82,7 @@ format:
 
 ---
 
-## 📍 Permissions & Ownership
+## Permissions & Ownership
 
 25. `chmod 400 key.pem` — Change file permission  
     - first digit = privillage of owner of the file;
@@ -99,7 +99,7 @@ format:
 
 ---
 
-## 📍 Wildcards & Patterns
+## Wildcards & Patterns
 
 28. `*` — Wildcard: matches anything  
     - Example: `mv fish* folder/`  
@@ -107,7 +107,7 @@ format:
 
 ---
 
-## 📍 Print and Search
+## Print and Search
 
 30. `echo "text"` — Print text to terminal  
 31. `grep pattern file.txt` — Search for pattern  
@@ -118,7 +118,7 @@ format:
 
 ---
 
-## 📍 System & File Info
+## System & File Info
 
 32. `history` — Show command history  
 33. `df -h` — Show disk space in human-readable format  
@@ -129,14 +129,14 @@ format:
 
 ---
 
-## 📍 Compression
+## Compression
 
 37. `zip file.zip file.txt` — Compress file  
 38. `unzip file.zip` — Decompress file  
 
 ---
 
-## 📍 Process Management
+## Process Management
 
 39. `Ctrl+C` — Stop running command  
 40. `exit` — exit the SSH connection to a server, or exit a mode of being a user

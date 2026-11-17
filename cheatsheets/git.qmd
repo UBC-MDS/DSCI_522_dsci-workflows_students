@@ -22,7 +22,7 @@ For the full explanations, see the textbook chapters on
 
 ---
 
-## 📍 The Everyday Workflow
+## The Everyday Workflow
 
 | Task | Command |
 |------|---------|
@@ -38,7 +38,7 @@ The usual loop is: `git pull` → edit files → `git status` → `git add` → 
 
 ---
 
-## 📍 Getting a Repository
+## Getting a Repository
 
 1. `git clone <URL>` — Copy a remote repository from GitHub.com to your computer  
     - Example: `git clone https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students.git`  
@@ -51,7 +51,7 @@ The usual loop is: `git pull` → edit files → `git status` → `git add` → 
 
 ---
 
-## 📍 Checking the Status
+## Checking the Status
 
 3. `git status` — Show which files are modified, staged, or not tracked yet  
     - Run it often, especially before `git add` and `git commit`.
@@ -60,7 +60,7 @@ The usual loop is: `git pull` → edit files → `git status` → `git add` → 
 
 ---
 
-## 📍 Staging and Committing
+## Staging and Committing
 
 5. `git add <FILENAME>` — Add a file to the staging area  
     - `git add <FILE1> <FILE2>` — Add several files at once  
@@ -75,7 +75,7 @@ The usual loop is: `git pull` → edit files → `git status` → `git add` → 
 
 ---
 
-## 📍 Syncing with GitHub
+## Syncing with GitHub
 
 9. `git push` — Send your local commits to the remote repository on GitHub.com  
     - First push of a new branch: `git push -u origin <BRANCH_NAME>` (`-u` stands for `--set-upstream`).
@@ -88,7 +88,7 @@ The usual loop is: `git pull` → edit files → `git status` → `git add` → 
 
 ---
 
-## 📍 Viewing the History
+## Viewing the History
 
 13. `git log` — View the version control history  
     - Press `q` to exit the log.
@@ -103,7 +103,7 @@ The usual loop is: `git pull` → edit files → `git status` → `git add` → 
     - The first 7 characters (the short SHA) are usually enough: `git show 238dbcb`
 
 ::: callout-tip
-## 💡 Just want a look at the past?
+## Just want a look at the past?
 
 On GitHub.com, click the **commits** link on the repository's main page to see the history and commit messages.
 Click the **<>** button next to a commit to view the state of the whole repository at that point in time.
@@ -111,7 +111,7 @@ Click the **<>** button next to a commit to view the state of the whole reposito
 
 ---
 
-## 📍 Going Back in Time
+## Going Back in Time
 
 Use these in your local repository when you want to run or explore files from the past,
 or bring a past version of a file into the present.
@@ -128,7 +128,7 @@ or bring a past version of a file into the present.
 
 ---
 
-## 📍 Branches
+## Branches
 
 18. `git branch` — List the local branches (the current one is marked with `*`)  
     - `git branch -v` — Also show the SHA
@@ -157,7 +157,7 @@ or bring a past version of a file into the present.
 
 
 ::: callout-tip
-## 💡 Typical branch workflow
+## Typical branch workflow
 
 1. `git switch main` and `git pull` — start from the latest `main`
 2. `git switch -c my-new-feature` — create a branch
@@ -169,7 +169,7 @@ or bring a past version of a file into the present.
 
 ---
 
-## 📍 Ignoring Files
+## Ignoring Files
 
 `.gitignore` — A text file in the root of the repository listing files
 and folders that Git should not track  
@@ -178,7 +178,7 @@ and folders that Git should not track
 
 ---
 
-## 📍 Common Problems
+## Common Problems
 
 | Message or situation | What to do |
 |----------------------|------------|
