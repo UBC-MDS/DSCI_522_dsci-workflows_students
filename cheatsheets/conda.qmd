@@ -80,11 +80,11 @@ format:
 ### Creating Environments from Lock Files
 
 **From `conda-lock.yml`:**
-```{bash}
+```bash
 conda-lock install --name <env_name> conda-lock.yml
 ```
 
 **From explicit lock file (e.g., `conda-linux-64.lock`):**
-```{bash}
+```bash
 conda create --name <env_name> --file conda-linux-64.lock
 ```

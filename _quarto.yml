@@ -1,19 +1,13 @@
 project:
   type: website
+  # Every page is rendered.
+  # Students only find a page through the navbar and sidebars,
+  # so release an assignment or cheatsheet by uncommenting its entry below.
+  # The source files are public in this repo anyway.
   render:
     - index.qmd
-    - assignments/individual1.qmd
-    - assignments/milestone1.qmd
-    - assignments/teamwork-contract.qmd
-    # Cheatsheets: only the files listed here are rendered. To show a hidden
-    # cheatsheet, add it here and uncomment it in the navbar menu and the
-    # `cheatsheets` sidebar below.
-    - cheatsheets/command_line.qmd
-    - cheatsheets/git.qmd
-    # - cheatsheets/docker.qmd
-    # - cheatsheets/quarto.qmd
-    # - cheatsheets/makefile.qmd
-    # - cheatsheets/conda.qmd
+    - assignments/*.qmd
+    - cheatsheets/*.qmd
 
 website:
   title: "DSCI 522: Data Science Workflows (Students)"
@@ -32,12 +26,12 @@ website:
             text: "Command Line"
           - href: cheatsheets/git.qmd
             text: "Git"
-          # - href: cheatsheets/docker.qmd
-          #   text: "Docker & Docker Compose"
-          # - href: cheatsheets/quarto.qmd
-          #   text: "Quarto"
-          # - href: cheatsheets/makefile.qmd
-          #   text: "Makefile"
+          - href: cheatsheets/docker.qmd
+            text: "Docker & Docker Compose"
+          - href: cheatsheets/quarto.qmd
+            text: "Quarto"
+          - href: cheatsheets/makefile.qmd
+            text: "Makefile"
     right:
       - icon: github
         href: https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students
@@ -90,12 +84,12 @@ website:
           text: "Command Line"
         - href: cheatsheets/git.qmd
           text: "Git"
-        # - href: cheatsheets/docker.qmd
-        #   text: "Docker & Docker Compose"
-        # - href: cheatsheets/quarto.qmd
-        #   text: "Quarto"
-        # - href: cheatsheets/makefile.qmd
-        #   text: "Makefile"
+        - href: cheatsheets/docker.qmd
+          text: "Docker & Docker Compose"
+        - href: cheatsheets/quarto.qmd
+          text: "Quarto"
+        - href: cheatsheets/makefile.qmd
+          text: "Makefile"
 
 format:
   html:
