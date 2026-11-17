@@ -1,0 +1,309 @@
+---
+title: "Bonus: Project website"
+format:
+  html:
+    toc: true
+editor_options:
+  markdown:
+    wrap: sentence
+---
+
+## Bonus summary
+
+::: callout-important
+## Up to 5 bonus points, for your group
+
+This bonus is optional.
+It is worth up to **5 points**, added to one of your four milestone grades.
+The points go to **Milestone 4** unless you tell us otherwise when you submit.
+They can make up for points you lost on that milestone,
+but they cannot take it above its maximum.
+
+It is due with Milestone 4: **2026-12-12 18:00 PT**,
+and we grade it from the same `3.0.0` release.
+:::
+
+Your project already produces a Quarto report.
+For this bonus, you will turn your **whole project into a Quarto website**
+and publish it on GitHub Pages.
+
+The website brings together the `README` you have kept up to date all term
+and your report.
+It replaces the report you published on GitHub Pages in Milestone 2,
+at the same URL.
+
+Your website will have:
+
+1.  a **homepage** that is your `README`
+2.  your **report**, in both HTML and PDF
+3.  an **about** page that introduces each member of your team
+4.  a **GitHub icon** in the top right of the menu bar that links to your repository
+
+You will also make one `make` command build everything,
+from downloading the data to publishing the website.
+
+This bonus applies what you learned in the DSCI 521 chapter
+[Introduction to Quarto and GitHub Pages](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html),
+with the same setup:
+a `_quarto.yml` in the root of your repository that renders a website into `docs/`.
+Read it again first.
+
+## 1. Turn your project into a website
+
+Your project's `_quarto.yml`, in the root of your repository,
+already tells Quarto how to render your report.
+Turn it into a website's configuration:
+add `type: website` and `output-dir: docs`,
+list the website's pages in `render`,
+and add a `website` section with the menu bar.
+Keep the `format` settings you already have
+(for example, `embed-resources` and the PDF settings):
+they still apply to your report.
+
+Here is a starting point.
+Change the title, the report's file name and the repository URL to your own:
+
+```{.yaml filename="_quarto.yml"}
+project:
+  type: website
+  output-dir: docs
+  render:
+    - index.qmd
+    - about.qmd
+    - reports/<your-report>.qmd
+
+website:
+  title: "Your project title"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: reports/<your-report>.qmd
+        text: Report
+      - href: about.qmd
+        text: About
+    right:
+      - icon: github
+        href: https://github.com/UBC-MDS-2026-27/<your-repository>
+        aria-label: GitHub repository
+
+# Keep your existing `format:` settings below.
+```
+
+The `render` list keeps files like `CONTRIBUTING.md` out of the website.
+Give each new page `format: html` in its YAML header,
+so that Quarto does not also make a PDF of it
+when your project renders your report to PDF.
+
+As in the DSCI 521 chapter,
+create an empty `.nojekyll` file in the root of your repository
+(see [Turning off Jekyll with `.nojekyll`](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html#nojekyll)).
+Quarto copies it into `docs/` every time you render.
+Add `.quarto/` to your `.gitignore` if it is not there already.
+
+Your repository will look something like this
+(only the new and changed parts are shown):
+
+```
+.
+├── _quarto.yml           # now a website: renders everything into docs/
+├── .nojekyll
+├── Makefile
+├── README.md
+├── index.qmd             # homepage: includes README.md
+├── about.qmd             # the team
+├── reports/
+│   └── <your-report>.qmd
+└── docs/                 # the published website (generated, but committed)
+    ├── index.html
+    └── reports/
+        ├── <your-report>.html
+        └── <your-report>.pdf
+```
+
+::: callout-important
+## Your report now renders into `docs/`
+
+Your report is now a page of the website.
+Quarto writes it to `docs/reports/<your-report>.html` and `.pdf`,
+with the website's menu bar,
+instead of next to the `.qmd` in `reports/`.
+Delete the old rendered files from `reports/`,
+and update your `Makefile` and `README` to the new locations.
+This bonus is graded from the same `3.0.0` release as Milestone 4,
+so your Milestone 4 `README` instructions must still work exactly as written.
+:::
+
+`quarto render` now renders the whole website.
+To render just your report while you work on it,
+`quarto render reports/<your-report>.qmd` still works,
+and `quarto preview` shows the website as you edit it.
+
+## 2. The homepage, the about page and the report
+
+### The homepage (`index.qmd`)
+
+Your `README` already says what your project is, who made it, and how to run it,
+so make it your homepage.
+`index.qmd` only needs to include it,
+using Quarto's [`include` shortcode](https://quarto.org/docs/authoring/includes.html):
+
+```{.markdown filename="index.qmd"}
+---
+format: html
+---
+
+{{{< include README.md >}}}
+```
+
+You don't need a `title`:
+Quarto uses the first heading of your `README` as the page title.
+Including the file, rather than copying it,
+means the homepage stays up to date whenever your `README` changes.
+
+::: callout-warning
+## Links in your `README` must work on the website too
+
+The website only publishes its pages, not the rest of your repository.
+A relative link in your `README` to a file such as `CONTRIBUTING.md`, `LICENSE.md` or `src/`
+works on GitHub but is broken on the website,
+and Quarto does not warn you about it.
+Link to those files with their full GitHub URL instead
+(for example, `https://github.com/UBC-MDS-2026-27/<your-repository>/blob/main/CONTRIBUTING.md`),
+which works in both places.
+:::
+
+### The about page (`about.qmd`)
+
+The about page lists and introduces each member of your team.
+For each person, include:
+
+-   their name, linked to their GitHub profile
+-   a few sentences introducing them, in their own words
+    (for example, their background before MDS and what interests them in data science)
+
+Your website is public,
+so each person decides what they share about themselves.
+A photo is optional.
+
+### The report
+
+The menu bar's **Report** item links to `reports/<your-report>.qmd`,
+and Quarto turns that into a link to the rendered page.
+When your report also renders to PDF,
+Quarto adds a link to the PDF version on the report's page.
+Link to both versions from your `README` too,
+so they show up on the homepage.
+
+Every figure in your report and on your website needs **alt text**:
+a short description of what the figure shows, for readers who cannot see it.
+Use the `fig-alt` option on code cells that make figures,
+and the `fig-alt` attribute on images:
+
+```{.markdown}
+![Feature densities.](../results/figures/densities.png){#fig-densities fig-alt="Density plots of each feature by class."}
+```
+
+See [Alt text](https://quarto.org/docs/authoring/figures.html#alt-text) in the Quarto documentation.
+
+## 3. One `make` command builds everything {#make}
+
+Your `Makefile` from Milestone 4 already runs your analysis.
+Extend it so that `make all`, run from a fresh clone inside your container,
+does everything, in order:
+
+1.  downloads the data
+2.  runs your data validation checks
+3.  runs the rest of your analysis
+4.  publishes: renders the website, including your report, into `docs/`
+
+`make clean` should remove everything that `make all` creates, including `docs/`.
+
+In Milestone 4, your `publish` target copied your report to `docs/index.html`,
+and `make all` ran it.
+For the bonus, change the rule behind `publish` so that it renders the website instead,
+and remove your old rule for the report in `reports/`:
+the report now renders as part of the website.
+Here is a sketch.
+Change the file names to your own,
+and list as prerequisites every file the website reads,
+including your `README` and the figures and tables your report shows,
+so `make` rebuilds the website when one of them changes:
+
+```{.makefile filename="Makefile"}
+.DELETE_ON_ERROR:
+
+publish: docs/index.html
+
+docs/index.html: _quarto.yml index.qmd README.md about.qmd \
+		reports/<your-report>.qmd results/figures/<your-figure>.png
+	quarto render
+
+clean:
+	rm -rf docs
+	# ... and everything else your pipeline creates
+```
+
+`quarto render` empties `docs/` before it renders,
+so no pages are left over from an older version of the website.
+`.DELETE_ON_ERROR:` makes `make` delete `docs/index.html` if the render fails partway.
+Without it, the next `make` would find a `docs/index.html`
+and say there is nothing to do.
+
+::: callout-important
+## A clean build, with no warnings
+
+Before you submit, run `make clean` and then `make all` inside your container.
+Everything should rebuild, and Quarto should print **no `ERROR` or `WARN` messages**
+(for example, about links it could not find).
+Messages from other tools, such as Jupyter, don't count.
+We will grade this bonus by doing the same.
+:::
+
+Update your `README` to say how to build the website.
+
+## 4. Publish on GitHub Pages
+
+The `docs/` folder is generated, but commit it anyway:
+GitHub Pages can only publish files that are in your repository.
+This is the one generated folder you commit.
+Check that `docs/.nojekyll` is there, on your computer (`ls -a docs`) and on GitHub.com.
+
+Since Milestone 2, GitHub Pages has published your report from the `main` branch and the `/docs` folder.
+Keep that setting.
+Your website now replaces the report at the same URL:
+the homepage is at `https://ubc-mds-2026-27.github.io/<your-repository>/`,
+and the report moves to `https://ubc-mds-2026-27.github.io/<your-repository>/reports/<your-report>.html`.
+Update the report link in your `README`,
+and say in your `README`, and in the **About** box on your repository's GitHub page,
+that the URL is now your project's website.
+
+## Submission instructions
+
+Submit on Gradescope, under the bonus assignment.
+We only need URLs and one answer, entered into Gradescope directly: there is no PDF to make.
+You will submit:
+
+1.  the URL of your published website
+2.  the URL of your project's GitHub.com repository
+3.  the URL of your `3.0.0` release
+4.  which milestone the bonus points should go to (Milestone 4 if you leave it blank)
+
+## Rubric
+
+Each item is worth 1 point.
+
+| Points | Item                                                                         |
+|--------|------------------------------------------------------------------------------|
+| 1 | The website is published on GitHub Pages from `docs/`. The menu bar has Home, Report and About, and a GitHub icon at the top right that links to the repository. |
+| 1 | The homepage includes the `README` (not a copy of it), and every link in it works on the website. |
+| 1 | The report is a page of the website, in HTML and PDF, and the `Makefile` and `README` use its new location. Every figure in the report has alt text. |
+| 1 | The about page introduces each team member. |
+| 1 | From a fresh clone, inside the container, `make all` runs the whole analysis and builds the website with the report, and Quarto prints no `ERROR` or `WARN` messages. `make clean` removes everything `make all` creates, including `docs/`. |
+
+## Expectations
+
+The usual project expectations apply:
+work in a GitHub flow workflow, with pull requests reviewed by a teammate,
+communicate in GitHub issues,
+and write meaningful commit messages.

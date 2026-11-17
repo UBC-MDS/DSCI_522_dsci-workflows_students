@@ -75,6 +75,8 @@ website:
         #       text: "Peer Review"
         #     - href: assignments/teamwork-reflection.qmd
         #       text: "Teamwork Reflection"
+        #     - href: assignments/bonus.qmd
+        #       text: "Bonus: Project Website"
     - id: cheatsheets
       title: "Cheatsheets"
       style: floating
