@@ -34,8 +34,10 @@ An example final project from past years can be seen here:
 - Write a new script, a `Makefile` (literally called `Makefile`),
   to act as a driver script to rule them all.
   This script should run the others in sequence, hard coding in the appropriate arguments.
-- Abstract some code from your scripts to functions in a separate file,
+- Abstract some code from your scripts to functions in a separate file
+  (at least one function per group member),
   and write tests for those functions.
+- Polish your report's formatting with Quarto.
 - Address any feedback received in earlier milestones and from the peer review to improve the project.
 
 An example Milestone 4 that corresponds to our expectations from this year lives here:
@@ -50,17 +52,38 @@ This script should:
 - be well documented (using the project `README` and comments inside the `Makefile` to explain what it does and how to use it)
 - have an `all` target so that you can easily run the entire analysis from top to bottom by running `make all` at the command line
 - have a `clean` target so that you can easily "undo" your analysis by running `make clean` at the command line (e.g., deletes all generated data and files).
+- have a `publish` target that updates the copy of your report that GitHub Pages publishes
+  (`docs/index.html`, from [Milestone 2](milestone2.qmd#publish-your-report-on-github-pages)).
+  `make publish` replaces the steps you did by hand in Milestone 2.
+  `make all` should run it too, so your published report never falls behind your analysis.
+  Commit and push `docs/` after it runs.
 
 :::{.callout-note}
 ## Phony targets
 
-- The `all` and `clean` targets may be `.PHONY` targets
+- The `all`, `clean` and `publish` targets may be `.PHONY` targets
 - You can create other targets that link up all the dependencies
     - For example, `data`, `analysis`, `figures`, `pdf`, etc,
       so your build process only runs what's necessary during development
     - Your other targets should be using make dependencies, i.e.,
       not all your targets are allowed to be phony targets.
 :::
+
+For example, `publish` can be a phony target
+that depends on the real file `docs/index.html`.
+Change the report's path to your own:
+
+```{.makefile filename="Makefile"}
+publish: docs/index.html
+
+docs/index.html: reports/<your-report>.html
+	mkdir -p docs
+	cp reports/<your-report>.html docs/index.html
+	touch docs/.nojekyll
+```
+
+Because `docs/index.html` depends on your rendered report,
+`make publish` copies it only when the report has changed.
 
 ## 2. Abstract some code from your scripts to functions in a separate file, and write tests for those functions
 
@@ -79,9 +102,8 @@ Abstracting our analysis code into functions also makes it testable!
 Meaning you can assess whether your code works as expected.
 This alone is reason enough to use functions in your analysis code.
 
-Your job here is to **create at least 3-4 functions from your scripts.**
-**One per group member is the minimum.**
-When doing this task, follow the [workflow for writing functions and tests for data science](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/140-intro-to-testing-code.html#workflow-for-writing-functions-and-tests-for-data-science),
+Your job here is to **create at least one function per group member from your scripts.**
+When doing this task, follow the [workflow for writing functions and tests for data science](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/testing.html#workflow-for-writing-functions-and-tests-for-data-science),
 remember this process will include:
 
 -   writing thorough function specifications & documentation
@@ -103,19 +125,47 @@ If you are using Python, we expect you to use the [`pytest`](https://docs.pytest
 If you are using R for your data analysis code,
 we expect you to use the [`testthat`](https://testthat.r-lib.org/) R package framework for writing software tests.
 
-Of course, if it makes sense to have more than 3-4 functions,
+Of course, if it makes sense to have more than one function per group member,
 you are welcome to increase the number!
 However, all functions must have the same standards in regards to software robustness.
 Your functions will be assessed for their quality (e.g., functions should do one thing, and generally return an object unless they were specifically designed for side-effects), usability,
 readability (follow the [black style guide](https://black.readthedocs.io/en/stable/the_black_code_style/index.html) for Python, or the [tidyverse style guide](https://style.tidyverse.org/) for R),
 documentation and quality of the test suite.
 
-## 3. Address feedback to improve the project
+## 3. Polish your report so that its sole job is to narrate your analysis, display your analysis artifacts (i.e., figures and tables), and nicely format the report
+
+The goal is that non-data scientists would not be able to tell that code was used to perform your analysis
+or format your report (i.e., no code should be visible in the rendered report).
+
+Render your report to HTML: that is the version you publish on GitHub Pages.
+You can render a PDF as well.
+You practised these Quarto features in Individual Assignment 3.
+Quarto has all the features needed to make your report satisfy our expectations (bibliography, automatic numbering of figures and tables, inline code rendering, etc).
+In particular, we expect you to:
+
+-   Use markdown headers and Quarto configuration
+    so that a table of contents will be created when the document is rendered.
+-   Add correctly formatted inline BibTeX references
+    so that a nicely formatted reference list will be present at the end of the document.
+-   Edit the figure formatting so that Quarto:
+    -   automatically numbers them,
+    -   has a label for easy cross referencing, and
+    -   controls the figure sizes so the figures are not too big.
+-   Add a table description argument so that they are automatically numbered by Quarto
+    and use cross referencing to link to the table when it is discussed in the text.
+-   Edit the narrative so it uses cross-referencing to refer to the figures and tables
+    instead of having their reference hardcode the figure and table numbers.
+-   Replace any hard-coded values in the Quarto report narrative text with inline Quarto code,
+    so that the text will be automatically updated with the correct value.
+-   Change the code chunk options so that no code is viewable in the rendered report,
+    just the code outputs where needed (e.g., figures and tables).
+
+## 4. Address feedback to improve the project
 
 Revise your data analysis project to address feedback received from the DSCI 522 teaching team from past milestones,
 as well as feedback received from the peer review.
 
-### 3.1 Address feedback from TAs
+### 4.1 Address feedback from TAs
 
 After you make changes based on feedback from your TAs,
 please raise a regrade requests on Gradescope for the corresponding question,
@@ -132,7 +182,7 @@ you will be awarded **50% of the points you lost for that question**.
     otherwise we will not be able to give points back.
 :::
 
-### 3.2 Address feedback from peer review
+### 4.2 Address feedback from peer review
 
 After you receive feedback from your peers,
 each group member should at least address one feedback item from the peer review.
@@ -154,7 +204,7 @@ which changes to your work addressed which pieces of feedback.
 See this page for an example of a changelog and how you can reference fixes:
 <https://keepachangelog.com/>
 
-### 4. Reproducible and repliciable workflow
+### 5. Reproducible and repliciable workflow
 
 ::: callout-important
 ## Your README instructions are worth 5 all-or-nothing points
@@ -185,6 +235,7 @@ You will submit:
 
 1.  the URL of your project's GitHub.com repository
 2.  the URL of a GitHub release of your project's GitHub.com repository
+3.  the URL of your report on GitHub Pages
 
 ## Expectations
 
@@ -211,3 +262,4 @@ You will submit:
 -   R code should follow the [tidyverse style guide](https://style.tidyverse.org/),
     and Python code should follow the [black style guide](https://black.readthedocs.io/en/stable/the_black_code_style/index.html) for Python)
 -   You should not have extraneous files in your repository that should be ignored.
+    The one exception is `docs/`: it is generated, but GitHub Pages needs it committed.

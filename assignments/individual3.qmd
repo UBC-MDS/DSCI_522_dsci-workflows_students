@@ -385,6 +385,17 @@ project:
 
 This file will tell Quarto to output the rendered report to the `docs` folder, as a website.
 
+Also create an empty file called `.nojekyll` at the **root directory** of your repository:
+
+``` bash
+touch .nojekyll
+```
+
+Quarto copies it into the `docs` folder every time you render,
+and it tells GitHub Pages to serve your files exactly as they are
+(see [Turning off Jekyll with `.nojekyll`](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html#nojekyll)
+in the DSCI 521 notes).
+
 4.8.2.  At the **root directoy** of your repository,
 please run the following command to render the report in the terminal:
 

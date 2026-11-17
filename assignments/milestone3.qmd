@@ -40,16 +40,15 @@ An example final project from past years can be seen here:[Breast Cancer Predict
     **You must document in your `README.md` how to call each script,
     including what arguments you pass each script.**
 
-2.  If your report literate code document is not already a `*.qmd` file, convert it so that it is.
+2.  Add data validation checks to your analysis scripts.
 
-3.  Edit your report literate code document (`*.qmd` file)
-    so that it's sole job is to narrate your analysis,
-    display your analysis artifacts (i.e., figures and tables),
-    and nicely format the report.
-    The goal is that non-data scientists would not be able to tell that code was used to perform your analysis
-    or format your report (i.e., no code should be visible in the rendered report).
+3.  If your report literate code document is not already a `*.qmd` file, convert it so that it is.
 
-4.  Update your project's computational environment as you add dependencies to your project
+4.  Update your report so that it displays the figures and tables your scripts write,
+    instead of computing them.
+    You will polish the report's formatting in Milestone 4.
+
+5.  Update your project's computational environment as you add dependencies to your project
 
 An example Milestone 3 that corresponds to our expectations from this year is available here:
 [Breast Cancer Predictor 2.0.0](https://github.com/ttimbers/breast-cancer-predictor/tree/2.0.0)
@@ -122,47 +121,44 @@ They scripts could be organized something like this:
 including what arguments you pass each script.**
 :::
 
-### 2. If your report literate code document is not already a `*.qmd` file, convert it so that it is.
+### 2. Add data validation checks to your analysis scripts
+
+To make sure that your data visualizations and modeling results are correct,
+robust and of high quality, add data validation checks to your analysis.
+Write them as code in your scripts,
+for example as a step in the script that cleans or splits your data.
+Ensure you cover the checks we recommend in our [Data validation checklist](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/data-validation.html#data-validation-checklist).
+Write at least one check for each item in the data validation checklist.
+Also be thoughtful about what you want to happen if/when your checks fail,
+and be sure that your code reflects that.
+Finally, when implementing your checks,
+be sure they do not create data leakage between the training and test set.
+
+### 3. If your report literate code document is not already a `*.qmd` file, convert it so that it is.
 
 You can use `quarto convert notebook.ipynb` to convert Jupyter notebooks to `*.qmd` files.
 If you were using an `.Rmd` file,
 you can simply rename the file so that it has a `.qmd` file extension.
 Much of the `.Rmd` syntax is backwards compatible, so this should mostly work.
 
-### 3. Edit your report literate code document (`*.qmd`) so that it's sole job is to narrate your analysis, display your analysis artifacts (i.e., figures and tables), and nicely format the report.
+### 4. Update your report to display your scripts' results
 
-The goal is that non-data scientists would not be able to tell that code was used to perform your analysis
-or format your report (i.e., no code should be visible in the rendered report).
+Your scripts now write your figures and tables to files.
+Update your report so that it reads and displays those files,
+instead of computing them itself.
+You will polish the report's formatting
+(table of contents, references, cross-references, inline values and hidden code)
+in Milestone 4.
 
-You should render your report to either `html` or `PDF`.
-Quarto has all the features needed to make your report satisfy our expectations (bibliography, automatic numbering of figures and tables, inline code rendering, etc).
-In particular, we expect you to:
+### 5. Update your project's computational environment as you add dependencies to your project
 
--   Use markdown headers and Quarto configuration
-    so that a table of contents will be created when the document is rendered.
--   Add correctly formatted inline BibTeX references
-    so that a nicely formatted reference list will be present at the end of the document.
--   Edit the figure formatting so that Quarto:
-    -   automatically numbers them,
-    -   has a label for easy cross referencing, and
-    -   controls the figure sizes so the figures are not too big.
--   Add a table description argument so that they are automatically numbered by Quarto
-    and use cross referencing to link to the table when it is discussed in the text.
--   Edit the narrative so it uses cross-referencing to refer to the figures and tables
-    instead of having their reference hardcode the figure and table numbers.
--   Replace any hard-coded values in the Quarto report narrative text with inline Quarto code,
-    so that the text will be automatically updated with the correct value.
--   Change the code chunk options so that no code is viewable in the rendered report,
-    just the code outputs where needed (e.g., figures and tables).
-
-### 3. Update your project's computational environment as you add dependencies to your project
-
-At a minimum, you will be adding either Quarto as a new dependency to your project.
-Thus, you will need to update your project's computational environment as you add this (and potentially other) dependencies to your project.
-This means that your environment specification files will need to have this package added, with the version pinned,
+As you add packages to your project
+(for example, `click` for your scripts, or a package for your data validation checks),
+update your project's computational environment.
+This means that your environment specification files will need to have these packages added, with the version pinned,
 and the Docker container image will need to be rebuilt and published to DockerHub.
 
-### 4. Update any instructions for running your analysis
+### 6. Update any instructions for running your analysis
 
 Do not forget to update your project's documentation to reflect changes from this week.
 Update instructions and/or commands in your `README.md`
@@ -170,6 +166,11 @@ and documention to run your analysis in your compute environment.
 You may combine commands within `make`.
 But instructions in the `README.md` file should include how to run the make target
 and rule.
+
+After you re-render your report,
+copy it to `docs/index.html` again and push,
+so the report on GitHub Pages stays current
+(see [Milestone 2](milestone2.qmd#publish-your-report-on-github-pages)).
 
 ::: callout-important
 ## Your README instructions are worth 5 all-or-nothing points
@@ -199,6 +200,7 @@ You will submit:
 
 1.  the URL of your project's GitHub.com repository
 2.  the URL of a GitHub release of your project's GitHub.com repository
+3.  the URL of your report on GitHub Pages
 
 ## Expectations
 
@@ -225,4 +227,5 @@ You will submit:
 -   R code should follow the [tidyverse style guide](https://style.tidyverse.org/),
     and Python code should follow the [black style guide](https://black.readthedocs.io/en/stable/the_black_code_style/index.html) for Python)
 -   You should not have extraneous files in your repository that should be ignored.
+    The one exception is `docs/`: it is generated, but GitHub Pages needs it committed.
 -   You will not be expected to incorporate Milestone 2 feedback in this submission (of course you can, but likely you will not receive it until the end of the week which might be too late to incorporate it).

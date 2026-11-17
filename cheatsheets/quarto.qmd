@@ -338,6 +338,17 @@ project:
 
 This file will tell Quarto to output the rendered report to the `docs` folder, as a website.
 
+Also create an empty file called `.nojekyll` at the **root directory** of your repository:
+
+``` bash
+touch .nojekyll
+```
+
+Quarto copies it into the `docs` folder every time you render,
+and it tells GitHub Pages to serve your files exactly as they are
+(see [Turning off Jekyll with `.nojekyll`](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html#nojekyll)
+in the DSCI 521 notes).
+
 Then, at the **root directoy** of your repository,
 please run the following command to render the report in the terminal:
 
@@ -348,6 +359,15 @@ quarto render
 You will see that the rendered report is now all in the `docs` folder.
 There is a `index.html` file in the `docs` folder,
 you can open it in your browser to view the report.
+
+Confirm that `.nojekyll` is in `docs`, the folder GitHub Pages publishes from.
+`ls` hides files whose names start with a dot, so add `-a`:
+
+``` bash
+ls -a docs
+```
+
+You should see `.nojekyll` in the list.
 
 ::: callout-note
 ## No image showing in Jupyter lab??
@@ -384,6 +404,12 @@ and double click on the `index.html` file to view the report in a browser.
     You will see that github now says something like the message shown below:
 
 ![](images/ia3-4.png)
+
+3.  On GitHub.com, open the `docs` folder of your repository
+    and check that `.nojekyll` is there.
+    GitHub Pages reads that copy, not the one on your computer.
+    If your published site looks different from the report you rendered locally,
+    a missing `docs/.nojekyll` is the first thing to check.
 
 # Congratulations!
 

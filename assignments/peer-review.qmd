@@ -46,6 +46,8 @@ Each student will:
 -   Using the review checklist linked to below,
     review the data analysis project assigned to you and write your comprehensive review.
     -   [MDS data analysis checklist](https://raw.githubusercontent.com/UBC-MDS/data-analysis-review-checklist/main/data-analysis-review-checklist.md)
+-   Read the team's report on GitHub Pages (their `README` links to it),
+    as well as the code in their repository.
 -   Other than checking the boxes in the template,
     we ask you to give at least 3 pieces of constructive feedback in the `Review Comments` section.
     It is OK to have some overlap with the other people reviewing the data analysis project,

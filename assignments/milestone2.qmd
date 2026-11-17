@@ -34,7 +34,7 @@ An example final project from past years can be seen here:
 
 1.  Upgrade your project's computational environment to a container.
 
-2.  Add data validation checks to your data analysis.
+2.  Publish your report on GitHub Pages.
 
 An example Milestone 2 that corresponds to our expectations from this year is here:
 [Breast Cancer Predictor in Python 1.0.0](https://github.com/ttimbers/breast-cancer-predictor/tree/1.0.0)
@@ -96,17 +96,93 @@ If your team does not have both,
 work with another team to test them.
 :::
 
-### 2. Add data validation checks to your data analysis.
+### 2. Publish your report on GitHub Pages
 
-Thus, to ensure that your data visualization and modeling results are correct,
-robust and of high quality, we want you to add data validation checks to your data analysis.
-These should be written as code in your data analysis.
-Ensure you cover the checks we recommend in our [Data validation checklist](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/130-data-validation.html#data-validation-checklist).
-Write at least one check for each item in the data validation checklist.
-Also be thoughtful about what you want to happen if/when your checks fail,
-and be sure that your code reflects that.
-Finally, when implementing your checks,
-be sure they do not create data leakage between the training and test set.
+Anyone should be able to read your report online,
+without cloning your repository.
+You learned to publish with GitHub Pages in DSCI 521
+([Introduction to Quarto and GitHub Pages](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html)),
+where you published a whole Quarto website.
+Here you apply those skills to publish the HTML version of your report.
+
+::: callout-note
+## Already published your report in Milestone 1?
+
+Switch to the setup below, even if your current one works.
+Later milestones build on it.
+:::
+
+You publish by hand, with a small workaround.
+It works because of how GitHub Pages serves files:
+
+-   GitHub Pages can publish the files in a `docs/` folder on your `main` branch, exactly as they are.
+-   When someone visits your site's address, the web server shows the file named `index.html`.
+-   With `embed-resources: true`, your rendered report is a single HTML file
+    that holds everything it needs, including its figures.
+
+So publishing your report is just putting a copy of that one file at `docs/index.html`.
+Copying files by hand is easy to forget, so it is not how you would publish a larger site.
+Later in the program (in DSCI 524, when you build websites for your packages),
+you will use tools that build and publish a website for you.
+
+1.  Make your rendered report a single, self-contained HTML file,
+    with `embed-resources: true` in its HTML options,
+    for example in the report's YAML header:
+
+    ```yaml
+    format:
+      html:
+        embed-resources: true
+    ```
+
+    If your project's `_quarto.yml` already sets this, you don't need to add it again.
+    A self-contained file holds its figures and styling,
+    so it still works after you copy it somewhere else.
+    If you have only been rendering your report to PDF, render it to HTML as well.
+
+2.  Render your report.
+    Then copy the rendered HTML file into a `docs/` folder at the root of your repository,
+    and name the copy `index.html`:
+
+    ```bash
+    mkdir -p docs
+    cp <path-to-your-report>.html docs/index.html
+    ```
+
+3.  Add an empty `.nojekyll` file to `docs/`,
+    so that GitHub Pages serves your file exactly as it is
+    (see [Turning off Jekyll with `.nojekyll`](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html#nojekyll)):
+
+    ```bash
+    touch docs/.nojekyll
+    ```
+
+4.  Commit and push `docs/`.
+    It is a copy of a generated file,
+    but GitHub Pages can only publish files that are in your repository.
+    Check that your `.gitignore` does not ignore `docs/` or `.html` files.
+
+5.  In your repository on GitHub.com, go to **Settings > Pages**.
+    Under **Build and deployment**, choose **Deploy from a branch**,
+    then the `main` branch and the `/docs` folder, and click **Save**.
+
+6.  After a few minutes, your report is published at
+    `https://ubc-mds-2026-27.github.io/<your-repository>/`.
+    Open it and check that the whole report shows, including its figures.
+
+7.  Put this URL in your `README` (as the link to your rendered report)
+    and in the **About** section of your repository.
+
+::: callout-important
+## Keep the published report up to date
+
+`docs/index.html` is a copy.
+Each time you re-render your report,
+copy it into `docs/` again and push,
+or the published version will fall behind.
+We grade your work from your `1.0.0` release,
+and the report on GitHub Pages should match it.
+:::
 
 ## Submission Instructions
 
@@ -122,6 +198,7 @@ You will submit:
 
 1.  the URL of your project's GitHub.com repository
 2.  the URL of a GitHub release of your project's GitHub.com repository
+3.  the URL of your report on GitHub Pages
 
 ## Expectations
 

@@ -46,5 +46,4 @@ This assignment will be graded for completion as follows:
 | -25% | The `Makefile` dependency tree is incorrect in some way |
 | 0% | The assignment was not attempted. |
 
--   You will only get the extra points for serving up the HTML version of the report on GitHub pages
     if all of the main assignment components were completed.
