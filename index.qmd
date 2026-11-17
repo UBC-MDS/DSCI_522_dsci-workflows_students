@@ -120,13 +120,19 @@ so push it before you submit.
 
 ## Schedule
 
-<table class="striped">
+The **Required Notes/Readings** are the core material for each lecture.
+The **Optional Book Chapters** are other chapters of the textbook on the same topics,
+for when you want more detail.
+
+::: {.column-page-inset .schedule-scroll}
+
+<table class="striped schedule">
   <tr>
     <th>Lecture</th>
     <th>Topic</th>
     <th>Required Notes/Readings</th>
+    <th>Optional Book Chapters</th>
     <th>Additional Resources</th>
-    <th></th>
   </tr>
   <tr>
     <td>1</td>
@@ -134,9 +140,44 @@ so push it before you submit.
     <td>
       <ul>
         <li>[How do reproducible and trustworthy workflows impact data science?](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/data-science-workflows.html)</li>
+      </ul>
+      <p class="reading-group">Git and GitHub</p>
+      <ul>
         <li>[Merge conflicts](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-merge-conflicts.html)</li>
         <li>[Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html)</li>
-        <li>[Virtual environments: Python + uv](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/virtual-environments-uv.html) (DSCI 521 notes)</li>
+        <li>[Pull requests](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-pull-requests.html)</li>
+        <li>[Code review on GitHub](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-code-review.html)</li>
+        <li>[Branching workflows: GitHub flow and Git flow](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/branching-workflows.html)</li>
+      </ul>
+      <p class="reading-group">Virtual environments</p>
+      <ul>
+        <li>[Virtual environments](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments.html)</li>
+        <li>[Virtual environments: Python (uv)](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv.html)</li>
+        <li>[uv: projects](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-projects.html)</li>
+        <li>[uv: sharing and managing an environment](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-sharing.html)</li>
+        <li>[uv: rendering Quarto documents](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-quarto.html)</li>
+        <li>[Virtual environments: R (renv)](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-r-renv.html) (if your project uses R)</li>
+      </ul>
+    </td>
+    <td>
+      <p class="reading-group">Git and GitHub</p>
+      <ul>
+        <li>[Git basics: a review](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-basics.html) [A refresher on everyday Git commands.]{.reading-note}</li>
+        <li>[Ignoring files with `.gitignore`](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-ignore.html) [Keep files such as `.venv/` out of the repository.]{.reading-note}</li>
+        <li>[Going back in time with Git](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-history.html) [View and restore earlier versions of your files.]{.reading-note}</li>
+        <li>[Project management on GitHub](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-project-management.html) [Issues, project boards and milestones for planning team work.]{.reading-note}</li>
+        <li>[Main branch protection](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-branch-protection.html) [Require a pull request before changes reach `main`.]{.reading-note}</li>
+        <li>[Filenames and data science project organization](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/filenames-project-organization.html) [File naming, folder layout and IDEs.]{.reading-note}</li>
+      </ul>
+      <p class="reading-group">Virtual environments</p>
+      <ul>
+        <li>[uv: installing uv and managing Python](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-install.html) [Install and update uv, and manage Python versions.]{.reading-note}</li>
+        <li>[uv: `uv run` and activating an environment](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-run.html) [When to activate an environment instead of using `uv run`.]{.reading-note}</li>
+        <li>[uv: JupyterLab and standalone scripts](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-jupyter-scripts.html) [Run JupyterLab in a project's environment, and give one script its own dependencies.]{.reading-note}</li>
+        <li>[uv: pinning exact versions](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-exact-pins.html) [Declare exact versions (`==`) instead of lower bounds (`>=`).]{.reading-note}</li>
+        <li>[renv: declaring packages in `DESCRIPTION`](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-r-renv-description.html) [Explicit snapshots, which work better for R teams and containers.]{.reading-note}</li>
+        <li>[Virtual environments: Python (conda)](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-conda.html) [conda, another environment manager for Python.]{.reading-note}</li>
+        <li>[Virtual environments: Python (conda-lock)](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-conda-lock.html) [Lock files for conda environments.]{.reading-note}</li>
       </ul>
     </td>
     <td>
@@ -146,7 +187,6 @@ so push it before you submit.
         </li>
       </ul>
     </td>
-    <td></td>
   </tr>
   <tr>
     <td>2</td>
@@ -155,6 +195,7 @@ so push it before you submit.
       <ul>
         <li>[Introduction to containerization](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html)</li>
         <li>[Using and running containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html)</li>
+        <li>[Containers: Docker Compose](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-docker-compose.html)</li>
       </ul>
     </td>
     <td></td>
@@ -169,13 +210,13 @@ so push it before you submit.
         </li>
       </ul>
     </td>
+    <td></td>
     <td>
       <ul>
         <li>[Ten simple rules for writing Dockerfiles for reproducible data science](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008316)
         </li>
       </ul>
     </td>
-    <td></td>
   </tr>
   <tr>
     <td>4</td>
@@ -242,6 +283,8 @@ so push it before you submit.
     <td></td>
   </tr>
 </table>
+
+:::
 
 ## Textbooks
 
