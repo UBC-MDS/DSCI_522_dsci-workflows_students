@@ -277,7 +277,7 @@ quarto render report/breast_cancer_predictor_report.qmd --to pdf
 
 * Individual Assignment 4: Create a Makefile to run all the scripts.
 * [Description here](https://ubc-mds.github.io/DSCI_522_dsci-workflows_students/)
-* [Guide here](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/180-pipelines-make.html)
+* [Guide here](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/pipelines-make.html)
 
 ## When do you NOT want to `make clean` to delete all files? 
 
@@ -362,5 +362,16 @@ conda install click
 ```bash
 make env
 ```
+
+## Readings for this lecture {style="font-size: 0.85em;"}
+
+| What | Where |
+|---|---|
+| Required | Textbook: [Introduction to data analysis pipelines](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/pipelines-scripts.html), [Data analysis pipelines with GNU Make](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/pipelines-make.html) |
+| Commands | [Makefile cheatsheet](https://ubc-mds.github.io/DSCI_522_dsci-workflows_students/cheatsheets/makefile.html) |
+
+::: {.notes}
+Readings come from the schedule table in the course syllabus.
+:::
 
 ## {background-image="images/move_u.jpg" background-size="contain" background-position="center"}

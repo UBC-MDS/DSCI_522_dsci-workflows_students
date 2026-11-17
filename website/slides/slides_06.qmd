@@ -167,4 +167,15 @@ Reproducibility:
 
 # ⭐️ Good luck with M3!
 
+## Readings for this lecture {style="font-size: 0.85em;"}
+
+| What | Where |
+|---|---|
+| Required | Textbook: [Reproducible reports](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/reproducible-reports-quarto.html) |
+| Commands | [Quarto cheatsheet](https://ubc-mds.github.io/DSCI_522_dsci-workflows_students/cheatsheets/quarto.html) |
+
+::: {.notes}
+Readings come from the schedule table in the course syllabus.
+:::
+
 ## {background-image="images/move_u.jpg" background-size="contain" background-position="center"}

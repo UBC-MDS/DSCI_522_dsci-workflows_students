@@ -26,17 +26,19 @@ title-slide-attributes:
 
 # ⚠️ Deadlines
 
-* **Peer Review**: Thursday, December 11th, 2025 at 6PM
+* **Peer Review**: Thursday, December 10th, 2026 at 6PM
 
-* **Milestone 4**: Saturday, December 13th, 2025 at 6PM
+* **Milestone 4**: Saturday, December 12th, 2026 at 6PM
 
-* **Individual Assignment 4**: Saturday, December 13th, 2025 at 6PM
+* **Individual Assignment 4**: Saturday, December 12th, 2026 at 6PM
 
-* **Teamwork Reflection**: Sunday, December 14th, 2025 at 6PM
+* **Teamwork Reflection**: Sunday, December 13th, 2026 at 6PM
 
-* **Milestone 1 + 2 regrade requests**: Saturday, December 13, 2025 at 6PM.
+* **Milestone 1 + 2 regrade requests**: Saturday, December 12th, 2026 at 6PM.
 
-* **Milestone 3 regrade requests**: Wednesday, December 17th, 2025 at 11:59 AM.
+* **Milestone 3 regrade requests**: Wednesday, December 16th, 2026 at 11:59 AM.
+
+
 
 # Peer review 🧐
 
@@ -44,14 +46,15 @@ You have been assigned to review another group's project.
 
 ## Step 1: Initiate review request (as a team)
 
-* Open an issue in [`UBC-MDS/data-analysis-review-2025`](https://github.com/UBC-MDS/data-analysis-review-2025.git) repository
+* Open an issue in [`UBC-MDS/data-analysis-review-2026`](https://github.com/UBC-MDS/data-analysis-review-2026.git) repository
 * Fill in the issue template with required information
 * Do this before (or at the beginning of) the lab
-* Find reviewer assignments [here](https://github.ubc.ca/mds-2025-26/lab-sections/blob/main/peer_review_block3_2025-26.csv)
+* Find reviewer assignments [here](https://github.ubc.ca/mds-2026-27/lab-sections/blob/main/peer_review_block3_2026-27.csv)
+
 
 ## Step 2: Reviewing (individual)
 
-* View your assigned project number [here](https://github.ubc.ca/mds-2025-26/lab-sections/blob/main/peer_review_block3_2025-26.csv)
+* View your assigned project number [here](https://github.ubc.ca/mds-2026-27/lab-sections/blob/main/peer_review_block3_2026-27.csv)
 * Use the [MDS data analysis checklist](https://raw.githubusercontent.com/UBC-MDS/data-analysis-review-checklist/main/data-analysis-review-checklist.md)
 
 ## How to give review feedback?

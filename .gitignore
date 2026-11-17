@@ -10,3 +10,9 @@ _site/
 scripts/__pycache__/
 
 CLAUDE.md
+
+# Stray Quarto output: the site builds into _site/, so HTML next to the .qmd files is never committed
+website/*.html
+website/*-listing.json
+website/slides/*.html
+website/slides/*_files/

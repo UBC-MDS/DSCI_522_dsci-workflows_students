@@ -234,7 +234,7 @@ docker pull skysheng7/dsci522:8fcac44
 
 ::: footer
 Source: [Timbers, T. A., Ostblom, J., D'Andrea, F., Lourenzutti, R., & Chen, D. Reproducible and Trustworthy Workflows for Data Science
-](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/150-scripts.html)
+](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/scripts.html)
 :::
 
 ## Read-eval-print-loop (REPL) framework (i.e., interactive mode)
@@ -618,5 +618,15 @@ saveRDS(final_knn_model, "final_knn_model.rds")
 # load the model object from RDS
 final_knn_model <- readRDS("final_knn_model.rds")
 ```
+
+## Readings for this lecture {style="font-size: 0.85em;"}
+
+| What | Where |
+|---|---|
+| Required | Textbook: [Non-interactive scripts](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/scripts.html) |
+
+::: {.notes}
+Readings come from the schedule table in the course syllabus.
+:::
 
 ## {background-image="images/move_u.jpg" background-size="contain" background-position="center"}

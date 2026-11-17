@@ -21,7 +21,7 @@ format:
 resources:
   - assets/helper.js
 title-slide-attributes:
-  data-notes: "[1] iClicker Cloud open<br>[2] Encourage questions: if one student has a question, likely others do too.<br>[3] Connect my logitech highlighter<br>[4] Connect my writing notepad to the laptop"
+  data-notes: "[1] iClicker Cloud open<br>[2] Encourage questions: if one student has a question, likely others do too.<br>[3] Connect my logitech highlighter<br>[4] Connect my writing notepad to the laptop<br>[5] Before class: start Docker Desktop, then docker pull python:3.14-slim and docker pull ghcr.io/astral-sh/uv:0.13.7 so the build is fast in class<br>[6] Before class: rm -rf ~/Desktop/github/dsci522/dockerfile_demo"
 ---
 
 ## 😺 iClicker: How is your group collaboration going?
@@ -51,90 +51,42 @@ title-slide-attributes:
 [Source](https://giphy.com)
 :::
 
-## [Conda](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/085-virtual_env-python-conda.html) Recap: 🧐 How to...
+## uv recap: which command would you type to...
 
-::: {style="font-size: 0.7em;"}
-- Create a new conda environment
-- List all conda environments
-- Activate a conda environment
-- Deactivate a conda environment
-- Remove a conda environment
-- List all packages in a conda environment
-- Remove a package from a conda environment
-- Update a package in a conda environment
-- Update all packages in a conda environment
-- Share a conda environment with someone else
-- Create a conda environment from `environment.yml` file
-- Duplicate a conda environment
+::: {style="font-size: 0.85em;"}
+- start a new project
+- choose the Python version
+- add a package
+- remove a package
+- rebuild `.venv/` after cloning a teammate's repository
+- run a script inside the environment
+- upgrade the packages to newer versions
+- see which package pulled in which
 :::
 
-## 📜 Conda Cheat Sheet Part 1️⃣ 
+::: {.notes}
+Ask the class to shout out the commands before showing the next slide. This is a two minute recap of lecture 2: the Dockerfile demo today uses the same three files.
+:::
 
-::: {style="font-size: 0.7em;"}
+## uv recap: the answers
+
+::: {style="font-size: 0.75em;"}
 | Task | Command |
 |------|---------|
-| Create a new conda environment | `conda create -n <env_name>` |
-| Create with specific Python version | `conda create --name <env_name> python=3.11` |
-| Create with packages | `conda create --name <env_name> numpy pandas` |
-| List all conda environments | `conda env list` or `conda info --envs` |
-| Activate a conda environment | `conda activate <env_name>` |
-| Deactivate a conda environment | `conda deactivate` |
-| Remove a conda environment | `conda env remove -n <env_name>` |
-| List all packages in environment | `conda list` |
-| Remove a package from **current** environment| `conda remove <package_name>` |
+| Start a new project | `uv init --bare` |
+| Choose the Python version | `uv python pin 3.14` |
+| Add a package | `uv add pandas` |
+| Remove a package | `uv remove pandas` |
+| Rebuild `.venv/` from `uv.lock` | `uv sync` |
+| Run a script inside the environment | `uv run python script.py` |
+| Upgrade the packages | `uv lock --upgrade`, then `uv sync` |
+| See which package pulled in which | `uv tree` |
 :::
 
-## 📜 Conda Cheat Sheet Part 2️⃣ 
+Push `pyproject.toml`, `uv.lock` and `.python-version`. Never push `.venv/`.
 
-::: {style="font-size: 0.65em;"}
-| Task | Command |
-|------|---------|
-| Update a package in **current** environment | `conda update <package_name>` |
-| Remove a package in **other** environment | `conda remove -n <env_name> <package_name>` |
-| Update a package in **other** environment | `conda update -n <env_name> <package_name>` |
-| Update all packages in **current** environment | `conda update --all` |
-| Share environment | `conda env export --from-history > environment.yml` |
-| Create conda environment from `environment.yml` | `conda env create --file environment.yml` |
-| Duplicate a conda environment | `conda create --name <new_env> --clone <old_env>` |
-:::
-
-## 📕 Command Line Notes
-
-* `--name` and `-n` are equivalent.
-* `--file` and `-f` are equivalent.
-* `-p` and `--platform` are equivalent, to specify the platform (e.g., `linux-64`, `osx-arm64`, `win-64`).
-* More command line review cheatsheet is [here](https://github.com/skysheng7/linux_command_in_aws_ec2/blob/main/linux_cheatsheet/basic_command_line.md).
-
-## [Conda-lock](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/090-conda-lock.html) Recap
-
-🔒 What are the commands for the following tasks?
-
-- Generate a general conda-lock file for all platforms
-- Generate a conda-lock file for a specific platform
-
-
-## 📜 Conda-lock Cheat Sheet
-
-::: {style="font-size: 0.7em;"}
-|Command | Output |
-|-------------------|-------|
-|#General file all platforms <br> `conda-lock lock --file environment.yml` | `conda-lock.yml` |
-|#General file for one platform (e.g., Linux) <br> `conda-lock lock --file environment.yml -p linux-64` | `conda-lock.yml` |
-|#Explicit lock file for one platform (e.g., Linux) <br> `conda-lock -k explicit --file environment.yml -p linux-64` | `conda-linux-64.lock` |
-|#Explicit lock file from `conda-lock.yml` <br> `conda-lock render -p linux-64` | `conda-linux-64.lock` |
-:::
-
-## 🙀 `conda-lock.yml` VS `conda-linux-64.lock`? {style="font-size: 0.8em;"}
-
-::: {style="font-size: 0.73em;"}
-| Feature | `conda-lock.yml` | `conda-linux-64.lock` |
-|------|-----------------------|----------------------------|
-| **Format** | Unified YAML (multi-platform) | Explicit (single-platform) |
-| **Content** | Structured metadata + dependencies for all platforms | Simple list of package URLs |
-| **File Size** | Larger (contains all platforms) | Smaller (one platform only) |
-| **Installation** | `conda-lock install --name <env_name> conda-lock.yml` | `conda create --name <env_name> --file conda-linux-64.lock` |
-| **Use case** | Development across multiple platforms | Production deployment, Docker, single platform |
-| **Speed** | Slightly slower (conda-lock processes it) | Fastest |
+::: {.notes}
+More commands: [uv cheatsheet](https://ubc-mds.github.io/DSCI_522_dsci-workflows_students/cheatsheets/uv.html) and the [DSCI 521 uv notes](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/virtual-environments-uv.html).
 :::
 
 ## Some data science conventions
@@ -165,7 +117,7 @@ docker run \
 ```
 
 2. 🏷️ Don't use the TAG `latest` for the image, use the specific version tag instead.
-3. Docker cheatsheet is available in [textbook](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/110-containerization-2.html)
+3. Docker commands: [Docker cheatsheet](https://ubc-mds.github.io/DSCI_522_dsci-workflows_students/cheatsheets/docker.html)
 
 # We don't like manual work!
 
@@ -199,9 +151,9 @@ services:
 
 * Launch the container: `docker compose up`
 * Stop the container: type `Cntrl + C` in the terminal where you launched the container, and then type `docker-compose rm`
-* Read more in the textbook [here](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/115-docker-compose.html)
+* Read more in the textbook [here](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-docker-compose.html)
 
-## Today's topic: Let's build our own [container](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/120-containerization-3.html)!
+## Today's topic: Let's build our own [container](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html)!
 
 ![](images/docker_otter.png){style="position: fixed; bottom: -100px; left: -55px; margin: 0; padding: 0;"}
 
@@ -277,126 +229,100 @@ docker-compose rm
 ```
 :::
 
-# Command line creating `Dockerfile` 
+# Command line creating `Dockerfile`
 
-## Code we run in class: `Dockerfile` practice
+## Demo: put our uv environment into our own image
 
-Step-by-step instructions:
-```{bash}
-# 1. Please first `cd` to a local folder of your choice, don't put all files in your home directory!
-# Example `cd` command: 
-cd /Users/skysheng/Desktop/github/dsci522
+`python:3.14-slim` has Python but no pandas. We write a `Dockerfile` that copies in our three uv files and runs `uv sync` inside the image.
 
-# 2. make a new folder called `demo_docker` (or any other name you like)
-mkdir demo_docker
+- Textbook: [Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html)
+- uv in Docker: [uv docs](https://docs.astral.sh/uv/guides/integration/docker/)
 
-# 3. move into that folder we just created
-cd demo_docker
+::: {.notes}
+Terminal, step by step (tested with uv 0.12.10 and Docker 29.7.2):
 
-# 4. create a environment.yml file using nano
-nano environment.yml
-```
-
-## Code we run in class: `Dockerfile` practice
-
-::: {.smaller style="font-size: 0.8em;"}
-
-5. Copy and paste the following code into the `environment.yml` file.
-```{yaml}
-name: my_env
-channels:
-- conda-forge
-dependencies:
-- conda-lock=3.0.4
-- pandas=2.3.3
-- pandera=0.26.1
-- pip=25.3
-- python=3.11.14
-- pip:
-  - deepchecks==0.19.1
-```
-
-* You can also create this file using Graphical user interface (GUI) like VSCode. 
-* If you used `nano` to create this file, you need to press `Cntrl + X` to attempt exit, by default it will ask you to save the file. Press `Y` and then press `Enter` to save the file. 
-
+1. `cd ~/Desktop/github/dsci522`
+2. `mkdir dockerfile_demo`
+3. `cd dockerfile_demo`
+4. `uv init --bare` → only `pyproject.toml`.
+5. `uv python pin 3.14` → `.python-version`. It matches the Python inside `python:3.14-slim`.
+6. `uv add pandas pandera` → creates `.venv/` and `uv.lock`. Point out: pandas 3.1.1, pandera 0.36.0.
+7. `ls -a` → `.python-version`, `.venv`, `pyproject.toml`, `uv.lock`.
+8. `nano Dockerfile`, paste the Dockerfile from the slide, then `Ctrl + X`, `Y`, `Enter`. (Or open the folder in VS Code with `code .`)
+9. `cat Dockerfile` → walk through it line by line with the highlights on the next slide.
+10. `docker build --tag dockerfile_demo .` → point at the dot: "build from this folder". Point at the `RUN uv sync --locked` step in the output: uv installs the packages inside the image.
+11. `docker images dockerfile_demo` → about 410 MB.
+12. `docker run --rm dockerfile_demo python -c "import pandas, pandera; print(pandas.__version__, pandera.__version__)"` → `3.1.1 0.36.0`, the same versions as in `uv.lock`.
+13. `docker run --rm -it dockerfile_demo bash` → now inside the container. Type `ls -a` → only the three uv files, no `.venv/` (the environment lives in `/opt/venv`). Type `which python` → `/opt/venv/bin/python`. Type `exit`.
+14. Ask: what happens if a teammate runs `uv add requests` but forgets to rebuild the image? Answer: the image still has the old environment. Rebuild after every change to `uv.lock`.
 :::
 
-## Code we run in class: `Dockerfile` practice
+## The `Dockerfile`, line by line {style="font-size: 0.85em;"}
 
-```{bash}
-# 6. Print out the content of the file to make sure it is correct.
-cat environment.yml
+```{.dockerfile code-line-numbers="1|3|5|6|7|8|9"}
+FROM python:3.14-slim
+
+COPY --from=ghcr.io/astral-sh/uv:0.13.7 /uv /uvx /usr/local/bin/
+
+WORKDIR /home/project
+ENV UV_PROJECT_ENVIRONMENT=/opt/venv
+COPY pyproject.toml uv.lock .python-version ./
+RUN uv sync --locked
+ENV PATH="/opt/venv/bin:$PATH"
 ```
 
-7. Create a conda-lock file using the following command: 
+::: {.notes}
+Click through the highlights:
 
-* Macbook users with Apple Silicon chips will need to use the following command to create a explicit lock file for linux OS: 
-
-```{bash}
-conda-lock -k explicit --file environment.yml -p linux-aarch64
-```
-
-* Everyone else can use the following command: 
-
-```{bash}
-conda-lock -k explicit --file environment.yml -p linux-64
-```
-
-## Code we run in class: `Dockerfile` practice
-
-8. Create a Dockerfile file using nano, or you can use GUI like VSCode.
-
-```{bash}
-# 8.Create a Dockerfile file using nano, or you can use GUI like VSCode.
-nano Dockerfile 
-```
-
-## Code we run in class: `Dockerfile` practice
-
-::: {.smaller style="font-size: 0.8em;"}
-9. Copy and paste the following code into the `Dockerfile` file. We use jupyter minimal notebook image as an example, and copy the conda-lock file to the container.
-
-* Macbook users with Apple Silicon chips will need to use the following code: 
-
-```{dockerfile}
-FROM quay.io/jupyter/minimal-notebook:afe30f0c9ad8
-
-COPY conda-linux-aarch64.lock /tmp/conda-linux-aarch64.lock
-```
-
-* Everyone else can use the following code: 
-
-```{dockerfile}
-FROM quay.io/jupyter/minimal-notebook:afe30f0c9ad8
-
-COPY conda-linux-64.lock /tmp/conda-linux-64.lock
-```
+1. `FROM`: start from an image that already has Python 3.14. Never `latest`.
+2. `COPY --from`: copy the uv program out of uv's official image. No need to install it.
+3. `WORKDIR`: the folder inside the image where the next commands run (like `cd`).
+4. `ENV UV_PROJECT_ENVIRONMENT`: put the environment in `/opt/venv` instead of `.venv/`, so it is not hidden when we mount our project folder over `/home/project` with `-v`.
+5. `COPY`: the shopping list, the receipt and the Python version. Not `.venv/`: the groceries are rebuilt inside the image, for Linux.
+6. `RUN uv sync --locked`: build the environment from `uv.lock`. `--locked` stops the build if `uv.lock` does not match `pyproject.toml`.
+7. `ENV PATH`: so typing `python` finds the environment's Python without `uv run`.
 :::
 
-## Code we run in class: `Dockerfile` practice
+## Commands we ran in class: `Dockerfile` {style="font-size: 0.75em;"}
 
-10. Build the docker image locally using the following command: 
+```{.bash}
+# 1. make a folder for the demo and move into it
+cd ~/Desktop/github/dsci522
+mkdir dockerfile_demo
+cd dockerfile_demo
 
-```{bash}
-# 10. Build the docker image locally, with the tag name `testing_cmds`. 
-# pay attention to the dot at the end of the command! 
-docker build --tag testing_cmds .
+# 2. make a uv project with Python 3.14 and two packages
+uv init --bare
+uv python pin 3.14
+uv add pandas pandera
+
+# 3. write the Dockerfile from the previous slide
+nano Dockerfile
+
+# 4. build the image (do not forget the dot at the end)
+docker build --tag dockerfile_demo .
+
+# 5. run one command inside it, then open a terminal inside it
+docker run --rm dockerfile_demo \
+    python -c "import pandas; print(pandas.__version__)"
+docker run --rm -it dockerfile_demo bash
 ```
 
-## Code we run in class: `Dockerfile` practice
+::: {.notes}
+Show this slide right after the live demo, so students can copy the commands. In `nano`, save with `Ctrl + X`, then `Y`, then `Enter`.
+:::
 
-11. Run the docker image you just built using the following command: 
+## Readings for this lecture {style="font-size: 0.85em;"}
 
-* Launch terminal only (Mac M4 chip you may run into bugs here):
+| What | Where |
+|---|---|
+| Required | Textbook: [Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html) |
+| Docker Compose | Textbook: [Containers: Docker Compose](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-docker-compose.html) |
+| Optional | [Ten simple rules for writing Dockerfiles for reproducible data science](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008316) |
+| Commands | [Docker cheatsheet](https://ubc-mds.github.io/DSCI_522_dsci-workflows_students/cheatsheets/docker.html), [uv cheatsheet](https://ubc-mds.github.io/DSCI_522_dsci-workflows_students/cheatsheets/uv.html) |
 
-```{bash}
-docker run --rm -it testing_cmds ../../bin/bash
-```
-
-* Launch interactive terminal on web browser:
-
-```{bash}
-docker run --rm -it -p 8888:8888 testing_cmds
-```
+::: {.notes}
+Readings come from the schedule table in the course syllabus. The Docker Compose chapter is listed under lecture 2 in the syllabus, but we practise it today.
+:::
 
 ## {background-image="images/move_u.jpg" background-size="contain" background-position="center"}

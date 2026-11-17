@@ -225,7 +225,7 @@ Takeaway: code that runs is not the same as code we can trust. This is why we wr
 
 ::: footer
 Source: [Timbers, T. A., Ostblom, J., D'Andrea, F., Lourenzutti, R., & Chen, D. Reproducible and Trustworthy Workflows for Data Science
-](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/010-intro-to-ds-workflows.html)
+](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/data-science-workflows.html)
 :::
 
 ## 💡 Reproducible analysis: 
@@ -234,7 +234,7 @@ Source: [Timbers, T. A., Ostblom, J., D'Andrea, F., Lourenzutti, R., & Chen, D. 
 
 ::: footer
 Source: [Timbers, T. A., Ostblom, J., D'Andrea, F., Lourenzutti, R., & Chen, D. Reproducible and Trustworthy Workflows for Data Science
-](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/010-intro-to-ds-workflows.html)
+](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/data-science-workflows.html)
 :::
 
 ## 🧐 Auditable/transparent analysis: 
@@ -243,7 +243,7 @@ Source: [Timbers, T. A., Ostblom, J., D'Andrea, F., Lourenzutti, R., & Chen, D. 
 
 ::: footer
 Source: [Timbers, T. A., Ostblom, J., D'Andrea, F., Lourenzutti, R., & Chen, D. Reproducible and Trustworthy Workflows for Data Science
-](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/010-intro-to-ds-workflows.html)
+](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/data-science-workflows.html)
 :::
 
 ## 🔥 Roast my repo!
