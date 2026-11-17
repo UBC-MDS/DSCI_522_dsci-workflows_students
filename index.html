@@ -116,6 +116,18 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="./cheatsheets/git.html">
  <span class="dropdown-text">Git</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./cheatsheets/docker.html">
+ <span class="dropdown-text">Docker &amp; Docker Compose</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./cheatsheets/quarto.html">
+ <span class="dropdown-text">Quarto</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./cheatsheets/makefile.html">
+ <span class="dropdown-text">Makefile</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -220,7 +232,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="toc-actions"><ul><li><a href="https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content" tabindex="-1">
+<main class="content page-columns page-full" id="quarto-document-content" tabindex="-1">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -389,7 +401,7 @@ ul.task-list li input[type="checkbox"] {
 <td>2026-11-28 18:00 PT</td>
 </tr>
 <tr class="even">
-<td>Milestone 2 - Modularize code into functions, test code &amp; container</td>
+<td>Milestone 2 - Container &amp; publish report on GitHub Pages</td>
 <td>20%</td>
 <td>2026-11-28 18:00 PT</td>
 </tr>
@@ -399,7 +411,7 @@ ul.task-list li input[type="checkbox"] {
 <td>2026-12-06 11:59 PT</td>
 </tr>
 <tr class="even">
-<td>Milestone 3 - Move code into scripts and polish report</td>
+<td>Milestone 3 - Move code into scripts &amp; data validation</td>
 <td>20%</td>
 <td>2026-12-06 11:59 PT</td>
 </tr>
@@ -414,7 +426,7 @@ ul.task-list li input[type="checkbox"] {
 <td>2026-12-12 18:00 PT</td>
 </tr>
 <tr class="odd">
-<td>Milestone 4 - Data analysis pipeline and revise project in response to feedback</td>
+<td>Milestone 4 - Data analysis pipeline, polished report, functions &amp; tests, and revise project in response to feedback</td>
 <td>24%</td>
 <td>2026-12-12 18:00 PT</td>
 </tr>
@@ -435,9 +447,11 @@ ul.task-list li input[type="checkbox"] {
 <p>The individual assignments, milestones, peer review and team work reflection are submitted on Gradescope. Where we need links (your repository, a release, an issue), enter the URLs into Gradescope directly: there is no PDF of links to make. Each assignment’s page says what it needs. The work itself is graded from GitHub, so push it before you submit.</p>
 </section>
 </section>
-<section id="schedule" class="level2">
+<section id="schedule" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="schedule">Schedule</h2>
-<table class="striped">
+<p>The <strong>Required Notes/Readings</strong> are the core material for each lecture. The <strong>Optional Book Chapters</strong> are other chapters of the textbook on the same topics, for when you want more detail.</p>
+<div class="column-page-inset schedule-scroll">
+<table class="striped schedule">
 <tbody><tr>
 <th>
 Lecture
@@ -449,9 +463,10 @@ Topic
 Required Notes/Readings
 </th>
 <th>
-Additional Resources
+Optional Book Chapters
 </th>
 <th>
+Additional Resources
 </th>
 </tr>
 <tr>
@@ -466,6 +481,11 @@ Reproducibility &amp; trustworthy workflows intro, git branches, virtual environ
 <li>
 <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/data-science-workflows.html">How do reproducible and trustworthy workflows impact data science?</a>
 </li>
+</ul>
+<p class="reading-group">
+Git and GitHub
+</p>
+<ul>
 <li>
 <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-merge-conflicts.html">Merge conflicts</a>
 </li>
@@ -473,7 +493,87 @@ Reproducibility &amp; trustworthy workflows intro, git branches, virtual environ
 <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html">Git branches</a>
 </li>
 <li>
-<a href="https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/virtual-environments-uv.html">Virtual environments: Python + uv</a> (DSCI 521 notes)
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-pull-requests.html">Pull requests</a>
+</li>
+<li>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-code-review.html">Code review on GitHub</a>
+</li>
+<li>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/branching-workflows.html">Branching workflows: GitHub flow and Git flow</a>
+</li>
+</ul>
+<p class="reading-group">
+Virtual environments
+</p>
+<ul>
+<li>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments.html">Virtual environments</a>
+</li>
+<li>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv.html">Virtual environments: Python (uv)</a>
+</li>
+<li>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-projects.html">uv: projects</a>
+</li>
+<li>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-sharing.html">uv: sharing and managing an environment</a>
+</li>
+<li>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-quarto.html">uv: rendering Quarto documents</a>
+</li>
+<li>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-r-renv.html">Virtual environments: R (renv)</a> (if your project uses R)
+</li>
+</ul>
+</td>
+<td>
+<p class="reading-group">
+Git and GitHub
+</p>
+<ul>
+<li>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-basics.html">Git basics: a review</a> <span class="reading-note">A refresher on everyday Git commands.</span>
+</li>
+<li>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-ignore.html">Ignoring files with <code>.gitignore</code></a> <span class="reading-note">Keep files such as <code>.venv/</code> out of the repository.</span>
+</li>
+<li>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-history.html">Going back in time with Git</a> <span class="reading-note">View and restore earlier versions of your files.</span>
+</li>
+<li>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-project-management.html">Project management on GitHub</a> <span class="reading-note">Issues, project boards and milestones for planning team work.</span>
+</li>
+<li>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-branch-protection.html">Main branch protection</a> <span class="reading-note">Require a pull request before changes reach <code>main</code>.</span>
+</li>
+<li>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/filenames-project-organization.html">Filenames and data science project organization</a> <span class="reading-note">File naming, folder layout and IDEs.</span>
+</li>
+</ul>
+<p class="reading-group">
+Virtual environments
+</p>
+<ul>
+<li>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-install.html">uv: installing uv and managing Python</a> <span class="reading-note">Install and update uv, and manage Python versions.</span>
+</li>
+<li>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-run.html">uv: <code>uv run</code> and activating an environment</a> <span class="reading-note">When to activate an environment instead of using <code>uv run</code>.</span>
+</li>
+<li>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-jupyter-scripts.html">uv: JupyterLab and standalone scripts</a> <span class="reading-note">Run JupyterLab in a project’s environment, and give one script its own dependencies.</span>
+</li>
+<li>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-exact-pins.html">uv: pinning exact versions</a> <span class="reading-note">Declare exact versions (<code>==</code>) instead of lower bounds (<code>&gt;=</code>).</span>
+</li>
+<li>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-r-renv-description.html">renv: declaring packages in <code>DESCRIPTION</code></a> <span class="reading-note">Explicit snapshots, which work better for R teams and containers.</span>
+</li>
+<li>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-conda.html">Virtual environments: Python (conda)</a> <span class="reading-note">conda, another environment manager for Python.</span>
+</li>
+<li>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-conda-lock.html">Virtual environments: Python (conda-lock)</a> <span class="reading-note">Lock files for conda environments.</span>
 </li>
 </ul>
 </td>
@@ -483,8 +583,6 @@ Reproducibility &amp; trustworthy workflows intro, git branches, virtual environ
 Stating and Refining the Question from <a href="https://leanpub.com/artofdatascience">The Art of Data Science</a>
 </li>
 </ul>
-</td>
-<td>
 </td>
 </tr>
 <tr>
@@ -501,6 +599,9 @@ Introduction to containerization
 </li>
 <li>
 <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html">Using and running containers</a>
+</li>
+<li>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-docker-compose.html">Containers: Docker Compose</a>
 </li>
 </ul>
 </td>
@@ -524,13 +625,13 @@ Customizing, versioning and sharing containers
 </ul>
 </td>
 <td>
+</td>
+<td>
 <ul>
 <li>
 <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008316">Ten simple rules for writing Dockerfiles for reproducible data science</a>
 </li>
 </ul>
-</td>
-<td>
 </td>
 </tr>
 <tr>
@@ -638,6 +739,7 @@ Testing for data analysis
 </td>
 </tr>
 </tbody></table>
+</div>
 </section>
 <section id="textbooks" class="level2">
 <h2 class="anchored" data-anchor-id="textbooks">Textbooks</h2>

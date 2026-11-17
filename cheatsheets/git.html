@@ -116,6 +116,18 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="../cheatsheets/git.html">
  <span class="dropdown-text">Git</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../cheatsheets/docker.html">
+ <span class="dropdown-text">Docker &amp; Docker Compose</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../cheatsheets/quarto.html">
+ <span class="dropdown-text">Quarto</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../cheatsheets/makefile.html">
+ <span class="dropdown-text">Makefile</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -169,6 +181,24 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Git</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cheatsheets/docker.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Docker &amp; Docker Compose</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cheatsheets/quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quarto</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cheatsheets/makefile.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Makefile</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -179,16 +209,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-everyday-workflow" id="toc-the-everyday-workflow" class="nav-link active" data-scroll-target="#the-everyday-workflow"><span class="header-section-number">1</span> 📍 The Everyday Workflow</a></li>
-  <li><a href="#getting-a-repository" id="toc-getting-a-repository" class="nav-link" data-scroll-target="#getting-a-repository"><span class="header-section-number">2</span> 📍 Getting a Repository</a></li>
-  <li><a href="#checking-the-status" id="toc-checking-the-status" class="nav-link" data-scroll-target="#checking-the-status"><span class="header-section-number">3</span> 📍 Checking the Status</a></li>
-  <li><a href="#staging-and-committing" id="toc-staging-and-committing" class="nav-link" data-scroll-target="#staging-and-committing"><span class="header-section-number">4</span> 📍 Staging and Committing</a></li>
-  <li><a href="#syncing-with-github" id="toc-syncing-with-github" class="nav-link" data-scroll-target="#syncing-with-github"><span class="header-section-number">5</span> 📍 Syncing with GitHub</a></li>
-  <li><a href="#viewing-the-history" id="toc-viewing-the-history" class="nav-link" data-scroll-target="#viewing-the-history"><span class="header-section-number">6</span> 📍 Viewing the History</a></li>
-  <li><a href="#going-back-in-time" id="toc-going-back-in-time" class="nav-link" data-scroll-target="#going-back-in-time"><span class="header-section-number">7</span> 📍 Going Back in Time</a></li>
-  <li><a href="#branches" id="toc-branches" class="nav-link" data-scroll-target="#branches"><span class="header-section-number">8</span> 📍 Branches</a></li>
-  <li><a href="#ignoring-files" id="toc-ignoring-files" class="nav-link" data-scroll-target="#ignoring-files"><span class="header-section-number">9</span> 📍 Ignoring Files</a></li>
-  <li><a href="#common-problems" id="toc-common-problems" class="nav-link" data-scroll-target="#common-problems"><span class="header-section-number">10</span> 📍 Common Problems</a></li>
+  <li><a href="#the-everyday-workflow" id="toc-the-everyday-workflow" class="nav-link active" data-scroll-target="#the-everyday-workflow"><span class="header-section-number">1</span> The Everyday Workflow</a></li>
+  <li><a href="#getting-a-repository" id="toc-getting-a-repository" class="nav-link" data-scroll-target="#getting-a-repository"><span class="header-section-number">2</span> Getting a Repository</a></li>
+  <li><a href="#checking-the-status" id="toc-checking-the-status" class="nav-link" data-scroll-target="#checking-the-status"><span class="header-section-number">3</span> Checking the Status</a></li>
+  <li><a href="#staging-and-committing" id="toc-staging-and-committing" class="nav-link" data-scroll-target="#staging-and-committing"><span class="header-section-number">4</span> Staging and Committing</a></li>
+  <li><a href="#syncing-with-github" id="toc-syncing-with-github" class="nav-link" data-scroll-target="#syncing-with-github"><span class="header-section-number">5</span> Syncing with GitHub</a></li>
+  <li><a href="#viewing-the-history" id="toc-viewing-the-history" class="nav-link" data-scroll-target="#viewing-the-history"><span class="header-section-number">6</span> Viewing the History</a></li>
+  <li><a href="#going-back-in-time" id="toc-going-back-in-time" class="nav-link" data-scroll-target="#going-back-in-time"><span class="header-section-number">7</span> Going Back in Time</a></li>
+  <li><a href="#branches" id="toc-branches" class="nav-link" data-scroll-target="#branches"><span class="header-section-number">8</span> Branches</a></li>
+  <li><a href="#ignoring-files" id="toc-ignoring-files" class="nav-link" data-scroll-target="#ignoring-files"><span class="header-section-number">9</span> Ignoring Files</a></li>
+  <li><a href="#common-problems" id="toc-common-problems" class="nav-link" data-scroll-target="#common-problems"><span class="header-section-number">10</span> Common Problems</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students/edit/main/cheatsheets/git.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -218,7 +248,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Run all of these commands in your terminal, from inside your project folder (except <code>git clone</code>, which creates the folder for you). For the full explanations, see the textbook chapters on <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-basics.html">Git basics</a>, <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-history.html">Git history</a>, <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html">Git branches</a>, and <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-merge-conflicts.html">merge conflicts</a>.</p>
 <hr>
 <section id="the-everyday-workflow" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="the-everyday-workflow"><span class="header-section-number">1</span> 📍 The Everyday Workflow</h2>
+<h2 data-number="1" class="anchored" data-anchor-id="the-everyday-workflow"><span class="header-section-number">1</span> The Everyday Workflow</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 40%">
@@ -265,7 +295,7 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 </section>
 <section id="getting-a-repository" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="getting-a-repository"><span class="header-section-number">2</span> 📍 Getting a Repository</h2>
+<h2 data-number="2" class="anchored" data-anchor-id="getting-a-repository"><span class="header-section-number">2</span> Getting a Repository</h2>
 <ol type="1">
 <li><code>git clone &lt;URL&gt;</code> — Copy a remote repository from GitHub.com to your computer
 <ul>
@@ -283,7 +313,7 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 </section>
 <section id="checking-the-status" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="checking-the-status"><span class="header-section-number">3</span> 📍 Checking the Status</h2>
+<h2 data-number="3" class="anchored" data-anchor-id="checking-the-status"><span class="header-section-number">3</span> Checking the Status</h2>
 <ol start="3" type="1">
 <li><code>git status</code> — Show which files are modified, staged, or not tracked yet
 <ul>
@@ -297,7 +327,7 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 </section>
 <section id="staging-and-committing" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="staging-and-committing"><span class="header-section-number">4</span> 📍 Staging and Committing</h2>
+<h2 data-number="4" class="anchored" data-anchor-id="staging-and-committing"><span class="header-section-number">4</span> Staging and Committing</h2>
 <ol start="5" type="1">
 <li><code>git add &lt;FILENAME&gt;</code> — Add a file to the staging area
 <ul>
@@ -321,7 +351,7 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 </section>
 <section id="syncing-with-github" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="syncing-with-github"><span class="header-section-number">5</span> 📍 Syncing with GitHub</h2>
+<h2 data-number="5" class="anchored" data-anchor-id="syncing-with-github"><span class="header-section-number">5</span> Syncing with GitHub</h2>
 <ol start="9" type="1">
 <li><code>git push</code> — Send your local commits to the remote repository on GitHub.com
 <ul>
@@ -337,7 +367,7 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 </section>
 <section id="viewing-the-history" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="viewing-the-history"><span class="header-section-number">6</span> 📍 Viewing the History</h2>
+<h2 data-number="6" class="anchored" data-anchor-id="viewing-the-history"><span class="header-section-number">6</span> Viewing the History</h2>
 <ol start="13" type="1">
 <li><code>git log</code> — View the version control history
 <ul>
@@ -362,7 +392,7 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>💡 Just want a look at the past?
+<span class="screen-reader-only">Tip</span>Just want a look at the past?
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -372,7 +402,7 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 </section>
 <section id="going-back-in-time" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="going-back-in-time"><span class="header-section-number">7</span> 📍 Going Back in Time</h2>
+<h2 data-number="7" class="anchored" data-anchor-id="going-back-in-time"><span class="header-section-number">7</span> Going Back in Time</h2>
 <p>Use these in your local repository when you want to run or explore files from the past, or bring a past version of a file into the present.</p>
 <ol start="15" type="1">
 <li><code>git checkout &lt;COMMIT_ID&gt; .</code> — Move the whole project (all files and directories) back to the state of that commit
@@ -397,7 +427,7 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 </section>
 <section id="branches" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="branches"><span class="header-section-number">8</span> 📍 Branches</h2>
+<h2 data-number="8" class="anchored" data-anchor-id="branches"><span class="header-section-number">8</span> Branches</h2>
 <ol start="18" type="1">
 <li><code>git branch</code> — List the local branches (the current one is marked with <code>*</code>)
 <ul>
@@ -435,7 +465,7 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>💡 Typical branch workflow
+<span class="screen-reader-only">Tip</span>Typical branch workflow
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -452,14 +482,14 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 </section>
 <section id="ignoring-files" class="level2" data-number="9">
-<h2 data-number="9" class="anchored" data-anchor-id="ignoring-files"><span class="header-section-number">9</span> 📍 Ignoring Files</h2>
+<h2 data-number="9" class="anchored" data-anchor-id="ignoring-files"><span class="header-section-number">9</span> Ignoring Files</h2>
 <p><code>.gitignore</code> — A text file in the root of the repository listing files and folders that Git should not track<br>
 - One pattern per line, e.g.&nbsp;<code>.venv/</code>, <code>*.log</code>, <code>.DS_Store</code><br>
 - Prepend <code>**/</code> to a file or folder name (e.g.&nbsp;<code>**/.venv/</code>, <code>**/.DS_Store</code>) to also ignore it in subdirectories anywhere within the repository</p>
 <hr>
 </section>
 <section id="common-problems" class="level2" data-number="10">
-<h2 data-number="10" class="anchored" data-anchor-id="common-problems"><span class="header-section-number">10</span> 📍 Common Problems</h2>
+<h2 data-number="10" class="anchored" data-anchor-id="common-problems"><span class="header-section-number">10</span> Common Problems</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 64%">
