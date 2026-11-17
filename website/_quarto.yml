@@ -21,7 +21,7 @@ project:
     - "./*.qmd"
     # Released slide decks only — add one line per release:
     - "slides/slides_01.qmd"
-    # - "slides/slides_02.qmd"
+     - "slides/slides_02.qmd"
     # - "slides/slides_03.qmd"
     # - "slides/slides_04.qmd"
     # - "slides/slides_05.qmd"
@@ -54,7 +54,7 @@ website:
       contents:
         - lecture.qmd
         - lec_01.qmd
-        # - lec_02.qmd
+        - lec_02.qmd
         # - lec_03.qmd
         # - lec_04.qmd
         # - lec_05.qmd

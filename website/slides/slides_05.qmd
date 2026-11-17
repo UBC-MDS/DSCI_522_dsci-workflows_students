@@ -618,3 +618,5 @@ saveRDS(final_knn_model, "final_knn_model.rds")
 # load the model object from RDS
 final_knn_model <- readRDS("final_knn_model.rds")
 ```
+
+## {background-image="images/move_u.jpg" background-size="contain" background-position="center"}
