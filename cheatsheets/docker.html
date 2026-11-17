@@ -152,6 +152,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Docker &amp; Docker Compose</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="../cheatsheets/uv.html">
+ <span class="dropdown-text">uv</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../cheatsheets/quarto.html">
  <span class="dropdown-text">Quarto</span></a>
   </li>  
@@ -224,6 +228,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../cheatsheets/uv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">uv</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../cheatsheets/quarto.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Quarto</span></a>
   </div>
@@ -260,7 +270,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#code-we-run-in-class-dockerfile-practice" id="toc-code-we-run-in-class-dockerfile-practice" class="nav-link" data-scroll-target="#code-we-run-in-class-dockerfile-practice"><span class="header-section-number">3.1</span> Code we run in class: <code>Dockerfile</code> practice</a></li>
   </ul></li>
-  <li><a href="#conda-docker-github-actions-workflow" id="toc-conda-docker-github-actions-workflow" class="nav-link" data-scroll-target="#conda-docker-github-actions-workflow"><span class="header-section-number">4</span> Conda + Docker + GitHub Actions Workflow</a></li>
+  <li><a href="#uv-docker-github-actions-workflow" id="toc-uv-docker-github-actions-workflow" class="nav-link" data-scroll-target="#uv-docker-github-actions-workflow"><span class="header-section-number">4</span> uv + Docker + GitHub Actions Workflow</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students/edit/main/cheatsheets/docker.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -415,7 +425,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <ul>
-<li>Read the full docker cheatsheet in <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/110-containerization-2.html">textbook</a></li>
+<li>Read the full docker cheatsheet in <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html">textbook</a></li>
 </ul>
 </section>
 </section>
@@ -436,7 +446,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>Stark docker container</td>
+<td>Start docker container</td>
 <td><code>docker compose up</code></td>
 </tr>
 <tr class="even">
@@ -498,7 +508,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>After the container is launched, your terminal will be hanging. You can open your browser and go to <code>http://localhost:8789</code> to access RStudio.</p></li>
 <li><p>To stop the container, you need to type <code>Cntrl + C</code> in the terminal where you launched the container, and then type:</p></li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker-compose</span> rm</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> compose rm</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="dockerfile" class="level2" data-number="3">
@@ -518,185 +528,105 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="kw">ENV</span> VAR_NAME=value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="code-we-run-in-class-dockerfile-practice" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="code-we-run-in-class-dockerfile-practice"><span class="header-section-number">3.1</span> Code we run in class: <code>Dockerfile</code> practice</h3>
+<p>We build an image that has our Python packages from <code>uv.lock</code> installed. We work like the textbook suggests: start small, build the image, try the next command inside the container, and only then add it to the <code>Dockerfile</code>.</p>
 <p><strong>Step-by-step instructions:</strong></p>
 <ol type="1">
 <li>Please first <code>cd</code> to a local folder of your choice, don’t put all files in your home directory!</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example `cd` command: </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example `cd` command:</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /Users/skysheng/Desktop/github/dsci522</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="2" type="1">
-<li>Make a new folder called <code>demo_docker</code> (or any other name you like)</li>
+<li>Make a new folder called <code>demo_docker</code> (or any other name you like), and move into it</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> demo_docker</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> demo_docker</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> demo_docker</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="3" type="1">
-<li>Move into that folder we just created</li>
+<li>Create a uv project with one package. This makes <code>pyproject.toml</code>, <code>.python-version</code> and <code>uv.lock</code> (see the <a href="../cheatsheets/uv.html">uv cheatsheet</a> for what each file holds).</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> demo_docker</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> init <span class="at">--bare</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> python pin 3.14</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add <span class="st">"pandas==3.1.1"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="4" type="1">
-<li>Create a environment.yml file using nano</li>
+<li>Print out the files to make sure they are correct.</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nano</span> environment.yml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> pyproject.toml</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> .python-version</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="5" type="1">
-<li>Copy and paste the following code into the <code>environment.yml</code> file.</li>
+<li>Create a <code>Dockerfile</code> using nano (or a GUI like VS Code).</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> my_env</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">channels</span><span class="kw">:</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> conda-forge</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dependencies</span><span class="kw">:</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> conda-lock=3.0.4</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> pandas=2.3.3</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> pandera=0.26.1</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> pip=25.3</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> python=3.11.14</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">pip</span><span class="kw">:</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> deepchecks==0.19.1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nano</span> Dockerfile</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="6" type="1">
+<li>Copy and paste the following code into the <code>Dockerfile</code>. It starts from the official Python image (the same Python version as <code>.python-version</code>), copies the <code>uv</code> program into the image, and copies our three uv files into the folder <code>/home/project</code>.</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> python:3.14-slim</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> <span class="op">--from=ghcr.io/astral-sh/uv:0.13.7</span> /uv /uvx /usr/local/bin/</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /home/project</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> pyproject.toml uv.lock .python-version ./</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
-<li>You can also create this file using Graphical user interface (GUI) like VSCode.</li>
 <li>If you used <code>nano</code> to create this file, you need to press <code>Cntrl + X</code> to attempt exit, by default it will ask you to save the file. Press <code>Y</code> and then press <code>Enter</code> to save the file.</li>
 </ul>
-<ol start="6" type="1">
-<li>Print out the content of the file to make sure it is correct.</li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> environment.yml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="7" type="1">
-<li><p>Create an explicit conda-lock file for linux OS using the following command:</p>
-<ul>
-<li>Macbook users with Apple Silicon chips (M1-M4 chips):
-<ul>
-<li>For <strong>Local testing:</strong> You will need to use the following command (command 1) to test the conda-lock file locally on your machine.</li>
-<li>For <strong>Remote GitHub deployment:</strong> You will need to run command 2 to create a conda-linux64.lock file for deployment on GitHub Actions using Ubuntu machine.</li>
-</ul></li>
-</ul></li>
+<li>Build the docker image locally:</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># command 1: </span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda-lock</span> <span class="at">-k</span> explicit <span class="at">--file</span> environment.yml <span class="at">-p</span> linux-aarch64</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li>Everyone else can use the following command for both local testing and Remote GitHub deployment:</li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># command 2: </span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda-lock</span> <span class="at">-k</span> explicit <span class="at">--file</span> environment.yml <span class="at">-p</span> linux-64</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build the docker image locally, with the tag name `testing_cmds`.</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># pay attention to the dot at the end of the command!</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">--tag</span> testing_cmds .</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="8" type="1">
-<li>Create a Dockerfile file using nano, or you can use GUI like VSCode.</li>
+<li>Run the image you just built, and open a terminal inside the container:</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nano</span> Dockerfile </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">-it</span> testing_cmds bash</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="9" type="1">
-<li><p>Copy and paste the following code into the <code>Dockerfile</code> file. We use jupyter minimal notebook image as an example, and copy the conda-lock file to the container.</p>
-<ul>
-<li>Macbook users with Apple Silicon chips will need to:
-<ul>
-<li>For <strong>Local Dockerfile testing:</strong> Use the following code (Dockerfile 1) to copy the conda-linux-aarch64.lock file to the container.</li>
-<li>For <strong>Remote GitHub deployment:</strong> Use the other code (Dockerfile 2) to copy the conda-linux64.lock file to the container for deployment on GitHub Actions using Ubuntu machine.</li>
-</ul></li>
-</ul></li>
+<li>Inside the container, test the command that installs our packages, and check that it worked. <code>--locked</code> makes <code>uv sync</code> stop with an error if <code>uv.lock</code> does not match <code>pyproject.toml</code>.</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dockerfile 1</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> quay.io/jupyter/minimal-notebook:afe30f0c9ad8</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> conda-linux-aarch64.lock /tmp/conda-linux-aarch64.lock</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li>Everyone else can use the following code for both local testing and Remote GitHub deployment:</li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dockerfile 2</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> quay.io/jupyter/minimal-notebook:afe30f0c9ad8</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> conda-linux-64.lock /tmp/conda-linux-64.lock</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> sync <span class="at">--locked</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run python <span class="at">-c</span> <span class="st">"import pandas; print(pandas.__version__)"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="10" type="1">
-<li>Build the docker image locally using the following command:</li>
+<li><p>If the above commands work, exit the container by typing <code>exit</code>.</p></li>
+<li><p>Update the <code>Dockerfile</code> to include the newly tested command. We also tell uv to put the environment in <code>/opt/venv</code> instead of <code>/home/project/.venv</code>, so it is not hidden when we later mount our project folder over <code>/home/project</code>, and we put <code>/opt/venv/bin</code> first on the <code>PATH</code>, so <code>python</code> means the environment’s Python.</p></li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 10. Build the docker image locally, with the tag name `testing_cmds`. </span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># pay attention to the dot at the end of the command! </span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">--tag</span> testing_cmds .</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ol start="11" type="1">
-<li>Run the docker image you just built using the following command:</li>
-</ol>
-<ul>
-<li>If you want to launch container’s terminal only:</li>
-</ul>
-<p><em>Note: For Macbook users with Apple Silicon chips M4 chip, you may run into bugs here. The terminal may open, but once you try to type something, it will crash and come back to the base terminal environment.</em></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">-it</span> testing_cmds ../../bin/bash</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li>Launch interactive terminal on web browser:</li>
-</ul>
-<p><em>Note: For Macbook users with Apple Silicon chips M4 chip, this will work for you.</em></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">-it</span> <span class="at">-p</span> 8888:8888 testing_cmds</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Watch your terminal output for a unique URL beginning with http://127.0.0.1:8888/lab?token=. You’ll see it displayed as highlighted in the example screenshot below. Copy this URL and open it in your web browser to access the Jupyter Lab interface. You can access the terminal by clicking on the terminal icon inside of the Jupyter Lab interface.</p>
-<p><img src="images/jupyter_example.png" class="img-fluid"></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> python:3.14-slim</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> <span class="op">--from=ghcr.io/astral-sh/uv:0.13.7</span> /uv /uvx /usr/local/bin/</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /home/project</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="kw">ENV</span> UV_PROJECT_ENVIRONMENT=/opt/venv</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> pyproject.toml uv.lock .python-version ./</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">uv</span> sync <span class="at">--locked</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="kw">ENV</span> PATH=<span class="st">"/opt/venv/bin:$PATH"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="12" type="1">
-<li>Once you are in the terminal, you can test if this command works. This command will update the base environment with the packages you specified in the conda-lock file.</li>
+<li>Re-build the docker image (same command as step 7), then check that pandas is installed:</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> update <span class="at">--quiet</span> <span class="at">--file</span> /tmp/conda-linux-64.lock</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">--tag</span> testing_cmds .</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> testing_cmds python <span class="at">-c</span> <span class="st">"import pandas; print(pandas.__version__)"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="13" type="1">
-<li><p>If the above command works, you can exit the terminal by typing <code>exit</code>.</p></li>
-<li><p>Update the <code>Dockerfile</code> to include this newly tested command. <code>Dockerfile</code> now should look like this for Macbook users with Apple Silicon chips M1-M4 chip to test the command locally:</p></li>
+<li><p>Iterate through steps 7 to 12 (build the image, run the container’s terminal, test a new command, add it to the <code>Dockerfile</code>, build again …) until you are happy with your <code>Dockerfile</code>.</p></li>
+<li><p>Use the image with your project folder mounted, so the container can see your files:</p></li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dockerfile 1</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> quay.io/jupyter/minimal-notebook:afe30f0c9ad8</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> conda-linux-aarch64.lock /tmp/conda-linux-aarch64.lock</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">conda</span> update <span class="at">--quiet</span> <span class="at">--file</span> /tmp/conda-linux-aarch64.lock</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><code>Dockerfile</code> now should look like this for everyone else:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dockerfile 2</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> quay.io/jupyter/minimal-notebook:afe30f0c9ad8</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> conda-linux-64.lock /tmp/conda-linux-64.lock</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">conda</span> update <span class="at">--quiet</span> <span class="at">--file</span> /tmp/conda-linux-64.lock</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ol start="15" type="1">
-<li>Re-build the docker image locally using the following command:</li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 15. Re-build the docker image locally, with the tag name `testing_cmds`. </span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co"># pay attention to the dot at the end of the command! </span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">--tag</span> testing_cmds .</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ol start="16" type="1">
-<li>Run the docker image you just built using the same command as step 11. Then continue to test the following commands line by line in the terminal. Iterate through steps 12-14 (build a docker image –&gt; run the docker container’s terminal –&gt; test new command –&gt; update the Dockerfile to include the new command –&gt; build docker image again …) until you are happy with your Dockerfile.</li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Clean up the cache files in building conda environment.</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> clean <span class="at">--all</span> <span class="at">-y</span> <span class="at">-f</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix file permissions for the conda directory so all users can access it</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="ex">fix-permissions</span> <span class="st">"</span><span class="va">${CONDA_DIR}</span><span class="st">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix file permissions for the user's home directory so the notebook user can read/write files</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="ex">fix-permissions</span> <span class="st">"/home/</span><span class="va">${NB_USER}</span><span class="st">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ol start="17" type="1">
-<li>🎉 Final Dockerfile should look like this:</li>
-</ol>
-<ul>
-<li>Dockerfile for Macbook users with Apple Silicon chips M1-M4 chip testing locally:</li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Final Dockerfile</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> quay.io/jupyter/minimal-notebook:afe30f0c9ad8</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> conda-linux-aarch64.lock /tmp/conda-linux-aarch64.lock</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">conda</span> update <span class="at">--quiet</span> <span class="at">--file</span> /tmp/conda-linux-aarch64.lock</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">conda</span> clean <span class="at">--all</span> <span class="at">-y</span> <span class="at">-f</span></span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">fix-permissions</span> <span class="st">"</span><span class="va">${CONDA_DIR}</span><span class="st">"</span></span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">fix-permissions</span> <span class="st">"/home/</span><span class="va">${NB_USER}</span><span class="st">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li>Dockerfile for everyone else &amp; Macbook user using GitHub Actions to deploy docker image remotely:</li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Final Dockerfile</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> quay.io/jupyter/minimal-notebook:afe30f0c9ad8</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> conda-linux-64.lock /tmp/conda-linux-64.lock</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">conda</span> update <span class="at">--quiet</span> <span class="at">--file</span> /tmp/conda-linux-64.lock</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">conda</span> clean <span class="at">--all</span> <span class="at">-y</span> <span class="at">-f</span></span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">fix-permissions</span> <span class="st">"</span><span class="va">${CONDA_DIR}</span><span class="st">"</span></span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">fix-permissions</span> <span class="st">"/home/</span><span class="va">${NB_USER}</span><span class="st">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ol start="18" type="1">
-<li>Follow the same command in steps 10-11 to build and run the docker image you just built.</li>
-</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">-it</span> <span class="at">-v</span> <span class="st">"/</span><span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span><span class="st">"</span>:/home/project testing_cmds bash</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Adding a package later
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Add it on your computer with <code>uv add &lt;package&gt;</code>, which updates <code>pyproject.toml</code> and <code>uv.lock</code>, then rebuild the image (step 7).</p>
+</div>
+</div>
 </section>
 </section>
-<section id="conda-docker-github-actions-workflow" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="conda-docker-github-actions-workflow"><span class="header-section-number">4</span> Conda + Docker + GitHub Actions Workflow</h2>
-<p><img src="images/docker4.png" class="img-fluid" style="margin-bottom: 0px;" width="3600"></p>
+<section id="uv-docker-github-actions-workflow" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="uv-docker-github-actions-workflow"><span class="header-section-number">4</span> uv + Docker + GitHub Actions Workflow</h2>
 <ol type="1">
-<li><code>conda create</code> &amp; <code>conda install</code></li>
-<li>Create <code>environment.yml</code></li>
-<li>Add version numbers</li>
-<li>Generate <code>conda-lock</code> file</li>
+<li><code>uv init --bare</code> &amp; <code>uv python pin</code></li>
+<li><code>uv add</code> your packages (this writes <code>pyproject.toml</code> and <code>uv.lock</code>)</li>
+<li>Push <code>pyproject.toml</code>, <code>uv.lock</code> and <code>.python-version</code> to GitHub (not <code>.venv/</code>)</li>
 <li>Write <code>Dockerfile</code></li>
 <li>Create <code>docker-compose.yml</code></li>
 <li>Push to GitHub</li>
