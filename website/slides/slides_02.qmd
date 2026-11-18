@@ -657,70 +657,6 @@ Map it: the room inside is Linux, so the same sockets everywhere. The one standa
 Docker is the most common software to build and run containers. Its logo is a whale carrying containers.
 :::
 
-
-## Virtual environment vs container vs virtual machine {style="font-size: 0.75em;"}
-
-| | Virtual environment | Container | Virtual machine |
-|---|---|---|---|
-| Isolates | Python and packages | ... plus **other software, the operating system's libraries, files and ports** | ... plus a whole **operating system** |
-| Example | `uv` | Docker | VirtualBox |
-| Size | Extremely light | Light | Heavy |
-
-::: {.notes}
-The kernel is the core of the operating system that talks to the hardware.
-
-On a Mac or Windows laptop, Docker Desktop quietly runs one small Linux virtual machine, and all containers share that Linux kernel. That is why Docker Desktop must be running before any `docker` command works.
-:::
-
-## Image vs container
-
-::: {.incremental}
-- An **image** is like the Chrome app installed on your computer
-- A **container** is like a Chrome window you open from it
-- You can open many windows from one app, and closing a window does not uninstall Chrome
-:::
-
-::: {.fragment}
-| | List them | Delete one |
-|---|---|---|
-| Images | `docker images` | `docker rmi <image>` |
-| Containers | `docker ps -a` | `docker rm <container_id>` |
-:::
-
-::: footer
-[textbook](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html#image-vs-container)
-:::
-
-## Where do images come from? {style="font-size: 0.9em;"}
-
-From a **registry**, which is like GitHub but for images. [Docker Hub](https://hub.docker.com/) is the default.
-
-::: {.fragment}
-::: {style="text-align: center; margin: 0.6em 0;"}
-[<span class="reg">quay.io/</span><span class="img">jupyter/datascience-notebook</span>:<span class="tag">2025-03-14</span>]{.img-name}
-
-[<span class="img">ollama/ollama</span>:<span class="tag">0.40.16</span>]{.img-name}
-
-[<span class="img">python</span>:<span class="tag">3.14-slim</span>]{.img-name}
-:::
-
-<span style="color: #8a8880;">registry</span> (none means Docker Hub), <span class="c-blue">image name</span>, <span class="c-orange">tag</span> (the version)
-:::
-
-::: {.fragment}
-⚠️ Never use the tag `latest`. Docker will not update a `latest` you already have, so you and your teammate can end up with different images.
-:::
-
-::: {.notes}
-Open in the browser and show the "Tags" tab of each:
-
-1. <https://hub.docker.com/r/ollama/ollama> → Tags tab, search 0.40.16. Point out `latest` is also there, and why we do not use it.
-2. <https://hub.docker.com/_/python> → Tags tab, search 3.14-slim. "slim" is a smaller image without extra Linux tools.
-3. <https://quay.io/repository/jupyter/datascience-notebook?tab=tags>
-
-Other registries: GitHub (`ghcr.io`), Amazon (ECR).
-:::
-
 # Demo: run your first container
 
 ## Demo: run a container and look around
@@ -1062,6 +998,65 @@ Order matters: flags go between `docker run` and the image name. Anything after 
 
 ⚠️ The command line is very sensitive to spaces and quotes. A space after `\` breaks the line continuation.
 :::
+
+## Image vs container
+
+::: {.incremental}
+- An **image** is like the Chrome app installed on your computer
+- A **container** is like a Chrome window you open from it
+- You can open many windows from one app, and closing a window does not uninstall Chrome
+:::
+
+::: {.fragment}
+| | List them | Delete one |
+|---|---|---|
+| Images | `docker images` | `docker rmi <image>` |
+| Containers | `docker ps -a` | `docker rm <container_id>` |
+:::
+
+::: footer
+[textbook](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html#image-vs-container)
+:::
+
+## Where do images come from? {style="font-size: 0.9em;"}
+
+From a **registry**, which is like GitHub but for images. [Docker Hub](https://hub.docker.com/) is the default.
+
+::: {.fragment}
+::: {style="text-align: center; margin: 0.6em 0;"}
+[<span class="reg">quay.io/</span><span class="img">jupyter/datascience-notebook</span>:<span class="tag">2025-03-14</span>]{.img-name}
+
+[<span class="img">ollama/ollama</span>:<span class="tag">0.40.16</span>]{.img-name}
+
+[<span class="img">python</span>:<span class="tag">3.14-slim</span>]{.img-name}
+:::
+
+<span style="color: #8a8880;">registry</span> (none means Docker Hub), <span class="c-blue">image name</span>, <span class="c-orange">tag</span> (the version)
+:::
+
+::: {.fragment}
+⚠️ Never use the tag `latest`. Docker will not update a `latest` you already have, so you and your teammate can end up with different images.
+:::
+
+::: {.notes}
+Open in the browser and show the "Tags" tab of each:
+
+1. <https://hub.docker.com/r/ollama/ollama> → Tags tab, search 0.40.16. Point out `latest` is also there, and why we do not use it.
+2. <https://hub.docker.com/_/python> → Tags tab, search 3.14-slim. "slim" is a smaller image without extra Linux tools.
+3. <https://quay.io/repository/jupyter/datascience-notebook?tab=tags>
+
+Other registries: GitHub (`ghcr.io`), Amazon (ECR).
+:::
+
+
+## Virtual environment vs container vs virtual machine {style="font-size: 0.75em;"}
+
+| | Virtual environment | Container | Virtual machine |
+|---|---|---|---|
+| Isolates | Python and packages | ... plus **other software, the operating system's libraries, files and ports** | ... plus a whole **operating system** |
+| Example | `uv` | Docker | VirtualBox |
+| Size | Extremely light | Light | Heavy |
+
 
 ## Where to find things {style="font-size: 0.85em;"}
 
