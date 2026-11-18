@@ -666,10 +666,6 @@ Docker is the most common software to build and run containers. Its logo is a wh
 | Example | `uv` | Docker | VirtualBox |
 | Size | Extremely light | Light | Heavy |
 
-::: {.fragment}
-A container shares the **kernel** of the computer it runs on. A virtual machine brings its own complete operating system.
-:::
-
 ::: {.notes}
 The kernel is the core of the operating system that talks to the hardware.
 
@@ -692,7 +688,7 @@ On a Mac or Windows laptop, Docker Desktop quietly runs one small Linux virtual 
 :::
 
 ::: footer
-Analogy from the [textbook](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html#image-vs-container)
+[textbook](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html#image-vs-container)
 :::
 
 ## Where do images come from? {style="font-size: 0.9em;"}
