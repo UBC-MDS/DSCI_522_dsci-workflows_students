@@ -34,7 +34,9 @@ Open **Docker Desktop**, then run this in your terminal. Leave it running.
 # 1. pull the two images we use today
 docker pull python:3.14-slim
 docker pull ollama/ollama:0.40.16
+```
 
+```{.bash}
 # 2. download the qwen2.5-coder:1.5b model into a demo folder (about 1 GB)
 mkdir -p ~/Desktop/llm_demo
 cd ~/Desktop/llm_demo
