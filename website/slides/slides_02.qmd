@@ -602,10 +602,9 @@ But a data analysis needs more than Python packages. Some examples students may 
 - The analysis runs on Linux on the server, but was written on a Mac.
 :::
 
-## Meanwhile, in Shanghai {style="font-size: 0.9em;"}
+## Meanwhile, in Shanghai {style="font-size: 0.8em;"}
 
 A fourth student goes to **Shanghai**...
-
 ::: {.fragment}
 ![](images/otter_shanghai.png){width=100% fig-align="center" style="margin-bottom: 0px;"}
 :::
