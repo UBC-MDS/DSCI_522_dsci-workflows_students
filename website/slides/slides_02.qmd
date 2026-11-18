@@ -490,15 +490,11 @@ html`<div class="lock-head"><span class="asked">${lock_summary.asked} asked for<
 ```
 
 ::: {.notes}
-Python reads the real `uv.lock` of the breast cancer predictor (the class example project) when the slides render.
-
-What to click:
-
 1. Start on pandas: it pulls in only a few packages.
 2. Pick altair, then ipykernel: ipykernel pulls in the most (it brings the whole Jupyter machinery).
 3. Point at the dashed chips: appnope is only installed on macOS, colorama only on Windows. One `uv.lock` holds the answer for every operating system.
 
-Ask: if your `pyproject.toml` lists only 11 packages, who decides the versions of the other ones? Answer: without a lock file, whatever is newest on the day you install. With `uv.lock`, everyone gets the same ones.
+Q: if your `pyproject.toml` lists only 11 packages, who decides the versions of the other ones? Answer: without a lock file, whatever is newest on the day you install. With `uv.lock`, everyone gets the same ones.
 :::
 
 ## Make `uv add` write exact versions {style="font-size: 0.85em;"}
@@ -512,12 +508,14 @@ dependencies = [
 ```
 
 ::: {.fragment}
-Add these two lines to `pyproject.toml`, and every `uv add` from now on writes `==`:
+Add these two lines to `pyproject.toml`
 
 ```{.toml}
 [tool.uv]
 add-bounds = "exact"
 ```
+
+Every `uv add` from now on will write the exact version using `==`:
 
 ```{.toml}
 dependencies = [
