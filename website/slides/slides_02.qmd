@@ -662,7 +662,7 @@ Docker is the most common software to build and run containers. Its logo is a wh
 
 | | Virtual environment | Container | Virtual machine |
 |---|---|---|---|
-| Isolates | Python and packages | ... plus **other software, the operating system's libraries, files and network** | ... plus a whole **operating system** |
+| Isolates | Python and packages | ... plus **other software, the operating system's libraries, files and ports** | ... plus a whole **operating system** |
 | Example | `uv` | Docker | VirtualBox |
 | Size | Extremely light | Light | Heavy |
 
