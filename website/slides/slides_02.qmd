@@ -525,16 +525,13 @@ dependencies = [
 ```
 :::
 
+::: {important}
+Your milestone 1 should do this too!
+:::
+
 ::: {.notes}
 Why bother if `uv.lock` already pins everything? Because the lock file gets rebuilt sometimes: someone deletes it, or runs `uv lock --upgrade`. With `>=` the versions can then jump. With `==` the shopping list itself says exactly which version the analysis was written with.
 
-The class example project (breast cancer predictor) already has this setting, so your milestone repository will too.
-
-Demo (optional, 1 minute):
-
-1. `code pyproject.toml`, paste the two lines at the bottom, save.
-2. `uv add requests`
-3. `cat pyproject.toml` → `requests==2.34.2` but pandas is still `>=`. The setting only changes what `uv add` writes from now on.
 :::
 
 ## Your teammate's side: `uv sync`
