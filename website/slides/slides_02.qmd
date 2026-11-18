@@ -645,7 +645,7 @@ the electronics are the Python packages. Quarto, `make` and the operating system
 
 ## A container is a shipping container for software
 
-![](images/container.png){height=350px fig-align="center" style="margin-bottom: 0px;"}
+![](images/container.png){width="90%" fig-align="center" style="margin-bottom: 0px;"}
 
 ::: {.notes}
 before shipping containers, every cargo (sacks of coffee, barrels, cars) was loaded differently, by hand. The standard box made it possible to move anything with the same cranes and trucks.
