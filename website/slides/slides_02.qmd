@@ -383,7 +383,7 @@ wheels = [
 ```
 :::
 
-Shortened: the real file lists 32 pandas wheels, one per operating system and chip.
+This is a shortened version of the real `uv.lock` file, which lists 32 pandas wheels, one per operating system and chip.
 
 ::: {.notes}
 1. Exact version: 3.1.1, not "3.1.1 or newer".
