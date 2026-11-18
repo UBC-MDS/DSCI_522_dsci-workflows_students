@@ -278,7 +278,7 @@ Click through the highlights:
 2. `COPY --from`: copy the uv program out of uv's official image. No need to install it.
 3. `WORKDIR`: the folder inside the image where the next commands run (like `cd`).
 4. `ENV UV_PROJECT_ENVIRONMENT`: put the environment in `/opt/venv` instead of `.venv/`, so it is not hidden when we mount our project folder over `/home/project` with `-v`.
-5. `COPY`: the shopping list, the receipt and the Python version. Not `.venv/`: the groceries are rebuilt inside the image, for Linux.
+5. `COPY`: the shopping list, the receipt and the Python version. Not `.venv/`: the electronics are bought again inside the image, with chargers for Linux.
 6. `RUN uv sync --locked`: build the environment from `uv.lock`. `--locked` stops the build if `uv.lock` does not match `pyproject.toml`.
 7. `ENV PATH`: so typing `python` finds the environment's Python without `uv run`.
 :::
