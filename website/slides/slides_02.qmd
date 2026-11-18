@@ -680,6 +680,8 @@ Terminal, step by step:
 10. In the container shell: `cat /etc/os-release` → Debian Linux, on my Mac!
 11. `ls /` and `ls /home` → this is the container's file system, not my laptop's. My Desktop files are not here.
 12. `exit` → back on my laptop. `docker ps -a` → nothing left behind, thanks to `--rm`.
+
+**important**: exit is switching off the lights and locking the classroom. docker rm is demolishing the room, though the blueprint (the image) is still there
 :::
 
 ## Commands we ran in class: run a container {style="font-size: 0.8em;"}
@@ -1082,3 +1084,24 @@ Source: [eG innovations](https://www.eginnovations.com/blog/containers-vs-vms/)
 - Check out [Ollama](https://hub.docker.com/r/ollama/ollama), it is a platform that serves lots of capable open-weight models! You can run your local LLM for coding on your own laptop!
 
 - Use [LLM Arena leaderboard](https://arena.ai/leaderboard/agent/code?license=open-source) to find the best model for different tasks.
+
+## (Bonus) Which port is free on my laptop? {style="font-size: 0.85em;"}
+
+Only one program can listen behind each door. List the doors that are taken:
+
+```{.bash}
+# every port a program is listening on (macOS, Linux)
+# lsof: "list open files" (a network door counts as a file)
+# -iTCP: TCP doors only, -sTCP:LISTEN: only programs waiting at their door
+# -n, -P: print raw IP and port numbers, skip the slow name lookup
+lsof -iTCP -sTCP:LISTEN -n -P
+
+# one port: no output means it is free
+lsof -i :11434
+
+# Windows: -a all doors, -n numbers, -o process ID; findstr keeps matching lines
+netstat -ano | findstr :11434
+```
+
+- If the port is taken, Docker says `port is already allocated`. Change only the laptop side: `-p 11435:11434`, then `curl http://localhost:11435`
+- ⚠️ On macOS, avoid 5000 and 7000: AirPlay Receiver uses them
