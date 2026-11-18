@@ -1067,6 +1067,8 @@ Other registries: GitHub (`ghcr.io`), Amazon (ECR).
 | uv | [DSCI 521 notes](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/virtual-environments-uv.html), [uv cheatsheet](https://ubc-mds.github.io/DSCI_522_dsci-workflows_students/cheatsheets/uv.html) |
 | Containers | Textbook: [Introduction to containerization](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html), [Using and running containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html) |
 | Docker commands | [Docker cheatsheet](https://ubc-mds.github.io/DSCI_522_dsci-workflows_students/cheatsheets/docker.html) |
+| (Optional) Open-source LLM models | [Ollama](https://hub.docker.com/r/ollama/ollama) |
+| (Optional) LLM Arena leaderboard | [LLM Arena leaderboard](https://arena.ai/leaderboard/agent/code?license=open-source) |
 
 ## {background-image="images/move_u.jpg" background-size="contain" background-position="center"}
 
@@ -1077,13 +1079,6 @@ Other registries: GitHub (`ghcr.io`), Amazon (ECR).
 ::: footer
 Source: [eG innovations](https://www.eginnovations.com/blog/containers-vs-vms/)
 :::
-
-
-## (Bonus) You can explore other models on your own laptop!
-
-- Check out [Ollama](https://hub.docker.com/r/ollama/ollama), it is a platform that serves lots of capable open-weight models! You can run your local LLM for coding on your own laptop!
-
-- Use [LLM Arena leaderboard](https://arena.ai/leaderboard/agent/code?license=open-source) to find the best model for different tasks.
 
 ## (Bonus) Which port is free on my laptop? {style="font-size: 0.85em;"}
 
@@ -1105,3 +1100,4 @@ netstat -ano | findstr :11434
 
 - If the port is taken, Docker says `port is already allocated`. Change only the laptop side: `-p 11435:11434`, then `curl http://localhost:11435`
 - ⚠️ On macOS, avoid 5000 and 7000: AirPlay Receiver uses them
+
