@@ -1,0 +1,46 @@
+/* css styles */
+
+table.striped tbody tr:nth-child(even) {
+  background-color: #e3e3e3ff;
+}
+
+/* Schedule table on the syllabus page */
+table.schedule th,
+table.schedule td {
+  padding: 0.5rem 0.75rem;
+  vertical-align: top;
+}
+
+/* Give the reading columns the room: Lecture, Topic, Required, Optional, Additional */
+table.schedule th:nth-child(1) { width: 6%; }
+table.schedule th:nth-child(2) { width: 16%; }
+table.schedule th:nth-child(3) { width: 28%; }
+table.schedule th:nth-child(4) { width: 30%; }
+table.schedule th:nth-child(5) { width: 20%; }
+
+table.schedule ul {
+  margin-bottom: 0.5rem;
+  padding-left: 1.25rem;
+}
+
+/* Sub-heading inside a cell, e.g. "Git and GitHub" */
+table.schedule .reading-group {
+  margin: 0.5rem 0 0.25rem;
+  font-weight: 600;
+}
+
+table.schedule .reading-group:first-child {
+  margin-top: 0;
+}
+
+/* What an optional chapter adds, on its own line under the link */
+table.schedule .reading-note {
+  display: block;
+  font-size: 0.875em;
+  color: var(--bs-secondary-color, #6c757d);
+}
+
+/* On a narrow screen the table scrolls sideways inside its box, not the whole page */
+.schedule-scroll {
+  overflow-x: auto;
+}
