@@ -47,7 +47,6 @@ docker run \
 * After the docker image successfully runs, you can access RStudio at: `http://localhost:8788`
 
 
-
 ### Essential Docker Commands
 
 | Task | Command |
@@ -58,12 +57,16 @@ docker run \
 | List all containers (including stopped) | `docker ps -a` |
 | Remove an image | `docker rmi <image_name>:<tag>` |
 | Remove a container | `docker rm <container_id>` |
+| Stop a running container | `docker stop <name or container_id>` |
+| Run a command in a running container | `docker exec -it <name> <command>` |
 
 **Common flags:**
 
 | Flag | Description |
 |------|-------------|
 | `--rm` | Automatically remove container when it exits |
+| `-d` | Run the container in the background (detach) |
+| `--name <name>` | Give the container a name, to use instead of its ID |
 | `-it` | Interactive terminal (combine `-i` and `-t`) |
 | `-p <host_port>:<container_port>` | Port mapping |
 | `-v <host_path>:<container_path>` | Volume mounting |
