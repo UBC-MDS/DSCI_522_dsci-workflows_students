@@ -203,14 +203,22 @@ for when you want more detail.
   </tr>
   <tr>
     <td>3</td>
-    <td>Customizing, versioning and sharing containers</td>
+    <td>Building your project's image, working in it over ssh, and publishing it with GitHub Actions</td>
     <td>
       <ul>
-        <li>[Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html)
-        </li>
+        <li>[Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html)</li>
+        <li>[Python packages with uv in an image](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-uv.html) or [R packages with renv in an image](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-renv.html)</li>
+        <li>[Python and R in one image](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-uv-renv.html)</li>
+        <li>[Working in a container over ssh with Positron](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-ssh-positron.html)</li>
+        <li>[Building images for several platforms](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-platforms.html) (through publishing for one platform)</li>
       </ul>
     </td>
-    <td></td>
+    <td>
+      <ul>
+        <li>[GitHub Actions: storing credentials in GitHub Secrets](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-actions.html#storing-and-use-github-actions-credentials-safely-via-github-secrets) [How a workflow uses your Docker Hub access token without showing it.]{.reading-note}</li>
+        <li>[Containers outside class](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-home-lab.html) [Running your own apps at home with containers.]{.reading-note}</li>
+      </ul>
+    </td>
     <td>
       <ul>
         <li>[Ten simple rules for writing Dockerfiles for reproducible data science](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008316)
@@ -220,9 +228,10 @@ for when you want more detail.
   </tr>
   <tr>
     <td>4</td>
-    <td>Data validation</td>
+    <td>Publishing images for Intel/AMD and ARM computers, data validation</td>
     <td>
       <ul>
+        <li>[Building images for several platforms](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-platforms.html) (publishing for both platforms)</li>
         <li>
           [Data validation](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/data-validation.html)
         </li>
