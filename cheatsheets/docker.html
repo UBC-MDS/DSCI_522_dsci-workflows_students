@@ -81,7 +81,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-cc8394618151be8df8680110ef93bb7c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f05b7f52f577bad7de4cb1b2366eb467.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -352,6 +352,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="essential-docker-commands" class="level3" data-number="1.3">
 <h3 data-number="1.3" class="anchored" data-anchor-id="essential-docker-commands"><span class="header-section-number">1.3</span> Essential Docker Commands</h3>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 60%">
+</colgroup>
 <thead>
 <tr class="header">
 <th>Task</th>
@@ -383,6 +387,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>Remove a container</td>
 <td><code>docker rm &lt;container_id&gt;</code></td>
 </tr>
+<tr class="odd">
+<td>Stop a running container</td>
+<td><code>docker stop &lt;name or container_id&gt;</code></td>
+</tr>
+<tr class="even">
+<td>Run a command in a running container</td>
+<td><code>docker exec -it &lt;name&gt; &lt;command&gt;</code></td>
+</tr>
 </tbody>
 </table>
 <p><strong>Common flags:</strong></p>
@@ -401,6 +413,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td><code>--rm</code></td>
 <td>Automatically remove container when it exits</td>
+</tr>
+<tr class="even">
+<td><code>-d</code></td>
+<td>Run the container in the background (detach)</td>
+</tr>
+<tr class="odd">
+<td><code>--name &lt;name&gt;</code></td>
+<td>Give the container a name, to use instead of its ID</td>
 </tr>
 <tr class="even">
 <td><code>-it</code></td>
