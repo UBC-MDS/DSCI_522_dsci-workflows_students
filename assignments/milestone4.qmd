@@ -8,26 +8,29 @@ editor_options:
     wrap: sentence
 ---
 
-## Overall project summary
+## Overall project summary (end-of-course goal)
 
-In this course you will work in assigned teams of three or four to answer a predictive question
+::: callout-note
+This section describes where your project ends up **at the end of the course**.
+It is not the to-do list for this milestone: see [Milestone 4 summary](#milestone-4-summary) for that.
+:::
+
+In this course you will work in assigned teams of three
+or four (see group assignments on GitHub) to answer a predictive statistical/machine learning question
 using a publicly available data set that will allow you to answer that question.
 To answer this question, you will perform a complete data analysis in R and/or Python,
 from data import to communication of results,
 while placing significant emphasis on reproducible and trustworthy workflows.
 
-Your data analysis project will evolve throughout the course from a single,
-monolithic Jupyter notebook,
-to a fully reproducible and robust data data analysis project, comprised of:
+By the end of the course, your project will have evolved from a single,
+monolithic Quarto document into a fully reproducible and robust data analysis project, comprised of:
 
-- A reproducible report powered by either Jupyter book or Quarto,
-- A containerized computational environment created and made shareable by Docker
-- A remote version control repository on GitHub for project collaboration, sharing, and documentation.
-- A well documented and modularized scripts written in R and/or Python,
-- A data analysis pipeline automated with GNU Make,
+-   a well documented and modularized scripts written in R and/or Python,
+-   a data analysis pipeline automated with GNU Make,
+-   a reproducible report powered by Quarto,
+-   a containerized computational environment created and made shareable by Docker
+-   a remote version control repository on GitHub for project collaboration, sharing, and documentation.
 
-An example final project from past years can be seen here:
-[Breast Cancer Predictor](https://github.com/ttimbers/breast-cancer-predictor)
 
 ## Milestone 4 summary
 
