@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.11.9">
+
+  <meta name="author" content="Sky Sheng">
+  <title>DSCI 522: Data Science Workflows – DSCI 522 Lecture 5</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-14863fa85e486b648f02655f05cd906f.css">
+  <link rel="stylesheet" href="assets/slides.css">
+  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script src="assets/helper.js"></script>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-notes="[1] iClicker Cloud open<br>[2] Encourage questions: if one student has a question, likely others do too.<br>[3] Connect my logitech highlighter<br>[4] Connect my writing notepad to the laptop" class="quarto-title-block center">
+  <h1 class="title">DSCI 522 Lecture 5</h1>
+  <p class="subtitle">Non-interactive scripts</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Sky Sheng
+</div>
+</div>
+</div>
+
+</section>
+<section id="iclicker-how-are-you-getting-along-with-docker" class="slide level2">
+<h2>iClicker: How are you getting along with Docker?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div style="text-align: center; font-weight: bold; font-size: 24px; margin-bottom: 0px;">
+(A)
+</div>
+<div style="text-align: center;">
+<p><img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExeXE4ODVjNW04djRvOW54cHo5enRjbjk1ZDB1cjhzZTE4ejJiZTdmciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/6onMzNPjtFeCI/giphy.gif" style="width: 60%; max-width: 400px;"></p>
+</div>
+</div><div class="column" style="width:50%;">
+<div style="text-align: center; font-weight: bold; font-size: 24px; margin-bottom: 0px;">
+(B)
+</div>
+<div style="text-align: center;">
+<p><img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTNlamUxbnBuMTN1M3BkMmo1ZWg4d3FnOWlhZjB3bHZqaGFlNmNnOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/hEIuLmpW9DmGA/giphy.gif" style="width: 65%; max-width: 400px;"></p>
+</div>
+</div></div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div style="text-align: center; font-weight: bold; font-size: 24px; margin-bottom: 0px;">
+(C)
+</div>
+<div style="text-align: center;">
+<p><img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZjhyc29ya2FqZmVzY2Fzc2o5Y3htZTh4bjZxOHBjazJvMXl0NGo2MCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/2tRNWDWKYQ5Y1Liot4/giphy.gif" style="width: 60%; max-width: 400px;"></p>
+</div>
+</div><div class="column" style="width:50%;">
+<div style="text-align: center; font-weight: bold; font-size: 24px; margin-bottom: 0px;">
+(D)
+</div>
+<div style="text-align: center;">
+<p><img src=" https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3cmc3aXpnMmdoZnVxdWhrbTBqZTMyMmZpbDdwMzczd3Y1cTdhZHVneiZlcD12MV9naWZzX3JlbGF0ZWQmY3Q9Zw/dIBUemhk5jPd9rfbHf/giphy.gif" style="width: 60%; max-width: 400px;"></p>
+</div>
+</div></div>
+<div class="footer">
+<p><a href="https://giphy.com">Source</a></p>
+</div>
+</section>
+<section>
+<section id="some-questions-from-last-week" class="title-slide slide level1 center">
+<h1>🧐 Some questions from last week…</h1>
+
+</section>
+<section id="q-i-did-everything-as-instructed-why-do-i-still-get-bugs" class="slide level2">
+<h2>Q: “I did everything as instructed, why do I still get bugs?” 🥲</h2>
+<ul>
+<li class="fragment">Bad news: 🐛 are inevitable
+<ul>
+<li class="fragment">Debugging is one of the most important skills to have as a data scientist</li>
+</ul></li>
+<li class="fragment">Good news: Enemies of 🐛:
+<ul>
+<li class="fragment">Documentation, attention to details, perseverance, clean code, testing…</li>
+</ul></li>
+</ul>
+</section>
+<section id="q-conda-is-not-locking-my-pip-packages" class="slide level2">
+<h2>Q: “conda is not locking my pip packages!” 😱</h2>
+<div class="smaller" style="font-size: 0.8em;">
+<ul>
+<li class="fragment">Solution: <code>pip install</code> packages inside of your Dockerfile
+<ul>
+<li class="fragment">(optional but recommended) Still add version numbers for your pip packages in <code>environment.yml</code> file for documentation purposes</li>
+</ul></li>
+<li class="fragment"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a aria-label="1"></a><span class="co"># build on top of template of minimal notebook</span></span>
+<span id="cb1-2"><a aria-label="2"></a><span class="ex">FROM</span> quay.io/jupyter/minimal-notebook:afe30f0c9ad8</span>
+<span id="cb1-3"><a aria-label="3"></a></span>
+<span id="cb1-4"><a aria-label="4"></a><span class="co"># copy all conda environment dependencies</span></span>
+<span id="cb1-5"><a aria-label="5"></a><span class="ex">COPY</span> conda-linux-64.lock /tmp/conda-linux-64.lock</span>
+<span id="cb1-6"><a aria-label="6"></a></span>
+<span id="cb1-7"><a aria-label="7"></a><span class="co"># conda install all the other packages</span></span>
+<span id="cb1-8"><a aria-label="8"></a><span class="ex">RUN</span> mamba update <span class="at">--quiet</span> <span class="at">--file</span> /tmp/conda-linux-64.lock <span class="dt">\</span></span>
+<span id="cb1-9"><a aria-label="9"></a>    <span class="kw">&amp;&amp;</span> <span class="ex">mamba</span> clean <span class="at">--all</span> <span class="at">-y</span> <span class="at">-f</span> <span class="dt">\</span></span>
+<span id="cb1-10"><a aria-label="10"></a>    <span class="kw">&amp;&amp;</span> <span class="ex">fix-permissions</span> <span class="st">"</span><span class="va">${CONDA_DIR}</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb1-11"><a aria-label="11"></a>    <span class="kw">&amp;&amp;</span> <span class="ex">fix-permissions</span> <span class="st">"/home/</span><span class="va">${NB_USER}</span><span class="st">"</span></span>
+<span id="cb1-12"><a aria-label="12"></a></span>
+<span id="cb1-13"><a aria-label="13"></a><span class="co"># install openai using pip</span></span>
+<span id="cb1-14"><a aria-label="14"></a><span class="ex">RUN</span> pip install openai==1.57.0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
+</div>
+</section>
+<section id="q-the-data-im-currently-using-do-not-have-any-missing-data-why-do-i-still-need-to-do-data-validation" class="slide level2">
+<h2>Q: “The data I’m currently using do not have any missing data, why do I still need to do data validation?”</h2>
+<ul>
+<li class="fragment">What about your future data?</li>
+<li class="fragment">We set up the data validation pipeline so that we can easily validate new data, and get warnings if there are missing values in the future.</li>
+</ul>
+</section>
+<section id="q-why-do-we-need-to-standardize-repository-structure" class="slide level2">
+<h2><span style="font-size: 0.7em;">Q: “Why do we need to standardize repository structure?”</span></h2>
+<div class="smaller" style="font-size: 0.8em;">
+<p>🫣 Here is a shameless bad example of what happens when you don’t use standardized, well-organized repository structure:</p>
+</div>
+
+<img data-src="images/unorganized_repo.png" style="margin-bottom: 0px; display: block; margin-left: auto; margin-right: auto;" width="4500" class="r-stretch"></section>
+<section id="iclicker-why-do-we-use-docker-compose-file" class="slide level2">
+<h2>iClicker: Why do we use <code>docker-compose</code> file?</h2>
+<p>-(A) To create and customize our own docker</p>
+<p>-(B) To easily launch and stop our docker container in one command</p>
+<p>-(C) To document the packages we used so that we can easily share with others</p>
+<p>-(D) To prepare for publishing our docker image on Docker Hub</p>
+<p>-(E) To make our life harder 🤷‍♀️</p>
+</section>
+<section id="recap-why-do-we-need-all-of-these" class="slide level2">
+<h2><span style="font-size: 0.9em;">Recap: Why do we need all of these? 🤯</span></h2>
+
+<img data-src="images/conda5.png" style="margin-bottom: 0px;" width="2600" class="r-stretch"><div class="footer">
+<p>Image generated by OpenAI GPT-5 and Canva</p>
+</div>
+</section>
+<section id="i-want-more-functionality-in-the-docker-container" class="slide level2">
+<h2><span style="font-size: 0.7em;">“I want more functionality in the docker container!”</span></h2>
+
+<img data-src="images/docker1.png" style="margin-bottom: 0px;" width="3600" class="r-stretch"><div class="footer">
+<p>Image generated by OpenAI GPT-5 and Canva</p>
+</div>
+</section>
+<section id="docker-run-command-is-too-long" class="slide level2">
+<h2><span style="font-size: 0.7em;">“<code>docker run</code> command is too LONG!”</span></h2>
+
+<img data-src="images/docker2.png" style="margin-bottom: 0px;" width="3600" class="r-stretch"><div class="footer">
+<p>Image generated by OpenAI GPT-5 and Canva</p>
+</div>
+</section>
+<section id="i-am-tired-of-typing-the-same-sequence-of-commands-over-and-over-again" class="slide level2">
+<h2><span style="font-size: 0.7em;">“I am tired of typing the same sequence of commands over and over again!”</span></h2>
+
+<img data-src="images/docker3.png" style="margin-bottom: 0px;" width="3600" class="r-stretch"><div class="footer">
+<p>Image generated by OpenAI GPT-5 and Canva</p>
+</div>
+</section>
+<section id="i-want-others-to-easily-use-my-docker-container" class="slide level2">
+<h2><span style="font-size: 0.7em;">“I want others to easily use my docker container!”</span></h2>
+
+<img data-src="images/docker4.png" style="margin-bottom: 0px;" width="3600" class="r-stretch"><div class="footer">
+<p>Image generated by OpenAI GPT-5 and Canva</p>
+</div>
+</section>
+<section id="docker-image-data-code-all-in-one-place" class="slide level2">
+<h2>Docker image, data, code: all in one place?</h2>
+<ul>
+<li class="fragment">NO 🙅‍♀️</li>
+<li class="fragment">🐳 Docker image ➡️ <a href="https://hub.docker.com/">Docker Hub</a></li>
+<li class="fragment">📜 Code ➡️ GitHub repository</li>
+<li class="fragment">📊 Data (small) ➡️ GitHub repository</li>
+<li class="fragment">📊 Data (large) ➡️ Cloud storage (e.g., <a href="https://aws.amazon.com/s3/">AWS S3</a>); <a href="https://zenodo.org/">Zenodo</a>; <a href="https://borealisdata.ca/dataverse/ubc">Borealis Dataverse</a></li>
+</ul>
+</section>
+<section id="real-world-example-nature" class="slide level2">
+<h2>Real-world example: Nature</h2>
+<div class="smaller" style="font-size: 0.8em;">
+<ul>
+<li>If you ever submit a paper to <em>Nature</em> journals, you will be asked to upload your code &amp; data to <a href="https://codeocean.com/resources/nature-partnership">Code Ocean</a></li>
+</ul>
+</div>
+
+<img data-src="images/nature.png" style="margin-bottom: 0px; display: block; margin-left: auto; margin-right: auto;" width="4500" class="r-stretch"></section>
+<section id="something-to-look-forward-to-at-the-end-of-dsci-522" class="slide level2">
+<h2><span style="font-size: 0.7em;">Something to look forward to at the end of DSCI 522… </span></h2>
+<div class="smaller" style="font-size: 0.8em;">
+<ul>
+<li>🤖 AI agents and fully automated data science workflows using Model Context Protocols (MCPs)</li>
+<li>🐳 Most MCP servers are built using Docker containers</li>
+</ul>
+</div>
+
+<img data-src="images/docker_mcp.png" style="margin-bottom: 0px; display: block; margin-left: auto; margin-right: auto;" width="5000" class="r-stretch"></section></section>
+<section id="thats-all-for-docker-for-now" class="title-slide slide level1 center">
+<h1>🎊 That’s all for Docker for now</h1>
+<ul>
+<li>Docker Cheatsheet is available <a href="https://ubc-mds.github.io/DSCI_522_dsci-workflows_students/cheatsheets/docker.html">here</a></li>
+</ul>
+</section>
+
+<section>
+<section id="todays-topic-non-interactive-scripts" class="title-slide slide level1 center">
+<h1>Today’s topic: Non-interactive scripts 📜</h1>
+
+</section>
+<section id="early-prep" class="slide level2 scrollable">
+<h2>Early Prep:</h2>
+<ol type="1">
+<li>Clone the repository:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a aria-label="1"></a><span class="fu">git</span> clone https://github.com/skysheng7/DSCI522_data_validation_demo.git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>If you already cloned this repository last time, please <code>git pull</code> to get the latest updates.</li>
+</ul>
+<ol start="2" type="1">
+<li>Pull the docker image:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a aria-label="1"></a><span class="ex">docker</span> pull skysheng7/dsci522:8fcac44</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="you-have-already-been-using-scripts" class="slide level2">
+<h2>You have already been using scripts!</h2>
+<div class="smaller" style="font-size: 0.8em;">
+<ul>
+<li><a href="https://github.com/skysheng7/append_version_to_environment_yml.git">GitHub repo: append_version_to_environment_yml</a></li>
+<li><code>python update_enviroment_yml.py --root_dir="." --env_name="ai_env" --yml_name="environment.yml"</code></li>
+</ul>
+</div>
+
+<img data-src="images/conda3.png" style="margin-bottom: 0px;" width="5600" class="r-stretch"></section></section>
+<section>
+<section id="what-is-a-script" class="title-slide slide level1 center">
+<h1>What is a script?</h1>
+<ul>
+<li class="fragment">A script is a plain text file that contains sequence of commands (e.g., written in R or Python). It is usually executed from top to bottom from the command line.</li>
+<li class="fragment">Example: <a href="https://github.com/skysheng7/append_version_to_environment_yml/blob/main/update_enviroment_yml.py">update_environment_yml.py</a></li>
+</ul>
+<div class="footer">
+<p>Source: <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/scripts.html">Timbers, T. A., Ostblom, J., D’Andrea, F., Lourenzutti, R., &amp; Chen, D. Reproducible and Trustworthy Workflows for Data Science</a></p>
+</div>
+</section>
+<section id="read-eval-print-loop-repl-framework-i.e.-interactive-mode" class="slide level2">
+<h2>Read-eval-print-loop (REPL) framework (i.e., interactive mode)</h2>
+<ul>
+<li class="fragment">Read-eval-print-loop (REPL) framework is when the machine reads the input, evalutes/executes them through functions, print out the result to the user. 👀 –&gt; ✅ –&gt; 🖨️</li>
+<li class="fragment">REPL example:
+<ul>
+<li class="fragment">Run code in console for R &amp; Python</li>
+<li class="fragment">Run code in cells of Jupyter Notebook</li>
+</ul></li>
+</ul>
+</section>
+<section id="what-are-the-problems-with-jupyter-notebook" class="slide level2">
+<h2>What are the problems with Jupyter Notebook?</h2>
+<ul>
+<li class="fragment">🤔 Example 1: What if we turn <a href="https://github.com/skysheng7/DSCI522_data_validation_demo/blob/main/problematic_notebooks/update_enviroment_yml.ipynb">update_environment_yml.py</a> into a Jupyter Notebook and always run cell by cell?</li>
+<li class="fragment">😵‍💫 Example 2: <a href="https://github.com/skysheng7/DSCI522_data_validation_demo/blob/main/problematic_notebooks/Megadata%20Plot%20Generation.ipynb">A jupyter notebook</a> to analyze images output by text-to-image generative models. <a href="https://github.com/skysheng7/AI_bias_in_farming/tree/639fd7b8515a411995793d761adb1f1e9661775b">Old commit history in November 2024 for this repository</a>. My Problems are:
+<ul>
+<li class="fragment">4800 images generated</li>
+<li class="fragment">25 visualization plots generated</li>
+</ul></li>
+</ul>
+</section>
+<section id="what-are-the-problems-with-jupyter-notebook-1" class="slide level2">
+<h2>What are the problems with Jupyter Notebook?</h2>
+<ul>
+<li class="fragment">😵 Do you want to show every single step of your analysis in one single file to your reader?
+<ul>
+<li class="fragment">Remember my <a href="https://github.com/skysheng7/moo4feed/blob/main/data-raw/old_scripts/master_script_HOBO_Insentec_combined_Sockeye_v12.R">5000-line R code</a> that you roasted? 🔥</li>
+</ul></li>
+</ul>
+</section>
+<section id="what-are-the-benefits-of-using-scripts" class="slide level2">
+<h2>💡 What are the benefits of using scripts?</h2>
+<div class="smaller" style="font-size: 0.8em;">
+<ul>
+<li class="fragment">Abstraction: Hide the complexity of the code from the user</li>
+<li class="fragment">Reusability: The script can be reused by others
+<ul>
+<li class="fragment">e.g., I moved the <a href="https://github.com/skysheng7/append_version_to_environment_yml/blob/main/update_enviroment_yml.py">update_environment_yml.py</a> script out from my original repository and shared it with you</li>
+</ul></li>
+<li class="fragment">Efficiency: Jupyter Notebook runs in linear fashion, while the script can be run in parallel</li>
+<li class="fragment">Automation: Scripts can be used with other tools (e.g., GNU Make) to automate the entire workflow</li>
+<li class="fragment">Ease of use: The script can be run with a single command</li>
+<li class="fragment">Ease of debugging: Modular code is easier to debug</li>
+</ul>
+</div>
+</section>
+<section id="read-eval-print-loop-repl-framework-vs-scripts" class="slide level2">
+<h2>🌟 Read-eval-print-loop (REPL) framework VS Scripts</h2>
+<div class="smaller" style="font-size: 0.7em;">
+<table class="caption-top">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 50%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>REPL (e.g., Jupyter Notebook)</th>
+<th>Scripts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Execution</strong></td>
+<td>Interactive, line-by-line or cell-by-cell</td>
+<td>Batch mode, top to bottom</td>
+</tr>
+<tr class="even">
+<td><strong>Best for</strong></td>
+<td>Solving small problems, developing code, exploratory analysis</td>
+<td>Automation, production workflows, reproducible pipelines</td>
+</tr>
+<tr class="odd">
+<td><strong>Advantages</strong></td>
+<td>Immediate feedback, easy for small problems and experiments</td>
+<td>Efficiency, automation, reusability, reproducibility</td>
+</tr>
+<tr class="even">
+<td><strong>Examples</strong></td>
+<td>R/Python console, Jupyter Notebook cells</td>
+<td><code>.py</code>, <code>.R</code> files run from command line</td>
+</tr>
+<tr class="odd">
+<td><strong>Complexity</strong></td>
+<td>Can become messy with large analyses</td>
+<td>Better for complex, modular workflows</td>
+</tr>
+<tr class="even">
+<td><strong>Debugging</strong></td>
+<td>Harder with non-linear execution</td>
+<td>Easier with linear, modular code</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="lets-dive-into-python-scripts" class="slide level2">
+<h2>🏄🏻‍♀️ Let’s dive into python scripts!</h2>
+<ul>
+<li>Scan through the <a href="https://github.com/skysheng7/append_version_to_environment_yml/blob/main/update_enviroment_yml.py">update_environment_yml.py</a> script and discuss the following questions with your neighbor:
+<ul>
+<li>What is the structure of this script?</li>
+<li>Where are the documentation comments?</li>
+<li>What is the structure and style of the documentation?</li>
+<li>Where is the packages get imported?</li>
+<li>What is the purpose of <code>@click.option()</code>?</li>
+<li>Why do we need <code>if __name__ == "__main__":</code> at the end?</li>
+</ul></li>
+</ul>
+</section>
+<section id="example-python-script-organization" class="slide level2">
+<h2>Example python script organization</h2>
+<div class="smaller" style="font-size: 0.9em;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a aria-label="1"></a><span class="co"># documentation comments</span></span>
+<span id="cb4-2"><a aria-label="2"></a></span>
+<span id="cb4-3"><a aria-label="3"></a><span class="co"># import libraries/packages</span></span>
+<span id="cb4-4"><a aria-label="4"></a></span>
+<span id="cb4-5"><a aria-label="5"></a><span class="co"># parse/define command line arguments here</span></span>
+<span id="cb4-6"><a aria-label="6"></a></span>
+<span id="cb4-7"><a aria-label="7"></a><span class="co"># code for other functions</span></span>
+<span id="cb4-8"><a aria-label="8"></a></span>
+<span id="cb4-9"><a aria-label="9"></a><span class="co"># define main function</span></span>
+<span id="cb4-10"><a aria-label="10"></a><span class="kw">def</span> main():</span>
+<span id="cb4-11"><a aria-label="11"></a>    <span class="co"># code for "guts" of script goes here</span></span>
+<span id="cb4-12"><a aria-label="12"></a></span>
+<span id="cb4-13"><a aria-label="13"></a><span class="co"># call main function</span></span>
+<span id="cb4-14"><a aria-label="14"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb4-15"><a aria-label="15"></a>    main() <span class="co"># pass any command line args to main here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="docstring-google-style" class="slide level2">
+<h2>Docstring: Google Style</h2>
+<div class="smaller" style="font-size: 0.9em;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a aria-label="1"></a><span class="kw">def</span> func(arg1, arg2):</span>
+<span id="cb5-2"><a aria-label="2"></a>    <span class="co">"""Summary line.</span></span>
+<span id="cb5-3"><a aria-label="3"></a></span>
+<span id="cb5-4"><a aria-label="4"></a><span class="co">    Extended description of function.</span></span>
+<span id="cb5-5"><a aria-label="5"></a></span>
+<span id="cb5-6"><a aria-label="6"></a><span class="co">    Args:</span></span>
+<span id="cb5-7"><a aria-label="7"></a><span class="co">        arg1 (int): Description of arg1</span></span>
+<span id="cb5-8"><a aria-label="8"></a><span class="co">        arg2 (str): Description of arg2</span></span>
+<span id="cb5-9"><a aria-label="9"></a></span>
+<span id="cb5-10"><a aria-label="10"></a><span class="co">    Returns:</span></span>
+<span id="cb5-11"><a aria-label="11"></a><span class="co">        bool: Description of return value</span></span>
+<span id="cb5-12"><a aria-label="12"></a></span>
+<span id="cb5-13"><a aria-label="13"></a><span class="co">    Raises:</span></span>
+<span id="cb5-14"><a aria-label="14"></a><span class="co">        IOError: An error occurred accessing the file.</span></span>
+<span id="cb5-15"><a aria-label="15"></a><span class="co">    """</span></span>
+<span id="cb5-16"><a aria-label="16"></a>    <span class="cf">return</span> <span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="footer">
+<p><a href="https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html">Source</a></p>
+</div>
+</section>
+<section id="docstring-numpy-style" class="slide level2">
+<h2>Docstring: Numpy Style</h2>
+<div class="smaller" style="font-size: 0.9em;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a aria-label="1"></a><span class="kw">def</span> func(arg1, arg2):</span>
+<span id="cb6-2"><a aria-label="2"></a>    <span class="co">"""Summary line.</span></span>
+<span id="cb6-3"><a aria-label="3"></a></span>
+<span id="cb6-4"><a aria-label="4"></a><span class="co">    Extended description of function.</span></span>
+<span id="cb6-5"><a aria-label="5"></a></span>
+<span id="cb6-6"><a aria-label="6"></a><span class="co">    Parameters</span></span>
+<span id="cb6-7"><a aria-label="7"></a><span class="co">    ----------</span></span>
+<span id="cb6-8"><a aria-label="8"></a><span class="co">    arg1 : int</span></span>
+<span id="cb6-9"><a aria-label="9"></a><span class="co">        Description of arg1</span></span>
+<span id="cb6-10"><a aria-label="10"></a><span class="co">    arg2 : str</span></span>
+<span id="cb6-11"><a aria-label="11"></a><span class="co">        Description of arg2</span></span>
+<span id="cb6-12"><a aria-label="12"></a></span>
+<span id="cb6-13"><a aria-label="13"></a><span class="co">    Returns</span></span>
+<span id="cb6-14"><a aria-label="14"></a><span class="co">    -------</span></span>
+<span id="cb6-15"><a aria-label="15"></a><span class="co">    bool</span></span>
+<span id="cb6-16"><a aria-label="16"></a><span class="co">        Description of return value</span></span>
+<span id="cb6-17"><a aria-label="17"></a></span>
+<span id="cb6-18"><a aria-label="18"></a><span class="co">    Raises</span></span>
+<span id="cb6-19"><a aria-label="19"></a><span class="co">    ------</span></span>
+<span id="cb6-20"><a aria-label="20"></a><span class="co">    KeyError</span></span>
+<span id="cb6-21"><a aria-label="21"></a><span class="co">        when a key error</span></span>
+<span id="cb6-22"><a aria-label="22"></a><span class="co">    """</span></span>
+<span id="cb6-23"><a aria-label="23"></a>    <span class="cf">return</span> <span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="footer">
+<p><a href="https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html">Source</a></p>
+</div>
+</section>
+<section id="why-does-docstring-style-matter" class="slide level2">
+<h2>Why does docstring style matter?</h2>
+<div class="smaller" style="font-size: 0.9em;">
+<ul>
+<li class="fragment"><p>Readability: Your collaborators, future users, and future you will thank you for writing clear and concise docstrings. 🙏</p></li>
+<li class="fragment"><p>Good docstring should be both human-readable and machine-readable.</p></li>
+<li class="fragment"><p>Python Example:</p>
+<ul>
+<li class="fragment"><a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.head.html">Source code for <code>pandas.DataFrame.head</code></a></li>
+<li class="fragment"><a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.head.html">API for <code>pandas.DataFrame.head</code></a></li>
+</ul></li>
+<li class="fragment"><p><a href="https://roxygen2.r-lib.org/">R <code>roxygen2</code> Documentation</a> Example:</p>
+<ul>
+<li class="fragment"><a href="https://github.com/skysheng7/moo4feed/blob/main/R/cluster_meals.R">Source code for <code>moo4feed</code> package <code>cluster_meals</code></a></li>
+<li class="fragment"><a href="https://www.skysheng.io/moo4feed/reference/cluster_meals.html">API for <code>moo4feed</code> package <code>cluster_meals</code></a></li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="lets-use-click-package-in-python-to-parse-command-line-arguments" class="slide level2">
+<h2>Let’s use <code>click</code> package in Python to parse command line arguments</h2>
+<p>Create a new python script called <code>otter_greeting.py</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a aria-label="1"></a><span class="im">import</span> click</span>
+<span id="cb7-2"><a aria-label="2"></a></span>
+<span id="cb7-3"><a aria-label="3"></a><span class="at">@click.command</span>()</span>
+<span id="cb7-4"><a aria-label="4"></a><span class="at">@click.argument</span>(<span class="st">'count'</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">int</span>)</span>
+<span id="cb7-5"><a aria-label="5"></a><span class="at">@click.argument</span>(<span class="st">'name'</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">str</span>)</span>
+<span id="cb7-6"><a aria-label="6"></a><span class="kw">def</span> hello(count, name):</span>
+<span id="cb7-7"><a aria-label="7"></a>    <span class="co">"""Simple program that greets NAME for a total of COUNT times."""</span></span>
+<span id="cb7-8"><a aria-label="8"></a>    <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(count):</span>
+<span id="cb7-9"><a aria-label="9"></a>        click.echo(<span class="ss">f"🦦: `Nice to meet you, </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">!`"</span>)</span>
+<span id="cb7-10"><a aria-label="10"></a></span>
+<span id="cb7-11"><a aria-label="11"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">'__main__'</span>:</span>
+<span id="cb7-12"><a aria-label="12"></a>    hello()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section></section>
+<section>
+<section id="run-the-script" class="title-slide slide level1 center">
+<h1>Run the script</h1>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a aria-label="1"></a><span class="ex">python</span> scripts/otter_greeting.py 3 <span class="st">"Sky"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="lets-use-click-package-in-python-to-parse-command-line-arguments-1" class="slide level2">
+<h2>Let’s use <code>click</code> package in Python to parse command line arguments</h2>
+<p>Let’s use options instead of arguments to parse command line arguments:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a aria-label="1"></a><span class="im">import</span> click</span>
+<span id="cb9-2"><a aria-label="2"></a></span>
+<span id="cb9-3"><a aria-label="3"></a><span class="at">@click.command</span>()</span>
+<span id="cb9-4"><a aria-label="4"></a><span class="at">@click.option</span>(<span class="st">'--count'</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">int</span>, default<span class="op">=</span><span class="dv">1</span>, <span class="bu">help</span><span class="op">=</span><span class="st">'Number of greetings.'</span>)</span>
+<span id="cb9-5"><a aria-label="5"></a><span class="at">@click.option</span>(<span class="st">'--name'</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">str</span>, prompt<span class="op">=</span><span class="st">'Your name'</span>, <span class="bu">help</span><span class="op">=</span><span class="st">'The person to greet.'</span>)</span>
+<span id="cb9-6"><a aria-label="6"></a><span class="kw">def</span> hello(count, name):</span>
+<span id="cb9-7"><a aria-label="7"></a>    <span class="co">"""Simple program that greets NAME for a total of COUNT times."""</span></span>
+<span id="cb9-8"><a aria-label="8"></a>    <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(count):</span>
+<span id="cb9-9"><a aria-label="9"></a>        click.echo(<span class="ss">f"🦦: `Nice to meet you, </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">!`"</span>)</span>
+<span id="cb9-10"><a aria-label="10"></a></span>
+<span id="cb9-11"><a aria-label="11"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">'__main__'</span>:</span>
+<span id="cb9-12"><a aria-label="12"></a>    hello()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section></section>
+<section>
+<section id="run-the-script-1" class="title-slide slide level1 center">
+<h1>Run the script</h1>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a aria-label="1"></a><span class="ex">python</span> scripts/otter_greeting.py <span class="at">--name</span> <span class="st">"Oyster"</span> <span class="at">--count</span> 3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="greet-otters-using-click" class="slide level2">
+<h2>🦦 Greet otters using <code>click</code>!</h2>
+<div class="smaller" style="font-size: 0.8em;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a aria-label="1"></a><span class="st">"""Otter Greeting Generator</span></span>
+<span id="cb11-2"><a aria-label="2"></a></span>
+<span id="cb11-3"><a aria-label="3"></a><span class="st">This script allows you to greet otters with different levels of enthusiasm.</span></span>
+<span id="cb11-4"><a aria-label="4"></a><span class="st">"""</span></span>
+<span id="cb11-5"><a aria-label="5"></a></span>
+<span id="cb11-6"><a aria-label="6"></a><span class="ex">import</span> click</span>
+<span id="cb11-7"><a aria-label="7"></a></span>
+<span id="cb11-8"><a aria-label="8"></a><span class="fu">@click.command()</span></span>
+<span id="cb11-9"><a aria-label="9"></a><span class="ex">@click.option</span><span class="er">(</span><span class="st">'--count'</span><span class="ex">,</span> default=1, help=<span class="st">'Number of otter greetings.'</span><span class="kw">)</span></span>
+<span id="cb11-10"><a aria-label="10"></a><span class="ex">@click.option</span><span class="er">(</span><span class="st">'--name'</span><span class="ex">,</span> prompt=<span class="st">'Your name'</span>, help=<span class="st">'The person to greet.'</span><span class="kw">)</span></span>
+<span id="cb11-11"><a aria-label="11"></a><span class="ex">@click.option</span><span class="er">(</span><span class="st">'--enthusiasm'</span><span class="ex">,</span> type=click.Choice<span class="er">(</span><span class="ex">[</span><span class="st">'low'</span><span class="ex">,</span> <span class="st">'medium'</span>, <span class="st">'high'</span>]<span class="kw">)</span><span class="ex">,</span> </span>
+<span id="cb11-12"><a aria-label="12"></a>              <span class="va">default</span><span class="op">=</span><span class="st">'medium'</span>, <span class="va">help</span><span class="op">=</span><span class="st">'How enthusiastic should the otters be?'</span><span class="kw">)</span></span>
+<span id="cb11-13"><a aria-label="13"></a><span class="ex">def</span> greet_otters<span class="er">(</span><span class="ex">count,</span> name, enthusiasm<span class="kw">)</span><span class="bu">:</span></span>
+<span id="cb11-14"><a aria-label="14"></a>    <span class="st">""" Otter greeting generator</span></span>
+<span id="cb11-15"><a aria-label="15"></a><span class="st">    </span></span>
+<span id="cb11-16"><a aria-label="16"></a><span class="st">    Simple program that has adorable otters greet NAME for COUNT times. 🦦</span></span>
+<span id="cb11-17"><a aria-label="17"></a><span class="st">    </span></span>
+<span id="cb11-18"><a aria-label="18"></a><span class="st">    Parameters</span></span>
+<span id="cb11-19"><a aria-label="19"></a><span class="st">    ----------</span></span>
+<span id="cb11-20"><a aria-label="20"></a><span class="st">    count : int</span></span>
+<span id="cb11-21"><a aria-label="21"></a><span class="st">        Number of otter greetings to display. Must be a positive integer.</span></span>
+<span id="cb11-22"><a aria-label="22"></a><span class="st">        Default is 1.</span></span>
+<span id="cb11-23"><a aria-label="23"></a><span class="st">    name : str</span></span>
+<span id="cb11-24"><a aria-label="24"></a><span class="st">        The name of the person to greet. Will be prompted if not provided</span></span>
+<span id="cb11-25"><a aria-label="25"></a><span class="st">        via command line.</span></span>
+<span id="cb11-26"><a aria-label="26"></a><span class="st">    enthusiasm : {'low', 'medium', 'high'}</span></span>
+<span id="cb11-27"><a aria-label="27"></a><span class="st">        The enthusiasm level of the otter greetings:</span></span>
+<span id="cb11-28"><a aria-label="28"></a><span class="st">        - 'low': Simple, calm greeting</span></span>
+<span id="cb11-29"><a aria-label="29"></a><span class="st">        - 'medium': Friendly greeting with some emojis</span></span>
+<span id="cb11-30"><a aria-label="30"></a><span class="st">        - 'high': Very excited greeting with lots of emojis and caps</span></span>
+<span id="cb11-31"><a aria-label="31"></a><span class="st">        Default is 'medium'.</span></span>
+<span id="cb11-32"><a aria-label="32"></a><span class="st">    </span></span>
+<span id="cb11-33"><a aria-label="33"></a><span class="st">    Returns</span></span>
+<span id="cb11-34"><a aria-label="34"></a><span class="st">    -------</span></span>
+<span id="cb11-35"><a aria-label="35"></a><span class="st">    None</span></span>
+<span id="cb11-36"><a aria-label="36"></a><span class="st">        Outputs greetings directly to the console using click.echo().</span></span>
+<span id="cb11-37"><a aria-label="37"></a><span class="st">    </span></span>
+<span id="cb11-38"><a aria-label="38"></a><span class="st">    Examples</span></span>
+<span id="cb11-39"><a aria-label="39"></a><span class="st">    --------</span></span>
+<span id="cb11-40"><a aria-label="40"></a><span class="st">    Run from command line:</span></span>
+<span id="cb11-41"><a aria-label="41"></a><span class="st">    </span></span>
+<span id="cb11-42"><a aria-label="42"></a><span class="st">    &gt;&gt;&gt; python otter_greeting.py --name "</span><span class="ex">Oyster</span><span class="st">" --count 3 --enthusiasm high</span></span>
+<span id="cb11-43"><a aria-label="43"></a><span class="st">    </span></span>
+<span id="cb11-44"><a aria-label="44"></a><span class="st">    This will display 3 highly enthusiastic otter greetings for Oyster.</span></span>
+<span id="cb11-45"><a aria-label="45"></a><span class="st">    """</span></span>
+<span id="cb11-46"><a aria-label="46"></a>    <span class="co"># Different enthusiasm levels</span></span>
+<span id="cb11-47"><a aria-label="47"></a>    <span class="ex">emojis</span> = {</span>
+<span id="cb11-48"><a aria-label="48"></a>        <span class="st">'low'</span><span class="ex">:</span> <span class="st">'🦦'</span>,</span>
+<span id="cb11-49"><a aria-label="49"></a>        <span class="st">'medium'</span><span class="ex">:</span> <span class="st">'🦦✨'</span>,</span>
+<span id="cb11-50"><a aria-label="50"></a>        <span class="st">'high'</span><span class="ex">:</span> <span class="st">'🦦🎉🌊'</span></span>
+<span id="cb11-51"><a aria-label="51"></a>    <span class="er">}</span></span>
+<span id="cb11-52"><a aria-label="52"></a>    </span>
+<span id="cb11-53"><a aria-label="53"></a>    <span class="ex">messages</span> = {</span>
+<span id="cb11-54"><a aria-label="54"></a>        <span class="st">'low'</span><span class="ex">:</span> f<span class="st">"hello {name}."</span>,</span>
+<span id="cb11-55"><a aria-label="55"></a>        <span class="st">'medium'</span><span class="ex">:</span> f<span class="st">"Hello {name}! 🌊"</span>,</span>
+<span id="cb11-56"><a aria-label="56"></a>        <span class="st">'high'</span><span class="ex">:</span> f<span class="st">"HELLO {name.upper()}!!! Who is that lovely, amazing, genius friend over there?? The otters are SO excited to see you! 🎊"</span></span>
+<span id="cb11-57"><a aria-label="57"></a>    <span class="er">}</span></span>
+<span id="cb11-58"><a aria-label="58"></a>    </span>
+<span id="cb11-59"><a aria-label="59"></a>    <span class="ex">click.echo</span><span class="er">(</span><span class="ex">f</span><span class="st">"\n{emojis[enthusiasm]} Otter Greetings Incoming! {emojis[enthusiasm]}\n"</span><span class="kw">)</span></span>
+<span id="cb11-60"><a aria-label="60"></a>    </span>
+<span id="cb11-61"><a aria-label="61"></a>    <span class="cf">for</span> i <span class="kw">in</span> range<span class="er">(</span><span class="ex">count</span><span class="kw">)</span><span class="bu">:</span></span>
+<span id="cb11-62"><a aria-label="62"></a>        <span class="ex">click.echo</span><span class="er">(</span><span class="ex">f</span><span class="st">"  Otter #{i+1}: {messages[enthusiasm]}"</span><span class="kw">)</span></span>
+<span id="cb11-63"><a aria-label="63"></a>    </span>
+<span id="cb11-64"><a aria-label="64"></a>    <span class="ex">click.echo</span><span class="er">(</span><span class="ex">f</span><span class="st">"\n🦦 You've been greeted by {count} friendly otter(s)! 🦦\n"</span><span class="kw">)</span></span>
+<span id="cb11-65"><a aria-label="65"></a></span>
+<span id="cb11-66"><a aria-label="66"></a><span class="cf">if</span> <span class="ex">__name__</span> == <span class="st">'__main__'</span>:</span>
+<span id="cb11-67"><a aria-label="67"></a>    <span class="fu">greet_otters()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section></section>
+<section>
+<section id="run-the-script-2" class="title-slide slide level1 center">
+<h1>Run the script</h1>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a aria-label="1"></a><span class="ex">python</span> scripts/otter_greeting.py <span class="at">--name</span> <span class="st">"Oyster"</span> <span class="at">--count</span> 3 <span class="at">--enthusiasm</span> high</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="tips-for-python-scripts" class="slide level2">
+<h2>Tips for python scripts</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><code>if __name__ == "__main__":</code> lets you source the other functions in the script without running the main function.</li>
+<li><code>click</code> commands need to be placed right above the main function.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="smaller" style="font-size: 0.9em;">
+<p>Example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a aria-label="1"></a><span class="co"># import libraries/packages</span></span>
+<span id="cb13-2"><a aria-label="2"></a><span class="im">import</span> click</span>
+<span id="cb13-3"><a aria-label="3"></a></span>
+<span id="cb13-4"><a aria-label="4"></a><span class="co"># parse/define command line arguments below</span></span>
+<span id="cb13-5"><a aria-label="5"></a><span class="co"># define main function</span></span>
+<span id="cb13-6"><a aria-label="6"></a><span class="at">@click.command</span>()</span>
+<span id="cb13-7"><a aria-label="7"></a><span class="at">@click.argument</span>(<span class="st">'num1'</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">int</span>)</span>
+<span id="cb13-8"><a aria-label="8"></a><span class="at">@click.argument</span>(<span class="st">'num2'</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">int</span>)</span>
+<span id="cb13-9"><a aria-label="9"></a><span class="kw">def</span> main(num1, num2):</span>
+<span id="cb13-10"><a aria-label="10"></a>    <span class="co">"""Simple program that adds two numbers."""</span></span>
+<span id="cb13-11"><a aria-label="11"></a>    result <span class="op">=</span> num1 <span class="op">+</span> num2</span>
+<span id="cb13-12"><a aria-label="12"></a>    click.echo(<span class="ss">f"The sum of </span><span class="sc">{</span>num1<span class="sc">}</span><span class="ss"> and </span><span class="sc">{</span>num2<span class="sc">}</span><span class="ss"> is </span><span class="sc">{</span>result<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb13-13"><a aria-label="13"></a></span>
+<span id="cb13-14"><a aria-label="14"></a><span class="co"># call main function</span></span>
+<span id="cb13-15"><a aria-label="15"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">'__main__'</span>:</span>
+<span id="cb13-16"><a aria-label="16"></a>    main()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="command-line-for-r-docopt-package" class="slide level2">
+<h2>Command line for R: <a href="http://docopt.org/"><code>docopt</code> package</a></h2>
+<div class="smaller" style="font-size: 0.8em;">
+<p>Example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a aria-label="1"></a><span class="st">"This script greets you with adorable otters! 🦦</span></span>
+<span id="cb14-2"><a aria-label="2"></a></span>
+<span id="cb14-3"><a aria-label="3"></a><span class="st">Usage: greet_otters.R --name=&lt;name&gt; [--count=&lt;count&gt;]</span></span>
+<span id="cb14-4"><a aria-label="4"></a></span>
+<span id="cb14-5"><a aria-label="5"></a><span class="st">Options:</span></span>
+<span id="cb14-6"><a aria-label="6"></a><span class="st">--name=&lt;name&gt;      Your name (the person to greet)</span></span>
+<span id="cb14-7"><a aria-label="7"></a><span class="st">--count=&lt;count&gt;    Number of otter greetings [default: 1]</span></span>
+<span id="cb14-8"><a aria-label="8"></a><span class="st">"</span> <span class="ot">-&gt;</span> doc</span>
+<span id="cb14-9"><a aria-label="9"></a></span>
+<span id="cb14-10"><a aria-label="10"></a><span class="fu">library</span>(docopt)</span>
+<span id="cb14-11"><a aria-label="11"></a></span>
+<span id="cb14-12"><a aria-label="12"></a>opt <span class="ot">&lt;-</span> <span class="fu">docopt</span>(doc)</span>
+<span id="cb14-13"><a aria-label="13"></a></span>
+<span id="cb14-14"><a aria-label="14"></a>main <span class="ot">&lt;-</span> <span class="cf">function</span>(name, count) {</span>
+<span id="cb14-15"><a aria-label="15"></a>  <span class="co"># Convert count to numeric (docopt returns strings)</span></span>
+<span id="cb14-16"><a aria-label="16"></a>  count <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(count)</span>
+<span id="cb14-17"><a aria-label="17"></a>  </span>
+<span id="cb14-18"><a aria-label="18"></a>  <span class="co"># Generate otter greetings</span></span>
+<span id="cb14-19"><a aria-label="19"></a>  <span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">🦦 Otter Greetings Incoming! 🦦</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
+<span id="cb14-20"><a aria-label="20"></a>  </span>
+<span id="cb14-21"><a aria-label="21"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>count) {</span>
+<span id="cb14-22"><a aria-label="22"></a>    <span class="fu">cat</span>(<span class="fu">paste0</span>(<span class="st">"  Otter #"</span>, i, <span class="st">": Hello "</span>, name, <span class="st">"! 🌊</span><span class="sc">\n</span><span class="st">"</span>))</span>
+<span id="cb14-23"><a aria-label="23"></a>  }</span>
+<span id="cb14-24"><a aria-label="24"></a>  </span>
+<span id="cb14-25"><a aria-label="25"></a>  <span class="fu">cat</span>(<span class="fu">paste0</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">🦦 You've been greeted by "</span>, count, <span class="st">" friendly otter(s)! 🦦</span><span class="sc">\n\n</span><span class="st">"</span>))</span>
+<span id="cb14-26"><a aria-label="26"></a>}</span>
+<span id="cb14-27"><a aria-label="27"></a></span>
+<span id="cb14-28"><a aria-label="28"></a><span class="fu">main</span>(opt<span class="sc">$</span>name, opt<span class="sc">$</span>count)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section></section>
+<section id="more-example-of-command-line-in-r" class="title-slide slide level1 center">
+<h1>More example of command line in R</h1>
+<ul>
+<li><a href="https://github.com/DSCI-310/2024-02-13-scripts.git">Demo using <code>docopt</code> package</a></li>
+</ul>
+</section>
+
+<section id="saving-model-objects-in-python-pickle" class="title-slide slide level1 center">
+<h1>Saving model objects in Python: pickle</h1>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a aria-label="1"></a><span class="im">import</span> pickle</span>
+<span id="cb15-2"><a aria-label="2"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"knn_fit.pickle"</span>, <span class="st">'wb'</span>) <span class="im">as</span> f:</span>
+<span id="cb15-3"><a aria-label="3"></a>    pickle.dump(knn_fit, f)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+
+<section>
+<section id="saving-model-objects-in-r-rds" class="title-slide slide level1 center">
+<h1>Saving model objects in R: RDS</h1>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-label="1"></a><span class="co"># save the model object as </span></span>
+<span id="cb16-2"><a aria-label="2"></a><span class="fu">saveRDS</span>(final_knn_model, <span class="st">"final_knn_model.rds"</span>)</span>
+<span id="cb16-3"><a aria-label="3"></a></span>
+<span id="cb16-4"><a aria-label="4"></a><span class="co"># load the model object from RDS</span></span>
+<span id="cb16-5"><a aria-label="5"></a>final_knn_model <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"final_knn_model.rds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="readings-for-this-lecture" class="slide level2" style="font-size: 0.85em;">
+<h2>Readings for this lecture</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>What</th>
+<th>Where</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Required</td>
+<td>Textbook: <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/scripts.html">Non-interactive scripts</a></td>
+</tr>
+</tbody>
+</table>
+<aside class="notes">
+<p>Readings come from the schedule table in the course syllabus.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="section" class="slide level2" data-background-image="images/move_u.jpg" data-background-size="contain" data-background-position="center">
+<h2></h2>
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="images/mds-hex-sticker.png" class="slide-logo"></p>
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"right","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"\u003ci class=\"fas fa-gear\">\u003c/i>","content":"\u003cul class=\"slide-menu-items\">\n\u003cli class=\"slide-tool-item active\" data-item=\"0\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\">\u003ckbd>f\u003c/kbd> Fullscreen\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"1\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\">\u003ckbd>s\u003c/kbd> Speaker View\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"2\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\">\u003ckbd>o\u003c/kbd> Slide Overview\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"3\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\">\u003ckbd>e\u003c/kbd> PDF Export Mode\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"4\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\">\u003ckbd>r\u003c/kbd> Scroll View Mode\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"5\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\">\u003ckbd>b\u003c/kbd> Toggle Chalkboard\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"6\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\">\u003ckbd>c\u003c/kbd> Toggle Notes Canvas\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"7\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\">\u003ckbd>d\u003c/kbd> Download Drawings\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"8\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\">\u003ckbd>?\u003c/kbd> Keyboard Help\u003c/a>\u003c/li>\n\u003c/ul>"}],"openButton":true,"openButtonLabel":"Slide menu","width":"wide"},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/UBC-MDS\.github\.io\/DSCI_522_dsci-workflows_students\/");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+          window.quartoDecorateExternalLinks = function (root) {
+         var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+              if (!link.classList.contains('no-external-icon')) {
+              }
+            }
+          }
+          };
+          window.quartoDecorateExternalLinks(window.document);
+        // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+        // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+        const hideOnEscAndFocusOut = {
+          name: 'hideOnEscAndFocusOut',
+          defaultValue: true,
+          fn(instance) {
+            const dismiss = () => {
+              // A show scheduled by the trigger delay would otherwise reopen it
+              instance.clearDelayTimeouts();
+              instance.hide();
+            };
+            const onKeyDown = (event) => {
+              if (event.key !== 'Escape') {
+                return;
+              }
+              // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+              // except an open reveal.js slide menu, which Esc should close too.
+              // The menu handles keys only when its keyboard option is on.
+              const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+                window.Reveal.getConfig().menu?.keyboard !== false;
+              if (!menuHandlesEsc) {
+                event.stopPropagation();
+              }
+              if (instance.popper.contains(window.document.activeElement)) {
+                // Disabled while refocusing so the focus trigger does not reopen it
+                instance.disable();
+                instance.reference.focus();
+                instance.enable();
+              }
+              dismiss();
+            };
+            const onFocusOut = (event) => {
+              const target = event.relatedTarget;
+              if (target && !instance.reference.contains(target) &&
+                  !instance.popper.contains(target)) {
+                dismiss();
+              }
+            };
+            // On the trigger too: a click trigger (code-annotations: select) has no
+            // blur handling. Attached for the instance's lifetime so leaving the
+            // trigger also cancels a show still pending on the trigger delay.
+            instance.reference.addEventListener('focusout', onFocusOut);
+            return {
+              onShow() {
+                window.document.addEventListener('keydown', onKeyDown, true);
+                instance.popper.addEventListener('focusout', onFocusOut);
+              },
+              onHide() {
+                window.document.removeEventListener('keydown', onKeyDown, true);
+                instance.popper.removeEventListener('focusout', onFocusOut);
+              },
+              onDestroy() {
+                instance.reference.removeEventListener('focusout', onFocusOut);
+              },
+            };
+          },
+        };
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+            plugins: [hideOnEscAndFocusOut],
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

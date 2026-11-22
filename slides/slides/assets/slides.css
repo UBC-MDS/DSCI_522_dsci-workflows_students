@@ -1,0 +1,256 @@
+/* Shared styles for every deck (same base as the DSCI 512 decks). Reuse these before adding new ones. */
+
+/* Title slide heading, 85% of the theme default (2.5em) */
+.reveal #title-slide .title { font-size: 2.0em; }
+
+/* Observable Inputs (sliders, checkboxes, toggles, radios) inside reveal slides */
+.reveal form[class*="oi-"] { font-size: 0.55em; align-items: center; margin: 0.2em 0; }
+.reveal form[class*="oi-"] > label { width: auto !important; margin-right: 0.8em; white-space: nowrap; }
+.reveal form[class*="oi-"] input[type="range"] { width: 320px; }
+.reveal form[class*="oi-"] input[type="number"] { width: 4.5em; }
+.reveal form[class*="oi-"] input[type="checkbox"],
+.reveal form[class*="oi-"] input[type="radio"] { width: 1em; height: 1em; }
+
+/* Observable Plot legends */
+.reveal div[class*="-swatches"] { font-size: 16px !important; --swatchWidth: 18px !important; --swatchHeight: 18px !important; }
+
+/* One-line numeric readouts under interactive charts */
+.reveal .ojs-readout { font-size: 0.6em; margin: 0.2em 0; }
+.reveal .ojs-readout .notify { color: #2a78d6; font-weight: bold; }
+.reveal .ojs-readout .match  { color: #eb6834; font-weight: bold; }
+.reveal .ojs-readout .cube   { color: #4a3aa7; font-weight: bold; }
+
+/* Fact list next to an interactive chart, one term per bullet ("Tree words", lecture 5) */
+.reveal ul.word-facts { font-size: 0.75em; margin: 0.4em 0 0 1em; }
+.reveal ul.word-facts li { margin: 0.25em 0; }
+
+/* "Linear search" strip: one box per account ID in the list */
+.reveal .scan-row { display: flex; gap: 6px; margin: 0.4em 0; }
+.reveal .scan-box {
+  width: 48px; height: 48px; border-radius: 6px; border: 2px solid #d9d8d4;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; color: #52514e; background: #fcfcfb;
+}
+.reveal .scan-box.checked { background: #dbe8f8; border-color: #2a78d6; color: #0b0b0b; }
+.reveal .scan-box.found   { background: #2a78d6; border-color: #2a78d6; color: #ffffff; font-weight: bold; }
+
+/* ============================ Lecture 2 ============================ */
+
+/* Hash table "mailroom": a wall of numbered buckets, each holding 0+ usernames */
+.reveal .bucket-wall { display: flex; gap: 8px; margin: 0.4em 0; align-items: stretch; }
+.reveal .bucket {
+  flex: 1 1 0; min-width: 0; padding: 5px 4px; min-height: 108px;
+  border: 2px solid #d9d8d4; border-radius: 6px; background: #fcfcfb;
+}
+.reveal .bucket.target { border-color: #eb6834; background: #fdeee6; }
+.reveal .bucket-id { font-size: 13px; color: #8a8880; text-align: center; margin-bottom: 5px; }
+.reveal .bucket-item {
+  font-size: 14px; color: #0b0b0b; background: #dbe8f8; border-radius: 4px;
+  padding: 2px 3px; margin-bottom: 3px; text-align: center; overflow: hidden; text-overflow: ellipsis;
+}
+.reveal .bucket-item.landed { background: #eb6834; color: #ffffff; font-weight: bold; }
+
+/* Stacks and queues: one box per item, stacked in a column (LIFO) or a row (FIFO) */
+.reveal .ds-box {
+  min-width: 96px; height: 40px; padding: 0 10px; border-radius: 6px;
+  border: 2px solid #d9d8d4; background: #fcfcfb; color: #52514e;
+  display: flex; align-items: center; justify-content: center; font-size: 17px;
+}
+.reveal .ds-box.end  { background: #eb6834; border-color: #eb6834; color: #ffffff; font-weight: bold; }
+.reveal .ds-box.out  { background: #f2f1ee; border-style: dashed; color: #8a8880; }
+.reveal .ds-col { display: flex; flex-direction: column-reverse; justify-content: flex-start;
+                  align-items: center; gap: 6px; min-height: 200px; }
+.reveal .ds-row { display: flex; flex-direction: row; align-items: center; gap: 6px; min-height: 48px; }
+/* Binary search rack: 15 narrow boxes per row (30 coats wrap to two rows), blue = the coat we were looking for */
+.reveal .ds-row.bs-rack { flex-wrap: wrap; justify-content: flex-start; gap: 4px;
+                          max-width: 930px; margin: 0 auto; }
+.reveal .ds-row.bs-rack .ds-box { min-width: 0; width: 58px; padding: 0; font-size: 16px; }
+.reveal .ds-box.found { background: #2a78d6; border-color: #2a78d6; color: #ffffff; font-weight: bold; }
+.reveal .ds-caption { font-size: 0.55em; color: #52514e; margin: 0.3em 0; text-align: center; }
+
+.reveal .ds-row.center { justify-content: center; }
+/* Memo table cells (lecture 7): orange = just written, blue = just read, grey = base case */
+.reveal table.memo-table td.end   { background: #eb6834; color: #ffffff; font-weight: bold; }
+.reveal table.memo-table td.found { background: #2a78d6; color: #ffffff; font-weight: bold; }
+.reveal table.memo-table td.base  { color: #8a8880; }
+
+/* Stack and queue step-throughs. Colour means the operation, nothing else:
+   blue = add (the item that just went in), orange = remove (the item that just came out),
+   grey = waiting. Exactly one coloured item per step. */
+.reveal .sq-ops { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin: 0.2em 0; }
+.reveal .sq-op { font-size: 16px; padding: 2px 10px; border-radius: 4px; border: 2px solid; background: #fcfcfb; }
+.reveal .sq-op.add    { border-color: #2a78d6; color: #2a78d6; }
+.reveal .sq-op.remove { border-color: #eb6834; color: #eb6834; }
+.reveal .sq-op.done   { opacity: 0.35; }
+.reveal .sq-op.now.add    { background: #2a78d6; color: #ffffff; font-weight: bold; }
+.reveal .sq-op.now.remove { background: #eb6834; color: #ffffff; font-weight: bold; }
+.reveal .sq-say { font-size: 0.6em; text-align: center; margin: 0.4em 0 0.6em; }
+.reveal .sq-count { color: #8a8880; margin-right: 0.4em; }
+.reveal .sq-verb { padding: 1px 8px; border-radius: 4px; background: #b8b6b0; color: #ffffff; font-weight: bold; }
+.reveal .sq-verb.add    { background: #2a78d6; }
+.reveal .sq-verb.remove { background: #eb6834; }
+.reveal .ds-box.sq-in  { background: #2a78d6; border-color: #2a78d6; color: #ffffff; font-weight: bold; }
+.reveal .ds-box.sq-out { background: #eb6834; border-color: #eb6834; color: #ffffff; font-weight: bold; }
+.reveal .ds-box.sq-empty { visibility: hidden; }
+.reveal .ds-box { position: relative; }
+/* "next out" tag beside (stack) or under (queue) the item that leaves next */
+.reveal .sq-tag { position: absolute; white-space: nowrap; font-size: 16px; font-weight: normal; color: #52514e; }
+.reveal .sq-tag.right { left: calc(100% + 46px); top: 50%; transform: translateY(-50%); }
+.reveal .sq-tag.below { top: calc(100% + 18px); left: 50%; transform: translateX(-50%); }
+/* arrows at the open ends: grey, lit in their colour on the step that uses them */
+.reveal .sq-arrow { font-size: 18px; line-height: 1.2; text-align: center; color: #b8b6b0; white-space: nowrap; }
+.reveal .sq-arrow small { font-size: 16px; }
+.reveal .sq-arrow.add.on    { color: #2a78d6; font-weight: bold; }
+.reveal .sq-arrow.remove.on { color: #eb6834; font-weight: bold; }
+.reveal .sq-stage { display: flex; gap: 90px; justify-content: center; align-items: flex-end; }
+.reveal .sq-lift { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.reveal .sq-ends { display: flex; gap: 22px; }
+.reveal .sq-tray { min-width: 330px; }
+.reveal .sq-line + .ds-caption + .sq-tray { margin-top: 1.2em; }
+/* stack: a container open at the top only */
+.reveal .sq-stack {
+  width: 170px; height: 170px; box-sizing: border-box; padding: 8px 0;
+  border: 4px solid #52514e; border-top: none; border-radius: 0 0 8px 8px;
+  display: flex; flex-direction: column-reverse; align-items: center; gap: 6px;
+}
+/* queue: a tube open at both ends, front on the left */
+.reveal .sq-line { display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 1.6em; }
+.reveal .sq-exit { width: 110px; display: flex; justify-content: flex-end; }
+.reveal .sq-queue {
+  width: 340px; height: 64px; box-sizing: border-box; padding: 0 8px;
+  border-top: 4px solid #52514e; border-bottom: 4px solid #52514e;
+  display: flex; align-items: center; gap: 6px;
+}
+/* movement: the added item slides in, the removed item slides out through the same end */
+@keyframes sq-drop  { from { transform: translateY(-70px); opacity: 0; } }
+@keyframes sq-rise  { from { transform: translateY(90px); opacity: 0.3; } }
+@keyframes sq-enter { from { transform: translateX(120px); opacity: 0; } }
+@keyframes sq-leave { from { transform: translateX(160px); opacity: 0.3; } }
+.reveal .sq-stack .sq-in  { animation: sq-drop 0.5s ease-out; }
+.reveal .sq-lift > .sq-out { animation: sq-rise 0.5s ease-out; }
+.reveal .sq-queue .sq-in  { animation: sq-enter 0.5s ease-out; }
+.reveal .sq-exit .sq-out  { animation: sq-leave 0.5s ease-out; }
+
+/* Lecture 3: adjacency list / adjacency matrix / CSR panels.
+   Blue = the row (or slice) we picked, orange = the indptr pointers, faded = everything else. */
+.reveal .adj-wrap { display: flex; gap: 12px; align-items: flex-start; justify-content: center; }
+.reveal .adj-panel { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+.reveal table.adj-table { border-collapse: collapse; font-size: 15px; margin: 0; }
+.reveal table.adj-table th, .reveal table.adj-table td {
+  font-size: 15px; border: 1px solid #e4e2dc; padding: 1px 5px; text-align: center; min-width: 22px; line-height: 1.35;
+}
+.reveal table.adj-table th { color: #52514e; font-weight: normal; background: transparent; }
+.reveal table.adj-table td.one { color: #0b0b0b; font-weight: bold; }
+.reveal table.adj-table tr.faded td { color: #c9c7c1; }
+.reveal table.adj-table tr.on td { background: #dbe8f8; }
+.reveal table.adj-table tr.on td.one { background: #2a78d6; color: #ffffff; }
+.reveal .adj-list { font-family: var(--r-code-font, monospace); font-size: 15px; line-height: 1.5; text-align: left; }
+.reveal .adj-list div { padding: 0 6px; border-radius: 4px; color: #8a8880; white-space: nowrap; }
+.reveal .adj-list div.on { background: #2a78d6; color: #ffffff; font-weight: bold; }
+.reveal .csr-name { font-family: var(--r-code-font, monospace); font-size: 17px; width: 90px; text-align: right; color: #52514e; }
+.reveal .ds-row.csr .ds-box { min-width: 0; width: 46px; padding: 0; }
+/* Why-mark DFS slide: one-letter nodes, so narrow boxes fit two panels side by side */
+.reveal .ds-row.why .ds-box { min-width: 0; width: 40px; padding: 0; }
+.reveal .ds-row.csr .sq-tag.below { top: calc(100% + 2px); font-size: 13px; color: #8a8880; }
+.reveal .ds-row.csr { margin-bottom: 14px; }
+.reveal .csr-wrap { gap: 48px; }
+.reveal .csr-wrap table.adj-table tr.on td { background: #dbe8f8; }
+/* Lecture 4 bonus CSC: highlight one column (cell by cell) instead of a row */
+.reveal table.adj-table td.on { background: #dbe8f8; }
+.reveal table.adj-table td.on.one { background: #2a78d6; color: #ffffff; }
+.reveal table.adj-table td.faded { color: #c9c7c1; }
+.reveal table.adj-table tr.nnz-row th, .reveal table.adj-table tr.nnz-row td { border-top: 2px solid #b8b6b0; }
+/* Lecture 4: the formula table under the "From CSR back to the matrix" step-through */
+.reveal table.csr-work { margin-top: 14px; }
+.reveal table.csr-work td { text-align: left; padding: 2px 10px; }
+.reveal table.csr-work td.code { font-family: var(--r-code-font, monospace); }
+.reveal table.csr-work td.gives { color: #52514e; }
+.reveal table.csr-work td.value { min-width: 290px; }
+/* list.pop(0) vs deque: wider boxes so the 📷 labels fit */
+.reveal .ds-row.csr.shift .ds-box { width: 64px; }
+
+/* Lecture 5: call stack step-throughs. Left: what has been printed so far (newest line orange).
+   Right: the call stack, newest call on top. Orange = running, light blue = waiting,
+   blue = the call that just returned. */
+.reveal .ds-box.wait { background: #dbe8f8; border-color: #a9c8ef; color: #0b0b0b; }
+.reveal .cs-wrap { display: flex; gap: 80px; justify-content: center; align-items: flex-end; }
+.reveal .cs-console {
+  font-family: var(--r-code-font, monospace); font-size: 16px; line-height: 1.5;
+  background: #f2f1ee; border-radius: 6px; padding: 8px 14px; width: 420px; height: 250px;
+  box-sizing: border-box; text-align: left; white-space: pre; overflow: hidden;
+}
+.reveal .cs-console div { color: #52514e; }
+.reveal .cs-console div.new { color: #eb6834; font-weight: bold; }
+.reveal .sq-stack.tall { height: 250px; }
+.reveal .sq-lift > .found { animation: sq-rise 0.5s ease-out; }
+/* Lecture 5: recursive binary search, one row per call, each drawn where its IDs sit in the list */
+.reveal .ds-row.bs-copy { gap: 3px; min-height: 40px; justify-content: center; }
+.reveal .ds-row.bs-copy .ds-box { min-width: 0; width: 42px; height: 32px; padding: 0; font-size: 15px; }
+.reveal .bs-note { font-size: 16px; min-width: 110px; padding-left: 10px; color: #eb6834; font-weight: bold; }
+
+/* Lecture 6: linked list boxes in a row, joined by arrows, with the line of code above */
+.reveal .ll-code { font-family: var(--r-code-font, monospace); font-size: 18px; color: #0b0b0b;
+                   background: #f2f1ee; border-radius: 6px; padding: 4px 12px; display: inline-block; margin: 0.2em 0; }
+.reveal .ll-chain { margin: 0.8em 0 0.2em; }
+.reveal .ll-arrow { font-family: var(--r-code-font, monospace); font-size: 18px; color: #8a8880; }
+.reveal .ds-row.ll-chain .ds-box { min-width: 64px; }
+.reveal .ll-result { font-weight: bold; color: #2a78d6; min-height: 1.4em; }
+
+/* Lecture 6: a map and a tree side by side (k-d tree slides) */
+.reveal .kd-wrap { display: flex; gap: 10px; justify-content: center; align-items: center; }
+
+/* Lecture 7: "Cache, memo or DP?" nested boxes, memoization in blue wherever it appears */
+.reveal .word-wrap { display: flex; gap: 40px; justify-content: center; align-items: stretch; margin: 0.3em 0 0.6em; }
+.reveal .word-box { border: 2px solid #b8b6b0; border-radius: 8px; padding: 8px 14px; text-align: center; }
+.reveal .word-box .word-box { margin-top: 8px; }
+.reveal .word-box.memo { border-color: #2a78d6; background: #dbe8f8; }
+.reveal .word-box.memo .word-name { color: #2a78d6; }
+.reveal .word-row { display: flex; gap: 12px; justify-content: center; }
+.reveal .word-name { font-size: 22px; font-weight: bold; color: #0b0b0b; }
+.reveal .word-sub { font-size: 16px; color: #52514e; }
+/* Bigger version that fills the slide under the title, centred both ways */
+.reveal .word-wrap.big { gap: 48px; align-items: center; min-height: 500px; margin: 0; }
+.reveal .word-wrap.big .word-box { padding: 16px 26px; border-width: 3px; }
+.reveal .word-wrap.big .word-box .word-box { margin-top: 16px; }
+.reveal .word-wrap.big .word-row { gap: 20px; }
+.reveal .word-wrap.big .word-name { font-size: 30px; }
+.reveal .word-wrap.big .word-sub { font-size: 22px; }
+
+/* A footer that sits on top of a busy background image: a soft white backing so it stays readable. */
+.reveal .footer.footer-on-image {
+  width: fit-content;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  padding: 0 10px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 6px;
+}
+
+/* ===================== DSCI 522 Lecture 2: uv.lock chips =====================
+   One chip per package pinned in uv.lock.
+   Blue = listed in pyproject.toml (you asked for it), orange = pulled in by the
+   package you picked, grey = pulled in by something else. */
+.reveal .lock-head { font-size: 0.9em; text-align: center; margin: 0.1em 0 0.3em; }
+.reveal .lock-head .asked  { color: #2a78d6; font-weight: bold; }
+.reveal .lock-head .pinned { color: #eb6834; font-weight: bold; }
+.reveal .lock-grid { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; margin: 0.3em 0; }
+.reveal .lock-chip {
+  font-size: 16px; line-height: 1.3; padding: 1px 7px; border-radius: 4px;
+  border: 2px solid #b8b6b0; background: #fcfcfb; color: #8a8880; white-space: nowrap;
+}
+.reveal .lock-chip.asked { border-color: #2a78d6; color: #2a78d6; font-weight: bold; }
+.reveal .lock-chip.pick  { background: #2a78d6; color: #ffffff; }
+.reveal .lock-chip.on    { border-color: #eb6834; background: #eb6834; color: #ffffff; font-weight: bold; }
+.reveal .lock-chip.asked.on { background: #fdeee6; color: #2a78d6; }
+.reveal .lock-chip.os    { border-style: dashed; }
+.reveal .lock-chip small { font-size: 13px; font-weight: normal; }
+.reveal .lock-key { font-size: 16px; color: #52514e; text-align: center; margin-top: 0.4em; }
+
+/* Docker image name, coloured by part: registry (grey), image (blue), tag (orange) */
+.reveal .img-name { font-family: var(--r-code-font, monospace); font-size: 0.9em; }
+.reveal .img-name .reg { color: #8a8880; }
+.reveal .img-name .img { color: #2a78d6; font-weight: bold; }
+.reveal .img-name .tag { color: #eb6834; font-weight: bold; }
+.reveal .c-blue   { color: #2a78d6; font-weight: bold; }
+.reveal .c-orange { color: #eb6834; font-weight: bold; }

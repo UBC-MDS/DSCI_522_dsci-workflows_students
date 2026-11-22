@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>DSCI 522: Data Science Workflows – DSCI 522: Data Science Workflows (Students)</title>
+<title>DSCI 522: Data Science Workflows</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -43,10 +43,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-5a8ea6506bd74de719dafad1d662b7b4.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-31f71cfee8fb6cb433a9ce015cec3520.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-5a8ea6506bd74de719dafad1d662b7b4.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-cb61c712ca1a7fe70a83faed8e4da2d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-86abfff4ea397ce80fca2e08295ab694.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-5de2174b4b58a5f5dfb3c6166fd0d0b7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-86abfff4ea397ce80fca2e08295ab694.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -87,7 +91,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">DSCI 522: Data Science Workflows (Students)</span>
+    <span class="navbar-title">DSCI 522: Data Science Workflows</span>
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -127,6 +131,25 @@ ul.task-list li input[type="checkbox"] {
         <li>
     <a class="dropdown-item" href="./cheatsheets/makefile.html">
  <span class="dropdown-text">Makefile</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-section-1-slides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Section 1 Slides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-section-1-slides">    
+        <li>
+    <a class="dropdown-item" href="./slides/index.html">
+ <span class="dropdown-text">Section 001 Info</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./slides/lecture.html">
+ <span class="dropdown-text">Lectures</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./slides/lab.html">
+ <span class="dropdown-text">Labs</span></a>
   </li>  
     </ul>
   </li>
@@ -236,7 +259,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="toc-actions"><ul><li><a href="https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content" tabindex="-1">
+<main class="content" id="quarto-document-content" tabindex="-1">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -451,10 +474,10 @@ ul.task-list li input[type="checkbox"] {
 <p>The individual assignments, milestones, peer review and team work reflection are submitted on Gradescope. Where we need links (your repository, a release, an issue), enter the URLs into Gradescope directly: there is no PDF of links to make. Each assignment’s page says what it needs. The work itself is graded from GitHub, so push it before you submit.</p>
 </section>
 </section>
-<section id="schedule" class="level2 page-columns page-full">
+<section id="schedule" class="level2">
 <h2 class="anchored" data-anchor-id="schedule">Schedule</h2>
-<p>The <strong>Required Notes/Readings</strong> are the core material for each lecture. The <strong>Optional Book Chapters</strong> are other chapters of the textbook on the same topics, for when you want more detail.</p>
-<div class="column-page-inset schedule-scroll">
+<p>Each lecture lists its <strong>required readings</strong>: the core material for that lecture. Some lectures also have <strong>optional reading</strong>, collapsed under the required list: other textbook chapters on the same topics and outside resources, for when you want more detail.</p>
+<div class="schedule-scroll">
 <table class="striped schedule">
 <tbody><tr>
 <th>
@@ -464,13 +487,7 @@ Lecture
 Topic
 </th>
 <th>
-Required Notes/Readings
-</th>
-<th>
-Optional Book Chapters
-</th>
-<th>
-Additional Resources
+Readings
 </th>
 </tr>
 <tr>
@@ -529,64 +546,49 @@ Virtual environments
 <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-r-renv.html">Virtual environments: R (renv)</a> (if your project uses R)
 </li>
 </ul>
-</td>
-<td>
-<p class="reading-group">
-Git and GitHub
-</p>
+<details class="optional-reading">
+<summary>
+Optional reading (12)
+</summary>
 <ul>
 <li>
-<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-basics.html">Git basics: a review</a> <span class="reading-note">A refresher on everyday Git commands.</span>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-basics.html">Git basics: a review</a>
 </li>
 <li>
-<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-ignore.html">Ignoring files with <code>.gitignore</code></a> <span class="reading-note">Keep files such as <code>.venv/</code> out of the repository.</span>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-ignore.html">Ignoring files with .gitignore</a>
 </li>
 <li>
-<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-history.html">Going back in time with Git</a> <span class="reading-note">View and restore earlier versions of your files.</span>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-history.html">Going back in time with Git</a>
 </li>
 <li>
-<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-project-management.html">Project management on GitHub</a> <span class="reading-note">Issues, project boards and milestones for planning team work.</span>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-project-management.html">Project management on GitHub</a>
 </li>
 <li>
-<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-branch-protection.html">Main branch protection</a> <span class="reading-note">Require a pull request before changes reach <code>main</code>.</span>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-branch-protection.html">Main branch protection</a>
 </li>
 <li>
-<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/filenames-project-organization.html">Filenames and data science project organization</a> <span class="reading-note">File naming, folder layout and IDEs.</span>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/filenames-project-organization.html">Filenames and data science project organization</a>
+</li>
+<li>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-install.html">uv: installing uv and managing Python</a>
+</li>
+<li>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-run.html">uv: uv run and activating an environment</a>
+</li>
+<li>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-jupyter-scripts.html">uv: JupyterLab and standalone scripts</a>
+</li>
+<li>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-exact-pins.html">uv: pinning exact versions</a>
+</li>
+<li>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-r-renv-description.html">renv: declaring packages in DESCRIPTION</a>
+</li>
+<li>
+Stating and Refining the Question, from <a href="https://leanpub.com/artofdatascience">The Art of Data Science</a>
 </li>
 </ul>
-<p class="reading-group">
-Virtual environments
-</p>
-<ul>
-<li>
-<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-install.html">uv: installing uv and managing Python</a> <span class="reading-note">Install and update uv, and manage Python versions.</span>
-</li>
-<li>
-<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-run.html">uv: <code>uv run</code> and activating an environment</a> <span class="reading-note">When to activate an environment instead of using <code>uv run</code>.</span>
-</li>
-<li>
-<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-jupyter-scripts.html">uv: JupyterLab and standalone scripts</a> <span class="reading-note">Run JupyterLab in a project’s environment, and give one script its own dependencies.</span>
-</li>
-<li>
-<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-exact-pins.html">uv: pinning exact versions</a> <span class="reading-note">Declare exact versions (<code>==</code>) instead of lower bounds (<code>&gt;=</code>).</span>
-</li>
-<li>
-<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-r-renv-description.html">renv: declaring packages in <code>DESCRIPTION</code></a> <span class="reading-note">Explicit snapshots, which work better for R teams and containers.</span>
-</li>
-<li>
-<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-conda.html">Virtual environments: Python (conda)</a> <span class="reading-note">conda, another environment manager for Python.</span>
-</li>
-<li>
-<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-conda-lock.html">Virtual environments: Python (conda-lock)</a> <span class="reading-note">Lock files for conda environments.</span>
-</li>
-</ul>
-</td>
-<td>
-<ul>
-<li>
-Stating and Refining the Question from <a href="https://leanpub.com/artofdatascience">The Art of Data Science</a>
-</li>
-</ul>
+</details>
 </td>
 </tr>
 <tr>
@@ -608,10 +610,6 @@ Introduction to containerization
 <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-docker-compose.html">Containers: Docker Compose</a>
 </li>
 </ul>
-</td>
-<td>
-</td>
-<td>
 </td>
 </tr>
 <tr>
@@ -639,23 +637,22 @@ Building your project’s image, working in it over ssh, and publishing it with 
 <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-platforms.html">Building images for several platforms</a> (through publishing for one platform)
 </li>
 </ul>
-</td>
-<td>
+<details class="optional-reading">
+<summary>
+Optional reading (3)
+</summary>
 <ul>
 <li>
-<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-actions.html#storing-and-use-github-actions-credentials-safely-via-github-secrets">GitHub Actions: storing credentials in GitHub Secrets</a> <span class="reading-note">How a workflow uses your Docker Hub access token without showing it.</span>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-actions.html#storing-and-use-github-actions-credentials-safely-via-github-secrets">GitHub Actions: storing credentials in GitHub Secrets</a>
 </li>
 <li>
-<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-home-lab.html">Containers outside class</a> <span class="reading-note">Running your own apps at home with containers.</span>
+<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-home-lab.html">Containers outside class</a>
 </li>
-</ul>
-</td>
-<td>
-<ul>
 <li>
 <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008316">Ten simple rules for writing Dockerfiles for reproducible data science</a>
 </li>
 </ul>
+</details>
 </td>
 </tr>
 <tr>
@@ -675,10 +672,6 @@ Publishing images for Intel/AMD and ARM computers, data validation
 </li>
 </ul>
 </td>
-<td>
-</td>
-<td>
-</td>
 </tr>
 <tr>
 <td>
@@ -694,10 +687,6 @@ Scripts
 </li>
 </ul>
 </td>
-<td>
-</td>
-<td>
-</td>
 </tr>
 <tr>
 <td>
@@ -712,10 +701,6 @@ Advanced reproducible reports
 <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/reproducible-reports-quarto.html">Reproducible reports</a>
 </li>
 </ul>
-</td>
-<td>
-</td>
-<td>
 </td>
 </tr>
 <tr>
@@ -734,10 +719,6 @@ Data analysis pipelines
 <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/pipelines-make.html">Data analysis pipelines with GNU Make</a>
 </li>
 </ul>
-</td>
-<td>
-</td>
-<td>
 </td>
 </tr>
 <tr>
@@ -759,10 +740,6 @@ Testing for data analysis
 <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/testing-images.html">Observability of unit outputs in data science</a>
 </li>
 </ul>
-</td>
-<td>
-</td>
-<td>
 </td>
 </tr>
 </tbody></table>
