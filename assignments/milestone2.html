@@ -216,14 +216,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overall-project-summary" id="toc-overall-project-summary" class="nav-link active" data-scroll-target="#overall-project-summary">Overall project summary</a></li>
-  <li><a href="#milestone-2-summary" id="toc-milestone-2-summary" class="nav-link" data-scroll-target="#milestone-2-summary">Milestone 2 summary</a>
+  <li><a href="#milestone-2-summary" id="toc-milestone-2-summary" class="nav-link active" data-scroll-target="#milestone-2-summary">Milestone 2 summary</a>
   <ul class="collapse">
-  <li><a href="#use-a-container-for-the-computational-environment" id="toc-use-a-container-for-the-computational-environment" class="nav-link" data-scroll-target="#use-a-container-for-the-computational-environment">1. Use a container for the computational environment</a></li>
+  <li><a href="#put-your-environment-in-a-container" id="toc-put-your-environment-in-a-container" class="nav-link" data-scroll-target="#put-your-environment-in-a-container">1. Put your environment in a container</a></li>
   <li><a href="#publish-your-report-on-github-pages" id="toc-publish-your-report-on-github-pages" class="nav-link" data-scroll-target="#publish-your-report-on-github-pages">2. Publish your report on GitHub Pages</a></li>
   </ul></li>
-  <li><a href="#submission-instructions" id="toc-submission-instructions" class="nav-link" data-scroll-target="#submission-instructions">Submission Instructions</a></li>
-  <li><a href="#expectations" id="toc-expectations" class="nav-link" data-scroll-target="#expectations">Expectations</a></li>
+  <li><a href="#submission-instructions" id="toc-submission-instructions" class="nav-link" data-scroll-target="#submission-instructions">Submission instructions</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students/edit/main/assignments/milestone2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -249,89 +247,440 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="overall-project-summary" class="level2">
-<h2 class="anchored" data-anchor-id="overall-project-summary">Overall project summary</h2>
-<p>In this course you will work in assigned teams of three or four (see group assignments on GitHub) to answer a predictive statistical/machine learning question using a publicly available data set that will allow you to answer that question. To answer this question, you will perform a complete data analysis in R and/or Python, from data import to communication of results, while placing significant emphasis on reproducible and trustworthy workflows.</p>
-<p>Your data analysis project will evolve throughout the course from a single, monolithic Quarto document, to a fully reproducible and robust data analysis project, comprised of:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>The end-of-course project goal
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Your team answers a predictive question with a public data set, in R and/or Python, with a focus on reproducible and trustworthy workflows. <strong>By the end of the course</strong>, your single Quarto document will have become a project with:</p>
 <ul>
-<li>a well documented and modularized scripts written in R and/or Python,</li>
-<li>a data analysis pipeline automated with GNU Make,</li>
-<li>a reproducible report powered by Quarto,</li>
-<li>a containerized computational environment created and made shareable by Docker</li>
-<li>a remote version control repository on GitHub for project collaboration, sharing, and documentation.</li>
+<li>well-documented, modular scripts in R and/or Python</li>
+<li>a pipeline automated with GNU Make</li>
+<li>a reproducible Quarto report</li>
+<li>a Docker container for the computational environment</li>
+<li>a GitHub repository for collaboration and sharing</li>
 </ul>
-<p>An example final project from past years can be seen here: <a href="https://github.com/ttimbers/breast-cancer-predictor">Breast Cancer Predictor</a></p>
-</section>
+</div>
+</div>
+</div>
 <section id="milestone-2-summary" class="level2">
 <h2 class="anchored" data-anchor-id="milestone-2-summary">Milestone 2 summary</h2>
+<p>This milestone is about moving your project into a <span class="term" tabindex="0" data-tip="A container is a running copy of a Docker image: an isolated computer inside your computer, with the exact software and packages your project needs. Everyone who runs it gets the same environment, whatever their own laptop has installed.">container</span>.</p>
+<ul class="task-list">
+<li><label><input type="checkbox">Run your project’s environment in a Docker container, and <strong>work in it from now on</strong></label></li>
+<li><label><input type="checkbox">Build the <span class="term" tabindex="0" data-tip="A Docker image is a saved snapshot of a computer setup: an operating system, software and packages, ready to run. A container is one running copy of it. Your Dockerfile is the recipe for your project's image.">image</span> on <span class="term" tabindex="0" data-tip="GitHub Actions runs commands for you on a fresh computer at GitHub when something happens in your repository, such as a push. You write the commands in a workflow file (a .yml file in .github/workflows/). Here it builds your image and uploads it to Docker Hub.">GitHub Actions</span> for <span class="term" tabindex="0" data-tip="These are the two main kinds of computer processor. Most Windows laptops and servers use Intel/AMD chips (linux/amd64), while Macs with Apple silicon (M1 and later) use ARM chips (linux/arm64). An image built for one kind runs slowly or not at all on the other, so you build for both.">Intel/AMD and ARM</span>, and publish it on <span class="term" tabindex="0" data-tip="Docker Hub is a website that stores Docker images, the way GitHub stores code. Anyone can download a public image from it. Here your team publishes its image there, so everyone downloads the same one instead of building their own.">Docker Hub</span></label></li>
+<li><label><input type="checkbox">Publish your report on <span class="term" tabindex="0" data-tip="GitHub Pages is a free GitHub service that turns files in a repository into a public website. Here it shows your rendered report at a web address, so anyone can read it without cloning your repository.">GitHub Pages</span></label></li>
+</ul>
+<p>We give you the <code>Dockerfile</code>, the workflow file and <span class="term" tabindex="0" data-tip="Docker Compose starts a container from settings written in a docker-compose.yml file (which image, which ports, which folders to share), so you don't have to type a long docker run command. Here everyone on the team starts the same container with one short command."><code>docker-compose.yml</code></span> below. They are adapted from <a href="https://github.com/chendaniely/docker-uv-renv">docker-uv-renv</a>.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>See what a finished Milestone 2 looks like
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>An example Milestone 2 that corresponds to our expectations from this year is here: <strong><a href="https://github.com/UBC-MDS/DSCI_522_project-template-breast-cancer-predictor/tree/1.0.0">Breast Cancer Predictor in Python 1.0.0</a></strong>. Use it as your model: compare your repository with it before you submit.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Readings for this milestone
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-uv-renv.html">Python and R in one image</a>: what each line of the <code>Dockerfile</code> does</li>
+<li><a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-uv.html">uv in a container</a> and <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-renv.html">renv in a container</a>: adding a package to your image</li>
+<li><a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-r-renv-description.html">renv: declaring packages in <code>DESCRIPTION</code></a>: pinning R package versions</li>
+<li><a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-docker-compose.html">Docker Compose</a>: starting the container with one command</li>
+<li><a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-ssh-positron.html">Working in a container over ssh with Positron</a>: editing code inside the container</li>
+<li><a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-platforms.html">Building images for several platforms</a>: why the workflow builds for two kinds of computer</li>
+<li><a href="https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html">Introduction to Quarto and GitHub Pages</a> (DSCI 521): publishing the report in part 2</li>
+</ul>
+</div>
+</div>
+</div>
+<section id="put-your-environment-in-a-container" class="level3">
+<h3 class="anchored" data-anchor-id="put-your-environment-in-a-container">1. Put your environment in a container</h3>
 <ol type="1">
-<li><p>Move your project’s computational environment into a container: build its image on GitHub Actions for both Intel/AMD and ARM computers, publish it on Docker Hub, and work in it from now on.</p></li>
-<li><p>Publish your report on GitHub Pages.</p></li>
+<li><p><strong>Add the <code>Dockerfile</code>.</strong> Copy the version for your project’s language(s) below into a file named <code>Dockerfile</code> in the root of your repository. If you use R, change <code>4.6.2</code> on the <code>FROM</code> line to the R version in your <code>renv.lock</code>.</p></li>
+<li><p><strong>Check your environment files.</strong> The image installs your packages from your <span class="term" tabindex="0" data-tip="A lock file (uv.lock for uv, renv.lock for renv) is generated by your environment manager. It records the exact version of every package your project uses, including the packages they depend on, so the environment can be rebuilt exactly.">lock files</span>, so these must be in your repository and agree with each other:</p>
+<ul>
+<li><strong>Python (uv):</strong> <code>pyproject.toml</code> with every package <span class="term" tabindex="0" data-tip="Pinning means recording one exact version of a package (e.g. pandas==2.2.3), instead of whatever is newest. Everyone who installs your project then gets the same version, so the code behaves the same.">pinned</span> with <code>==</code>, <code>uv.lock</code> and <code>.python-version</code>. It <strong>must list <code>ipykernel</code>, <code>nbclient</code> and <code>pyyaml</code></strong> (Quarto needs them to run the Python code in your report).</li>
+<li><strong>R (renv):</strong> <code>DESCRIPTION</code> with every package pinned with <code>(== x.y.z)</code>, <code>renv.lock</code>, <code>.Rprofile</code> and <code>renv/</code>. <code>DESCRIPTION</code> is required, and it <strong>must list <code>knitr</code> and <code>rmarkdown</code></strong> (Quarto needs them to run the R code in your report).</li>
+</ul></li>
+<li><p><strong>Test the build on your computer</strong> before you push: <code>docker build --tag my-project .</code> (as in Individual Assignment 2). Fixing errors here is much faster than on GitHub Actions.</p></li>
+<li><p><strong>Build and publish the image with GitHub Actions.</strong> One team member sets up Docker Hub and the GitHub <span class="term" tabindex="0" data-tip="A repository secret is a password or token saved in your GitHub repository's settings. Workflows can use it, but nobody can read it back, and it never shows up in your code or logs. Here the two secrets let the workflow log in to Docker Hub as your team.">secrets</span> (see below). Copy the workflow below into <code>.github/workflows/publish-dockerhub.yml</code>, change only its <code>IMAGE</code> line to your Docker Hub repository’s name, all in lowercase, then commit and push. It builds for <code>linux/amd64</code> (Intel/AMD) and <code>linux/arm64</code> (ARM, such as Apple silicon Macs) and publishes them under two <span class="term" tabindex="0" data-tip="A tag is a label on a Docker image, written after a colon (e.g. python:3.14-slim). One image can have several tags. Here latest always points to your newest image, and the sha- tag names the commit that built it.">tags</span>: <code>latest</code> and <code>sha-</code> plus 7 characters of the commit ID. Check that the run succeeds and that your image’s tag on Docker Hub lists <strong>both</strong> platforms.</p></li>
+<li><p><strong>Add <code>docker-compose.yml</code>.</strong> Copy the file below into the root of your repository, and change its <code>image:</code> line to your image, pinned to the <span class="term" tabindex="0" data-tip="Every Git commit has a unique ID called its SHA (e.g. 1a2b3c4). Your workflow tags each image it pushes with the start of the SHA of the commit that built it, so the tag always points to that one exact image. The latest tag, by contrast, changes every time you publish.">commit-SHA tag</span> your workflow pushed, not <code>latest</code> (for example, <code>image: yourname/yourproject:sha-1a2b3c4</code>). Keep the <span class="term" tabindex="0" data-tip="In Docker Compose, a service is one container it manages, named under services: in docker-compose.yml. Commands such as docker compose run use that name to say which container you mean. Here the name is analysis-env.">service name</span> <code>analysis-env</code>, so the commands below work as written.</p></li>
+<li><p><strong>Work in the container from now on</strong>, with Positron over <span class="term" tabindex="0" data-tip="ssh (secure shell) lets you log in to another computer and work on it from your own. Here the other computer is your container: Positron connects to it over ssh, so your code runs with the container's software while your files stay in your project folder.">ssh</span> (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-ssh-positron.html">Working in a container over ssh with Positron</a>). To add a package: add it with uv or renv, commit the changed files together, let GitHub Actions publish a new image, then update the tag in <code>docker-compose.yml</code> in a pull request.</p></li>
+<li><p><strong>Update your <code>README</code></strong> so its instructions use the container (see the next section).</p></li>
 </ol>
-<p>The reference for this milestone is <a href="https://github.com/chendaniely/docker-uv-renv">docker-uv-renv</a>, the example project the textbook’s Containers chapters build up to.</p>
-<section id="use-a-container-for-the-computational-environment" class="level3">
-<h3 class="anchored" data-anchor-id="use-a-container-for-the-computational-environment">1. Use a container for the computational environment</h3>
-<p>Once this section is done, shift the development of your project from working in a virtual environment to working in a container. The chapters to read are <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-uv-renv.html">Python and R in one image</a> (and the uv and renv chapters before it), <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-docker-compose.html">Docker Compose</a>, <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-ssh-positron.html">Working in a container over ssh with Positron</a>, and <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-platforms.html">Building images for several platforms</a>.</p>
-<section id="i.-start-from-docker-uv-renvs-dockerfile-and-docker-compose.yml" class="level4">
-<h4 class="anchored" data-anchor-id="i.-start-from-docker-uv-renvs-dockerfile-and-docker-compose.yml">i. Start from docker-uv-renv’s <code>Dockerfile</code> and <code>docker-compose.yml</code></h4>
-<p>Copy the <a href="https://github.com/chendaniely/docker-uv-renv/blob/main/Dockerfile"><code>Dockerfile</code></a> and <a href="https://github.com/chendaniely/docker-uv-renv/blob/main/docker-compose.yml"><code>docker-compose.yml</code></a> from docker-uv-renv into the root of your repository. Its image has R 4.6.2, Python packages installed with uv, R packages installed with renv, Quarto for rendering your report, and an ssh server so you can work in the container from Positron. Keep the Compose service’s name, <code>analysis-env</code>, so the commands below work as written.</p>
-<p>Then remove the language your project does not use from the <code>Dockerfile</code>:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>The <code>Dockerfile</code> (step 1)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Pick the tab for your project. All three start the ssh server, so you can work in the container with Positron.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Python only</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">R only</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Python and R</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Python and R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Python only</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">R only</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p>Delete the R packages part:</p>
-<ul>
-<li>the <code>RUN echo "RENV_PATHS_LIBRARY=/opt/renv/library" ...</code> line</li>
-<li><code>COPY renv.lock .Rprofile ./</code></li>
-<li><code>COPY renv/activate.R renv/</code></li>
-<li><code>RUN Rscript -e "renv::restore()"</code></li>
-<li><code>libuv1-dev</code> in the <code>apt-get install</code> list (only the R package fs needs it)</li>
-</ul>
-<p>Your project has no <code>DESCRIPTION</code>, <code>renv.lock</code>, <code>.Rprofile</code> or <code>renv/</code>.</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Dockerfile</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-filename="Dockerfile"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adapted from docker-uv-renv by Daniel Chen (MIT License)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># https://github.com/chendaniely/docker-uv-renv</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Start from Ubuntu Linux with R installed.</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Change 4.6.2 to the R version in your renv.lock.</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> rocker/r-ver:4.6.2</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Install the programs the project needs:</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># curl downloads files, git/less/nano let you work in a terminal,</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># make runs a Makefile, openssh-server lets Positron connect over ssh,</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># libuv1-dev is needed by the R package fs</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">apt-get</span> update <span class="kw">&amp;&amp;</span> <span class="ex">apt-get</span> install <span class="at">--yes</span> <span class="dt">\</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    curl <span class="dt">\</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    git <span class="dt">\</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    less <span class="dt">\</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    libuv1-dev <span class="dt">\</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    make <span class="dt">\</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    nano <span class="dt">\</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    openssh-server</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Quarto (it comes with Typst for PDFs, so no LaTeX).</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># dpkg --print-architecture gives amd64 or arm64, to match the computer.</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">curl</span> <span class="at">--location</span> <span class="at">--output</span> quarto.deb <span class="dt">\</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    https://github.com/quarto-dev/quarto-cli/releases/download/v1.11.9/quarto-1.11.9-linux-<span class="va">$(</span><span class="ex">dpkg</span> <span class="at">--print-architecture</span><span class="va">)</span>.deb <span class="dt">\</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&amp;&amp;</span> <span class="ex">apt-get</span> install <span class="at">--yes</span> ./quarto.deb <span class="dt">\</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> quarto.deb</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy the uv program into the image (0.13.7 pins uv's version)</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> <span class="op">--from=ghcr.io/astral-sh/uv:0.13.7</span> /uv /uvx /usr/local/bin/</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Your project folder is mounted at /workspace,</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co"># so the packages go in /opt instead</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /workspace</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Python packages (uv), in /opt/venv ----</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="kw">ENV</span> UV_PROJECT_ENVIRONMENT=/opt/venv</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co"># ssh logins don't see ENV, only /etc/environment</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="bu">echo</span> <span class="st">"UV_PROJECT_ENVIRONMENT=</span><span class="va">$UV_PROJECT_ENVIRONMENT</span><span class="st">"</span> <span class="op">&gt;&gt;</span> /etc/environment</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> pyproject.toml uv.lock .python-version ./</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="co"># --locked: stop if uv.lock doesn't match pyproject.toml</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">uv</span> sync <span class="at">--locked</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- R packages (renv), in /opt/renv/library ----</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="bu">echo</span> <span class="st">"RENV_PATHS_LIBRARY=/opt/renv/library"</span> <span class="op">&gt;&gt;</span> /usr/local/lib/R/etc/Renviron.site</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> renv.lock .Rprofile ./</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> renv/activate.R renv/</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"renv::restore()"</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="co"># On a Linux laptop, remove the # from the next line.</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="co"># (sshd wants root to own the key file, but on Linux the mounted one is yours.)</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="co"># RUN echo "StrictModes no" &gt; /etc/ssh/sshd_config.d/container.conf</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Start the ssh server when the container starts.</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="co"># -D keeps it in the foreground, so the container keeps running.</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">"/usr/sbin/sshd"</span>, <span class="st">"-D"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<p>Delete the uv part, but keep <code>WORKDIR /workspace</code>:</p>
-<ul>
-<li><code>COPY --from=ghcr.io/astral-sh/uv:0.13.7 /uv /uvx /usr/local/bin/</code></li>
-<li><code>ENV UV_PROJECT_ENVIRONMENT=/opt/venv</code> and the <code>RUN echo "UV_PROJECT_ENVIRONMENT=..."</code> line after it</li>
-<li><code>COPY pyproject.toml uv.lock .python-version ./</code></li>
-<li><code>RUN uv sync --locked</code></li>
-</ul>
-<p>Your project has no <code>pyproject.toml</code>, <code>uv.lock</code> or <code>.python-version</code>, and you render with <code>quarto render</code> instead of <code>uv run quarto render</code>.</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Dockerfile</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-filename="Dockerfile"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adapted from docker-uv-renv by Daniel Chen (MIT License)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># https://github.com/chendaniely/docker-uv-renv</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Start from Ubuntu Linux (this image also has R, which you can ignore).</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> rocker/r-ver:4.6.2</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Install the programs the project needs:</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># curl downloads files, git/less/nano let you work in a terminal,</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># make runs a Makefile, openssh-server lets Positron connect over ssh</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">apt-get</span> update <span class="kw">&amp;&amp;</span> <span class="ex">apt-get</span> install <span class="at">--yes</span> <span class="dt">\</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    curl <span class="dt">\</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    git <span class="dt">\</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    less <span class="dt">\</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    make <span class="dt">\</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    nano <span class="dt">\</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    openssh-server</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Quarto (it comes with Typst for PDFs, so no LaTeX).</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># dpkg --print-architecture gives amd64 or arm64, to match the computer.</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">curl</span> <span class="at">--location</span> <span class="at">--output</span> quarto.deb <span class="dt">\</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    https://github.com/quarto-dev/quarto-cli/releases/download/v1.11.9/quarto-1.11.9-linux-<span class="va">$(</span><span class="ex">dpkg</span> <span class="at">--print-architecture</span><span class="va">)</span>.deb <span class="dt">\</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&amp;&amp;</span> <span class="ex">apt-get</span> install <span class="at">--yes</span> ./quarto.deb <span class="dt">\</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> quarto.deb</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy the uv program into the image (0.13.7 pins uv's version)</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> <span class="op">--from=ghcr.io/astral-sh/uv:0.13.7</span> /uv /uvx /usr/local/bin/</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Your project folder is mounted at /workspace,</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co"># so the packages go in /opt instead</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /workspace</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Python packages (uv) go in /opt/venv</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="kw">ENV</span> UV_PROJECT_ENVIRONMENT=/opt/venv</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="co"># ssh logins don't see ENV, only /etc/environment</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="bu">echo</span> <span class="st">"UV_PROJECT_ENVIRONMENT=</span><span class="va">$UV_PROJECT_ENVIRONMENT</span><span class="st">"</span> <span class="op">&gt;&gt;</span> /etc/environment</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> pyproject.toml uv.lock .python-version ./</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="co"># --locked: stop if uv.lock doesn't match pyproject.toml</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">uv</span> sync <span class="at">--locked</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="co"># On a Linux laptop, remove the # from the next line.</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="co"># (sshd wants root to own the key file, but on Linux the mounted one is yours.)</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="co"># RUN echo "StrictModes no" &gt; /etc/ssh/sshd_config.d/container.conf</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Start the ssh server when the container starts.</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="co"># -D keeps it in the foreground, so the container keeps running.</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">"/usr/sbin/sshd"</span>, <span class="st">"-D"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<p>Keep both parts.</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Dockerfile</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-filename="Dockerfile"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adapted from docker-uv-renv by Daniel Chen (MIT License)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># https://github.com/chendaniely/docker-uv-renv</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Start from Ubuntu Linux with R installed.</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Change 4.6.2 to the R version in your renv.lock.</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> rocker/r-ver:4.6.2</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Install the programs the project needs:</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># curl downloads files, git/less/nano let you work in a terminal,</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># make runs a Makefile, openssh-server lets Positron connect over ssh,</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># libuv1-dev is needed by the R package fs</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">apt-get</span> update <span class="kw">&amp;&amp;</span> <span class="ex">apt-get</span> install <span class="at">--yes</span> <span class="dt">\</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    curl <span class="dt">\</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    git <span class="dt">\</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    less <span class="dt">\</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    libuv1-dev <span class="dt">\</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    make <span class="dt">\</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    nano <span class="dt">\</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    openssh-server</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Quarto (it comes with Typst for PDFs, so no LaTeX).</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># dpkg --print-architecture gives amd64 or arm64, to match the computer.</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">curl</span> <span class="at">--location</span> <span class="at">--output</span> quarto.deb <span class="dt">\</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    https://github.com/quarto-dev/quarto-cli/releases/download/v1.11.9/quarto-1.11.9-linux-<span class="va">$(</span><span class="ex">dpkg</span> <span class="at">--print-architecture</span><span class="va">)</span>.deb <span class="dt">\</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&amp;&amp;</span> <span class="ex">apt-get</span> install <span class="at">--yes</span> ./quarto.deb <span class="dt">\</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> quarto.deb</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Your project folder is mounted at /workspace,</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="co"># so the packages go in /opt instead</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /workspace</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="co"># R packages (renv) go in /opt/renv/library</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="bu">echo</span> <span class="st">"RENV_PATHS_LIBRARY=/opt/renv/library"</span> <span class="op">&gt;&gt;</span> /usr/local/lib/R/etc/Renviron.site</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> renv.lock .Rprofile ./</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> renv/activate.R renv/</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"renv::restore()"</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="co"># On a Linux laptop, remove the # from the next line.</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="co"># (sshd wants root to own the key file, but on Linux the mounted one is yours.)</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="co"># RUN echo "StrictModes no" &gt; /etc/ssh/sshd_config.d/container.conf</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Start the ssh server when the container starts.</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="co"># -D keeps it in the foreground, so the container keeps running.</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">"/usr/sbin/sshd"</span>, <span class="st">"-D"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>With R only, you render with <code>quarto render</code> instead of <code>uv run quarto render</code>.</p>
 </div>
 </div>
 </div>
-<p><strong>Note - the <code>Dockerfile</code> and <code>docker-compose.yml</code> should live in the root of your public GitHub.com repository.</strong></p>
-</section>
-<section id="ii.-your-environment-files" class="level4">
-<h4 class="anchored" data-anchor-id="ii.-your-environment-files">ii. Your environment files</h4>
-<p>The image installs your packages from your lock files, so these files must be in your repository and agree with each other:</p>
-<ul>
-<li><strong>Python (uv):</strong> <code>pyproject.toml</code> with each package pinned to an exact version (<code>==</code>), <code>uv.lock</code> and <code>.python-version</code>.</li>
-<li><strong>R (renv):</strong> <code>DESCRIPTION</code> with each package pinned to an exact version (<code>(== x.y.z)</code>), <code>renv.lock</code>, <code>.Rprofile</code> and <code>renv/</code>. <code>DESCRIPTION</code> is required in this milestone (see <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-r-renv-description.html">renv: declaring packages in <code>DESCRIPTION</code></a>), and it must list <code>knitr</code> and <code>rmarkdown</code>: Quarto uses these two packages to run the R code in your report.</li>
-</ul>
-<p>To add a package, follow the chapter for your language (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-uv.html">uv</a>, <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-renv.html">renv</a>), commit the changed files together, and let GitHub Actions publish a new image.</p>
-</section>
-<section id="iii.-build-and-publish-the-image-on-github-actions-for-both-kinds-of-computers" class="level4">
-<h4 class="anchored" data-anchor-id="iii.-build-and-publish-the-image-on-github-actions-for-both-kinds-of-computers">iii. Build and publish the image on GitHub Actions, for both kinds of computers</h4>
-<p>Add a GitHub Actions workflow, <code>.github/workflows/publish-dockerhub.yml</code>, that builds your image for both <code>linux/amd64</code> (Intel/AMD) and <code>linux/arm64</code> (ARM, such as Macs with Apple silicon) and pushes them to Docker Hub as one image, tagged <code>latest</code> and with the commit SHA. It should run whenever a push changes the <code>Dockerfile</code> or a lock file, and when you run it by hand. Start from the two-platform workflow in <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-platforms.html">Building images for several platforms</a>, and change only its <code>IMAGE</code> line, to your Docker Hub repository’s name, all in lowercase.</p>
-<p>For the workflow to push, one team member creates a public Docker Hub repository for the project and a Docker Hub <a href="https://docs.docker.com/security/access-tokens/">access token</a> with Read &amp; Write permissions, and adds two <a href="https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets">repository secrets</a> to your GitHub repository (Settings &gt; Secrets and variables &gt; Actions &gt; New repository secret): <code>DOCKER_USERNAME</code>, the Docker Hub username, and <code>DOCKER_PASSWORD</code>, the access token (not the Docker Hub password). This is the same as in Individual assignment 2, where you built for one kind of computer.</p>
-<p>Check that the run succeeds, and that your image’s tag on Docker Hub lists both <code>linux/amd64</code> and <code>linux/arm64</code>.</p>
-</section>
-<section id="iv.-run-the-container-with-docker-compose" class="level4">
-<h4 class="anchored" data-anchor-id="iv.-run-the-container-with-docker-compose">iv. Run the container with Docker Compose</h4>
-<p>In <code>docker-compose.yml</code>, use your published image instead of building it, pinned to the commit-SHA tag your workflow pushed (for example, <code>image: yourname/yourproject:sha-1a2b3c4</code>), not <code>latest</code>. When your workflow publishes a new image, update the tag in a pull request.</p>
-<p>Keep the ssh setup from docker-uv-renv: the port, <code>2222:22</code>, and the mount of <code>~/.ssh/id_ed25519.pub</code>. Work in the container with Positron over ssh, as in <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-ssh-positron.html">Working in a container over ssh with Positron</a>.</p>
-</section>
-<section id="v.-document-the-container-in-your-readme" class="level4">
-<h4 class="anchored" data-anchor-id="v.-document-the-container-in-your-readme">v. Document the container in your <code>README</code></h4>
-<p>Your <code>README</code>’s instructions for running the analysis must now use the container, in this order:</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Setting up Docker Hub and the GitHub secrets (step 4)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>One team member:</p>
 <ol type="1">
-<li>Make an ssh key if you don’t have one: <code>ssh-keygen -t ed25519</code>, pressing Enter at each question. Without the key, Docker makes a folder named <code>~/.ssh/id_ed25519.pub</code> in its place, and ssh into the container fails until you delete that folder and make the key.</li>
+<li>Creates a <strong>public</strong> Docker Hub repository for the project.</li>
+<li>Creates a Docker Hub <a href="https://docs.docker.com/security/access-tokens/">access token</a> with Read &amp; Write permissions.</li>
+<li>Adds two <a href="https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets">repository secrets</a> to your GitHub repository (Settings &gt; Secrets and variables &gt; Actions &gt; New repository secret): <code>DOCKER_USERNAME</code> (the Docker Hub username) and <code>DOCKER_PASSWORD</code> (the access token, <strong>not</strong> the Docker Hub password).</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>The workflow file (step 4)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Job 1 runs the same <code>docker build</code> and <code>docker push</code> as Individual Assignment 2, on an Intel/AMD and an ARM computer at the same time. Job 2 puts the two images under one tag. Change only the <code>IMAGE</code> line.</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>.github/workflows/publish-dockerhub.yml</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-filename=".github/workflows/publish-dockerhub.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Builds the image from your Dockerfile for Intel/AMD and ARM computers,</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># and publishes it on Docker Hub.</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Save this file as .github/workflows/publish-dockerhub.yml</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Publish image to Docker Hub</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># When the workflow runs</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">  # by hand: Actions tab &gt; Publish image to Docker Hub &gt; Run workflow</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">workflow_dispatch</span><span class="kw">:</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">  # on its own: when a push changes one of these files</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">paths</span><span class="kw">:</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> Dockerfile</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> uv.lock</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> renv.lock</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> .github/workflows/publish-dockerhub.yml</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="fu">env</span><span class="kw">:</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">  # CHANGE THIS LINE: your Docker Hub username / repository name, in lowercase</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">IMAGE</span><span class="kw">:</span><span class="at"> your-docker-hub-username/your-repository-name</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co">  # Job 1: build the image on two computers at the same time,</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co">  # one Intel/AMD and one ARM, and push one tag from each</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">build</span><span class="kw">:</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">strategy</span><span class="kw">:</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">matrix</span><span class="kw">:</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">include</span><span class="kw">:</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="kw">-</span><span class="at"> </span><span class="fu">runner</span><span class="kw">:</span><span class="at"> ubuntu-latest</span><span class="co">     # Intel/AMD</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="at">            </span><span class="fu">arch</span><span class="kw">:</span><span class="at"> amd64</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="kw">-</span><span class="at"> </span><span class="fu">runner</span><span class="kw">:</span><span class="at"> ubuntu-24.04-arm</span><span class="co">  # ARM</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="at">            </span><span class="fu">arch</span><span class="kw">:</span><span class="at"> arm64</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ${{ matrix.runner }}</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="co">      # 1. Copy your repository onto the computer</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Check out the repository</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v7</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="co">      # 2. Log in to Docker Hub with your two repository secrets</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Log in to Docker Hub</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> docker/login-action@v4</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">username</span><span class="kw">:</span><span class="at"> ${{ secrets.DOCKER_USERNAME }}</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">password</span><span class="kw">:</span><span class="at"> ${{ secrets.DOCKER_PASSWORD }}</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="co">      # 3. Build the image for this computer, tagged for example sha-1a2b3c4-arm64</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="co">      #    (sha- plus the first 7 characters of the commit ID, plus the chip)</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Build the image</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">run</span><span class="kw">:</span><span class="at"> docker build --tag "$IMAGE:sha-${GITHUB_SHA::7}-${{ matrix.arch }}" .</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="co">      # 4. Upload it to Docker Hub</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Push the image</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">run</span><span class="kw">:</span><span class="at"> docker push "$IMAGE:sha-${GITHUB_SHA::7}-${{ matrix.arch }}"</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a><span class="co">  # Job 2: after both builds finish, put the two images under one tag,</span></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="co">  # so each computer downloads the one for its chip</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">combine</span><span class="kw">:</span></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">needs</span><span class="kw">:</span><span class="at"> build</span></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Log in to Docker Hub</span></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> docker/login-action@v4</span></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">username</span><span class="kw">:</span><span class="at"> ${{ secrets.DOCKER_USERNAME }}</span></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">password</span><span class="kw">:</span><span class="at"> ${{ secrets.DOCKER_PASSWORD }}</span></span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a><span class="co">      # Make the tags latest and sha-1a2b3c4, each holding both images</span></span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Combine the two images under one tag</span></span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a><span class="fu">        run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>          docker buildx imagetools create \</span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>            --tag "$IMAGE:latest" \</span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>            --tag "$IMAGE:sha-${GITHUB_SHA::7}" \</span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>            "$IMAGE:sha-${GITHUB_SHA::7}-amd64" \</span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>            "$IMAGE:sha-${GITHUB_SHA::7}-arm64"</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>It runs on its own when a push changes the <code>Dockerfile</code>, a lock file or the workflow file. To run it by hand: <strong>Actions</strong> tab &gt; <strong>Publish image to Docker Hub</strong> &gt; <strong>Run workflow</strong>. On Docker Hub you will see four tags: <code>latest</code>, <code>sha-1a2b3c4</code>, and the two halves <code>sha-1a2b3c4-amd64</code> and <code>sha-1a2b3c4-arm64</code>. Use the one without <code>-amd64</code> or <code>-arm64</code> in <code>docker-compose.yml</code>.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>The <code>docker-compose.yml</code> file (step 5)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Change only the <code>image:</code> line.</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>docker-compose.yml</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-filename="docker-compose.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adapted from docker-uv-renv by Daniel Chen (MIT License)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># https://github.com/chendaniely/docker-uv-renv</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">services</span><span class="kw">:</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">  # the service name: `docker compose run analysis-env ...` uses it</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">analysis-env</span><span class="kw">:</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">    # CHANGE THIS LINE: your image on Docker Hub,</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">    # with the sha- tag your workflow pushed (not latest)</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> your-docker-hub-username/your-repository-name:sha-1a2b3c4</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">      # 2222 on your computer, 22 (ssh) in the container</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"2222:22"</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">      # your project folder, at /workspace in the container</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> .:/workspace</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">      # your ssh public key, so you can log in (ro: read-only)</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ~/.ssh/id_ed25519.pub:/root/.ssh/authorized_keys:ro</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>There is no <code>build: .</code> line: everyone downloads the image your workflow published, instead of building their own.</p>
+</div>
+</div>
+</div>
+<section id="your-readme-how-to-run-the-analysis" class="level4">
+<h4 class="anchored" data-anchor-id="your-readme-how-to-run-the-analysis">Your <code>README</code>: how to run the analysis</h4>
+<p>Write these steps in your <code>README</code>, in this order:</p>
+<ol type="1">
+<li>Make an <span class="term" tabindex="0" data-tip="An ssh key is a pair of files that proves who you are without a password: a private key you keep secret (~/.ssh/id_ed25519) and a public key you can share (~/.ssh/id_ed25519.pub). Here docker-compose.yml puts your public key in the container, so ssh lets you in.">ssh key</span> if you don’t have one: <code>ssh-keygen -t ed25519</code>, pressing Enter at each question. (Without it, Docker makes a <em>folder</em> named <code>~/.ssh/id_ed25519.pub</code>, and ssh into the container fails until you delete that folder and make the key.)</li>
 <li>Download the image: <code>docker compose pull</code>.</li>
 <li>Render the report in the container:
 <ul>
@@ -339,7 +688,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>R only: <code>docker compose run --rm analysis-env quarto render</code></li>
 </ul>
 Add your report’s path after <code>quarto render</code> if your project has no <code>_quarto.yml</code> that lists it.</li>
-<li>Work in the container: <code>docker compose up -d</code> starts it in the background, then connect with Positron over ssh; <code>docker compose down</code> stops it.</li>
+<li>Work in the container: <code>docker compose up -d</code> starts it, then connect with Positron over ssh. <code>docker compose down</code> stops it.</li>
 <li>Update the container: add a package with your environment manager, commit and push, wait for GitHub Actions to publish the new image, then update the tag in <code>docker-compose.yml</code> and run <code>docker compose pull</code>.</li>
 </ol>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -348,53 +697,31 @@ Add your report’s path after <code>quarto render</code> if your project has no
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Your README instructions are worth 5 all-or-nothing points
+<span class="screen-reader-only">Important</span>5 all-or-nothing points for your README instructions
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>5 points of this milestone are for the reproducibility of your README instructions: whether someone can follow them to launch your container and run your analysis in it. These points are all-or-nothing. If your instructions do not work exactly as you have written them, you will lose all 5 points.</p>
-<p>Make sure your instructions work on both Windows and Mac computers. If your team does not have both, work with another team to test them.</p>
+<p>If someone can’t launch your container and run your analysis by following your instructions <strong>exactly as written</strong>, you lose all 5 points. Test them on <strong>both Windows and Mac</strong>. If your team doesn’t have both, ask another team to test them.</p>
 </div>
 </div>
 </section>
 </section>
 <section id="publish-your-report-on-github-pages" class="level3">
 <h3 class="anchored" data-anchor-id="publish-your-report-on-github-pages">2. Publish your report on GitHub Pages</h3>
-<p>Anyone should be able to read your report online, without cloning your repository. You learned to publish with GitHub Pages in DSCI 521 (<a href="https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html">Introduction to Quarto and GitHub Pages</a>), where you published a whole Quarto website. Here you apply those skills to publish the HTML version of your report.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Already published your report in Milestone 1?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Switch to the setup below, even if your current one works. Later milestones build on it.</p>
-</div>
-</div>
-<p>You publish by hand, with a small workaround. It works because of how GitHub Pages serves files:</p>
-<ul>
-<li>GitHub Pages can publish the files in a <code>docs/</code> folder on your <code>main</code> branch, exactly as they are.</li>
-<li>When someone visits your site’s address, the web server shows the file named <code>index.html</code>.</li>
-<li>With <code>embed-resources: true</code>, your rendered report is a single HTML file that holds everything it needs, including its figures.</li>
-</ul>
-<p>So publishing your report is just putting a copy of that one file at <code>docs/index.html</code>. Copying files by hand is easy to forget, so it is not how you would publish a larger site. Later in the program (in DSCI 524, when you build websites for your packages), you will use tools that build and publish a website for you.</p>
+<p>Anyone should be able to read your report online without cloning your repository. You publish it by hand: put a <span class="term" tabindex="0" data-tip="A self-contained HTML file has everything it needs (figures, styling, scripts) packed inside the one file, instead of in separate files next to it. So it still works after you copy it somewhere else.">self-contained</span> copy of your rendered report at <code>docs/index.html</code>. If you already published your report in Milestone 1, switch to this setup anyway, because later milestones build on it.</p>
 <ol type="1">
-<li><p>Make your rendered report a single, self-contained HTML file, with <code>embed-resources: true</code> in its HTML options, for example in the report’s YAML header:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">embed-resources</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>If your project’s <code>_quarto.yml</code> already sets this, you don’t need to add it again. A self-contained file holds its figures and styling, so it still works after you copy it somewhere else. If you have only been rendering your report to PDF, render it to HTML as well.</p></li>
-<li><p>Render your report. Then copy the rendered HTML file into a <code>docs/</code> folder at the root of your repository, and name the copy <code>index.html</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> docs</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="op">&lt;</span>path-to-your-report<span class="op">&gt;</span>.html docs/index.html</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Add an empty <code>.nojekyll</code> file to <code>docs/</code>, so that GitHub Pages serves your file exactly as it is (see <a href="https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html#nojekyll">Turning off Jekyll with <code>.nojekyll</code></a>):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> docs/.nojekyll</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Commit and push <code>docs/</code>. It is a copy of a generated file, but GitHub Pages can only publish files that are in your repository. Check that your <code>.gitignore</code> does not ignore <code>docs/</code> or <code>.html</code> files.</p></li>
-<li><p>In your repository on GitHub.com, go to <strong>Settings &gt; Pages</strong>. Under <strong>Build and deployment</strong>, choose <strong>Deploy from a branch</strong>, then the <code>main</code> branch and the <code>/docs</code> folder, and click <strong>Save</strong>.</p></li>
-<li><p>After a few minutes, your report is published at <code>https://ubc-mds-2026-27.github.io/&lt;your-repository&gt;/</code>. Open it and check that the whole report shows, including its figures.</p></li>
+<li><p>Make the rendered report one self-contained HTML file, in its YAML header (skip this if your <code>_quarto.yml</code> already sets it):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">embed-resources</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If you have only been rendering to PDF, render to HTML as well.</p></li>
+<li><p>Render your report, then copy it into <code>docs/</code> as <code>index.html</code>, and add an empty <code>.nojekyll</code> file:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> docs</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="op">&lt;</span>path-to-your-report<span class="op">&gt;</span>.html docs/index.html</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> docs/.nojekyll</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Commit and push <code>docs/</code>. Check that your <code>.gitignore</code> does not ignore <code>docs/</code> or <code>.html</code> files.</p></li>
+<li><p>On GitHub.com, go to <strong>Settings &gt; Pages</strong> &gt; <strong>Deploy from a branch</strong>, choose the <code>main</code> branch and the <code>/docs</code> folder, and click <strong>Save</strong>.</p></li>
+<li><p>After a few minutes, open <code>https://ubc-mds-2026-27.github.io/&lt;your-repository&gt;/</code> and check that the whole report shows, including its figures.</p></li>
 <li><p>Put this URL in your <code>README</code> (as the link to your rendered report) and in the <strong>About</strong> section of your repository.</p></li>
 </ol>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -407,34 +734,94 @@ Add your report’s path after <code>quarto render</code> if your project has no
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><code>docs/index.html</code> is a copy. Each time you re-render your report, copy it into <code>docs/</code> again and push, or the published version will fall behind. We grade your work from your <code>1.0.0</code> release, and the report on GitHub Pages should match it.</p>
+<p><code>docs/index.html</code> is a copy. Each time you re-render your report, copy it into <code>docs/</code> again and push. We grade from your <code>1.0.0</code> release, and the report on GitHub Pages should match it.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Why this works
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>GitHub Pages can publish the files in a <code>docs/</code> folder on <code>main</code>, exactly as they are.</li>
+<li>When someone visits your site’s address, the server shows the file named <code>index.html</code>.</li>
+<li>With <code>embed-resources: true</code>, the report is one HTML file that holds its figures and styling, so it still works after you copy it.</li>
+<li><code>.nojekyll</code> tells GitHub Pages to serve your file as it is (see <a href="https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html#nojekyll">Turning off Jekyll with <code>.nojekyll</code></a>).</li>
+</ul>
+<p>Copying by hand is easy to forget, so it is not how you would publish a larger site. In DSCI 524 you will use tools that build and publish a website for you.</p>
+</div>
 </div>
 </div>
 </section>
 </section>
 <section id="submission-instructions" class="level2">
-<h2 class="anchored" data-anchor-id="submission-instructions">Submission Instructions</h2>
-<p>Just before you submit the milestone 2, create a release on your project repository on GitHub and name it something like <code>1.0.0</code> (<a href="https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release">how to create a release</a>). This release allows us and you to easily jump to the state of your repository at the time of submission for grading purposes, while you continue to work on your project for the next milestone.</p>
-<p>Follow the instructions for submission on Gradescope. We only need URLs, entered into Gradescope directly: there is no PDF to make. You will submit:</p>
+<h2 class="anchored" data-anchor-id="submission-instructions">Submission instructions</h2>
 <ol type="1">
-<li>the URL of your project’s GitHub.com repository</li>
-<li>the URL of a GitHub release of your project’s GitHub.com repository</li>
-<li>the URL of your report on GitHub Pages</li>
-<li>the URL of your image on Docker Hub</li>
-</ol>
-</section>
-<section id="expectations" class="level2">
-<h2 class="anchored" data-anchor-id="expectations">Expectations</h2>
+<li>Just before you submit, create a GitHub release named exactly <code>1.0.0</code> (<a href="https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release">how to create a release</a>). It records the state of your repository at submission, so you can keep working on the next milestone.</li>
+<li>On Gradescope, enter these four URLs (there is no PDF to make):
 <ul>
-<li><strong>Everyone should contribute equally to all aspects of the project</strong> <strong>(e.g., code, writing, project management).</strong> <strong>This should be evidenced by a roughly equal number of commits,</strong> <strong>pull request reviews and participation in communication via GitHub issues.</strong></li>
-<li>Each group member should work in a <a href="https://docs.github.com/en/get-started/quickstart/github-flow">GitHub flow workflow</a>; where they create branches for each feature or fix, which are reviewed and critiqued by at least one other teammate before the the pull request is accepted.</li>
-<li>You should be committing to git and pushing to GitHub.com every time you work on this project.</li>
-<li>Git commit messages should be meaningful. These will be marked. It’s OK if one or two are less meaningful, but most should be.</li>
-<li>Use GitHub issues to communicate to their team mate (as opposed to email or Slack).</li>
-<li>Your question, analysis and visualization should make sense. It doesn’t have to be complicated.</li>
-<li>You should use proper grammar and full sentences in your README. Point form may occur, but should be less than 10% of your written documents.</li>
-<li>You will not be expected to incorporate Milestone 1 feedback in this submission (of course you can, but likely you will not receive it until the end of the week which might be too late to incorporate it).</li>
+<li>your project’s GitHub.com repository</li>
+<li>the GitHub release</li>
+<li>your report on GitHub Pages</li>
+<li>your image on Docker Hub</li>
+</ul></li>
+</ol>
+<p>You don’t need to include Milestone 1 feedback in this submission.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Check yourself before submitting
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul class="task-list">
+<li><label><input type="checkbox">The GitHub Actions run succeeded, and the Docker Hub tag lists <code>linux/amd64</code> and <code>linux/arm64</code></label></li>
+<li><label><input type="checkbox"><code>docker-compose.yml</code> uses your published image with a <code>sha-</code> tag, not <code>latest</code></label></li>
+<li><label><input type="checkbox">(Python) <code>pyproject.toml</code> pins every package and lists <code>ipykernel</code>, <code>nbclient</code> and <code>pyyaml</code></label></li>
+<li><label><input type="checkbox">(R) <code>DESCRIPTION</code> pins every package and lists <code>knitr</code> and <code>rmarkdown</code></label></li>
+<li><label><input type="checkbox">Someone on Windows and someone on Mac followed your <code>README</code> steps exactly and rendered the report</label></li>
+<li><label><input type="checkbox">Your report on GitHub Pages shows in full, with its figures, and matches your release</label></li>
+<li><label><input type="checkbox">The GitHub Pages URL is in your <code>README</code> and in the repository’s <strong>About</strong> section</label></li>
+<li><label><input type="checkbox">You created the <code>1.0.0</code> release</label></li>
 </ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Teamwork expectations (these are marked)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Everyone contributes equally</strong> to code, writing and project management, shown by a roughly equal number of commits, pull request reviews and GitHub issue comments.</li>
+<li>Use the <a href="https://docs.github.com/en/get-started/using-github/github-flow">GitHub flow</a>: a branch for each feature or fix, reviewed by at least one teammate before the pull request is merged.</li>
+<li>Commit and push every time you work on the project, with meaningful commit messages (one or two less meaningful ones are OK).</li>
+<li>Talk to your teammates in GitHub issues, not email or Slack.</li>
+<li>Your question, analysis and visualization should make sense. They don’t have to be complicated.</li>
+<li>Write your <code>README</code> in full sentences with proper grammar. Keep point form under 10% of it.</li>
+</ul>
+</div>
+</div>
+</div>
 
 
 </section>

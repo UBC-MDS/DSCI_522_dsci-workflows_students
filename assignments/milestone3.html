@@ -181,8 +181,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overall-project-summary" id="toc-overall-project-summary" class="nav-link active" data-scroll-target="#overall-project-summary">Overall project summary</a></li>
-  <li><a href="#milestone-3-summary" id="toc-milestone-3-summary" class="nav-link" data-scroll-target="#milestone-3-summary">Milestone 3 summary</a>
+  <li><a href="#milestone-3-summary" id="toc-milestone-3-summary" class="nav-link active" data-scroll-target="#milestone-3-summary">Milestone 3 summary</a>
   <ul class="collapse">
   <li><a href="#abstract-code-from-your-literate-code-document-.ipynb-.qmd-or-.rmd-to-scripts-e.g.-.r-or-.py." id="toc-abstract-code-from-your-literate-code-document-.ipynb-.qmd-or-.rmd-to-scripts-e.g.-.r-or-.py." class="nav-link" data-scroll-target="#abstract-code-from-your-literate-code-document-.ipynb-.qmd-or-.rmd-to-scripts-e.g.-.r-or-.py.">1. Abstract code from your literate code document (<code>*.ipynb</code>, <code>*.qmd</code> or <code>*.Rmd</code>) to scripts (e.g., <code>.R</code> or <code>.py</code>).</a></li>
   <li><a href="#add-data-validation-checks-to-your-analysis-scripts" id="toc-add-data-validation-checks-to-your-analysis-scripts" class="nav-link" data-scroll-target="#add-data-validation-checks-to-your-analysis-scripts">2. Add data validation checks to your analysis scripts</a></li>
@@ -218,24 +217,34 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="overall-project-summary" class="level2">
-<h2 class="anchored" data-anchor-id="overall-project-summary">Overall project summary</h2>
-<p>In this course you will work in assigned teams of three or four (see group assignments on GitHub) to answer a predictive statistical/machine learning question using a publicly available data set that will allow you to answer that question. To answer this question, you will perform a complete data analysis in R and/or Python, from data import to communication of results, while placing significant emphasis on reproducible and trustworthy workflows.</p>
-<p>Your data analysis project will evolve throughout the course from a single, monolithic Jupyter notebook, to a fully reproducible and robust data data analysis project, comprised of:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>The end-of-course project goal
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Your team answers a predictive question with a public data set, in R and/or Python, with a focus on reproducible and trustworthy workflows. <strong>By the end of the course</strong>, your single Quarto document will have become a project with:</p>
 <ul>
-<li>a well documented and modularized scripts written in R and/or Python,</li>
-<li>a data analysis pipeline automated with GNU Make,</li>
-<li>a reproducible report powered by Quarto,</li>
-<li>a containerized computational environment created and made shareable by Docker</li>
-<li>a remote version control repository on GitHub for project collaboration, sharing, and documentation.</li>
+<li>well-documented, modular scripts in R and/or Python</li>
+<li>a pipeline automated with GNU Make</li>
+<li>a reproducible Quarto report</li>
+<li>a Docker container for the computational environment</li>
+<li>a GitHub repository for collaboration and sharing</li>
 </ul>
-<p>An example final project from past years can be seen here:<a href="https://github.com/ttimbers/breast-cancer-predictor">Breast Cancer Predictor</a></p>
-</section>
+</div>
+</div>
+</div>
 <section id="milestone-3-summary" class="level2">
 <h2 class="anchored" data-anchor-id="milestone-3-summary">Milestone 3 summary</h2>
 <ol type="1">
-<li><p>Abstract code from your report literate code document (<code>*.ipynb</code>, <code>*.qmd</code> or <code>*.Rmd</code>) to scripts (e.g., <code>.R</code> or <code>.py</code>). This code need not be converted to a function, but can simply be files that call the functions needed to run your analysis. You should aim to split the analysis code into 4, or more, R or Python scripts. Where the code in each script is contributing to a related step in your analysis. Your scripts should take command line arguments. <strong>You must document in your <code>README.md</code> how to call each script, including what arguments you pass each script.</strong></p></li>
-<li><p>Add data validation checks to your analysis scripts.</p></li>
+<li><p>Abstract code from your report <span class="term" tabindex="0" data-tip="A literate code document mixes code and the writing that explains it in one file, such as a Quarto (.qmd), R Markdown (.Rmd) or Jupyter (.ipynb) document. Your Milestone 1 report is one.">literate code document</span> (<code>*.ipynb</code>, <code>*.qmd</code> or <code>*.Rmd</code>) to scripts (e.g., <code>.R</code> or <code>.py</code>). This code need not be converted to a function, but can simply be files that call the functions needed to run your analysis. You should aim to split the analysis code into 4, or more, R or Python scripts. Where the code in each script is contributing to a related step in your analysis. Your scripts should take <span class="term" tabindex="0" data-tip="Values you type after the script name when you run it in the terminal, e.g. python scripts/clean.py --input data/raw/data.csv --output data/processed/clean.csv. They let you change inputs and outputs without editing the code.">command line arguments</span>. <strong>You must document in your <code>README.md</code> how to call each script, including what arguments you pass each script.</strong></p></li>
+<li><p>Add <span class="term" tabindex="0" data-tip="Data validation means automatic checks that your data looks the way your analysis expects (the right columns and types, no impossible values, not too many missing values) before you use it, so problems stop the analysis early instead of silently giving wrong results.">data validation</span> checks to your analysis scripts.</p></li>
 <li><p>If your report literate code document is not already a <code>*.qmd</code> file, convert it so that it is.</p></li>
 <li><p>Update your report so that it displays the figures and tables your scripts write, instead of computing them. You will polish the report’s formatting in Milestone 4.</p></li>
 <li><p>Update your project’s computational environment as you add dependencies to your project</p></li>

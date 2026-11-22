@@ -216,8 +216,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overall-project-summary" id="toc-overall-project-summary" class="nav-link active" data-scroll-target="#overall-project-summary">Overall project summary</a></li>
-  <li><a href="#milestone-4-summary" id="toc-milestone-4-summary" class="nav-link" data-scroll-target="#milestone-4-summary">Milestone 4 summary</a></li>
+  <li><a href="#milestone-4-summary" id="toc-milestone-4-summary" class="nav-link active" data-scroll-target="#milestone-4-summary">Milestone 4 summary</a></li>
   <li><a href="#create-a-makefile-to-act-as-a-driver-script-to-rule-them-all" id="toc-create-a-makefile-to-act-as-a-driver-script-to-rule-them-all" class="nav-link" data-scroll-target="#create-a-makefile-to-act-as-a-driver-script-to-rule-them-all">1. Create a <code>Makefile</code> to act as a driver script to rule them all</a></li>
   <li><a href="#abstract-some-code-from-your-scripts-to-functions-in-a-separate-file-and-write-tests-for-those-functions" id="toc-abstract-some-code-from-your-scripts-to-functions-in-a-separate-file-and-write-tests-for-those-functions" class="nav-link" data-scroll-target="#abstract-some-code-from-your-scripts-to-functions-in-a-separate-file-and-write-tests-for-those-functions">2. Abstract some code from your scripts to functions in a separate file, and write tests for those functions</a></li>
   <li><a href="#polish-your-report-so-that-its-sole-job-is-to-narrate-your-analysis-display-your-analysis-artifacts-i.e.-figures-and-tables-and-nicely-format-the-report" id="toc-polish-your-report-so-that-its-sole-job-is-to-narrate-your-analysis-display-your-analysis-artifacts-i.e.-figures-and-tables-and-nicely-format-the-report" class="nav-link" data-scroll-target="#polish-your-report-so-that-its-sole-job-is-to-narrate-your-analysis-display-your-analysis-artifacts-i.e.-figures-and-tables-and-nicely-format-the-report">3. Polish your report so that its sole job is to narrate your analysis, display your analysis artifacts (i.e., figures and tables), and nicely format the report</a></li>
@@ -254,23 +253,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="overall-project-summary" class="level2">
-<h2 class="anchored" data-anchor-id="overall-project-summary">Overall project summary</h2>
-<p>In this course you will work in assigned teams of three or four to answer a predictive question using a publicly available data set that will allow you to answer that question. To answer this question, you will perform a complete data analysis in R and/or Python, from data import to communication of results, while placing significant emphasis on reproducible and trustworthy workflows.</p>
-<p>Your data analysis project will evolve throughout the course from a single, monolithic Jupyter notebook, to a fully reproducible and robust data data analysis project, comprised of:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>The end-of-course project goal
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Your team answers a predictive question with a public data set, in R and/or Python, with a focus on reproducible and trustworthy workflows. <strong>By the end of the course</strong>, your single Quarto document will have become a project with:</p>
 <ul>
-<li>A reproducible report powered by either Jupyter book or Quarto,</li>
-<li>A containerized computational environment created and made shareable by Docker</li>
-<li>A remote version control repository on GitHub for project collaboration, sharing, and documentation.</li>
-<li>A well documented and modularized scripts written in R and/or Python,</li>
-<li>A data analysis pipeline automated with GNU Make,</li>
+<li>well-documented, modular scripts in R and/or Python</li>
+<li>a pipeline automated with GNU Make</li>
+<li>a reproducible Quarto report</li>
+<li>a Docker container for the computational environment</li>
+<li>a GitHub repository for collaboration and sharing</li>
 </ul>
-<p>An example final project from past years can be seen here: <a href="https://github.com/ttimbers/breast-cancer-predictor">Breast Cancer Predictor</a></p>
-</section>
+</div>
+</div>
+</div>
 <section id="milestone-4-summary" class="level2">
 <h2 class="anchored" data-anchor-id="milestone-4-summary">Milestone 4 summary</h2>
 <ul>
-<li>Write a new script, a <code>Makefile</code> (literally called <code>Makefile</code>), to act as a driver script to rule them all. This script should run the others in sequence, hard coding in the appropriate arguments.</li>
+<li>Write a new script, a <code>Makefile</code> (literally called <code>Makefile</code>), to act as a <span class="term" tabindex="0" data-tip="A driver script runs all your other scripts in the right order, with the right arguments, so one command reproduces the whole analysis.">driver script</span> to rule them all. This script should run the others in sequence, hard coding in the appropriate arguments.</li>
 <li>Abstract some code from your scripts to functions in a separate file (at least one function per group member), and write tests for those functions.</li>
 <li>Polish your report’s formatting with Quarto.</li>
 <li>Address any feedback received in earlier milestones and from the peer review to improve the project.</li>
@@ -283,7 +292,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>live in the project’s root directory and be named Makefile</li>
 <li>be well documented (using the project <code>README</code> and comments inside the <code>Makefile</code> to explain what it does and how to use it)</li>
-<li>have an <code>all</code> target so that you can easily run the entire analysis from top to bottom by running <code>make all</code> at the command line</li>
+<li>have an <code>all</code> <span class="term" tabindex="0" data-tip="In a Makefile, a target is a named thing Make can build: usually a file (like a figure), or a name for a group of steps (like all or clean). You run one with make followed by its name, e.g. make all.">target</span> so that you can easily run the entire analysis from top to bottom by running <code>make all</code> at the command line</li>
 <li>have a <code>clean</code> target so that you can easily “undo” your analysis by running <code>make clean</code> at the command line (e.g., deletes all generated data and files).</li>
 <li>have a <code>publish</code> target that updates the copy of your report that GitHub Pages publishes (<code>docs/index.html</code>, from <a href="../assignments/milestone2.html#publish-your-report-on-github-pages">Milestone 2</a>). <code>make publish</code> replaces the steps you did by hand in Milestone 2. <code>make all</code> should run it too, so your published report never falls behind your analysis. Commit and push <code>docs/</code> after it runs.</li>
 </ul>
