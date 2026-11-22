@@ -12,9 +12,9 @@ and do a plain text-to-image generation.
 From the shell:
 
     uv run python scripts/generate_images.py "an otter holding a clock" otter_clock.png
-    uv run python scripts/generate_images.py --csv website/slides/lec02_image_prompts.csv
-    uv run python scripts/generate_images.py --csv website/slides/lec02_image_prompts.csv --index 3
-    uv run python scripts/generate_images.py --csv website/slides/lec02_image_prompts.csv --index 1,4-6
+    uv run python scripts/generate_images.py --csv slides/slides/lec02_image_prompts.csv
+    uv run python scripts/generate_images.py --csv slides/slides/lec02_image_prompts.csv --index 3
+    uv run python scripts/generate_images.py --csv slides/slides/lec02_image_prompts.csv --index 1,4-6
 """
 
 import base64
@@ -25,7 +25,7 @@ from dotenv import load_dotenv
 from openai import OpenAI
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-IMAGES_DIR = REPO_ROOT / "website" / "slides" / "images"
+IMAGES_DIR = REPO_ROOT / "slides" / "slides" / "images"
 
 # Shown to the model so the otter and the style stay the same across lectures.
 STYLE_REFS = [IMAGES_DIR / "hello_background.png", IMAGES_DIR / "watch.png"]
@@ -42,7 +42,7 @@ load_dotenv(REPO_ROOT / ".env")
 def generate_image(
     prompt, filename, refs=STYLE_REFS, size="1536x1024", quality="high", transparent=True
 ):
-    """Generate one image and save it to website/slides/images/<filename>."""
+    """Generate one image and save it to slides/slides/images/<filename>."""
     background = "transparent" if transparent else "opaque"
     client = OpenAI()
 

@@ -1,16 +1,46 @@
+# ============================== RELEASE CONTROL ==============================
+# Assignments and cheatsheets: every page is rendered.
+# Students only find a page through the navbar and sidebars,
+# so release an assignment or cheatsheet by uncommenting its entry below.
+# The source files are public in this repo anyway.
+#
+# Section 1 slides: a lecture (or lab) counts as "released" when its slide deck
+# is listed under `project: render:` below. To release lecture N, make two edits:
+#
+#   1. add  "slides/slides/slides_NN.qmd"  to `project: render:`
+#   2. uncomment  - slides/lec_NN.qmd  in the `lectures` sidebar
+#
+# Labs work the same way, with "slides/slides/slides_lab_NN.qmd" and
+# - slides/lab_NN.qmd in the `labs` sidebar.
+#
+# The schedule tables on slides/lecture.qmd and slides/lab.qmd
+# (built by slides/_schedule.ejs) read this same render list: they link a
+# lecture only when its deck is rendered. Unreleased lectures still appear in
+# the table as plain text with a "coming soon" badge, and their decks are
+# never rendered, so there is nothing to link to or guess the URL of.
+# ============================================================================
+
 project:
   type: website
-  # Every page is rendered.
-  # Students only find a page through the navbar and sidebars,
-  # so release an assignment or cheatsheet by uncommenting its entry below.
-  # The source files are public in this repo anyway.
   render:
     - index.qmd
     - assignments/*.qmd
     - cheatsheets/*.qmd
+    - slides/*.qmd
+    # Released Section 1 slide decks only: add one line per release.
+    - "slides/slides/slides_01.qmd"
+    - "slides/slides/slides_02.qmd"
+    # - "slides/slides/slides_03.qmd"
+    # - "slides/slides/slides_04.qmd"
+    # - "slides/slides/slides_05.qmd"
+    # - "slides/slides/slides_06.qmd"
+    # - "slides/slides/slides_07.qmd"
+    # - "slides/slides/slides_08.qmd"
+    - "slides/slides/slides_lab_01.qmd"
+    # - "slides/slides/slides_lab_04.qmd"
 
 website:
-  title: "DSCI 522: Data Science Workflows (Students)"
+  title: "DSCI 522: Data Science Workflows"
   repo-url: https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students
   repo-branch: main
   repo-actions: [edit]
@@ -32,6 +62,14 @@ website:
             text: "Quarto"
           - href: cheatsheets/makefile.qmd
             text: "Makefile"
+      - text: "Section 1 Slides"
+        menu:
+          - href: slides/index.qmd
+            text: "Section 001 Info"
+          - href: slides/lecture.qmd
+            text: "Lectures"
+          - href: slides/lab.qmd
+            text: "Labs"
     right:
       - href: https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/
         text: Textbook
@@ -96,9 +134,33 @@ website:
           text: "Quarto"
         - href: cheatsheets/makefile.qmd
           text: "Makefile"
+    # Section 1 slides: one sidebar per page type (Lectures, Labs).
+    # Release a lecture or lab by uncommenting it here (see RELEASE CONTROL at the top).
+    - id: lectures
+      title: "Lectures"
+      contents:
+        - slides/lecture.qmd
+        - slides/lec_01.qmd
+        - slides/lec_02.qmd
+        # - slides/lec_03.qmd
+        # - slides/lec_04.qmd
+        # - slides/lec_05.qmd
+        # - slides/lec_06.qmd
+        # - slides/lec_07.qmd
+        # - slides/lec_08.qmd
+    - id: labs
+      title: "Labs"
+      contents:
+        - slides/lab.qmd
+        - slides/lab_01.qmd
+        # - slides/lab_04.qmd
 
 format:
   html:
-    theme: cosmo
+    theme: [minty, brand]
     css: styles.css
     toc: true
+
+# Decks with code cells keep their results in _freeze/, so CI never runs them.
+execute:
+  freeze: auto

@@ -2,11 +2,12 @@
 # push to main. GitHub Pages then serves that branch.
 #
 # Copied from UBC-MDS/DSCI_521_platforms-dsci, itself adapted from
-# chendaniely/chendaniely.github.io. The submodule caching and the
-# R / Python setup steps in that workflow are dropped here: this repo has no
-# submodules, and the site is pure markdown with no executed code. If a page
-# ever gains an R or Python code cell, add those steps back to BOTH this file
-# and preview.yml so the two builds stay identical.
+# chendaniely/chendaniely.github.io. The submodule caching and the R setup
+# steps in that workflow are dropped here: this repo has no submodules.
+# Python is set up with uv from pyproject.toml / uv.lock because some Section 1
+# slide decks have {python} cells: their results are frozen in _freeze/, but
+# Quarto still needs Jupyter to render them. Keep the build steps identical
+# in BOTH this file and preview.yml.
 
 on:
   push:
@@ -35,9 +36,16 @@ jobs:
         with:
           version: release
 
+      - name: Set up uv
+        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+
+      - name: Install Python environment
+        run: uv sync --locked
+
       - name: Publish to GitHub Pages
         uses: quarto-dev/quarto-actions/publish@8a96df13519ee81fd526f2dfca5962811136661b # v2.2.0
         with:
           target: gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          QUARTO_PYTHON: .venv/bin/python
