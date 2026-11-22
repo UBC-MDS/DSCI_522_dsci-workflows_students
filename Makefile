@@ -1,7 +1,10 @@
 # Default port if not provided via command line
 PORT ?= 8522
 
-.PHONY: help preview render check clean publish
+# Image generation needs a .env with OPENAI_API_KEY
+# and the images dependency group: uv sync --group images
+
+.PHONY: help preview render check clean publish images images-index render-deck slide
 
 help: ## Show this help
 	@echo "Usage: make [target]"
@@ -9,10 +12,10 @@ help: ## Show this help
 	@echo "Targets:"
 	@grep -E '^[a-zA-Z_-]+:.*##' Makefile \
 		| sed 's/:.*##/:/' \
-		| awk -F':' '{printf "  \033[36m%-10s\033[0m %s\n", $$1, $$2}'
+		| awk -F':' '{printf "  \033[36m%-12s\033[0m %s\n", $$1, $$2}'
 	@echo ""
 	@echo "Variables:"
-	@printf "  \033[36m%-10s\033[0m %s\n" "PORT" "preview port (default $(PORT))"
+	@printf "  \033[36m%-12s\033[0m %s\n" "PORT" "preview port (default $(PORT))"
 	@echo ""
 
 preview: ## Start quarto preview (override with PORT=xxxx)
@@ -34,3 +37,15 @@ clean: ## Remove build artifacts (_site and .quarto)
 publish: ## Publish to the gh-pages branch by hand (CI normally does this)
 	@echo "Publishing to gh-pages..."
 	quarto publish gh-pages
+
+images: ## generate every missing image in a lecture's prompt CSV, e.g. make images LEC=02
+	uv run --group images python scripts/generate_images.py --csv slides/slides/lec$(LEC)_image_prompts.csv
+
+images-index: ## regenerate specific CSV rows, e.g. make images-index LEC=02 INDEX=3 or INDEX=1,4-6
+	uv run --group images python scripts/generate_images.py --csv slides/slides/lec$(LEC)_image_prompts.csv --index $(INDEX) --overwrite
+
+render-deck: ## render one slide deck, e.g. make render-deck DECK=slides_02
+	quarto render slides/slides/$(DECK).qmd
+
+slide: ## render one slide deck by lecture number, e.g. make slide N=2
+	quarto render slides/slides/slides_$(shell printf '%02d' $(N)).qmd

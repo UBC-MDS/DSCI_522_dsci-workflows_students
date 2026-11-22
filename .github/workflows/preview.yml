@@ -5,7 +5,7 @@
 #
 # Copied from UBC-MDS/DSCI_521_platforms-dsci, itself adapted from
 # chendaniely/chendaniely.github.io (submodule caching and the
-# R / Python setup steps dropped -- see the note in publish.yml).
+# R setup steps dropped; Python comes from uv -- see the note in publish.yml).
 #
 # Known accepted caveat: a production deploy (publish.yml -> quarto publish)
 # rewrites gh-pages and can delete pr-preview/; an open PR's preview
@@ -43,9 +43,19 @@ jobs:
         with:
           version: release
 
+      - name: Set up uv
+        if: github.event.action != 'closed'
+        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+
+      - name: Install Python environment
+        if: github.event.action != 'closed'
+        run: uv sync --locked
+
       - name: Render site
         if: github.event.action != 'closed'
         run: quarto render
+        env:
+          QUARTO_PYTHON: .venv/bin/python
 
       # auto = deploy on opened/reopened/synchronize, remove on closed
       - name: Deploy PR preview

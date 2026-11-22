@@ -1,0 +1,19 @@
+---
+title: Lecture Overview
+
+listing:
+  - id: schedule
+    # column layout and the released/upcoming logic live in _schedule.ejs
+    template: _schedule.ejs
+    sort:
+      - file
+    sort-ui: false
+    filter-ui: false
+    contents:
+      - "lec_*.qmd"
+---
+
+## Schedule
+
+::: {#schedule}
+:::

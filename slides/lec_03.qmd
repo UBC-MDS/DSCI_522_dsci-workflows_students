@@ -1,0 +1,9 @@
+---
+title: "3. Customizing and Building Containers"
+description: "Docker Compose, Dockerfiles, and building your own images."
+description-short: "Recap virtual environments and lock files, launch containers with a docker-compose.yml file, and write a Dockerfile to build your own image from the command line."
+---
+
+## Slides for Section 001
+
+{{< revealjs "slides/slides_03.html" height="600px" class="ratio ratio-16x9" >}}

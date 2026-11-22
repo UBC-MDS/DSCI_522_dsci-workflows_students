@@ -1,0 +1,9 @@
+---
+title: "8. Testing Code & Conclusion"
+description: "Writing tests for your functions with pytest and testthat, and wrapping up the course."
+description-short: "Modularize scripts into functions, plan test cases, create simple test data, and write tests in Python and R. Then a look back at everything in the course."
+---
+
+## Slides for Section 001
+
+{{< revealjs "slides/slides_08.html" height="600px" class="ratio ratio-16x9" >}}

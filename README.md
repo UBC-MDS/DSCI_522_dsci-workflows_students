@@ -12,6 +12,9 @@ The course notes are in the textbook,
 
 The site is a Quarto website: `index.qmd` is the syllabus,
 and `assignments/` holds one page per assignment.
+`slides/` holds the Section 001 lecture and lab slides (the "Section 1 Slides" tab):
+each `lec_NN.qmd` / `lab_NN.qmd` page embeds a deck from `slides/slides/`,
+and the header comment in `_quarto.yml` explains how to release one.
 GitHub Actions renders it and publishes it to GitHub Pages on every push to `main`.
 To preview it locally, run `make preview`; `make help` lists the other targets.
 

@@ -1,0 +1,9 @@
+---
+title: "2. uv Lock Files, Containerization, and Docker"
+description: "A fast uv recap (pyproject.toml, uv.lock, .python-version), then running Docker containers."
+description-short: "Recap uv: what pyproject.toml, uv.lock and .python-version each hold and how uv sync rebuilds an environment. Then meet Docker: what a container is, how it differs from a virtual machine, and how to run one with ports, volumes and environment variables."
+---
+
+## Slides for Section 001
+
+{{< revealjs "slides/slides_02.html" height="600px" class="ratio ratio-16x9" >}}

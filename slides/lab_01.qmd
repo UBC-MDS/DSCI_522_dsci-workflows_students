@@ -1,0 +1,9 @@
+---
+title: "Lab 1. Lab policies, team building, and getting started"
+description: "Lab policies, meeting your team, and getting started on the group project."
+description-short: "Go over the lab attendance and AI tools policies, meet your project team, and get started with a reproducible workflow for the group project."
+---
+
+## Slides for Section 001
+
+{{< revealjs "slides/slides_lab_01.html" height="600px" class="ratio ratio-16x9" >}}

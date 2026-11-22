@@ -1,0 +1,26 @@
+typography:
+  fonts:
+    - family: Source Code Pro
+      source: google
+  headings: serif
+  base: serif
+  monospace: Source Code Pro
+
+# Bootswatch themes (e.g. minty) hardcode heading/navbar fonts; these
+# Sass defaults/rules apply after the theme so the brand font wins.
+defaults:
+  bootstrap:
+    defaults:
+      headings-font-family: serif
+    rules: |
+      .navbar,
+      .navbar-brand,
+      .navbar-title,
+      .dropdown-menu,
+      .dropdown-item {
+        font-family: serif;
+      }
+      .navbar-brand,
+      .navbar-title {
+        text-transform: none;
+      }

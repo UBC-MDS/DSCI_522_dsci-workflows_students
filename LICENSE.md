@@ -28,6 +28,14 @@ Notices:
 - No warranties are given. The license may not give you all of the permissions necessary for your intended use. For example, other rights such as publicity, privacy, or moral rights may limit how you use the material.
 
 
+## Attribution
+
+The lecture slides in this repository (`website/slides/`) and the scripts that generate their images
+were copied and adapted from the
+[DSCI_522-001-slides](https://github.com/skysheng7/DSCI_522-001-slides) repository by Sky Sheng,
+which is released under the MIT License (Copyright (c) 2025 Sky Kehan Sheng).
+Changes were made to adapt them to this repository.
+
 ## Software
 
 Except where otherwise noted, the example programs and other software provided in this repository are made available under the MIT license.

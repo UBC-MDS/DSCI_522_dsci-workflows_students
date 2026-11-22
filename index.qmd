@@ -120,19 +120,17 @@ so push it before you submit.
 
 ## Schedule
 
-The **Required Notes/Readings** are the core material for each lecture.
-The **Optional Book Chapters** are other chapters of the textbook on the same topics,
-for when you want more detail.
+Each lecture lists its **required readings**: the core material for that lecture.
+Some lectures also have **optional reading**, collapsed under the required list:
+other textbook chapters on the same topics and outside resources, for when you want more detail.
 
-::: {.column-page-inset .schedule-scroll}
+::: {.schedule-scroll}
 
 <table class="striped schedule">
   <tr>
     <th>Lecture</th>
     <th>Topic</th>
-    <th>Required Notes/Readings</th>
-    <th>Optional Book Chapters</th>
-    <th>Additional Resources</th>
+    <th>Readings</th>
   </tr>
   <tr>
     <td>1</td>
@@ -158,34 +156,23 @@ for when you want more detail.
         <li>[uv: rendering Quarto documents](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-quarto.html)</li>
         <li>[Virtual environments: R (renv)](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-r-renv.html) (if your project uses R)</li>
       </ul>
-    </td>
-    <td>
-      <p class="reading-group">Git and GitHub</p>
+      <details class="optional-reading">
+      <summary>Optional reading (12)</summary>
       <ul>
-        <li>[Git basics: a review](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-basics.html) [A refresher on everyday Git commands.]{.reading-note}</li>
-        <li>[Ignoring files with `.gitignore`](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-ignore.html) [Keep files such as `.venv/` out of the repository.]{.reading-note}</li>
-        <li>[Going back in time with Git](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-history.html) [View and restore earlier versions of your files.]{.reading-note}</li>
-        <li>[Project management on GitHub](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-project-management.html) [Issues, project boards and milestones for planning team work.]{.reading-note}</li>
-        <li>[Main branch protection](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-branch-protection.html) [Require a pull request before changes reach `main`.]{.reading-note}</li>
-        <li>[Filenames and data science project organization](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/filenames-project-organization.html) [File naming, folder layout and IDEs.]{.reading-note}</li>
+        <li>[Git basics: a review](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-basics.html)</li>
+        <li>[Ignoring files with .gitignore](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-ignore.html)</li>
+        <li>[Going back in time with Git](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-history.html)</li>
+        <li>[Project management on GitHub](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-project-management.html)</li>
+        <li>[Main branch protection](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-branch-protection.html)</li>
+        <li>[Filenames and data science project organization](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/filenames-project-organization.html)</li>
+        <li>[uv: installing uv and managing Python](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-install.html)</li>
+        <li>[uv: uv run and activating an environment](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-run.html)</li>
+        <li>[uv: JupyterLab and standalone scripts](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-jupyter-scripts.html)</li>
+        <li>[uv: pinning exact versions](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-exact-pins.html)</li>
+        <li>[renv: declaring packages in DESCRIPTION](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-r-renv-description.html)</li>
+        <li>Stating and Refining the Question, from [The Art of Data Science](https://leanpub.com/artofdatascience)</li>
       </ul>
-      <p class="reading-group">Virtual environments</p>
-      <ul>
-        <li>[uv: installing uv and managing Python](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-install.html) [Install and update uv, and manage Python versions.]{.reading-note}</li>
-        <li>[uv: `uv run` and activating an environment](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-run.html) [When to activate an environment instead of using `uv run`.]{.reading-note}</li>
-        <li>[uv: JupyterLab and standalone scripts](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-jupyter-scripts.html) [Run JupyterLab in a project's environment, and give one script its own dependencies.]{.reading-note}</li>
-        <li>[uv: pinning exact versions](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-exact-pins.html) [Declare exact versions (`==`) instead of lower bounds (`>=`).]{.reading-note}</li>
-        <li>[renv: declaring packages in `DESCRIPTION`](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-r-renv-description.html) [Explicit snapshots, which work better for R teams and containers.]{.reading-note}</li>
-        <li>[Virtual environments: Python (conda)](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-conda.html) [conda, another environment manager for Python.]{.reading-note}</li>
-        <li>[Virtual environments: Python (conda-lock)](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-conda-lock.html) [Lock files for conda environments.]{.reading-note}</li>
-      </ul>
-    </td>
-    <td>
-      <ul>
-        <li>
-          Stating and Refining the Question from [The Art of Data Science](https://leanpub.com/artofdatascience)
-        </li>
-      </ul>
+      </details>
     </td>
   </tr>
   <tr>
@@ -198,8 +185,6 @@ for when you want more detail.
         <li>[Containers: Docker Compose](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-docker-compose.html)</li>
       </ul>
     </td>
-    <td></td>
-    <td></td>
   </tr>
   <tr>
     <td>3</td>
@@ -212,18 +197,14 @@ for when you want more detail.
         <li>[Working in a container over ssh with Positron](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-ssh-positron.html)</li>
         <li>[Building images for several platforms](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-platforms.html) (through publishing for one platform)</li>
       </ul>
-    </td>
-    <td>
+      <details class="optional-reading">
+      <summary>Optional reading (3)</summary>
       <ul>
-        <li>[GitHub Actions: storing credentials in GitHub Secrets](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-actions.html#storing-and-use-github-actions-credentials-safely-via-github-secrets) [How a workflow uses your Docker Hub access token without showing it.]{.reading-note}</li>
-        <li>[Containers outside class](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-home-lab.html) [Running your own apps at home with containers.]{.reading-note}</li>
+        <li>[GitHub Actions: storing credentials in GitHub Secrets](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-actions.html#storing-and-use-github-actions-credentials-safely-via-github-secrets)</li>
+        <li>[Containers outside class](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-home-lab.html)</li>
+        <li>[Ten simple rules for writing Dockerfiles for reproducible data science](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008316)</li>
       </ul>
-    </td>
-    <td>
-      <ul>
-        <li>[Ten simple rules for writing Dockerfiles for reproducible data science](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008316)
-        </li>
-      </ul>
+      </details>
     </td>
   </tr>
   <tr>
@@ -232,39 +213,27 @@ for when you want more detail.
     <td>
       <ul>
         <li>[Building images for several platforms](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-platforms.html) (publishing for both platforms)</li>
-        <li>
-          [Data validation](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/data-validation.html)
-        </li>
+        <li>[Data validation](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/data-validation.html)</li>
       </ul>
     </td>
-    <td></td>
-    <td></td>
   </tr>
   <tr>
     <td>5</td>
     <td>Scripts</td>
     <td>
       <ul>
-        <li>
-        [Non-interactive scripts](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/scripts.html)
-        </li>
-        </ul>
-      </td>
-    <td></td>
-    <td></td>
+        <li>[Non-interactive scripts](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/scripts.html)</li>
+      </ul>
+    </td>
   </tr>
   <tr>
     <td>6</td>
     <td>Advanced reproducible reports</td>
     <td>
       <ul>
-        <li>
-          [Reproducible reports](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/reproducible-reports-quarto.html)
-        </li>
+        <li>[Reproducible reports](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/reproducible-reports-quarto.html)</li>
       </ul>
     </td>
-    <td></td>
-    <td></td>
   </tr>
   <tr>
     <td>7</td>
@@ -275,8 +244,6 @@ for when you want more detail.
         <li>[Data analysis pipelines with GNU Make](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/pipelines-make.html)</li>
       </ul>
     </td>
-    <td></td>
-    <td></td>
   </tr>
   <tr>
     <td>8</td>
@@ -288,8 +255,6 @@ for when you want more detail.
         <li>[Observability of unit outputs in data science](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/testing-images.html)</li>
       </ul>
     </td>
-    <td></td>
-    <td></td>
   </tr>
 </table>
 
