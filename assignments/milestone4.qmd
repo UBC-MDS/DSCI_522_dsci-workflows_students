@@ -8,31 +8,24 @@ editor_options:
     wrap: sentence
 ---
 
-## Overall project summary
+::: {.callout-note collapse="true"}
+## The end-of-course project goal
 
-In this course you will work in assigned teams of three or four to answer a predictive question
-using a publicly available data set that will allow you to answer that question.
-To answer this question, you will perform a complete data analysis in R and/or Python,
-from data import to communication of results,
-while placing significant emphasis on reproducible and trustworthy workflows.
+Your team answers a predictive question with a public data set, in R and/or Python,
+with a focus on reproducible and trustworthy workflows.
+**By the end of the course**, your single Quarto document will have become a project with:
 
-Your data analysis project will evolve throughout the course from a single,
-monolithic Jupyter notebook,
-to a fully reproducible and robust data data analysis project, comprised of:
-
-- A reproducible report powered by either Jupyter book or Quarto,
-- A containerized computational environment created and made shareable by Docker
-- A remote version control repository on GitHub for project collaboration, sharing, and documentation.
-- A well documented and modularized scripts written in R and/or Python,
-- A data analysis pipeline automated with GNU Make,
-
-An example final project from past years can be seen here:
-[Breast Cancer Predictor](https://github.com/ttimbers/breast-cancer-predictor)
+-   well-documented, modular scripts in R and/or Python
+-   a pipeline automated with GNU Make
+-   a reproducible Quarto report
+-   a Docker container for the computational environment
+-   a GitHub repository for collaboration and sharing
+:::
 
 ## Milestone 4 summary
 
 - Write a new script, a `Makefile` (literally called `Makefile`),
-  to act as a driver script to rule them all.
+  to act as a [driver script]{.term tabindex="0" data-tip="A driver script runs all your other scripts in the right order, with the right arguments, so one command reproduces the whole analysis."} to rule them all.
   This script should run the others in sequence, hard coding in the appropriate arguments.
 - Abstract some code from your scripts to functions in a separate file
   (at least one function per group member),
@@ -50,7 +43,7 @@ This script should:
 
 - live in the project's root directory and be named Makefile
 - be well documented (using the project `README` and comments inside the `Makefile` to explain what it does and how to use it)
-- have an `all` target so that you can easily run the entire analysis from top to bottom by running `make all` at the command line
+- have an `all` [target]{.term tabindex="0" data-tip="In a Makefile, a target is a named thing Make can build: usually a file (like a figure), or a name for a group of steps (like all or clean). You run one with make followed by its name, e.g. make all."} so that you can easily run the entire analysis from top to bottom by running `make all` at the command line
 - have a `clean` target so that you can easily "undo" your analysis by running `make clean` at the command line (e.g., deletes all generated data and files).
 - have a `publish` target that updates the copy of your report that GitHub Pages publishes
   (`docs/index.html`, from [Milestone 2](milestone2.qmd#publish-your-report-on-github-pages)).

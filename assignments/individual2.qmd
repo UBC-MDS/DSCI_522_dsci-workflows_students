@@ -1,134 +1,252 @@
 ---
 title: "Individual assignment 2"
+format:
+  html:
+    toc: true
 ---
 
-## Practice building and publishing a Docker image
+## Summary
 
-The purpose of this assignment is to make sure everyone gets hands-on practice
-building a Docker image from a `Dockerfile`
-and publishing it to Docker Hub with GitHub Actions.
+This assignment is hands-on practice for Milestone 2:
+build a [Docker image]{.term tabindex="0" data-tip="A Docker image is a saved snapshot of a computer setup: an operating system, software and packages, ready to run. A container is one running copy of an image. You write the recipe for the image in a Dockerfile."} from a `Dockerfile`, and publish it to [Docker Hub]{.term tabindex="0" data-tip="Docker Hub is a website that stores Docker images, the way GitHub stores code. Anyone can download a public image from it. Here you publish your image there, so others can use it without building it themselves."} with [GitHub Actions]{.term tabindex="0" data-tip="GitHub Actions runs commands for you on a fresh computer at GitHub when something happens in your repository, such as a push. You write the commands in a workflow file (a .yml file in .github/workflows/). Here it builds your image and uploads it to Docker Hub."}.
 
-### Exercise instructions
+- [ ] Make a small uv (Python) **or** renv (R) project with two pinned packages
+- [ ] Add a `Dockerfile` that installs your packages, and test it on your computer
+- [ ] Publish the image to Docker Hub with a GitHub Actions workflow
 
-1.  Create a **public** repository on GitHub.com, under your personal account, called `dsci522-dockerfile-practice`.
-    Select the option to create the repository with a `README` file.
+::: {.callout-tip collapse="true"}
+## Readings for this assignment
 
-2.  Clone the repository to your computer.
-    The rest of the work happens inside this folder.
+-   [uv: pinning exact versions](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-exact-pins.html)
+    or [renv: declaring packages in `DESCRIPTION`](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-r-renv-description.html)
+-   [Python packages with uv in an image](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-uv.html)
+    or [R packages with renv in an image](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-renv.html):
+    what each line of the `Dockerfile` does
+-   uv refresher: [DSCI 521 uv lecture notes](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/virtual-environments-uv.html)
+:::
 
-3.  Make a small project with **either** uv (Python) **or** renv (R).
-    Pick whichever language you prefer.
-    Your project needs at least **two** packages that you haven't used before,
-    and each one must be pinned to an exact version.
+## Instructions
 
-    -   **uv:**
-        -   Add your packages so that `pyproject.toml` lists them with `==`
-            (see [uv: pinning exact versions](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-exact-pins.html)).
-        -   Pin Python to version 3.11 or newer, so that it is recorded in `.python-version`.
-        -   Commit `pyproject.toml`, `uv.lock` and `.python-version` to your repository.
-            Don't commit `.venv/`.
-        -   If you need a refresher on uv,
-            see the [DSCI 521 uv lecture notes](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/virtual-environments-uv.html).
-    -   **renv:**
-        -   List your packages in `DESCRIPTION` with `(== x.y.z)`, and use explicit snapshots
-            (see [renv: declaring packages in `DESCRIPTION`](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-r-renv-description.html)).
-        -   Commit `DESCRIPTION`, `renv.lock`, `.Rprofile` and `renv/` to your repository
-            (the `.gitignore` inside `renv/` keeps the installed packages out).
+1.  **Make the repository.**
+    Create a **public** GitHub.com repository under your personal account, named `dsci522-dockerfile-practice`,
+    with a `README`. Clone it; everything below happens in this folder.
 
-4.  Add a `Dockerfile` to the root of your repository.
-    Its job is to build an image that has your packages installed, exactly as recorded in your lock file.
-    Follow the chapter for the language you chose:
+2.  **Make a small project** with uv **or** renv, whichever you prefer.
+    It needs at least **two** packages you haven't used before, each **[pinned to an exact version]{.term tabindex="0" data-tip="Pinning means recording one exact version of a package (e.g. pandas==2.2.3), instead of whatever is newest. Everyone who installs your project then gets the same version, so the code behaves the same."}**.
 
-    -   **uv:** [Python packages with uv in an image](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-uv.html)
-    -   **renv:** [R packages with renv in an image](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-renv.html)
+    -   **uv:** `pyproject.toml` lists each package with `==`, and Python 3.11 or newer is pinned in `.python-version`.
+        Commit `pyproject.toml`, `uv.lock` and `.python-version`, but not `.venv/`.
+    -   **renv:** `DESCRIPTION` lists each package with `(== x.y.z)`, using [explicit snapshots]{.term tabindex="0" data-tip="A snapshot is when renv writes down your installed packages in renv.lock. With explicit snapshots, renv records only the packages listed in DESCRIPTION (and the packages they depend on), not every package it finds in your code. Turn it on with renv::settings$snapshot.type('explicit')."}.
+        Commit `DESCRIPTION`, `renv.lock`, `.Rprofile` and `renv/`
+        (the `.gitignore` inside `renv/` keeps the installed packages out).
 
-    Your `Dockerfile` should do three things:
+3.  **Add the `Dockerfile`.**
+    Copy the uv or renv version below into a file named `Dockerfile` (no file extension) in the root of your repository.
+    It installs your packages exactly as your [lock file]{.term tabindex="0" data-tip="A lock file (uv.lock for uv, renv.lock for renv) is generated by your environment manager. It records the exact version of every package your project uses, including the packages they depend on, so the environment can be rebuilt exactly."} records them.
+    The comments explain each line. For renv, change `4.6.2` on the `FROM` line to the R version in your `renv.lock`.
 
-    -   Start from a base image that has a version tag (for example `rocker/r-ver:4.6.2`), **not** `latest`,
-        in the `FROM` line.
-    -   Use the `COPY` command to copy your project files, including the lock file, into the image.
-    -   Use the `RUN` command to install the packages from the lock file.
+4.  **Test it on your computer.**
+    Build the image, then load your packages in a container from it (commands below).
+    Fix problems now: debugging on your computer is much faster than on GitHub Actions.
 
-5.  Build your image and test it on your computer.
-    Run a container from the image and load each of your packages inside it.
-    If every package loads, your `Dockerfile` works.
-    Fix any problems now, before you set up GitHub Actions,
-    because it is much faster to debug on your own computer.
+5.  **Publish with GitHub Actions.**
+    Set up Docker Hub and the two [secrets]{.term tabindex="0" data-tip="A repository secret is a password or token saved in your GitHub repository's settings. Workflows can use it, but nobody can read it back, and it never shows up in your code or logs. Here the two secrets let the workflow log in to Docker Hub as you."} (see below).
+    Then copy the workflow below into `.github/workflows/publish-dockerhub.yml`,
+    and change only its `IMAGE` line to `<your-docker-hub-username>/dsci522-dockerfile-practice`, all in lowercase.
+    Commit and push.
 
-6.  Set up Docker Hub.
+6.  **Check that it worked.**
+    The run on the **Actions** tab finishes with a green check mark,
+    and your Docker Hub repository shows two [tags]{.term tabindex="0" data-tip="A tag is a label on a Docker image, written after a colon (e.g. python:3.14-slim). One image can have several tags. Here latest always points to your newest image, and the sha- tag names the commit that built it."}: `latest` and `sha-` plus 7 characters.
 
-    -   Create a free [Docker Hub](https://hub.docker.com/) account if you don't have one.
-    -   Create a **public** Docker Hub repository named `dsci522-dockerfile-practice`.
-    -   Create a Docker Hub [access token](https://docs.docker.com/security/access-tokens/)
-        with Read & Write permissions, and copy it somewhere safe.
-        You can only see it once.
+::: {.callout-tip collapse="true"}
+## The `Dockerfile` (step 3)
 
-7.  Give GitHub your Docker Hub login, so that GitHub Actions can publish for you.
-    In your GitHub repository, add two
+::: panel-tabset
+## uv (Python)
+
+```{.dockerfile filename="Dockerfile"}
+# Adapted from docker-uv-renv by Daniel Chen (MIT License)
+# https://github.com/chendaniely/docker-uv-renv
+
+# Start from Ubuntu Linux. It has no Python: uv installs it.
+FROM ubuntu:24.04
+
+# Copy the uv program into the image (0.13.7 pins uv's version)
+COPY --from=ghcr.io/astral-sh/uv:0.13.7 /uv /uvx /usr/local/bin/
+
+# Work in the /workspace folder inside the image
+WORKDIR /workspace
+
+# Put the packages in /opt/venv (not in a .venv folder in /workspace)
+ENV UV_PROJECT_ENVIRONMENT=/opt/venv
+
+# Copy only the files that list your packages
+COPY pyproject.toml uv.lock .python-version ./
+
+# Install Python and the exact packages in uv.lock
+# (--locked: stop if uv.lock doesn't match pyproject.toml)
+RUN uv sync --locked
+```
+
+## renv (R)
+
+```{.dockerfile filename="Dockerfile"}
+# Adapted from docker-uv-renv by Daniel Chen (MIT License)
+# https://github.com/chendaniely/docker-uv-renv
+
+# Start from Ubuntu Linux with R installed.
+# Change 4.6.2 to the R version in your renv.lock.
+FROM rocker/r-ver:4.6.2
+
+# Install curl: renv downloads packages with it
+RUN apt-get update && apt-get install --yes curl
+
+# Work in the /workspace folder inside the image
+WORKDIR /workspace
+
+# Put the packages in /opt/renv/library (not in renv/library in /workspace)
+RUN echo "RENV_PATHS_LIBRARY=/opt/renv/library" >> /usr/local/lib/R/etc/Renviron.site
+
+# Copy only the files renv needs to install your packages
+COPY DESCRIPTION renv.lock .Rprofile ./
+COPY renv/activate.R renv/
+
+# Install the exact packages in renv.lock
+RUN Rscript -e "renv::restore()"
+```
+:::
+:::
+
+::: {.callout-tip collapse="true"}
+## Commands to test your image (step 4)
+
+Open Docker Desktop first. From your repository folder, build the image and give it a name (`--tag`):
+
+```bash
+docker build --tag dsci522-test .
+```
+
+Then start a container, load your packages, and remove the container when it finishes (`--rm`).
+Replace the package names with yours.
+If nothing prints, it worked: an error means a package didn't install.
+
+::: panel-tabset
+## uv (Python)
+
+```bash
+docker run --rm dsci522-test uv run python -c "import cowsay, pyjokes"
+```
+
+## renv (R)
+
+```bash
+docker run --rm dsci522-test Rscript -e "library(cowsay); library(praise)"
+```
+:::
+
+Changed your environment? Run `docker build` again: Docker rebuilds only the steps that changed.
+:::
+
+::: {.callout-tip collapse="true"}
+## The workflow file (step 5)
+
+Change only the `IMAGE` line. The comments explain the rest.
+
+```{.yaml filename=".github/workflows/publish-dockerhub.yml"}
+# Builds the image from your Dockerfile and publishes it on Docker Hub.
+# Save this file as .github/workflows/publish-dockerhub.yml
+
+name: Publish image to Docker Hub
+
+# When the workflow runs
+on:
+  # by hand: Actions tab > Publish image to Docker Hub > Run workflow
+  workflow_dispatch:
+  # on its own: when a push changes one of these files
+  push:
+    paths:
+      - Dockerfile
+      - uv.lock
+      - renv.lock
+      - .github/workflows/publish-dockerhub.yml
+
+env:
+  # CHANGE THIS LINE: your Docker Hub username / repository name, in lowercase
+  IMAGE: your-docker-hub-username/dsci522-dockerfile-practice
+
+jobs:
+  publish:
+    # a fresh Linux computer on GitHub (Intel/AMD)
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Copy your repository onto that computer
+      - name: Check out the repository
+        uses: actions/checkout@v7
+
+      # 2. Log in to Docker Hub with your two repository secrets
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v4
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      # 3. Build the image with two tags:
+      #    latest, and sha- plus the first 7 characters of the commit ID
+      - name: Build the image
+        run: docker build --tag "$IMAGE:latest" --tag "$IMAGE:sha-${GITHUB_SHA::7}" .
+
+      # 4. Upload both tags to Docker Hub
+      - name: Push the image
+        run: docker push --all-tags "$IMAGE"
+```
+
+Steps 3 and 4 are the same `docker build` and `docker push` you would type on your own computer:
+GitHub just runs them for you, from the files in your repository.
+:::
+
+::: {.callout-tip collapse="true"}
+## Setting up Docker Hub and the GitHub secrets (step 5)
+
+1.  Create a free [Docker Hub](https://hub.docker.com/) account if you don't have one.
+2.  Create a **public** Docker Hub repository named `dsci522-dockerfile-practice`.
+3.  Create a Docker Hub [access token](https://docs.docker.com/security/access-tokens/) with Read & Write permissions.
+    Copy it somewhere safe: you can only see it once.
+4.  In your GitHub repository, add two
     [repository secrets](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets)
-    (Settings \> Secrets and variables \> Actions \> New repository secret):
+    (Settings \> Secrets and variables \> Actions \> New repository secret),
+    with exactly these names, because the workflow looks for them:
+    -   `DOCKER_USERNAME`: your Docker Hub username
+    -   `DOCKER_PASSWORD`: the access token (**not** your Docker Hub password)
+:::
 
-    -   `DOCKER_USERNAME`: your Docker Hub username.
-    -   `DOCKER_PASSWORD`: the access token from step 6 (**not** your Docker Hub password).
+::: {.callout-tip collapse="true"}
+## Troubleshooting
 
-    Use these exact names, because the workflow looks for them.
+-   **Git refuses to push the workflow file:** your personal access token needs the **workflow** scope.
+    On GitHub, go to Settings \> Developer settings \> Personal access tokens, select your token, and tick **workflow**.
+-   **The workflow didn't start:** it only starts on its own when a push changes the `Dockerfile`, a lock file or the workflow file.
+    Run it by hand: **Actions** tab \> **Publish image to Docker Hub** \> **Run workflow**.
+-   **The login step fails:** check the secret names, and that `DOCKER_PASSWORD` is an access token with Read & Write permissions.
+-   **The push step fails with "denied" or "unauthorized":** the `IMAGE` line must start with your Docker Hub username, all in lowercase.
+:::
 
-8.  Add a GitHub Actions workflow that automatically builds your image and pushes it to Docker Hub.
-    See [Building images for several platforms](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-platforms.html)
-    for background on building images and pushing them to Docker Hub;
-    for this assignment, use the single-platform workflow.
+## Submission instructions
 
-    -   Copy the workflow into `.github/workflows/publish-dockerhub.yml` in your repository.
-    -   Change only its `IMAGE` line,
-        so that the image goes to *your* Docker Hub account (and not somebody else's):
-        `<your-docker-hub-username>/dsci522-dockerfile-practice`, all in lowercase.
-    -   The workflow builds the image and pushes it to Docker Hub,
-        tagged `latest` and with the commit SHA,
-        so every pushed version of the image gets its own tag.
-        It runs whenever a push changes the `Dockerfile` or a lock file,
-        and you can also run it by hand.
+On Gradescope, enter these two URLs (there is no PDF to make):
 
-9.  Push your changes and make sure the workflow runs and succeeds.
+1.  your GitHub.com repository, named `dsci522-dockerfile-practice`
+2.  your image on Docker Hub, in a repository named `dsci522-dockerfile-practice`
 
-    -   Push a commit that changes the `Dockerfile` or your lock file, and the workflow starts on its own.
-    -   If it doesn't start, run it by hand:
-        click the **Actions** tab, click the workflow in the left sidebar,
-        then open the **Run workflow** drop-down menu and click **Run workflow**.
-    -   Watch the run on the **Actions** tab, and check that it finishes with a green check mark.
-        Then look at your Docker Hub repository to see that the image is there.
-    -   If Git refuses to push the workflow file,
-        your personal access token needs the **workflow** scope:
-        on GitHub, go to Settings \> Developer settings \> Personal access tokens,
-        select your token, and tick **workflow**.
-
-10. Add a `LICENSE.md` file that attributes the workflow you copied.
-    The workflow comes from [docker-uv-renv](https://github.com/chendaniely/docker-uv-renv).
-
-    -   Copy the text of its [`LICENSE`](https://github.com/chendaniely/docker-uv-renv/blob/main/LICENSE) (MIT)
-        into your `LICENSE.md`.
-    -   Add a note in the file saying that this license only covers the code you copied
-        (`.github/workflows/publish-dockerhub.yml`).
-
-### Submission instructions
-
-Follow the instructions for submission on Gradescope.
-We only need URLs, entered into Gradescope directly: there is no PDF to make.
-You will submit:
-
-1.  A link to the GitHub.com repository that you create for this assignment.
-    -   You should name your GitHub.com repository `dsci522-dockerfile-practice`.
-2.  A link to your Docker image on Docker Hub.
-    You should name your Docker Hub repository `dsci522-dockerfile-practice`.
-
+::: {.callout-tip collapse="true"}
 ## Rubric
 
-This assignment will be graded for completion as follows:
-
-| Grade | Description                                                                                                                            |
-|-------|----------------------------------------------------------------------------------------------------------------------------------------|
-| -15%  | There were issues with the links submitted that made it difficult to find the GitHub or Docker Hub repository                          |
-| -15%  | A package in `pyproject.toml` or `DESCRIPTION` is not pinned to an exact version                                                       |
-| -15%  | There were authentication issues with publishing to Docker Hub                                                                         |
-| -33%  | Fewer than two packages are listed in `pyproject.toml` or `DESCRIPTION`                                                                |
-| -33%  | The Docker image was not built successfully by GitHub Actions and published to Docker Hub                                              |
-| -100% | Assignment was not completed (no GitHub repository was created, or the repository is missing the environment files or the `Dockerfile`) |
+| Grade | Description |
+|-------|-------------|
+| -15%  | There were issues with the links submitted that made it difficult to find the GitHub or Docker Hub repository |
+| -15%  | A package in `pyproject.toml` is not pinned to an exact version |
+| -15%  | There were authentication issues with publishing to Docker Hub |
+| -33%  | Fewer than two packages are listed in `pyproject.toml` |
+| -33%  | The Docker image was not built successfully by GitHub Actions and published to Docker Hub |
+| -100% | Assignment was not completed (no GitHub repository, or the repository has no environment files or no `Dockerfile`) |
+:::

@@ -8,230 +8,431 @@ editor_options:
     wrap: sentence
 ---
 
-## Overall project summary
+::: {.callout-note collapse="true"}
+## The end-of-course project goal
 
-In this course you will work in assigned teams of three
-or four (see group assignments on GitHub) to answer a predictive statistical/machine learning question
-using a publicly available data set that will allow you to answer that question.
-To answer this question, you will perform a complete data analysis in R and/or Python,
-from data import to communication of results,
-while placing significant emphasis on reproducible and trustworthy workflows.
+Your team answers a predictive question with a public data set, in R and/or Python,
+with a focus on reproducible and trustworthy workflows.
+**By the end of the course**, your single Quarto document will have become a project with:
 
-Your data analysis project will evolve throughout the course from a single,
-monolithic Quarto document,
-to a fully reproducible and robust data analysis project, comprised of:
-
--   a well documented and modularized scripts written in R and/or Python,
--   a data analysis pipeline automated with GNU Make,
--   a reproducible report powered by Quarto,
--   a containerized computational environment created and made shareable by Docker
--   a remote version control repository on GitHub for project collaboration, sharing, and documentation.
-
-An example final project from past years can be seen here:
-[Breast Cancer Predictor](https://github.com/ttimbers/breast-cancer-predictor)
+-   well-documented, modular scripts in R and/or Python
+-   a pipeline automated with GNU Make
+-   a reproducible Quarto report
+-   a Docker container for the computational environment
+-   a GitHub repository for collaboration and sharing
+:::
 
 ## Milestone 2 summary
 
-1.  Move your project's computational environment into a container:
-    build its image on GitHub Actions for both Intel/AMD and ARM computers,
-    publish it on Docker Hub,
-    and work in it from now on.
+This milestone is about moving your project into a [container]{.term tabindex="0" data-tip="A container is a running copy of a Docker image: an isolated computer inside your computer, with the exact software and packages your project needs. Everyone who runs it gets the same environment, whatever their own laptop has installed."}.
 
-2.  Publish your report on GitHub Pages.
+- [ ] Run your project's environment in a Docker container, and **work in it from now on**
+- [ ] Build the [image]{.term tabindex="0" data-tip="A Docker image is a saved snapshot of a computer setup: an operating system, software and packages, ready to run. A container is one running copy of it. Your Dockerfile is the recipe for your project's image."} on [GitHub Actions]{.term tabindex="0" data-tip="GitHub Actions runs commands for you on a fresh computer at GitHub when something happens in your repository, such as a push. You write the commands in a workflow file (a .yml file in .github/workflows/). Here it builds your image and uploads it to Docker Hub."} for [Intel/AMD and ARM]{.term tabindex="0" data-tip="These are the two main kinds of computer processor. Most Windows laptops and servers use Intel/AMD chips (linux/amd64), while Macs with Apple silicon (M1 and later) use ARM chips (linux/arm64). An image built for one kind runs slowly or not at all on the other, so you build for both."}, and publish it on [Docker Hub]{.term tabindex="0" data-tip="Docker Hub is a website that stores Docker images, the way GitHub stores code. Anyone can download a public image from it. Here your team publishes its image there, so everyone downloads the same one instead of building their own."}
+- [ ] Publish your report on [GitHub Pages]{.term tabindex="0" data-tip="GitHub Pages is a free GitHub service that turns files in a repository into a public website. Here it shows your rendered report at a web address, so anyone can read it without cloning your repository."}
 
-The reference for this milestone is
-[docker-uv-renv](https://github.com/chendaniely/docker-uv-renv),
-the example project the textbook's Containers chapters build up to.
+We give you the `Dockerfile`, the workflow file and [`docker-compose.yml`]{.term tabindex="0" data-tip="Docker Compose starts a container from settings written in a docker-compose.yml file (which image, which ports, which folders to share), so you don't have to type a long docker run command. Here everyone on the team starts the same container with one short command."} below.
+They are adapted from [docker-uv-renv](https://github.com/chendaniely/docker-uv-renv).
 
-### 1. Use a container for the computational environment
+::: callout-important
+## See what a finished Milestone 2 looks like
 
-Once this section is done,
-shift the development of your project from working in a virtual environment to working in a container.
-The chapters to read are
-[Python and R in one image](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-uv-renv.html)
-(and the uv and renv chapters before it),
-[Docker Compose](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-docker-compose.html),
-[Working in a container over ssh with Positron](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-ssh-positron.html),
-and [Building images for several platforms](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-platforms.html).
+An example Milestone 2 that corresponds to our expectations from this year is here:
+**[Breast Cancer Predictor in Python 1.0.0](https://github.com/UBC-MDS/DSCI_522_project-template-breast-cancer-predictor/tree/1.0.0)**.
+Use it as your model: compare your repository with it before you submit.
+:::
 
-#### i. Start from docker-uv-renv's `Dockerfile` and `docker-compose.yml`
+::: {.callout-tip collapse="true"}
+## Readings for this milestone
 
-Copy the [`Dockerfile`](https://github.com/chendaniely/docker-uv-renv/blob/main/Dockerfile)
-and [`docker-compose.yml`](https://github.com/chendaniely/docker-uv-renv/blob/main/docker-compose.yml)
-from docker-uv-renv into the root of your repository.
-Its image has R 4.6.2, Python packages installed with uv, R packages installed with renv,
-Quarto for rendering your report,
-and an ssh server so you can work in the container from Positron.
-Keep the Compose service's name, `analysis-env`,
-so the commands below work as written.
+-   [Python and R in one image](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-uv-renv.html): what each line of the `Dockerfile` does
+-   [uv in a container](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-uv.html) and [renv in a container](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-renv.html): adding a package to your image
+-   [renv: declaring packages in `DESCRIPTION`](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-r-renv-description.html): pinning R package versions
+-   [Docker Compose](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-docker-compose.html): starting the container with one command
+-   [Working in a container over ssh with Positron](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-ssh-positron.html): editing code inside the container
+-   [Building images for several platforms](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-platforms.html): why the workflow builds for two kinds of computer
+-   [Introduction to Quarto and GitHub Pages](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html) (DSCI 521): publishing the report in part 2
+:::
 
-Then remove the language your project does not use from the `Dockerfile`:
+### 1. Put your environment in a container
+
+1.  **Add the `Dockerfile`.**
+    Copy the version for your project's language(s) below into a file named `Dockerfile` in the root of your repository.
+    If you use R, change `4.6.2` on the `FROM` line to the R version in your `renv.lock`.
+
+2.  **Check your environment files.**
+    The image installs your packages from your [lock files]{.term tabindex="0" data-tip="A lock file (uv.lock for uv, renv.lock for renv) is generated by your environment manager. It records the exact version of every package your project uses, including the packages they depend on, so the environment can be rebuilt exactly."},
+    so these must be in your repository and agree with each other:
+
+    -   **Python (uv):** `pyproject.toml` with every package [pinned]{.term tabindex="0" data-tip="Pinning means recording one exact version of a package (e.g. pandas==2.2.3), instead of whatever is newest. Everyone who installs your project then gets the same version, so the code behaves the same."} with `==`, `uv.lock` and `.python-version`.
+        It **must list `ipykernel`, `nbclient` and `pyyaml`** (Quarto needs them to run the Python code in your report).
+    -   **R (renv):** `DESCRIPTION` with every package pinned with `(== x.y.z)`, `renv.lock`, `.Rprofile` and `renv/`.
+        `DESCRIPTION` is required, and it **must list `knitr` and `rmarkdown`**
+        (Quarto needs them to run the R code in your report).
+
+3.  **Test the build on your computer** before you push:
+    `docker build --tag my-project .` (as in Individual Assignment 2).
+    Fixing errors here is much faster than on GitHub Actions.
+
+4.  **Build and publish the image with GitHub Actions.**
+    One team member sets up Docker Hub and the GitHub [secrets]{.term tabindex="0" data-tip="A repository secret is a password or token saved in your GitHub repository's settings. Workflows can use it, but nobody can read it back, and it never shows up in your code or logs. Here the two secrets let the workflow log in to Docker Hub as your team."} (see below).
+    Copy the workflow below into `.github/workflows/publish-dockerhub.yml`,
+    change only its `IMAGE` line to your Docker Hub repository's name, all in lowercase, then commit and push.
+    It builds for `linux/amd64` (Intel/AMD) and `linux/arm64` (ARM, such as Apple silicon Macs)
+    and publishes them under two [tags]{.term tabindex="0" data-tip="A tag is a label on a Docker image, written after a colon (e.g. python:3.14-slim). One image can have several tags. Here latest always points to your newest image, and the sha- tag names the commit that built it."}: `latest` and `sha-` plus 7 characters of the commit ID.
+    Check that the run succeeds and that your image's tag on Docker Hub lists **both** platforms.
+
+5.  **Add `docker-compose.yml`.**
+    Copy the file below into the root of your repository, and change its `image:` line to your image,
+    pinned to the [commit-SHA tag]{.term tabindex="0" data-tip="Every Git commit has a unique ID called its SHA (e.g. 1a2b3c4). Your workflow tags each image it pushes with the start of the SHA of the commit that built it, so the tag always points to that one exact image. The latest tag, by contrast, changes every time you publish."} your workflow pushed, not `latest`
+    (for example, `image: yourname/yourproject:sha-1a2b3c4`).
+    Keep the [service name]{.term tabindex="0" data-tip="In Docker Compose, a service is one container it manages, named under services: in docker-compose.yml. Commands such as docker compose run use that name to say which container you mean. Here the name is analysis-env."} `analysis-env`, so the commands below work as written.
+
+6.  **Work in the container from now on**, with Positron over [ssh]{.term tabindex="0" data-tip="ssh (secure shell) lets you log in to another computer and work on it from your own. Here the other computer is your container: Positron connects to it over ssh, so your code runs with the container's software while your files stay in your project folder."}
+    ([Working in a container over ssh with Positron](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-ssh-positron.html)).
+    To add a package: add it with uv or renv, commit the changed files together,
+    let GitHub Actions publish a new image,
+    then update the tag in `docker-compose.yml` in a pull request.
+
+7.  **Update your `README`** so its instructions use the container (see the next section).
+
+::: {.callout-tip collapse="true"}
+## The `Dockerfile` (step 1)
+
+Pick the tab for your project. All three start the ssh server, so you can work in the container with Positron.
 
 ::: panel-tabset
+## Python and R
+
+```{.dockerfile filename="Dockerfile"}
+# Adapted from docker-uv-renv by Daniel Chen (MIT License)
+# https://github.com/chendaniely/docker-uv-renv
+
+# Start from Ubuntu Linux with R installed.
+# Change 4.6.2 to the R version in your renv.lock.
+FROM rocker/r-ver:4.6.2
+
+# Install the programs the project needs:
+# curl downloads files, git/less/nano let you work in a terminal,
+# make runs a Makefile, openssh-server lets Positron connect over ssh,
+# libuv1-dev is needed by the R package fs
+RUN apt-get update && apt-get install --yes \
+    curl \
+    git \
+    less \
+    libuv1-dev \
+    make \
+    nano \
+    openssh-server
+
+# Install Quarto (it comes with Typst for PDFs, so no LaTeX).
+# dpkg --print-architecture gives amd64 or arm64, to match the computer.
+RUN curl --location --output quarto.deb \
+    https://github.com/quarto-dev/quarto-cli/releases/download/v1.11.9/quarto-1.11.9-linux-$(dpkg --print-architecture).deb \
+  && apt-get install --yes ./quarto.deb \
+  && rm quarto.deb
+
+# Copy the uv program into the image (0.13.7 pins uv's version)
+COPY --from=ghcr.io/astral-sh/uv:0.13.7 /uv /uvx /usr/local/bin/
+
+# Your project folder is mounted at /workspace,
+# so the packages go in /opt instead
+WORKDIR /workspace
+
+# ---- Python packages (uv), in /opt/venv ----
+ENV UV_PROJECT_ENVIRONMENT=/opt/venv
+# ssh logins don't see ENV, only /etc/environment
+RUN echo "UV_PROJECT_ENVIRONMENT=$UV_PROJECT_ENVIRONMENT" >> /etc/environment
+COPY pyproject.toml uv.lock .python-version ./
+# --locked: stop if uv.lock doesn't match pyproject.toml
+RUN uv sync --locked
+
+# ---- R packages (renv), in /opt/renv/library ----
+RUN echo "RENV_PATHS_LIBRARY=/opt/renv/library" >> /usr/local/lib/R/etc/Renviron.site
+COPY renv.lock .Rprofile ./
+COPY renv/activate.R renv/
+RUN Rscript -e "renv::restore()"
+
+# On a Linux laptop, remove the # from the next line.
+# (sshd wants root to own the key file, but on Linux the mounted one is yours.)
+# RUN echo "StrictModes no" > /etc/ssh/sshd_config.d/container.conf
+
+# Start the ssh server when the container starts.
+# -D keeps it in the foreground, so the container keeps running.
+CMD ["/usr/sbin/sshd", "-D"]
+```
+
 ## Python only
 
-Delete the R packages part:
+```{.dockerfile filename="Dockerfile"}
+# Adapted from docker-uv-renv by Daniel Chen (MIT License)
+# https://github.com/chendaniely/docker-uv-renv
 
--   the `RUN echo "RENV_PATHS_LIBRARY=/opt/renv/library" ...` line
--   `COPY renv.lock .Rprofile ./`
--   `COPY renv/activate.R renv/`
--   `RUN Rscript -e "renv::restore()"`
--   `libuv1-dev` in the `apt-get install` list (only the R package fs needs it)
+# Start from Ubuntu Linux (this image also has R, which you can ignore).
+FROM rocker/r-ver:4.6.2
 
-Your project has no `DESCRIPTION`, `renv.lock`, `.Rprofile` or `renv/`.
+# Install the programs the project needs:
+# curl downloads files, git/less/nano let you work in a terminal,
+# make runs a Makefile, openssh-server lets Positron connect over ssh
+RUN apt-get update && apt-get install --yes \
+    curl \
+    git \
+    less \
+    make \
+    nano \
+    openssh-server
+
+# Install Quarto (it comes with Typst for PDFs, so no LaTeX).
+# dpkg --print-architecture gives amd64 or arm64, to match the computer.
+RUN curl --location --output quarto.deb \
+    https://github.com/quarto-dev/quarto-cli/releases/download/v1.11.9/quarto-1.11.9-linux-$(dpkg --print-architecture).deb \
+  && apt-get install --yes ./quarto.deb \
+  && rm quarto.deb
+
+# Copy the uv program into the image (0.13.7 pins uv's version)
+COPY --from=ghcr.io/astral-sh/uv:0.13.7 /uv /uvx /usr/local/bin/
+
+# Your project folder is mounted at /workspace,
+# so the packages go in /opt instead
+WORKDIR /workspace
+
+# Python packages (uv) go in /opt/venv
+ENV UV_PROJECT_ENVIRONMENT=/opt/venv
+# ssh logins don't see ENV, only /etc/environment
+RUN echo "UV_PROJECT_ENVIRONMENT=$UV_PROJECT_ENVIRONMENT" >> /etc/environment
+COPY pyproject.toml uv.lock .python-version ./
+# --locked: stop if uv.lock doesn't match pyproject.toml
+RUN uv sync --locked
+
+# On a Linux laptop, remove the # from the next line.
+# (sshd wants root to own the key file, but on Linux the mounted one is yours.)
+# RUN echo "StrictModes no" > /etc/ssh/sshd_config.d/container.conf
+
+# Start the ssh server when the container starts.
+# -D keeps it in the foreground, so the container keeps running.
+CMD ["/usr/sbin/sshd", "-D"]
+```
 
 ## R only
 
-Delete the uv part, but keep `WORKDIR /workspace`:
+```{.dockerfile filename="Dockerfile"}
+# Adapted from docker-uv-renv by Daniel Chen (MIT License)
+# https://github.com/chendaniely/docker-uv-renv
 
--   `COPY --from=ghcr.io/astral-sh/uv:0.13.7 /uv /uvx /usr/local/bin/`
--   `ENV UV_PROJECT_ENVIRONMENT=/opt/venv`
-    and the `RUN echo "UV_PROJECT_ENVIRONMENT=..."` line after it
--   `COPY pyproject.toml uv.lock .python-version ./`
--   `RUN uv sync --locked`
+# Start from Ubuntu Linux with R installed.
+# Change 4.6.2 to the R version in your renv.lock.
+FROM rocker/r-ver:4.6.2
 
-Your project has no `pyproject.toml`, `uv.lock` or `.python-version`,
-and you render with `quarto render` instead of `uv run quarto render`.
+# Install the programs the project needs:
+# curl downloads files, git/less/nano let you work in a terminal,
+# make runs a Makefile, openssh-server lets Positron connect over ssh,
+# libuv1-dev is needed by the R package fs
+RUN apt-get update && apt-get install --yes \
+    curl \
+    git \
+    less \
+    libuv1-dev \
+    make \
+    nano \
+    openssh-server
 
-## Python and R
+# Install Quarto (it comes with Typst for PDFs, so no LaTeX).
+# dpkg --print-architecture gives amd64 or arm64, to match the computer.
+RUN curl --location --output quarto.deb \
+    https://github.com/quarto-dev/quarto-cli/releases/download/v1.11.9/quarto-1.11.9-linux-$(dpkg --print-architecture).deb \
+  && apt-get install --yes ./quarto.deb \
+  && rm quarto.deb
 
-Keep both parts.
+# Your project folder is mounted at /workspace,
+# so the packages go in /opt instead
+WORKDIR /workspace
+
+# R packages (renv) go in /opt/renv/library
+RUN echo "RENV_PATHS_LIBRARY=/opt/renv/library" >> /usr/local/lib/R/etc/Renviron.site
+COPY renv.lock .Rprofile ./
+COPY renv/activate.R renv/
+RUN Rscript -e "renv::restore()"
+
+# On a Linux laptop, remove the # from the next line.
+# (sshd wants root to own the key file, but on Linux the mounted one is yours.)
+# RUN echo "StrictModes no" > /etc/ssh/sshd_config.d/container.conf
+
+# Start the ssh server when the container starts.
+# -D keeps it in the foreground, so the container keeps running.
+CMD ["/usr/sbin/sshd", "-D"]
+```
+
+With R only, you render with `quarto render` instead of `uv run quarto render`.
+:::
 :::
 
-**Note - the `Dockerfile` and `docker-compose.yml` should live in the root of your public GitHub.com repository.**
+::: {.callout-tip collapse="true"}
+## Setting up Docker Hub and the GitHub secrets (step 4)
 
-#### ii. Your environment files
+One team member:
 
-The image installs your packages from your lock files,
-so these files must be in your repository and agree with each other:
+1.  Creates a **public** Docker Hub repository for the project.
+2.  Creates a Docker Hub [access token](https://docs.docker.com/security/access-tokens/) with Read & Write permissions.
+3.  Adds two [repository secrets](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets)
+    to your GitHub repository (Settings \> Secrets and variables \> Actions \> New repository secret):
+    `DOCKER_USERNAME` (the Docker Hub username)
+    and `DOCKER_PASSWORD` (the access token, **not** the Docker Hub password).
+:::
 
--   **Python (uv):** `pyproject.toml` with each package pinned to an exact version (`==`),
-    `uv.lock` and `.python-version`.
--   **R (renv):** `DESCRIPTION` with each package pinned to an exact version (`(== x.y.z)`),
-    `renv.lock`, `.Rprofile` and `renv/`.
-    `DESCRIPTION` is required in this milestone
-    (see [renv: declaring packages in `DESCRIPTION`](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-r-renv-description.html)),
-    and it must list `knitr` and `rmarkdown`:
-    Quarto uses these two packages to run the R code in your report.
+::: {.callout-tip collapse="true"}
+## The workflow file (step 4)
 
-To add a package, follow the chapter for your language
-([uv](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-uv.html),
-[renv](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-renv.html)),
-commit the changed files together,
-and let GitHub Actions publish a new image.
+Job 1 runs the same `docker build` and `docker push` as Individual Assignment 2, on an Intel/AMD and an ARM computer at the same time.
+Job 2 puts the two images under one tag.
+Change only the `IMAGE` line.
 
-#### iii. Build and publish the image on GitHub Actions, for both kinds of computers
+```{.yaml filename=".github/workflows/publish-dockerhub.yml"}
+# Builds the image from your Dockerfile for Intel/AMD and ARM computers,
+# and publishes it on Docker Hub.
+# Save this file as .github/workflows/publish-dockerhub.yml
 
-Add a GitHub Actions workflow, `.github/workflows/publish-dockerhub.yml`,
-that builds your image for both `linux/amd64` (Intel/AMD) and `linux/arm64` (ARM, such as Macs with Apple silicon)
-and pushes them to Docker Hub as one image,
-tagged `latest` and with the commit SHA.
-It should run whenever a push changes the `Dockerfile` or a lock file,
-and when you run it by hand.
-Start from the two-platform workflow in
-[Building images for several platforms](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-platforms.html),
-and change only its `IMAGE` line, to your Docker Hub repository's name, all in lowercase.
+name: Publish image to Docker Hub
 
-For the workflow to push,
-one team member creates a public Docker Hub repository for the project
-and a Docker Hub [access token](https://docs.docker.com/security/access-tokens/) with Read & Write permissions,
-and adds two [repository secrets](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets)
-to your GitHub repository
-(Settings \> Secrets and variables \> Actions \> New repository secret):
-`DOCKER_USERNAME`, the Docker Hub username,
-and `DOCKER_PASSWORD`, the access token (not the Docker Hub password).
-This is the same as in Individual assignment 2,
-where you built for one kind of computer.
+# When the workflow runs
+on:
+  # by hand: Actions tab > Publish image to Docker Hub > Run workflow
+  workflow_dispatch:
+  # on its own: when a push changes one of these files
+  push:
+    paths:
+      - Dockerfile
+      - uv.lock
+      - renv.lock
+      - .github/workflows/publish-dockerhub.yml
 
-Check that the run succeeds,
-and that your image's tag on Docker Hub lists both `linux/amd64` and `linux/arm64`.
+env:
+  # CHANGE THIS LINE: your Docker Hub username / repository name, in lowercase
+  IMAGE: your-docker-hub-username/your-repository-name
 
-#### iv. Run the container with Docker Compose
+jobs:
+  # Job 1: build the image on two computers at the same time,
+  # one Intel/AMD and one ARM, and push one tag from each
+  build:
+    strategy:
+      matrix:
+        include:
+          - runner: ubuntu-latest     # Intel/AMD
+            arch: amd64
+          - runner: ubuntu-24.04-arm  # ARM
+            arch: arm64
+    runs-on: ${{ matrix.runner }}
+    steps:
+      # 1. Copy your repository onto the computer
+      - name: Check out the repository
+        uses: actions/checkout@v7
 
-In `docker-compose.yml`,
-use your published image instead of building it,
-pinned to the commit-SHA tag your workflow pushed
-(for example, `image: yourname/yourproject:sha-1a2b3c4`), not `latest`.
-When your workflow publishes a new image,
-update the tag in a pull request.
+      # 2. Log in to Docker Hub with your two repository secrets
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v4
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
-Keep the ssh setup from docker-uv-renv:
-the port, `2222:22`,
-and the mount of `~/.ssh/id_ed25519.pub`.
-Work in the container with Positron over ssh, as in
-[Working in a container over ssh with Positron](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-ssh-positron.html).
+      # 3. Build the image for this computer, tagged for example sha-1a2b3c4-arm64
+      #    (sha- plus the first 7 characters of the commit ID, plus the chip)
+      - name: Build the image
+        run: docker build --tag "$IMAGE:sha-${GITHUB_SHA::7}-${{ matrix.arch }}" .
 
-#### v. Document the container in your `README`
+      # 4. Upload it to Docker Hub
+      - name: Push the image
+        run: docker push "$IMAGE:sha-${GITHUB_SHA::7}-${{ matrix.arch }}"
 
-Your `README`'s instructions for running the analysis must now use the container,
-in this order:
+  # Job 2: after both builds finish, put the two images under one tag,
+  # so each computer downloads the one for its chip
+  combine:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v4
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
-1.  Make an ssh key if you don't have one: `ssh-keygen -t ed25519`,
-    pressing Enter at each question.
-    Without the key,
-    Docker makes a folder named `~/.ssh/id_ed25519.pub` in its place,
-    and ssh into the container fails until you delete that folder and make the key.
+      # Make the tags latest and sha-1a2b3c4, each holding both images
+      - name: Combine the two images under one tag
+        run: |
+          docker buildx imagetools create \
+            --tag "$IMAGE:latest" \
+            --tag "$IMAGE:sha-${GITHUB_SHA::7}" \
+            "$IMAGE:sha-${GITHUB_SHA::7}-amd64" \
+            "$IMAGE:sha-${GITHUB_SHA::7}-arm64"
+```
+
+It runs on its own when a push changes the `Dockerfile`, a lock file or the workflow file.
+To run it by hand: **Actions** tab \> **Publish image to Docker Hub** \> **Run workflow**.
+On Docker Hub you will see four tags: `latest`, `sha-1a2b3c4`, and the two halves `sha-1a2b3c4-amd64` and `sha-1a2b3c4-arm64`.
+Use the one without `-amd64` or `-arm64` in `docker-compose.yml`.
+:::
+
+::: {.callout-tip collapse="true"}
+## The `docker-compose.yml` file (step 5)
+
+Change only the `image:` line.
+
+```{.yaml filename="docker-compose.yml"}
+# Adapted from docker-uv-renv by Daniel Chen (MIT License)
+# https://github.com/chendaniely/docker-uv-renv
+
+services:
+  # the service name: `docker compose run analysis-env ...` uses it
+  analysis-env:
+    # CHANGE THIS LINE: your image on Docker Hub,
+    # with the sha- tag your workflow pushed (not latest)
+    image: your-docker-hub-username/your-repository-name:sha-1a2b3c4
+    ports:
+      # 2222 on your computer, 22 (ssh) in the container
+      - "2222:22"
+    volumes:
+      # your project folder, at /workspace in the container
+      - .:/workspace
+      # your ssh public key, so you can log in (ro: read-only)
+      - ~/.ssh/id_ed25519.pub:/root/.ssh/authorized_keys:ro
+```
+
+There is no `build: .` line: everyone downloads the image your workflow published, instead of building their own.
+:::
+
+#### Your `README`: how to run the analysis
+
+Write these steps in your `README`, in this order:
+
+1.  Make an [ssh key]{.term tabindex="0" data-tip="An ssh key is a pair of files that proves who you are without a password: a private key you keep secret (~/.ssh/id_ed25519) and a public key you can share (~/.ssh/id_ed25519.pub). Here docker-compose.yml puts your public key in the container, so ssh lets you in."} if you don't have one: `ssh-keygen -t ed25519`, pressing Enter at each question.
+    (Without it, Docker makes a *folder* named `~/.ssh/id_ed25519.pub`,
+    and ssh into the container fails until you delete that folder and make the key.)
 2.  Download the image: `docker compose pull`.
 3.  Render the report in the container:
     -   Python, or Python and R: `docker compose run --rm analysis-env uv run quarto render`
     -   R only: `docker compose run --rm analysis-env quarto render`
 
     Add your report's path after `quarto render` if your project has no `_quarto.yml` that lists it.
-4.  Work in the container: `docker compose up -d` starts it in the background,
-    then connect with Positron over ssh;
+4.  Work in the container: `docker compose up -d` starts it, then connect with Positron over ssh.
     `docker compose down` stops it.
-5.  Update the container:
-    add a package with your environment manager,
-    commit and push,
+5.  Update the container: add a package with your environment manager, commit and push,
     wait for GitHub Actions to publish the new image,
     then update the tag in `docker-compose.yml` and run `docker compose pull`.
 
 ::: callout-important
-## Your README instructions are worth 5 all-or-nothing points
+## 5 all-or-nothing points for your README instructions
 
-5 points of this milestone are for the reproducibility of your README instructions:
-whether someone can follow them to launch your container and run your analysis in it.
-These points are all-or-nothing.
-If your instructions do not work exactly as you have written them,
-you will lose all 5 points.
-
-Make sure your instructions work on both Windows and Mac computers.
-If your team does not have both,
-work with another team to test them.
+If someone can't launch your container and run your analysis by following your instructions
+**exactly as written**, you lose all 5 points.
+Test them on **both Windows and Mac**.
+If your team doesn't have both, ask another team to test them.
 :::
 
 ### 2. Publish your report on GitHub Pages
 
-Anyone should be able to read your report online,
-without cloning your repository.
-You learned to publish with GitHub Pages in DSCI 521
-([Introduction to Quarto and GitHub Pages](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html)),
-where you published a whole Quarto website.
-Here you apply those skills to publish the HTML version of your report.
+Anyone should be able to read your report online without cloning your repository.
+You publish it by hand: put a [self-contained]{.term tabindex="0" data-tip="A self-contained HTML file has everything it needs (figures, styling, scripts) packed inside the one file, instead of in separate files next to it. So it still works after you copy it somewhere else."} copy of your rendered report at `docs/index.html`.
+If you already published your report in Milestone 1, switch to this setup anyway, because later milestones build on it.
 
-::: callout-note
-## Already published your report in Milestone 1?
-
-Switch to the setup below, even if your current one works.
-Later milestones build on it.
-:::
-
-You publish by hand, with a small workaround.
-It works because of how GitHub Pages serves files:
-
--   GitHub Pages can publish the files in a `docs/` folder on your `main` branch, exactly as they are.
--   When someone visits your site's address, the web server shows the file named `index.html`.
--   With `embed-resources: true`, your rendered report is a single HTML file
-    that holds everything it needs, including its figures.
-
-So publishing your report is just putting a copy of that one file at `docs/index.html`.
-Copying files by hand is easy to forget, so it is not how you would publish a larger site.
-Later in the program (in DSCI 524, when you build websites for your packages),
-you will use tools that build and publish a website for you.
-
-1.  Make your rendered report a single, self-contained HTML file,
-    with `embed-resources: true` in its HTML options,
-    for example in the report's YAML header:
+1.  Make the rendered report one self-contained HTML file, in its YAML header
+    (skip this if your `_quarto.yml` already sets it):
 
     ```yaml
     format:
@@ -239,88 +440,86 @@ you will use tools that build and publish a website for you.
         embed-resources: true
     ```
 
-    If your project's `_quarto.yml` already sets this, you don't need to add it again.
-    A self-contained file holds its figures and styling,
-    so it still works after you copy it somewhere else.
-    If you have only been rendering your report to PDF, render it to HTML as well.
+    If you have only been rendering to PDF, render to HTML as well.
 
-2.  Render your report.
-    Then copy the rendered HTML file into a `docs/` folder at the root of your repository,
-    and name the copy `index.html`:
+2.  Render your report, then copy it into `docs/` as `index.html`, and add an empty `.nojekyll` file:
 
     ```bash
     mkdir -p docs
     cp <path-to-your-report>.html docs/index.html
-    ```
-
-3.  Add an empty `.nojekyll` file to `docs/`,
-    so that GitHub Pages serves your file exactly as it is
-    (see [Turning off Jekyll with `.nojekyll`](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html#nojekyll)):
-
-    ```bash
     touch docs/.nojekyll
     ```
 
-4.  Commit and push `docs/`.
-    It is a copy of a generated file,
-    but GitHub Pages can only publish files that are in your repository.
+3.  Commit and push `docs/`.
     Check that your `.gitignore` does not ignore `docs/` or `.html` files.
 
-5.  In your repository on GitHub.com, go to **Settings > Pages**.
-    Under **Build and deployment**, choose **Deploy from a branch**,
-    then the `main` branch and the `/docs` folder, and click **Save**.
+4.  On GitHub.com, go to **Settings \> Pages** \> **Deploy from a branch**,
+    choose the `main` branch and the `/docs` folder, and click **Save**.
 
-6.  After a few minutes, your report is published at
-    `https://ubc-mds-2026-27.github.io/<your-repository>/`.
-    Open it and check that the whole report shows, including its figures.
+5.  After a few minutes, open `https://ubc-mds-2026-27.github.io/<your-repository>/`
+    and check that the whole report shows, including its figures.
 
-7.  Put this URL in your `README` (as the link to your rendered report)
+6.  Put this URL in your `README` (as the link to your rendered report)
     and in the **About** section of your repository.
 
 ::: callout-important
 ## Keep the published report up to date
 
 `docs/index.html` is a copy.
-Each time you re-render your report,
-copy it into `docs/` again and push,
-or the published version will fall behind.
-We grade your work from your `1.0.0` release,
-and the report on GitHub Pages should match it.
+Each time you re-render your report, copy it into `docs/` again and push.
+We grade from your `1.0.0` release, and the report on GitHub Pages should match it.
 :::
 
-## Submission Instructions
+::: {.callout-tip collapse="true"}
+## Why this works
 
-Just before you submit the milestone 2,
-create a release on your project repository on GitHub
-and name it something like `1.0.0` ([how to create a release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release)).
-This release allows us and you to easily jump to the state of your repository at the time of submission for grading purposes,
-while you continue to work on your project for the next milestone.
+-   GitHub Pages can publish the files in a `docs/` folder on `main`, exactly as they are.
+-   When someone visits your site's address, the server shows the file named `index.html`.
+-   With `embed-resources: true`, the report is one HTML file that holds its figures and styling,
+    so it still works after you copy it.
+-   `.nojekyll` tells GitHub Pages to serve your file as it is
+    (see [Turning off Jekyll with `.nojekyll`](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html#nojekyll)).
 
-Follow the instructions for submission on Gradescope.
-We only need URLs, entered into Gradescope directly: there is no PDF to make.
-You will submit:
+Copying by hand is easy to forget, so it is not how you would publish a larger site.
+In DSCI 524 you will use tools that build and publish a website for you.
+:::
 
-1.  the URL of your project's GitHub.com repository
-2.  the URL of a GitHub release of your project's GitHub.com repository
-3.  the URL of your report on GitHub Pages
-4.  the URL of your image on Docker Hub
+## Submission instructions
 
-## Expectations
+1.  Just before you submit, create a GitHub release named exactly `1.0.0`
+    ([how to create a release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release)).
+    It records the state of your repository at submission, so you can keep working on the next milestone.
+2.  On Gradescope, enter these four URLs (there is no PDF to make):
+    -   your project's GitHub.com repository
+    -   the GitHub release
+    -   your report on GitHub Pages
+    -   your image on Docker Hub
 
--   **Everyone should contribute equally to all aspects of the project** **(e.g., code, writing, project management).**
-    **This should be evidenced by a roughly equal number of commits,** **pull request reviews
-    and participation in communication via GitHub issues.**
--   Each group member should work in a [GitHub flow workflow](https://docs.github.com/en/get-started/quickstart/github-flow);
-    where they create branches for each feature or fix,
-    which are reviewed and critiqued by at least one other teammate
-    before the the pull request is accepted.
--   You should be committing to git and pushing to GitHub.com every time you work on this project.
--   Git commit messages should be meaningful.
-    These will be marked.
-    It's OK if one or two are less meaningful, but most should be.
--   Use GitHub issues to communicate to their team mate (as opposed to email or Slack).
--   Your question, analysis and visualization should make sense.
-    It doesn't have to be complicated.
--   You should use proper grammar and full sentences in your README.
-    Point form may occur, but should be less than 10% of your written documents.
--   You will not be expected to incorporate Milestone 1 feedback in this submission (of course you can, but likely you will not receive it until the end of the week which might be too late to incorporate it).
+You don't need to include Milestone 1 feedback in this submission.
+
+::: {.callout-tip collapse="true"}
+## Check yourself before submitting
+
+- [ ] The GitHub Actions run succeeded, and the Docker Hub tag lists `linux/amd64` and `linux/arm64`
+- [ ] `docker-compose.yml` uses your published image with a `sha-` tag, not `latest`
+- [ ] (Python) `pyproject.toml` pins every package and lists `ipykernel`, `nbclient` and `pyyaml`
+- [ ] (R) `DESCRIPTION` pins every package and lists `knitr` and `rmarkdown`
+- [ ] Someone on Windows and someone on Mac followed your `README` steps exactly and rendered the report
+- [ ] Your report on GitHub Pages shows in full, with its figures, and matches your release
+- [ ] The GitHub Pages URL is in your `README` and in the repository's **About** section
+- [ ] You created the `1.0.0` release
+:::
+
+::: {.callout-tip collapse="true"}
+## Teamwork expectations (these are marked)
+
+-   **Everyone contributes equally** to code, writing and project management,
+    shown by a roughly equal number of commits, pull request reviews and GitHub issue comments.
+-   Use the [GitHub flow](https://docs.github.com/en/get-started/using-github/github-flow):
+    a branch for each feature or fix, reviewed by at least one teammate before the pull request is merged.
+-   Commit and push every time you work on the project, with meaningful commit messages
+    (one or two less meaningful ones are OK).
+-   Talk to your teammates in GitHub issues, not email or Slack.
+-   Your question, analysis and visualization should make sense. They don't have to be complicated.
+-   Write your `README` in full sentences with proper grammar. Keep point form under 10% of it.
+:::

@@ -8,39 +8,32 @@ editor_options:
     wrap: sentence
 ---
 
-## Overall project summary
+::: {.callout-note collapse="true"}
+## The end-of-course project goal
 
-In this course you will work in assigned teams of three
-or four (see group assignments on GitHub) to answer a predictive statistical/machine learning question
-using a publicly available data set that will allow you to answer that question.
-To answer this question, you will perform a complete data analysis in R and/or Python,
-from data import to communication of results,
-while placing significant emphasis on reproducible and trustworthy workflows.
+Your team answers a predictive question with a public data set, in R and/or Python,
+with a focus on reproducible and trustworthy workflows.
+**By the end of the course**, your single Quarto document will have become a project with:
 
-Your data analysis project will evolve throughout the course from a single,
-monolithic Jupyter notebook,
-to a fully reproducible and robust data data analysis project, comprised of:
-
--   a well documented and modularized scripts written in R and/or Python,
--   a data analysis pipeline automated with GNU Make,
--   a reproducible report powered by Quarto,
--   a containerized computational environment created and made shareable by Docker
--   a remote version control repository on GitHub for project collaboration, sharing, and documentation.
-
-An example final project from past years can be seen here:[Breast Cancer Predictor](https://github.com/ttimbers/breast-cancer-predictor)
+-   well-documented, modular scripts in R and/or Python
+-   a pipeline automated with GNU Make
+-   a reproducible Quarto report
+-   a Docker container for the computational environment
+-   a GitHub repository for collaboration and sharing
+:::
 
 ## Milestone 3 summary
 
-1.  Abstract code from your report literate code document (`*.ipynb`, `*.qmd` or `*.Rmd`) to scripts (e.g., `.R` or `.py`).
+1.  Abstract code from your report [literate code document]{.term tabindex="0" data-tip="A literate code document mixes code and the writing that explains it in one file, such as a Quarto (.qmd), R Markdown (.Rmd) or Jupyter (.ipynb) document. Your Milestone 1 report is one."} (`*.ipynb`, `*.qmd` or `*.Rmd`) to scripts (e.g., `.R` or `.py`).
     This code need not be converted to a function,
     but can simply be files that call the functions needed to run your analysis.
     You should aim to split the analysis code into 4, or more, R or Python scripts.
     Where the code in each script is contributing to a related step in your analysis.
-    Your scripts should take command line arguments.
+    Your scripts should take [command line arguments]{.term tabindex="0" data-tip="Values you type after the script name when you run it in the terminal, e.g. python scripts/clean.py --input data/raw/data.csv --output data/processed/clean.csv. They let you change inputs and outputs without editing the code."}.
     **You must document in your `README.md` how to call each script,
     including what arguments you pass each script.**
 
-2.  Add data validation checks to your analysis scripts.
+2.  Add [data validation]{.term tabindex="0" data-tip="Data validation means automatic checks that your data looks the way your analysis expects (the right columns and types, no impossible values, not too many missing values) before you use it, so problems stop the analysis early instead of silently giving wrong results."} checks to your analysis scripts.
 
 3.  If your report literate code document is not already a `*.qmd` file, convert it so that it is.
 
