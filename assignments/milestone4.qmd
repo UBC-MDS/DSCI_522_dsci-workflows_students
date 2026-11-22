@@ -25,7 +25,7 @@ with a focus on reproducible and trustworthy workflows.
 ## Milestone 4 summary
 
 - Write a new script, a `Makefile` (literally called `Makefile`),
-  to act as a driver script to rule them all.
+  to act as a [driver script]{.term tabindex="0" data-tip="A driver script runs all your other scripts in the right order, with the right arguments, so one command reproduces the whole analysis."} to rule them all.
   This script should run the others in sequence, hard coding in the appropriate arguments.
 - Abstract some code from your scripts to functions in a separate file
   (at least one function per group member),
@@ -43,7 +43,7 @@ This script should:
 
 - live in the project's root directory and be named Makefile
 - be well documented (using the project `README` and comments inside the `Makefile` to explain what it does and how to use it)
-- have an `all` target so that you can easily run the entire analysis from top to bottom by running `make all` at the command line
+- have an `all` [target]{.term tabindex="0" data-tip="In a Makefile, a target is a named thing Make can build: usually a file (like a figure), or a name for a group of steps (like all or clean). You run one with make followed by its name, e.g. make all."} so that you can easily run the entire analysis from top to bottom by running `make all` at the command line
 - have a `clean` target so that you can easily "undo" your analysis by running `make clean` at the command line (e.g., deletes all generated data and files).
 - have a `publish` target that updates the copy of your report that GitHub Pages publishes
   (`docs/index.html`, from [Milestone 2](milestone2.qmd#publish-your-report-on-github-pages)).

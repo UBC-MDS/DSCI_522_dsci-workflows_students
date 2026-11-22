@@ -1,0 +1,335 @@
+---
+title: "Milestone 1"
+format:
+  html:
+    toc: true
+editor_options:
+  markdown:
+    wrap: sentence
+---
+
+<!--
+DRAFT for the next offering. The leading underscore keeps Quarto from rendering it,
+so it is not on the public site. To use it: replace milestone1.qmd with this file
+(after the current offering ends), update the year-specific links
+(UBC-MDS-2026-27 organization, lab_section_block3_2026-27.csv), and delete this comment.
+-->
+
+::: {.callout-note collapse="true"}
+## The end-of-course project goal
+
+Your team answers a predictive question with a public data set, in R and/or Python,
+with a focus on reproducible and trustworthy workflows.
+**By the end of the course**, your single Quarto document will have become a project with:
+
+-   well-documented, modular scripts in R and/or Python
+-   a pipeline automated with GNU Make
+-   a reproducible Quarto report
+-   a Docker container for the computational environment
+-   a GitHub repository for collaboration and sharing
+:::
+
+::: callout-important
+## Find your group
+
+Check that you are in the right group, with the right teammates, in the
+[lab sections file](https://github.ubc.ca/mds-2026-27/lab-sections/blob/main/lab_section_block3_2026-27.csv).
+:::
+
+## Milestone 1 summary
+
+This milestone is about doing **a complete data analysis project from start to finish**:
+read in the raw data, clean it, fit a model, get results, and write them up in a professional report.
+The analysis can be simple, but **the report must be detailed, accurate and professional**.
+You don't need Docker, scripts or Make yet: that comes in later milestones.
+
+- [ ] Write a teamwork contract
+- [ ] Set up a public GitHub repository in the course organization, **with its [metadata]{.term tabindex="0" data-tip="Metadata is data about data: information that describes something, not the thing itself (a photo's date and location, a book's author and title). Here it means the information that describes your GitHub repository, not your code: where it lives (the course organization), its Description (starting with DSCI 522), and which teams can access it. The teaching team's grading scripts use it to find your repository."}**
+- [ ] Give it a tidy project structure and the standard project files
+- [ ] Do the full analysis and write the report in one Quarto document (`.qmd`)
+- [ ] Record your environment with uv (Python) or renv (R), **as you go, not at the end**
+
+Your reference is the example project at the end of Milestone 1:
+[Breast Cancer Predictor 0.0.1](https://github.com/UBC-MDS/DSCI_522_project-template-breast-cancer-predictor/tree/0.0.1).
+
+::: {.callout-tip collapse="true"}
+## Readings for this milestone
+
+-   [Virtual environments: Python + uv](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/virtual-environments-uv.html) (DSCI 521)
+-   [Virtual environments: R](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/virtual-environments-renv.html) (DSCI 521)
+-   [How to write better commit messages](https://thoughtbot.com/blog/better-commit-messages-with-a-gitmessage-template)
+-   [Pull requests with empathy](https://slack.engineering/on-empathy-pull-requests/)
+:::
+
+### 1. Write a teamwork contract
+
+Copy the [teamwork contract template](teamwork-contract.qmd) into a Quarto document,
+make it your team's own, and render it to PDF.
+**Talk it through as a team**: a rushed contract, or one left mostly as the template, loses marks.
+It is personal, so it goes to Gradescope, not into your public repository.
+
+::: {.callout-tip collapse="true"}
+## What a contract usually covers
+
+-   How you share the work fairly
+-   Expected work hours, and when each of you is not available
+-   How often you meet, and who writes agendas and minutes
+-   How you work day to day (e.g., [stand-ups](https://www.atlassian.com/agile/scrum/standups), or a written update before each meeting)
+-   The quality of work you expect from yourselves and each other
+-   How you will handle conflict
+:::
+
+### 2. Set up your GitHub repository
+
+Create a **public** repository for your group in the
+[UBC-MDS-2026-27](https://github.com/orgs/UBC-MDS-2026-27) organization
+(not under a personal account or `UBC-MDS`).
+Give it a name related to your question; you can rename it later.
+All your project work lives in this repository.
+
+::: callout-important
+## Repository metadata is graded, and the course automation relies on it
+
+[Metadata]{.term tabindex="0" data-tip="Metadata is data about data: information that describes something, not the thing itself (a photo's date and location, a book's author and title). Here it means the information that describes your GitHub repository, not your code: where it lives (the course organization), its Description (starting with DSCI 522), and which teams can access it. The teaching team's grading scripts use it to find your repository."} that is still wrong after Milestone 1 keeps losing points in every milestone until it is fixed.
+Check it in your first lab, and raise any problem with the teaching team there.
+:::
+
+**The repository** needs all three:
+
+1.  It lives in [UBC-MDS-2026-27](https://github.com/orgs/UBC-MDS-2026-27).
+2.  Its **Description starts with exactly `DSCI 522`** (capital `DSCI`, one space, `522`, nothing before it),
+    e.g. `DSCI 522: Predicting wine quality from its chemistry`.
+    Not `dsci 522`, `DSCI522`, `DSCI-522` or `Predicting wine quality (DSCI 522)`.
+    Edit it with the gear icon next to **About** on the repository's main page.
+3.  It is added to **two teams**: `522-students` with the **Read** role,
+    and your group's team `522-team-XX` (your group number as two digits, e.g. `522-team-01`) with the **Admin** role.
+
+**Each team member** checks their own:
+
+1.  You accepted the invitation to the organization
+    (in your email, or at <https://github.com/orgs/UBC-MDS-2026-27/invitation>).
+2.  You are listed under **Members** of both `522-students` and your `522-team-XX`
+    (e.g. <https://github.com/orgs/UBC-MDS-2026-27/teams/522-team-01/members>).
+3.  Your github.com username is spelled exactly right, in the right group, in the
+    [lab sections file](https://github.ubc.ca/mds-2026-27/lab-sections/blob/main/lab_section_block3_2026-27.csv).
+
+Keep this metadata for the rest of the course. Renaming the repository is fine.
+
+::: {.callout-tip collapse="true"}
+## How to add the teams and check them
+
+1.  Open your repository's **Settings \> Collaborators and teams \> Add teams**.
+    You need admin access; whoever created the repository has it.
+2.  Search for each team and pick its role (Read for `522-students`, Admin for your group's team).
+    Admin for your group's team gives every member admin access, which you need later (e.g. for GitHub secrets in Milestone 2).
+3.  Check that your repository is listed under each team's **Repositories** tab:
+    -   <https://github.com/orgs/UBC-MDS-2026-27/teams/522-students/repositories>
+    -   <https://github.com/orgs/UBC-MDS-2026-27/teams/522-team-01/repositories> (use your group's number)
+
+To find your group's team: in the [organization](https://github.com/orgs/UBC-MDS-2026-27),
+open **Teams \> 522-students**; it is listed there as a sub-team.
+:::
+
+### 3. Give your project a tidy structure
+
+Your repository should look like this.
+Keep only the files that apply to you (the uv files for Python, the renv files for R, or both).
+
+```
+your-project-name/
+├── README.md
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+├── LICENSE.md
+├── .gitignore              # at least .DS_Store and .venv/
+├── pyproject.toml          # Python (uv)
+├── uv.lock                 # Python (uv)
+├── .python-version         # Python (uv)
+├── renv.lock               # R (renv)
+├── .Rprofile               # R (renv)
+├── renv/                   # R (renv): follow the .gitignore in here
+├── data/
+│   ├── raw/                # data exactly as downloaded
+│   └── processed/          # cleaned / intermediate data
+└── analysis/               # or reports/, src/
+    ├── <descriptive-name>.qmd
+    └── <descriptive-name>.html  # or .pdf
+```
+
+Keep the root tidy: the report goes in a sub-folder, not the root.
+
+What each file needs:
+
+-   **`README.md`**: the project title; all authors; a short summary (your question, what you found, what it might mean);
+    **step-by-step instructions to run the analysis**, from cloning to rendering the report;
+    the dependencies (or a link to `pyproject.toml`); the license names;
+    an AI use statement; and a link to the rendered report.
+-   **`CODE_OF_CONDUCT.md`**: a statement on diversity and inclusion, expected and unacceptable behaviour,
+    consequences, and how to report problems.
+-   **`CONTRIBUTING.md`**: how someone outside your team reports a bug, suggests a change and submits work,
+    **plus an AI policy section** for contributors.
+-   **`LICENSE.md`**: **two licenses**, one for the code (e.g. [MIT](https://opensource.org/licenses/MIT))
+    and one for the report (e.g. [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/)),
+    with the full license text pasted in and all team members in the copyright line.
+    Name it exactly `LICENSE.md`, and make the README name the same licenses.
+-   **`data/`**: written by code in your report (not downloaded by hand),
+    raw data in `data/raw/`, everything you make from it in `data/processed/`.
+    If a file is over 100 MB, ask the teaching team for another plan and explain it in your README.
+-   **`analysis/<descriptive-name>.qmd`**: your one report, with a descriptive name (not `analysis.qmd`).
+    Push it **and** its rendered HTML or PDF. Delete drafts and scratch files.
+-   **Environment files**: see [section 5](#make-the-computational-environment-reproducible).
+
+If you adapt a code of conduct, contributing guide or AI policy, **cite the original** (name and link),
+replace its contact email with your team's, and leave no template placeholders.
+Click every link in these files and proofread them.
+
+::: {.callout-tip collapse="true"}
+## More on the README AI use statement
+
+Say whether you used generative AI (e.g., ChatGPT, Claude, Copilot) and, if so, how, with a few example prompts.
+If you used instruction files (e.g., `CLAUDE.md`), commit them and point to them.
+:::
+
+::: {.callout-tip collapse="true"}
+## Examples to start from
+
+-   **Codes of conduct:** [Project Include guide](https://projectinclude.org/writing_cocs),
+    [Python](https://www.python.org/psf/conduct/),
+    [Tidyverse](https://github.com/tidyverse/tidyverse.org/blob/master/CODE_OF_CONDUCT.md),
+    [pandas](https://github.com/pandas-dev/pandas-governance/blob/master/code-of-conduct.md)
+-   **Contributing guides:** [Altair](https://github.com/altair-viz/altair/blob/master/CONTRIBUTING.md),
+    [dplyr](https://github.com/tidyverse/dplyr/blob/master/.github/CONTRIBUTING.md),
+    [AI fairness research paper](https://github.com/skysheng7/AI_bias_in_farming/blob/main/CONTRIBUTING.md)
+-   **AI policies:** [earthaccess](https://earthaccess.readthedocs.io/en/latest/contributor/ai-policy/),
+    [SciPy](https://scipy.github.io/devdocs/dev/conduct/ai_policy.html),
+    [SymPy](https://docs.sympy.org/dev/contributing/ai-generated-code-policy.html).
+    Yours must match the course rule: people, not AI agents, open, review and merge pull requests and issues.
+-   **Choosing licenses:** <https://choosealicense.com/>, <https://chooser-beta.creativecommons.org/>.
+    You can change your licenses later, once we cover them in the course.
+:::
+
+### 4. Do the full analysis and write the report {#write-the-data-analysis}
+
+Answer a predictive question with a model you have already learned in MDS,
+in **one `.qmd`** with Python or R code, written like a short scientific report.
+It must cover the whole project: raw data in, cleaning, model, results, conclusions.
+Use a **public, openly licensed** data set.
+
+::: callout-important
+## Keep the analysis simple, make the report excellent
+
+-   **A simple model is fine**, for example one linear regression.
+    Machine learning is not the focus of this course, so a fancier model earns no extra marks.
+-   **Breaking the golden rule of machine learning loses points**:
+    split off the test set before you explore or preprocess the data,
+    and don't let it influence any decision.
+-   **The report is where the marks are.** It should be detailed, accurate and professional:
+    every claim matches your figures and tables, and a reader new to the topic can follow it.
+:::
+Avoid data that needs a login (e.g. Kaggle); if you use one, your README must walk through getting and setting up the API token.
+
+Your report needs these sections:
+
+-   **Title**
+-   **Summary**: one paragraph with your question, what you found, why it matters and the main limitations.
+-   **Introduction**: background, why the question matters, the question itself,
+    the data set (source, what a row is, the variables you use, with a citation) and your target variable.
+-   **Methods**: what you did and why, the model and the metric you chose and why, and code that:
+    -   downloads the data from its source into `data/raw/`
+    -   cleans it and saves it to `data/processed/`
+    -   splits it into training and test sets **before** any exploration or preprocessing (the golden rule: the test set influences no decision)
+    -   summarizes and visualizes the training data in a way relevant to your question
+    -   fits the classification or regression model
+-   **Results**: the figures and tables that answer your question, each numbered, captioned and referred to in the text.
+-   **Discussion**: what you found and what it means for the problem, whether you expected it,
+    assumptions and limitations, possible impact and future questions.
+-   **References**: at least 4, including the data set, each cited in the text.
+    Real, reputable sources only (check that AI didn't make them up).
+
+Write in full sentences (point form for at most a few places),
+use plain words instead of code names ("flipper length", not `flipper_length_mm`),
+spell out acronyms the first time, and proofread. Make sure it renders without errors.
+
+::: {.callout-tip collapse="true"}
+## Making figures and tables readable
+
+-   Label axes in plain English, with units.
+-   Add a legend when there is more than one colour or group, and use a readable text size.
+-   Avoid overplotting (e.g., with transparency).
+-   Show only the rows and columns that matter in tables, with clear column names. Don't print a giant data frame.
+-   Writing figure and table numbers and captions by hand is fine for now.
+-   Check that what you write matches what the figures and tables show.
+:::
+
+::: {.callout-tip collapse="true"}
+## Where to find a data set
+
+-   [City of Vancouver Open Data Portal](https://opendata.vancouver.ca/pages/home/)
+-   [BC Data Catalogue](https://catalogue.data.gov.bc.ca/)
+-   [Government of Canada open data](https://open.canada.ca/en/open-data)
+-   [Awesome public datasets](https://github.com/awesomedata/awesome-public-datasets)
+-   [UCI Machine Learning Repository](https://archive.ics.uci.edu/)
+-   [TidyTuesday](https://github.com/rfordatascience/tidytuesday)
+-   [Google Dataset Search](https://toolbox.google.com/datasetsearch)
+-   [fivethirtyeight R package](https://cran.r-project.org/web/packages/fivethirtyeight/vignettes/fivethirtyeight.html):
+    don't copy the question, figures or methods from the original FiveThirtyEight articles,
+    and read the data with `read_*` functions from the
+    [raw versions](https://github.com/rudeboybert/fivethirtyeight/tree/master/data-raw).
+:::
+
+### 5. Make your environment reproducible {#make-the-computational-environment-reproducible}
+
+Record your packages with **uv** (Python) or **renv** (R) while you write the analysis,
+and commit the files shown in the project structure above (never `.venv/`).
+See the DSCI 521 notes for [uv](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/virtual-environments-uv.html)
+or [renv](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/virtual-environments-renv.html).
+
+::: callout-important
+## 5 all-or-nothing points for your README instructions
+
+If someone can't set up your environment and run your analysis by following your README
+**exactly as written**, you lose all 5 points.
+Test them on **both Windows and Mac**.
+If your team doesn't have both, ask another team to test them.
+:::
+
+## Submission instructions
+
+1.  Just before you submit, create a GitHub release named exactly `0.0.1`
+    ([how to create a release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release)),
+    pointing at your final Milestone 1 work.
+    It records the state of your repository at submission, so you can keep working on the next milestone.
+2.  On Gradescope, enter these (there is no PDF of links to make):
+    -   your project's GitHub.com repository URL
+    -   the URL of the `0.0.1` release
+    -   your teamwork contract, uploaded as a PDF
+
+::: {.callout-tip collapse="true"}
+## Check yourself before submitting
+
+- [ ] The repository is public, in UBC-MDS-2026-27, its Description starts with `DSCI 522`, and it is in both teams
+- [ ] Every team member is in the organization and both teams, with their username right in the lab sections file
+- [ ] `README.md`, `CODE_OF_CONDUCT.md`, `CONTRIBUTING.md` (with an AI policy) and `LICENSE.md` (two licenses) are in the root
+- [ ] The report downloads its data into `data/raw/` and splits before exploring
+- [ ] The rendered report is pushed next to the `.qmd`, and there is only one report
+- [ ] Someone on Windows and someone on Mac followed your README exactly and rendered the report
+- [ ] You created the `0.0.1` release
+:::
+
+::: {.callout-tip collapse="true"}
+## Teamwork expectations (these are marked)
+
+-   **Everyone contributes equally** to code, writing and project management,
+    shown by a roughly equal number of commits, pull request reviews and GitHub issue comments.
+-   Use the [GitHub flow](https://docs.github.com/en/get-started/quickstart/github-flow) in your team's repository (not a fork):
+    one small branch per feature or fix, with a meaningful name (e.g. `add-eda-plot`, not `branch1`),
+    and a pull request reviewed by at least one teammate before it is merged. Don't push straight to `main`.
+-   Commit and push every time you work on the project, with meaningful commit messages
+    (one or two less meaningful ones are OK).
+-   Talk to your teammates in GitHub issues, not email or Slack: for planning, splitting tasks and decisions.
+    Aim for more than 3 issues per person.
+-   You open pull requests and issues yourselves, not an AI agent.
+    AI can help check code, but people review and merge.
+-   Your question, analysis and visualization should make sense. They don't have to be complicated.
+-   Write your README and report in full sentences with proper grammar. Keep point form under 10%.
+:::

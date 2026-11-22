@@ -16,7 +16,7 @@ The purpose of this assignment is to ensure that everyone gains hands-on practic
     and click the green "Use this template" button to get your own copy of the `ia4` repository,
     call it `data_analysis_pipeline_practice`.
 
-2.  Your task is to add a "smarter" data analysis pipeline using GNU Make!
+2.  Your task is to add a "smarter" [data analysis pipeline]{.term tabindex="0" data-tip="A pipeline is the chain of steps that turns raw data into results (download, clean, analyse, plot, report), where each step uses the output of the one before. GNU Make runs the steps in order, and only reruns a step when something it depends on has changed."} using GNU Make!
     It should accomplish the same task as `bash runall.sh` when you type `make all`.
     It should also reset the analysis the starting point (the state when you first copied this repo)
     when you type `make clean`.

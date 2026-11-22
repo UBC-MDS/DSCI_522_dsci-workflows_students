@@ -64,35 +64,158 @@ table.schedule details.optional-reading[open] summary {
   overflow-x: auto;
 }
 
-/* Collapsible callouts: make it obvious the header is clickable.
-   Adds a "Click to expand" / "Click to hide" label next to the arrow,
-   a hover highlight, and a pointer cursor. Applies site-wide. */
-.callout-header[data-bs-toggle="collapse"] {
+/* Collapsible sections ("fold" style).
+   Every collapsible callout looks the same, whatever its type (note, tip, ...),
+   and nothing like a normal callout: a dashed mint outline, no coloured left bar,
+   no tinted background, a round "+" button on the left (turns into "-" when open)
+   and a "Click to expand" / "Click to hide" pill on the right.
+   So students learn one cue: dashed box with a + means "click to open".
+   Normal (non-collapsible) callouts keep Quarto's solid bar and tint. Applies site-wide. */
+.callout:has(> .callout-header[data-bs-toggle="collapse"]) {
+  --fold-accent: #2f7a65;        /* darker mint, readable as text on white */
+  --fold-border: #78c2ad;        /* the theme's mint */
+  --fold-hover: #eef8f4;
+  border: 2px dashed var(--fold-border) !important;
+  border-radius: 0.6rem !important;
+  background: var(--bs-body-bg, #fff) !important;
+  box-shadow: none !important;
+}
+
+.callout > .callout-header[data-bs-toggle="collapse"] {
   cursor: pointer;
-  transition: filter 0.15s ease;
+  background: transparent !important;
+  border-bottom: none !important;
+  border-radius: 0.5rem;
+  padding: 0.55rem 0.75rem !important;
+  align-items: center;
+  transition: background-color 0.15s ease;
 }
 
-.callout-header[data-bs-toggle="collapse"]:hover {
-  filter: brightness(0.95);
+.callout > .callout-header[data-bs-toggle="collapse"]:hover {
+  background: var(--fold-hover) !important;
 }
 
-.callout-header[data-bs-toggle="collapse"] .callout-btn-toggle {
+/* Swap the callout's type icon for a round + / - button */
+.callout > .callout-header[data-bs-toggle="collapse"] .callout-icon-container {
+  display: none !important;
+}
+
+.callout > .callout-header[data-bs-toggle="collapse"] .callout-title-container {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--bs-body-color, #212529);
+}
+
+.callout > .callout-header[data-bs-toggle="collapse"] .callout-title-container::before {
+  content: "\2212";               /* minus sign: section is open */
+  flex: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--fold-accent);
+  color: #fff;
+  font-family: system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  line-height: 1.5rem;
+  text-align: center;
+}
+
+.callout > .callout-header[data-bs-toggle="collapse"].collapsed .callout-title-container::before {
+  content: "+";
+}
+
+/* Right side: a pill label instead of the small chevron */
+.callout > .callout-header[data-bs-toggle="collapse"] .callout-btn-toggle {
   display: inline-flex !important;
   align-items: center;
-  gap: 0.4rem;
   white-space: nowrap;
 }
 
-.callout-header[data-bs-toggle="collapse"] .callout-btn-toggle::before {
-  content: "Click to hide";
-  font-size: 0.8em;
-  font-weight: 400;
-  color: var(--bs-secondary-color, #6c757d);
-  border: 1px solid currentColor;
-  border-radius: 999px;
-  padding: 0.05rem 0.6rem;
+.callout > .callout-header[data-bs-toggle="collapse"] .callout-toggle {
+  display: none !important;
 }
 
-.callout-header[data-bs-toggle="collapse"].collapsed .callout-btn-toggle::before {
+.callout > .callout-header[data-bs-toggle="collapse"] .callout-btn-toggle::before {
+  content: "Click to hide";
+  font-size: 0.8em;
+  font-weight: 600;
+  color: var(--fold-accent);
+  border: 1.5px solid var(--fold-accent);
+  border-radius: 999px;
+  padding: 0.05rem 0.7rem;
+}
+
+.callout > .callout-header[data-bs-toggle="collapse"].collapsed .callout-btn-toggle::before {
   content: "Click to expand";
+}
+
+/* Open: a thin dashed rule between the header and the content */
+.callout:has(> .callout-header[data-bs-toggle="collapse"]) .callout-body {
+  border-top: 1px dashed var(--fold-border);
+  background: transparent !important;
+}
+
+/* Hover definitions for jargon students may not know.
+   In a .qmd:  [metadata]{.term tabindex="0" data-tip="Explanation shown on hover."}
+   Shows a dotted underline and a small "?" badge; hovering (or tapping, on a phone)
+   shows the explanation in a bubble above the word. Applies site-wide. */
+.term {
+  position: relative;
+  cursor: help;
+  text-decoration: underline dotted #2f7a65;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  outline: none;
+}
+
+.term::after {                    /* the small "?" badge */
+  content: "?";
+  display: inline-block;
+  margin-left: 0.15em;
+  width: 1.05em;
+  height: 1.05em;
+  border-radius: 50%;
+  background: #2f7a65;
+  color: #fff;
+  font-family: system-ui, sans-serif;
+  font-size: 0.65em;
+  font-weight: 700;
+  line-height: 1.05em;
+  text-align: center;
+  vertical-align: super;
+}
+
+.term::before {                   /* the explanation bubble */
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 0.5rem);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  width: max-content;
+  max-width: min(24rem, 80vw);
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.5rem;
+  background: #1f3d35;
+  color: #fff;
+  font-family: system-ui, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: left;
+  white-space: normal;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 1000;
+}
+
+.term:hover::before,
+.term:focus::before {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
 }
