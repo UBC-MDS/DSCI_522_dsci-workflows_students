@@ -8,29 +8,19 @@ editor_options:
     wrap: sentence
 ---
 
-## Overall project summary (end-of-course goal)
+::: {.callout-note collapse="true"}
+## The end-of-course project goal
 
-::: callout-note
-This section describes where your project ends up **at the end of the course**.
-It is not the to-do list for this milestone: see [Milestone 4 summary](#milestone-4-summary) for that.
+Your team answers a predictive question with a public data set, in R and/or Python,
+with a focus on reproducible and trustworthy workflows.
+**By the end of the course**, your single Quarto document will have become a project with:
+
+-   well-documented, modular scripts in R and/or Python
+-   a pipeline automated with GNU Make
+-   a reproducible Quarto report
+-   a Docker container for the computational environment
+-   a GitHub repository for collaboration and sharing
 :::
-
-In this course you will work in assigned teams of three
-or four (see group assignments on GitHub) to answer a predictive statistical/machine learning question
-using a publicly available data set that will allow you to answer that question.
-To answer this question, you will perform a complete data analysis in R and/or Python,
-from data import to communication of results,
-while placing significant emphasis on reproducible and trustworthy workflows.
-
-By the end of the course, your project will have evolved from a single,
-monolithic Quarto document into a fully reproducible and robust data analysis project, comprised of:
-
--   a well documented and modularized scripts written in R and/or Python,
--   a data analysis pipeline automated with GNU Make,
--   a reproducible report powered by Quarto,
--   a containerized computational environment created and made shareable by Docker
--   a remote version control repository on GitHub for project collaboration, sharing, and documentation.
-
 
 ## Milestone 4 summary
 

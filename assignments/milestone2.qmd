@@ -8,52 +8,44 @@ editor_options:
     wrap: sentence
 ---
 
-## Overall project summary (end-of-course goal)
+::: {.callout-note collapse="true"}
+## The end-of-course project goal
 
-::: callout-note
-This section describes where your project ends up **at the end of the course**.
-It is not the to-do list for this milestone: see [Milestone 2 summary](#milestone-2-summary) for that.
+Your team answers a predictive question with a public data set, in R and/or Python,
+with a focus on reproducible and trustworthy workflows.
+**By the end of the course**, your single Quarto document will have become a project with:
+
+-   well-documented, modular scripts in R and/or Python
+-   a pipeline automated with GNU Make
+-   a reproducible Quarto report
+-   a Docker container for the computational environment
+-   a GitHub repository for collaboration and sharing
 :::
-
-In this course you will work in assigned teams of three
-or four (see group assignments on GitHub) to answer a predictive statistical/machine learning question
-using a publicly available data set that will allow you to answer that question.
-To answer this question, you will perform a complete data analysis in R and/or Python,
-from data import to communication of results,
-while placing significant emphasis on reproducible and trustworthy workflows.
-
-By the end of the course, your project will have evolved from a single,
-monolithic Quarto document into a fully reproducible and robust data analysis project, comprised of:
-
--   a well documented and modularized scripts written in R and/or Python,
--   a data analysis pipeline automated with GNU Make,
--   a reproducible report powered by Quarto,
--   a containerized computational environment created and made shareable by Docker
--   a remote version control repository on GitHub for project collaboration, sharing, and documentation.
 
 ## Milestone 2 summary
 
-1.  Move your project's computational environment into a container:
-    build its image on GitHub Actions for both Intel/AMD and ARM computers,
-    publish it on Docker Hub,
-    and work in it from now on.
+This milestone is about moving your project into a container.
 
-2.  Publish your report on GitHub Pages.
+- [ ] Run your project's environment in a Docker container, and **work in it from now on**
+- [ ] Build the image on GitHub Actions for Intel/AMD and ARM, and publish it on Docker Hub
+- [ ] Publish your report on GitHub Pages
 
-The reference for this milestone is
-[docker-uv-renv](https://github.com/chendaniely/docker-uv-renv),
+Your reference is [docker-uv-renv](https://github.com/chendaniely/docker-uv-renv),
 the example project the textbook's Containers chapters build up to.
 
-### 1. Use a container for the computational environment
+::: {.callout-tip collapse="true"}
+## Readings for this milestone
 
-Once this section is done,
-shift the development of your project from working in a virtual environment to working in a container.
-The chapters to read are
-[Python and R in one image](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-uv-renv.html)
-(and the uv and renv chapters before it),
-[Docker Compose](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-docker-compose.html),
-[Working in a container over ssh with Positron](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-ssh-positron.html),
-and [Building images for several platforms](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-platforms.html).
+-   [Python and R in one image](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-uv-renv.html): what goes in the `Dockerfile`
+-   [uv in a container](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-uv.html) and [renv in a container](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-renv.html): adding a package to your image
+-   [renv: declaring packages in `DESCRIPTION`](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-r-renv-description.html): pinning R package versions
+-   [Docker Compose](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-docker-compose.html): starting the container with one command
+-   [Working in a container over ssh with Positron](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-ssh-positron.html): editing code inside the container
+-   [Building images for several platforms](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-platforms.html): the GitHub Actions workflow in step iii
+-   [Introduction to Quarto and GitHub Pages](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html) (DSCI 521): publishing the report in part 2
+:::
+
+### 1. Use a container for the computational environment
 
 #### i. Start from docker-uv-renv's `Dockerfile` and `docker-compose.yml`
 
@@ -99,8 +91,6 @@ and you render with `quarto render` instead of `uv run quarto render`.
 Keep both parts.
 :::
 
-**Note - the `Dockerfile` and `docker-compose.yml` should live in the root of your public GitHub.com repository.**
-
 #### ii. Your environment files
 
 The image installs your packages from your lock files,
@@ -110,14 +100,11 @@ so these files must be in your repository and agree with each other:
     `uv.lock` and `.python-version`.
 -   **R (renv):** `DESCRIPTION` with each package pinned to an exact version (`(== x.y.z)`),
     `renv.lock`, `.Rprofile` and `renv/`.
-    `DESCRIPTION` is required in this milestone
-    (see [renv: declaring packages in `DESCRIPTION`](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-r-renv-description.html)),
+    `DESCRIPTION` is required in this milestone,
     and it must list `knitr` and `rmarkdown`:
     Quarto uses these two packages to run the R code in your report.
 
-To add a package, follow the chapter for your language
-([uv](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-uv.html),
-[renv](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-renv.html)),
+To add a package, follow the uv or renv chapter in the readings above,
 commit the changed files together,
 and let GitHub Actions publish a new image.
 
@@ -205,8 +192,7 @@ work with another team to test them.
 
 Anyone should be able to read your report online,
 without cloning your repository.
-You learned to publish with GitHub Pages in DSCI 521
-([Introduction to Quarto and GitHub Pages](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html)),
+You learned to publish with GitHub Pages in DSCI 521 (see the readings above),
 where you published a whole Quarto website.
 Here you apply those skills to publish the HTML version of your report.
 
