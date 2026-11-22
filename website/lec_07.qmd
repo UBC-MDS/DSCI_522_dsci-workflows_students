@@ -1,0 +1,9 @@
+---
+title: "7. Data Analysis Pipeline and GNU Make"
+description: "Chaining scripts into a pipeline with shell scripts and Makefiles."
+description-short: "Learn what a data analysis pipeline is, run one with a shell script, see where shell scripts fall short, and use a Makefile to rebuild only what changed."
+---
+
+## Slides for Section 001
+
+{{< revealjs "slides/slides_07.html" height="600px" class="ratio ratio-16x9" >}}

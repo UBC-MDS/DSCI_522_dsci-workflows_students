@@ -1,5 +1,5 @@
 _site
-/.quarto/
+.quarto/
 **/*.quarto_ipynb
 **_files
 *.html
@@ -8,5 +8,18 @@ _site
 /.luarc.json
 
 # student data read by scripts/peer_review_assign.py: never commit it
-data/
+/data/
 CLAUDE.md
+
+docs/
+.venv/
+
+# OpenAI API key for scripts/generate_images.py
+.env
+scripts/__pycache__/
+
+# Stray Quarto output: the site builds into _site/, so HTML next to the .qmd files is never committed
+website/*.html
+website/*-listing.json
+website/slides/*.html
+website/slides/*_files/
