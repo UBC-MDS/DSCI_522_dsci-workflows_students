@@ -1,0 +1,65 @@
+/* css styles */
+
+/* A light theme-aware stripe (also correct in dark mode), not a hard-coded grey */
+table.striped tbody tr:nth-child(even) {
+  background-color: var(--bs-tertiary-bg, #f8f9fa);
+}
+
+/* Schedule table on the syllabus page */
+table.schedule {
+  border-collapse: collapse;
+}
+
+table.schedule th,
+table.schedule td {
+  padding: 0.75rem;
+  vertical-align: top;
+}
+
+/* A rule under the header row and between lectures, so each row reads as one block */
+table.schedule th {
+  border-bottom: 2px solid var(--bs-border-color, #dee2e6);
+}
+
+table.schedule td {
+  border-bottom: 1px solid var(--bs-border-color, #dee2e6);
+}
+
+/* Columns: Lecture, Topic, Readings */
+table.schedule th:nth-child(1) { width: 10%; }
+table.schedule th:nth-child(2) { width: 30%; }
+table.schedule th:nth-child(3) { width: 60%; }
+
+table.schedule ul {
+  margin-bottom: 0.5rem;
+  padding-left: 1.25rem;
+}
+
+/* Sub-heading inside a cell, e.g. "Git and GitHub" */
+table.schedule .reading-group {
+  margin: 0.5rem 0 0.25rem;
+  font-weight: 600;
+}
+
+table.schedule .reading-group:first-child {
+  margin-top: 0;
+}
+
+/* Optional reading: collapsed under the required list, opened on click */
+table.schedule details.optional-reading {
+  margin-top: 0.25rem;
+}
+
+table.schedule details.optional-reading summary {
+  cursor: pointer;
+  color: var(--bs-secondary-color, #6c757d);
+}
+
+table.schedule details.optional-reading[open] summary {
+  margin-bottom: 0.5rem;
+}
+
+/* On a narrow screen the table scrolls sideways inside its box, not the whole page */
+.schedule-scroll {
+  overflow-x: auto;
+}

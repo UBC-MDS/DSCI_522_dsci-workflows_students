@@ -1,0 +1,22 @@
+[
+  {
+    "listing": "/slides/lecture.html",
+    "items": [
+      "/slides/lec_01.html",
+      "/slides/lec_02.html",
+      "/slides/lec_03.html",
+      "/slides/lec_04.html",
+      "/slides/lec_05.html",
+      "/slides/lec_06.html",
+      "/slides/lec_07.html",
+      "/slides/lec_08.html"
+    ]
+  },
+  {
+    "listing": "/slides/lab.html",
+    "items": [
+      "/slides/lab_01.html",
+      "/slides/lab_04.html"
+    ]
+  }
+]
