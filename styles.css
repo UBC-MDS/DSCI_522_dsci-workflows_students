@@ -63,3 +63,36 @@ table.schedule details.optional-reading[open] summary {
 .schedule-scroll {
   overflow-x: auto;
 }
+
+/* Collapsible callouts: make it obvious the header is clickable.
+   Adds a "Click to expand" / "Click to hide" label next to the arrow,
+   a hover highlight, and a pointer cursor. Applies site-wide. */
+.callout-header[data-bs-toggle="collapse"] {
+  cursor: pointer;
+  transition: filter 0.15s ease;
+}
+
+.callout-header[data-bs-toggle="collapse"]:hover {
+  filter: brightness(0.95);
+}
+
+.callout-header[data-bs-toggle="collapse"] .callout-btn-toggle {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+}
+
+.callout-header[data-bs-toggle="collapse"] .callout-btn-toggle::before {
+  content: "Click to hide";
+  font-size: 0.8em;
+  font-weight: 400;
+  color: var(--bs-secondary-color, #6c757d);
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  padding: 0.05rem 0.6rem;
+}
+
+.callout-header[data-bs-toggle="collapse"].collapsed .callout-btn-toggle::before {
+  content: "Click to expand";
+}
