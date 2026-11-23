@@ -53,7 +53,7 @@ You don't need Docker, scripts or Make yet: that comes in later milestones.
 ## You only lose points once for the same mistake
 
 If you lose points for something in one milestone, we won't take points off again for it in later milestones.
-Still fix it: later milestones build on this work, and in Milestone 4 you can win back some of those points.
+Still fix it: later milestones build on this work, and in Milestone 4 you can fix the mistakes you made in previous milestones.
 :::
 
 Your reference is the example project at the end of Milestone 1:

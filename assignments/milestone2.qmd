@@ -30,8 +30,16 @@ This milestone is about moving your project into a [container]{.term tabindex="0
 - [ ] Build the [image]{.term tabindex="0" data-tip="A Docker image is a saved snapshot of a computer setup: an operating system, software and packages, ready to run. A container is one running copy of it. Your Dockerfile is the recipe for your project's image."} on [GitHub Actions]{.term tabindex="0" data-tip="GitHub Actions runs commands for you on a fresh computer at GitHub when something happens in your repository, such as a push. You write the commands in a workflow file (a .yml file in .github/workflows/). Here it builds your image and uploads it to Docker Hub."} for [Intel/AMD and ARM]{.term tabindex="0" data-tip="These are the two main kinds of computer processor. Most Windows laptops and servers use Intel/AMD chips (linux/amd64), while Macs with Apple silicon (M1 and later) use ARM chips (linux/arm64). An image built for one kind runs slowly or not at all on the other, so you build for both."}, and publish it on [Docker Hub]{.term tabindex="0" data-tip="Docker Hub is a website that stores Docker images, the way GitHub stores code. Anyone can download a public image from it. Here your team publishes its image there, so everyone downloads the same one instead of building their own."}
 - [ ] Publish your report on [GitHub Pages]{.term tabindex="0" data-tip="GitHub Pages is a free GitHub service that turns files in a repository into a public website. Here it shows your rendered report at a web address, so anyone can read it without cloning your repository."}
 
-We give you the `Dockerfile`, the workflow file and [`docker-compose.yml`]{.term tabindex="0" data-tip="Docker Compose starts a container from settings written in a docker-compose.yml file (which image, which ports, which folders to share), so you don't have to type a long docker run command. Here everyone on the team starts the same container with one short command."} below.
+We give you the [`Dockerfile`](#dockerfile), the [workflow file](#workflow-file) and [`docker-compose.yml`]{.term tabindex="0" data-tip="Docker Compose starts a container from settings written in a docker-compose.yml file (which image, which ports, which folders to share), so you don't have to type a long docker run command. Here everyone on the team starts the same container with one short command."} ([see below](#compose-file)).
 They are adapted from [docker-uv-renv](https://github.com/chendaniely/docker-uv-renv).
+
+::: callout-important
+## You only lose points once for the same mistake
+
+If you lost points for something in Milestone 1, we won't take points off again for it in Milestone 2.
+That would be unfair: you may not get your Milestone 1 grades back before Milestone 2 is due.
+Still fix it once you get the feedback: later milestones build on this work, and in Milestone 4 you can fix the mistakes you made in previous milestones.
+:::
 
 ::: callout-important
 ## See what a finished Milestone 2 looks like
@@ -56,7 +64,7 @@ Use it as your model: compare your repository with it before you submit.
 ### 1. Put your environment in a container
 
 1.  **Add the `Dockerfile`.**
-    Copy the version for your project's language(s) below into a file named `Dockerfile` in the root of your repository.
+    Copy the version for your project's language(s) [below](#dockerfile) into a file named `Dockerfile` in the root of your repository.
     If you use R, change `4.6.2` on the `FROM` line to the R version in your `renv.lock`.
 
 2.  **Check your environment files.**
@@ -74,18 +82,18 @@ Use it as your model: compare your repository with it before you submit.
     Fixing errors here is much faster than on GitHub Actions.
 
 4.  **Build and publish the image with GitHub Actions.**
-    One team member sets up Docker Hub and the GitHub [secrets]{.term tabindex="0" data-tip="A repository secret is a password or token saved in your GitHub repository's settings. Workflows can use it, but nobody can read it back, and it never shows up in your code or logs. Here the two secrets let the workflow log in to Docker Hub as your team."} (see below).
-    Copy the workflow below into `.github/workflows/publish-dockerhub.yml`,
+    One team member sets up Docker Hub and the GitHub [secrets]{.term tabindex="0" data-tip="A repository secret is a password or token saved in your GitHub repository's settings. Workflows can use it, but nobody can read it back, and it never shows up in your code or logs. Here the two secrets let the workflow log in to Docker Hub as your team."} (see [below](#docker-hub-secrets)).
+    Copy the [workflow below](#workflow-file) into `.github/workflows/publish-dockerhub.yml`,
     change only its `IMAGE` line to your Docker Hub repository's name, all in lowercase, then commit and push.
     It builds for `linux/amd64` (Intel/AMD) and `linux/arm64` (ARM, such as Apple silicon Macs)
     and publishes them under two [tags]{.term tabindex="0" data-tip="A tag is a label on a Docker image, written after a colon (e.g. python:3.14-slim). One image can have several tags. Here latest always points to your newest image, and the sha- tag names the commit that built it."}: `latest` and `sha-` plus 7 characters of the commit ID.
     Check that the run succeeds and that your image's tag on Docker Hub lists **both** platforms.
 
 5.  **Add `docker-compose.yml`.**
-    Copy the file below into the root of your repository, and change its `image:` line to your image,
+    Copy the [file below](#compose-file) into the root of your repository, and change its `image:` line to your image,
     pinned to the [commit-SHA tag]{.term tabindex="0" data-tip="Every Git commit has a unique ID called its SHA (e.g. 1a2b3c4). Your workflow tags each image it pushes with the start of the SHA of the commit that built it, so the tag always points to that one exact image. The latest tag, by contrast, changes every time you publish."} your workflow pushed, not `latest`
     (for example, `image: yourname/yourproject:sha-1a2b3c4`).
-    Keep the [service name]{.term tabindex="0" data-tip="In Docker Compose, a service is one container it manages, named under services: in docker-compose.yml. Commands such as docker compose run use that name to say which container you mean. Here the name is analysis-env."} `analysis-env`, so the commands below work as written.
+    Keep the [service name]{.term tabindex="0" data-tip="In Docker Compose, a service is one container it manages, named under services: in docker-compose.yml. Commands such as docker compose run use that name to say which container you mean. Here the name is analysis-env."} `analysis-env`, so the [commands below](#readme-steps) work as written.
 
 6.  **Work in the container from now on**, with Positron over [ssh]{.term tabindex="0" data-tip="ssh (secure shell) lets you log in to another computer and work on it from your own. Here the other computer is your container: Positron connects to it over ssh, so your code runs with the container's software while your files stay in your project folder."}
     ([Working in a container over ssh with Positron](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-ssh-positron.html)).
@@ -95,72 +103,12 @@ Use it as your model: compare your repository with it before you submit.
 
 7.  **Update your `README`** so its instructions use the container (see the next section).
 
-::: {.callout-tip collapse="true"}
+::: {#dockerfile .callout-tip collapse="true"}
 ## The `Dockerfile` (step 1)
 
 Pick the tab for your project. All three start the ssh server, so you can work in the container with Positron.
 
 ::: panel-tabset
-## Python and R
-
-```{.dockerfile filename="Dockerfile"}
-# Adapted from docker-uv-renv by Daniel Chen (MIT License)
-# https://github.com/chendaniely/docker-uv-renv
-
-# Start from Ubuntu Linux with R installed.
-# Change 4.6.2 to the R version in your renv.lock.
-FROM rocker/r-ver:4.6.2
-
-# Install the programs the project needs:
-# curl downloads files, git/less/nano let you work in a terminal,
-# make runs a Makefile, openssh-server lets Positron connect over ssh,
-# libuv1-dev is needed by the R package fs
-RUN apt-get update && apt-get install --yes \
-    curl \
-    git \
-    less \
-    libuv1-dev \
-    make \
-    nano \
-    openssh-server
-
-# Install Quarto (it comes with Typst for PDFs, so no LaTeX).
-# dpkg --print-architecture gives amd64 or arm64, to match the computer.
-RUN curl --location --output quarto.deb \
-    https://github.com/quarto-dev/quarto-cli/releases/download/v1.11.9/quarto-1.11.9-linux-$(dpkg --print-architecture).deb \
-  && apt-get install --yes ./quarto.deb \
-  && rm quarto.deb
-
-# Copy the uv program into the image (0.13.7 pins uv's version)
-COPY --from=ghcr.io/astral-sh/uv:0.13.7 /uv /uvx /usr/local/bin/
-
-# Your project folder is mounted at /workspace,
-# so the packages go in /opt instead
-WORKDIR /workspace
-
-# ---- Python packages (uv), in /opt/venv ----
-ENV UV_PROJECT_ENVIRONMENT=/opt/venv
-# ssh logins don't see ENV, only /etc/environment
-RUN echo "UV_PROJECT_ENVIRONMENT=$UV_PROJECT_ENVIRONMENT" >> /etc/environment
-COPY pyproject.toml uv.lock .python-version ./
-# --locked: stop if uv.lock doesn't match pyproject.toml
-RUN uv sync --locked
-
-# ---- R packages (renv), in /opt/renv/library ----
-RUN echo "RENV_PATHS_LIBRARY=/opt/renv/library" >> /usr/local/lib/R/etc/Renviron.site
-COPY renv.lock .Rprofile ./
-COPY renv/activate.R renv/
-RUN Rscript -e "renv::restore()"
-
-# On a Linux laptop, remove the # from the next line.
-# (sshd wants root to own the key file, but on Linux the mounted one is yours.)
-# RUN echo "StrictModes no" > /etc/ssh/sshd_config.d/container.conf
-
-# Start the ssh server when the container starts.
-# -D keeps it in the foreground, so the container keeps running.
-CMD ["/usr/sbin/sshd", "-D"]
-```
-
 ## Python only
 
 ```{.dockerfile filename="Dockerfile"}
@@ -262,10 +210,70 @@ CMD ["/usr/sbin/sshd", "-D"]
 ```
 
 With R only, you render with `quarto render` instead of `uv run quarto render`.
+
+## Python and R
+
+```{.dockerfile filename="Dockerfile"}
+# Adapted from docker-uv-renv by Daniel Chen (MIT License)
+# https://github.com/chendaniely/docker-uv-renv
+
+# Start from Ubuntu Linux with R installed.
+# Change 4.6.2 to the R version in your renv.lock.
+FROM rocker/r-ver:4.6.2
+
+# Install the programs the project needs:
+# curl downloads files, git/less/nano let you work in a terminal,
+# make runs a Makefile, openssh-server lets Positron connect over ssh,
+# libuv1-dev is needed by the R package fs
+RUN apt-get update && apt-get install --yes \
+    curl \
+    git \
+    less \
+    libuv1-dev \
+    make \
+    nano \
+    openssh-server
+
+# Install Quarto (it comes with Typst for PDFs, so no LaTeX).
+# dpkg --print-architecture gives amd64 or arm64, to match the computer.
+RUN curl --location --output quarto.deb \
+    https://github.com/quarto-dev/quarto-cli/releases/download/v1.11.9/quarto-1.11.9-linux-$(dpkg --print-architecture).deb \
+  && apt-get install --yes ./quarto.deb \
+  && rm quarto.deb
+
+# Copy the uv program into the image (0.13.7 pins uv's version)
+COPY --from=ghcr.io/astral-sh/uv:0.13.7 /uv /uvx /usr/local/bin/
+
+# Your project folder is mounted at /workspace,
+# so the packages go in /opt instead
+WORKDIR /workspace
+
+# ---- Python packages (uv), in /opt/venv ----
+ENV UV_PROJECT_ENVIRONMENT=/opt/venv
+# ssh logins don't see ENV, only /etc/environment
+RUN echo "UV_PROJECT_ENVIRONMENT=$UV_PROJECT_ENVIRONMENT" >> /etc/environment
+COPY pyproject.toml uv.lock .python-version ./
+# --locked: stop if uv.lock doesn't match pyproject.toml
+RUN uv sync --locked
+
+# ---- R packages (renv), in /opt/renv/library ----
+RUN echo "RENV_PATHS_LIBRARY=/opt/renv/library" >> /usr/local/lib/R/etc/Renviron.site
+COPY renv.lock .Rprofile ./
+COPY renv/activate.R renv/
+RUN Rscript -e "renv::restore()"
+
+# On a Linux laptop, remove the # from the next line.
+# (sshd wants root to own the key file, but on Linux the mounted one is yours.)
+# RUN echo "StrictModes no" > /etc/ssh/sshd_config.d/container.conf
+
+# Start the ssh server when the container starts.
+# -D keeps it in the foreground, so the container keeps running.
+CMD ["/usr/sbin/sshd", "-D"]
+```
 :::
 :::
 
-::: {.callout-tip collapse="true"}
+::: {#docker-hub-secrets .callout-tip collapse="true"}
 ## Setting up Docker Hub and the GitHub secrets (step 4)
 
 One team member:
@@ -278,7 +286,7 @@ One team member:
     and `DOCKER_PASSWORD` (the access token, **not** the Docker Hub password).
 :::
 
-::: {.callout-tip collapse="true"}
+::: {#workflow-file .callout-tip collapse="true"}
 ## The workflow file (step 4)
 
 Job 1 runs the same `docker build` and `docker push` as Individual Assignment 2, on an Intel/AMD and an ARM computer at the same time.
@@ -369,7 +377,7 @@ On Docker Hub you will see four tags: `latest`, `sha-1a2b3c4`, and the two halve
 Use the one without `-amd64` or `-arm64` in `docker-compose.yml`.
 :::
 
-::: {.callout-tip collapse="true"}
+::: {#compose-file .callout-tip collapse="true"}
 ## The `docker-compose.yml` file (step 5)
 
 Change only the `image:` line.
@@ -397,7 +405,7 @@ services:
 There is no `build: .` line: everyone downloads the image your workflow published, instead of building their own.
 :::
 
-#### Your `README`: how to run the analysis
+#### Your `README`: how to run the analysis {#readme-steps}
 
 Write these steps in your `README`, in this order:
 
