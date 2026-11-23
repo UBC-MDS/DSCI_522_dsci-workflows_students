@@ -7,10 +7,10 @@ format:
 
 ## Summary
 
-This assignment is hands-on practice for Milestone 2:
+This assignment is hands-on practice to help you get reaady for Milestone 2:
 build a [Docker image]{.term tabindex="0" data-tip="A Docker image is a saved snapshot of a computer setup: an operating system, software and packages, ready to run. A container is one running copy of an image. You write the recipe for the image in a Dockerfile."} from a `Dockerfile`, and publish it to [Docker Hub]{.term tabindex="0" data-tip="Docker Hub is a website that stores Docker images, the way GitHub stores code. Anyone can download a public image from it. Here you publish your image there, so others can use it without building it themselves."} with [GitHub Actions]{.term tabindex="0" data-tip="GitHub Actions runs commands for you on a fresh computer at GitHub when something happens in your repository, such as a push. You write the commands in a workflow file (a .yml file in .github/workflows/). Here it builds your image and uploads it to Docker Hub."}.
 
-- [ ] Make a small uv (Python) **or** renv (R) project with two pinned packages
+- [ ] Make a small uv (Python) **or** renv (R) project with the two pinned packages listed in step 2
 - [ ] Add a `Dockerfile` that installs your packages, and test it on your computer
 - [ ] Publish the image to Docker Hub with a GitHub Actions workflow
 
@@ -18,7 +18,7 @@ build a [Docker image]{.term tabindex="0" data-tip="A Docker image is a saved sn
 ## Readings for this assignment
 
 -   [uv: pinning exact versions](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-exact-pins.html)
-    or [renv: declaring packages in `DESCRIPTION`](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-r-renv-description.html)
+    or [renv basics](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-r-renv.html)
 -   [Python packages with uv in an image](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-uv.html)
     or [R packages with renv in an image](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-renv.html):
     what each line of the `Dockerfile` does
@@ -32,12 +32,14 @@ build a [Docker image]{.term tabindex="0" data-tip="A Docker image is a saved sn
     with a `README`. Clone it; everything below happens in this folder.
 
 2.  **Make a small project** with uv **or** renv, whichever you prefer.
-    It needs at least **two** packages you haven't used before, each **[pinned to an exact version]{.term tabindex="0" data-tip="Pinning means recording one exact version of a package (e.g. pandas==2.2.3), instead of whatever is newest. Everyone who installs your project then gets the same version, so the code behaves the same."}**.
+    Install these **two** packages, each **[pinned to an exact version]{.term tabindex="0" data-tip="Pinning means recording one exact version of a package (e.g. pandas==2.2.3), instead of whatever is newest. Everyone who installs your project then gets the same version, so the code behaves the same."}** (commands below):
+    **`cowsay` and `numpy`** for uv, or **`cowsay` and `praise`** for renv.
+    The test in step 4 loads exactly these two, so it fails if either is missing.
 
     -   **uv:** `pyproject.toml` lists each package with `==`, and Python 3.11 or newer is pinned in `.python-version`.
         Commit `pyproject.toml`, `uv.lock` and `.python-version`, but not `.venv/`.
-    -   **renv:** `DESCRIPTION` lists each package with `(== x.y.z)`, using [explicit snapshots]{.term tabindex="0" data-tip="A snapshot is when renv writes down your installed packages in renv.lock. With explicit snapshots, renv records only the packages listed in DESCRIPTION (and the packages they depend on), not every package it finds in your code. Turn it on with renv::settings$snapshot.type('explicit')."}.
-        Commit `DESCRIPTION`, `renv.lock`, `.Rprofile` and `renv/`
+    -   **renv:** a small script `hello.R` uses both packages, and a [snapshot]{.term tabindex="0" data-tip="A snapshot is when renv writes down your installed packages in renv.lock. By default, renv::snapshot() looks through your R code, finds the packages it loads with library(), and records their exact versions (and the packages they depend on)."} records their exact versions in `renv.lock`.
+        Commit `hello.R`, `renv.lock`, `.Rprofile` and `renv/`
         (the `.gitignore` inside `renv/` keeps the installed packages out).
 
 3.  **Add the `Dockerfile`.**
@@ -51,13 +53,85 @@ build a [Docker image]{.term tabindex="0" data-tip="A Docker image is a saved sn
 
 5.  **Publish with GitHub Actions.**
     Set up Docker Hub and the two [secrets]{.term tabindex="0" data-tip="A repository secret is a password or token saved in your GitHub repository's settings. Workflows can use it, but nobody can read it back, and it never shows up in your code or logs. Here the two secrets let the workflow log in to Docker Hub as you."} (see below).
-    Then copy the workflow below into `.github/workflows/publish-dockerhub.yml`,
-    and change only its `IMAGE` line to `<your-docker-hub-username>/dsci522-dockerfile-practice`, all in lowercase.
+    Then copy the workflow below into `.github/workflows/publish-dockerhub.yml` as it is: no changes needed.
     Commit and push.
 
 6.  **Check that it worked.**
     The run on the **Actions** tab finishes with a green check mark,
     and your Docker Hub repository shows two [tags]{.term tabindex="0" data-tip="A tag is a label on a Docker image, written after a colon (e.g. python:3.14-slim). One image can have several tags. Here latest always points to your newest image, and the sha- tag names the commit that built it."}: `latest` and `sha-` plus 7 characters.
+
+::: {.callout-tip collapse="true"}
+## Commands to make the project (step 2)
+
+Run these in the terminal, from your repository folder.
+
+::: panel-tabset
+## uv (Python)
+
+```bash
+# 1. Start a uv project and pin the Python version
+uv init --bare
+uv python pin 3.14
+
+# 2. Open pyproject.toml to tell uv to pin exact versions
+nano pyproject.toml
+```
+
+Add these two lines at the bottom of `pyproject.toml`, then exit and save the file
+(in nano: `Ctrl+X` to exit, then `Y` to save):
+
+```{.toml filename="pyproject.toml"}
+[tool.uv]
+add-bounds = "exact"
+```
+
+```bash
+# 3. Install both packages: uv writes them with == in pyproject.toml
+uv add cowsay numpy
+
+# 4. Keep the .venv/ folder out of Git
+echo ".venv/" >> .gitignore
+
+# 5. Commit and push
+git add pyproject.toml uv.lock .python-version .gitignore
+git commit -m "Add uv project with cowsay and numpy"
+git push
+```
+
+## renv (R)
+
+```bash
+# 1. Start an empty renv project
+Rscript -e 'renv::init(bare = TRUE)'
+
+# 2. Install both packages
+Rscript -e 'renv::install(c("cowsay", "praise"))'
+```
+
+Then create a file named `hello.R` that uses both packages.
+`renv::snapshot()` only records packages your code loads, so without it `renv.lock` stays empty.
+
+```{.r filename="hello.R"}
+library(cowsay)
+library(praise)
+
+say(praise())
+```
+
+```bash
+# 3. Record the exact versions in renv.lock
+Rscript -e 'renv::snapshot()'
+
+# 4. Commit and push
+git add hello.R renv.lock .Rprofile renv/
+git commit -m "Add renv project with cowsay and praise"
+git push
+```
+
+If the terminal says `Rscript: command not found` (common in Git Bash on Windows),
+run the part inside the quotes in the R console instead, from your repository folder.
+:::
+:::
 
 ::: {.callout-tip collapse="true"}
 ## The `Dockerfile` (step 3)
@@ -108,8 +182,8 @@ WORKDIR /workspace
 # Put the packages in /opt/renv/library (not in renv/library in /workspace)
 RUN echo "RENV_PATHS_LIBRARY=/opt/renv/library" >> /usr/local/lib/R/etc/Renviron.site
 
-# Copy only the files renv needs to install your packages
-COPY DESCRIPTION renv.lock .Rprofile ./
+# Copy the files renv needs to install your packages, and your script
+COPY renv.lock .Rprofile hello.R ./
 COPY renv/activate.R renv/
 
 # Install the exact packages in renv.lock
@@ -127,21 +201,22 @@ Open Docker Desktop first. From your repository folder, build the image and give
 docker build --tag dsci522-test .
 ```
 
-Then start a container, load your packages, and remove the container when it finishes (`--rm`).
-Replace the package names with yours.
-If nothing prints, it worked: an error means a package didn't install.
+Then start a container, use your two packages, and remove the container when it finishes (`--rm`).
+If a cow talks to you, it worked: an error means a package didn't install.
 
 ::: panel-tabset
 ## uv (Python)
 
 ```bash
-docker run --rm dsci522-test uv run python -c "import cowsay, pyjokes"
+docker run --rm dsci522-test uv run python -c \
+  "import cowsay, numpy; cowsay.cow(f'numpy says 1 + 2 + 3 = {numpy.sum([1, 2, 3])}')"
 ```
 
 ## renv (R)
 
 ```bash
-docker run --rm dsci522-test Rscript -e "library(cowsay); library(praise)"
+docker run --rm dsci522-test Rscript -e \
+  "library(cowsay); library(praise); say(praise())"
 ```
 :::
 
@@ -151,7 +226,7 @@ Changed your environment? Run `docker build` again: Docker rebuilds only the ste
 ::: {.callout-tip collapse="true"}
 ## The workflow file (step 5)
 
-Change only the `IMAGE` line. The comments explain the rest.
+Copy it as it is: it reads your Docker Hub username from the `DOCKER_USERNAME` secret. The comments explain the rest.
 
 ```{.yaml filename=".github/workflows/publish-dockerhub.yml"}
 # Builds the image from your Dockerfile and publishes it on Docker Hub.
@@ -172,8 +247,8 @@ on:
       - .github/workflows/publish-dockerhub.yml
 
 env:
-  # CHANGE THIS LINE: your Docker Hub username / repository name, in lowercase
-  IMAGE: your-docker-hub-username/dsci522-dockerfile-practice
+  # The image name: your Docker Hub username (from the secret) / repository name
+  IMAGE: ${{ secrets.DOCKER_USERNAME }}/dsci522-dockerfile-practice
 
 jobs:
   publish:
@@ -209,14 +284,15 @@ GitHub just runs them for you, from the files in your repository.
 ## Setting up Docker Hub and the GitHub secrets (step 5)
 
 1.  Create a free [Docker Hub](https://hub.docker.com/) account if you don't have one.
-2.  Create a **public** Docker Hub repository named `dsci522-dockerfile-practice`.
+2.  You don't need to create the Docker Hub repository: the workflow's first push creates it.
+    Afterwards, check on Docker Hub that it is **public**.
 3.  Create a Docker Hub [access token](https://docs.docker.com/security/access-tokens/) with Read & Write permissions.
     Copy it somewhere safe: you can only see it once.
 4.  In your GitHub repository, add two
     [repository secrets](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets)
     (Settings \> Secrets and variables \> Actions \> New repository secret),
     with exactly these names, because the workflow looks for them:
-    -   `DOCKER_USERNAME`: your Docker Hub username
+    -   `DOCKER_USERNAME`: your **Docker Hub** username (**not** your GitHub username)
     -   `DOCKER_PASSWORD`: the access token (**not** your Docker Hub password)
 :::
 
@@ -228,7 +304,8 @@ GitHub just runs them for you, from the files in your repository.
 -   **The workflow didn't start:** it only starts on its own when a push changes the `Dockerfile`, a lock file or the workflow file.
     Run it by hand: **Actions** tab \> **Publish image to Docker Hub** \> **Run workflow**.
 -   **The login step fails:** check the secret names, and that `DOCKER_PASSWORD` is an access token with Read & Write permissions.
--   **The push step fails with "denied" or "unauthorized":** the `IMAGE` line must start with your Docker Hub username, all in lowercase.
+-   **The push step fails with "denied" or "unauthorized":** the `DOCKER_USERNAME` secret must be your Docker Hub username, all in lowercase.
+-   **The logs show `***` instead of your username:** that's normal. GitHub hides every secret value in the logs.
 :::
 
 ## Submission instructions

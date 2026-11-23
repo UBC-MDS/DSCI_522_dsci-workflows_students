@@ -93,12 +93,12 @@ website:
               text: "Milestone 1"
             - href: assignments/teamwork-contract.qmd
               text: "Teamwork Contract"
-        # - section: "Week 2"
-        #   contents:
-        #     - href: assignments/individual2.qmd
-        #       text: "Individual Assignment 2"
-        #     - href: assignments/milestone2.qmd
-        #       text: "Milestone 2"
+        - section: "Week 2"
+          contents:
+            - href: assignments/individual2.qmd
+              text: "Individual Assignment 2"
+        #    - href: assignments/milestone2.qmd
+        #      text: "Milestone 2"
         # - section: "Week 3"
         #   contents:
         #     - href: assignments/individual3.qmd
