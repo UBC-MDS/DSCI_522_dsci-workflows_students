@@ -43,6 +43,11 @@ project:
     - "class-notes/index.qmd"
     - "class-notes/**/*.md"
 
+# Section 2 class notes: the "Section 2 Notes" navbar menu and its sidebar are generated into
+# this file by Daniel Chen's private course repo, and added to the menus and sidebars below.
+metadata-files:
+  - class-notes/_nav.yml
+
 website:
   title: "DSCI 522: Data Science Workflows"
   repo-url: https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students
@@ -74,8 +79,6 @@ website:
             text: "Lectures"
           - href: slides/lab.qmd
             text: "Labs"
-      - href: class-notes/index.qmd
-        text: "Section 2 Notes"
     right:
       - href: https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/
         text: Textbook
