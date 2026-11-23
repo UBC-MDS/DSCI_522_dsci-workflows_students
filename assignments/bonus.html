@@ -216,19 +216,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#bonus-summary" id="toc-bonus-summary" class="nav-link active" data-scroll-target="#bonus-summary">Bonus summary</a></li>
-  <li><a href="#turn-your-project-into-a-website" id="toc-turn-your-project-into-a-website" class="nav-link" data-scroll-target="#turn-your-project-into-a-website">1. Turn your project into a website</a></li>
-  <li><a href="#the-homepage-the-about-page-and-the-report" id="toc-the-homepage-the-about-page-and-the-report" class="nav-link" data-scroll-target="#the-homepage-the-about-page-and-the-report">2. The homepage, the about page and the report</a>
+  <li><a href="#bonus-summary" id="toc-bonus-summary" class="nav-link active" data-scroll-target="#bonus-summary">Bonus summary</a>
   <ul class="collapse">
-  <li><a href="#the-homepage-index.qmd" id="toc-the-homepage-index.qmd" class="nav-link" data-scroll-target="#the-homepage-index.qmd">The homepage (<code>index.qmd</code>)</a></li>
-  <li><a href="#the-about-page-about.qmd" id="toc-the-about-page-about.qmd" class="nav-link" data-scroll-target="#the-about-page-about.qmd">The about page (<code>about.qmd</code>)</a></li>
-  <li><a href="#the-report" id="toc-the-report" class="nav-link" data-scroll-target="#the-report">The report</a></li>
-  </ul></li>
+  <li><a href="#turn-your-project-into-a-website" id="toc-turn-your-project-into-a-website" class="nav-link" data-scroll-target="#turn-your-project-into-a-website">1. Turn your project into a website</a></li>
+  <li><a href="#add-the-pages" id="toc-add-the-pages" class="nav-link" data-scroll-target="#add-the-pages">2. Add the pages</a></li>
   <li><a href="#make" id="toc-make" class="nav-link" data-scroll-target="#make">3. One <code>make</code> command builds everything</a></li>
   <li><a href="#publish-on-github-pages" id="toc-publish-on-github-pages" class="nav-link" data-scroll-target="#publish-on-github-pages">4. Publish on GitHub Pages</a></li>
+  </ul></li>
   <li><a href="#submission-instructions" id="toc-submission-instructions" class="nav-link" data-scroll-target="#submission-instructions">Submission instructions</a></li>
-  <li><a href="#rubric" id="toc-rubric" class="nav-link" data-scroll-target="#rubric">Rubric</a></li>
-  <li><a href="#expectations" id="toc-expectations" class="nav-link" data-scroll-target="#expectations">Expectations</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students/edit/main/assignments/bonus.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -256,36 +251,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="bonus-summary" class="level2">
 <h2 class="anchored" data-anchor-id="bonus-summary">Bonus summary</h2>
+<p>This optional bonus turns your <strong>whole project into a Quarto website</strong> on GitHub Pages, at the same URL as the report you published in Milestone 2.</p>
+<ul class="task-list">
+<li><label><input type="checkbox">Make your project’s <code>_quarto.yml</code> a website that renders into <code>docs/</code></label></li>
+<li><label><input type="checkbox">Add a homepage (your <code>README</code>), your report (HTML and PDF), an about page, and a GitHub icon in the menu bar</label></li>
+<li><label><input type="checkbox">Make <code>make all</code> build everything, from downloading the data to the website</label></li>
+<li><label><input type="checkbox">Publish it on GitHub Pages</label></li>
+</ul>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Up to 5 bonus points, for your group
+<span class="screen-reader-only">Important</span>Up to 5 bonus points, for your team
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This bonus is optional. It is worth up to <strong>5 points</strong>, added to one of your four milestone grades. The points go to <strong>Milestone 4</strong> unless you tell us otherwise when you submit. They can make up for points you lost on that milestone, but they cannot take it above its maximum.</p>
-<p>It is due with Milestone 4: <strong>2026-12-12 18:00 PT</strong>, and we grade it from the same <code>3.0.0</code> release.</p>
+<p>The points go to <strong>Milestone 4</strong> unless you tell us otherwise when you submit. They can make up for points lost on that milestone, but can’t take it above its maximum. It is due with Milestone 4 (see the <a href="../index.html#deliverables">syllabus</a>), and we grade it from the same <code>3.0.0</code> release, so your Milestone 4 <code>README</code> instructions must still work exactly as written.</p>
 </div>
 </div>
-<p>Your project already produces a Quarto report. For this bonus, you will turn your <strong>whole project into a Quarto website</strong> and publish it on GitHub Pages.</p>
-<p>The website brings together the <code>README</code> you have kept up to date all term and your report. It replaces the report you published on GitHub Pages in Milestone 2, at the same URL.</p>
-<p>Your website will have:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Readings for this bonus
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><a href="https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html">Introduction to Quarto and GitHub Pages</a> (DSCI 521): the same setup, read it again first</li>
+<li>Quarto: <a href="https://quarto.org/docs/authoring/includes.html">includes</a> and <a href="https://quarto.org/docs/authoring/figures.html#alt-text">alt text for figures</a></li>
+</ul>
+</div>
+</div>
+</div>
+<section id="turn-your-project-into-a-website" class="level3">
+<h3 class="anchored" data-anchor-id="turn-your-project-into-a-website">1. Turn your project into a website</h3>
 <ol type="1">
-<li>a <strong>homepage</strong> that is your <code>README</code></li>
-<li>your <strong>report</strong>, in both HTML and PDF</li>
-<li>an <strong>about</strong> page that introduces each member of your team</li>
-<li>a <strong>GitHub icon</strong> in the top right of the menu bar that links to your repository</li>
+<li><strong>Edit <code>_quarto.yml</code></strong> in the root of your repository: add <code>type: website</code> and <code>output-dir: docs</code>, list the website’s pages under <code>render</code>, and add a <code>website</code> section with the menu bar (example below). Keep your existing <code>format</code> settings (such as <code>embed-resources</code> and PDF): they still apply to your report.</li>
+<li><strong>Give each new page <code>format: html</code></strong> in its YAML header, so Quarto doesn’t also make a PDF of it.</li>
+<li><strong>Add an empty <code>.nojekyll</code> file</strong> to the root of your repository (Quarto copies it into <code>docs/</code>), and add <code>.quarto/</code> to your <code>.gitignore</code>.</li>
+<li><strong>Clean up the old report:</strong> it now renders to <code>docs/reports/&lt;your-report&gt;.html</code> and <code>.pdf</code>, with the website’s menu bar. Delete the old rendered files from <code>reports/</code>, and update your <code>Makefile</code> and <code>README</code> to the new locations.</li>
 </ol>
-<p>You will also make one <code>make</code> command build everything, from downloading the data to publishing the website.</p>
-<p>This bonus applies what you learned in the DSCI 521 chapter <a href="https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html">Introduction to Quarto and GitHub Pages</a>, with the same setup: a <code>_quarto.yml</code> in the root of your repository that renders a website into <code>docs/</code>. Read it again first.</p>
-</section>
-<section id="turn-your-project-into-a-website" class="level2">
-<h2 class="anchored" data-anchor-id="turn-your-project-into-a-website">1. Turn your project into a website</h2>
-<p>Your project’s <code>_quarto.yml</code>, in the root of your repository, already tells Quarto how to render your report. Turn it into a website’s configuration: add <code>type: website</code> and <code>output-dir: docs</code>, list the website’s pages in <code>render</code>, and add a <code>website</code> section with the menu bar. Keep the <code>format</code> settings you already have (for example, <code>embed-resources</code> and the PDF settings): they still apply to your report.</p>
-<p>Here is a starting point. Change the title, the report’s file name and the repository URL to your own:</p>
+<p><code>quarto render</code> now renders the whole website; <code>quarto render reports/&lt;your-report&gt;.qmd</code> still renders just the report, and <code>quarto preview</code> shows the website as you edit.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example <code>_quarto.yml</code> and folder layout (step 1)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Change the title, the report’s file name and the repository URL to your own.</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>_quarto.yml</strong></pre>
@@ -293,7 +319,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-filename="_quarto.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">output-dir</span><span class="kw">:</span><span class="at"> docs</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">render</span><span class="kw">:</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">render</span><span class="kw">:</span><span class="co">          # keeps files like CONTRIBUTING.md out of the website</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> index.qmd</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> about.qmd</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> reports/&lt;your-report&gt;.qmd</span></span>
@@ -315,9 +341,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep your existing `format:` settings below.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>The <code>render</code> list keeps files like <code>CONTRIBUTING.md</code> out of the website. Give each new page <code>format: html</code> in its YAML header, so that Quarto does not also make a PDF of it when your project renders your report to PDF.</p>
-<p>As in the DSCI 521 chapter, create an empty <code>.nojekyll</code> file in the root of your repository (see <a href="https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html#nojekyll">Turning off Jekyll with <code>.nojekyll</code></a>). Quarto copies it into <code>docs/</code> every time you render. Add <code>.quarto/</code> to your <code>.gitignore</code> if it is not there already.</p>
-<p>Your repository will look something like this (only the new and changed parts are shown):</p>
+<p>Only the new and changed parts are shown:</p>
 <pre><code>.
 ├── _quarto.yml           # now a website: renders everything into docs/
 ├── .nojekyll
@@ -332,26 +356,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     └── reports/
         ├── &lt;your-report&gt;.html
         └── &lt;your-report&gt;.pdf</code></pre>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Your report now renders into <code>docs/</code>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p>Your report is now a page of the website. Quarto writes it to <code>docs/reports/&lt;your-report&gt;.html</code> and <code>.pdf</code>, with the website’s menu bar, instead of next to the <code>.qmd</code> in <code>reports/</code>. Delete the old rendered files from <code>reports/</code>, and update your <code>Makefile</code> and <code>README</code> to the new locations. This bonus is graded from the same <code>3.0.0</code> release as Milestone 4, so your Milestone 4 <code>README</code> instructions must still work exactly as written.</p>
 </div>
-</div>
-<p><code>quarto render</code> now renders the whole website. To render just your report while you work on it, <code>quarto render reports/&lt;your-report&gt;.qmd</code> still works, and <code>quarto preview</code> shows the website as you edit it.</p>
 </section>
-<section id="the-homepage-the-about-page-and-the-report" class="level2">
-<h2 class="anchored" data-anchor-id="the-homepage-the-about-page-and-the-report">2. The homepage, the about page and the report</h2>
-<section id="the-homepage-index.qmd" class="level3">
-<h3 class="anchored" data-anchor-id="the-homepage-index.qmd">The homepage (<code>index.qmd</code>)</h3>
-<p>Your <code>README</code> already says what your project is, who made it, and how to run it, so make it your homepage. <code>index.qmd</code> only needs to include it, using Quarto’s <a href="https://quarto.org/docs/authoring/includes.html"><code>include</code> shortcode</a>:</p>
+<section id="add-the-pages" class="level3">
+<h3 class="anchored" data-anchor-id="add-the-pages">2. Add the pages</h3>
+<ol type="1">
+<li><p><strong>Homepage (<code>index.qmd</code>):</strong> include your <code>README</code> instead of copying it, so the homepage stays up to date. It needs no <code>title</code>: Quarto uses the <code>README</code>’s first heading.</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>index.qmd</strong></pre>
@@ -361,8 +373,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>{{&lt; include README.md &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>You don’t need a <code>title</code>: Quarto uses the first heading of your <code>README</code> as the page title. Including the file, rather than copying it, means the homepage stays up to date whenever your <code>README</code> changes.</p>
+</div></li>
+<li><p><strong>About page (<code>about.qmd</code>):</strong> for each team member, their name linked to their GitHub profile, and a few sentences in their own words (for example, their background and what interests them in data science). The site is public, so each person decides what to share. A photo is optional.</p></li>
+<li><p><strong>Report:</strong> the <strong>Report</strong> menu item links to its HTML page, and Quarto adds a link to the PDF on that page. Link to both versions from your <code>README</code> too. Give every figure <span class="term" tabindex="0" data-tip="Alt text is a short written description of an image, read aloud by screen readers for people who cannot see it. Here every figure in your report needs one, set with fig-alt.">alt text</span>: the <code>fig-alt</code> option on code cells that make figures, or the <code>fig-alt</code> attribute on images:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="al">![Feature densities.](../results/figures/densities.png)</span>{#fig-densities fig-alt="Density plots of each feature by class."}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ol>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -373,38 +388,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The website only publishes its pages, not the rest of your repository. A relative link in your <code>README</code> to a file such as <code>CONTRIBUTING.md</code>, <code>LICENSE.md</code> or <code>src/</code> works on GitHub but is broken on the website, and Quarto does not warn you about it. Link to those files with their full GitHub URL instead (for example, <code>https://github.com/UBC-MDS-2026-27/&lt;your-repository&gt;/blob/main/CONTRIBUTING.md</code>), which works in both places.</p>
+<p>The website only publishes its pages, not the rest of your repository. A relative link such as <code>CONTRIBUTING.md</code> or <code>src/</code> works on GitHub but breaks on the website, and Quarto doesn’t warn you. Use the full GitHub URL instead (for example, <code>https://github.com/UBC-MDS-2026-27/&lt;your-repository&gt;/blob/main/CONTRIBUTING.md</code>).</p>
 </div>
 </div>
 </section>
-<section id="the-about-page-about.qmd" class="level3">
-<h3 class="anchored" data-anchor-id="the-about-page-about.qmd">The about page (<code>about.qmd</code>)</h3>
-<p>The about page lists and introduces each member of your team. For each person, include:</p>
-<ul>
-<li>their name, linked to their GitHub profile</li>
-<li>a few sentences introducing them, in their own words (for example, their background before MDS and what interests them in data science)</li>
-</ul>
-<p>Your website is public, so each person decides what they share about themselves. A photo is optional.</p>
-</section>
-<section id="the-report" class="level3">
-<h3 class="anchored" data-anchor-id="the-report">The report</h3>
-<p>The menu bar’s <strong>Report</strong> item links to <code>reports/&lt;your-report&gt;.qmd</code>, and Quarto turns that into a link to the rendered page. When your report also renders to PDF, Quarto adds a link to the PDF version on the report’s page. Link to both versions from your <code>README</code> too, so they show up on the homepage.</p>
-<p>Every figure in your report and on your website needs <strong>alt text</strong>: a short description of what the figure shows, for readers who cannot see it. Use the <code>fig-alt</code> option on code cells that make figures, and the <code>fig-alt</code> attribute on images:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="al">![Feature densities.](../results/figures/densities.png)</span>{#fig-densities fig-alt="Density plots of each feature by class."}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>See <a href="https://quarto.org/docs/authoring/figures.html#alt-text">Alt text</a> in the Quarto documentation.</p>
-</section>
-</section>
-<section id="make" class="level2">
-<h2 class="anchored" data-anchor-id="make">3. One <code>make</code> command builds everything</h2>
-<p>Your <code>Makefile</code> from Milestone 4 already runs your analysis. Extend it so that <code>make all</code>, run from a fresh clone inside your container, does everything, in order:</p>
+<section id="make" class="level3">
+<h3 class="anchored" data-anchor-id="make">3. One <code>make</code> command builds everything</h3>
+<p>Extend your Milestone 4 <code>Makefile</code> so that <code>make all</code>, from a fresh clone inside your container, downloads the data, runs your validation checks and the rest of the analysis, then renders the whole website into <code>docs/</code>. <code>make clean</code> removes everything <code>make all</code> creates, <strong>including <code>docs/</code></strong>.</p>
 <ol type="1">
-<li>downloads the data</li>
-<li>runs your data validation checks</li>
-<li>runs the rest of your analysis</li>
-<li>publishes: renders the website, including your report, into <code>docs/</code></li>
+<li>Change the rule behind <code>publish</code> so it runs <code>quarto render</code> instead of copying the report (sketch below).</li>
+<li>Remove your old rule that renders the report in <code>reports/</code>: the report now renders as part of the website.</li>
+<li>List as <span class="term" tabindex="0" data-tip="Prerequisites (also called dependencies) are the files listed after the colon in a Makefile rule. Make reruns the rule when any of them is newer than the target. Here they are every file the website reads, so the website rebuilds when one changes.">prerequisites</span> every file the website reads, including your <code>README</code> and the figures and tables your report shows.</li>
+<li>Say in your <code>README</code> how to build the website.</li>
 </ol>
-<p><code>make clean</code> should remove everything that <code>make all</code> creates, including <code>docs/</code>.</p>
-<p>In Milestone 4, your <code>publish</code> target copied your report to <code>docs/index.html</code>, and <code>make all</code> ran it. For the bonus, change the rule behind <code>publish</code> so that it renders the website instead, and remove your old rule for the report in <code>reports/</code>: the report now renders as part of the website. Here is a sketch. Change the file names to your own, and list as prerequisites every file the website reads, including your <code>README</code> and the figures and tables your report shows, so <code>make</code> rebuilds the website when one of them changes:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Sketch of the <code>Makefile</code> changes (step 3)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Change the file names to your own:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>Makefile</strong></pre>
@@ -421,7 +430,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>rm -rf docs</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ... and everything else your pipeline creates</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><code>quarto render</code> empties <code>docs/</code> before it renders, so no pages are left over from an older version of the website. <code>.DELETE_ON_ERROR:</code> makes <code>make</code> delete <code>docs/index.html</code> if the render fails partway. Without it, the next <code>make</code> would find a <code>docs/index.html</code> and say there is nothing to do.</p>
+<ul>
+<li><code>quarto render</code> empties <code>docs/</code> first, so no old pages are left over.</li>
+<li><code>.DELETE_ON_ERROR:</code> deletes <code>docs/index.html</code> if the render fails partway. Without it, the next <code>make</code> would find <code>docs/index.html</code> and say there is nothing to do.</li>
+</ul>
+</div>
+</div>
+</div>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -432,67 +447,79 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Before you submit, run <code>make clean</code> and then <code>make all</code> inside your container. Everything should rebuild, and Quarto should print <strong>no <code>ERROR</code> or <code>WARN</code> messages</strong> (for example, about links it could not find). Messages from other tools, such as Jupyter, don’t count. We will grade this bonus by doing the same.</p>
+<p>Before you submit, run <code>make clean</code> and then <code>make all</code> inside your container. Everything should rebuild, and Quarto should print <strong>no <code>ERROR</code> or <code>WARN</code> messages</strong> (for example, about links it could not find). Messages from other tools, such as Jupyter, don’t count. We grade the bonus by doing the same.</p>
 </div>
 </div>
-<p>Update your <code>README</code> to say how to build the website.</p>
 </section>
-<section id="publish-on-github-pages" class="level2">
-<h2 class="anchored" data-anchor-id="publish-on-github-pages">4. Publish on GitHub Pages</h2>
-<p>The <code>docs/</code> folder is generated, but commit it anyway: GitHub Pages can only publish files that are in your repository. This is the one generated folder you commit. Check that <code>docs/.nojekyll</code> is there, on your computer (<code>ls -a docs</code>) and on GitHub.com.</p>
-<p>Since Milestone 2, GitHub Pages has published your report from the <code>main</code> branch and the <code>/docs</code> folder. Keep that setting. Your website now replaces the report at the same URL: the homepage is at <code>https://ubc-mds-2026-27.github.io/&lt;your-repository&gt;/</code>, and the report moves to <code>https://ubc-mds-2026-27.github.io/&lt;your-repository&gt;/reports/&lt;your-report&gt;.html</code>. Update the report link in your <code>README</code>, and say in your <code>README</code>, and in the <strong>About</strong> box on your repository’s GitHub page, that the URL is now your project’s website.</p>
+<section id="publish-on-github-pages" class="level3">
+<h3 class="anchored" data-anchor-id="publish-on-github-pages">4. Publish on GitHub Pages</h3>
+<ol type="1">
+<li>Commit <code>docs/</code>, including <code>docs/.nojekyll</code> (check with <code>ls -a docs</code>, and on GitHub.com). It is generated, but GitHub Pages can only publish files in your repository.</li>
+<li>Keep the GitHub Pages setting from Milestone 2 (<code>main</code> branch, <code>/docs</code> folder). The homepage is now <code>https://ubc-mds-2026-27.github.io/&lt;your-repository&gt;/</code>, and the report moves to <code>.../reports/&lt;your-report&gt;.html</code>.</li>
+<li>Update the report link in your <code>README</code>, and say in your <code>README</code> and in the repository’s <strong>About</strong> box that the URL is now your project’s website.</li>
+</ol>
+</section>
 </section>
 <section id="submission-instructions" class="level2">
 <h2 class="anchored" data-anchor-id="submission-instructions">Submission instructions</h2>
-<p>Submit on Gradescope, under the bonus assignment. We only need URLs and one answer, entered into Gradescope directly: there is no PDF to make. You will submit:</p>
+<p>On Gradescope, under the bonus assignment, enter (there is no PDF to make):</p>
 <ol type="1">
 <li>the URL of your published website</li>
 <li>the URL of your project’s GitHub.com repository</li>
 <li>the URL of your <code>3.0.0</code> release</li>
 <li>which milestone the bonus points should go to (Milestone 4 if you leave it blank)</li>
 </ol>
-</section>
-<section id="rubric" class="level2">
-<h2 class="anchored" data-anchor-id="rubric">Rubric</h2>
-<p>Each item is worth 1 point.</p>
+<p>The usual project expectations apply: GitHub flow with reviewed pull requests, communication in GitHub issues, and meaningful commit messages.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Rubric
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>You start at 100% (all 5 bonus points) and lose marks for each problem below. Each 20% is 1 bonus point.</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 9%">
-<col style="width: 90%">
+<col style="width: 43%">
+<col style="width: 56%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Points</th>
-<th>Item</th>
+<th>Grade</th>
+<th>Problem</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>1</td>
-<td>The website is published on GitHub Pages from <code>docs/</code>. The menu bar has Home, Report and About, and a GitHub icon at the top right that links to the repository.</td>
+<td>-20%</td>
+<td>The website is not published on GitHub Pages from <code>docs/</code>, or the menu bar is missing Home, Report, About or the GitHub icon linking to the repository</td>
 </tr>
 <tr class="even">
-<td>1</td>
-<td>The homepage includes the <code>README</code> (not a copy of it), and every link in it works on the website.</td>
+<td>-20%</td>
+<td>The homepage copies the <code>README</code> instead of including it, or a link in it is broken on the website</td>
 </tr>
 <tr class="odd">
-<td>1</td>
-<td>The report is a page of the website, in HTML and PDF, and the <code>Makefile</code> and <code>README</code> use its new location. Every figure in the report has alt text.</td>
+<td>-20%</td>
+<td>The report is not a page of the website in both HTML and PDF, the <code>Makefile</code> or <code>README</code> still use its old location, or a figure has no alt text</td>
 </tr>
 <tr class="even">
-<td>1</td>
-<td>The about page introduces each team member.</td>
+<td>-20%</td>
+<td>The about page does not introduce each team member</td>
 </tr>
 <tr class="odd">
-<td>1</td>
-<td>From a fresh clone, inside the container, <code>make all</code> runs the whole analysis and builds the website with the report, and Quarto prints no <code>ERROR</code> or <code>WARN</code> messages. <code>make clean</code> removes everything <code>make all</code> creates, including <code>docs/</code>.</td>
+<td>-20%</td>
+<td>From a fresh clone, inside the container, <code>make all</code> does not run the whole analysis and build the website, Quarto prints an <code>ERROR</code> or <code>WARN</code> message, or <code>make clean</code> does not remove everything <code>make all</code> creates (including <code>docs/</code>)</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="expectations" class="level2">
-<h2 class="anchored" data-anchor-id="expectations">Expectations</h2>
-<p>The usual project expectations apply: work in a GitHub flow workflow, with pull requests reviewed by a teammate, communicate in GitHub issues, and write meaningful commit messages.</p>
+</div>
+</div>
+</div>
 
 
 </section>

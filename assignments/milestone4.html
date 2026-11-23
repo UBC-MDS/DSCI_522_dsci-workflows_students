@@ -216,18 +216,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#milestone-4-summary" id="toc-milestone-4-summary" class="nav-link active" data-scroll-target="#milestone-4-summary">Milestone 4 summary</a></li>
-  <li><a href="#create-a-makefile-to-act-as-a-driver-script-to-rule-them-all" id="toc-create-a-makefile-to-act-as-a-driver-script-to-rule-them-all" class="nav-link" data-scroll-target="#create-a-makefile-to-act-as-a-driver-script-to-rule-them-all">1. Create a <code>Makefile</code> to act as a driver script to rule them all</a></li>
-  <li><a href="#abstract-some-code-from-your-scripts-to-functions-in-a-separate-file-and-write-tests-for-those-functions" id="toc-abstract-some-code-from-your-scripts-to-functions-in-a-separate-file-and-write-tests-for-those-functions" class="nav-link" data-scroll-target="#abstract-some-code-from-your-scripts-to-functions-in-a-separate-file-and-write-tests-for-those-functions">2. Abstract some code from your scripts to functions in a separate file, and write tests for those functions</a></li>
-  <li><a href="#polish-your-report-so-that-its-sole-job-is-to-narrate-your-analysis-display-your-analysis-artifacts-i.e.-figures-and-tables-and-nicely-format-the-report" id="toc-polish-your-report-so-that-its-sole-job-is-to-narrate-your-analysis-display-your-analysis-artifacts-i.e.-figures-and-tables-and-nicely-format-the-report" class="nav-link" data-scroll-target="#polish-your-report-so-that-its-sole-job-is-to-narrate-your-analysis-display-your-analysis-artifacts-i.e.-figures-and-tables-and-nicely-format-the-report">3. Polish your report so that its sole job is to narrate your analysis, display your analysis artifacts (i.e., figures and tables), and nicely format the report</a></li>
-  <li><a href="#address-feedback-to-improve-the-project" id="toc-address-feedback-to-improve-the-project" class="nav-link" data-scroll-target="#address-feedback-to-improve-the-project">4. Address feedback to improve the project</a>
+  <li><a href="#milestone-4-summary" id="toc-milestone-4-summary" class="nav-link active" data-scroll-target="#milestone-4-summary">Milestone 4 summary</a>
   <ul class="collapse">
-  <li><a href="#address-feedback-from-tas" id="toc-address-feedback-from-tas" class="nav-link" data-scroll-target="#address-feedback-from-tas">4.1 Address feedback from TAs</a></li>
-  <li><a href="#address-feedback-from-peer-review" id="toc-address-feedback-from-peer-review" class="nav-link" data-scroll-target="#address-feedback-from-peer-review">4.2 Address feedback from peer review</a></li>
-  <li><a href="#reproducible-and-repliciable-workflow" id="toc-reproducible-and-repliciable-workflow" class="nav-link" data-scroll-target="#reproducible-and-repliciable-workflow">5. Reproducible and repliciable workflow</a></li>
+  <li><a href="#write-a-makefile-that-runs-everything" id="toc-write-a-makefile-that-runs-everything" class="nav-link" data-scroll-target="#write-a-makefile-that-runs-everything">1. Write a <code>Makefile</code> that runs everything</a></li>
+  <li><a href="#write-functions-and-test-them" id="toc-write-functions-and-test-them" class="nav-link" data-scroll-target="#write-functions-and-test-them">2. Write functions and test them</a></li>
+  <li><a href="#polish-your-report" id="toc-polish-your-report" class="nav-link" data-scroll-target="#polish-your-report">3. Polish your report</a></li>
+  <li><a href="#address-feedback" id="toc-address-feedback" class="nav-link" data-scroll-target="#address-feedback">4. Address feedback</a></li>
+  <li><a href="#update-your-readme" id="toc-update-your-readme" class="nav-link" data-scroll-target="#update-your-readme">5. Update your <code>README</code></a></li>
   </ul></li>
-  <li><a href="#submission-instructions" id="toc-submission-instructions" class="nav-link" data-scroll-target="#submission-instructions">Submission Instructions</a></li>
-  <li><a href="#expectations" id="toc-expectations" class="nav-link" data-scroll-target="#expectations">Expectations</a></li>
+  <li><a href="#submission-instructions" id="toc-submission-instructions" class="nav-link" data-scroll-target="#submission-instructions">Submission instructions</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students/edit/main/assignments/milestone4.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -278,45 +275,70 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="milestone-4-summary" class="level2">
 <h2 class="anchored" data-anchor-id="milestone-4-summary">Milestone 4 summary</h2>
-<ul>
-<li>Write a new script, a <code>Makefile</code> (literally called <code>Makefile</code>), to act as a <span class="term" tabindex="0" data-tip="A driver script runs all your other scripts in the right order, with the right arguments, so one command reproduces the whole analysis.">driver script</span> to rule them all. This script should run the others in sequence, hard coding in the appropriate arguments.</li>
-<li>Abstract some code from your scripts to functions in a separate file (at least one function per group member), and write tests for those functions.</li>
-<li>Polish your report’s formatting with Quarto.</li>
-<li>Address any feedback received in earlier milestones and from the peer review to improve the project.</li>
+<p>This milestone ties your project together: <strong>one command runs the whole analysis</strong>, your code is tested, your report reads like a finished paper, and you fix what reviewers pointed out.</p>
+<ul class="task-list">
+<li><label><input type="checkbox">Write a <code>Makefile</code> so <code>make all</code> runs every script, renders the report and publishes it</label></li>
+<li><label><input type="checkbox">Move some code into functions (<strong>at least one per team member</strong>) and write tests for them</label></li>
+<li><label><input type="checkbox">Polish your report: no visible code, numbered and cross-referenced figures and tables, citations</label></li>
+<li><label><input type="checkbox">Address feedback from the TAs and from the peer review</label></li>
 </ul>
-<p>An example Milestone 4 that corresponds to our expectations from this year lives here: <a href="https://github.com/ttimbers/breast-cancer-predictor/tree/3.0.0">Breast Cancer Predictor in Python 3.0.0</a></p>
-</section>
-<section id="create-a-makefile-to-act-as-a-driver-script-to-rule-them-all" class="level2">
-<h2 class="anchored" data-anchor-id="create-a-makefile-to-act-as-a-driver-script-to-rule-them-all">1. Create a <code>Makefile</code> to act as a driver script to rule them all</h2>
-<p>This script should run the others in sequence, hard coding in the appropriate arguments. This script should:</p>
-<ul>
-<li>live in the project’s root directory and be named Makefile</li>
-<li>be well documented (using the project <code>README</code> and comments inside the <code>Makefile</code> to explain what it does and how to use it)</li>
-<li>have an <code>all</code> <span class="term" tabindex="0" data-tip="In a Makefile, a target is a named thing Make can build: usually a file (like a figure), or a name for a group of steps (like all or clean). You run one with make followed by its name, e.g. make all.">target</span> so that you can easily run the entire analysis from top to bottom by running <code>make all</code> at the command line</li>
-<li>have a <code>clean</code> target so that you can easily “undo” your analysis by running <code>make clean</code> at the command line (e.g., deletes all generated data and files).</li>
-<li>have a <code>publish</code> target that updates the copy of your report that GitHub Pages publishes (<code>docs/index.html</code>, from <a href="../assignments/milestone2.html#publish-your-report-on-github-pages">Milestone 2</a>). <code>make publish</code> replaces the steps you did by hand in Milestone 2. <code>make all</code> should run it too, so your published report never falls behind your analysis. Commit and push <code>docs/</code> after it runs.</li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Phony targets
+<span class="screen-reader-only">Important</span>See what a finished Milestone 4 looks like
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p>An example Milestone 4 that corresponds to our expectations is here: <strong><a href="https://github.com/ttimbers/breast-cancer-predictor/tree/3.0.0">Breast Cancer Predictor 3.0.0</a></strong>. Look at its <code>Makefile</code>, <code>src/</code> and <code>tests/</code> folders. It uses conda for its environment: ignore that part and keep the uv/renv setup from Milestone 2.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Readings for this milestone
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <ul>
-<li>The <code>all</code>, <code>clean</code> and <code>publish</code> targets may be <code>.PHONY</code> targets</li>
-<li>You can create other targets that link up all the dependencies
-<ul>
-<li>For example, <code>data</code>, <code>analysis</code>, <code>figures</code>, <code>pdf</code>, etc, so your build process only runs what’s necessary during development</li>
-<li>Your other targets should be using make dependencies, i.e., not all your targets are allowed to be phony targets.</li>
-</ul></li>
+<li><a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/pipelines-make.html">Data analysis pipelines with GNU Make</a> and the <a href="../cheatsheets/makefile.html">Makefile cheatsheet</a></li>
+<li><a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/testing.html">Testing</a>, then <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/testing-python-pytest.html">pytest</a> (Python) or <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/testing-r-testthat.html">testthat</a> (R)</li>
+<li><a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/reproducible-reports-quarto.html">Reproducible reports with Quarto</a> and the <a href="../cheatsheets/quarto.html">Quarto cheatsheet</a> (you practised these in Individual Assignment 3)</li>
 </ul>
 </div>
 </div>
-<p>For example, <code>publish</code> can be a phony target that depends on the real file <code>docs/index.html</code>. Change the report’s path to your own:</p>
+</div>
+<section id="write-a-makefile-that-runs-everything" class="level3">
+<h3 class="anchored" data-anchor-id="write-a-makefile-that-runs-everything">1. Write a <code>Makefile</code> that runs everything</h3>
+<p>Put a file named <code>Makefile</code> in the root of your repository, as you did in Individual Assignment 4. It needs:</p>
+<ul>
+<li>an <code>all</code> <span class="term" tabindex="0" data-tip="In a Makefile, a target is a named thing Make can build: usually a file (like a figure), or a name for a group of steps (like all or clean). You run one with make followed by its name, e.g. make all.">target</span>: runs the whole analysis from top to bottom, including <code>publish</code></li>
+<li>a <code>clean</code> target: deletes everything the pipeline made, so <code>make all</code> can start fresh</li>
+<li>a <code>publish</code> target: copies the rendered report to <code>docs/index.html</code>, replacing the steps you did by hand in <a href="../assignments/milestone2.html#publish-your-report-on-github-pages">Milestone 2</a></li>
+<li><strong>real file targets</strong> for the other steps, with their dependencies (the data <strong>and</strong> the script), so Make only reruns what changed. Only <code>all</code>, <code>clean</code>, <code>publish</code> and similar group names may be <span class="term" tabindex="0" data-tip="A phony target is a name for a group of steps, not a file Make creates. You list it under .PHONY so Make always runs it, even if a file with that name exists. In this milestone, all, clean and publish can be phony; the other targets must be real files.">phony</span>.</li>
+<li>comments that explain each rule, and a <code>README</code> section that says how to run it</li>
+</ul>
+<p>Your scripts run in the container, so the commands in the rules start with <code>uv run</code> (Python), for example <code>uv run python scripts/download_data.py ...</code> and <code>uv run quarto render ...</code>. Run the pipeline with <code>docker compose run --rm analysis-env make all</code>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example: the <code>publish</code> target
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Change the report’s path to your own:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>Makefile</strong></pre>
@@ -328,120 +350,148 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    cp reports/&lt;your-report&gt;.html docs/index.html</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    touch docs/.nojekyll</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Because <code>docs/index.html</code> depends on your rendered report, <code>make publish</code> copies it only when the report has changed.</p>
+<p>Because <code>docs/index.html</code> depends on your rendered report, <code>make publish</code> copies it only when the report has changed. Commit and push <code>docs/</code> after it runs.</p>
+</div>
+</div>
+</div>
 </section>
-<section id="abstract-some-code-from-your-scripts-to-functions-in-a-separate-file-and-write-tests-for-those-functions" class="level2">
-<h2 class="anchored" data-anchor-id="abstract-some-code-from-your-scripts-to-functions-in-a-separate-file-and-write-tests-for-those-functions">2. Abstract some code from your scripts to functions in a separate file, and write tests for those functions</h2>
-<p>In every data science project, there is some code that is repetitive, and other code that may not be repetitive in the current project, but would likely be very useful in other, related future projects. It is well worth it to abstract such code to functions, making it easily reuseable in the future in other work. Examples of code that often repetitive in a data analysis projects:</p>
-<ul>
-<li>data wrangling, cleaning or transformation code that gets applied to multiple columns or multiple data sets</li>
-<li>data visualization code when many versions of a similar plot-type is used (e.g., many scatter plots with similar formatting)</li>
-<li>data modeling workflow/pipeline code when tuning different models on the same data set</li>
-</ul>
-<p>Abstracting our analysis code into functions also makes it testable! Meaning you can assess whether your code works as expected. This alone is reason enough to use functions in your analysis code.</p>
-<p>Your job here is to <strong>create at least one function per group member from your scripts.</strong> When doing this task, follow the <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/testing.html#workflow-for-writing-functions-and-tests-for-data-science">workflow for writing functions and tests for data science</a>, remember this process will include:</p>
-<ul>
-<li>writing thorough function specifications &amp; documentation</li>
-<li>writing robust unit tests for these functions to ensure they work as expected</li>
-<li>writing the code that makes up the function body</li>
-</ul>
-<p>If you are using Python, these functions will live in an <code>.py</code> file (whose filename will be named after the function, or functions). Again, it is OK to have one function per file, or all functions in one file. This/these file(s) will live in a sub-directory called <code>src</code>. If you are using R, these functions will live in an <code>.R</code> file (whose filename will be named after the function, or functions). It is OK to have one function per file, or all functions in one file. This/these file(s) will live in a sub-directory called <code>R</code>.</p>
-<p>You will <code>import</code> (in the case of Python) or <code>source</code> (in the case of R) these functions in your scripts to use them in your analysis. Tests will live in a <code>test</code> directory, with files/subdirectories organized as per the testing framework you are using. If you are using Python, we expect you to use the <a href="https://docs.pytest.org/en/7.0.x/"><code>pytest</code></a> Python package framework. If you are using R for your data analysis code, we expect you to use the <a href="https://testthat.r-lib.org/"><code>testthat</code></a> R package framework for writing software tests.</p>
-<p>Of course, if it makes sense to have more than one function per group member, you are welcome to increase the number! However, all functions must have the same standards in regards to software robustness. Your functions will be assessed for their quality (e.g., functions should do one thing, and generally return an object unless they were specifically designed for side-effects), usability, readability (follow the <a href="https://black.readthedocs.io/en/stable/the_black_code_style/index.html">black style guide</a> for Python, or the <a href="https://style.tidyverse.org/">tidyverse style guide</a> for R), documentation and quality of the test suite.</p>
-</section>
-<section id="polish-your-report-so-that-its-sole-job-is-to-narrate-your-analysis-display-your-analysis-artifacts-i.e.-figures-and-tables-and-nicely-format-the-report" class="level2">
-<h2 class="anchored" data-anchor-id="polish-your-report-so-that-its-sole-job-is-to-narrate-your-analysis-display-your-analysis-artifacts-i.e.-figures-and-tables-and-nicely-format-the-report">3. Polish your report so that its sole job is to narrate your analysis, display your analysis artifacts (i.e., figures and tables), and nicely format the report</h2>
-<p>The goal is that non-data scientists would not be able to tell that code was used to perform your analysis or format your report (i.e., no code should be visible in the rendered report).</p>
-<p>Render your report to HTML: that is the version you publish on GitHub Pages. You can render a PDF as well. You practised these Quarto features in Individual Assignment 3. Quarto has all the features needed to make your report satisfy our expectations (bibliography, automatic numbering of figures and tables, inline code rendering, etc). In particular, we expect you to:</p>
-<ul>
-<li>Use markdown headers and Quarto configuration so that a table of contents will be created when the document is rendered.</li>
-<li>Add correctly formatted inline BibTeX references so that a nicely formatted reference list will be present at the end of the document.</li>
-<li>Edit the figure formatting so that Quarto:
-<ul>
-<li>automatically numbers them,</li>
-<li>has a label for easy cross referencing, and</li>
-<li>controls the figure sizes so the figures are not too big.</li>
-</ul></li>
-<li>Add a table description argument so that they are automatically numbered by Quarto and use cross referencing to link to the table when it is discussed in the text.</li>
-<li>Edit the narrative so it uses cross-referencing to refer to the figures and tables instead of having their reference hardcode the figure and table numbers.</li>
-<li>Replace any hard-coded values in the Quarto report narrative text with inline Quarto code, so that the text will be automatically updated with the correct value.</li>
-<li>Change the code chunk options so that no code is viewable in the rendered report, just the code outputs where needed (e.g., figures and tables).</li>
-</ul>
-</section>
-<section id="address-feedback-to-improve-the-project" class="level2">
-<h2 class="anchored" data-anchor-id="address-feedback-to-improve-the-project">4. Address feedback to improve the project</h2>
-<p>Revise your data analysis project to address feedback received from the DSCI 522 teaching team from past milestones, as well as feedback received from the peer review.</p>
-<section id="address-feedback-from-tas" class="level3">
-<h3 class="anchored" data-anchor-id="address-feedback-from-tas">4.1 Address feedback from TAs</h3>
-<p>After you make changes based on feedback from your TAs, please raise a regrade requests on Gradescope for the corresponding question, <strong>provide links to the PRs, commit history to demonstrate the changes you made</strong>. After the TA confirm your changes are made correctly, you will be awarded <strong>50% of the points you lost for that question</strong>.</p>
+<section id="write-functions-and-test-them" class="level3">
+<h3 class="anchored" data-anchor-id="write-functions-and-test-them">2. Write functions and test them</h3>
+<p>Look for code that repeats (cleaning several columns the same way, many similar plots, tuning several models) or that you would reuse in another project.</p>
+<ol type="1">
+<li><strong>Write at least one function per team member</strong>, following the textbook’s <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/testing.html#workflow-for-writing-functions-and-tests-for-data-science">workflow for writing functions and tests</a>: write the documentation first, then the tests, then the function body.</li>
+<li><strong>Put them in their own files:</strong> <code>src/*.py</code> (Python) or <code>R/*.R</code> (R). One function per file, or all in one file, both are fine.</li>
+<li><strong>Use them in your scripts</strong> with <code>import</code> (Python) or <code>source()</code> (R).</li>
+<li><strong>Write tests in <code>tests/</code></strong> with <a href="https://docs.pytest.org/"><code>pytest</code></a> (Python) or <a href="https://testthat.r-lib.org/"><code>testthat</code></a> (R). Add the test package to your environment, and say in your <code>README</code> how to run the tests in the container.</li>
+</ol>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>⚠️ Important:
+<span class="screen-reader-only">Tip</span>How your functions are marked
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
-<li>Deadline for Milestone 1 + 2 regrade requests: <strong>Saturday, December 13, 2025 at 6PM.</strong></li>
-<li>Deadline for Milestone 3 regrade requests: <strong>Wednesday, December 17th, 2025 at 11:59 AM</strong>.</li>
-<li>Your regrade request should be clear to read, easy to track your changes, otherwise we will not be able to give points back.</li>
+<li><strong>Quality:</strong> each function does one thing, and returns a value unless it is meant to write a file or plot.</li>
+<li><strong>Usability and readability:</strong> clear names and arguments; <a href="https://black.readthedocs.io/en/stable/the_black_code_style/index.html">black</a> (Python) or <a href="https://style.tidyverse.org/">tidyverse</a> (R) style.</li>
+<li><strong>Documentation:</strong> a docstring (Python) or roxygen comment (R) saying what it does, its arguments and what it returns.</li>
+<li><strong>Tests:</strong> they cover expected cases, edge cases and errors.</li>
 </ul>
+<p>More functions than the minimum are welcome, but each one is held to these standards.</p>
+</div>
 </div>
 </div>
 </section>
-<section id="address-feedback-from-peer-review" class="level3">
-<h3 class="anchored" data-anchor-id="address-feedback-from-peer-review">4.2 Address feedback from peer review</h3>
-<p>After you receive feedback from your peers, each group member should at least address one feedback item from the peer review. If you are in a group of 3, you should address at least 3 feedback items from the peer review. If you are in a group of 4, you should address at least 4 feedback items from the peer review.</p>
-<p>To help us easily, and correctly, assess changes you made based on peer feedback, please create a file called <code>CHANGELOG.md</code> that lives in the root of your repository. In this file, please describe any improvements you made to the project based on peer feedback (if peer feedback is the same as feedback from your TAs, that is ok to include them in CHANGELOG too), and point to evidence of these improvements.</p>
-<p>You can point us to evidence of addressing it by creating an repository issue, and linking to another issue and pull request. providing URLs, links to PRs, links to commits, reference specific lines of code, etc can all be used to track how a feature/bug was fixed. Be sure to add some narration when sharing these URLs so that it is easy for us to identify which changes to your work addressed which pieces of feedback.</p>
-<p>See this page for an example of a changelog and how you can reference fixes: <a href="https://keepachangelog.com/" class="uri">https://keepachangelog.com/</a></p>
+<section id="polish-your-report" class="level3">
+<h3 class="anchored" data-anchor-id="polish-your-report">3. Polish your report</h3>
+<p>A reader who is not a data scientist should not be able to tell that code made the report. Render it to HTML (that is the version on GitHub Pages); a PDF as well is optional.</p>
+<ul class="task-list">
+<li><label><input type="checkbox">A table of contents</label></li>
+<li><label><input type="checkbox">Citations from a BibTeX file, with a reference list at the end</label></li>
+<li><label><input type="checkbox">Figures with a label and a caption, so Quarto numbers them, at a sensible size</label></li>
+<li><label><input type="checkbox">Tables with a label and a caption, so Quarto numbers them</label></li>
+<li><label><input type="checkbox">The text refers to figures and tables with cross-references (<code>@fig-...</code>, <code>@tbl-...</code>), never typed numbers</label></li>
+<li><label><input type="checkbox">Values in the text (accuracy, sample size…) come from inline code, not typed in by hand</label></li>
+<li><label><input type="checkbox">No code shows in the rendered report, only its output</label></li>
+</ul>
 </section>
-<section id="reproducible-and-repliciable-workflow" class="level3">
-<h3 class="anchored" data-anchor-id="reproducible-and-repliciable-workflow">5. Reproducible and repliciable workflow</h3>
+<section id="address-feedback" class="level3">
+<h3 class="anchored" data-anchor-id="address-feedback">4. Address feedback</h3>
+<section id="from-the-tas" class="level4">
+<h4 class="anchored" data-anchor-id="from-the-tas">From the TAs</h4>
+<p>Fix what the TAs pointed out in earlier milestones. Then submit a regrade request on Gradescope for that question, with <strong>links to the pull requests or commits</strong> that show the change. If the TA confirms the fix, you get back <strong>50% of the points you lost</strong> on that question. Keep the request easy to follow, or we can’t give points back.</p>
+</section>
+<section id="from-the-peer-review" class="level4">
+<h4 class="anchored" data-anchor-id="from-the-peer-review">From the peer review</h4>
+<p>Address <strong>at least one peer review item per team member</strong> (a team of 4 fixes at least 4). List them in a <code>CHANGELOG.md</code> in the root of your repository: for each item, the feedback, what you changed, and a link to the evidence (an issue, pull request, commit or lines of code). Feedback that the TAs also gave can go in too. See <a href="https://keepachangelog.com/">keepachangelog.com</a> for an example.</p>
+</section>
+</section>
+<section id="update-your-readme" class="level3">
+<h3 class="anchored" data-anchor-id="update-your-readme">5. Update your <code>README</code></h3>
+<p>Your <code>README</code> must take someone <strong>from a fresh clone to the rendered report</strong>: pull the image, run <code>make all</code> in the container, and how to run the tests. Also say how to run <code>make clean</code>.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Your README instructions are worth 5 all-or-nothing points
+<span class="screen-reader-only">Important</span>5 all-or-nothing points for your README instructions
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>5 points of this milestone are for the reproducibility of your README instructions: whether someone can follow them to run your whole analysis pipeline, from a fresh clone to the rendered report. We will grade you by following your instructions exactly as you have written them. These points are all-or-nothing, and they cannot be recovered later. If your instructions do not work exactly as you have written them, you will lose all 5 points.</p>
-<p>Make sure your instructions work on both Windows and Mac computers. If your team does not have both, work with another team to test them.</p>
+<p>If someone can’t run your whole pipeline by following your instructions <strong>exactly as written</strong>, you lose all 5 points. Test them on <strong>both Windows and Mac</strong>. If your team doesn’t have both, ask another team to test them.</p>
 </div>
 </div>
 </section>
 </section>
 <section id="submission-instructions" class="level2">
-<h2 class="anchored" data-anchor-id="submission-instructions">Submission Instructions</h2>
-<p>Just before you submit the milestone 4, create a release on your project repository on GitHub and name it exactly <code>3.0.0</code> (<a href="https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release">how to create a release</a>). This release allows us and you to easily jump to the state of your repository at the time of submission for grading purposes, while you continue to work on your project for the next milestone.</p>
-<p>Follow the instructions for submission on Gradescope. We only need URLs, entered into Gradescope directly: there is no PDF to make. You will submit:</p>
+<h2 class="anchored" data-anchor-id="submission-instructions">Submission instructions</h2>
 <ol type="1">
-<li>the URL of your project’s GitHub.com repository</li>
-<li>the URL of a GitHub release of your project’s GitHub.com repository</li>
-<li>the URL of your report on GitHub Pages</li>
-</ol>
-</section>
-<section id="expectations" class="level2">
-<h2 class="anchored" data-anchor-id="expectations">Expectations</h2>
+<li>Just before you submit, create a GitHub release named exactly <code>3.0.0</code> (<a href="https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release">how to create a release</a>).</li>
+<li>On Gradescope, enter these three URLs (there is no PDF to make):
 <ul>
-<li><strong>Everyone should contribute equally to all aspects of the project</strong> <strong>(e.g., code, writing, project management).</strong> <strong>This should be evidenced by a roughly equal number of commits,</strong> <strong>pull request reviews and participation in communication via GitHub issues.</strong></li>
-<li>Each group member should work in a <a href="https://docs.github.com/en/get-started/quickstart/github-flow">GitHub flow workflow</a>; where they create branches for each feature or fix, which are reviewed and critiqued by at least one other teammate before the the pull request is accepted.</li>
-<li>You should be committing to git and pushing to GitHub.com every time you work on this project.</li>
-<li>Git commit messages should be meaningful. These will be marked. It’s OK if one or two are less meaningful, but most should be.</li>
-<li>Use GitHub issues to communicate to their team mate (as opposed to email or Slack).</li>
-<li>Your question, analysis and visualization should make sense. It doesn’t have to be complicated.</li>
-<li>You should use proper grammar and full sentences in your README. Point form may occur, but should be less than 10% of your written documents.</li>
-<li><strong>Your analysis should be correct, and run reproducibly given the instructions provided in the README.</strong></li>
-<li>You should use proper grammar and full sentences in your README. Point form may occur, but should be less than 10% of your written documents.</li>
-<li>R code should follow the <a href="https://style.tidyverse.org/">tidyverse style guide</a>, and Python code should follow the <a href="https://black.readthedocs.io/en/stable/the_black_code_style/index.html">black style guide</a> for Python)</li>
-<li>You should not have extraneous files in your repository that should be ignored. The one exception is <code>docs/</code>: it is generated, but GitHub Pages needs it committed.</li>
+<li>the GitHub release</li>
+<li>your group project’s repository (general one without GitHub release)</li>
+<li>your report on GitHub Pages</li>
+</ul></li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Check yourself before submitting
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul class="task-list">
+<li><label><input type="checkbox">From a fresh clone, <code>make all</code> in the container runs everything and updates <code>docs/index.html</code></label></li>
+<li><label><input type="checkbox">Running <code>make all</code> a second time does nothing; <code>make clean</code> removes everything the pipeline made</label></li>
+<li><label><input type="checkbox">At least one tested function per team member, in <code>src/</code> or <code>R/</code>, used by your scripts</label></li>
+<li><label><input type="checkbox">All tests pass in the container</label></li>
+<li><label><input type="checkbox">The rendered report shows no code and every item in the polish list above is done</label></li>
+<li><label><input type="checkbox"><code>CHANGELOG.md</code> lists at least one peer review item per team member, with links</label></li>
+<li><label><input type="checkbox">Someone on Windows and someone on Mac followed your <code>README</code> steps exactly</label></li>
+<li><label><input type="checkbox">Your report on GitHub Pages matches your release</label></li>
+<li><label><input type="checkbox">You created the <code>3.0.0</code> release</label></li>
 </ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Teamwork expectations (these are marked)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Everyone contributes equally</strong> to code, writing and project management, shown by a roughly equal number of commits, pull request reviews and GitHub issue comments.</li>
+<li>Use the <a href="https://docs.github.com/en/get-started/using-github/github-flow">GitHub flow</a>: a branch for each feature or fix, reviewed by at least one teammate before the pull request is merged.</li>
+<li>Commit and push every time you work on the project, with meaningful commit messages (one or two less meaningful ones are OK).</li>
+<li>Talk to your teammates in GitHub issues, not email or Slack.</li>
+<li>Your question, analysis and visualization should make sense. They don’t have to be complicated.</li>
+<li>Your analysis should be correct and run reproducibly from your <code>README</code> instructions.</li>
+<li>Follow the <a href="https://black.readthedocs.io/en/stable/the_black_code_style/index.html">black style guide</a> (Python) or the <a href="https://style.tidyverse.org/">tidyverse style guide</a> (R).</li>
+<li>Don’t commit generated files, except <code>docs/</code>, which GitHub Pages needs.</li>
+<li>Write your <code>README</code> in full sentences with proper grammar. Keep point form under 10% of it.</li>
+</ul>
+</div>
+</div>
+</div>
 
 
 </section>

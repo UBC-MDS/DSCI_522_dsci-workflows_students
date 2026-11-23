@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -181,12 +216,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#practice-building-data-analysis-pipelines-using-gnu-make" id="toc-practice-building-data-analysis-pipelines-using-gnu-make" class="nav-link active" data-scroll-target="#practice-building-data-analysis-pipelines-using-gnu-make">Practice building data analysis pipelines using GNU Make</a>
-  <ul class="collapse">
-  <li><a href="#exercise-instructions" id="toc-exercise-instructions" class="nav-link" data-scroll-target="#exercise-instructions">Exercise instructions</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions">Instructions</a></li>
   <li><a href="#submission-instructions" id="toc-submission-instructions" class="nav-link" data-scroll-target="#submission-instructions">Submission instructions</a></li>
-  </ul></li>
-  <li><a href="#rubric" id="toc-rubric" class="nav-link" data-scroll-target="#rubric">Rubric</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students/edit/main/assignments/individual4.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -212,48 +244,138 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="practice-building-data-analysis-pipelines-using-gnu-make" class="level2">
-<h2 class="anchored" data-anchor-id="practice-building-data-analysis-pipelines-using-gnu-make">Practice building data analysis pipelines using GNU Make</h2>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>This assignment is hands-on practice with GNU Make, which you will use to run your project’s analysis. You get a project that runs every step with one script, <code>runall.sh</code>. You replace that script with a <code>Makefile</code>: a smarter <span class="term" tabindex="0" data-tip="A pipeline is the chain of steps that turns raw data into results (download, clean, analyse, plot, report), where each step uses the output of the one before. GNU Make runs the steps in order, and only reruns a step when something it depends on has changed.">data analysis pipeline</span> that only reruns the steps whose inputs changed.</p>
+<ul class="task-list">
+<li><label><input type="checkbox">Copy the template repository and run <code>bash runall.sh</code> once to see what it does</label></li>
+<li><label><input type="checkbox">Write a <code>Makefile</code> where <code>make all</code> does the same job as <code>bash runall.sh</code></label></li>
+<li><label><input type="checkbox">Add <code>make clean</code>, which puts the repository back the way you found it</label></li>
+<li><label><input type="checkbox">Push to GitHub</label></li>
+</ul>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+<span class="screen-reader-only">Tip</span>Readings for this assignment
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Deadline: <strong>Saturday, December 13, 2025 at 6PM.</strong></p>
-</div>
-</div>
-<p>The purpose of this assignment is to ensure that everyone gains hands-on practice building data analysis pipelines using GNU Make.</p>
-<section id="exercise-instructions" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-instructions">Exercise instructions</h3>
-<ol type="1">
-<li><p>Visit <a href="https://github.com/skysheng7/ia4.git">this template GitHub repository</a> and click the green “Use this template” button to get your own copy of the <code>ia4</code> repository, call it <code>data_analysis_pipeline_practice</code>.</p></li>
-<li><p>Your task is to add a “smarter” <span class="term" tabindex="0" data-tip="A pipeline is the chain of steps that turns raw data into results (download, clean, analyse, plot, report), where each step uses the output of the one before. GNU Make runs the steps in order, and only reruns a step when something it depends on has changed.">data analysis pipeline</span> using GNU Make! It should accomplish the same task as <code>bash runall.sh</code> when you type <code>make all</code>. It should also reset the analysis the starting point (the state when you first copied this repo) when you type <code>make clean</code>.</p></li>
-<li><p>After you have the <code>Makefile</code> working locally, for both the <code>all</code> and <code>clean</code> targets, push your changes to your copy of the <code>data_analysis_pipeline_practice</code> GitHub repository.</p></li>
-</ol>
-</section>
-<section id="submission-instructions" class="level3">
-<h3 class="anchored" data-anchor-id="submission-instructions">Submission instructions</h3>
-<p>Follow the instructions for submission on Gradescope. We only need URLs, entered into Gradescope directly: there is no PDF to make. You will submit:</p>
-<ol type="1">
-<li>A link to your copy of the GitHub.com repository that you created and worked on for this assignment.
 <ul>
-<li>It should be named <code>data_analysis_pipeline_practice</code>.</li>
+<li>Textbook: <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/pipelines-make.html">Data analysis pipelines with GNU Make</a></li>
+<li><a href="../cheatsheets/makefile.html">Makefile cheatsheet</a>: rule syntax, and the code we ran in class for this assignment</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="instructions" class="level2">
+<h2 class="anchored" data-anchor-id="instructions">Instructions</h2>
+<ol type="1">
+<li><p><strong>Make the repository.</strong> Open <a href="https://github.com/skysheng7/ia4">the template repository</a>, click <strong>Use this template</strong> &gt; <strong>Create a new repository</strong>, and make a <strong>public</strong> repository under your personal account named <code>data_analysis_pipeline_practice</code>. Clone it and <code>cd</code> into it.</p></li>
+<li><p><strong>Start the container and run the script.</strong> Open Docker Desktop, then start a terminal inside the container and run <code>bash runall.sh</code> (commands below). Look at what it makes in <code>results/</code> and <code>report/</code>, then run <code>git status</code> to see which files are new.</p></li>
+<li><p><strong>Write the <code>Makefile</code></strong> in the root of the repository. Turn each command in <code>runall.sh</code> into a <span class="term" tabindex="0" data-tip="A rule is one step in a Makefile. It has a target (the file the step makes), its dependencies (the files it needs, including the script it runs) and the command that makes the target. Make only reruns the command when a dependency is newer than the target.">rule</span>, listing as dependencies the data file <strong>and</strong> the script each step uses. Then add two targets:</p>
+<ul>
+<li><code>all</code>: makes everything <code>runall.sh</code> makes, ending with the rendered report</li>
+<li><code>clean</code>: deletes everything the pipeline made (and nothing else)</li>
 </ul></li>
+<li><p><strong>Test it.</strong> Run <code>make clean</code>, then <code>make all</code>. Run <code>make all</code> again: Make should say there is nothing to do. Then change one data file (e.g.&nbsp;<code>touch data/isles.txt</code>) and run <code>make all</code>: only the steps that use it should rerun. Finally run <code>make clean</code> and check with <code>git status</code> that the repository is back to how you found it.</p></li>
+<li><p><strong>Commit and push</strong> the <code>Makefile</code>, but not the files it makes.</p></li>
 </ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Commands to start the container (step 2)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>From your repository folder:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> compose run <span class="at">--rm</span> ia4</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You land in a terminal inside the container, with Python, Quarto and Make installed. Note this is <code>docker compose run</code>, not <code>docker compose up</code>: there is no browser app, just the terminal. Your repository folder is shared with the container, so files you make there show up on your computer too.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> runall.sh   <span class="co"># run the whole analysis the old way</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> all         <span class="co"># later: run your Makefile instead</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">exit</span>             <span class="co"># leave the container when you are done</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>What a rule looks like (step 3)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Makefile</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-filename="Makefile"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># target : dependencies</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#     command (indented with a TAB)</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dv">results/isles.dat :</span><span class="dt"> data/isles.txt scripts/wordcount.py</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>python scripts/wordcount.py --input_file=data/isles.txt --output_file=results/isles.dat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>all</code> and <code>clean</code> don’t make files with those names, so list them as <code>.PHONY</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ot">.PHONY</span> <span class="ot">:</span><span class="dt"> all clean</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <a href="../cheatsheets/makefile.html">Makefile cheatsheet</a> has more examples.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Troubleshooting
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong><code>Makefile: *** missing separator. Stop.</code>:</strong> the command line must start with a <strong>TAB</strong>, not spaces. Turn off “insert spaces for tabs” in your editor for Makefiles.</li>
+<li><strong><code>make: Nothing to be done</code> or <code>is up to date</code>:</strong> that’s Make working: the target is newer than all its dependencies. Run <code>make clean</code> first, or <code>touch</code> a dependency, to make it run again.</li>
+<li><strong>A step doesn’t rerun after you edit a script:</strong> the script is missing from that rule’s dependencies.</li>
+<li><strong><code>make clean</code> deletes a file it shouldn’t:</strong> only delete what the pipeline makes. Keep the <code>README.md</code> files in <code>results/</code> and <code>report/</code>.</li>
+</ul>
+</div>
+</div>
+</div>
 </section>
-</section>
-<section id="rubric" class="level2">
-<h2 class="anchored" data-anchor-id="rubric">Rubric</h2>
-<p>This assignment will be graded for completion as follows:</p>
+<section id="submission-instructions" class="level2">
+<h2 class="anchored" data-anchor-id="submission-instructions">Submission instructions</h2>
+<p>On Gradescope, enter the URL of your GitHub.com repository, named <code>data_analysis_pipeline_practice</code> (there is no PDF to make).</p>
+<p>See the <a href="../index.html">syllabus</a> for the due date.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Rubric
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <table class="caption-top table">
 <colgroup>
-<col style="width: 32%">
-<col style="width: 67%">
+<col style="width: 35%">
+<col style="width: 65%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -264,31 +386,33 @@ Tip
 <tbody>
 <tr class="odd">
 <td>100%</td>
-<td>Working data analysis pipeline via a <code>Makefile</code> file exists and it contains both <code>all</code> and <code>clean</code> targets.</td>
+<td>A working data analysis pipeline in a <code>Makefile</code>, with both <code>all</code> and <code>clean</code> targets</td>
 </tr>
 <tr class="even">
 <td>-25%</td>
-<td>There are errors in the <code>Makefile</code> that prevent it from running as expected</td>
+<td>There are errors in the <code>Makefile</code> that stop it from running as expected</td>
 </tr>
 <tr class="odd">
 <td>-25%</td>
-<td>The <code>all</code> target is missing from the <code>Makefile</code></td>
+<td>The <code>all</code> target is missing</td>
 </tr>
 <tr class="even">
 <td>-25%</td>
-<td>The <code>clean</code> target is missing from the <code>Makefile</code></td>
+<td>The <code>clean</code> target is missing</td>
 </tr>
 <tr class="odd">
 <td>-25%</td>
-<td>The <code>Makefile</code> dependency tree is incorrect in some way</td>
+<td>The dependencies in the <code>Makefile</code> are wrong in some way</td>
 </tr>
 <tr class="even">
 <td>0%</td>
-<td>The assignment was not attempted.</td>
+<td>The assignment was not attempted</td>
 </tr>
 </tbody>
 </table>
-<pre><code>if all of the main assignment components were completed.</code></pre>
+</div>
+</div>
+</div>
 
 
 </section>

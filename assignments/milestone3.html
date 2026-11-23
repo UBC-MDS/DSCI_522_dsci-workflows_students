@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -183,15 +218,13 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#milestone-3-summary" id="toc-milestone-3-summary" class="nav-link active" data-scroll-target="#milestone-3-summary">Milestone 3 summary</a>
   <ul class="collapse">
-  <li><a href="#abstract-code-from-your-literate-code-document-.ipynb-.qmd-or-.rmd-to-scripts-e.g.-.r-or-.py." id="toc-abstract-code-from-your-literate-code-document-.ipynb-.qmd-or-.rmd-to-scripts-e.g.-.r-or-.py." class="nav-link" data-scroll-target="#abstract-code-from-your-literate-code-document-.ipynb-.qmd-or-.rmd-to-scripts-e.g.-.r-or-.py.">1. Abstract code from your literate code document (<code>*.ipynb</code>, <code>*.qmd</code> or <code>*.Rmd</code>) to scripts (e.g., <code>.R</code> or <code>.py</code>).</a></li>
-  <li><a href="#add-data-validation-checks-to-your-analysis-scripts" id="toc-add-data-validation-checks-to-your-analysis-scripts" class="nav-link" data-scroll-target="#add-data-validation-checks-to-your-analysis-scripts">2. Add data validation checks to your analysis scripts</a></li>
-  <li><a href="#if-your-report-literate-code-document-is-not-already-a-.qmd-file-convert-it-so-that-it-is." id="toc-if-your-report-literate-code-document-is-not-already-a-.qmd-file-convert-it-so-that-it-is." class="nav-link" data-scroll-target="#if-your-report-literate-code-document-is-not-already-a-.qmd-file-convert-it-so-that-it-is.">3. If your report literate code document is not already a <code>*.qmd</code> file, convert it so that it is.</a></li>
-  <li><a href="#update-your-report-to-display-your-scripts-results" id="toc-update-your-report-to-display-your-scripts-results" class="nav-link" data-scroll-target="#update-your-report-to-display-your-scripts-results">4. Update your report to display your scripts’ results</a></li>
-  <li><a href="#update-your-projects-computational-environment-as-you-add-dependencies-to-your-project" id="toc-update-your-projects-computational-environment-as-you-add-dependencies-to-your-project" class="nav-link" data-scroll-target="#update-your-projects-computational-environment-as-you-add-dependencies-to-your-project">5. Update your project’s computational environment as you add dependencies to your project</a></li>
-  <li><a href="#update-any-instructions-for-running-your-analysis" id="toc-update-any-instructions-for-running-your-analysis" class="nav-link" data-scroll-target="#update-any-instructions-for-running-your-analysis">6. Update any instructions for running your analysis</a></li>
+  <li><a href="#move-your-code-into-scripts" id="toc-move-your-code-into-scripts" class="nav-link" data-scroll-target="#move-your-code-into-scripts">1. Move your code into scripts</a></li>
+  <li><a href="#add-data-validation-checks" id="toc-add-data-validation-checks" class="nav-link" data-scroll-target="#add-data-validation-checks">2. Add data validation checks</a></li>
+  <li><a href="#make-your-report-show-your-scripts-results" id="toc-make-your-report-show-your-scripts-results" class="nav-link" data-scroll-target="#make-your-report-show-your-scripts-results">3. Make your report show your scripts’ results</a></li>
+  <li><a href="#update-your-environment" id="toc-update-your-environment" class="nav-link" data-scroll-target="#update-your-environment">4. Update your environment</a></li>
+  <li><a href="#update-your-readme" id="toc-update-your-readme" class="nav-link" data-scroll-target="#update-your-readme">5. Update your <code>README</code></a></li>
   </ul></li>
-  <li><a href="#submission-instructions" id="toc-submission-instructions" class="nav-link" data-scroll-target="#submission-instructions">Submission Instructions</a></li>
-  <li><a href="#expectations" id="toc-expectations" class="nav-link" data-scroll-target="#expectations">Expectations</a></li>
+  <li><a href="#submission-instructions" id="toc-submission-instructions" class="nav-link" data-scroll-target="#submission-instructions">Submission instructions</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students/edit/main/assignments/milestone3.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -242,128 +275,223 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <section id="milestone-3-summary" class="level2">
 <h2 class="anchored" data-anchor-id="milestone-3-summary">Milestone 3 summary</h2>
+<p>This milestone is about moving your analysis code <strong>out of your report and into scripts</strong>, and checking your data before you use it.</p>
+<ul class="task-list">
+<li><label><input type="checkbox">Split your analysis into <strong>4 or more scripts</strong> that take <span class="term" tabindex="0" data-tip="Values you type after the script name when you run it in the terminal, e.g. python scripts/clean.py --input data/raw/data.csv --output data/processed/clean.csv. They let you change inputs and outputs without editing the code.">command line arguments</span></label></li>
+<li><label><input type="checkbox">Add <span class="term" tabindex="0" data-tip="Data validation means automatic checks that your data looks the way your analysis expects (the right columns and types, no impossible values, not too many missing values) before you use it. Here the checks run inside your scripts, so a problem stops the analysis early instead of silently giving wrong results.">data validation</span> checks to your scripts</label></li>
+<li><label><input type="checkbox">Make your report a <code>.qmd</code> that <strong>shows</strong> the figures and tables your scripts saved, instead of computing them</label></li>
+<li><label><input type="checkbox">Add any new packages to your environment and publish a new Docker image</label></li>
+<li><label><input type="checkbox">Update your <code>README</code> so it says how to run each script in the container</label></li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>See what a finished Milestone 3 looks like
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>An example Milestone 3 that corresponds to our expectations is here: <strong><a href="https://github.com/ttimbers/breast-cancer-predictor/tree/2.0.0">Breast Cancer Predictor 2.0.0</a></strong>. Look at its <code>scripts/</code> folder and its <code>README</code>. It uses conda for its environment: ignore that part and keep the uv/renv setup from Milestone 2.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Readings for this milestone
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/scripts.html">Scripts</a>: writing scripts with command line arguments (<code>click</code> and <code>docopt</code>)</li>
+<li><a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/data-validation.html">Data validation</a>: what to check, and the checklist you must cover</li>
+<li><a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/data-validation-python-pandera.html">Data validation with pandera</a> (Python) or <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/data-validation-r-pointblank.html">with pointblank</a> (R)</li>
+</ul>
+</div>
+</div>
+</div>
+<section id="move-your-code-into-scripts" class="level3">
+<h3 class="anchored" data-anchor-id="move-your-code-into-scripts">1. Move your code into scripts</h3>
 <ol type="1">
-<li><p>Abstract code from your report <span class="term" tabindex="0" data-tip="A literate code document mixes code and the writing that explains it in one file, such as a Quarto (.qmd), R Markdown (.Rmd) or Jupyter (.ipynb) document. Your Milestone 1 report is one.">literate code document</span> (<code>*.ipynb</code>, <code>*.qmd</code> or <code>*.Rmd</code>) to scripts (e.g., <code>.R</code> or <code>.py</code>). This code need not be converted to a function, but can simply be files that call the functions needed to run your analysis. You should aim to split the analysis code into 4, or more, R or Python scripts. Where the code in each script is contributing to a related step in your analysis. Your scripts should take <span class="term" tabindex="0" data-tip="Values you type after the script name when you run it in the terminal, e.g. python scripts/clean.py --input data/raw/data.csv --output data/processed/clean.csv. They let you change inputs and outputs without editing the code.">command line arguments</span>. <strong>You must document in your <code>README.md</code> how to call each script, including what arguments you pass each script.</strong></p></li>
-<li><p>Add <span class="term" tabindex="0" data-tip="Data validation means automatic checks that your data looks the way your analysis expects (the right columns and types, no impossible values, not too many missing values) before you use it, so problems stop the analysis early instead of silently giving wrong results.">data validation</span> checks to your analysis scripts.</p></li>
-<li><p>If your report literate code document is not already a <code>*.qmd</code> file, convert it so that it is.</p></li>
-<li><p>Update your report so that it displays the figures and tables your scripts write, instead of computing them. You will polish the report’s formatting in Milestone 4.</p></li>
-<li><p>Update your project’s computational environment as you add dependencies to your project</p></li>
+<li><p><strong>Split your analysis into 4 or more scripts</strong> (<code>.py</code> or <code>.R</code>) in a <code>scripts/</code> folder, one script per step of the analysis. The code doesn’t need to be turned into functions yet (that is Milestone 4). A common split:</p>
+<ul>
+<li>download the data</li>
+<li>clean and split the data</li>
+<li>exploratory figures and tables</li>
+<li>fit the model and evaluate it</li>
+</ul></li>
+<li><p><strong>Chain them:</strong> the files one script writes are the files the next script reads.</p></li>
+<li><p><strong>Give every script command line arguments</strong> for at least its input path and its output path, so nothing is hard-coded. Use <a href="https://click.palletsprojects.com/"><code>click</code></a> in Python, or <code>docopt</code> in R. Use descriptive file names (<code>data/processed/cancer_train.csv</code>, not <code>data/file.csv</code>).</p></li>
+<li><p><strong>Save every figure and table to a file</strong> (for example in <code>results/</code>), so the report can show it.</p></li>
 </ol>
-<p>An example Milestone 3 that corresponds to our expectations from this year is available here: <a href="https://github.com/ttimbers/breast-cancer-predictor/tree/2.0.0">Breast Cancer Predictor 2.0.0</a></p>
-<section id="abstract-code-from-your-literate-code-document-.ipynb-.qmd-or-.rmd-to-scripts-e.g.-.r-or-.py." class="level3">
-<h3 class="anchored" data-anchor-id="abstract-code-from-your-literate-code-document-.ipynb-.qmd-or-.rmd-to-scripts-e.g.-.r-or-.py.">1. Abstract code from your literate code document (<code>*.ipynb</code>, <code>*.qmd</code> or <code>*.Rmd</code>) to scripts (e.g., <code>.R</code> or <code>.py</code>).</h3>
-<p>This code need not be converted to a function, but can simply be files that call the functions needed to run your analysis. You should aim to split the analysis code into 4, or more, R or Python scripts. Where the code in each script is contributing to a related step in your analysis.</p>
-<p>Below we list some examples of steps that your current report document can be broken up into. It is not critical you split your code up exaclty as we list below, but you must somehow split your analysis code up into 4, or more, R or Python scripts.</p>
-<ul>
-<li>Download/extract data</li>
-<li>Clean/transform data</li>
-<li>Split and pre-process data</li>
-<li>Exploratory data analysis</li>
-<li>Model fitting</li>
-<li>Model evaluation</li>
-</ul>
-<p>The output of the first script must be the input of the second, and so on. All scripts should have command line arguments and we expect you to use the <a href="https://click.palletsprojects.com/en/8.0.x/"><code>click</code></a>) Python package for parsing command line arguments for Python projects, and the <code>docopt</code> R package for parsing command line arguments for R projects.</p>
-<p>They scripts could be organized something like this:</p>
-<ul>
-<li><p>A first script that downloads the data from the internet and saves it locally. This should take at least two arguments:</p>
-<ul>
-<li>the path to the input file (a URL or a relative local path, such as data/file.csv), as well as</li>
-<li>a path/filename where to write the file to and what to call it (e.g., data/cleaned_data.csv).</li>
-</ul>
-<p><strong>Note: choose more descriptive filenames than the ones used above. These are general for illustrative purposes.</strong></p></li>
-<li><p>A second script that reads the data from the first script and performs and data cleaning/pre-processing, transforming, and/or partitioning that needs to happen before exploratory data analysis or modeling takes place. This should take at least two arguments:</p>
-<ul>
-<li>a path/filename pointing to the data to be read in</li>
-<li>a path/filename pointing to where the cleaned/processed/transformed/partitioned data should live.</li>
-</ul></li>
-<li><p>A third script which creates exploratory data visualization(s) and table(s) that are useful to help the reader/consumer understand that data set. These analysis artifacts should be written to files. This should take at least two arguments:</p>
-<ul>
-<li>a path/filename pointing to the data,</li>
-<li>a path/filename prefix where to write the figure to and what to call it (e.g., results/this_eda.png).</li>
-</ul></li>
-<li><p>A fourth script that reads the data from the second script, performs the modeling and summarizes the results as a figure(s) and a table(s). These analysis artifacts should be written to files. This should take at least two arguments:</p>
-<ul>
-<li>a path/filename pointing to the data</li>
-<li>a path/filename prefix where to write the figure(s)/table(s) to and what to call it (e.g., results/this_analysis)</li>
-</ul></li>
-<li><p>You are welcome to have any additional scripts as needed, or modify how you organize the splitting up of your code a little differently than suggested. What is important is that you have ~ 4 different scripts so you get practice setting them up in a data analysis pipeline (next milestone).</p></li>
-</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>What each script could look like
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Script</th>
+<th>Reads</th>
+<th>Writes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>download</td>
+<td>a URL</td>
+<td><code>data/raw/...</code></td>
+</tr>
+<tr class="even">
+<td>clean and split</td>
+<td>the raw data</td>
+<td>cleaned train and test files in <code>data/processed/</code></td>
+</tr>
+<tr class="odd">
+<td>EDA</td>
+<td>the training data</td>
+<td>figures and tables in <code>results/</code></td>
+</tr>
+<tr class="even">
+<td>model</td>
+<td>the training and test data</td>
+<td>the fitted model, plus result figures and tables in <code>results/</code></td>
+</tr>
+</tbody>
+</table>
+<p>Running a Python script in the container looks like this (R: <code>Rscript</code> instead of <code>uv run python</code>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> compose run <span class="at">--rm</span> analysis-env <span class="dt">\</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  uv run python scripts/download_data.py <span class="dt">\</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--url</span> https://example.com/data.csv <span class="dt">\</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--write-to</span> data/raw/cancer.csv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You can split your code differently, or have more scripts. What matters is having about 4, so you can practise joining them into a pipeline in Milestone 4.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="add-data-validation-checks" class="level3">
+<h3 class="anchored" data-anchor-id="add-data-validation-checks">2. Add data validation checks</h3>
+<ol type="1">
+<li><strong>Write the checks as code in your scripts</strong>, for example in the script that cleans or splits the data.</li>
+<li><strong>Write at least one check for each item</strong> in the textbook’s <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/data-validation.html#data-validation-checklist">data validation checklist</a>.</li>
+<li><strong>Decide what happens when a check fails</strong> (stop with an error, or warn and continue), and make the code do that.</li>
+<li><strong>Don’t leak test data:</strong> checks that look at relationships between columns (such as correlations) run on the training data only.</li>
+</ol>
+</section>
+<section id="make-your-report-show-your-scripts-results" class="level3">
+<h3 class="anchored" data-anchor-id="make-your-report-show-your-scripts-results">3. Make your report show your scripts’ results</h3>
+<ol type="1">
+<li>If your report is not a <code>.qmd</code> yet, convert it: <code>quarto convert report.ipynb</code> for a Jupyter notebook, or just rename an <code>.Rmd</code> file to <code>.qmd</code>.</li>
+<li>Replace the analysis code in the report with code that <strong>reads and displays</strong> the figures and tables your scripts saved.</li>
+<li>Don’t polish its formatting yet (cross-references, citations, hidden code): that is Milestone 4.</li>
+<li>After you re-render it, copy it to <code>docs/index.html</code> again and push, so the report on GitHub Pages stays current (see <a href="../assignments/milestone2.html#publish-your-report-on-github-pages">Milestone 2</a>).</li>
+</ol>
+</section>
+<section id="update-your-environment" class="level3">
+<h3 class="anchored" data-anchor-id="update-your-environment">4. Update your environment</h3>
+<p>Your scripts probably use new packages (<code>click</code> or <code>docopt</code>, a validation package). Add each one, pinned, the same way you did in Milestone 2: add it with uv or renv, commit the changed files, let GitHub Actions publish a new image, then update the tag in <code>docker-compose.yml</code>. (<a href="https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/virtual-environments-uv.html">uv recap from DSCI 521</a>)</p>
+</section>
+<section id="update-your-readme" class="level3">
+<h3 class="anchored" data-anchor-id="update-your-readme">5. Update your <code>README</code></h3>
+<p>Your <code>README</code> must say <strong>how to run each script</strong>, in order, with the exact command and its arguments, using the container (<code>docker compose run --rm analysis-env ...</code>), then how to render the report.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Important
+<span class="screen-reader-only">Important</span>5 all-or-nothing points for your README instructions
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>You must document in your <code>README.md</code> how to call each script, including what arguments you pass each script.</strong></p>
-</div>
-</div>
-</section>
-<section id="add-data-validation-checks-to-your-analysis-scripts" class="level3">
-<h3 class="anchored" data-anchor-id="add-data-validation-checks-to-your-analysis-scripts">2. Add data validation checks to your analysis scripts</h3>
-<p>To make sure that your data visualizations and modeling results are correct, robust and of high quality, add data validation checks to your analysis. Write them as code in your scripts, for example as a step in the script that cleans or splits your data. Ensure you cover the checks we recommend in our <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/data-validation.html#data-validation-checklist">Data validation checklist</a>. Write at least one check for each item in the data validation checklist. Also be thoughtful about what you want to happen if/when your checks fail, and be sure that your code reflects that. Finally, when implementing your checks, be sure they do not create data leakage between the training and test set.</p>
-</section>
-<section id="if-your-report-literate-code-document-is-not-already-a-.qmd-file-convert-it-so-that-it-is." class="level3">
-<h3 class="anchored" data-anchor-id="if-your-report-literate-code-document-is-not-already-a-.qmd-file-convert-it-so-that-it-is.">3. If your report literate code document is not already a <code>*.qmd</code> file, convert it so that it is.</h3>
-<p>You can use <code>quarto convert notebook.ipynb</code> to convert Jupyter notebooks to <code>*.qmd</code> files. If you were using an <code>.Rmd</code> file, you can simply rename the file so that it has a <code>.qmd</code> file extension. Much of the <code>.Rmd</code> syntax is backwards compatible, so this should mostly work.</p>
-</section>
-<section id="update-your-report-to-display-your-scripts-results" class="level3">
-<h3 class="anchored" data-anchor-id="update-your-report-to-display-your-scripts-results">4. Update your report to display your scripts’ results</h3>
-<p>Your scripts now write your figures and tables to files. Update your report so that it reads and displays those files, instead of computing them itself. You will polish the report’s formatting (table of contents, references, cross-references, inline values and hidden code) in Milestone 4.</p>
-</section>
-<section id="update-your-projects-computational-environment-as-you-add-dependencies-to-your-project" class="level3">
-<h3 class="anchored" data-anchor-id="update-your-projects-computational-environment-as-you-add-dependencies-to-your-project">5. Update your project’s computational environment as you add dependencies to your project</h3>
-<p>As you add packages to your project (for example, <code>click</code> for your scripts, or a package for your data validation checks), update your project’s computational environment. This means that your environment specification files will need to have these packages added, with the version pinned, and the Docker container image will need to be rebuilt and published to DockerHub.</p>
-</section>
-<section id="update-any-instructions-for-running-your-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="update-any-instructions-for-running-your-analysis">6. Update any instructions for running your analysis</h3>
-<p>Do not forget to update your project’s documentation to reflect changes from this week. Update instructions and/or commands in your <code>README.md</code> and documention to run your analysis in your compute environment. You may combine commands within <code>make</code>. But instructions in the <code>README.md</code> file should include how to run the make target and rule.</p>
-<p>After you re-render your report, copy it to <code>docs/index.html</code> again and push, so the report on GitHub Pages stays current (see <a href="../assignments/milestone2.html#publish-your-report-on-github-pages">Milestone 2</a>).</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Your README instructions are worth 5 all-or-nothing points
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>5 points of this milestone are for the reproducibility of your README instructions: whether someone can follow them to run your analysis, including each of your scripts, in your computational environment. These points are all-or-nothing, and they cannot be recovered later. If your instructions do not work exactly as you have written them, you will lose all 5 points.</p>
-<p>Make sure your instructions work on both Windows and Mac computers. If your team does not have both, work with another team to test them.</p>
+<p>If someone can’t run each of your scripts and render your report by following your instructions <strong>exactly as written</strong>, you lose all 5 points. Test them on <strong>both Windows and Mac</strong>. If your team doesn’t have both, ask another team to test them.</p>
 </div>
 </div>
 </section>
 </section>
 <section id="submission-instructions" class="level2">
-<h2 class="anchored" data-anchor-id="submission-instructions">Submission Instructions</h2>
-<p>Just before you submit the milestone 3, create a release on your project repository on GitHub and name it something like <code>2.0.0</code> (<a href="https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release">how to create a release</a>). This release allows us and you to easily jump to the state of your repository at the time of submission for grading purposes, while you continue to work on your project for the next milestone.</p>
-<p>Follow the instructions for submission on Gradescope. We only need URLs, entered into Gradescope directly: there is no PDF to make. You will submit:</p>
+<h2 class="anchored" data-anchor-id="submission-instructions">Submission instructions</h2>
 <ol type="1">
-<li>the URL of your project’s GitHub.com repository</li>
-<li>the URL of a GitHub release of your project’s GitHub.com repository</li>
-<li>the URL of your report on GitHub Pages</li>
-</ol>
-</section>
-<section id="expectations" class="level2">
-<h2 class="anchored" data-anchor-id="expectations">Expectations</h2>
+<li>Just before you submit, create a GitHub release named exactly <code>2.0.0</code> (<a href="https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release">how to create a release</a>).</li>
+<li>On Gradescope, enter these three URLs (there is no PDF to make):
 <ul>
-<li><strong>Everyone should contribute equally to all aspects of the project</strong> <strong>(e.g., code, writing, project management).</strong> <strong>This should be evidenced by a roughly equal number of commits,</strong> <strong>pull request reviews and participation in communication via GitHub issues.</strong></li>
-<li>Each group member should work in a <a href="https://docs.github.com/en/get-started/quickstart/github-flow">GitHub flow workflow</a>; where they create branches for each feature or fix, which are reviewed and critiqued by at least one other teammate before the the pull request is accepted.</li>
-<li>You should be committing to git and pushing to GitHub.com every time you work on this project.</li>
-<li>Git commit messages should be meaningful. These will be marked. It’s OK if one or two are less meaningful, but most should be.</li>
-<li>Use GitHub issues to communicate to their team mate (as opposed to email or Slack).</li>
-<li>Your question, analysis and visualization should make sense. It doesn’t have to be complicated.</li>
-<li>You should use proper grammar and full sentences in your README. Point form may occur, but should be less than 10% of your written documents.</li>
-<li><strong>Your analysis should be correct, and run reproducibly given the instructions provided in the README.</strong></li>
-<li>You should use proper grammar and full sentences in your README. Point form may occur, but should be less than 10% of your written documents.</li>
-<li>R code should follow the <a href="https://style.tidyverse.org/">tidyverse style guide</a>, and Python code should follow the <a href="https://black.readthedocs.io/en/stable/the_black_code_style/index.html">black style guide</a> for Python)</li>
-<li>You should not have extraneous files in your repository that should be ignored. The one exception is <code>docs/</code>: it is generated, but GitHub Pages needs it committed.</li>
-<li>You will not be expected to incorporate Milestone 2 feedback in this submission (of course you can, but likely you will not receive it until the end of the week which might be too late to incorporate it).</li>
+<li>the GitHub release</li>
+<li>your group project’s repository (general one without GitHub release)</li>
+<li>your report on GitHub Pages</li>
+<li>your report on GitHub Pages</li>
+</ul></li>
+</ol>
+<p>You don’t need to include Milestone 2 feedback in this submission.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Check yourself before submitting
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul class="task-list">
+<li><label><input type="checkbox">At least 4 scripts, each taking its input and output paths as command line arguments</label></li>
+<li><label><input type="checkbox">Each script reads what the previous one wrote</label></li>
+<li><label><input type="checkbox">At least one validation check for each item in the data validation checklist, with a planned response when it fails</label></li>
+<li><label><input type="checkbox">Your report is a <code>.qmd</code> that shows saved figures and tables instead of computing them</label></li>
+<li><label><input type="checkbox">Every new package is pinned, and <code>docker-compose.yml</code> uses the new image’s <code>sha-</code> tag</label></li>
+<li><label><input type="checkbox">Someone on Windows and someone on Mac followed your <code>README</code> steps exactly</label></li>
+<li><label><input type="checkbox">Your report on GitHub Pages matches your release</label></li>
+<li><label><input type="checkbox">No generated files committed by mistake (except <code>docs/</code>, which GitHub Pages needs)</label></li>
+<li><label><input type="checkbox">You created the <code>2.0.0</code> release</label></li>
 </ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Teamwork expectations (these are marked)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Everyone contributes equally</strong> to code, writing and project management, shown by a roughly equal number of commits, pull request reviews and GitHub issue comments.</li>
+<li>Use the <a href="https://docs.github.com/en/get-started/using-github/github-flow">GitHub flow</a>: a branch for each feature or fix, reviewed by at least one teammate before the pull request is merged.</li>
+<li>Commit and push every time you work on the project, with meaningful commit messages (one or two less meaningful ones are OK).</li>
+<li>Talk to your teammates in GitHub issues, not email or Slack.</li>
+<li>Your question, analysis and visualization should make sense. They don’t have to be complicated.</li>
+<li>Your analysis should be correct and run reproducibly from your <code>README</code> instructions.</li>
+<li>Follow the <a href="https://black.readthedocs.io/en/stable/the_black_code_style/index.html">black style guide</a> (Python) or the <a href="https://style.tidyverse.org/">tidyverse style guide</a> (R).</li>
+<li>Write your <code>README</code> in full sentences with proper grammar. Keep point form under 10% of it.</li>
+</ul>
+</div>
+</div>
+</div>
 
 
 </section>
