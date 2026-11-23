@@ -1,0 +1,553 @@
+dan@dhcp-206-87-220-5 ~
+❯ cd git                                                                                 09:30:09
+dan@dhcp-206-87-220-5 ~/git
+❯ git clone git@github.com:chendaniely/2026-11-17-git.git                                09:35:51
+Cloning into '2026-11-17-git'...
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 5 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+Receiving objects: 100% (5/5), done.
+dan@dhcp-206-87-220-5 ~/git
+❯ cd 2026-11-17-git                                                                      09:35:54
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (main)
+❯ positron .                                                                             09:35:59
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (main)
+❯ git status                                                                             09:36:01
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (main !)
+❯ git diff                                                                               09:36:50
+diff --git a/README.md b/README.md
+index f422029..7bea7bd 100644
+--- a/README.md
++++ b/README.md
+@@ -1 +1,5 @@
+-# 2026-11-17-git
+\ No newline at end of file
++# 2026-11-17-git
++
++we will review 521 git basics and then go into branches
++
++git branches: <https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html>
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (main !)
+❯ git add README.md                                                                      09:36:54
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (main +)
+❯ git commit -m "intro and review"                                                       09:36:58
+[main 145ff16] intro and review
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (main)
+❯ git push origin main                                                                   09:37:04
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 404 bytes | 404.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To github.com:chendaniely/2026-11-17-git.git
+   1360d7f..145ff16  main -> main
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (main)
+❯ git log --oneline --graph --decorate --all                                             09:37:07
+* 145ff16 (HEAD -> main, origin/main, origin/HEAD) intro and review
+* 1360d7f Initial commit
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (main)
+❯ git status                                                                             09:43:39
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (main)
+❯ git pull origin main                                                                   09:48:31
+From github.com:chendaniely/2026-11-17-git
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (main)
+❯ git switch -c dan-b1                                                                   09:49:51
+Switched to a new branch 'dan-b1'
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-b1)
+❯ git status                                                                             09:51:25
+On branch dan-b1
+nothing to commit, working tree clean
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-b1)
+❯ git log --oneline --graph --decorate --all                                             09:51:32
+* 145ff16 (HEAD -> dan-b1, origin/main, origin/HEAD, main) intro and review
+* 1360d7f Initial commit
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-b1)
+❯ git status                                                                             09:51:42
+On branch dan-b1
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-b1 !)
+❯ git diff                                                                               09:52:42
+diff --git a/README.md b/README.md
+index 7bea7bd..4921513 100644
+--- a/README.md
++++ b/README.md
+@@ -3,3 +3,5 @@
+ we will review 521 git basics and then go into branches
+ 
+ git branches: <https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html>
++
++- `switch -c <name>`: create and move HEAD to the branch <name>
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-b1 !)
+❯ git add README.md                                                                      09:52:51
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-b1 +)
+❯ git commit -m "define swtich -c"                                                       09:53:02
+[dan-b1 4a14a64] define swtich -c
+ 1 file changed, 2 insertions(+)
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-b1)
+❯ git status                                                                             09:53:08
+On branch dan-b1
+nothing to commit, working tree clean
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-b1)
+❯ git log --oneline --graph --decorate --all                                             09:53:09
+* 4a14a64 (HEAD -> dan-b1) define swtich -c
+* 145ff16 (origin/main, origin/HEAD, main) intro and review
+* 1360d7f Initial commit
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-b1)
+❯ git switch main                                                                        09:53:25
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (main)
+❯ git log --oneline --graph --decorate --all                                             09:55:48
+* 4a14a64 (dan-b1) define swtich -c
+* 145ff16 (HEAD -> main, origin/main, origin/HEAD) intro and review
+* 1360d7f Initial commit
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (main)
+❯ git status                                                                             09:55:52
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (main)
+❯ git push                                                                               10:00:07
+Everything up-to-date
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (main)
+❯ git switch dan-b1                                                                      10:00:12
+Switched to branch 'dan-b1'
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-b1)
+❯ git log --oneline --graph --decorate --all                                             10:00:42
+* 4a14a64 (HEAD -> dan-b1) define swtich -c
+* 145ff16 (origin/main, origin/HEAD, main) intro and review
+* 1360d7f Initial commit
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-b1)
+❯ git push origin dan-b1                                                                 10:00:57
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 344 bytes | 344.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+remote: 
+remote: Create a pull request for 'dan-b1' on GitHub by visiting:
+remote:      https://github.com/chendaniely/2026-11-17-git/pull/new/dan-b1
+remote: 
+To github.com:chendaniely/2026-11-17-git.git
+ * [new branch]      dan-b1 -> dan-b1
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-b1)
+❯ git log --oneline --graph --decorate --all                                             10:01:22
+* 4a14a64 (HEAD -> dan-b1, origin/dan-b1) define swtich -c
+* 145ff16 (origin/main, origin/HEAD, main) intro and review
+* 1360d7f Initial commit
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-b1)
+❯ git status                                                                             10:01:46
+On branch dan-b1
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-b1 !)
+❯ git diff                                                                               10:14:26
+diff --git a/README.md b/README.md
+index 4921513..e8a1625 100644
+--- a/README.md
++++ b/README.md
+@@ -4,4 +4,8 @@ we will review 521 git basics and then go into branches
+ 
+ git branches: <https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html>
+ 
++here's a command to help you look at the git history:
++
++`git log --oneline --graph --decorate --all`
++
+ - `switch -c <name>`: create and move HEAD to the branch <name>
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-b1 !)
+❯ git add README.md                                                                      10:14:30
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-b1 +)
+❯ git commit -m "show you the long git log command"                                      10:14:34
+[dan-b1 b90e441] show you the long git log command
+ 1 file changed, 4 insertions(+)
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-b1)
+❯ git push origin dan-b1                                                                 10:14:46
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 388 bytes | 388.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To github.com:chendaniely/2026-11-17-git.git
+   4a14a64..b90e441  dan-b1 -> dan-b1
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-b1)
+❯ git switch main                                                                        10:14:50
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (main)
+❯ git pull origin main                                                                   10:30:44
+remote: Enumerating objects: 1, done.
+remote: Counting objects: 100% (1/1), done.
+remote: Total 1 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (1/1), 903 bytes | 301.00 KiB/s, done.
+From github.com:chendaniely/2026-11-17-git
+ * branch            main       -> FETCH_HEAD
+   145ff16..3851b00  main       -> origin/main
+Updating 145ff16..3851b00
+Fast-forward
+ README.md | 6 ++++++
+ 1 file changed, 6 insertions(+)
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (main)
+❯ git branch -a                                                                          10:31:02
+  dan-b1
+* main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/dan-b1
+  remotes/origin/main
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (main)
+❯ git fetch --prune                                                                      10:31:27
+From github.com:chendaniely/2026-11-17-git
+ - [deleted]         (none)     -> origin/dan-b1
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (main)
+❯ git log --oneline --graph --decorate --all                                             10:32:08
+*   3851b00 (HEAD -> main, origin/main, origin/HEAD) Merge pull request #1 from chendaniely/dan-b1
+|\  
+| * b90e441 (dan-b1) show you the long git log command
+| * 4a14a64 define swtich -c
+|/  
+* 145ff16 intro and review
+* 1360d7f Initial commit
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (main)
+❯ git branch -d dan-b1                                                                   10:32:54
+Deleted branch dan-b1 (was b90e441).
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (main)
+❯ git log --oneline --graph --decorate --all                                             10:33:15
+*   3851b00 (HEAD -> main, origin/main, origin/HEAD) Merge pull request #1 from chendaniely/dan-b1
+|\  
+| * b90e441 show you the long git log command
+| * 4a14a64 define swtich -c
+|/  
+* 145ff16 intro and review
+* 1360d7f Initial commit
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (main)
+❯ git pull main                                                                          10:33:17
+fatal: 'main' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (main)
+❯ git pull origin main                                                                   10:34:56
+From github.com:chendaniely/2026-11-17-git
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (main)
+❯ git switch -c dan-fetch                                                                10:35:01
+Switched to a new branch 'dan-fetch'
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-fetch)
+❯ git status                                                                             10:35:17
+On branch dan-fetch
+nothing to commit, working tree clean
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-fetch)
+❯ git status                                                                             10:35:21
+On branch dan-fetch
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-fetch !)
+❯ git add README.md                                                                      10:36:01
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-fetch +)
+❯ git commit -m "define fetch --prune"                                                   10:36:04
+[dan-fetch 157c3cd] define fetch --prune
+ 1 file changed, 2 insertions(+)
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-fetch)
+❯ git push origin dan-fetch                                                              10:36:09
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 375 bytes | 375.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+remote: 
+remote: Create a pull request for 'dan-fetch' on GitHub by visiting:
+remote:      https://github.com/chendaniely/2026-11-17-git/pull/new/dan-fetch
+remote: 
+To github.com:chendaniely/2026-11-17-git.git
+ * [new branch]      dan-fetch -> dan-fetch
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-fetch)
+❯ git switch main                                                                        10:36:14
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (main)
+❯ git switch -b dan-delete                                                               10:37:00
+error: unknown switch `b'
+usage: git switch [<options>] [<branch>]
+
+    -c, --[no-]create <branch>
+                          create and switch to a new branch
+    -C, --[no-]force-create <branch>
+                          create/reset and switch to a branch
+    --[no-]guess          second guess 'git switch <no-such-branch>'
+    --[no-]discard-changes
+                          throw away local modifications
+    -q, --[no-]quiet      suppress progress reporting
+    --[no-]recurse-submodules[=<checkout>]
+                          control recursive updating of submodules
+    --[no-]progress       force progress reporting
+    -m, --[no-]merge      perform a 3-way merge with the new branch
+    --[no-]conflict <style>
+                          conflict style (merge, diff3, or zdiff3)
+    -d, --[no-]detach     detach HEAD at named commit
+    -t, --[no-]track[=(direct|inherit)]
+                          set branch tracking configuration
+    -f, --[no-]force      force checkout (throw away local modifications)
+    --[no-]orphan <new-branch>
+                          new unborn branch
+    --[no-]overwrite-ignore
+                          update ignored files (default)
+    --[no-]ignore-other-worktrees
+                          do not check if another worktree is using this branch
+
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (main)
+❯ git switch -c dan-delete                                                               10:37:08
+Switched to a new branch 'dan-delete'
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-delete)
+❯ git status                                                                             10:37:11
+On branch dan-delete
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-delete !)
+❯ git add README.md                                                                      10:38:08
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-delete +)
+❯ git commit -m "branch -d and -D"                                                       10:38:13
+[dan-delete cb810d5] branch -d and -D
+ 1 file changed, 3 insertions(+)
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-delete)
+❯ git push origin dan-delete                                                             10:38:21
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 353 bytes | 353.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+remote: 
+remote: Create a pull request for 'dan-delete' on GitHub by visiting:
+remote:      https://github.com/chendaniely/2026-11-17-git/pull/new/dan-delete
+remote: 
+To github.com:chendaniely/2026-11-17-git.git
+ * [new branch]      dan-delete -> dan-delete
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-delete)
+❯ git log --oneline --graph --all --decorate                                             10:38:27
+* cb810d5 (HEAD -> dan-delete, origin/dan-delete) branch -d and -D
+| * 157c3cd (origin/dan-fetch, dan-fetch) define fetch --prune
+|/  
+*   3851b00 (origin/main, origin/HEAD, main) Merge pull request #1 from chendaniely/dan-b1
+|\  
+| * b90e441 show you the long git log command
+| * 4a14a64 define swtich -c
+|/  
+* 145ff16 intro and review
+* 1360d7f Initial commit
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-delete)
+❯ git log --oneline --graph --all --decorate                                             10:38:42
+* cb810d5 (HEAD -> dan-delete, origin/dan-delete) branch -d and -D
+| * 157c3cd (origin/dan-fetch, dan-fetch) define fetch --prune
+|/  
+*   3851b00 (origin/main, origin/HEAD, main) Merge pull request #1 from chendaniely/dan-b1
+|\  
+| * b90e441 show you the long git log command
+| * 4a14a64 define swtich -c
+|/  
+* 145ff16 intro and review
+* 1360d7f Initial commit
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-delete)
+❯ git switch main                                                                        10:46:17
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (main)
+❯ git pull origin main                                                                   10:46:54
+remote: Enumerating objects: 1, done.
+remote: Counting objects: 100% (1/1), done.
+remote: Total 1 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (1/1), 892 bytes | 297.00 KiB/s, done.
+From github.com:chendaniely/2026-11-17-git
+ * branch            main       -> FETCH_HEAD
+   3851b00..3167d10  main       -> origin/main
+Updating 3851b00..3167d10
+Fast-forward
+ README.md | 2 ++
+ 1 file changed, 2 insertions(+)
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (main)
+❯ git log --oneline --graph --all --decorate                                             10:46:58
+*   3167d10 (HEAD -> main, origin/main, origin/HEAD) Merge pull request #2 from chendaniely/dan-fetch
+|\  
+| * 157c3cd (origin/dan-fetch, dan-fetch) define fetch --prune
+|/  
+| * cb810d5 (origin/dan-delete, dan-delete) branch -d and -D
+|/  
+*   3851b00 Merge pull request #1 from chendaniely/dan-b1
+|\  
+| * b90e441 show you the long git log command
+| * 4a14a64 define swtich -c
+|/  
+* 145ff16 intro and review
+* 1360d7f Initial commit
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (main)
+❯ git switch dan-delete                                                                  10:47:00
+Switched to branch 'dan-delete'
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-delete)
+❯ git rebase main                                                                        10:47:35
+Auto-merging README.md
+CONFLICT (content): Merge conflict in README.md
+error: could not apply cb810d5... branch -d and -D
+hint: Resolve all conflicts manually, mark them as resolved with
+hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
+hint: You can instead skip this commit: run "git rebase --skip".
+hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
+hint: Disable this message with "git config set advice.mergeConflict false"
+Could not apply cb810d5... # branch -d and -D
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (3167d10 +)
+❯ git status                                                                             10:47:40
+interactive rebase in progress; onto 3167d10
+Last command done (1 command done):
+   pick cb810d5 # branch -d and -D
+No commands remaining.
+You are currently rebasing branch 'dan-delete' on '3167d10'.
+  (fix conflicts and then run "git rebase --continue")
+  (use "git rebase --skip" to skip this patch)
+  (use "git rebase --abort" to check out the original branch)
+
+Unmerged paths:
+  (use "git restore --staged <file>..." to unstage)
+  (use "git add <file>..." to mark resolution)
+	both modified:   README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (3167d10 +)
+❯ git add README.md                                                                      10:48:51
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (3167d10 +)
+❯ git status                                                                             10:49:08
+interactive rebase in progress; onto 3167d10
+Last command done (1 command done):
+   pick cb810d5 # branch -d and -D
+No commands remaining.
+You are currently rebasing branch 'dan-delete' on '3167d10'.
+  (all conflicts fixed: run "git rebase --continue")
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   README.md
+
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (3167d10 +)
+❯ git rebase --continue                                                                  10:49:12
+[detached HEAD 0e16503] branch -d and -D
+ 1 file changed, 3 insertions(+)
+Successfully rebased and updated refs/heads/dan-delete.
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-delete)
+❯ git status                                                                             10:49:27
+On branch dan-delete
+nothing to commit, working tree clean
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-delete)
+❯ git log --oneline --graph --all --decorate                                             10:49:31
+* 0e16503 (HEAD -> dan-delete) branch -d and -D
+*   3167d10 (origin/main, origin/HEAD, main) Merge pull request #2 from chendaniely/dan-fetch
+|\  
+| * 157c3cd (origin/dan-fetch, dan-fetch) define fetch --prune
+|/  
+| * cb810d5 (origin/dan-delete) branch -d and -D
+|/  
+*   3851b00 Merge pull request #1 from chendaniely/dan-b1
+|\  
+| * b90e441 show you the long git log command
+| * 4a14a64 define swtich -c
+|/  
+* 145ff16 intro and review
+* 1360d7f Initial commit
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-delete)
+❯ git push --force-with-leasse origin dan-delete                                         10:49:40
+error: unknown option `force-with-leasse'
+usage: git push [<options>] [<repository> [<refspec>...]]
+
+    -v, --[no-]verbose    be more verbose
+    -q, --[no-]quiet      be more quiet
+    --[no-]repo <repository>
+                          repository
+    --[no-]all            push all branches
+    --[no-]branches       alias of --all
+    --[no-]mirror         mirror all refs
+    -d, --[no-]delete     delete refs
+    --[no-]tags           push tags (can't be used with --all or --branches or --mirror)
+    -n, --[no-]dry-run    dry run
+    --[no-]porcelain      machine-readable output
+    -f, --[no-]force      force updates
+    --[no-]force-with-lease[=<refname>:<expect>]
+                          require old value of ref to be at this value
+    --[no-]force-if-includes
+                          require remote updates to be integrated locally
+    --[no-]recurse-submodules (check|on-demand|no)
+                          control recursive pushing of submodules
+    --[no-]thin           use thin pack
+    --[no-]receive-pack <receive-pack>
+                          receive pack program
+    --[no-]exec <receive-pack>
+                          receive pack program
+    -u, --[no-]set-upstream
+                          set upstream for git pull/status
+    --[no-]progress       force progress reporting
+    --[no-]prune          prune locally removed refs
+    --no-verify           bypass pre-push hook
+    --verify              opposite of --no-verify
+    --[no-]follow-tags    push missing but relevant tags
+    --[no-]signed[=(yes|no|if-asked)]
+                          GPG sign the push
+    --[no-]atomic         request atomic transaction on remote side
+    -o, --[no-]push-option <server-specific>
+                          option to transmit
+    -4, --ipv4            use IPv4 addresses only
+    -6, --ipv6            use IPv6 addresses only
+
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-delete)
+❯ git push --force-with-lease origin dan-delete                                          10:50:30
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 359 bytes | 359.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To github.com:chendaniely/2026-11-17-git.git
+ + cb810d5...0e16503 dan-delete -> dan-delete (forced update)
+dan@dhcp-206-87-220-5 ~/git/2026-11-17-git (dan-delete)
+❯              

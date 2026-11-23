@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>notes-class-main--qwen3.8-27b-sglang – DSCI 522: Data Science Workflows</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-5a8ea6506bd74de719dafad1d662b7b4.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-31f71cfee8fb6cb433a9ce015cec3520.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-5a8ea6506bd74de719dafad1d662b7b4.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-86abfff4ea397ce80fca2e08295ab694.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-dark-5de2174b4b58a5f5dfb3c6166fd0d0b7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-86abfff4ea397ce80fca2e08295ab694.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../../../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../../index.html">
+    <span class="navbar-title">DSCI 522: Data Science Workflows</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-cheatsheets" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Cheatsheets</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-cheatsheets">    
+        <li>
+    <a class="dropdown-item" href="../../../../cheatsheets/command_line.html">
+ <span class="dropdown-text">Command Line</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../cheatsheets/git.html">
+ <span class="dropdown-text">Git</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../cheatsheets/docker.html">
+ <span class="dropdown-text">Docker &amp; Docker Compose</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../cheatsheets/uv.html">
+ <span class="dropdown-text">uv</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../cheatsheets/quarto.html">
+ <span class="dropdown-text">Quarto</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../cheatsheets/makefile.html">
+ <span class="dropdown-text">Makefile</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-section-1-slides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Section 1 Slides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-section-1-slides">    
+        <li>
+    <a class="dropdown-item" href="../../../../slides/index.html">
+ <span class="dropdown-text">Section 001 Info</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../slides/lecture.html">
+ <span class="dropdown-text">Lectures</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../slides/lab.html">
+ <span class="dropdown-text">Labs</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-section-2-notes" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Section 2 Notes</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-section-2-notes">    
+        <li>
+    <a class="dropdown-item" href="../../../../class-notes/index.html">
+ <span class="dropdown-text">Lectures</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../class-notes/2026-27/section-02/2026-11-19-lecture/notes-class-main--claude-opus-5-5.html">
+ <span class="dropdown-text">Nov 19 · Git issues and pull requests, then an introduction to Docker containers</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../class-notes/2026-27/section-02/2026-11-17-lecture/notes-class-main--claude-opus-5-5.html">
+ <span class="dropdown-text">Nov 17 · Git Branches, Pull Requests, Code Review and Rebasing to Fix Conflicts</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/"> 
+<span class="menu-text">Textbook</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students"> <i class="bi bi-github" role="img" aria-label="Course GitHub repository">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" aria-label="Toolbar">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../class-notes/2026-27/section-02/2026-11-17-lecture/notes-class-main--claude-opus-5-5.html">Nov 17 · Git Branches, Pull Requests, Code Review and Rebasing to Fix Conflicts</a></li><li class="breadcrumb-item"><a href="../../../../class-notes/2026-27/section-02/2026-11-17-lecture/notes-class-main--qwen3.8-27b-sglang.html">Notes (qwen3.8-27b-sglang)</a></li></ol></nav>
+        <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto" aria-label="Section">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lectures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="false">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Nov 19 · Git issues and pull requests, then an introduction to Docker containers</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-19-lecture/notes-class-main--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes (claude-opus-5-5)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-19-lecture/notes-class-main--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes (qwen3.6-35b-a3b)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-19-lecture/notes-class-main--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes (qwen3.8-27b-sglang)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Review questions (claude-opus-5-5)</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-1-remember--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 Remember</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-2-understand--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 Understand</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-3-apply--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 Apply</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-4-analyze--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 Analyze</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-5-evaluate--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 Evaluate</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-controls="quarto-sidebar-section-3" aria-expanded="false">
+ <span class="menu-text" id="quarto-sidebar-section-3-label">Review questions (qwen3.6-35b-a3b)</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-3" aria-labelledby="quarto-sidebar-section-3-label" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-1-remember--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 Remember</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-2-understand--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 Understand</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-3-apply--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 Apply</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-4-analyze--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 Analyze</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-5-evaluate--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 Evaluate</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="false">
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Review questions (qwen3.8-27b-sglang)</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-1-remember--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 Remember</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-2-understand--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 Understand</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-3-apply--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 Apply</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-4-analyze--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 Analyze</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-5-evaluate--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 Evaluate</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-19-lecture/materials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Readings</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-19-lecture/materials-next-class.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Readings for next class</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-19-lecture/history.txt" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Commands typed (history.txt)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-19-lecture/terminal.txt" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Commands and output (terminal.txt)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-19-lecture/notes-plaud.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Plaud’s summary</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-controls="quarto-sidebar-section-5" aria-expanded="false">
+ <span class="menu-text" id="quarto-sidebar-section-5-label">Older prompt’s notes</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-5" aria-labelledby="quarto-sidebar-section-5-label" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-19-lecture/comparison/notes-class-original--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">claude-opus-5-5</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-19-lecture/comparison/notes-class-original--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">qwen3.6-35b-a3b</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-19-lecture/comparison/notes-class-original--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">qwen3.8-27b-sglang</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-controls="quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-6-label">Nov 17 · Git Branches, Pull Requests, Code Review and Rebasing to Fix Conflicts</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-6" aria-labelledby="quarto-sidebar-section-6-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-17-lecture/notes-class-main--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes (claude-opus-5-5)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-17-lecture/notes-class-main--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes (qwen3.6-35b-a3b)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-17-lecture/notes-class-main--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Notes (qwen3.8-27b-sglang)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-controls="quarto-sidebar-section-7" aria-expanded="false">
+ <span class="menu-text" id="quarto-sidebar-section-7-label">Review questions (claude-opus-5-5)</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-7" aria-labelledby="quarto-sidebar-section-7-label" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-1-remember--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 Remember</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-2-understand--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 Understand</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-3-apply--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 Apply</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-4-analyze--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 Analyze</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-5-evaluate--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 Evaluate</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-controls="quarto-sidebar-section-8" aria-expanded="false">
+ <span class="menu-text" id="quarto-sidebar-section-8-label">Review questions (qwen3.6-35b-a3b)</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-8" aria-labelledby="quarto-sidebar-section-8-label" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-1-remember--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 Remember</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-2-understand--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 Understand</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-3-apply--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 Apply</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-4-analyze--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 Analyze</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-5-evaluate--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 Evaluate</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-controls="quarto-sidebar-section-9" aria-expanded="false">
+ <span class="menu-text" id="quarto-sidebar-section-9-label">Review questions (qwen3.8-27b-sglang)</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-9" aria-labelledby="quarto-sidebar-section-9-label" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-1-remember--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 Remember</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-2-understand--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 Understand</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-3-apply--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 Apply</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-4-analyze--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 Analyze</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-5-evaluate--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 Evaluate</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-17-lecture/materials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Readings</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-17-lecture/terminal.txt" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Commands and output (terminal.txt)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-17-lecture/git1.png" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Drawing: git1.png</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-17-lecture/git2.png" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Drawing: git2.png</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-17-lecture/notes-plaud.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Plaud’s summary</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-controls="quarto-sidebar-section-10" aria-expanded="false">
+ <span class="menu-text" id="quarto-sidebar-section-10-label">Older prompt’s notes</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-10" aria-labelledby="quarto-sidebar-section-10-label" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-17-lecture/comparison/notes-class-original--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">claude-opus-5-5</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-17-lecture/comparison/notes-class-original--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">qwen3.6-35b-a3b</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../class-notes/2026-27/section-02/2026-11-17-lecture/comparison/notes-class-original--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">qwen3.8-27b-sglang</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key takeaways</a></li>
+  <li><a href="#knowledge-points" id="toc-knowledge-points" class="nav-link" data-scroll-target="#knowledge-points">Knowledge Points</a>
+  <ul class="collapse">
+  <li><a href="#course-logistics-lab-groups-github-usernames-lab-attendance-and-interview-week" id="toc-course-logistics-lab-groups-github-usernames-lab-attendance-and-interview-week" class="nav-link" data-scroll-target="#course-logistics-lab-groups-github-usernames-lab-attendance-and-interview-week">1. Course logistics: lab groups, GitHub usernames, lab attendance, and interview week</a></li>
+  <li><a href="#review-git-basics-in-the-demo-repository-8-git-branches" id="toc-review-git-basics-in-the-demo-repository-8-git-branches" class="nav-link" data-scroll-target="#review-git-basics-in-the-demo-repository-8-git-branches">2. Review Git basics in the demo repository (8 Git branches)</a></li>
+  <li><a href="#why-branches-exist-escaping-the-i-have-to-pull-before-i-push-friction-8-git-branches" id="toc-why-branches-exist-escaping-the-i-have-to-pull-before-i-push-friction-8-git-branches" class="nav-link" data-scroll-target="#why-branches-exist-escaping-the-i-have-to-pull-before-i-push-friction-8-git-branches">3. Why branches exist: escaping the “I have to pull before I push” friction (8 Git branches)</a></li>
+  <li><a href="#local-repository-versus-remote-origin-8-git-branches" id="toc-local-repository-versus-remote-origin-8-git-branches" class="nav-link" data-scroll-target="#local-repository-versus-remote-origin-8-git-branches">4. Local repository versus remote <code>origin</code> (8 Git branches)</a></li>
+  <li><a href="#main-originmain-head-and-what-a-branch-is-8-git-branches" id="toc-main-originmain-head-and-what-a-branch-is-8-git-branches" class="nav-link" data-scroll-target="#main-originmain-head-and-what-a-branch-is-8-git-branches">5. <code>main</code>, <code>origin/main</code>, <code>HEAD</code>, and what a branch is (8 Git branches)</a></li>
+  <li><a href="#branches-are-useful-even-when-working-alone-8-git-branches" id="toc-branches-are-useful-even-when-working-alone-8-git-branches" class="nav-link" data-scroll-target="#branches-are-useful-even-when-working-alone-8-git-branches">6. Branches are useful even when working alone (8 Git branches)</a></li>
+  <li><a href="#creating-a-branch-with-git-switch--c-8.1-creating-a-branch-using-the-command-line" id="toc-creating-a-branch-with-git-switch--c-8.1-creating-a-branch-using-the-command-line" class="nav-link" data-scroll-target="#creating-a-branch-with-git-switch--c-8.1-creating-a-branch-using-the-command-line">7. Creating a branch with <code>git switch -c</code> (8.1 Creating a branch using the command line)</a></li>
+  <li><a href="#switching-between-branches-and-seeing-the-repository-state-8.1.1-switching-to-branches-that-already-exist" id="toc-switching-between-branches-and-seeing-the-repository-state-8.1.1-switching-to-branches-that-already-exist" class="nav-link" data-scroll-target="#switching-between-branches-and-seeing-the-repository-state-8.1.1-switching-to-branches-that-already-exist">8. Switching between branches and seeing the repository state (8.1.1 Switching to branches that already exist)</a></li>
+  <li><a href="#pushing-a-branch-to-origin-and-viewing-it-on-github-8.2-useful-things-you-can-do-with-branches-on-github" id="toc-pushing-a-branch-to-origin-and-viewing-it-on-github-8.2-useful-things-you-can-do-with-branches-on-github" class="nav-link" data-scroll-target="#pushing-a-branch-to-origin-and-viewing-it-on-github-8.2-useful-things-you-can-do-with-branches-on-github">9. Pushing a branch to <code>origin</code> and viewing it on GitHub (8.2 Useful things you can do with branches on GitHub)</a></li>
+  <li><a href="#opening-a-pull-request-and-reviewing-the-changed-files-9.1-creating-a-pull-request" id="toc-opening-a-pull-request-and-reviewing-the-changed-files-9.1-creating-a-pull-request" class="nav-link" data-scroll-target="#opening-a-pull-request-and-reviewing-the-changed-files-9.1-creating-a-pull-request">10. Opening a pull request and reviewing the changed files (9.1 Creating a pull request)</a></li>
+  <li><a href="#pull-request-conversation-code-review-and-updating-the-same-branch-10-code-review-on-github" id="toc-pull-request-conversation-code-review-and-updating-the-same-branch-10-code-review-on-github" class="nav-link" data-scroll-target="#pull-request-conversation-code-review-and-updating-the-same-branch-10-code-review-on-github">11. Pull request conversation, code review, and updating the same branch (10 Code review on GitHub)</a></li>
+  <li><a href="#draft-pull-requests-merging-and-deleting-the-remote-branch-9.2-draft-pull-requests" id="toc-draft-pull-requests-merging-and-deleting-the-remote-branch-9.2-draft-pull-requests" class="nav-link" data-scroll-target="#draft-pull-requests-merging-and-deleting-the-remote-branch-9.2-draft-pull-requests">12. Draft pull requests, merging, and deleting the remote branch (9.2 Draft pull requests)</a></li>
+  <li><a href="#local-cleanup-after-a-merge-git-pull-git-branch--a-git-fetch---prune-and-git-branch--d-8.1.3-useful-command-line-git-branching-commands" id="toc-local-cleanup-after-a-merge-git-pull-git-branch--a-git-fetch---prune-and-git-branch--d-8.1.3-useful-command-line-git-branching-commands" class="nav-link" data-scroll-target="#local-cleanup-after-a-merge-git-pull-git-branch--a-git-fetch---prune-and-git-branch--d-8.1.3-useful-command-line-git-branching-commands">13. Local cleanup after a merge: <code>git pull</code>, <code>git branch -a</code>, <code>git fetch --prune</code>, and <code>git branch -d</code> (8.1.3 Useful command line Git branching commands)</a></li>
+  <li><a href="#creating-a-merge-conflict-scenario-with-two-branches-8.3-what-happens-when-my-feature-branch-falls-behind-main" id="toc-creating-a-merge-conflict-scenario-with-two-branches-8.3-what-happens-when-my-feature-branch-falls-behind-main" class="nav-link" data-scroll-target="#creating-a-merge-conflict-scenario-with-two-branches-8.3-what-happens-when-my-feature-branch-falls-behind-main">14. Creating a merge-conflict scenario with two branches (8.3 What happens when my feature branch falls behind main?)</a></li>
+  <li><a href="#resolving-the-conflict-locally-with-git-rebase-main-and-git-push---force-with-lease-8.3.2-using-rebase" id="toc-resolving-the-conflict-locally-with-git-rebase-main-and-git-push---force-with-lease-8.3.2-using-rebase" class="nav-link" data-scroll-target="#resolving-the-conflict-locally-with-git-rebase-main-and-git-push---force-with-lease-8.3.2-using-rebase">15. Resolving the conflict locally with <code>git rebase main</code> and <code>git push --force-with-lease</code> (8.3.2 Using rebase)</a></li>
+  </ul></li>
+  <li><a href="#commands-from-class" id="toc-commands-from-class" class="nav-link" data-scroll-target="#commands-from-class">Commands from class</a>
+  <ul class="collapse">
+  <li><a href="#set-up-the-demo-repository" id="toc-set-up-the-demo-repository" class="nav-link" data-scroll-target="#set-up-the-demo-repository">Set up the demo repository</a></li>
+  <li><a href="#make-and-push-the-first-main-commit" id="toc-make-and-push-the-first-main-commit" class="nav-link" data-scroll-target="#make-and-push-the-first-main-commit">Make and push the first <code>main</code> commit</a></li>
+  <li><a href="#create-dan-b1-commit-on-it-and-inspect-the-state" id="toc-create-dan-b1-commit-on-it-and-inspect-the-state" class="nav-link" data-scroll-target="#create-dan-b1-commit-on-it-and-inspect-the-state">Create <code>dan-b1</code>, commit on it, and inspect the state</a></li>
+  <li><a href="#switch-back-to-main-then-push-the-branch" id="toc-switch-back-to-main-then-push-the-branch" class="nav-link" data-scroll-target="#switch-back-to-main-then-push-the-branch">Switch back to <code>main</code>, then push the branch</a></li>
+  <li><a href="#add-a-follow-up-commit-to-the-open-pull-request-branch" id="toc-add-a-follow-up-commit-to-the-open-pull-request-branch" class="nav-link" data-scroll-target="#add-a-follow-up-commit-to-the-open-pull-request-branch">Add a follow-up commit to the open pull-request branch</a></li>
+  <li><a href="#clean-up-local-references-after-merging-dan-b1" id="toc-clean-up-local-references-after-merging-dan-b1" class="nav-link" data-scroll-target="#clean-up-local-references-after-merging-dan-b1">Clean up local references after merging <code>dan-b1</code></a></li>
+  <li><a href="#create-two-competing-branches-for-a-merge-conflict" id="toc-create-two-competing-branches-for-a-merge-conflict" class="nav-link" data-scroll-target="#create-two-competing-branches-for-a-merge-conflict">Create two competing branches for a merge conflict</a></li>
+  <li><a href="#rebase-the-conflicting-branch-onto-updated-main" id="toc-rebase-the-conflicting-branch-onto-updated-main" class="nav-link" data-scroll-target="#rebase-the-conflicting-branch-onto-updated-main">Rebase the conflicting branch onto updated <code>main</code></a></li>
+  <li><a href="#what-went-wrong-live" id="toc-what-went-wrong-live" class="nav-link" data-scroll-target="#what-went-wrong-live">What went wrong live</a></li>
+  </ul></li>
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a></li>
+  <li><a href="#assignments" id="toc-assignments" class="nav-link" data-scroll-target="#assignments">Assignments</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students/edit/main/class-notes/2026-27/section-02/2026-11-17-lecture/notes-class-main--qwen3.8-27b-sglang.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../class-notes/2026-27/section-02/2026-11-17-lecture/notes-class-main--claude-opus-5-5.html">Nov 17 · Git Branches, Pull Requests, Code Review and Rebasing to Fix Conflicts</a></li><li class="breadcrumb-item"><a href="../../../../class-notes/2026-27/section-02/2026-11-17-lecture/notes-class-main--qwen3.8-27b-sglang.html">Notes (qwen3.8-27b-sglang)</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Git branches, pull requests, and merge conflicts</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Date: 2026-11-17</p>
+<blockquote class="blockquote">
+<p>Generated by qwen3.8-27b-sglang, a local model, from the class recording, logs and readings. It can be wrong, or say things the class didn’t cover.</p>
+</blockquote>
+<p>Instructor: Daniel Chen</p>
+<section id="summary" class="level1">
+<h1>Summary</h1>
+<p>This was the first DSCI 522 lecture of the term. Daniel Chen reviewed the basic Git cycle from DSCI 521—editing a file, checking <code>git status</code> and <code>git diff</code>, staging with <code>git add</code>, committing with <code>git commit</code>, and pushing to <code>origin</code>—and then moved to the collaboration model used in the group project: branches, remote tracking branches, pull requests, draft pull requests, code review, merging, and cleanup. The live demonstration used the class demo repository, <a href="https://github.com/chendaniely/2026-11-17-git" class="uri">https://github.com/chendaniely/2026-11-17-git</a>, and the main teaching point was that work on a local computer is not the same as work available on the remote.</p>
+<p>The lecture showed how to create a branch with <code>git switch -c</code>, commit on that branch, push the branch with <code>git push origin &lt;branch&gt;</code>, open a pull request, review the changed files, add follow-up commits to the same branch, convert a pull request to a draft, merge it, and then clean up both remote and local branch references. Daniel Chen stressed that pull requests are a review workflow, not just a merge button: the author of a pull request is responsible for addressing review comments by committing and pushing to the same branch.</p>
+<p>The final part of the session used two branches to create a merge conflict. After one pull request was merged into <code>main</code>, the other branch was no longer based on current <code>main</code>; <code>git rebase main</code> replayed its commit onto the updated <code>main</code>, stopped on a conflict, and was continued after resolving the file. Because rebase rewrote the pushed branch’s history, the branch had to be updated on GitHub with <code>git push --force-with-lease origin &lt;branch&gt;</code>. The lecture also connected this workflow to group-project expectations, lab attendance, interview-week conversations, and individual assignment 1’s merge-conflict review.</p>
+</section>
+<section id="key-takeaways" class="level1">
+<h1>Key takeaways</h1>
+<ul>
+<li>Work that exists only on your local computer is not the graded or project-shippable state; push it to the remote.</li>
+<li><code>git switch -c &lt;branch&gt;</code> creates a new branch and moves <code>HEAD</code> to it, while <code>git switch &lt;branch&gt;</code> moves <code>HEAD</code> to an existing branch.</li>
+<li>A branch commit moves that branch, not <code>main</code>; <code>origin/main</code> stays where it is until you push or pull.</li>
+<li>Push a branch with <code>git push origin &lt;branch&gt;</code>, then use GitHub’s pull-request workflow to review and merge it.</li>
+<li>A pull request updates automatically when you commit and push more work to the same branch.</li>
+<li>Use <code>git fetch --prune</code> and <code>git branch -d &lt;branch&gt;</code> for safe local cleanup after a branch has been merged.</li>
+<li>To catch up after a merge conflict, rebase onto <code>main</code>, resolve the conflict, run <code>git rebase --continue</code>, and then use <code>git push --force-with-lease origin &lt;branch&gt;</code>.</li>
+</ul>
+</section>
+<section id="knowledge-points" class="level1">
+<h1>Knowledge Points</h1>
+<section id="course-logistics-lab-groups-github-usernames-lab-attendance-and-interview-week" class="level2">
+<h2 class="anchored" data-anchor-id="course-logistics-lab-groups-github-usernames-lab-attendance-and-interview-week">1. Course logistics: lab groups, GitHub usernames, lab attendance, and interview week</h2>
+<p><em>00:00:01–00:04:04</em></p>
+<ul>
+<li><strong>522 project model</strong>: DSCI 522 is described as the students’ first big, bigger project-based class, where they work with the people in their lab section.</li>
+<li><strong>Lab-sections repository</strong>: Students were told to find their lab section in a GitHub lab-sections repository; the transcript referenced it but did not provide a clean URL.</li>
+<li><strong>Group number</strong>: Within a lab section, students were sorted by group number; the group number determines who is working together on the project.</li>
+<li><strong>GitHub usernames</strong>: The instructor collected GitHub usernames because that metadata is used “everywhere else under the hood” in the program.</li>
+<li><strong>Lab attendance</strong>: Lab attendance is mandatory for the group project; TAs go around and talk to every group, and students should be present when a TA is with their group.</li>
+<li><strong>Interview week</strong>: Some students have an “interview week” marker next to their name. The instructor will pull students aside for a roughly seven-minute technical-interview-style conversation about their Git knowledge and their actual group codebase.</li>
+<li><strong>Interview grading</strong>: The interview conversation is “not graded” in the sense that it is not supposed to affect the course grade, even though a grade may still be recorded.</li>
+</ul>
+</section>
+<section id="review-git-basics-in-the-demo-repository-8-git-branches" class="level2">
+<h2 class="anchored" data-anchor-id="review-git-basics-in-the-demo-repository-8-git-branches">2. Review Git basics in the demo repository (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html">8 Git branches</a>)</h2>
+<p><em>00:04:07–00:06:49</em></p>
+<ul>
+<li><strong>Demo repository</strong>: The session worked in the live demo repository, <a href="https://github.com/chendaniely/2026-11-17-git" class="uri">https://github.com/chendaniely/2026-11-17-git</a>, which was cloned to the instructor’s machine.</li>
+<li><strong>First README change</strong>: The initial change added a link in <code>README.md</code> to the Git branches chapter, framed as “we will review 521 git basics and then go into branches.”</li>
+<li><strong>Standard Git cycle</strong>: The instructor used <code>git status</code>, <code>git diff</code>, <code>git add README.md</code>, <code>git commit -m "intro and review"</code>, and <code>git push origin main</code>.</li>
+<li><strong>Review framing</strong>: Daniel Chen emphasized that nothing had changed from DSCI 521 up to this point; the new material starts when branches enter the picture.</li>
+</ul>
+</section>
+<section id="why-branches-exist-escaping-the-i-have-to-pull-before-i-push-friction-8-git-branches" class="level2">
+<h2 class="anchored" data-anchor-id="why-branches-exist-escaping-the-i-have-to-pull-before-i-push-friction-8-git-branches">3. Why branches exist: escaping the “I have to pull before I push” friction (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html">8 Git branches</a>)</h2>
+<p><em>00:06:49–00:09:43</em></p>
+<ul>
+<li><strong>DSCI 521 shared slide deck</strong>: In week 3 of 521, students collaborated on a shared slide deck and often had to pull before they could push, even when there was no actual conflict.</li>
+<li><strong>Collaboration friction</strong>: If two people are editing the same thing, there is constant friction around coordinating updates; this problem exists in every project.</li>
+<li><strong>Parallel streams</strong>: The goal is to reach a part of the project where a student owns a self-contained piece of work and can work on it without constantly waiting for others.</li>
+<li><strong>Branch benefit</strong>: A branch gives a person “their own little world” where they can commit, push, and pull until their work is ready for team review.</li>
+</ul>
+</section>
+<section id="local-repository-versus-remote-origin-8-git-branches" class="level2">
+<h2 class="anchored" data-anchor-id="local-repository-versus-remote-origin-8-git-branches">4. Local repository versus remote <code>origin</code> (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html">8 Git branches</a>)</h2>
+<p><em>00:09:46–00:11:11</em></p>
+<ul>
+<li><strong>Two places work happens</strong>: Git work happens locally on a computer and remotely on the cloud/remote, called <code>origin</code> in this session.</li>
+<li><strong>Coordination</strong>: With teammates, everyone coordinates through the remote; the remote is the shared source of truth.</li>
+<li><strong>One-time clone</strong>: <code>git clone</code> is a one-time command that brings the repository down to the computer.</li>
+<li><strong>Push and pull</strong>: Local commits are sent upward with <code>git push</code>; work created by others is brought down with <code>git pull</code>.</li>
+</ul>
+<blockquote class="blockquote">
+<p>[!WARNING]</p>
+<p>Daniel Chen stressed that if your work exists only on your local computer, it “effectively doesn’t really exist” for grading or project purposes. The remote repository is what matters.</p>
+</blockquote>
+</section>
+<section id="main-originmain-head-and-what-a-branch-is-8-git-branches" class="level2">
+<h2 class="anchored" data-anchor-id="main-originmain-head-and-what-a-branch-is-8-git-branches">5. <code>main</code>, <code>origin/main</code>, <code>HEAD</code>, and what a branch is (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html">8 Git branches</a>)</h2>
+<p><em>00:11:11–00:16:05</em></p>
+<ul>
+<li><strong><code>main</code></strong>: <code>main</code> is the default branch and the place that often represents the stable, final, or production state of the project.</li>
+<li><strong><code>origin/main</code></strong>: <code>origin/main</code> is the local computer’s record of what the remote <code>main</code> branch is at.</li>
+<li><strong><code>HEAD</code></strong>: <code>HEAD</code> is the current pointer into the Git history; when it points to <code>main</code>, you are on the <code>main</code> branch.</li>
+<li><strong>Branch as a name</strong>: A branch is essentially another name that moves forward when you commit, instead of moving <code>main</code>.</li>
+<li><strong>Stable main</strong>: In larger projects, <code>main</code> should be stable and working; exploratory work, unfinished analysis, or plots that are still being tested should live on a branch until ready.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="git1.png" class="img-fluid figure-img"></p>
+<figcaption>The Git review, branches, and pull-request diagrams</figcaption>
+</figure>
+</div>
+</section>
+<section id="branches-are-useful-even-when-working-alone-8-git-branches" class="level2">
+<h2 class="anchored" data-anchor-id="branches-are-useful-even-when-working-alone-8-git-branches">6. Branches are useful even when working alone (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html">8 Git branches</a>)</h2>
+<p><em>00:16:05–00:17:54</em></p>
+<ul>
+<li><strong>Solo branching</strong>: Branches are not only for collaboration; many single-person Git repositories also use branches.</li>
+<li><strong>Section off work</strong>: A branch lets you test a large set of changes without changing <code>main</code> until you have reviewed and confirmed that everything works.</li>
+<li><strong>Easy abandonment</strong>: If a branch was a bad idea, it is much easier to abandon or delete the branch than to undo a tangled set of commits on <code>main</code>.</li>
+<li><strong>Textbook example</strong>: Daniel Chen described working on the course textbook by making a sequence of branch-based changes and merging them after lectures and testing.</li>
+</ul>
+</section>
+<section id="creating-a-branch-with-git-switch--c-8.1-creating-a-branch-using-the-command-line" class="level2">
+<h2 class="anchored" data-anchor-id="creating-a-branch-with-git-switch--c-8.1-creating-a-branch-using-the-command-line">7. Creating a branch with <code>git switch -c</code> (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#creating-a-branch-using-the-command-line">8.1 Creating a branch using the command line</a>)</h2>
+<p><em>00:17:54–00:23:46</em></p>
+<ul>
+<li><strong>Check starting state</strong>: Before creating a branch, run <code>git status</code> and confirm you are on <code>main</code>.</li>
+<li><strong>Sync before coordinated work</strong>: If you are building on shared project work, first synchronize with the remote, for example with <code>git pull origin main</code>, so you do not start from an old local state.</li>
+<li><strong>Create and move</strong>: <code>git switch -c dan-b1</code> creates a new branch named <code>dan-b1</code> and immediately moves <code>HEAD</code> to it.</li>
+<li><strong>Visible state</strong>: After switching, <code>git status</code> says <code>On branch dan-b1</code>, and <code>git log --all</code> shows the new branch at the same commit as <code>main</code> before any new branch-specific commits exist.</li>
+<li><strong>Branch naming</strong>: In group repositories, Daniel Chen sometimes prefixes branch names with the owner’s name so teammates know who to talk to when something looks odd.</li>
+<li><strong>Commit moves the branch</strong>: After committing on <code>dan-b1</code>, the branch moves forward while <code>main</code> and <code>origin/main</code> remain where they were.</li>
+</ul>
+</section>
+<section id="switching-between-branches-and-seeing-the-repository-state-8.1.1-switching-to-branches-that-already-exist" class="level2">
+<h2 class="anchored" data-anchor-id="switching-between-branches-and-seeing-the-repository-state-8.1.1-switching-to-branches-that-already-exist">8. Switching between branches and seeing the repository state (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#switching-to-branches-that-already-exist">8.1.1 Switching to branches that already exist</a>)</h2>
+<p><em>00:23:46–00:28:26</em></p>
+<ul>
+<li><strong>Editor Git view</strong>: In VS Code or Positron, the Git graph shows local <code>main</code>, <code>origin/main</code>, and branch-specific commits; this graph corresponds to the terminal log.</li>
+<li><strong>Switch back to <code>main</code></strong>: <code>git switch main</code> moves <code>HEAD</code> back to <code>main</code>, and the working files return to the state stored at <code>main</code>.</li>
+<li><strong>Seeing all branches</strong>: If branch names do not appear in <code>git log --oneline --graph --decorate</code>, use the <code>--all</code> flag.</li>
+<li><strong><code>switch</code> vs <code>switch -c</code></strong>: <code>git switch &lt;branch&gt;</code> switches to an existing branch; <code>git switch -c &lt;branch&gt;</code> creates and switches to a new branch.</li>
+<li><strong>Older <code>checkout</code> command</strong>: <code>git checkout</code> is the older equivalent. <code>git checkout -b &lt;branch&gt;</code> created a branch; <code>git branch &lt;branch&gt;</code> creates a branch without moving to it. Daniel Chen uses <code>switch</code> in teaching and suggests that, if you are unsure about <code>checkout</code>, ask tools to use <code>switch</code> instead.</li>
+</ul>
+</section>
+<section id="pushing-a-branch-to-origin-and-viewing-it-on-github-8.2-useful-things-you-can-do-with-branches-on-github" class="level2">
+<h2 class="anchored" data-anchor-id="pushing-a-branch-to-origin-and-viewing-it-on-github-8.2-useful-things-you-can-do-with-branches-on-github">9. Pushing a branch to <code>origin</code> and viewing it on GitHub (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#useful-things-you-can-do-with-branches-on-github">8.2 Useful things you can do with branches on GitHub</a>)</h2>
+<p><em>00:28:31–00:33:40</em></p>
+<ul>
+<li><strong>Remote review process</strong>: Instead of merging locally, the class workflow is to push the branch and use a GitHub review process.</li>
+<li><strong>Check the current branch</strong>: Before pushing, confirm which branch you are on; a plain <code>git push</code> while on <code>main</code> may simply report that everything is up to date.</li>
+<li><strong>Push the branch</strong>: From <code>dan-b1</code>, the command is <code>git push origin dan-b1</code>; this is the same push behavior as before, but the final branch name changes from <code>main</code> to the branch being pushed.</li>
+<li><strong>Remote branch appears</strong>: After the push, <code>git log --all</code> shows <code>origin/dan-b1</code>, meaning the local computer now knows that GitHub has that branch.</li>
+<li><strong>GitHub branch dropdown</strong>: On the GitHub repository page, the branch selector can be used to view another branch without merging it into <code>main</code>.</li>
+<li><strong>Pre-merge inspection</strong>: Teammates can inspect pushed branch code on GitHub even before a pull request is merged.</li>
+</ul>
+</section>
+<section id="opening-a-pull-request-and-reviewing-the-changed-files-9.1-creating-a-pull-request" class="level2">
+<h2 class="anchored" data-anchor-id="opening-a-pull-request-and-reviewing-the-changed-files-9.1-creating-a-pull-request">10. Opening a pull request and reviewing the changed files (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-pull-requests.html#creating-a-pull-request">9.1 Creating a pull request</a>)</h2>
+<p><em>00:33:40–00:39:56</em></p>
+<ul>
+<li><strong>Compare and pull request</strong>: When GitHub recognizes a newly pushed branch, it often shows a “Compare and Pull Request” button or popup.</li>
+<li><strong>If the popup disappears</strong>: Daniel Chen said the popup can disappear after a day or so; to start the same process later, go to the branches tab, find the branch, and choose the option to create a new pull request.</li>
+<li><strong>Open the pull request early</strong>: He recommended opening the pull request right away, even while work is in progress, so the process exists and updates as commits are pushed.</li>
+<li><strong>Check the base branch</strong>: In DSCI 522, the target is usually <code>main</code>, but in 524 the target may not always be <code>main</code>; forks and large open-source projects also require checking that the pull request goes to the right repository and branch.</li>
+<li><strong>Title and description</strong>: The first pull-request comment should explain the whole set of changes; later edits should update that first comment rather than just appending new notes.</li>
+<li><strong>Review the Files Changed tab</strong>: Confirm that all intended files are present and that no unwanted files are included.</li>
+</ul>
+<blockquote class="blockquote">
+<p>[!WARNING]</p>
+<p>Check the pull request’s changed files for things that do not belong in the repository, such as <code>.ipynb_checkpoints</code>, <code>.DS_Store</code>, Word backup files, or other hidden/temporary files. Daniel Chen said that, in this course, visible unwanted files in a repository can cost points.</p>
+</blockquote>
+<p>The demo pull request created from branch <code>dan-b1</code> was <a href="https://github.com/chendaniely/2026-11-17-git/pull/1">#1 Learning about branches and PRs</a>.</p>
+</section>
+<section id="pull-request-conversation-code-review-and-updating-the-same-branch-10-code-review-on-github" class="level2">
+<h2 class="anchored" data-anchor-id="pull-request-conversation-code-review-and-updating-the-same-branch-10-code-review-on-github">11. Pull request conversation, code review, and updating the same branch (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-code-review.html">10 Code review on GitHub</a>)</h2>
+<p><em>00:39:56–00:45:41</em></p>
+<ul>
+<li><strong>Pull requests tab</strong>: Once created, the pull request appears under the repository’s Pull Requests tab and can be revisited later.</li>
+<li><strong>Conversation tab</strong>: The conversation area is where people discuss the pull request; the original post can be edited, and Daniel Chen recommended keeping the first comment as the definitive explanation.</li>
+<li><strong>Files Changed tab</strong>: This is where code review happens: GitHub shows the diff between the original file and the proposed new file.</li>
+<li><strong>Inline comments</strong>: Hovering over diff lines gives a plus button that allows line-specific review comments, which are tracked in the conversation.</li>
+<li><strong>Author fixes the code</strong>: If it is your pull request, it is your job to fix the issues; reviewers point out problems, but the author updates the codebase.</li>
+<li><strong>Push to the same branch</strong>: To address review comments, go back to the branch, make the change, commit, and push to the same branch; the pull request updates automatically, though the page may need refreshing.</li>
+<li><strong>Outdated comments</strong>: If you edit a line that has a comment, GitHub may collapse the comment as outdated.</li>
+</ul>
+</section>
+<section id="draft-pull-requests-merging-and-deleting-the-remote-branch-9.2-draft-pull-requests" class="level2">
+<h2 class="anchored" data-anchor-id="draft-pull-requests-merging-and-deleting-the-remote-branch-9.2-draft-pull-requests">12. Draft pull requests, merging, and deleting the remote branch (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-pull-requests.html#draft-pull-requests">9.2 Draft pull requests</a>)</h2>
+<p><em>00:52:11–00:58:51</em></p>
+<ul>
+<li><strong>Draft workflow</strong>: For work that may take more than a day, open the pull request early and then use “Convert to Draft” to signal that it is not ready for merge.</li>
+<li><strong>Visual cue</strong>: A draft pull request shows a gray bar instead of a green one, and the merge button is disabled so nobody accidentally merges it.</li>
+<li><strong>Ready for review</strong>: When the work is ready, use “Ready for review” to turn the draft back into an open pull request.</li>
+<li><strong>AI review</strong>: Daniel Chen mentioned that you can request AI/Copilot review, but AI comments are not automatically mandatory; a person still reviews and decides whether to accept or reject them.</li>
+<li><strong>Merging</strong>: After merging, the pull request counter decreases because the pull request is closed.</li>
+<li><strong>Remote branch cleanup</strong>: He recommended deleting the remote branch after merging so the branch dropdown does not become a long list of finished branches.</li>
+<li><strong>Commits remain</strong>: Deleting the branch does not delete the commits; they remain in history, including the separate merge commit created by the pull-request merge.</li>
+</ul>
+</section>
+<section id="local-cleanup-after-a-merge-git-pull-git-branch--a-git-fetch---prune-and-git-branch--d-8.1.3-useful-command-line-git-branching-commands" class="level2">
+<h2 class="anchored" data-anchor-id="local-cleanup-after-a-merge-git-pull-git-branch--a-git-fetch---prune-and-git-branch--d-8.1.3-useful-command-line-git-branching-commands">13. Local cleanup after a merge: <code>git pull</code>, <code>git branch -a</code>, <code>git fetch --prune</code>, and <code>git branch -d</code> (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#useful-command-line-git-branching-commands">8.1.3 Useful command line Git branching commands</a>)</h2>
+<p><em>00:58:53–01:03:51</em></p>
+<ul>
+<li><strong>Group-project warning</strong>: Even when teams use branches, merge conflicts can still happen because agents or teammates may edit the same line, file, or typo.</li>
+<li><strong>Individual assignment 1</strong>: Daniel Chen noted that individual assignment 1 has students review merge conflicts again, because they still need to know how to recover from them.</li>
+<li><strong>Local <code>main</code> is not automatic</strong>: After a branch is merged on GitHub, local <code>main</code> does not update by itself; run <code>git switch main</code> and then <code>git pull origin main</code>.</li>
+<li><strong>List branches</strong>: <code>git branch -a</code> shows local branches and remote-tracking branches; the current branch has a star.</li>
+<li><strong><code>git fetch --prune</code></strong>: This fetches remote state and removes local references to branches that were deleted on GitHub, such as <code>origin/dan-b1</code>.</li>
+<li><strong>Safe local branch deletion</strong>: <code>git branch -d dan-b1</code> deletes a local branch only if it has been merged; lowercase <code>-d</code> protects you from deleting unmerged work.</li>
+<li><strong>Force local branch deletion</strong>: <code>git branch -D &lt;branch&gt;</code> force-deletes a local branch even if it has not been merged.</li>
+</ul>
+<blockquote class="blockquote">
+<p>[!WARNING]</p>
+<p>Use lowercase <code>git branch -d &lt;branch&gt;</code> for normal cleanup. A capital <code>-D</code> can permanently delete unmerged work. Daniel Chen specifically warned that copied-and-pasted AI advice might say to use <code>-D</code>, and that can delete commits you were still working on.</p>
+</blockquote>
+</section>
+<section id="creating-a-merge-conflict-scenario-with-two-branches-8.3-what-happens-when-my-feature-branch-falls-behind-main" class="level2">
+<h2 class="anchored" data-anchor-id="creating-a-merge-conflict-scenario-with-two-branches-8.3-what-happens-when-my-feature-branch-falls-behind-main">14. Creating a merge-conflict scenario with two branches (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#what-happens-when-my-feature-branch-falls-behind-main">8.3 What happens when my feature branch falls behind main?</a>)</h2>
+<p><em>01:03:51–01:10:51</em></p>
+<ul>
+<li><strong>Two competing branches</strong>: Daniel Chen created two branches from the same <code>main</code> state: <code>dan-fetch</code> and <code>dan-delete</code>.</li>
+<li><strong>Conflicting edits</strong>: Both branches made changes to the same region of <code>README.md</code>, so they would conflict if both were merged.</li>
+<li><strong>Two pull requests</strong>: The two branches produced two open pull requests: <a href="https://github.com/chendaniely/2026-11-17-git/pull/2">#2 define fetch –prune</a> from <code>dan-fetch</code> and <a href="https://github.com/chendaniely/2026-11-17-git/pull/3">#3 branch -d and -D</a> from <code>dan-delete</code>.</li>
+<li><strong>First merge changes <code>main</code></strong>: When one pull request is merged, <code>main</code> moves forward.</li>
+<li><strong>Other pull requests are rechecked</strong>: GitHub rechecks open pull requests against the new <code>main</code>; a pull request that looked mergeable before can become conflicted afterward.</li>
+<li><strong>Conflict is not always obvious side by side</strong>: Looking at the two pull requests separately did not clearly show that they would conflict; the conflict appears after one branch is merged.</li>
+</ul>
+</section>
+<section id="resolving-the-conflict-locally-with-git-rebase-main-and-git-push---force-with-lease-8.3.2-using-rebase" class="level2">
+<h2 class="anchored" data-anchor-id="resolving-the-conflict-locally-with-git-rebase-main-and-git-push---force-with-lease-8.3.2-using-rebase">15. Resolving the conflict locally with <code>git rebase main</code> and <code>git push --force-with-lease</code> (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#using-rebase">8.3.2 Using rebase</a>)</h2>
+<p><em>01:10:51–01:20:42</em></p>
+<ul>
+<li><strong>Local versus web resolution</strong>: Simple conflicts can be resolved in GitHub’s web editor, but Daniel Chen showed local resolution because the command-line process is more general.</li>
+<li><strong>What “fix the conflict” means</strong>: Fixing the conflict markers is not enough. In this course, “fixed” means the resulting report or code works from top to bottom again.</li>
+<li><strong>Sync <code>main</code> first</strong>: Switch to <code>main</code> and run <code>git pull origin main</code> so the local <code>main</code> includes the already-merged pull request.</li>
+<li><strong>Rebase the conflicting branch</strong>: Switch to <code>dan-delete</code> and run <code>git rebase main</code>; this replays the branch’s commit on top of the updated <code>main</code>.</li>
+<li><strong>Resolve and continue</strong>: When Git stops with a conflict, edit the file, run <code>git add README.md</code>, check <code>git status</code>, and then run <code>git rebase --continue</code>.</li>
+<li><strong>Force-with-lease push</strong>: Because rebase rewrites the commit history of a branch that was already pushed, a normal push is no longer enough; the session used <code>git push --force-with-lease origin dan-delete</code>.</li>
+<li><strong>Merge and cleanup</strong>: After the force push, the pull request could be merged, and the usual branch cleanup could be done.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="git2.png" class="img-fluid figure-img"></p>
+<figcaption>Several branches, pull requests, a conflict, and a rebase</figcaption>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p>[!WARNING]</p>
+<p>Resolving the visible conflict markers does not mean the work is done. Daniel Chen stressed that, if changing the conflict affects later code, the student is still responsible for making the whole thing work. Also, after rebase has changed pushed history, use <code>git push --force-with-lease origin &lt;branch&gt;</code>, not a plain push.</p>
+</blockquote>
+</section>
+</section>
+<section id="commands-from-class" class="level1">
+<h1>Commands from class</h1>
+<section id="set-up-the-demo-repository" class="level2">
+<h2 class="anchored" data-anchor-id="set-up-the-demo-repository">Set up the demo repository</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:chendaniely/2026-11-17-git.git   <span class="co"># clone the class demo repository</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> 2026-11-17-git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="make-and-push-the-first-main-commit" class="level2">
+<h2 class="anchored" data-anchor-id="make-and-push-the-first-main-commit">Make and push the first <code>main</code> commit</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"intro and review"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> <span class="at">--graph</span> <span class="at">--decorate</span> <span class="at">--all</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This commit added the README link to the Git branches chapter and was the review step from DSCI 521.</p>
+</section>
+<section id="create-dan-b1-commit-on-it-and-inspect-the-state" class="level2">
+<h2 class="anchored" data-anchor-id="create-dan-b1-commit-on-it-and-inspect-the-state">Create <code>dan-b1</code>, commit on it, and inspect the state</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull origin main          <span class="co"># synchronize before starting coordinated branch work</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> dan-b1          <span class="co"># create dan-b1 and move HEAD to it</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> <span class="at">--graph</span> <span class="at">--decorate</span> <span class="at">--all</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"define swtich -c"</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> <span class="at">--graph</span> <span class="at">--decorate</span> <span class="at">--all</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>After the commit, <code>dan-b1</code> was ahead of <code>main</code> and <code>origin/main</code>.</p>
+</section>
+<section id="switch-back-to-main-then-push-the-branch" class="level2">
+<h2 class="anchored" data-anchor-id="switch-back-to-main-then-push-the-branch">Switch back to <code>main</code>, then push the branch</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch main</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> <span class="at">--graph</span> <span class="at">--decorate</span> <span class="at">--all</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch dan-b1</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin dan-b1</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> <span class="at">--graph</span> <span class="at">--decorate</span> <span class="at">--all</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>git push</code> while on <code>main</code> reported that everything was up to date. <code>git push origin dan-b1</code> created the remote branch that became <a href="https://github.com/chendaniely/2026-11-17-git/pull/1">#1 Learning about branches and PRs</a>.</p>
+</section>
+<section id="add-a-follow-up-commit-to-the-open-pull-request-branch" class="level2">
+<h2 class="anchored" data-anchor-id="add-a-follow-up-commit-to-the-open-pull-request-branch">Add a follow-up commit to the open pull-request branch</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"show you the long git log command"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin dan-b1</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This second commit appeared in the same pull request after the push.</p>
+</section>
+<section id="clean-up-local-references-after-merging-dan-b1" class="level2">
+<h2 class="anchored" data-anchor-id="clean-up-local-references-after-merging-dan-b1">Clean up local references after merging <code>dan-b1</code></h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull origin main</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-a</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> fetch <span class="at">--prune</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> <span class="at">--graph</span> <span class="at">--decorate</span> <span class="at">--all</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-d</span> dan-b1</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> <span class="at">--graph</span> <span class="at">--decorate</span> <span class="at">--all</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>After the remote branch was deleted on GitHub, <code>git fetch --prune</code> removed the <code>origin/dan-b1</code> reference. <code>git branch -d dan-b1</code> then removed the merged local branch.</p>
+</section>
+<section id="create-two-competing-branches-for-a-merge-conflict" class="level2">
+<h2 class="anchored" data-anchor-id="create-two-competing-branches-for-a-merge-conflict">Create two competing branches for a merge conflict</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> dan-fetch</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"define fetch --prune"</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin dan-fetch</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch main</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> dan-delete</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"branch -d and -D"</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin dan-delete</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> <span class="at">--graph</span> <span class="at">--all</span> <span class="at">--decorate</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>These two branches produced <a href="https://github.com/chendaniely/2026-11-17-git/pull/2">#2 define fetch –prune</a> and <a href="https://github.com/chendaniely/2026-11-17-git/pull/3">#3 branch -d and -D</a>. The <code>dan-fetch</code> pull request was merged first, making <code>dan-delete</code> fall behind <code>main</code>.</p>
+</section>
+<section id="rebase-the-conflicting-branch-onto-updated-main" class="level2">
+<h2 class="anchored" data-anchor-id="rebase-the-conflicting-branch-onto-updated-main">Rebase the conflicting branch onto updated <code>main</code></h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch main</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull origin main</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> <span class="at">--graph</span> <span class="at">--all</span> <span class="at">--decorate</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch dan-delete</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rebase main</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rebase <span class="at">--continue</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> <span class="at">--graph</span> <span class="at">--all</span> <span class="at">--decorate</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--force-with-lease</span> origin dan-delete</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The rebase stopped with the expected conflict:</p>
+<pre class="text"><code>CONFLICT (content): Merge conflict in README.md
+error: could not apply cb810d5... branch -d and -D</code></pre>
+<p>After resolving the file and continuing the rebase, <code>git push --force-with-lease origin dan-delete</code> updated <a href="https://github.com/chendaniely/2026-11-17-git/pull/3">#3 branch -d and -D</a> with the rebased commit.</p>
+</section>
+<section id="what-went-wrong-live" class="level2">
+<h2 class="anchored" data-anchor-id="what-went-wrong-live">What went wrong live</h2>
+<ul>
+<li><strong><code>git switch -b dan-delete</code></strong>: The terminal reported <code>error: unknown switch 'b'</code> because <code>git switch</code> uses <code>-c</code> to create a branch. It was fixed with <code>git switch -c dan-delete</code>.</li>
+<li><strong><code>git pull main</code></strong>: The terminal reported <code>fatal: 'main' does not appear to be a git repository</code>. It was fixed by using the remote name: <code>git pull origin main</code>.</li>
+<li><strong><code>git push --force-with-leasse origin dan-delete</code></strong>: The terminal reported <code>error: unknown option 'force-with-leasse'</code> due to a typo. It was fixed with <code>git push --force-with-lease origin dan-delete</code>.</li>
+</ul>
+</section>
+</section>
+<section id="questions" class="level1">
+<h1>Questions</h1>
+<ul>
+<li><strong>Q:</strong> (question inaudible) — The answer concerns whether the older <code>git checkout</code> command is acceptable when creating or switching branches. <strong>A:</strong> <code>git checkout</code> is the older equivalent of the modern <code>switch</code> workflow: <code>git checkout -b &lt;branch&gt;</code> created a branch, and <code>git checkout &lt;branch&gt;</code> switched branches. Daniel Chen said he uses <code>switch</code> when teaching and that the class would not be tested on that particular older phrasing. He also advised that, if you are not comfortable with <code>checkout</code>, you should ask tools to use <code>git switch</code> instead.</li>
+</ul>
+</section>
+<section id="assignments" class="level1">
+<h1>Assignments</h1>
+<ul class="task-list">
+<li><label><input type="checkbox">Review merge conflicts, as required for individual assignment 1; no due date was stated in class.</label></li>
+</ul>
+<hr>
+<ul>
+<li>prompt: prompt-notes.md @ 8bcc190</li>
+<li>prompt-hash: a00c660964b7</li>
+<li>model: qwen3.8-27b-sglang (requested: qwen3.8-27b-sglang)</li>
+<li>backend: local (SGLang)</li>
+<li>inputs: transcript-plaud.md, terminal.txt, materials.md</li>
+<li>generated: 2026-11-20</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/UBC-MDS\.github\.io\/DSCI_522_dsci-workflows_students\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students/edit/main/class-notes/2026-27/section-02/2026-11-17-lecture/notes-class-main--qwen3.8-27b-sglang.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer><script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs";
+mermaid.run({ querySelector: "pre.mermaid" });
+</script>
+
+
+
+
+</body></html>
