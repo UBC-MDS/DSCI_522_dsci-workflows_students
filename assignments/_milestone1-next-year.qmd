@@ -49,6 +49,13 @@ You don't need Docker, scripts or Make yet: that comes in later milestones.
 - [ ] Do the full analysis and write the report in one Quarto document (`.qmd`)
 - [ ] Record your environment with uv (Python) or renv (R), **as you go, not at the end**
 
+::: callout-note
+## You only lose points once for the same mistake
+
+If you lose points for something in one milestone, we won't take points off again for it in later milestones.
+Still fix it: later milestones build on this work, and in Milestone 4 you can win back some of those points.
+:::
+
 Your reference is the example project at the end of Milestone 1:
 [Breast Cancer Predictor 0.0.1](https://github.com/UBC-MDS/DSCI_522_project-template-breast-cancer-predictor/tree/0.0.1).
 
@@ -90,7 +97,8 @@ All your project work lives in this repository.
 ::: callout-important
 ## Repository metadata is graded, and the course automation relies on it
 
-[Metadata]{.term tabindex="0" data-tip="Metadata is data about data: information that describes something, not the thing itself (a photo's date and location, a book's author and title). Here it means the information that describes your GitHub repository, not your code: where it lives (the course organization), its Description (starting with DSCI 522), and which teams can access it. The teaching team's grading scripts use it to find your repository."} that is still wrong after Milestone 1 keeps losing points in every milestone until it is fixed.
+[Metadata]{.term tabindex="0" data-tip="Metadata is data about data: information that describes something, not the thing itself (a photo's date and location, a book's author and title). Here it means the information that describes your GitHub repository, not your code: where it lives (the course organization), its Description (starting with DSCI 522), and which teams can access it. The teaching team's grading scripts use it to find your repository."} that is wrong at the Milestone 1 deadline loses points in Milestone 1 only.
+Please still fix it: the course automation needs it.
 Check it in your first lab, and raise any problem with the teaching team there.
 :::
 

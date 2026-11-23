@@ -1,0 +1,276 @@
+---
+title: "Project Roadmap"
+subtitle: "Four milestones, four mountains"
+format:
+  html:
+    toc: false
+---
+
+**Hover over (or tap) anything on the mountains.** Taller peak = more work. Due dates are in the [syllabus](../index.qmd#deliverables).
+
+```{=html}
+<style>
+.climb { position: relative; margin: 1.2rem 0 1rem; }
+.climb-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.climb svg { width: 100%; min-width: 760px; height: auto; display: block; }
+.climb a, .climb a:hover { text-decoration: none; }
+.climb text { font-family: inherit; fill: #2b3a35; }
+.climb .peak-name { fill: #fff; font-weight: 700; }
+.climb .week { fill: #5f6b67; }
+.climb .tag { font-family: "Source Code Pro", monospace; font-size: 15px; }
+
+/* Everything you can hover */
+.climb .spot { cursor: pointer; outline: none; }
+.climb .spot-body { transition: transform .18s ease, filter .18s ease; transform-box: fill-box; transform-origin: center; }
+.climb .peak .spot-body { transform-origin: bottom center; }
+.climb .spot:hover .spot-body, .climb .spot:focus .spot-body, .climb .spot.on .spot-body { transform: scale(1.12); filter: brightness(1.08); }
+.climb .peak:hover .spot-body, .climb .peak:focus .spot-body, .climb .peak.on .spot-body { transform: scale(1.03); }
+.climb .ring { fill: #fff; stroke-width: 3; }
+.climb .ring.ia { stroke: #2f7a65; }
+.climb .ring.team { stroke: #eb6834; }
+.climb .badge-label { font-weight: 700; font-size: 13px; fill: #2f7a65; }
+.climb .badge-emoji { font-size: 17px; }
+.climb .otter { pointer-events: none; }
+
+/* The bubble */
+.climb-bubble { position: absolute; z-index: 10; width: max-content; max-width: 260px;
+  background: #2b3a35; color: #fff; border-radius: 10px; padding: .55rem .75rem;
+  font-size: .9rem; line-height: 1.35; box-shadow: 0 6px 18px rgba(0,0,0,.18);
+  transform: translate(-50%, calc(-100% - 12px)); pointer-events: none; opacity: 0; transition: opacity .12s; }
+.climb-bubble.show { opacity: 1; }
+.climb-bubble.below { transform: translate(-50%, 12px); }
+.climb-bubble b { display: block; font-size: .98rem; margin-bottom: .15rem; }
+.climb-bubble code { background: rgba(255,255,255,.14); color: #d8f3ea; border-radius: 4px; padding: 0 .3em; font-size: .8rem; }
+.climb-bubble .hint { display: block; margin-top: .3rem; color: #9fd8c5; font-size: .8rem; }
+.tip-src { display: none; }
+.climb-swipe { display: none; text-align: center; font-size: .85rem; color: var(--bs-secondary-color, #6c757d); }
+@media (max-width: 760px) { .climb-swipe { display: block; } }
+</style>
+
+<div class="climb">
+<div class="climb-scroll">
+<svg viewBox="-70 0 1080 385" role="img" aria-labelledby="climb-title">
+  <title id="climb-title">The course as a mountain trail: four milestone mountains with the individual assignments, teamwork contract, peer review and reflection along the way</title>
+
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e6f4ef"/>
+      <stop offset="1" stop-color="#ffffff"/>
+    </linearGradient>
+    <!-- The otter, standing with its feet at (0, 0), facing right -->
+    <g id="otter-shape">
+      <path d="M-14,-11 Q-28,-9 -33,-1" stroke="#7a4b2e" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <rect x="-12" y="-8" width="6" height="8" rx="3" fill="#6b3f25"/>
+      <rect x="6" y="-8" width="6" height="8" rx="3" fill="#6b3f25"/>
+      <ellipse cx="0" cy="-13" rx="17" ry="9" fill="#8a5a3b"/>
+      <ellipse cx="3" cy="-8.5" rx="11" ry="3.6" fill="#d9b48f"/>
+      <rect x="-13" y="-28" width="13" height="12" rx="3" fill="#eb6834"/>
+      <line x1="-1" y1="-25" x2="6" y2="-16" stroke="#c4521f" stroke-width="2"/>
+      <circle cx="17" cy="-22" r="9" fill="#8a5a3b"/>
+      <circle cx="12" cy="-30" r="2.6" fill="#6b3f25"/>
+      <ellipse cx="22" cy="-19.5" rx="5.5" ry="4" fill="#e9cfae"/>
+      <ellipse cx="26.5" cy="-21" rx="2" ry="1.5" fill="#2b1a10"/>
+      <circle cx="18.5" cy="-24.5" r="1.5" fill="#2b1a10"/>
+      <g stroke="#2b1a10" stroke-width=".8"><line x1="24" y1="-18.5" x2="31" y2="-17.5"/><line x1="24" y1="-17.5" x2="30" y2="-14.5"/></g>
+    </g>
+  </defs>
+
+  <rect x="-70" y="0" width="1080" height="332" rx="18" fill="url(#sky)"/>
+  <circle cx="560" cy="70" r="30" fill="#f6d488" opacity=".8"/>
+  <text x="-55" y="34" font-size="18">↑ Taller peak = more work</text>
+
+  <!-- Base camp: the syllabus -->
+  <a href="../index.html" class="spot" data-tip="syllabus" aria-label="Base camp: the syllabus">
+    <g class="spot-body">
+      <polygon points="-64,330 -40,292 -16,330" fill="#eb6834"/>
+      <polygon points="-40,330 -40,292 -29,330" fill="#c4521f"/>
+    </g>
+  </a>
+
+  <!-- Milestone 1: the tallest -->
+  <a href="milestone1.html" class="spot peak" data-tip="m1" aria-label="Milestone 1">
+    <g class="spot-body">
+      <polygon points="30,330 175,55 320,330" fill="#3d8b75"/>
+      <polygon points="175,55 206.6,115 190,105 178,118 163,104 143.4,115" fill="#fff"/>
+      <text class="peak-name" x="190" y="285" font-size="32" text-anchor="middle">M1</text>
+    </g>
+  </a>
+
+  <!-- Milestone 2: medium -->
+  <a href="milestone2.html" class="spot peak" data-tip="m2" aria-label="Milestone 2">
+    <g class="spot-body">
+      <polygon points="280,330 395,150 510,330" fill="#6bb39e"/>
+      <polygon points="395,150 417.4,185 406,178 396,189 384,177 372.6,185" fill="#fff"/>
+      <text class="peak-name" x="410" y="295" font-size="30" text-anchor="middle">M2</text>
+    </g>
+  </a>
+
+  <!-- Milestone 3: a gentle hill -->
+  <g class="spot peak" data-tip="m3" tabindex="0" role="button" aria-label="Milestone 3">
+    <g class="spot-body">
+      <path d="M500,330 Q590,180 680,330 Z" fill="#a7d7c5"/>
+      <text class="peak-name" x="600" y="314" font-size="26" text-anchor="middle" style="fill:#2f6b5a">M3</text>
+    </g>
+  </g>
+
+  <!-- Milestone 4: second tallest -->
+  <g class="spot peak" data-tip="m4" tabindex="0" role="button" aria-label="Milestone 4">
+    <g class="spot-body">
+      <polygon points="660,330 775,150 890,330" fill="#4f9c86"/>
+      <polygon points="775,150 797.4,185 786,178 776,189 764,177 752.6,185" fill="#fff"/>
+      <text class="peak-name" x="790" y="295" font-size="30" text-anchor="middle">M4</text>
+    </g>
+  </g>
+
+  <!-- Summit flags with each milestone's release tag -->
+  <g stroke="#2b3a35" stroke-width="2">
+    <line x1="175" y1="55" x2="175" y2="17"/>
+    <line x1="395" y1="150" x2="395" y2="112"/>
+    <line x1="590" y1="255" x2="590" y2="217"/>
+    <line x1="775" y1="150" x2="775" y2="112"/>
+  </g>
+  <g fill="#eb6834">
+    <polygon points="175,17 199,24 175,31"/>
+    <polygon points="395,112 419,119 395,126"/>
+    <polygon points="590,217 614,224 590,231"/>
+    <polygon points="775,112 799,119 775,126"/>
+  </g>
+  <text class="tag" x="204" y="29">0.0.1</text>
+  <text class="tag" x="424" y="124">1.0.0</text>
+  <text class="tag" x="619" y="229">2.0.0</text>
+  <text class="tag" x="804" y="124">3.0.0</text>
+
+  <!-- The trail -->
+  <path id="trail" d="M-40,328 L40,318 L175,58 L300,300 L335,292 L395,153 L470,292 L520,302 L590,258 L660,312 L715,292 L775,153 L850,292 L900,320 L940,328"
+        fill="none" stroke="#eb6834" stroke-width="2.5" stroke-dasharray="7 7" opacity=".85"/>
+  <text font-size="26" x="905" y="322">🏁</text>
+
+  <!-- Stops along the trail -->
+  <a href="individual1.html" class="spot" data-tip="ia1" aria-label="Individual Assignment 1">
+    <g transform="translate(74,253)"><g class="spot-body">
+      <circle r="17" class="ring ia"/><text class="badge-label" y="4.5" text-anchor="middle">IA1</text>
+    </g></g>
+  </a>
+  <a href="teamwork-contract.html" class="spot" data-tip="contract" aria-label="Teamwork contract">
+    <g transform="translate(116,172)"><g class="spot-body">
+      <circle r="17" class="ring team"/><text class="badge-emoji" y="6" text-anchor="middle">📝</text>
+    </g></g>
+  </a>
+  <a href="individual2.html" class="spot" data-tip="ia2" aria-label="Individual Assignment 2">
+    <g transform="translate(357,238)"><g class="spot-body">
+      <circle r="17" class="ring ia"/><text class="badge-label" y="4.5" text-anchor="middle">IA2</text>
+    </g></g>
+  </a>
+  <g class="spot" data-tip="ia3" tabindex="0" role="button" aria-label="Individual Assignment 3">
+    <g transform="translate(543,276)"><g class="spot-body">
+      <circle r="17" class="ring ia"/><text class="badge-label" y="4.5" text-anchor="middle">IA3</text>
+    </g></g>
+  </g>
+  <g class="spot" data-tip="ia4" tabindex="0" role="button" aria-label="Individual Assignment 4">
+    <g transform="translate(731,258)"><g class="spot-body">
+      <circle r="17" class="ring ia"/><text class="badge-label" y="4.5" text-anchor="middle">IA4</text>
+    </g></g>
+  </g>
+  <g class="spot" data-tip="peer" tabindex="0" role="button" aria-label="Peer review">
+    <g transform="translate(756,200)"><g class="spot-body">
+      <circle r="17" class="ring team"/><text class="badge-emoji" y="6" text-anchor="middle">🔍</text>
+    </g></g>
+  </g>
+  <g class="spot" data-tip="reflection" tabindex="0" role="button" aria-label="Teamwork reflection">
+    <g transform="translate(975,306)"><g class="spot-body">
+      <circle r="17" class="ring team"/><text class="badge-emoji" y="6" text-anchor="middle">🔥</text>
+    </g></g>
+  </g>
+
+  <!-- The otter walking the trail -->
+  <g class="otter">
+    <g>
+      <animateTransform attributeName="transform" type="translate" values="0,0; 0,-2.5; 0,0" dur=".5s" repeatCount="indefinite"/>
+      <use href="#otter-shape" transform="scale(1.15)"/>
+    </g>
+    <animateMotion dur="20s" repeatCount="indefinite"><mpath href="#trail"/></animateMotion>
+  </g>
+
+  <!-- Ground and week labels -->
+  <line x1="-70" y1="331" x2="1010" y2="331" stroke="#b8b6b0" stroke-width="2"/>
+  <text class="week" x="-40" y="362" font-size="17" text-anchor="middle">Start</text>
+  <text class="week" x="175" y="362" font-size="20" text-anchor="middle">Week 1</text>
+  <text class="week" x="395" y="362" font-size="20" text-anchor="middle">Week 2</text>
+  <text class="week" x="590" y="362" font-size="20" text-anchor="middle">Week 3</text>
+  <text class="week" x="775" y="362" font-size="20" text-anchor="middle">Week 4</text>
+  <text class="week" x="955" y="362" font-size="17" text-anchor="middle">The end</text>
+</svg>
+</div>
+<div class="climb-swipe">← swipe to see the whole climb →</div>
+<div class="climb-bubble" role="tooltip"></div>
+</div>
+
+<!-- What each bubble says -->
+<div class="tip-src" id="tip-syllabus"><b>Base camp: the syllabus</b>Due dates, grading and course policies.<span class="hint">Click to open</span></div>
+<div class="tip-src" id="tip-m1"><b>Milestone 1 · release 0.0.1</b>Set up your team's GitHub repo, a uv or renv environment, and your analysis in one Quarto document.<br>The tallest climb: a complete, simple data anlysis with a professional report.<span class="hint">Click to open</span></div>
+<div class="tip-src" id="tip-m2"><b>Milestone 2 · release 1.0.0</b>Move your environment into a Docker container, and publish your report on GitHub Pages. <span class="hint">Click to open</span></div>
+<div class="tip-src" id="tip-m3"><b>Milestone 3 · release 2.0.0</b>Split your analysis into 4 or more scripts, and add data validation checks.<br>A gentle hill: it's exam week in your other courses.<span class="hint">Page opens in week 3</span></div>
+<div class="tip-src" id="tip-m4"><b>Milestone 4 · release 3.0.0</b>One command (<code>make all</code>) runs everything. Add functions with tests, polish the report, and fix feedback to win back points.<span class="hint">Page opens in week 4</span></div>
+<div class="tip-src" id="tip-ia1"><b>Individual Assignment 1</b>Version control practice with Git and GitHub.<span class="hint">Click to open</span></div>
+<div class="tip-src" id="tip-contract"><b>Teamwork contract</b>How your team will work together. <span class="hint">Click to open</span></div>
+<div class="tip-src" id="tip-ia2"><b>Individual Assignment 2</b>Build your own small Docker image: the warm-up for Milestone 2.<span class="hint">Click to open</span></div>
+<div class="tip-src" id="tip-ia3"><b>Individual Assignment 3</b>Quarto report practice. You'll use it to polish your report in Milestone 4.<span class="hint">Page opens in week 3</span></div>
+<div class="tip-src" id="tip-ia4"><b>Individual Assignment 4</b>Write a Makefile: the warm-up for Milestone 4.<span class="hint">Page opens in week 4</span></div>
+<div class="tip-src" id="tip-peer"><b>Peer review</b>Review another team's project. Your team fixes some of the feedback it gets in Milestone 4.<span class="hint">Page opens in week 4</span></div>
+<div class="tip-src" id="tip-reflection"><b>Teamwork reflection</b>We want to know how you liked working together with your teammates! Write a report to share your experience.</div>
+
+<script>
+(() => {
+  const wrap = document.querySelector(".climb");
+  const bubble = wrap.querySelector(".climb-bubble");
+  const svg = wrap.querySelector("svg");
+  let current = null, lastPointer = "mouse";
+
+  // Stop the otter for anyone who asked their system for reduced motion
+  if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches && svg.pauseAnimations) svg.pauseAnimations();
+
+  // Mountains are big, so their bubble follows the pointer; small stops anchor to themselves
+  function show(el, e) {
+    const src = document.getElementById("tip-" + el.dataset.tip);
+    if (!src) return;
+    if (current !== el) {
+      if (current) current.classList.remove("on");
+      current = el; el.classList.add("on");
+      bubble.innerHTML = src.innerHTML;
+    }
+    const usePointer = el.classList.contains("peak") && e && e.clientX !== undefined;
+    const r = usePointer
+      ? { left: e.clientX, width: 0, top: e.clientY - 8, bottom: e.clientY + 8 }
+      : el.getBoundingClientRect();
+    const w = wrap.getBoundingClientRect();
+    const half = Math.min(bubble.offsetWidth, w.width) / 2;
+    const x = Math.max(half, Math.min(w.width - half, r.left + r.width / 2 - w.left));
+    const below = r.top - w.top < bubble.offsetHeight + 16;
+    bubble.classList.toggle("below", below);
+    bubble.style.left = x + "px";
+    bubble.style.top = (below ? r.bottom - w.top : r.top - w.top) + "px";
+    bubble.classList.add("show");
+  }
+  function hide() {
+    bubble.classList.remove("show");
+    if (current) current.classList.remove("on");
+    current = null;
+  }
+
+  wrap.querySelectorAll(".spot").forEach(el => {
+    el.addEventListener("pointerdown", e => { lastPointer = e.pointerType; });
+    el.addEventListener("mouseenter", e => { if (lastPointer === "mouse") show(el, e); });
+    el.addEventListener("mousemove", e => { if (lastPointer === "mouse" && el.classList.contains("peak")) show(el, e); });
+    el.addEventListener("mouseleave", () => { if (lastPointer === "mouse") hide(); });
+    el.addEventListener("focus", () => show(el));
+    el.addEventListener("blur", hide);
+    // On a phone, the first tap shows the bubble; a second tap opens the link
+    el.addEventListener("click", e => {
+      if (lastPointer !== "mouse" && current !== el) { e.preventDefault(); show(el, e); }
+    });
+  });
+  document.addEventListener("pointerdown", e => { if (!e.target.closest(".climb .spot")) hide(); });
+  wrap.querySelector(".climb-scroll").addEventListener("scroll", hide);
+})();
+</script>
+```

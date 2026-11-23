@@ -85,6 +85,8 @@ website:
       contents:
         - href: index.qmd
           text: Syllabus
+        - href: assignments/project-roadmap.qmd
+          text: "Project Roadmap"
         - section: "Week 1"
           contents:
             - href: assignments/individual1.qmd
