@@ -1,0 +1,14 @@
+ 6238  git log --oneline --graph --all
+ 6239  R --version
+ 6240  docker pull rocker/r-ver:4.3.2
+ 6241  docker run --rm -it rocker/r-ver:4.3.2
+ 6244  docker pull rocker/rstudio:4.4.2
+ 6245  docker run --rm -p 8787:8787 rocker/rstudio:4.4.2
+ 6246  docker run --rm -p 8787:8787 -e PASSWORD="apassword" rocker/rstudio:4.4.2
+ 6247  docker run --rm -it rocker/r-ver:4.6.2 bash
+ 6248  docker run --rm -it rocker/r-ver:4.6.2 bash
+ 6249  docker run --rm -it rocker/r-ver:4.6.2 bash
+ 6250  docker build --tag hello-cowsay .
+ 6251  docker images
+ 6252  docker run --rm -it hello-cowsay
+ 6253  docker run --rm -it hello-cowsay bash
