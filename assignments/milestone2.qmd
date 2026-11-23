@@ -102,7 +102,7 @@ Use it as your model: compare your repository with it before you submit.
     GitHub Actions publishes a new image and commits its tag to `docker-compose.yml` on that branch.
     Then `git pull` and `docker compose pull`, and merge the branch in a pull request.
 
-7.  **Update your `README`** so its instructions use the container (see the next section).
+7.  **Update your `README` and `CONTRIBUTING.md`** so their instructions use the container (see [below](#readme-steps)).
 
 ::: {#dockerfile .callout-tip collapse="true"}
 ## The `Dockerfile` (step 1)
@@ -451,9 +451,13 @@ services:
 There is no `build: .` line: everyone downloads the image your workflow published, instead of building their own.
 :::
 
-#### Your `README`: how to run the analysis {#readme-steps}
+#### Your `README` and `CONTRIBUTING.md` {#readme-steps}
 
-Write these steps in your `README`, in this order:
+Your `README` is for someone who wants to **run** your analysis.
+Your `CONTRIBUTING.md` is for a teammate or contributor who wants to **change** it.
+Keep each set of steps in its own file.
+
+**In your `README`**, write these steps, in this order:
 
 1.  Make an [ssh key]{.term tabindex="0" data-tip="An ssh key is a pair of files that proves who you are without a password: a private key you keep secret (~/.ssh/id_ed25519) and a public key you can share (~/.ssh/id_ed25519.pub). Here docker-compose.yml puts your public key in the container, so ssh lets you in."} if you don't have one: `ssh-keygen -t ed25519`, pressing Enter at each question.
     (Without it, Docker makes a *folder* named `~/.ssh/id_ed25519.pub`,
@@ -464,11 +468,18 @@ Write these steps in your `README`, in this order:
     -   R only: `docker compose run --rm analysis-env quarto render`
 
     Add your report's path after `quarto render` if your project has no `_quarto.yml` that lists it.
-4.  Work in the container: `docker compose up -d` starts it, then connect with Positron over ssh.
+
+Then add a link to your `CONTRIBUTING.md` for anyone who wants to change the project.
+
+**In your `CONTRIBUTING.md`**, replace any setup steps from Milestone 1 (such as installing packages on your own computer)
+with these. Link to your `README` for the setup steps above instead of repeating them.
+
+1.  Work in the container: `docker compose up -d` starts it, then connect with Positron over ssh.
     `docker compose down` stops it.
-5.  Update the container: add a package with your environment manager, commit and push,
+2.  Add or update a package: add it with your environment manager on a branch, commit and push,
     wait for GitHub Actions to publish the new image and update the tag in `docker-compose.yml`,
     then run `git pull` and `docker compose pull`.
+3.  Publish the report: after re-rendering, copy it to `docs/index.html` and push (see [part 2](#publish-your-report-on-github-pages)).
 
 ::: callout-important
 ## 5 all-or-nothing points for your README instructions
@@ -587,6 +598,7 @@ You don't need to include Milestone 1 feedback in this submission.
 - [ ] (Python) `pyproject.toml` pins every package and lists `ipykernel`, `nbclient` and `pyyaml`
 - [ ] (R) `DESCRIPTION` pins every package and lists `knitr` and `rmarkdown`
 - [ ] Someone on Windows and someone on Mac followed your `README` steps exactly and rendered the report
+- [ ] Your `CONTRIBUTING.md` says how to work in the container, add a package and republish the report, and your `README` doesn't
 - [ ] Your report on GitHub Pages shows in full, with its figures, and matches your release
 - [ ] The GitHub Pages URL is in your `README` and in the repository's **About** section
 - [ ] You created the `1.0.0` release
