@@ -84,7 +84,7 @@ Use it as your model: compare your repository with it before you submit.
 4.  **Build and publish the image with GitHub Actions.**
     One team member sets up Docker Hub and the GitHub [secrets]{.term tabindex="0" data-tip="A repository secret is a password or token saved in your GitHub repository's settings. Workflows can use it, but nobody can read it back, and it never shows up in your code or logs. Here the two secrets let the workflow log in to Docker Hub as your team."} (see [below](#docker-hub-secrets)).
     Copy the [workflow below](#workflow-file) into `.github/workflows/publish-dockerhub.yml`,
-    change only its `IMAGE` line to your Docker Hub repository's name, all in lowercase, then commit and push.
+    then commit and push (you don't need to change anything in it).
     It builds for `linux/amd64` (Intel/AMD) and `linux/arm64` (ARM, such as Apple silicon Macs)
     and publishes them under two [tags]{.term tabindex="0" data-tip="A tag is a label on a Docker image, written after a colon (e.g. python:3.14-slim). One image can have several tags. Here latest always points to your newest image, and the sha- tag names the commit that built it."}: `latest` and `sha-` plus 7 characters of the commit ID.
     Check that the run succeeds and that your image's tag on Docker Hub lists **both** platforms.
@@ -92,14 +92,15 @@ Use it as your model: compare your repository with it before you submit.
 5.  **Add `docker-compose.yml`.**
     Copy the [file below](#compose-file) into the root of your repository, and change its `image:` line to your image,
     pinned to the [commit-SHA tag]{.term tabindex="0" data-tip="Every Git commit has a unique ID called its SHA (e.g. 1a2b3c4). Your workflow tags each image it pushes with the start of the SHA of the commit that built it, so the tag always points to that one exact image. The latest tag, by contrast, changes every time you publish."} your workflow pushed, not `latest`
-    (for example, `image: yourname/yourproject:sha-1a2b3c4`).
+    (for example, `image: yourname/your-github-repo-name:sha-1a2b3c4`).
+    You only do this once: after that, the workflow updates the tag for you.
     Keep the [service name]{.term tabindex="0" data-tip="In Docker Compose, a service is one container it manages, named under services: in docker-compose.yml. Commands such as docker compose run use that name to say which container you mean. Here the name is analysis-env."} `analysis-env`, so the [commands below](#readme-steps) work as written.
 
 6.  **Work in the container from now on**, with Positron over [ssh]{.term tabindex="0" data-tip="ssh (secure shell) lets you log in to another computer and work on it from your own. Here the other computer is your container: Positron connects to it over ssh, so your code runs with the container's software while your files stay in your project folder."}
     ([Working in a container over ssh with Positron](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-ssh-positron.html)).
-    To add a package: add it with uv or renv, commit the changed files together,
-    let GitHub Actions publish a new image,
-    then update the tag in `docker-compose.yml` in a pull request.
+    To add a package: add it with uv or renv on a branch, commit the changed files together and push.
+    GitHub Actions publishes a new image and commits its tag to `docker-compose.yml` on that branch.
+    Then `git pull` and `docker compose pull`, and merge the branch in a pull request.
 
 7.  **Update your `README`** so its instructions use the container (see the next section).
 
@@ -278,7 +279,8 @@ CMD ["/usr/sbin/sshd", "-D"]
 
 One team member:
 
-1.  Creates a **public** Docker Hub repository for the project.
+1.  Creates a **public** Docker Hub repository with the **same name as your GitHub repository, in lowercase**
+    (e.g. GitHub `Wine_Quality_Predictor` becomes Docker Hub `wine_quality_predictor`).
 2.  Creates a Docker Hub [access token](https://docs.docker.com/security/access-tokens/) with Read & Write permissions.
 3.  Adds two [repository secrets](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets)
     to your GitHub repository (Settings \> Secrets and variables \> Actions \> New repository secret):
@@ -291,7 +293,8 @@ One team member:
 
 Job 1 runs the same `docker build` and `docker push` as Individual Assignment 2, on an Intel/AMD and an ARM computer at the same time.
 Job 2 puts the two images under one tag.
-Change only the `IMAGE` line.
+Job 3 writes that new tag into your `docker-compose.yml` and commits it to the branch you pushed.
+You don't need to change anything: the workflow names your image from the `DOCKER_USERNAME` secret and your GitHub repository's name.
 
 ```{.yaml filename=".github/workflows/publish-dockerhub.yml"}
 # Builds the image from your Dockerfile for Intel/AMD and ARM computers,
@@ -313,8 +316,9 @@ on:
       - .github/workflows/publish-dockerhub.yml
 
 env:
-  # CHANGE THIS LINE: your Docker Hub username / repository name, in lowercase
-  IMAGE: your-docker-hub-username/your-repository-name
+  # Your image: your Docker Hub username / this GitHub repository's name.
+  # Nothing to change here.
+  IMAGE_NAME: ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}
 
 jobs:
   # Job 1: build the image on two computers at the same time,
@@ -329,23 +333,27 @@ jobs:
             arch: arm64
     runs-on: ${{ matrix.runner }}
     steps:
-      # 1. Copy your repository onto the computer
+      # 1. Docker image names must be lowercase, so save a lowercase copy as IMAGE
+      - name: Make the image name lowercase
+        run: echo "IMAGE=$(echo "$IMAGE_NAME" | tr '[:upper:]' '[:lower:]')" >> "$GITHUB_ENV"
+
+      # 2. Copy your repository onto the computer
       - name: Check out the repository
         uses: actions/checkout@v7
 
-      # 2. Log in to Docker Hub with your two repository secrets
+      # 3. Log in to Docker Hub with your two repository secrets
       - name: Log in to Docker Hub
         uses: docker/login-action@v4
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # 3. Build the image for this computer, tagged for example sha-1a2b3c4-arm64
+      # 4. Build the image for this computer, tagged for example sha-1a2b3c4-arm64
       #    (sha- plus the first 7 characters of the commit ID, plus the chip)
       - name: Build the image
         run: docker build --tag "$IMAGE:sha-${GITHUB_SHA::7}-${{ matrix.arch }}" .
 
-      # 4. Upload it to Docker Hub
+      # 5. Upload it to Docker Hub
       - name: Push the image
         run: docker push "$IMAGE:sha-${GITHUB_SHA::7}-${{ matrix.arch }}"
 
@@ -355,6 +363,10 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      # Docker image names must be lowercase, so save a lowercase copy as IMAGE
+      - name: Make the image name lowercase
+        run: echo "IMAGE=$(echo "$IMAGE_NAME" | tr '[:upper:]' '[:lower:]')" >> "$GITHUB_ENV"
+
       - name: Log in to Docker Hub
         uses: docker/login-action@v4
         with:
@@ -369,12 +381,45 @@ jobs:
             --tag "$IMAGE:sha-${GITHUB_SHA::7}" \
             "$IMAGE:sha-${GITHUB_SHA::7}-amd64" \
             "$IMAGE:sha-${GITHUB_SHA::7}-arm64"
+
+  # Job 3: write the new tag into docker-compose.yml and commit it
+  # to the branch you pushed, so your team only has to git pull
+  update-compose:
+    needs: combine
+    runs-on: ubuntu-latest
+    # lets this job push a commit to your repository
+    permissions:
+      contents: write
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v7
+
+      # Replace the image: line, e.g. image: yourname/your-repo:sha-1a2b3c4
+      # (skipped if you have no docker-compose.yml yet)
+      - name: Put the new tag in docker-compose.yml
+        if: hashFiles('docker-compose.yml') != ''
+        run: |
+          IMAGE=$(echo "$IMAGE_NAME" | tr '[:upper:]' '[:lower:]')
+          sed -i "s|^\( *image:\).*|\1 $IMAGE:sha-${GITHUB_SHA::7}|" docker-compose.yml
+
+      # Commit and push the change (does nothing if the file didn't change)
+      - name: Commit and push docker-compose.yml
+        if: hashFiles('docker-compose.yml') != ''
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docker-compose.yml
+          git diff --cached --quiet && exit 0
+          git commit -m "Use image tag sha-${GITHUB_SHA::7} in docker-compose.yml"
+          git pull --rebase
+          git push
 ```
 
 It runs on its own when a push changes the `Dockerfile`, a lock file or the workflow file.
 To run it by hand: **Actions** tab \> **Publish image to Docker Hub** \> **Run workflow**.
 On Docker Hub you will see four tags: `latest`, `sha-1a2b3c4`, and the two halves `sha-1a2b3c4-amd64` and `sha-1a2b3c4-arm64`.
-Use the one without `-amd64` or `-arm64` in `docker-compose.yml`.
+Job 3 puts the one without `-amd64` or `-arm64` in `docker-compose.yml` for you.
+Then run **`git pull`** to get that commit, and `docker compose pull` to download the new image.
 :::
 
 ::: {#compose-file .callout-tip collapse="true"}
@@ -389,9 +434,10 @@ Change only the `image:` line.
 services:
   # the service name: `docker compose run analysis-env ...` uses it
   analysis-env:
-    # CHANGE THIS LINE: your image on Docker Hub,
-    # with the sha- tag your workflow pushed (not latest)
-    image: your-docker-hub-username/your-repository-name:sha-1a2b3c4
+    # CHANGE THIS LINE once: your Docker Hub username / your GitHub repository's
+    # name in lowercase, with the sha- tag your workflow pushed (not latest).
+    # After that, the workflow updates the tag for you.
+    image: your-docker-hub-username/your-github-repo-name:sha-1a2b3c4
     ports:
       # 2222 on your computer, 22 (ssh) in the container
       - "2222:22"
@@ -421,8 +467,8 @@ Write these steps in your `README`, in this order:
 4.  Work in the container: `docker compose up -d` starts it, then connect with Positron over ssh.
     `docker compose down` stops it.
 5.  Update the container: add a package with your environment manager, commit and push,
-    wait for GitHub Actions to publish the new image,
-    then update the tag in `docker-compose.yml` and run `docker compose pull`.
+    wait for GitHub Actions to publish the new image and update the tag in `docker-compose.yml`,
+    then run `git pull` and `docker compose pull`.
 
 ::: callout-important
 ## 5 all-or-nothing points for your README instructions

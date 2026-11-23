@@ -115,8 +115,8 @@ What matters is having about 4, so you can practise joining them into a pipeline
 
 Your scripts probably use new packages (`click` or `docopt`, a validation package).
 Add each one, pinned, the same way you did in Milestone 2:
-add it with uv or renv, commit the changed files, let GitHub Actions publish a new image,
-then update the tag in `docker-compose.yml`.
+add it with uv or renv, commit the changed files and push, let GitHub Actions publish a new image
+and update the tag in `docker-compose.yml`, then `git pull` and `docker compose pull`.
 ([uv recap from DSCI 521](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/virtual-environments-uv.html))
 
 ### 5. Update your `README`
