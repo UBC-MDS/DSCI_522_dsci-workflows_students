@@ -2164,7 +2164,7 @@
     "href": "slides/slides/slides_03.html#we-dont-like-manual-work",
     "title": "DSCI 522 Lecture 3",
     "section": "We don’t like manual work!",
-    "text": "We don’t like manual work!\ndocker run --rm \\\n    -v \"/$(pwd)\":/workspace \\\n    -v ~/.gitconfig:/root/.gitconfig:ro \\\n    &lt;your_dockerhub_username&gt;/dsci522-dockerfile-practice:sha-xxxxxxx \\\n    uv run python hello.py\n\n\n\n\nSource: Minions movie\n\n\nAsk: do you want to type this every day? And get every flag, quote and slash right, on every teammate’s laptop? A typo in the image tag and you run a different image without noticing."
+    "text": "We don’t like manual work!\ndocker run --rm \\\n    -v \"/$(pwd)\":/workspace \\\n    &lt;your_dockerhub_username&gt;/dsci522-dockerfile-practice:sha-xxxxxxx \\\n    uv run python hello.py\n\n\n\n\nSource: Minions movie\n\n\nAsk: do you want to type this every day? And get every flag, quote and slash right, on every teammate’s laptop? A typo in the image tag and you run a different image without noticing."
   },
   {
     "objectID": "slides/slides/slides_03.html#build-docker-compose.yml-12-the-settings",
