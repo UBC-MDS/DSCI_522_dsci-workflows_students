@@ -458,7 +458,7 @@ Terminal, step by step (tested with Docker Compose v5.5.1):
 10. On my Mac the platform warning shows (the image is Intel/AMD only): fixed next lecture.
 :::
 
-## The `docker compose` commands for Milestone 2 {style="font-size: 0.8em;"}
+## The `docker compose` commands for Milestone 2 {style="font-size: 0.7em;"}
 
 | Command | When |
 |---|---|
