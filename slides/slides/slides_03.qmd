@@ -350,7 +350,6 @@ If the workflow did not start (for example the push changed no listed file): Act
 ```{.bash}
 docker run --rm \
     -v "/$(pwd)":/workspace \
-    -v ~/.gitconfig:/root/.gitconfig:ro \
     <your_dockerhub_username>/dsci522-dockerfile-practice:sha-xxxxxxx \
     uv run python hello.py
 ```
