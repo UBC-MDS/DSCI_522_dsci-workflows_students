@@ -38,6 +38,10 @@ project:
     # - "slides/slides/slides_08.qmd"
     - "slides/slides/slides_lab_01.qmd"
     # - "slides/slides/slides_lab_04.qmd"
+    # Section 2 class notes: generated and pushed from Daniel Chen's private course repo
+    # (`make publish` there commits only class-notes/).
+    - "class-notes/index.qmd"
+    - "class-notes/**/*.md"
 
 website:
   title: "DSCI 522: Data Science Workflows"
@@ -70,6 +74,8 @@ website:
             text: "Lectures"
           - href: slides/lab.qmd
             text: "Labs"
+      - href: class-notes/index.qmd
+        text: "Section 2 Notes"
     right:
       - href: https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/
         text: Textbook
