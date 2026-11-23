@@ -28,6 +28,7 @@ This milestone is about moving your project into a [container]{.term tabindex="0
 
 - [ ] Run your project's environment in a Docker container, and **work in it from now on**
 - [ ] Build the [image]{.term tabindex="0" data-tip="A Docker image is a saved snapshot of a computer setup: an operating system, software and packages, ready to run. A container is one running copy of it. Your Dockerfile is the recipe for your project's image."} on [GitHub Actions]{.term tabindex="0" data-tip="GitHub Actions runs commands for you on a fresh computer at GitHub when something happens in your repository, such as a push. You write the commands in a workflow file (a .yml file in .github/workflows/). Here it builds your image and uploads it to Docker Hub."} for [Intel/AMD and ARM]{.term tabindex="0" data-tip="These are the two main kinds of computer processor. Most Windows laptops and servers use Intel/AMD chips (linux/amd64), while Macs with Apple silicon (M1 and later) use ARM chips (linux/arm64). An image built for one kind runs slowly or not at all on the other, so you build for both."}, and publish it on [Docker Hub]{.term tabindex="0" data-tip="Docker Hub is a website that stores Docker images, the way GitHub stores code. Anyone can download a public image from it. Here your team publishes its image there, so everyone downloads the same one instead of building their own."}
+- [ ] Update your `README` and `CONTRIBUTING.md` so they use the container
 - [ ] Publish your report on [GitHub Pages]{.term tabindex="0" data-tip="GitHub Pages is a free GitHub service that turns files in a repository into a public website. Here it shows your rendered report at a web address, so anyone can read it without cloning your repository."}
 
 We give you the [`Dockerfile`](#dockerfile), the [workflow file](#workflow-file) and [`docker-compose.yml`]{.term tabindex="0" data-tip="Docker Compose starts a container from settings written in a docker-compose.yml file (which image, which ports, which folders to share), so you don't have to type a long docker run command. Here everyone on the team starts the same container with one short command."} ([see below](#compose-file)).
@@ -58,7 +59,7 @@ Use it as your model: compare your repository with it before you submit.
 -   [Docker Compose](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-docker-compose.html): starting the container with one command
 -   [Working in a container over ssh with Positron](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-ssh-positron.html): editing code inside the container
 -   [Building images for several platforms](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-platforms.html): why the workflow builds for two kinds of computer
--   [Introduction to Quarto and GitHub Pages](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html) (DSCI 521): publishing the report in part 2
+-   [Introduction to Quarto and GitHub Pages](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html) (DSCI 521): publishing the report in part 3
 :::
 
 ### 1. Put your environment in a container
@@ -83,30 +84,33 @@ Use it as your model: compare your repository with it before you submit.
     Fixing errors here is much faster than on GitHub Actions.
 
 4.  **Build and publish the image with GitHub Actions.**
-    One team member sets up Docker Hub and the GitHub [secrets]{.term tabindex="0" data-tip="A repository secret is a password or token saved in your GitHub repository's settings. Workflows can use it, but nobody can read it back, and it never shows up in your code or logs. Here the two secrets let the workflow log in to Docker Hub as your team."} (see [below](#docker-hub-secrets)).
-    Copy the [workflow below](#workflow-file) into `.github/workflows/publish-dockerhub.yml`,
-    then commit and push (you don't need to change anything in it).
-    It builds for `linux/amd64` (Intel/AMD) and `linux/arm64` (ARM, such as Apple silicon Macs)
-    and publishes them under two [tags]{.term tabindex="0" data-tip="A tag is a label on a Docker image, written after a colon (e.g. python:3.14-slim). One image can have several tags. Here latest always points to your newest image, and the sha- tag names the commit that built it."}: `latest` and `sha-` plus 7 characters of the commit ID.
-    Check that the run succeeds and that your image's tag on Docker Hub lists **both** platforms.
-    **Don't turn on [branch protection]{.term tabindex="0" data-tip="Branch protection is a GitHub setting (Settings > Branches or Rules) that puts rules on a branch, such as: nobody may push to main directly, every change must come through a reviewed pull request. Here the workflow pushes the new image tag straight to your branch, including main, so those rules would block it and the run would fail."} for `main`**: the workflow commits the new image tag straight to your branches, and branch protection would block it.
+
+    -   One team member sets up Docker Hub and the GitHub [secrets]{.term tabindex="0" data-tip="A repository secret is a password or token saved in your GitHub repository's settings. Workflows can use it, but nobody can read it back, and it never shows up in your code or logs. Here the two secrets let the workflow log in to Docker Hub as your team."} (see [below](#docker-hub-secrets)).
+    -   Copy the [workflow below](#workflow-file) into `.github/workflows/publish-dockerhub.yml`, then commit and push.
+        You don't need to change anything in it.
+    -   It builds for `linux/amd64` (Intel/AMD) and `linux/arm64` (ARM, such as Apple silicon Macs),
+        and publishes them under two [tags]{.term tabindex="0" data-tip="A tag is a label on a Docker image, written after a colon (e.g. python:3.14-slim). One image can have several tags. Here latest always points to your newest image, and the sha- tag names the commit that built it."}: `latest` and `sha-` plus 7 characters of the commit ID.
+    -   Check that the run succeeds and that your image's tag on Docker Hub lists **both** platforms.
+    -   **Don't turn on [branch protection]{.term tabindex="0" data-tip="Branch protection is a GitHub setting (Settings > Branches or Rules) that puts rules on a branch, such as: nobody may push to main directly, every change must come through a reviewed pull request. Here the workflow pushes the new image tag straight to your branch, including main, so those rules would block it and the run would fail."} for `main`**:
+        the workflow commits the new image tag straight to your branches, and branch protection would block it.
 
 5.  **Add `docker-compose.yml`.**
-    Copy the [file below](#compose-file) into the root of your repository, and change its `image:` line to your image,
-    pinned to the [commit-SHA tag]{.term tabindex="0" data-tip="Every Git commit has a unique ID called its SHA (e.g. 1a2b3c4). Your workflow tags each image it pushes with the start of the SHA of the commit that built it, so the tag always points to that one exact image. The latest tag, by contrast, changes every time you publish."} your workflow pushed, not `latest`
-    (for example, `image: yourname/your-github-repo-name:sha-1a2b3c4`, all in lowercase).
-    You only do this once: after that, the workflow updates the tag for you.
-    Keep the [service name]{.term tabindex="0" data-tip="In Docker Compose, a service is one container it manages, named under services: in docker-compose.yml. Commands such as docker compose run use that name to say which container you mean. Here the name is analysis-env."} `analysis-env`, so the [commands below](#readme-steps) work as written.
+
+    -   Copy the [file below](#compose-file) into the root of your repository.
+    -   Change its `image:` line to your image, pinned to the [commit-SHA tag]{.term tabindex="0" data-tip="Every Git commit has a unique ID called its SHA (e.g. 1a2b3c4). Your workflow tags each image it pushes with the start of the SHA of the commit that built it, so the tag always points to that one exact image. The latest tag, by contrast, changes every time you publish."} your workflow pushed, not `latest`
+        (for example, `image: yourname/your-github-repo-name:sha-1a2b3c4`, all in lowercase).
+        You only do this once: after that, the workflow updates the tag for you.
+    -   Keep the [service name]{.term tabindex="0" data-tip="In Docker Compose, a service is one container it manages, named under services: in docker-compose.yml. Commands such as docker compose run use that name to say which container you mean. Here the name is analysis-env."} `analysis-env`, so the [commands in part 2](#readme-steps) work as written.
 
 6.  **Work in the container from now on**, with Positron over [ssh]{.term tabindex="0" data-tip="ssh (secure shell) lets you log in to another computer and work on it from your own. Here the other computer is your container: Positron connects to it over ssh, so your code runs with the container's software while your files stay in your project folder."}
-    ([Working in a container over ssh with Positron](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-ssh-positron.html)).
-    To add a package: add it with uv or renv on a branch, commit the changed files together and push.
-    GitHub Actions publishes a new image and commits its tag to `docker-compose.yml` on that branch.
-    Then `git pull` and `docker compose pull`, and merge the branch in a pull request.
-    The merge builds the image once more and commits a new tag to `main`,
-    so when that run finishes, everyone runs `git pull` on `main` and `docker compose pull` again.
+    Follow the [step-by-step guide below](#positron-ssh) the first time.
+    To add a package:
 
-7.  **Update your `README` and `CONTRIBUTING.md`** so their instructions use the container (see [below](#readme-steps)).
+    -   On a branch, add it with uv or renv, commit the changed files together and push.
+    -   GitHub Actions publishes a new image and commits its tag to `docker-compose.yml` on that branch.
+    -   Run `git pull` and `docker compose pull`, then merge the branch in a pull request.
+    -   The merge builds the image once more and commits a new tag to `main`.
+        When that run finishes, everyone runs `git pull` on `main` and `docker compose pull` again.
 
 ::: {#dockerfile .callout-tip collapse="true"}
 ## The `Dockerfile` (step 1)
@@ -313,6 +317,10 @@ on:
   workflow_dispatch:
   # on its own: when a push changes one of these files
   push:
+    # only branch pushes, not tags: a release creates a tag, and GitHub
+    # ignores the paths filter for tag pushes, so it would run every release
+    branches:
+      - '**'
     paths:
       - Dockerfile
       - pyproject.toml
@@ -454,42 +462,127 @@ services:
       - .:/workspace
       # your ssh public key, so you can log in (ro: read-only)
       - ~/.ssh/id_ed25519.pub:/root/.ssh/authorized_keys:ro
+      # your Git name and email, so your commits in the container count as yours
+      - ~/.gitconfig:/root/.gitconfig:ro
 ```
 
 There is no `build: .` line: everyone downloads the image your workflow published, instead of building their own.
 :::
 
-#### Your `README` and `CONTRIBUTING.md` {#readme-steps}
+::: {#positron-ssh .callout-tip collapse="true"}
+## Connect Positron to the container over ssh, step by step (step 6)
 
-Your `README` is for someone who wants to **run** your analysis.
-Your `CONTRIBUTING.md` is for a teammate or contributor who wants to **change** it.
+Your `CONTRIBUTING.md` walks your teammates through these same steps (see [part 2](#readme-steps)).
+
+**Once, before your first connection:**
+
+1.  Install [Positron](https://positron.posit.co/download.html) on your computer.
+    Its **Remote SSH** feature, which connects to the container, comes built in, so you don't need an extension.
+2.  Make an ssh key if you don't have one. In a terminal on your computer, run `ssh-keygen -t ed25519` and press Enter at each question.
+    Check that `~/.ssh/id_ed25519.pub` now exists.
+3.  Check that Git knows who you are on your computer: `git config --global user.email` should print the email of your GitHub account.
+    If it prints nothing, set it with `git config --global user.name "Your Name"` and `git config --global user.email "you@example.com"`.
+    `docker-compose.yml` shares this with the container, so your commits there count as yours.
+4.  Download the image: in your project folder, run `docker compose pull`.
+
+**Each time you work on the project:**
+
+1.  In a terminal, in your project folder, start the container in the background:
+
+    ```bash
+    docker compose up -d
+    ```
+
+    `docker compose ps` should list `analysis-env` as running.
+2.  In Positron, open the Command Palette (`Cmd+Shift+P` on Mac, `Ctrl+Shift+P` on Windows).
+3.  Type and run **Remote SSH: Show Remote Menu**, then pick **Connect to Host**.
+4.  Type `root@localhost:2222` and press Enter.
+    A new Positron window opens.
+    -   If it asks for the platform of the remote host, pick **Linux**.
+    -   If it asks whether you trust the host (a "fingerprint"), click **Continue**.
+    -   The first time, Positron installs its server inside the container. This takes a few minutes (e.g., took > 5 minutes on Sky's computer).
+5.  **Open your project folder.** You are connected now (the bottom left corner shows `SSH: localhost:2222`),
+    but the Explorer says **No folder opened**, and a terminal starts in `/root`, the container's home folder, which has no project files.
+    That is normal.
+    -   Click **Open Folder** in the Explorer. A path box appears at the top of the window.
+    -   Delete what is in it, type `/workspace`, and press Enter (or click **OK**, you may need to click "ok" a few times before this works).
+    -   The window reloads. The Explorer now shows **WORKSPACE \[SSH: LOCALHOST:2222\]** with your project files.
+        A file you change here changes on your computer too.
+6.  **Pick the interpreter.** Positron may start a different Python than your project's, so check this every time.
+    Click the interpreter button at the top right of the window (it shows a Python or R version).
+    The menu that opens, **Running Interpreter Sessions**, only lists sessions that are already running
+    (such as `/usr/bin/python3`, the container's system Python: not this one). Click **New Console Session...**, then:
+    -   **Python:** pick the one named **Python 3.x (uv: your-project-name)** with the path `/opt/venv/bin/python`,
+        the environment built from your `uv.lock`. The top right button then shows that name.
+        If it isn't in the list, open the Command Palette, run **Python: Select Interpreter**, choose **Enter interpreter path...** and type `/opt/venv/bin/python`.
+        Don't pick `/workspace/.venv`: that is the environment from your own computer, and it doesn't run in the container.
+    -   **R:** pick the R version in the list. It already uses the packages from your `renv.lock`.
+    -   To check, run `import sys; print(sys.executable)` in the Console. It should print `/opt/venv/bin/python`.
+7.  Work as usual. The Terminal, Console and **Render** button all run inside the container.
+8.  When you are done, close the Positron window, then stop the container in a terminal on your computer:
+
+    ```bash
+    docker compose down
+    ```
+
+**If it doesn't connect:**
+
+-   **`~/.ssh/id_ed25519.pub` is a folder:** Docker made it because the key didn't exist yet.
+    Run `docker compose down`, delete that folder, make the key (step 2 above), and start again.
+-   **`~/.gitconfig` is a folder, or Git in the container doesn't know your name:** the same thing happened with your Git settings.
+    Run `docker compose down`, delete that folder, set your name and email (step 3 above), and start again.
+-   **GitHub asks you to sign in when you push from the container:** sign in once in the browser window Positron opens. Positron remembers it.
+-   **It asks for a password:** the container can't see your key.
+    Check that your key is named `id_ed25519.pub`, or change the key path in `docker-compose.yml`.
+-   **"Remote host identification has changed":** you are using a new image. Run `ssh-keygen -R "[localhost]:2222"`, then connect again.
+-   **Linux laptops:** ssh refuses the key because the file belongs to you, not `root`.
+    Remove the `#` from the `StrictModes no` line in the `Dockerfile` and push, so the workflow publishes a fixed image.
+-   **Port 2222 is already in use:** change the first `2222` in `docker-compose.yml` to another number (e.g. `2223`), and connect to that port instead.
+
+More detail: [Working in a container over ssh with Positron](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-ssh-positron.html).
+:::
+
+### 2. Update your `README` and `CONTRIBUTING.md` {#readme-steps}
+
+-   **`README`**: for someone who wants to **run** your analysis.
+-   **`CONTRIBUTING.md`**: for a teammate or contributor who wants to **change** it.
+
 Keep each set of steps in its own file.
 
-**In your `README`**, write these steps, in this order:
+**Your `README`:** use the [example `README.md`](https://github.com/UBC-MDS/DSCI_522_project-template-breast-cancer-predictor/blob/1.0.0/README.md) as your template.
 
-1.  Make an [ssh key]{.term tabindex="0" data-tip="An ssh key is a pair of files that proves who you are without a password: a private key you keep secret (~/.ssh/id_ed25519) and a public key you can share (~/.ssh/id_ed25519.pub). Here docker-compose.yml puts your public key in the container, so ssh lets you in."} if you don't have one: `ssh-keygen -t ed25519`, pressing Enter at each question.
-    (Without it, Docker makes a *folder* named `~/.ssh/id_ed25519.pub`,
-    and ssh into the container fails until you delete that folder and make the key.)
-2.  Download the image: `docker compose pull`.
-3.  Render the report in the container:
+::: {.callout-tip collapse="true"}
+## What your `README` must include
+
+In this order:
+
+- [ ] Make an [ssh key]{.term tabindex="0" data-tip="An ssh key is a pair of files that proves who you are without a password: a private key you keep secret (~/.ssh/id_ed25519) and a public key you can share (~/.ssh/id_ed25519.pub). Here docker-compose.yml puts your public key in the container, so ssh lets you in."} if you don't have one: `ssh-keygen -t ed25519`, pressing Enter at each question.
+      (Without it, Docker makes a *folder* named `~/.ssh/id_ed25519.pub`,
+      and ssh into the container fails until you delete that folder and make the key.)
+- [ ] Download the image: `docker compose pull`.
+- [ ] Render the report in the container:
     -   Python, or Python and R: `docker compose run --rm analysis-env uv run quarto render`
     -   R only: `docker compose run --rm analysis-env quarto render`
+    -   Add your report's path after `quarto render` if your project has no `_quarto.yml` that lists it.
+- [ ] Say how the container stops: with `--rm`, it is removed by itself when the render finishes.
+      If your `README` also uses `docker compose up -d`, add `docker compose down` to stop and remove it.
+- [ ] Link to your `CONTRIBUTING.md` for anyone who wants to change the project.
+:::
 
-    Add your report's path after `quarto render` if your project has no `_quarto.yml` that lists it.
-4.  Say how the container stops: with `--rm`, it is removed by itself when the render finishes.
-    If your `README` also uses `docker compose up -d`, add `docker compose down` to stop and remove it.
+**Your `CONTRIBUTING.md`:** use the [example `CONTRIBUTING.md`](https://github.com/UBC-MDS/DSCI_522_project-template-breast-cancer-predictor/blob/1.0.0/CONTRIBUTING.md) as your template.
+It replaces any setup steps from Milestone 1 (such as installing packages on your own computer).
 
-Then add a link to your `CONTRIBUTING.md` for anyone who wants to change the project.
+::: {.callout-tip collapse="true"}
+## What your `CONTRIBUTING.md` must include
 
-**In your `CONTRIBUTING.md`**, replace any setup steps from Milestone 1 (such as installing packages on your own computer)
-with these. Link to your `README` for the setup steps above instead of repeating them.
-
-1.  Work in the container: `docker compose up -d` starts it, then connect with Positron over ssh.
-    `docker compose down` stops it.
-2.  Add or update a package: add it with your environment manager on a branch, commit and push,
-    wait for GitHub Actions to publish the new image and update the tag in `docker-compose.yml`,
-    then run `git pull` and `docker compose pull`.
-3.  Publish the report: after re-rendering, copy it to `docs/index.html` and push (see [part 2](#publish-your-report-on-github-pages)).
+- [ ] Link to your `README` for the setup steps (ssh key, `docker compose pull`), instead of repeating them.
+- [ ] Work in the container with Positron over ssh: write the steps from the [step-by-step guide in part 1](#positron-ssh) for your project
+      (the steps the `README` already covers can be a link), including installing Positron, the Git name and email check, which interpreter to pick, and the fixes for when it doesn't connect.
+- [ ] Add or update a package: on a branch, add it with your environment manager, commit and push.
+      Wait for GitHub Actions to publish the new image and update the tag in `docker-compose.yml`,
+      then run `git pull` and `docker compose pull`.
+- [ ] Publish the report: after re-rendering, copy it to `docs/index.html` and push (see [part 3](#publish-your-report-on-github-pages)).
+:::
 
 ::: callout-important
 ## Reproducibility is worth 20 points
@@ -500,7 +593,7 @@ Test them on **both Windows and Mac**.
 If your team doesn't have both, ask another team to test them.
 :::
 
-### 2. Publish your report on GitHub Pages
+### 3. Publish your report on GitHub Pages
 
 Anyone should be able to read your report online without cloning your repository.
 You publish it by hand: put a [self-contained]{.term tabindex="0" data-tip="A self-contained HTML file has everything it needs (figures, styling, scripts) packed inside the one file, instead of in separate files next to it. So it still works after you copy it somewhere else."} copy of your rendered report at `docs/index.html`.

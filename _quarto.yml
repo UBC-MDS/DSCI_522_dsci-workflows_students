@@ -30,7 +30,7 @@ project:
     # Released Section 1 slide decks only: add one line per release.
     - "slides/slides/slides_01.qmd"
     - "slides/slides/slides_02.qmd"
-    # - "slides/slides/slides_03.qmd"
+    - "slides/slides/slides_03.qmd"
     # - "slides/slides/slides_04.qmd"
     # - "slides/slides/slides_05.qmd"
     # - "slides/slides/slides_06.qmd"
@@ -144,7 +144,7 @@ website:
         - slides/lecture.qmd
         - slides/lec_01.qmd
         - slides/lec_02.qmd
-        # - slides/lec_03.qmd
+        - slides/lec_03.qmd
         # - slides/lec_04.qmd
         # - slides/lec_05.qmd
         # - slides/lec_06.qmd
