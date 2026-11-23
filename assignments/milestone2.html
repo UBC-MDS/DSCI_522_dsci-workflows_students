@@ -219,7 +219,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#milestone-2-summary" id="toc-milestone-2-summary" class="nav-link active" data-scroll-target="#milestone-2-summary">Milestone 2 summary</a>
   <ul class="collapse">
   <li><a href="#put-your-environment-in-a-container" id="toc-put-your-environment-in-a-container" class="nav-link" data-scroll-target="#put-your-environment-in-a-container">1. Put your environment in a container</a></li>
-  <li><a href="#publish-your-report-on-github-pages" id="toc-publish-your-report-on-github-pages" class="nav-link" data-scroll-target="#publish-your-report-on-github-pages">2. Publish your report on GitHub Pages</a></li>
+  <li><a href="#readme-steps" id="toc-readme-steps" class="nav-link" data-scroll-target="#readme-steps">2. Update your <code>README</code> and <code>CONTRIBUTING.md</code></a></li>
+  <li><a href="#publish-your-report-on-github-pages" id="toc-publish-your-report-on-github-pages" class="nav-link" data-scroll-target="#publish-your-report-on-github-pages">3. Publish your report on GitHub Pages</a></li>
   </ul></li>
   <li><a href="#submission-instructions" id="toc-submission-instructions" class="nav-link" data-scroll-target="#submission-instructions">Submission instructions</a></li>
   </ul>
@@ -276,6 +277,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul class="task-list">
 <li><label><input type="checkbox">Run your project’s environment in a Docker container, and <strong>work in it from now on</strong></label></li>
 <li><label><input type="checkbox">Build the <span class="term" tabindex="0" data-tip="A Docker image is a saved snapshot of a computer setup: an operating system, software and packages, ready to run. A container is one running copy of it. Your Dockerfile is the recipe for your project's image.">image</span> on <span class="term" tabindex="0" data-tip="GitHub Actions runs commands for you on a fresh computer at GitHub when something happens in your repository, such as a push. You write the commands in a workflow file (a .yml file in .github/workflows/). Here it builds your image and uploads it to Docker Hub.">GitHub Actions</span> for <span class="term" tabindex="0" data-tip="These are the two main kinds of computer processor. Most Windows laptops and servers use Intel/AMD chips (linux/amd64), while Macs with Apple silicon (M1 and later) use ARM chips (linux/arm64). An image built for one kind runs slowly or not at all on the other, so you build for both.">Intel/AMD and ARM</span>, and publish it on <span class="term" tabindex="0" data-tip="Docker Hub is a website that stores Docker images, the way GitHub stores code. Anyone can download a public image from it. Here your team publishes its image there, so everyone downloads the same one instead of building their own.">Docker Hub</span></label></li>
+<li><label><input type="checkbox">Update your <code>README</code> and <code>CONTRIBUTING.md</code> so they use the container</label></li>
 <li><label><input type="checkbox">Publish your report on <span class="term" tabindex="0" data-tip="GitHub Pages is a free GitHub service that turns files in a repository into a public website. Here it shows your rendered report at a web address, so anyone can read it without cloning your repository.">GitHub Pages</span></label></li>
 </ul>
 <p>We give you the <a href="#dockerfile"><code>Dockerfile</code></a>, the <a href="#workflow-file">workflow file</a> and <span class="term" tabindex="0" data-tip="Docker Compose starts a container from settings written in a docker-compose.yml file (which image, which ports, which folders to share), so you don't have to type a long docker run command. Here everyone on the team starts the same container with one short command."><code>docker-compose.yml</code></span> (<a href="#compose-file">see below</a>). They are adapted from <a href="https://github.com/chendaniely/docker-uv-renv">docker-uv-renv</a>.</p>
@@ -324,7 +326,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-docker-compose.html">Docker Compose</a>: starting the container with one command</li>
 <li><a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-ssh-positron.html">Working in a container over ssh with Positron</a>: editing code inside the container</li>
 <li><a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-platforms.html">Building images for several platforms</a>: why the workflow builds for two kinds of computer</li>
-<li><a href="https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html">Introduction to Quarto and GitHub Pages</a> (DSCI 521): publishing the report in part 2</li>
+<li><a href="https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html">Introduction to Quarto and GitHub Pages</a> (DSCI 521): publishing the report in part 3</li>
 </ul>
 </div>
 </div>
@@ -339,10 +341,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>R (renv):</strong> <code>DESCRIPTION</code> with every package pinned with <code>(== x.y.z)</code>, <code>renv.lock</code>, <code>.Rprofile</code> and <code>renv/</code>. <code>DESCRIPTION</code> is required, and it <strong>must list <code>knitr</code> and <code>rmarkdown</code></strong> (Quarto needs them to run the R code in your report).</li>
 </ul></li>
 <li><p><strong>Test the build on your computer</strong> before you push: <code>docker build --tag my-project .</code> (as in Individual Assignment 2). Fixing errors here is much faster than on GitHub Actions.</p></li>
-<li><p><strong>Build and publish the image with GitHub Actions.</strong> One team member sets up Docker Hub and the GitHub <span class="term" tabindex="0" data-tip="A repository secret is a password or token saved in your GitHub repository's settings. Workflows can use it, but nobody can read it back, and it never shows up in your code or logs. Here the two secrets let the workflow log in to Docker Hub as your team.">secrets</span> (see <a href="#docker-hub-secrets">below</a>). Copy the <a href="#workflow-file">workflow below</a> into <code>.github/workflows/publish-dockerhub.yml</code>, then commit and push (you don’t need to change anything in it). It builds for <code>linux/amd64</code> (Intel/AMD) and <code>linux/arm64</code> (ARM, such as Apple silicon Macs) and publishes them under two <span class="term" tabindex="0" data-tip="A tag is a label on a Docker image, written after a colon (e.g. python:3.14-slim). One image can have several tags. Here latest always points to your newest image, and the sha- tag names the commit that built it.">tags</span>: <code>latest</code> and <code>sha-</code> plus 7 characters of the commit ID. Check that the run succeeds and that your image’s tag on Docker Hub lists <strong>both</strong> platforms. <strong>Don’t turn on <span class="term" tabindex="0" data-tip="Branch protection is a GitHub setting (Settings > Branches or Rules) that puts rules on a branch, such as: nobody may push to main directly, every change must come through a reviewed pull request. Here the workflow pushes the new image tag straight to your branch, including main, so those rules would block it and the run would fail.">branch protection</span> for <code>main</code></strong>: the workflow commits the new image tag straight to your branches, and branch protection would block it.</p></li>
-<li><p><strong>Add <code>docker-compose.yml</code>.</strong> Copy the <a href="#compose-file">file below</a> into the root of your repository, and change its <code>image:</code> line to your image, pinned to the <span class="term" tabindex="0" data-tip="Every Git commit has a unique ID called its SHA (e.g. 1a2b3c4). Your workflow tags each image it pushes with the start of the SHA of the commit that built it, so the tag always points to that one exact image. The latest tag, by contrast, changes every time you publish.">commit-SHA tag</span> your workflow pushed, not <code>latest</code> (for example, <code>image: yourname/your-github-repo-name:sha-1a2b3c4</code>, all in lowercase). You only do this once: after that, the workflow updates the tag for you. Keep the <span class="term" tabindex="0" data-tip="In Docker Compose, a service is one container it manages, named under services: in docker-compose.yml. Commands such as docker compose run use that name to say which container you mean. Here the name is analysis-env.">service name</span> <code>analysis-env</code>, so the <a href="#readme-steps">commands below</a> work as written.</p></li>
-<li><p><strong>Work in the container from now on</strong>, with Positron over <span class="term" tabindex="0" data-tip="ssh (secure shell) lets you log in to another computer and work on it from your own. Here the other computer is your container: Positron connects to it over ssh, so your code runs with the container's software while your files stay in your project folder.">ssh</span> (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-ssh-positron.html">Working in a container over ssh with Positron</a>). To add a package: add it with uv or renv on a branch, commit the changed files together and push. GitHub Actions publishes a new image and commits its tag to <code>docker-compose.yml</code> on that branch. Then <code>git pull</code> and <code>docker compose pull</code>, and merge the branch in a pull request. The merge builds the image once more and commits a new tag to <code>main</code>, so when that run finishes, everyone runs <code>git pull</code> on <code>main</code> and <code>docker compose pull</code> again.</p></li>
-<li><p><strong>Update your <code>README</code> and <code>CONTRIBUTING.md</code></strong> so their instructions use the container (see <a href="#readme-steps">below</a>).</p></li>
+<li><p><strong>Build and publish the image with GitHub Actions.</strong></p>
+<ul>
+<li>One team member sets up Docker Hub and the GitHub <span class="term" tabindex="0" data-tip="A repository secret is a password or token saved in your GitHub repository's settings. Workflows can use it, but nobody can read it back, and it never shows up in your code or logs. Here the two secrets let the workflow log in to Docker Hub as your team.">secrets</span> (see <a href="#docker-hub-secrets">below</a>).</li>
+<li>Copy the <a href="#workflow-file">workflow below</a> into <code>.github/workflows/publish-dockerhub.yml</code>, then commit and push. You don’t need to change anything in it.</li>
+<li>It builds for <code>linux/amd64</code> (Intel/AMD) and <code>linux/arm64</code> (ARM, such as Apple silicon Macs), and publishes them under two <span class="term" tabindex="0" data-tip="A tag is a label on a Docker image, written after a colon (e.g. python:3.14-slim). One image can have several tags. Here latest always points to your newest image, and the sha- tag names the commit that built it.">tags</span>: <code>latest</code> and <code>sha-</code> plus 7 characters of the commit ID.</li>
+<li>Check that the run succeeds and that your image’s tag on Docker Hub lists <strong>both</strong> platforms.</li>
+<li><strong>Don’t turn on <span class="term" tabindex="0" data-tip="Branch protection is a GitHub setting (Settings > Branches or Rules) that puts rules on a branch, such as: nobody may push to main directly, every change must come through a reviewed pull request. Here the workflow pushes the new image tag straight to your branch, including main, so those rules would block it and the run would fail.">branch protection</span> for <code>main</code></strong>: the workflow commits the new image tag straight to your branches, and branch protection would block it.</li>
+</ul></li>
+<li><p><strong>Add <code>docker-compose.yml</code>.</strong></p>
+<ul>
+<li>Copy the <a href="#compose-file">file below</a> into the root of your repository.</li>
+<li>Change its <code>image:</code> line to your image, pinned to the <span class="term" tabindex="0" data-tip="Every Git commit has a unique ID called its SHA (e.g. 1a2b3c4). Your workflow tags each image it pushes with the start of the SHA of the commit that built it, so the tag always points to that one exact image. The latest tag, by contrast, changes every time you publish.">commit-SHA tag</span> your workflow pushed, not <code>latest</code> (for example, <code>image: yourname/your-github-repo-name:sha-1a2b3c4</code>, all in lowercase). You only do this once: after that, the workflow updates the tag for you.</li>
+<li>Keep the <span class="term" tabindex="0" data-tip="In Docker Compose, a service is one container it manages, named under services: in docker-compose.yml. Commands such as docker compose run use that name to say which container you mean. Here the name is analysis-env.">service name</span> <code>analysis-env</code>, so the <a href="#readme-steps">commands in part 2</a> work as written.</li>
+</ul></li>
+<li><p><strong>Work in the container from now on</strong>, with Positron over <span class="term" tabindex="0" data-tip="ssh (secure shell) lets you log in to another computer and work on it from your own. Here the other computer is your container: Positron connects to it over ssh, so your code runs with the container's software while your files stay in your project folder.">ssh</span> Follow the <a href="#positron-ssh">step-by-step guide below</a> the first time. To add a package:</p>
+<ul>
+<li>On a branch, add it with uv or renv, commit the changed files together and push.</li>
+<li>GitHub Actions publishes a new image and commits its tag to <code>docker-compose.yml</code> on that branch.</li>
+<li>Run <code>git pull</code> and <code>docker compose pull</code>, then merge the branch in a pull request.</li>
+<li>The merge builds the image once more and commits a new tag to <code>main</code>. When that run finishes, everyone runs <code>git pull</code> on <code>main</code> and <code>docker compose pull</code> again.</li>
+</ul></li>
 </ol>
 <div id="dockerfile" class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
@@ -729,34 +748,136 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">      # your project folder, at /workspace in the container</span></span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> .:/workspace</span></span>
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">      # your ssh public key, so you can log in (ro: read-only)</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ~/.ssh/id_ed25519.pub:/root/.ssh/authorized_keys:ro</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ~/.ssh/id_ed25519.pub:/root/.ssh/authorized_keys:ro</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">      # your Git name and email, so your commits in the container count as yours</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ~/.gitconfig:/root/.gitconfig:ro</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>There is no <code>build: .</code> line: everyone downloads the image your workflow published, instead of building their own.</p>
 </div>
 </div>
 </div>
-<section id="readme-steps" class="level4">
-<h4 class="anchored" data-anchor-id="readme-steps">Your <code>README</code> and <code>CONTRIBUTING.md</code></h4>
-<p>Your <code>README</code> is for someone who wants to <strong>run</strong> your analysis. Your <code>CONTRIBUTING.md</code> is for a teammate or contributor who wants to <strong>change</strong> it. Keep each set of steps in its own file.</p>
-<p><strong>In your <code>README</code></strong>, write these steps, in this order:</p>
+<div id="positron-ssh" class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Connect Positron to the container over ssh, step by step (step 6)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Your <code>CONTRIBUTING.md</code> walks your teammates through these same steps (see <a href="#readme-steps">part 2</a>).</p>
+<p><strong>Once, before your first connection:</strong></p>
 <ol type="1">
-<li>Make an <span class="term" tabindex="0" data-tip="An ssh key is a pair of files that proves who you are without a password: a private key you keep secret (~/.ssh/id_ed25519) and a public key you can share (~/.ssh/id_ed25519.pub). Here docker-compose.yml puts your public key in the container, so ssh lets you in.">ssh key</span> if you don’t have one: <code>ssh-keygen -t ed25519</code>, pressing Enter at each question. (Without it, Docker makes a <em>folder</em> named <code>~/.ssh/id_ed25519.pub</code>, and ssh into the container fails until you delete that folder and make the key.)</li>
-<li>Download the image: <code>docker compose pull</code>.</li>
-<li>Render the report in the container:
+<li>Install <a href="https://positron.posit.co/download.html">Positron</a> on your computer. Its <strong>Remote SSH</strong> feature, which connects to the container, comes built in, so you don’t need an extension.</li>
+<li>Make an ssh key if you don’t have one. In a terminal on your computer, run <code>ssh-keygen -t ed25519</code> and press Enter at each question. Check that <code>~/.ssh/id_ed25519.pub</code> now exists.</li>
+<li>Check that Git knows who you are on your computer: <code>git config --global user.email</code> should print the email of your GitHub account. If it prints nothing, set it with <code>git config --global user.name "Your Name"</code> and <code>git config --global user.email "you@example.com"</code>. <code>docker-compose.yml</code> shares this with the container, so your commits there count as yours.</li>
+<li>Download the image: in your project folder, run <code>docker compose pull</code>.</li>
+</ol>
+<p><strong>Each time you work on the project:</strong></p>
+<ol type="1">
+<li><p>In a terminal, in your project folder, start the container in the background:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> compose up <span class="at">-d</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>docker compose ps</code> should list <code>analysis-env</code> as running.</p></li>
+<li><p>In Positron, open the Command Palette (<code>Cmd+Shift+P</code> on Mac, <code>Ctrl+Shift+P</code> on Windows).</p></li>
+<li><p>Type and run <strong>Remote SSH: Show Remote Menu</strong>, then pick <strong>Connect to Host</strong>.</p></li>
+<li><p>Type <code>root@localhost:2222</code> and press Enter. A new Positron window opens.</p>
+<ul>
+<li>If it asks for the platform of the remote host, pick <strong>Linux</strong>.</li>
+<li>If it asks whether you trust the host (a “fingerprint”), click <strong>Continue</strong>.</li>
+<li>The first time, Positron installs its server inside the container. This takes a few minutes (e.g., took &gt; 5 minutes on Sky’s computer).</li>
+</ul></li>
+<li><p><strong>Open your project folder.</strong> You are connected now (the bottom left corner shows <code>SSH: localhost:2222</code>), but the Explorer says <strong>No folder opened</strong>, and a terminal starts in <code>/root</code>, the container’s home folder, which has no project files. That is normal.</p>
+<ul>
+<li>Click <strong>Open Folder</strong> in the Explorer. A path box appears at the top of the window.</li>
+<li>Delete what is in it, type <code>/workspace</code>, and press Enter (or click <strong>OK</strong>, you may need to click “ok” a few times before this works).</li>
+<li>The window reloads. The Explorer now shows <strong>WORKSPACE [SSH: LOCALHOST:2222]</strong> with your project files. A file you change here changes on your computer too.</li>
+</ul></li>
+<li><p><strong>Pick the interpreter.</strong> Positron may start a different Python than your project’s, so check this every time. Click the interpreter button at the top right of the window (it shows a Python or R version). The menu that opens, <strong>Running Interpreter Sessions</strong>, only lists sessions that are already running (such as <code>/usr/bin/python3</code>, the container’s system Python: not this one). Click <strong>New Console Session…</strong>, then:</p>
+<ul>
+<li><strong>Python:</strong> pick the one named <strong>Python 3.x (uv: your-project-name)</strong> with the path <code>/opt/venv/bin/python</code>, the environment built from your <code>uv.lock</code>. The top right button then shows that name. If it isn’t in the list, open the Command Palette, run <strong>Python: Select Interpreter</strong>, choose <strong>Enter interpreter path…</strong> and type <code>/opt/venv/bin/python</code>. Don’t pick <code>/workspace/.venv</code>: that is the environment from your own computer, and it doesn’t run in the container.</li>
+<li><strong>R:</strong> pick the R version in the list. It already uses the packages from your <code>renv.lock</code>.</li>
+<li>To check, run <code>import sys; print(sys.executable)</code> in the Console. It should print <code>/opt/venv/bin/python</code>.</li>
+</ul></li>
+<li><p>Work as usual. The Terminal, Console and <strong>Render</strong> button all run inside the container.</p></li>
+<li><p>When you are done, close the Positron window, then stop the container in a terminal on your computer:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> compose down</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ol>
+<p><strong>If it doesn’t connect:</strong></p>
+<ul>
+<li><strong><code>~/.ssh/id_ed25519.pub</code> is a folder:</strong> Docker made it because the key didn’t exist yet. Run <code>docker compose down</code>, delete that folder, make the key (step 2 above), and start again.</li>
+<li><strong><code>~/.gitconfig</code> is a folder, or Git in the container doesn’t know your name:</strong> the same thing happened with your Git settings. Run <code>docker compose down</code>, delete that folder, set your name and email (step 3 above), and start again.</li>
+<li><strong>GitHub asks you to sign in when you push from the container:</strong> sign in once in the browser window Positron opens. Positron remembers it.</li>
+<li><strong>It asks for a password:</strong> the container can’t see your key. Check that your key is named <code>id_ed25519.pub</code>, or change the key path in <code>docker-compose.yml</code>.</li>
+<li><strong>“Remote host identification has changed”:</strong> you are using a new image. Run <code>ssh-keygen -R "[localhost]:2222"</code>, then connect again.</li>
+<li><strong>Linux laptops:</strong> ssh refuses the key because the file belongs to you, not <code>root</code>. Remove the <code>#</code> from the <code>StrictModes no</code> line in the <code>Dockerfile</code> and push, so the workflow publishes a fixed image.</li>
+<li><strong>Port 2222 is already in use:</strong> change the first <code>2222</code> in <code>docker-compose.yml</code> to another number (e.g.&nbsp;<code>2223</code>), and connect to that port instead.</li>
+</ul>
+<p>More detail: <a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-ssh-positron.html">Working in a container over ssh with Positron</a>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="readme-steps" class="level3">
+<h3 class="anchored" data-anchor-id="readme-steps">2. Update your <code>README</code> and <code>CONTRIBUTING.md</code></h3>
+<ul>
+<li><strong><code>README</code></strong>: for someone who wants to <strong>run</strong> your analysis.</li>
+<li><strong><code>CONTRIBUTING.md</code></strong>: for a teammate or contributor who wants to <strong>change</strong> it.</li>
+</ul>
+<p>Keep each set of steps in its own file.</p>
+<p><strong>Your <code>README</code>:</strong> use the <a href="https://github.com/UBC-MDS/DSCI_522_project-template-breast-cancer-predictor/blob/1.0.0/README.md">example <code>README.md</code></a> as your template.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>What your <code>README</code> must include
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In this order:</p>
+<ul class="task-list">
+<li><label><input type="checkbox">Make an <span class="term" tabindex="0" data-tip="An ssh key is a pair of files that proves who you are without a password: a private key you keep secret (~/.ssh/id_ed25519) and a public key you can share (~/.ssh/id_ed25519.pub). Here docker-compose.yml puts your public key in the container, so ssh lets you in.">ssh key</span> if you don’t have one: <code>ssh-keygen -t ed25519</code>, pressing Enter at each question. (Without it, Docker makes a <em>folder</em> named <code>~/.ssh/id_ed25519.pub</code>, and ssh into the container fails until you delete that folder and make the key.)</label></li>
+<li><label><input type="checkbox">Download the image: <code>docker compose pull</code>.</label></li>
+<li><label><input type="checkbox">Render the report in the container:</label>
 <ul>
 <li>Python, or Python and R: <code>docker compose run --rm analysis-env uv run quarto render</code></li>
 <li>R only: <code>docker compose run --rm analysis-env quarto render</code></li>
+<li>Add your report’s path after <code>quarto render</code> if your project has no <code>_quarto.yml</code> that lists it.</li>
+</ul></li>
+<li><label><input type="checkbox">Say how the container stops: with <code>--rm</code>, it is removed by itself when the render finishes. If your <code>README</code> also uses <code>docker compose up -d</code>, add <code>docker compose down</code> to stop and remove it.</label></li>
+<li><label><input type="checkbox">Link to your <code>CONTRIBUTING.md</code> for anyone who wants to change the project.</label></li>
 </ul>
-Add your report’s path after <code>quarto render</code> if your project has no <code>_quarto.yml</code> that lists it.</li>
-<li>Say how the container stops: with <code>--rm</code>, it is removed by itself when the render finishes. If your <code>README</code> also uses <code>docker compose up -d</code>, add <code>docker compose down</code> to stop and remove it.</li>
-</ol>
-<p>Then add a link to your <code>CONTRIBUTING.md</code> for anyone who wants to change the project.</p>
-<p><strong>In your <code>CONTRIBUTING.md</code></strong>, replace any setup steps from Milestone 1 (such as installing packages on your own computer) with these. Link to your <code>README</code> for the setup steps above instead of repeating them.</p>
-<ol type="1">
-<li>Work in the container: <code>docker compose up -d</code> starts it, then connect with Positron over ssh. <code>docker compose down</code> stops it.</li>
-<li>Add or update a package: add it with your environment manager on a branch, commit and push, wait for GitHub Actions to publish the new image and update the tag in <code>docker-compose.yml</code>, then run <code>git pull</code> and <code>docker compose pull</code>.</li>
-<li>Publish the report: after re-rendering, copy it to <code>docs/index.html</code> and push (see <a href="#publish-your-report-on-github-pages">part 2</a>).</li>
-</ol>
+</div>
+</div>
+</div>
+<p><strong>Your <code>CONTRIBUTING.md</code>:</strong> use the <a href="https://github.com/UBC-MDS/DSCI_522_project-template-breast-cancer-predictor/blob/1.0.0/CONTRIBUTING.md">example <code>CONTRIBUTING.md</code></a> as your template. It replaces any setup steps from Milestone 1 (such as installing packages on your own computer).</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>What your <code>CONTRIBUTING.md</code> must include
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul class="task-list">
+<li><label><input type="checkbox">Link to your <code>README</code> for the setup steps (ssh key, <code>docker compose pull</code>), instead of repeating them.</label></li>
+<li><label><input type="checkbox">Work in the container with Positron over ssh: write the steps from the <a href="#positron-ssh">step-by-step guide in part 1</a> for your project (the steps the <code>README</code> already covers can be a link), including installing Positron, the Git name and email check, which interpreter to pick, and the fixes for when it doesn’t connect.</label></li>
+<li><label><input type="checkbox">Add or update a package: on a branch, add it with your environment manager, commit and push. Wait for GitHub Actions to publish the new image and update the tag in <code>docker-compose.yml</code>, then run <code>git pull</code> and <code>docker compose pull</code>.</label></li>
+<li><label><input type="checkbox">Publish the report: after re-rendering, copy it to <code>docs/index.html</code> and push (see <a href="#publish-your-report-on-github-pages">part 3</a>).</label></li>
+</ul>
+</div>
+</div>
+</div>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -771,22 +892,21 @@ Add your report’s path after <code>quarto render</code> if your project has no
 </div>
 </div>
 </section>
-</section>
 <section id="publish-your-report-on-github-pages" class="level3">
-<h3 class="anchored" data-anchor-id="publish-your-report-on-github-pages">2. Publish your report on GitHub Pages</h3>
+<h3 class="anchored" data-anchor-id="publish-your-report-on-github-pages">3. Publish your report on GitHub Pages</h3>
 <p>Anyone should be able to read your report online without cloning your repository. You publish it by hand: put a <span class="term" tabindex="0" data-tip="A self-contained HTML file has everything it needs (figures, styling, scripts) packed inside the one file, instead of in separate files next to it. So it still works after you copy it somewhere else.">self-contained</span> copy of your rendered report at <code>docs/index.html</code>. If you already published your report in Milestone 1, switch to this setup anyway, because later milestones build on it.</p>
 <ol type="1">
 <li><p>Make the rendered report one self-contained HTML file, in its YAML header (skip this if your <code>_quarto.yml</code> already sets it):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">embed-resources</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">embed-resources</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If you have only been rendering to PDF, render to HTML as well.</p></li>
 <li><p>Render your report, then copy it into <code>docs/</code> as <code>index.html</code>, and add an empty <code>.nojekyll</code> file:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> docs</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="op">&lt;</span>path-to-your-report<span class="op">&gt;</span>.html docs/index.html</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> docs/.nojekyll</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> docs</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="op">&lt;</span>path-to-your-report<span class="op">&gt;</span>.html docs/index.html</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> docs/.nojekyll</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -795,20 +915,20 @@ Add your report’s path after <code>quarto render</code> if your project has no
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>When you render more than one format, Quarto adds a link to the others (for example “Typst”) under <strong>Other Formats</strong> in the HTML report. That link points to a file next to the report, which is not in <code>docs/</code>, so on GitHub Pages it gives a 404. Either remove the link, in your report’s YAML header or your <code>_quarto.yml</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">format-links</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">format-links</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>or point it to the PDF in your repository:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">format-links</span><span class="kw">:</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> html</span><span class="co">   # stops Quarto adding its own link</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">text</span><span class="kw">:</span><span class="at"> PDF</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">href</span><span class="kw">:</span><span class="at"> https://github.com/ubc-mds-2026-27/&lt;your-repository&gt;/blob/main/&lt;path-to-your-report&gt;.pdf</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">icon</span><span class="kw">:</span><span class="at"> file-pdf</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">format-links</span><span class="kw">:</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> html</span><span class="co">   # stops Quarto adding its own link</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">text</span><span class="kw">:</span><span class="at"> PDF</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">href</span><span class="kw">:</span><span class="at"> https://github.com/ubc-mds-2026-27/&lt;your-repository&gt;/blob/main/&lt;path-to-your-report&gt;.pdf</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">icon</span><span class="kw">:</span><span class="at"> file-pdf</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div></li>
@@ -831,7 +951,7 @@ Add your report’s path after <code>quarto render</code> if your project has no
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -840,7 +960,7 @@ Add your report’s path after <code>quarto render</code> if your project has no
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li>GitHub Pages can publish the files in a <code>docs/</code> folder on <code>main</code>, exactly as they are.</li>
@@ -868,7 +988,7 @@ Add your report’s path after <code>quarto render</code> if your project has no
 </ol>
 <p>You don’t need to include Milestone 1 feedback in this submission.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -877,7 +997,7 @@ Add your report’s path after <code>quarto render</code> if your project has no
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul class="task-list">
 <li><label><input type="checkbox">The GitHub Actions run succeeded, and the Docker Hub tag lists <code>linux/amd64</code> and <code>linux/arm64</code></label></li>
