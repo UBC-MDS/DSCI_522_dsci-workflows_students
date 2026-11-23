@@ -99,8 +99,8 @@ website:
           contents:
             - href: assignments/individual2.qmd
               text: "Individual Assignment 2"
-        #    - href: assignments/milestone2.qmd
-        #      text: "Milestone 2"
+            - href: assignments/milestone2.qmd
+              text: "Milestone 2"
         # - section: "Week 3"
         #   contents:
         #     - href: assignments/individual3.qmd
