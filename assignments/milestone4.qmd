@@ -24,46 +24,53 @@ with a focus on reproducible and trustworthy workflows.
 
 ## Milestone 4 summary
 
-- Write a new script, a `Makefile` (literally called `Makefile`),
-  to act as a [driver script]{.term tabindex="0" data-tip="A driver script runs all your other scripts in the right order, with the right arguments, so one command reproduces the whole analysis."} to rule them all.
-  This script should run the others in sequence, hard coding in the appropriate arguments.
-- Abstract some code from your scripts to functions in a separate file
-  (at least one function per group member),
-  and write tests for those functions.
-- Polish your report's formatting with Quarto.
-- Address any feedback received in earlier milestones and from the peer review to improve the project.
+This milestone ties your project together: **one command runs the whole analysis**,
+your code is tested, your report reads like a finished paper,
+and you fix what reviewers pointed out.
 
-An example Milestone 4 that corresponds to our expectations from this year lives here:
-[Breast Cancer Predictor in Python 3.0.0](https://github.com/ttimbers/breast-cancer-predictor/tree/3.0.0)
+- [ ] Write a `Makefile` so `make all` runs every script, renders the report and publishes it
+- [ ] Move some code into functions (**at least one per team member**) and write tests for them
+- [ ] Polish your report: no visible code, numbered and cross-referenced figures and tables, citations
+- [ ] Address feedback from the TAs and from the peer review
 
-## 1. Create a `Makefile` to act as a driver script to rule them all
+::: callout-important
+## See what a finished Milestone 4 looks like
 
-This script should run the others in sequence, hard coding in the appropriate arguments.
-This script should:
-
-- live in the project's root directory and be named Makefile
-- be well documented (using the project `README` and comments inside the `Makefile` to explain what it does and how to use it)
-- have an `all` [target]{.term tabindex="0" data-tip="In a Makefile, a target is a named thing Make can build: usually a file (like a figure), or a name for a group of steps (like all or clean). You run one with make followed by its name, e.g. make all."} so that you can easily run the entire analysis from top to bottom by running `make all` at the command line
-- have a `clean` target so that you can easily "undo" your analysis by running `make clean` at the command line (e.g., deletes all generated data and files).
-- have a `publish` target that updates the copy of your report that GitHub Pages publishes
-  (`docs/index.html`, from [Milestone 2](milestone2.qmd#publish-your-report-on-github-pages)).
-  `make publish` replaces the steps you did by hand in Milestone 2.
-  `make all` should run it too, so your published report never falls behind your analysis.
-  Commit and push `docs/` after it runs.
-
-:::{.callout-note}
-## Phony targets
-
-- The `all`, `clean` and `publish` targets may be `.PHONY` targets
-- You can create other targets that link up all the dependencies
-    - For example, `data`, `analysis`, `figures`, `pdf`, etc,
-      so your build process only runs what's necessary during development
-    - Your other targets should be using make dependencies, i.e.,
-      not all your targets are allowed to be phony targets.
+An example Milestone 4 that corresponds to our expectations is here:
+**[Breast Cancer Predictor 3.0.0](https://github.com/ttimbers/breast-cancer-predictor/tree/3.0.0)**.
+Look at its `Makefile`, `src/` and `tests/` folders.
+It uses conda for its environment: ignore that part and keep the uv/renv setup from Milestone 2.
 :::
 
-For example, `publish` can be a phony target
-that depends on the real file `docs/index.html`.
+::: {.callout-tip collapse="true"}
+## Readings for this milestone
+
+-   [Data analysis pipelines with GNU Make](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/pipelines-make.html) and the [Makefile cheatsheet](../cheatsheets/makefile.qmd)
+-   [Testing](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/testing.html), then [pytest](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/testing-python-pytest.html) (Python) or [testthat](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/testing-r-testthat.html) (R)
+-   [Reproducible reports with Quarto](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/reproducible-reports-quarto.html) and the [Quarto cheatsheet](../cheatsheets/quarto.qmd) (you practised these in Individual Assignment 3)
+:::
+
+### 1. Write a `Makefile` that runs everything
+
+Put a file named `Makefile` in the root of your repository, as you did in Individual Assignment 4.
+It needs:
+
+-   an `all` [target]{.term tabindex="0" data-tip="In a Makefile, a target is a named thing Make can build: usually a file (like a figure), or a name for a group of steps (like all or clean). You run one with make followed by its name, e.g. make all."}: runs the whole analysis from top to bottom, including `publish`
+-   a `clean` target: deletes everything the pipeline made, so `make all` can start fresh
+-   a `publish` target: copies the rendered report to `docs/index.html`,
+    replacing the steps you did by hand in [Milestone 2](milestone2.qmd#publish-your-report-on-github-pages)
+-   **real file targets** for the other steps, with their dependencies (the data **and** the script),
+    so Make only reruns what changed.
+    Only `all`, `clean`, `publish` and similar group names may be [phony]{.term tabindex="0" data-tip="A phony target is a name for a group of steps, not a file Make creates. You list it under .PHONY so Make always runs it, even if a file with that name exists. In this milestone, all, clean and publish can be phony; the other targets must be real files."}.
+-   comments that explain each rule, and a `README` section that says how to run it
+
+Your scripts run in the container, so the commands in the rules start with `uv run` (Python),
+for example `uv run python scripts/download_data.py ...` and `uv run quarto render ...`.
+Run the pipeline with `docker compose run --rm analysis-env make all`.
+
+::: {.callout-tip collapse="true"}
+## Example: the `publish` target
+
 Change the report's path to your own:
 
 ```{.makefile filename="Makefile"}
@@ -75,184 +82,119 @@ docs/index.html: reports/<your-report>.html
 	touch docs/.nojekyll
 ```
 
-Because `docs/index.html` depends on your rendered report,
-`make publish` copies it only when the report has changed.
-
-## 2. Abstract some code from your scripts to functions in a separate file, and write tests for those functions
-
-In every data science project, there is some code that is repetitive,
-and other code that may not be repetitive in the current project,
-but would likely be very useful in other, related future projects.
-It is well worth it to abstract such code to functions,
-making it easily reuseable in the future in other work.
-Examples of code that often repetitive in a data analysis projects:
-
-- data wrangling, cleaning or transformation code that gets applied to multiple columns or multiple data sets
-- data visualization code when many versions of a similar plot-type is used (e.g., many scatter plots with similar formatting)
-- data modeling workflow/pipeline code when tuning different models on the same data set
-
-Abstracting our analysis code into functions also makes it testable!
-Meaning you can assess whether your code works as expected.
-This alone is reason enough to use functions in your analysis code.
-
-Your job here is to **create at least one function per group member from your scripts.**
-When doing this task, follow the [workflow for writing functions and tests for data science](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/testing.html#workflow-for-writing-functions-and-tests-for-data-science),
-remember this process will include:
-
--   writing thorough function specifications & documentation
--   writing robust unit tests for these functions to ensure they work as expected
--   writing the code that makes up the function body
-
-If you are using Python, these functions will live in an `.py` file (whose filename will be named after the function, or functions).
-Again, it is OK to have one function per file, or all functions in one file.
-This/these file(s) will live in a sub-directory called `src`.
-If you are using R, these functions will live in an `.R` file (whose filename will be named after the function, or functions).
-It is OK to have one function per file, or all functions in one file.
-This/these file(s) will live in a sub-directory called `R`.
-
-You will `import` (in the case of Python)
-or `source` (in the case of R) these functions in your scripts to use them in your analysis.
-Tests will live in a `test` directory,
-with files/subdirectories organized as per the testing framework you are using.
-If you are using Python, we expect you to use the [`pytest`](https://docs.pytest.org/en/7.0.x/) Python package framework.
-If you are using R for your data analysis code,
-we expect you to use the [`testthat`](https://testthat.r-lib.org/) R package framework for writing software tests.
-
-Of course, if it makes sense to have more than one function per group member,
-you are welcome to increase the number!
-However, all functions must have the same standards in regards to software robustness.
-Your functions will be assessed for their quality (e.g., functions should do one thing, and generally return an object unless they were specifically designed for side-effects), usability,
-readability (follow the [black style guide](https://black.readthedocs.io/en/stable/the_black_code_style/index.html) for Python, or the [tidyverse style guide](https://style.tidyverse.org/) for R),
-documentation and quality of the test suite.
-
-## 3. Polish your report so that its sole job is to narrate your analysis, display your analysis artifacts (i.e., figures and tables), and nicely format the report
-
-The goal is that non-data scientists would not be able to tell that code was used to perform your analysis
-or format your report (i.e., no code should be visible in the rendered report).
-
-Render your report to HTML: that is the version you publish on GitHub Pages.
-You can render a PDF as well.
-You practised these Quarto features in Individual Assignment 3.
-Quarto has all the features needed to make your report satisfy our expectations (bibliography, automatic numbering of figures and tables, inline code rendering, etc).
-In particular, we expect you to:
-
--   Use markdown headers and Quarto configuration
-    so that a table of contents will be created when the document is rendered.
--   Add correctly formatted inline BibTeX references
-    so that a nicely formatted reference list will be present at the end of the document.
--   Edit the figure formatting so that Quarto:
-    -   automatically numbers them,
-    -   has a label for easy cross referencing, and
-    -   controls the figure sizes so the figures are not too big.
--   Add a table description argument so that they are automatically numbered by Quarto
-    and use cross referencing to link to the table when it is discussed in the text.
--   Edit the narrative so it uses cross-referencing to refer to the figures and tables
-    instead of having their reference hardcode the figure and table numbers.
--   Replace any hard-coded values in the Quarto report narrative text with inline Quarto code,
-    so that the text will be automatically updated with the correct value.
--   Change the code chunk options so that no code is viewable in the rendered report,
-    just the code outputs where needed (e.g., figures and tables).
-
-## 4. Address feedback to improve the project
-
-Revise your data analysis project to address feedback received from the DSCI 522 teaching team from past milestones,
-as well as feedback received from the peer review.
-
-### 4.1 Address feedback from TAs
-
-After you make changes based on feedback from your TAs,
-please raise a regrade requests on Gradescope for the corresponding question,
-**provide links to the PRs, commit history to demonstrate the changes you made**.
-After the TA confirm your changes are made correctly,
-you will be awarded **50% of the points you lost for that question**.
-
-::: callout-tip
-## ⚠️ Important:
-
--   Deadline for Milestone 1 + 2 regrade requests: **Saturday, December 13, 2025 at 6PM.**
--   Deadline for Milestone 3 regrade requests: **Wednesday, December 17th, 2025 at 11:59 AM**.
--   Your regrade request should be clear to read, easy to track your changes,
-    otherwise we will not be able to give points back.
+Because `docs/index.html` depends on your rendered report, `make publish` copies it only when the report has changed.
+Commit and push `docs/` after it runs.
 :::
 
-### 4.2 Address feedback from peer review
+### 2. Write functions and test them
 
-After you receive feedback from your peers,
-each group member should at least address one feedback item from the peer review.
-If you are in a group of 3, you should address at least 3 feedback items from the peer review.
-If you are in a group of 4, you should address at least 4 feedback items from the peer review.
+Look for code that repeats (cleaning several columns the same way, many similar plots, tuning several models)
+or that you would reuse in another project.
 
-To help us easily, and correctly, assess changes you made based on peer feedback,
-please create a file called `CHANGELOG.md` that lives in the root of your repository.
-In this file, please describe any improvements you made to the project based on peer feedback (if peer feedback is the same as feedback from your TAs, that is ok to include them in CHANGELOG too),
-and point to evidence of these improvements.
+1.  **Write at least one function per team member**, following the textbook's
+    [workflow for writing functions and tests](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/testing.html#workflow-for-writing-functions-and-tests-for-data-science):
+    write the documentation first, then the tests, then the function body.
+2.  **Put them in their own files:** `src/*.py` (Python) or `R/*.R` (R).
+    One function per file, or all in one file, both are fine.
+3.  **Use them in your scripts** with `import` (Python) or `source()` (R).
+4.  **Write tests in `tests/`** with [`pytest`](https://docs.pytest.org/) (Python)
+    or [`testthat`](https://testthat.r-lib.org/) (R).
+    Add the test package to your environment, and say in your `README` how to run the tests in the container.
 
-You can point us to evidence of addressing it by creating an repository issue,
-and linking to another issue and pull request.
-providing URLs, links to PRs, links to commits, reference specific lines of code,
-etc can all be used to track how a feature/bug was fixed.
-Be sure to add some narration when sharing these URLs so that it is easy for us to identify
-which changes to your work addressed which pieces of feedback.
+::: {.callout-tip collapse="true"}
+## How your functions are marked
 
-See this page for an example of a changelog and how you can reference fixes:
-<https://keepachangelog.com/>
+-   **Quality:** each function does one thing, and returns a value unless it is meant to write a file or plot.
+-   **Usability and readability:** clear names and arguments; [black](https://black.readthedocs.io/en/stable/the_black_code_style/index.html) (Python) or [tidyverse](https://style.tidyverse.org/) (R) style.
+-   **Documentation:** a docstring (Python) or roxygen comment (R) saying what it does, its arguments and what it returns.
+-   **Tests:** they cover expected cases, edge cases and errors.
 
-### 5. Reproducible and repliciable workflow
+More functions than the minimum are welcome, but each one is held to these standards.
+:::
+
+### 3. Polish your report
+
+A reader who is not a data scientist should not be able to tell that code made the report.
+Render it to HTML (that is the version on GitHub Pages); a PDF as well is optional.
+
+- [ ] A table of contents
+- [ ] Citations from a BibTeX file, with a reference list at the end
+- [ ] Figures with a label and a caption, so Quarto numbers them, at a sensible size
+- [ ] Tables with a label and a caption, so Quarto numbers them
+- [ ] The text refers to figures and tables with cross-references (`@fig-...`, `@tbl-...`), never typed numbers
+- [ ] Values in the text (accuracy, sample size...) come from inline code, not typed in by hand
+- [ ] No code shows in the rendered report, only its output
+
+### 4. Address feedback
+
+#### From the TAs
+
+Fix what the TAs pointed out in earlier milestones.
+Then submit a regrade request on Gradescope for that question,
+with **links to the pull requests or commits** that show the change.
+If the TA confirms the fix, you get back **50% of the points you lost** on that question.
+Keep the request easy to follow, or we can't give points back.
+
+#### From the peer review
+
+Address **at least one peer review item per team member** (a team of 4 fixes at least 4).
+List them in a `CHANGELOG.md` in the root of your repository:
+for each item, the feedback, what you changed, and a link to the evidence (an issue, pull request, commit or lines of code).
+Feedback that the TAs also gave can go in too.
+See [keepachangelog.com](https://keepachangelog.com/) for an example.
+
+### 5. Update your `README`
+
+Your `README` must take someone **from a fresh clone to the rendered report**:
+pull the image, run `make all` in the container, and how to run the tests.
+Also say how to run `make clean`.
 
 ::: callout-important
-## Your README instructions are worth 5 all-or-nothing points
+## 5 all-or-nothing points for your README instructions
 
-5 points of this milestone are for the reproducibility of your README instructions:
-whether someone can follow them to run your whole analysis pipeline, from a fresh clone to the rendered report.
-We will grade you by following your instructions exactly as you have written them.
-These points are all-or-nothing, and they cannot be recovered later.
-If your instructions do not work exactly as you have written them,
-you will lose all 5 points.
-
-Make sure your instructions work on both Windows and Mac computers.
-If your team does not have both,
-work with another team to test them.
+If someone can't run your whole pipeline by following your instructions
+**exactly as written**, you lose all 5 points.
+Test them on **both Windows and Mac**.
+If your team doesn't have both, ask another team to test them.
 :::
 
-## Submission Instructions
+## Submission instructions
 
-Just before you submit the milestone 4,
-create a release on your project repository on GitHub
-and name it exactly `3.0.0` ([how to create a release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release)).
-This release allows us and you to easily jump to the state of your repository at the time of submission for grading purposes,
-while you continue to work on your project for the next milestone.
+1.  Just before you submit, create a GitHub release named exactly `3.0.0`
+    ([how to create a release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release)).
+2.  On Gradescope, enter these three URLs (there is no PDF to make):
+    -   the GitHub release
+    -   your group project's repository (general one without GitHub release)
+    -   your report on GitHub Pages
 
-Follow the instructions for submission on Gradescope.
-We only need URLs, entered into Gradescope directly: there is no PDF to make.
-You will submit:
+::: {.callout-tip collapse="true"}
+## Check yourself before submitting
 
-1.  the URL of your project's GitHub.com repository
-2.  the URL of a GitHub release of your project's GitHub.com repository
-3.  the URL of your report on GitHub Pages
+- [ ] From a fresh clone, `make all` in the container runs everything and updates `docs/index.html`
+- [ ] Running `make all` a second time does nothing; `make clean` removes everything the pipeline made
+- [ ] At least one tested function per team member, in `src/` or `R/`, used by your scripts
+- [ ] All tests pass in the container
+- [ ] The rendered report shows no code and every item in the polish list above is done
+- [ ] `CHANGELOG.md` lists at least one peer review item per team member, with links
+- [ ] Someone on Windows and someone on Mac followed your `README` steps exactly
+- [ ] Your report on GitHub Pages matches your release
+- [ ] You created the `3.0.0` release
+:::
 
-## Expectations
+::: {.callout-tip collapse="true"}
+## Teamwork expectations (these are marked)
 
--   **Everyone should contribute equally to all aspects of the project** **(e.g., code, writing, project management).**
-    **This should be evidenced by a roughly equal number of commits,** **pull request reviews
-    and participation in communication via GitHub issues.**
--   Each group member should work in a [GitHub flow workflow](https://docs.github.com/en/get-started/quickstart/github-flow);
-    where they create branches for each feature or fix,
-    which are reviewed and critiqued by at least one other teammate
-    before the the pull request is accepted.
--   You should be committing to git and pushing to GitHub.com every time you work on this project.
--   Git commit messages should be meaningful.
-    These will be marked.
-    It's OK if one or two are less meaningful, but most should be.
--   Use GitHub issues to communicate to their team mate (as opposed to email or Slack).
--   Your question, analysis and visualization should make sense.
-    It doesn't have to be complicated.
--   You should use proper grammar and full sentences in your README.
-    Point form may occur, but should be less than 10% of your written documents.
--   **Your analysis should be correct,
-    and run reproducibly given the instructions provided in the README.**
--   You should use proper grammar and full sentences in your README.
-    Point form may occur, but should be less than 10% of your written documents.
--   R code should follow the [tidyverse style guide](https://style.tidyverse.org/),
-    and Python code should follow the [black style guide](https://black.readthedocs.io/en/stable/the_black_code_style/index.html) for Python)
--   You should not have extraneous files in your repository that should be ignored.
-    The one exception is `docs/`: it is generated, but GitHub Pages needs it committed.
+-   **Everyone contributes equally** to code, writing and project management,
+    shown by a roughly equal number of commits, pull request reviews and GitHub issue comments.
+-   Use the [GitHub flow](https://docs.github.com/en/get-started/using-github/github-flow):
+    a branch for each feature or fix, reviewed by at least one teammate before the pull request is merged.
+-   Commit and push every time you work on the project, with meaningful commit messages
+    (one or two less meaningful ones are OK).
+-   Talk to your teammates in GitHub issues, not email or Slack.
+-   Your question, analysis and visualization should make sense. They don't have to be complicated.
+-   Your analysis should be correct and run reproducibly from your `README` instructions.
+-   Follow the [black style guide](https://black.readthedocs.io/en/stable/the_black_code_style/index.html) (Python)
+    or the [tidyverse style guide](https://style.tidyverse.org/) (R).
+-   Don't commit generated files, except `docs/`, which GitHub Pages needs.
+-   Write your `README` in full sentences with proper grammar. Keep point form under 10% of it.
+:::

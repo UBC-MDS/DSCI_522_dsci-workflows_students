@@ -91,7 +91,6 @@ Your `yml` header at the begining of the file (i.e., `qmd_example.qmd`) should b
 ``` yaml
 title: "DSCI 310: Historical Horse Population in Canada"
 author: "Tiffany Timbers & Jordan Bourak"
-format: html
 editor: source
 format:
   html:
@@ -101,6 +100,8 @@ format:
     toc: true
     toc-depth: 3
 ```
+
+Delete the template's old `format: html` line: a setting can only appear once in the YAML header.
 
 You will format header sections using `#`, `##`, `###`, etc. For example,
 I've added the following header sections to the `qmd_example.qmd` file:
@@ -128,7 +129,6 @@ We will point `bibliography` to look for references in this file in the `yml` he
 ``` yaml
 title: "DSCI 310: Historical Horse Population in Canada"
 author: "Tiffany Timbers & Jordan Bourak"
-format: html
 editor: source
 format:
   html:
@@ -201,7 +201,7 @@ Horse population data were sourced from the
 > -   has a label for easy cross referencing
 > -   controls the figure sizes so the figures are not too big (in particular the second figure in the report should be only 60-70% of the default width)
 
-We use the syntax `![description](relative/path/to/figure.png){#fig-label width=950%}` to format the figure.
+We use the syntax `![description](relative/path/to/figure.png){#fig-label width=60%}` to format the figure.
 For example, I've added the following figure to the `.qmd` file,
 and I use `@fig-label` to refer to it in the text.
 This will be rendered as `Figure 1` in the rendered pdf or html file.
@@ -241,7 +241,7 @@ For example, I've added the following table to the `.qmd` file.
 ```` markdown
 We present the standard deviations in @tbl-horse-sd.
 
-```\{python}
+```{{python}}
 #| label: tbl-horse-sd
 #| tbl-cap: Standard deviation of historical (1906-1972) horse populations for each Canadian province.
 
@@ -283,7 +283,7 @@ and resulting value will be displayed in the text.
 For example, I've added the following inline Quarto code (i.e., `{python} largest_sd`) to the `.qmd` file:
 
 ```` markdown
-```\{python}
+```{{python}}
 #| label: tbl-horse-sd
 #| tbl-cap: Standard deviation of historical (1906-1972) horse populations for each Canadian province.
 
@@ -308,7 +308,6 @@ We will set `echo: false` in the `yml` header to hide the code chunk in the rend
 ``` yaml
 title: "DSCI 310: Historical Horse Population in Canada"
 author: "Tiffany Timbers & Jordan Bourak"
-format: html
 editor: source
 format:
   html:

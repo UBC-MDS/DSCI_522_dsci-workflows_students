@@ -1,49 +1,121 @@
 ---
 title: "Individual assignment 4"
+format:
+  html:
+    toc: true
 ---
 
-## Practice building data analysis pipelines using GNU Make
+## Summary
 
-::: callout-tip
-Deadline: **Saturday, December 13, 2025 at 6PM.**
+This assignment is hands-on practice with GNU Make, which you will use to run your project's analysis.
+You get a project that runs every step with one script, `runall.sh`.
+You replace that script with a `Makefile`: a smarter [data analysis pipeline]{.term tabindex="0" data-tip="A pipeline is the chain of steps that turns raw data into results (download, clean, analyse, plot, report), where each step uses the output of the one before. GNU Make runs the steps in order, and only reruns a step when something it depends on has changed."}
+that only reruns the steps whose inputs changed.
+
+- [ ] Copy the template repository and run `bash runall.sh` once to see what it does
+- [ ] Write a `Makefile` where `make all` does the same job as `bash runall.sh`
+- [ ] Add `make clean`, which puts the repository back the way you found it
+- [ ] Push to GitHub
+
+::: {.callout-tip collapse="true"}
+## Readings for this assignment
+
+-   Textbook: [Data analysis pipelines with GNU Make](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/pipelines-make.html)
+-   [Makefile cheatsheet](../cheatsheets/makefile.qmd): rule syntax, and the code we ran in class for this assignment
 :::
 
-The purpose of this assignment is to ensure that everyone gains hands-on practice building data analysis pipelines using GNU Make.
+## Instructions
 
-### Exercise instructions
+1.  **Make the repository.**
+    Open [the template repository](https://github.com/skysheng7/ia4),
+    click **Use this template** \> **Create a new repository**,
+    and make a **public** repository under your personal account named `data_analysis_pipeline_practice`.
+    Clone it and `cd` into it.
 
-1.  Visit [this template GitHub repository](https://github.com/skysheng7/ia4.git)
-    and click the green "Use this template" button to get your own copy of the `ia4` repository,
-    call it `data_analysis_pipeline_practice`.
+2.  **Start the container and run the script.**
+    Open Docker Desktop, then start a terminal inside the container and run `bash runall.sh` (commands below).
+    Look at what it makes in `results/` and `report/`, then run `git status` to see which files are new.
 
-2.  Your task is to add a "smarter" [data analysis pipeline]{.term tabindex="0" data-tip="A pipeline is the chain of steps that turns raw data into results (download, clean, analyse, plot, report), where each step uses the output of the one before. GNU Make runs the steps in order, and only reruns a step when something it depends on has changed."} using GNU Make!
-    It should accomplish the same task as `bash runall.sh` when you type `make all`.
-    It should also reset the analysis the starting point (the state when you first copied this repo)
-    when you type `make clean`.
+3.  **Write the `Makefile`** in the root of the repository.
+    Turn each command in `runall.sh` into a [rule]{.term tabindex="0" data-tip="A rule is one step in a Makefile. It has a target (the file the step makes), its dependencies (the files it needs, including the script it runs) and the command that makes the target. Make only reruns the command when a dependency is newer than the target."},
+    listing as dependencies the data file **and** the script each step uses.
+    Then add two targets:
+    -   `all`: makes everything `runall.sh` makes, ending with the rendered report
+    -   `clean`: deletes everything the pipeline made (and nothing else)
 
-3.  After you have the `Makefile` working locally, for both the `all` and `clean` targets,
-    push your changes to your copy of the `data_analysis_pipeline_practice` GitHub repository.
+4.  **Test it.**
+    Run `make clean`, then `make all`. Run `make all` again: Make should say there is nothing to do.
+    Then change one data file (e.g. `touch data/isles.txt`) and run `make all`: only the steps that use it should rerun.
+    Finally run `make clean` and check with `git status` that the repository is back to how you found it.
 
-### Submission instructions
+5.  **Commit and push** the `Makefile`, but not the files it makes.
 
-Follow the instructions for submission on Gradescope.
-We only need URLs, entered into Gradescope directly: there is no PDF to make.
-You will submit:
+::: {.callout-tip collapse="true"}
+## Commands to start the container (step 2)
 
-1.  A link to your copy of the GitHub.com repository that you created and worked on for this assignment.
-    -   It should be named `data_analysis_pipeline_practice`.
+From your repository folder:
 
+```bash
+docker compose run --rm ia4
+```
+
+You land in a terminal inside the container, with Python, Quarto and Make installed.
+Note this is `docker compose run`, not `docker compose up`: there is no browser app, just the terminal.
+Your repository folder is shared with the container, so files you make there show up on your computer too.
+
+```bash
+bash runall.sh   # run the whole analysis the old way
+make all         # later: run your Makefile instead
+exit             # leave the container when you are done
+```
+:::
+
+::: {.callout-tip collapse="true"}
+## What a rule looks like (step 3)
+
+```{.makefile filename="Makefile"}
+# target : dependencies
+#     command (indented with a TAB)
+results/isles.dat : data/isles.txt scripts/wordcount.py
+	python scripts/wordcount.py --input_file=data/isles.txt --output_file=results/isles.dat
+```
+
+`all` and `clean` don't make files with those names, so list them as `.PHONY`:
+
+```makefile
+.PHONY : all clean
+```
+
+The [Makefile cheatsheet](../cheatsheets/makefile.qmd) has more examples.
+:::
+
+::: {.callout-tip collapse="true"}
+## Troubleshooting
+
+-   **`Makefile: *** missing separator. Stop.`:** the command line must start with a **TAB**, not spaces.
+    Turn off "insert spaces for tabs" in your editor for Makefiles.
+-   **`make: Nothing to be done` or `is up to date`:** that's Make working: the target is newer than all its dependencies.
+    Run `make clean` first, or `touch` a dependency, to make it run again.
+-   **A step doesn't rerun after you edit a script:** the script is missing from that rule's dependencies.
+-   **`make clean` deletes a file it shouldn't:** only delete what the pipeline makes. Keep the `README.md` files in `results/` and `report/`.
+:::
+
+## Submission instructions
+
+On Gradescope, enter the URL of your GitHub.com repository, named `data_analysis_pipeline_practice`
+(there is no PDF to make).
+
+See the [syllabus](../index.qmd) for the due date.
+
+::: {.callout-tip collapse="true"}
 ## Rubric
 
-This assignment will be graded for completion as follows:
-
 | Grade | Description |
-|-----------------------|------------------------------------------------|
-| 100% | Working data analysis pipeline via a `Makefile` file exists and it contains both `all` and `clean` targets. |
-| -25% | There are errors in the `Makefile` that prevent it from running as expected |
-| -25% | The `all` target is missing from the `Makefile` |
-| -25% | The `clean` target is missing from the `Makefile` |
-| -25% | The `Makefile` dependency tree is incorrect in some way |
-| 0% | The assignment was not attempted. |
-
-    if all of the main assignment components were completed.
+|-------|-------------|
+| 100%  | A working data analysis pipeline in a `Makefile`, with both `all` and `clean` targets |
+| -25%  | There are errors in the `Makefile` that stop it from running as expected |
+| -25%  | The `all` target is missing |
+| -25%  | The `clean` target is missing |
+| -25%  | The dependencies in the `Makefile` are wrong in some way |
+| 0%    | The assignment was not attempted |
+:::

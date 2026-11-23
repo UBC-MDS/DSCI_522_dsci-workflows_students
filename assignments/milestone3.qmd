@@ -24,201 +24,154 @@ with a focus on reproducible and trustworthy workflows.
 
 ## Milestone 3 summary
 
-1.  Abstract code from your report [literate code document]{.term tabindex="0" data-tip="A literate code document mixes code and the writing that explains it in one file, such as a Quarto (.qmd), R Markdown (.Rmd) or Jupyter (.ipynb) document. Your Milestone 1 report is one."} (`*.ipynb`, `*.qmd` or `*.Rmd`) to scripts (e.g., `.R` or `.py`).
-    This code need not be converted to a function,
-    but can simply be files that call the functions needed to run your analysis.
-    You should aim to split the analysis code into 4, or more, R or Python scripts.
-    Where the code in each script is contributing to a related step in your analysis.
-    Your scripts should take [command line arguments]{.term tabindex="0" data-tip="Values you type after the script name when you run it in the terminal, e.g. python scripts/clean.py --input data/raw/data.csv --output data/processed/clean.csv. They let you change inputs and outputs without editing the code."}.
-    **You must document in your `README.md` how to call each script,
-    including what arguments you pass each script.**
+This milestone is about moving your analysis code **out of your report and into scripts**,
+and checking your data before you use it.
 
-2.  Add [data validation]{.term tabindex="0" data-tip="Data validation means automatic checks that your data looks the way your analysis expects (the right columns and types, no impossible values, not too many missing values) before you use it, so problems stop the analysis early instead of silently giving wrong results."} checks to your analysis scripts.
-
-3.  If your report literate code document is not already a `*.qmd` file, convert it so that it is.
-
-4.  Update your report so that it displays the figures and tables your scripts write,
-    instead of computing them.
-    You will polish the report's formatting in Milestone 4.
-
-5.  Update your project's computational environment as you add dependencies to your project
-
-An example Milestone 3 that corresponds to our expectations from this year is available here:
-[Breast Cancer Predictor 2.0.0](https://github.com/ttimbers/breast-cancer-predictor/tree/2.0.0)
-
-### 1. Abstract code from your literate code document (`*.ipynb`, `*.qmd` or `*.Rmd`) to scripts (e.g., `.R` or `.py`).
-
-This code need not be converted to a function,
-but can simply be files that call the functions needed to run your analysis.
-You should aim to split the analysis code into 4, or more, R or Python scripts.
-Where the code in each script is contributing to a related step in your analysis.
-
-Below we list some examples of steps that your current report document can be broken up into.
-It is not critical you split your code up exaclty as we list below,
-but you must somehow split your analysis code up into 4, or more, R or Python scripts.
-
--   Download/extract data
--   Clean/transform data
--   Split and pre-process data
--   Exploratory data analysis
--   Model fitting
--   Model evaluation
-
-The output of the first script must be the input of the second, and so on.
-All scripts should have command line arguments
-and we expect you to use the [`click`](https://click.palletsprojects.com/en/8.0.x/)) Python package for parsing command line arguments for Python projects, and the `docopt` R package for parsing command line arguments for R projects.
-
-They scripts could be organized something like this:
-
--   A first script that downloads the data from the internet and saves it locally.
-    This should take at least two arguments:
-
-    -   the path to the input file (a URL or a relative local path, such as data/file.csv), as well as
-    -   a path/filename where to write the file to and what to call it (e.g., data/cleaned_data.csv).
-
-    **Note: choose more descriptive filenames than the ones used above.
-    These are general for illustrative purposes.**
-
--   A second script that reads the data from the first script
-    and performs and data cleaning/pre-processing, transforming,
-    and/or partitioning that needs to happen before exploratory data analysis or modeling takes place.
-    This should take at least two arguments:
-
-    -   a path/filename pointing to the data to be read in
-    -   a path/filename pointing to where the cleaned/processed/transformed/partitioned data should live.
-
--   A third script which creates exploratory data visualization(s)
-    and table(s) that are useful to help the reader/consumer understand that data set.
-    These analysis artifacts should be written to files.
-    This should take at least two arguments:
-
-    -   a path/filename pointing to the data,
-    -   a path/filename prefix where to write the figure to
-        and what to call it (e.g., results/this_eda.png).
-
--   A fourth script that reads the data from the second script,
-    performs the modeling and summarizes the results as a figure(s) and a table(s).
-    These analysis artifacts should be written to files.
-    This should take at least two arguments:
-
-    -   a path/filename pointing to the data
-    -   a path/filename prefix where to write the figure(s)/table(s) to
-        and what to call it (e.g., results/this_analysis)
-
--   You are welcome to have any additional scripts as needed,
-    or modify how you organize the splitting up of your code a little differently than suggested.
-    What is important is that you have \~ 4 different scripts so you get practice setting them up in a data analysis pipeline (next milestone).
+- [ ] Split your analysis into **4 or more scripts** that take [command line arguments]{.term tabindex="0" data-tip="Values you type after the script name when you run it in the terminal, e.g. python scripts/clean.py --input data/raw/data.csv --output data/processed/clean.csv. They let you change inputs and outputs without editing the code."}
+- [ ] Add [data validation]{.term tabindex="0" data-tip="Data validation means automatic checks that your data looks the way your analysis expects (the right columns and types, no impossible values, not too many missing values) before you use it. Here the checks run inside your scripts, so a problem stops the analysis early instead of silently giving wrong results."} checks to your scripts
+- [ ] Make your report a `.qmd` that **shows** the figures and tables your scripts saved, instead of computing them
+- [ ] Add any new packages to your environment and publish a new Docker image
+- [ ] Update your `README` so it says how to run each script in the container
 
 ::: callout-important
-**You must document in your `README.md` how to call each script,
-including what arguments you pass each script.**
+## See what a finished Milestone 3 looks like
+
+An example Milestone 3 that corresponds to our expectations is here:
+**[Breast Cancer Predictor 2.0.0](https://github.com/ttimbers/breast-cancer-predictor/tree/2.0.0)**.
+Look at its `scripts/` folder and its `README`.
+It uses conda for its environment: ignore that part and keep the uv/renv setup from Milestone 2.
 :::
 
-### 2. Add data validation checks to your analysis scripts
+::: {.callout-tip collapse="true"}
+## Readings for this milestone
 
-To make sure that your data visualizations and modeling results are correct,
-robust and of high quality, add data validation checks to your analysis.
-Write them as code in your scripts,
-for example as a step in the script that cleans or splits your data.
-Ensure you cover the checks we recommend in our [Data validation checklist](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/data-validation.html#data-validation-checklist).
-Write at least one check for each item in the data validation checklist.
-Also be thoughtful about what you want to happen if/when your checks fail,
-and be sure that your code reflects that.
-Finally, when implementing your checks,
-be sure they do not create data leakage between the training and test set.
+-   [Scripts](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/scripts.html): writing scripts with command line arguments (`click` and `docopt`)
+-   [Data validation](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/data-validation.html): what to check, and the checklist you must cover
+-   [Data validation with pandera](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/data-validation-python-pandera.html) (Python) or [with pointblank](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/data-validation-r-pointblank.html) (R)
+:::
 
-### 3. If your report literate code document is not already a `*.qmd` file, convert it so that it is.
+### 1. Move your code into scripts
 
-You can use `quarto convert notebook.ipynb` to convert Jupyter notebooks to `*.qmd` files.
-If you were using an `.Rmd` file,
-you can simply rename the file so that it has a `.qmd` file extension.
-Much of the `.Rmd` syntax is backwards compatible, so this should mostly work.
+1.  **Split your analysis into 4 or more scripts** (`.py` or `.R`) in a `scripts/` folder,
+    one script per step of the analysis.
+    The code doesn't need to be turned into functions yet (that is Milestone 4).
+    A common split:
+    -   download the data
+    -   clean and split the data
+    -   exploratory figures and tables
+    -   fit the model and evaluate it
 
-### 4. Update your report to display your scripts' results
+2.  **Chain them:** the files one script writes are the files the next script reads.
 
-Your scripts now write your figures and tables to files.
-Update your report so that it reads and displays those files,
-instead of computing them itself.
-You will polish the report's formatting
-(table of contents, references, cross-references, inline values and hidden code)
-in Milestone 4.
+3.  **Give every script command line arguments** for at least its input path and its output path,
+    so nothing is hard-coded.
+    Use [`click`](https://click.palletsprojects.com/) in Python, or `docopt` in R.
+    Use descriptive file names (`data/processed/cancer_train.csv`, not `data/file.csv`).
 
-### 5. Update your project's computational environment as you add dependencies to your project
+4.  **Save every figure and table to a file** (for example in `results/`), so the report can show it.
 
-As you add packages to your project
-(for example, `click` for your scripts, or a package for your data validation checks),
-update your project's computational environment.
-This means that your environment specification files will need to have these packages added, with the version pinned,
-and the Docker container image will need to be rebuilt and published to DockerHub.
+::: {.callout-tip collapse="true"}
+## What each script could look like
 
-### 6. Update any instructions for running your analysis
+| Script | Reads | Writes |
+|---|---|---|
+| download | a URL | `data/raw/...` |
+| clean and split | the raw data | cleaned train and test files in `data/processed/` |
+| EDA | the training data | figures and tables in `results/` |
+| model | the training and test data | the fitted model, plus result figures and tables in `results/` |
 
-Do not forget to update your project's documentation to reflect changes from this week.
-Update instructions and/or commands in your `README.md`
-and documention to run your analysis in your compute environment.
-You may combine commands within `make`.
-But instructions in the `README.md` file should include how to run the make target
-and rule.
+Running a Python script in the container looks like this (R: `Rscript` instead of `uv run python`):
 
-After you re-render your report,
-copy it to `docs/index.html` again and push,
-so the report on GitHub Pages stays current
-(see [Milestone 2](milestone2.qmd#publish-your-report-on-github-pages)).
+```bash
+docker compose run --rm analysis-env \
+  uv run python scripts/download_data.py \
+  --url https://example.com/data.csv \
+  --write-to data/raw/cancer.csv
+```
+
+You can split your code differently, or have more scripts.
+What matters is having about 4, so you can practise joining them into a pipeline in Milestone 4.
+:::
+
+### 2. Add data validation checks
+
+1.  **Write the checks as code in your scripts**, for example in the script that cleans or splits the data.
+2.  **Write at least one check for each item** in the textbook's
+    [data validation checklist](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/data-validation.html#data-validation-checklist).
+3.  **Decide what happens when a check fails** (stop with an error, or warn and continue), and make the code do that.
+4.  **Don't leak test data:** checks that look at relationships between columns (such as correlations)
+    run on the training data only.
+
+### 3. Make your report show your scripts' results
+
+1.  If your report is not a `.qmd` yet, convert it:
+    `quarto convert report.ipynb` for a Jupyter notebook, or just rename an `.Rmd` file to `.qmd`.
+2.  Replace the analysis code in the report with code that **reads and displays** the figures and tables your scripts saved.
+3.  Don't polish its formatting yet (cross-references, citations, hidden code): that is Milestone 4.
+4.  After you re-render it, copy it to `docs/index.html` again and push,
+    so the report on GitHub Pages stays current (see [Milestone 2](milestone2.qmd#publish-your-report-on-github-pages)).
+
+### 4. Update your environment
+
+Your scripts probably use new packages (`click` or `docopt`, a validation package).
+Add each one, pinned, the same way you did in Milestone 2:
+add it with uv or renv, commit the changed files, let GitHub Actions publish a new image,
+then update the tag in `docker-compose.yml`.
+([uv recap from DSCI 521](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/virtual-environments-uv.html))
+
+### 5. Update your `README`
+
+Your `README` must say **how to run each script**, in order, with the exact command and its arguments,
+using the container (`docker compose run --rm analysis-env ...`), then how to render the report.
 
 ::: callout-important
-## Your README instructions are worth 5 all-or-nothing points
+## 5 all-or-nothing points for your README instructions
 
-5 points of this milestone are for the reproducibility of your README instructions:
-whether someone can follow them to run your analysis, including each of your scripts, in your computational environment.
-These points are all-or-nothing, and they cannot be recovered later.
-If your instructions do not work exactly as you have written them,
-you will lose all 5 points.
-
-Make sure your instructions work on both Windows and Mac computers.
-If your team does not have both,
-work with another team to test them.
+If someone can't run each of your scripts and render your report by following your instructions
+**exactly as written**, you lose all 5 points.
+Test them on **both Windows and Mac**.
+If your team doesn't have both, ask another team to test them.
 :::
 
-## Submission Instructions
+## Submission instructions
 
-Just before you submit the milestone 3,
-create a release on your project repository on GitHub
-and name it something like `2.0.0` ([how to create a release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release)).
-This release allows us and you to easily jump to the state of your repository at the time of submission for grading purposes,
-while you continue to work on your project for the next milestone.
+1.  Just before you submit, create a GitHub release named exactly `2.0.0`
+    ([how to create a release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release)).
+2.  On Gradescope, enter these three URLs (there is no PDF to make):
+    -   the GitHub release
+    -   your group project's repository (general one without GitHub release)
+    -   your report on GitHub Pages
+    -   your report on GitHub Pages
 
-Follow the instructions for submission on Gradescope.
-We only need URLs, entered into Gradescope directly: there is no PDF to make.
-You will submit:
+You don't need to include Milestone 2 feedback in this submission.
 
-1.  the URL of your project's GitHub.com repository
-2.  the URL of a GitHub release of your project's GitHub.com repository
-3.  the URL of your report on GitHub Pages
+::: {.callout-tip collapse="true"}
+## Check yourself before submitting
 
-## Expectations
+- [ ] At least 4 scripts, each taking its input and output paths as command line arguments
+- [ ] Each script reads what the previous one wrote
+- [ ] At least one validation check for each item in the data validation checklist, with a planned response when it fails
+- [ ] Your report is a `.qmd` that shows saved figures and tables instead of computing them
+- [ ] Every new package is pinned, and `docker-compose.yml` uses the new image's `sha-` tag
+- [ ] Someone on Windows and someone on Mac followed your `README` steps exactly
+- [ ] Your report on GitHub Pages matches your release
+- [ ] No generated files committed by mistake (except `docs/`, which GitHub Pages needs)
+- [ ] You created the `2.0.0` release
+:::
 
--   **Everyone should contribute equally to all aspects of the project** **(e.g., code, writing, project management).**
-    **This should be evidenced by a roughly equal number of commits,** **pull request reviews
-    and participation in communication via GitHub issues.**
--   Each group member should work in a [GitHub flow workflow](https://docs.github.com/en/get-started/quickstart/github-flow);
-    where they create branches for each feature or fix,
-    which are reviewed and critiqued by at least one other teammate
-    before the the pull request is accepted.
--   You should be committing to git and pushing to GitHub.com every time you work on this project.
--   Git commit messages should be meaningful.
-    These will be marked.
-    It's OK if one or two are less meaningful, but most should be.
--   Use GitHub issues to communicate to their team mate (as opposed to email or Slack).
--   Your question, analysis and visualization should make sense.
-    It doesn't have to be complicated.
--   You should use proper grammar and full sentences in your README.
-    Point form may occur, but should be less than 10% of your written documents.
--   **Your analysis should be correct,
-    and run reproducibly given the instructions provided in the README.**
--   You should use proper grammar and full sentences in your README.
-    Point form may occur, but should be less than 10% of your written documents.
--   R code should follow the [tidyverse style guide](https://style.tidyverse.org/),
-    and Python code should follow the [black style guide](https://black.readthedocs.io/en/stable/the_black_code_style/index.html) for Python)
--   You should not have extraneous files in your repository that should be ignored.
-    The one exception is `docs/`: it is generated, but GitHub Pages needs it committed.
--   You will not be expected to incorporate Milestone 2 feedback in this submission (of course you can, but likely you will not receive it until the end of the week which might be too late to incorporate it).
+::: {.callout-tip collapse="true"}
+## Teamwork expectations (these are marked)
+
+-   **Everyone contributes equally** to code, writing and project management,
+    shown by a roughly equal number of commits, pull request reviews and GitHub issue comments.
+-   Use the [GitHub flow](https://docs.github.com/en/get-started/using-github/github-flow):
+    a branch for each feature or fix, reviewed by at least one teammate before the pull request is merged.
+-   Commit and push every time you work on the project, with meaningful commit messages
+    (one or two less meaningful ones are OK).
+-   Talk to your teammates in GitHub issues, not email or Slack.
+-   Your question, analysis and visualization should make sense. They don't have to be complicated.
+-   Your analysis should be correct and run reproducibly from your `README` instructions.
+-   Follow the [black style guide](https://black.readthedocs.io/en/stable/the_black_code_style/index.html) (Python)
+    or the [tidyverse style guide](https://style.tidyverse.org/) (R).
+-   Write your `README` in full sentences with proper grammar. Keep point form under 10% of it.
+:::

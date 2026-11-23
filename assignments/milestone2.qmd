@@ -490,8 +490,8 @@ In DSCI 524 you will use tools that build and publish a website for you.
     ([how to create a release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release)).
     It records the state of your repository at submission, so you can keep working on the next milestone.
 2.  On Gradescope, enter these four URLs (there is no PDF to make):
-    -   your project's GitHub.com repository
     -   the GitHub release
+    -   your group project's repository (general one without GitHub release)
     -   your report on GitHub Pages
     -   your image on Docker Hub
 
