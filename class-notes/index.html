@@ -83,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-sidebar floating nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+<body class="nav-sidebar floating nav-fixed fullcontent quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -618,19 +618,7 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#section-2" id="toc-section-2" class="nav-link active" data-scroll-target="#section-2">2026-27, section 2</a>
-  <ul class="collapse">
-  <li><a href="#nov-19-git-issues-and-pull-requests-then-an-introduction-to-docker-containers" id="toc-nov-19-git-issues-and-pull-requests-then-an-introduction-to-docker-containers" class="nav-link" data-scroll-target="#nov-19-git-issues-and-pull-requests-then-an-introduction-to-docker-containers">Nov 19 · Git issues and pull requests, then an introduction to Docker containers</a></li>
-  <li><a href="#nov-17-git-branches-pull-requests-code-review-and-rebasing-to-fix-conflicts" id="toc-nov-17-git-branches-pull-requests-code-review-and-rebasing-to-fix-conflicts" class="nav-link" data-scroll-target="#nov-17-git-branches-pull-requests-code-review-and-rebasing-to-fix-conflicts">Nov 17 · Git Branches, Pull Requests, Code Review and Rebasing to Fix Conflicts</a></li>
-  </ul></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students/edit/main/class-notes/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content" tabindex="-1">
 
@@ -653,6 +641,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>Pick a lecture from the sidebar, or from the <strong>Section 2 Notes</strong> menu at the top: each lecture’s notes, review questions, readings, commands and drawings are listed under it.</p>
 <p>Notes from section 2’s lectures, written by AI models from each class’s recording, the commands typed in class, and the textbook sections the class used. Each model writes its own set of notes on the same class, so pick any one.</p>
 <ul>
 <li><strong>Notes:</strong> start here.</li>
@@ -664,73 +653,8 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Older prompt’s notes:</strong> from an earlier version of the prompt, kept for comparison. You can skip these.</li>
 </ul>
 <p>AI-written notes can contain mistakes. If something matters, check it against the textbook, or against the class recording: each topic in the notes gives its time in the recording, and the transcripts are in the course repository on github.ubc.ca, for the class only.</p>
-<section id="section-2" class="level2">
-<h2 class="anchored" data-anchor-id="section-2">2026-27, section 2</h2>
-<section id="nov-19-git-issues-and-pull-requests-then-an-introduction-to-docker-containers" class="level3">
-<h3 class="anchored" data-anchor-id="nov-19-git-issues-and-pull-requests-then-an-introduction-to-docker-containers">Nov 19 · Git issues and pull requests, then an introduction to Docker containers</h3>
-<ul>
-<li><a href="../class-notes/2026-27/section-02/2026-11-19-lecture/notes-class-main--claude-opus-5-5.html">Notes (claude-opus-5-5)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-19-lecture/notes-class-main--qwen3.6-35b-a3b.html">Notes (qwen3.6-35b-a3b)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-19-lecture/notes-class-main--qwen3.8-27b-sglang.html">Notes (qwen3.8-27b-sglang)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-1-remember--claude-opus-5-5.html">Review questions 1, Remember (claude-opus-5-5)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-2-understand--claude-opus-5-5.html">Review questions 2, Understand (claude-opus-5-5)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-3-apply--claude-opus-5-5.html">Review questions 3, Apply (claude-opus-5-5)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-4-analyze--claude-opus-5-5.html">Review questions 4, Analyze (claude-opus-5-5)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-5-evaluate--claude-opus-5-5.html">Review questions 5, Evaluate (claude-opus-5-5)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-1-remember--qwen3.6-35b-a3b.html">Review questions 1, Remember (qwen3.6-35b-a3b)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-2-understand--qwen3.6-35b-a3b.html">Review questions 2, Understand (qwen3.6-35b-a3b)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-3-apply--qwen3.6-35b-a3b.html">Review questions 3, Apply (qwen3.6-35b-a3b)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-4-analyze--qwen3.6-35b-a3b.html">Review questions 4, Analyze (qwen3.6-35b-a3b)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-5-evaluate--qwen3.6-35b-a3b.html">Review questions 5, Evaluate (qwen3.6-35b-a3b)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-1-remember--qwen3.8-27b-sglang.html">Review questions 1, Remember (qwen3.8-27b-sglang)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-2-understand--qwen3.8-27b-sglang.html">Review questions 2, Understand (qwen3.8-27b-sglang)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-3-apply--qwen3.8-27b-sglang.html">Review questions 3, Apply (qwen3.8-27b-sglang)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-4-analyze--qwen3.8-27b-sglang.html">Review questions 4, Analyze (qwen3.8-27b-sglang)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-5-evaluate--qwen3.8-27b-sglang.html">Review questions 5, Evaluate (qwen3.8-27b-sglang)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-19-lecture/materials.html">Readings</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-19-lecture/materials-next-class.html">Readings for next class</a></li>
-<li><a href="2026-27/section-02/2026-11-19-lecture/history.txt">Commands typed (history.txt)</a></li>
-<li><a href="2026-27/section-02/2026-11-19-lecture/terminal.txt">Commands and output (terminal.txt)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-19-lecture/notes-plaud.html">Plaud’s summary</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-19-lecture/comparison/notes-class-original--claude-opus-5-5.html">Older prompt’s notes (claude-opus-5-5)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-19-lecture/comparison/notes-class-original--qwen3.6-35b-a3b.html">Older prompt’s notes (qwen3.6-35b-a3b)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-19-lecture/comparison/notes-class-original--qwen3.8-27b-sglang.html">Older prompt’s notes (qwen3.8-27b-sglang)</a></li>
-</ul>
-</section>
-<section id="nov-17-git-branches-pull-requests-code-review-and-rebasing-to-fix-conflicts" class="level3">
-<h3 class="anchored" data-anchor-id="nov-17-git-branches-pull-requests-code-review-and-rebasing-to-fix-conflicts">Nov 17 · Git Branches, Pull Requests, Code Review and Rebasing to Fix Conflicts</h3>
-<ul>
-<li><a href="../class-notes/2026-27/section-02/2026-11-17-lecture/notes-class-main--claude-opus-5-5.html">Notes (claude-opus-5-5)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-17-lecture/notes-class-main--qwen3.6-35b-a3b.html">Notes (qwen3.6-35b-a3b)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-17-lecture/notes-class-main--qwen3.8-27b-sglang.html">Notes (qwen3.8-27b-sglang)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-1-remember--claude-opus-5-5.html">Review questions 1, Remember (claude-opus-5-5)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-2-understand--claude-opus-5-5.html">Review questions 2, Understand (claude-opus-5-5)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-3-apply--claude-opus-5-5.html">Review questions 3, Apply (claude-opus-5-5)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-4-analyze--claude-opus-5-5.html">Review questions 4, Analyze (claude-opus-5-5)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-5-evaluate--claude-opus-5-5.html">Review questions 5, Evaluate (claude-opus-5-5)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-1-remember--qwen3.6-35b-a3b.html">Review questions 1, Remember (qwen3.6-35b-a3b)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-2-understand--qwen3.6-35b-a3b.html">Review questions 2, Understand (qwen3.6-35b-a3b)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-3-apply--qwen3.6-35b-a3b.html">Review questions 3, Apply (qwen3.6-35b-a3b)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-4-analyze--qwen3.6-35b-a3b.html">Review questions 4, Analyze (qwen3.6-35b-a3b)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-5-evaluate--qwen3.6-35b-a3b.html">Review questions 5, Evaluate (qwen3.6-35b-a3b)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-1-remember--qwen3.8-27b-sglang.html">Review questions 1, Remember (qwen3.8-27b-sglang)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-2-understand--qwen3.8-27b-sglang.html">Review questions 2, Understand (qwen3.8-27b-sglang)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-3-apply--qwen3.8-27b-sglang.html">Review questions 3, Apply (qwen3.8-27b-sglang)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-4-analyze--qwen3.8-27b-sglang.html">Review questions 4, Analyze (qwen3.8-27b-sglang)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-5-evaluate--qwen3.8-27b-sglang.html">Review questions 5, Evaluate (qwen3.8-27b-sglang)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-17-lecture/materials.html">Readings</a></li>
-<li><a href="2026-27/section-02/2026-11-17-lecture/terminal.txt">Commands and output (terminal.txt)</a></li>
-<li><a href="2026-27/section-02/2026-11-17-lecture/git1.png">Drawing: git1.png</a></li>
-<li><a href="2026-27/section-02/2026-11-17-lecture/git2.png">Drawing: git2.png</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-17-lecture/notes-plaud.html">Plaud’s summary</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-17-lecture/comparison/notes-class-original--claude-opus-5-5.html">Older prompt’s notes (claude-opus-5-5)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-17-lecture/comparison/notes-class-original--qwen3.6-35b-a3b.html">Older prompt’s notes (qwen3.6-35b-a3b)</a></li>
-<li><a href="../class-notes/2026-27/section-02/2026-11-17-lecture/comparison/notes-class-original--qwen3.8-27b-sglang.html">Older prompt’s notes (qwen3.8-27b-sglang)</a></li>
-</ul>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1210,7 +1134,7 @@ ul.task-list li input[type="checkbox"] {
   window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
   </script>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students/edit/main/class-notes/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer><script type="module">
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students/edit/main/class-notes/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer><script type="module">
 import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs";
 mermaid.run({ querySelector: "pre.mermaid" });
 </script>
