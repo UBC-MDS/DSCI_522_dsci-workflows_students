@@ -504,6 +504,34 @@ If you already published your report in Milestone 1, switch to this setup anyway
     touch docs/.nojekyll
     ```
 
+    ::: {.callout-tip collapse="true"}
+    ## If you also render a PDF: fix the "Other Formats" link
+
+    When you render more than one format, Quarto adds a link to the others
+    (for example "Typst") under **Other Formats** in the HTML report.
+    That link points to a file next to the report, which is not in `docs/`,
+    so on GitHub Pages it gives a 404.
+    Either remove the link, in your report's YAML header or your `_quarto.yml`:
+
+    ```yaml
+    format:
+      html:
+        format-links: false
+    ```
+
+    or point it to the PDF in your repository:
+
+    ```yaml
+    format:
+      html:
+        format-links:
+          - html   # stops Quarto adding its own link
+          - text: PDF
+            href: https://github.com/ubc-mds-2026-27/<your-repository>/blob/main/<path-to-your-report>.pdf
+            icon: file-pdf
+    ```
+    :::
+
 3.  Commit and push `docs/`.
     Check that your `.gitignore` does not ignore `docs/` or `.html` files.
 
