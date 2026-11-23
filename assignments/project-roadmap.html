@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Project Roadmap – DSCI 522: Data Science Workflows</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-5a8ea6506bd74de719dafad1d662b7b4.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-31f71cfee8fb6cb433a9ce015cec3520.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-5a8ea6506bd74de719dafad1d662b7b4.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-86abfff4ea397ce80fca2e08295ab694.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-5de2174b4b58a5f5dfb3c6166fd0d0b7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-86abfff4ea397ce80fca2e08295ab694.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed fullcontent quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">DSCI 522: Data Science Workflows</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-cheatsheets" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Cheatsheets</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-cheatsheets">    
+        <li>
+    <a class="dropdown-item" href="../cheatsheets/command_line.html">
+ <span class="dropdown-text">Command Line</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../cheatsheets/git.html">
+ <span class="dropdown-text">Git</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../cheatsheets/docker.html">
+ <span class="dropdown-text">Docker &amp; Docker Compose</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../cheatsheets/uv.html">
+ <span class="dropdown-text">uv</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../cheatsheets/quarto.html">
+ <span class="dropdown-text">Quarto</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../cheatsheets/makefile.html">
+ <span class="dropdown-text">Makefile</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-section-1-slides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Section 1 Slides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-section-1-slides">    
+        <li>
+    <a class="dropdown-item" href="../slides/index.html">
+ <span class="dropdown-text">Section 001 Info</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture.html">
+ <span class="dropdown-text">Lectures</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lab.html">
+ <span class="dropdown-text">Labs</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/"> 
+<span class="menu-text">Textbook</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students"> <i class="bi bi-github" role="img" aria-label="Course GitHub repository">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" aria-label="Toolbar">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../assignments/project-roadmap.html">Project Roadmap</a></li></ol></nav>
+        <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto" aria-label="Section">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/project-roadmap.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Project Roadmap</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Week 1</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/individual1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Individual Assignment 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/milestone1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Milestone 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/teamwork-contract.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Teamwork Contract</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Week 2</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/individual2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Individual Assignment 2</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Project Roadmap</h1>
+<p class="subtitle lead">Four milestones, four mountains</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>Hover over (or tap) anything on the mountains.</strong> Taller peak = more work. Due dates are in the <a href="../index.html#deliverables">syllabus</a>.</p>
+<style>
+.climb { position: relative; margin: 1.2rem 0 1rem; }
+.climb-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.climb svg { width: 100%; min-width: 760px; height: auto; display: block; }
+.climb a, .climb a:hover { text-decoration: none; }
+.climb text { font-family: inherit; fill: #2b3a35; }
+.climb .peak-name { fill: #fff; font-weight: 700; }
+.climb .week { fill: #5f6b67; }
+.climb .tag { font-family: "Source Code Pro", monospace; font-size: 15px; }
+
+/* Everything you can hover */
+.climb .spot { cursor: pointer; outline: none; }
+.climb .spot-body { transition: transform .18s ease, filter .18s ease; transform-box: fill-box; transform-origin: center; }
+.climb .peak .spot-body { transform-origin: bottom center; }
+.climb .spot:hover .spot-body, .climb .spot:focus .spot-body, .climb .spot.on .spot-body { transform: scale(1.12); filter: brightness(1.08); }
+.climb .peak:hover .spot-body, .climb .peak:focus .spot-body, .climb .peak.on .spot-body { transform: scale(1.03); }
+.climb .ring { fill: #fff; stroke-width: 3; }
+.climb .ring.ia { stroke: #2f7a65; }
+.climb .ring.team { stroke: #eb6834; }
+.climb .badge-label { font-weight: 700; font-size: 13px; fill: #2f7a65; }
+.climb .badge-emoji { font-size: 17px; }
+.climb .otter { pointer-events: none; }
+
+/* The bubble */
+.climb-bubble { position: absolute; z-index: 10; width: max-content; max-width: 260px;
+  background: #2b3a35; color: #fff; border-radius: 10px; padding: .55rem .75rem;
+  font-size: .9rem; line-height: 1.35; box-shadow: 0 6px 18px rgba(0,0,0,.18);
+  transform: translate(-50%, calc(-100% - 12px)); pointer-events: none; opacity: 0; transition: opacity .12s; }
+.climb-bubble.show { opacity: 1; }
+.climb-bubble.below { transform: translate(-50%, 12px); }
+.climb-bubble b { display: block; font-size: .98rem; margin-bottom: .15rem; }
+.climb-bubble code { background: rgba(255,255,255,.14); color: #d8f3ea; border-radius: 4px; padding: 0 .3em; font-size: .8rem; }
+.climb-bubble .hint { display: block; margin-top: .3rem; color: #9fd8c5; font-size: .8rem; }
+.tip-src { display: none; }
+.climb-swipe { display: none; text-align: center; font-size: .85rem; color: var(--bs-secondary-color, #6c757d); }
+@media (max-width: 760px) { .climb-swipe { display: block; } }
+</style>
+
+<div class="climb">
+<div class="climb-scroll">
+<svg viewbox="-70 0 1080 385" role="img" aria-labelledby="climb-title">
+  <title id="climb-title">The course as a mountain trail: four milestone mountains with the individual assignments, teamwork contract, peer review and reflection along the way</title>
+
+  <defs>
+    <lineargradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e6f4ef"></stop>
+      <stop offset="1" stop-color="#ffffff"></stop>
+    </lineargradient>
+    <!-- The otter, standing with its feet at (0, 0), facing right -->
+    <g id="otter-shape">
+      <path d="M-14,-11 Q-28,-9 -33,-1" stroke="#7a4b2e" stroke-width="6" fill="none" stroke-linecap="round"></path>
+      <rect x="-12" y="-8" width="6" height="8" rx="3" fill="#6b3f25"></rect>
+      <rect x="6" y="-8" width="6" height="8" rx="3" fill="#6b3f25"></rect>
+      <ellipse cx="0" cy="-13" rx="17" ry="9" fill="#8a5a3b"></ellipse>
+      <ellipse cx="3" cy="-8.5" rx="11" ry="3.6" fill="#d9b48f"></ellipse>
+      <rect x="-13" y="-28" width="13" height="12" rx="3" fill="#eb6834"></rect>
+      <line x1="-1" y1="-25" x2="6" y2="-16" stroke="#c4521f" stroke-width="2"></line>
+      <circle cx="17" cy="-22" r="9" fill="#8a5a3b"></circle>
+      <circle cx="12" cy="-30" r="2.6" fill="#6b3f25"></circle>
+      <ellipse cx="22" cy="-19.5" rx="5.5" ry="4" fill="#e9cfae"></ellipse>
+      <ellipse cx="26.5" cy="-21" rx="2" ry="1.5" fill="#2b1a10"></ellipse>
+      <circle cx="18.5" cy="-24.5" r="1.5" fill="#2b1a10"></circle>
+      <g stroke="#2b1a10" stroke-width=".8"><line x1="24" y1="-18.5" x2="31" y2="-17.5"></line><line x1="24" y1="-17.5" x2="30" y2="-14.5"></line></g>
+    </g>
+  </defs>
+
+  <rect x="-70" y="0" width="1080" height="332" rx="18" fill="url(#sky)"></rect>
+  <circle cx="560" cy="70" r="30" fill="#f6d488" opacity=".8"></circle>
+  <text x="-55" y="34" font-size="18">↑ Taller peak = more work</text>
+
+  <!-- Base camp: the syllabus -->
+  <a href="../index.html" class="spot" data-tip="syllabus" aria-label="Base camp: the syllabus">
+    <g class="spot-body">
+      <polygon points="-64,330 -40,292 -16,330" fill="#eb6834"></polygon>
+      <polygon points="-40,330 -40,292 -29,330" fill="#c4521f"></polygon>
+    </g>
+  </a>
+
+  <!-- Milestone 1: the tallest -->
+  <a href="milestone1.html" class="spot peak" data-tip="m1" aria-label="Milestone 1">
+    <g class="spot-body">
+      <polygon points="30,330 175,55 320,330" fill="#3d8b75"></polygon>
+      <polygon points="175,55 206.6,115 190,105 178,118 163,104 143.4,115" fill="#fff"></polygon>
+      <text class="peak-name" x="190" y="285" font-size="32" text-anchor="middle">M1</text>
+    </g>
+  </a>
+
+  <!-- Milestone 2: medium -->
+  <a href="milestone2.html" class="spot peak" data-tip="m2" aria-label="Milestone 2">
+    <g class="spot-body">
+      <polygon points="280,330 395,150 510,330" fill="#6bb39e"></polygon>
+      <polygon points="395,150 417.4,185 406,178 396,189 384,177 372.6,185" fill="#fff"></polygon>
+      <text class="peak-name" x="410" y="295" font-size="30" text-anchor="middle">M2</text>
+    </g>
+  </a>
+
+  <!-- Milestone 3: a gentle hill -->
+  <g class="spot peak" data-tip="m3" tabindex="0" role="button" aria-label="Milestone 3">
+    <g class="spot-body">
+      <path d="M500,330 Q590,180 680,330 Z" fill="#a7d7c5"></path>
+      <text class="peak-name" x="600" y="314" font-size="26" text-anchor="middle" style="fill:#2f6b5a">M3</text>
+    </g>
+  </g>
+
+  <!-- Milestone 4: second tallest -->
+  <g class="spot peak" data-tip="m4" tabindex="0" role="button" aria-label="Milestone 4">
+    <g class="spot-body">
+      <polygon points="660,330 775,150 890,330" fill="#4f9c86"></polygon>
+      <polygon points="775,150 797.4,185 786,178 776,189 764,177 752.6,185" fill="#fff"></polygon>
+      <text class="peak-name" x="790" y="295" font-size="30" text-anchor="middle">M4</text>
+    </g>
+  </g>
+
+  <!-- Summit flags with each milestone's release tag -->
+  <g stroke="#2b3a35" stroke-width="2">
+    <line x1="175" y1="55" x2="175" y2="17"></line>
+    <line x1="395" y1="150" x2="395" y2="112"></line>
+    <line x1="590" y1="255" x2="590" y2="217"></line>
+    <line x1="775" y1="150" x2="775" y2="112"></line>
+  </g>
+  <g fill="#eb6834">
+    <polygon points="175,17 199,24 175,31"></polygon>
+    <polygon points="395,112 419,119 395,126"></polygon>
+    <polygon points="590,217 614,224 590,231"></polygon>
+    <polygon points="775,112 799,119 775,126"></polygon>
+  </g>
+  <text class="tag" x="204" y="29">0.0.1</text>
+  <text class="tag" x="424" y="124">1.0.0</text>
+  <text class="tag" x="619" y="229">2.0.0</text>
+  <text class="tag" x="804" y="124">3.0.0</text>
+
+  <!-- The trail -->
+  <path id="trail" d="M-40,328 L40,318 L175,58 L300,300 L335,292 L395,153 L470,292 L520,302 L590,258 L660,312 L715,292 L775,153 L850,292 L900,320 L940,328" fill="none" stroke="#eb6834" stroke-width="2.5" stroke-dasharray="7 7" opacity=".85"></path>
+  <text font-size="26" x="905" y="322">🏁</text>
+
+  <!-- Stops along the trail -->
+  <a href="individual1.html" class="spot" data-tip="ia1" aria-label="Individual Assignment 1">
+    <g transform="translate(74,253)"><g class="spot-body">
+      <circle r="17" class="ring ia"></circle><text class="badge-label" y="4.5" text-anchor="middle">IA1</text>
+    </g></g>
+  </a>
+  <a href="teamwork-contract.html" class="spot" data-tip="contract" aria-label="Teamwork contract">
+    <g transform="translate(116,172)"><g class="spot-body">
+      <circle r="17" class="ring team"></circle><text class="badge-emoji" y="6" text-anchor="middle">📝</text>
+    </g></g>
+  </a>
+  <a href="individual2.html" class="spot" data-tip="ia2" aria-label="Individual Assignment 2">
+    <g transform="translate(357,238)"><g class="spot-body">
+      <circle r="17" class="ring ia"></circle><text class="badge-label" y="4.5" text-anchor="middle">IA2</text>
+    </g></g>
+  </a>
+  <g class="spot" data-tip="ia3" tabindex="0" role="button" aria-label="Individual Assignment 3">
+    <g transform="translate(543,276)"><g class="spot-body">
+      <circle r="17" class="ring ia"></circle><text class="badge-label" y="4.5" text-anchor="middle">IA3</text>
+    </g></g>
+  </g>
+  <g class="spot" data-tip="ia4" tabindex="0" role="button" aria-label="Individual Assignment 4">
+    <g transform="translate(731,258)"><g class="spot-body">
+      <circle r="17" class="ring ia"></circle><text class="badge-label" y="4.5" text-anchor="middle">IA4</text>
+    </g></g>
+  </g>
+  <g class="spot" data-tip="peer" tabindex="0" role="button" aria-label="Peer review">
+    <g transform="translate(756,200)"><g class="spot-body">
+      <circle r="17" class="ring team"></circle><text class="badge-emoji" y="6" text-anchor="middle">🔍</text>
+    </g></g>
+  </g>
+  <g class="spot" data-tip="reflection" tabindex="0" role="button" aria-label="Teamwork reflection">
+    <g transform="translate(975,306)"><g class="spot-body">
+      <circle r="17" class="ring team"></circle><text class="badge-emoji" y="6" text-anchor="middle">🔥</text>
+    </g></g>
+  </g>
+
+  <!-- The otter walking the trail -->
+  <g class="otter">
+    <g>
+      <animatetransform attributename="transform" type="translate" values="0,0; 0,-2.5; 0,0" dur=".5s" repeatcount="indefinite"></animatetransform>
+      <use href="#otter-shape" transform="scale(1.15)"></use>
+    </g>
+    <animatemotion dur="20s" repeatcount="indefinite"><mpath href="#trail"></mpath></animatemotion>
+  </g>
+
+  <!-- Ground and week labels -->
+  <line x1="-70" y1="331" x2="1010" y2="331" stroke="#b8b6b0" stroke-width="2"></line>
+  <text class="week" x="-40" y="362" font-size="17" text-anchor="middle">Start</text>
+  <text class="week" x="175" y="362" font-size="20" text-anchor="middle">Week 1</text>
+  <text class="week" x="395" y="362" font-size="20" text-anchor="middle">Week 2</text>
+  <text class="week" x="590" y="362" font-size="20" text-anchor="middle">Week 3</text>
+  <text class="week" x="775" y="362" font-size="20" text-anchor="middle">Week 4</text>
+  <text class="week" x="955" y="362" font-size="17" text-anchor="middle">The end</text>
+</svg>
+</div>
+<div class="climb-swipe">← swipe to see the whole climb →</div>
+<div class="climb-bubble" role="tooltip"></div>
+</div>
+
+<!-- What each bubble says -->
+<div class="tip-src" id="tip-syllabus"><b>Base camp: the syllabus</b>Due dates, grading and course policies.<span class="hint">Click to open</span></div>
+<div class="tip-src" id="tip-m1"><b>Milestone 1 · release 0.0.1</b>Set up your team's GitHub repo, a uv or renv environment, and your analysis in one Quarto document.<br>The tallest climb: a complete, simple data anlysis with a professional report.<span class="hint">Click to open</span></div>
+<div class="tip-src" id="tip-m2"><b>Milestone 2 · release 1.0.0</b>Move your environment into a Docker container, and publish your report on GitHub Pages. <span class="hint">Click to open</span></div>
+<div class="tip-src" id="tip-m3"><b>Milestone 3 · release 2.0.0</b>Split your analysis into 4 or more scripts, and add data validation checks.<br>A gentle hill: it's exam week in your other courses.<span class="hint">Page opens in week 3</span></div>
+<div class="tip-src" id="tip-m4"><b>Milestone 4 · release 3.0.0</b>One command (<code>make all</code>) runs everything. Add functions with tests, polish the report, and fix feedback to win back points.<span class="hint">Page opens in week 4</span></div>
+<div class="tip-src" id="tip-ia1"><b>Individual Assignment 1</b>Version control practice with Git and GitHub.<span class="hint">Click to open</span></div>
+<div class="tip-src" id="tip-contract"><b>Teamwork contract</b>How your team will work together. <span class="hint">Click to open</span></div>
+<div class="tip-src" id="tip-ia2"><b>Individual Assignment 2</b>Build your own small Docker image: the warm-up for Milestone 2.<span class="hint">Click to open</span></div>
+<div class="tip-src" id="tip-ia3"><b>Individual Assignment 3</b>Quarto report practice. You'll use it to polish your report in Milestone 4.<span class="hint">Page opens in week 3</span></div>
+<div class="tip-src" id="tip-ia4"><b>Individual Assignment 4</b>Write a Makefile: the warm-up for Milestone 4.<span class="hint">Page opens in week 4</span></div>
+<div class="tip-src" id="tip-peer"><b>Peer review</b>Review another team's project. Your team fixes some of the feedback it gets in Milestone 4.<span class="hint">Page opens in week 4</span></div>
+<div class="tip-src" id="tip-reflection"><b>Teamwork reflection</b>We want to know how you liked working together with your teammates! Write a report to share your experience.</div>
+
+<script>
+(() => {
+  const wrap = document.querySelector(".climb");
+  const bubble = wrap.querySelector(".climb-bubble");
+  const svg = wrap.querySelector("svg");
+  let current = null, lastPointer = "mouse";
+
+  // Stop the otter for anyone who asked their system for reduced motion
+  if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches && svg.pauseAnimations) svg.pauseAnimations();
+
+  // Mountains are big, so their bubble follows the pointer; small stops anchor to themselves
+  function show(el, e) {
+    const src = document.getElementById("tip-" + el.dataset.tip);
+    if (!src) return;
+    if (current !== el) {
+      if (current) current.classList.remove("on");
+      current = el; el.classList.add("on");
+      bubble.innerHTML = src.innerHTML;
+    }
+    const usePointer = el.classList.contains("peak") && e && e.clientX !== undefined;
+    const r = usePointer
+      ? { left: e.clientX, width: 0, top: e.clientY - 8, bottom: e.clientY + 8 }
+      : el.getBoundingClientRect();
+    const w = wrap.getBoundingClientRect();
+    const half = Math.min(bubble.offsetWidth, w.width) / 2;
+    const x = Math.max(half, Math.min(w.width - half, r.left + r.width / 2 - w.left));
+    const below = r.top - w.top < bubble.offsetHeight + 16;
+    bubble.classList.toggle("below", below);
+    bubble.style.left = x + "px";
+    bubble.style.top = (below ? r.bottom - w.top : r.top - w.top) + "px";
+    bubble.classList.add("show");
+  }
+  function hide() {
+    bubble.classList.remove("show");
+    if (current) current.classList.remove("on");
+    current = null;
+  }
+
+  wrap.querySelectorAll(".spot").forEach(el => {
+    el.addEventListener("pointerdown", e => { lastPointer = e.pointerType; });
+    el.addEventListener("mouseenter", e => { if (lastPointer === "mouse") show(el, e); });
+    el.addEventListener("mousemove", e => { if (lastPointer === "mouse" && el.classList.contains("peak")) show(el, e); });
+    el.addEventListener("mouseleave", () => { if (lastPointer === "mouse") hide(); });
+    el.addEventListener("focus", () => show(el));
+    el.addEventListener("blur", hide);
+    // On a phone, the first tap shows the bubble; a second tap opens the link
+    el.addEventListener("click", e => {
+      if (lastPointer !== "mouse" && current !== el) { e.preventDefault(); show(el, e); }
+    });
+  });
+  document.addEventListener("pointerdown", e => { if (!e.target.closest(".climb .spot")) hide(); });
+  wrap.querySelector(".climb-scroll").addEventListener("scroll", hide);
+})();
+</script>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/UBC-MDS\.github\.io\/DSCI_522_dsci-workflows_students\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students/edit/main/assignments/project-roadmap.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
