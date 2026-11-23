@@ -317,6 +317,10 @@ on:
   workflow_dispatch:
   # on its own: when a push changes one of these files
   push:
+    # only branch pushes, not tags: a release creates a tag, and GitHub
+    # ignores the paths filter for tag pushes, so it would run every release
+    branches:
+      - '**'
     paths:
       - Dockerfile
       - pyproject.toml
