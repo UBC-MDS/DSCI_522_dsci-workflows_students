@@ -83,9 +83,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-5a8ea6506bd74de719dafad1d662b7b4.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-b97727d30f8e1a4c9ce2384988aed94d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-4f89673cbc03fc1c12b793256e854188.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-b97727d30f8e1a4c9ce2384988aed94d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-86abfff4ea397ce80fca2e08295ab694.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-5de2174b4b58a5f5dfb3c6166fd0d0b7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-86abfff4ea397ce80fca2e08295ab694.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -339,9 +339,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>R (renv):</strong> <code>DESCRIPTION</code> with every package pinned with <code>(== x.y.z)</code>, <code>renv.lock</code>, <code>.Rprofile</code> and <code>renv/</code>. <code>DESCRIPTION</code> is required, and it <strong>must list <code>knitr</code> and <code>rmarkdown</code></strong> (Quarto needs them to run the R code in your report).</li>
 </ul></li>
 <li><p><strong>Test the build on your computer</strong> before you push: <code>docker build --tag my-project .</code> (as in Individual Assignment 2). Fixing errors here is much faster than on GitHub Actions.</p></li>
-<li><p><strong>Build and publish the image with GitHub Actions.</strong> One team member sets up Docker Hub and the GitHub <span class="term" tabindex="0" data-tip="A repository secret is a password or token saved in your GitHub repository's settings. Workflows can use it, but nobody can read it back, and it never shows up in your code or logs. Here the two secrets let the workflow log in to Docker Hub as your team.">secrets</span> (see <a href="#docker-hub-secrets">below</a>). Copy the <a href="#workflow-file">workflow below</a> into <code>.github/workflows/publish-dockerhub.yml</code>, change only its <code>IMAGE</code> line to your Docker Hub repository’s name, all in lowercase, then commit and push. It builds for <code>linux/amd64</code> (Intel/AMD) and <code>linux/arm64</code> (ARM, such as Apple silicon Macs) and publishes them under two <span class="term" tabindex="0" data-tip="A tag is a label on a Docker image, written after a colon (e.g. python:3.14-slim). One image can have several tags. Here latest always points to your newest image, and the sha- tag names the commit that built it.">tags</span>: <code>latest</code> and <code>sha-</code> plus 7 characters of the commit ID. Check that the run succeeds and that your image’s tag on Docker Hub lists <strong>both</strong> platforms.</p></li>
-<li><p><strong>Add <code>docker-compose.yml</code>.</strong> Copy the <a href="#compose-file">file below</a> into the root of your repository, and change its <code>image:</code> line to your image, pinned to the <span class="term" tabindex="0" data-tip="Every Git commit has a unique ID called its SHA (e.g. 1a2b3c4). Your workflow tags each image it pushes with the start of the SHA of the commit that built it, so the tag always points to that one exact image. The latest tag, by contrast, changes every time you publish.">commit-SHA tag</span> your workflow pushed, not <code>latest</code> (for example, <code>image: yourname/yourproject:sha-1a2b3c4</code>). Keep the <span class="term" tabindex="0" data-tip="In Docker Compose, a service is one container it manages, named under services: in docker-compose.yml. Commands such as docker compose run use that name to say which container you mean. Here the name is analysis-env.">service name</span> <code>analysis-env</code>, so the <a href="#readme-steps">commands below</a> work as written.</p></li>
-<li><p><strong>Work in the container from now on</strong>, with Positron over <span class="term" tabindex="0" data-tip="ssh (secure shell) lets you log in to another computer and work on it from your own. Here the other computer is your container: Positron connects to it over ssh, so your code runs with the container's software while your files stay in your project folder.">ssh</span> (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-ssh-positron.html">Working in a container over ssh with Positron</a>). To add a package: add it with uv or renv, commit the changed files together, let GitHub Actions publish a new image, then update the tag in <code>docker-compose.yml</code> in a pull request.</p></li>
+<li><p><strong>Build and publish the image with GitHub Actions.</strong> One team member sets up Docker Hub and the GitHub <span class="term" tabindex="0" data-tip="A repository secret is a password or token saved in your GitHub repository's settings. Workflows can use it, but nobody can read it back, and it never shows up in your code or logs. Here the two secrets let the workflow log in to Docker Hub as your team.">secrets</span> (see <a href="#docker-hub-secrets">below</a>). Copy the <a href="#workflow-file">workflow below</a> into <code>.github/workflows/publish-dockerhub.yml</code>, then commit and push (you don’t need to change anything in it). It builds for <code>linux/amd64</code> (Intel/AMD) and <code>linux/arm64</code> (ARM, such as Apple silicon Macs) and publishes them under two <span class="term" tabindex="0" data-tip="A tag is a label on a Docker image, written after a colon (e.g. python:3.14-slim). One image can have several tags. Here latest always points to your newest image, and the sha- tag names the commit that built it.">tags</span>: <code>latest</code> and <code>sha-</code> plus 7 characters of the commit ID. Check that the run succeeds and that your image’s tag on Docker Hub lists <strong>both</strong> platforms.</p></li>
+<li><p><strong>Add <code>docker-compose.yml</code>.</strong> Copy the <a href="#compose-file">file below</a> into the root of your repository, and change its <code>image:</code> line to your image, pinned to the <span class="term" tabindex="0" data-tip="Every Git commit has a unique ID called its SHA (e.g. 1a2b3c4). Your workflow tags each image it pushes with the start of the SHA of the commit that built it, so the tag always points to that one exact image. The latest tag, by contrast, changes every time you publish.">commit-SHA tag</span> your workflow pushed, not <code>latest</code> (for example, <code>image: yourname/your-github-repo-name:sha-1a2b3c4</code>). You only do this once: after that, the workflow updates the tag for you. Keep the <span class="term" tabindex="0" data-tip="In Docker Compose, a service is one container it manages, named under services: in docker-compose.yml. Commands such as docker compose run use that name to say which container you mean. Here the name is analysis-env.">service name</span> <code>analysis-env</code>, so the <a href="#readme-steps">commands below</a> work as written.</p></li>
+<li><p><strong>Work in the container from now on</strong>, with Positron over <span class="term" tabindex="0" data-tip="ssh (secure shell) lets you log in to another computer and work on it from your own. Here the other computer is your container: Positron connects to it over ssh, so your code runs with the container's software while your files stay in your project folder.">ssh</span> (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-ssh-positron.html">Working in a container over ssh with Positron</a>). To add a package: add it with uv or renv on a branch, commit the changed files together and push. GitHub Actions publishes a new image and commits its tag to <code>docker-compose.yml</code> on that branch. Then <code>git pull</code> and <code>docker compose pull</code>, and merge the branch in a pull request.</p></li>
 <li><p><strong>Update your <code>README</code></strong> so its instructions use the container (see the next section).</p></li>
 </ol>
 <div id="dockerfile" class="callout callout-style-default callout-tip callout-titled">
@@ -546,7 +546,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container callout-body">
 <p>One team member:</p>
 <ol type="1">
-<li>Creates a <strong>public</strong> Docker Hub repository for the project.</li>
+<li>Creates a <strong>public</strong> Docker Hub repository with the <strong>same name as your GitHub repository, in lowercase</strong> (e.g.&nbsp;GitHub <code>Wine_Quality_Predictor</code> becomes Docker Hub <code>wine_quality_predictor</code>).</li>
 <li>Creates a Docker Hub <a href="https://docs.docker.com/security/access-tokens/">access token</a> with Read &amp; Write permissions.</li>
 <li>Adds two <a href="https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets">repository secrets</a> to your GitHub repository (Settings &gt; Secrets and variables &gt; Actions &gt; New repository secret): <code>DOCKER_USERNAME</code> (the Docker Hub username) and <code>DOCKER_PASSWORD</code> (the access token, <strong>not</strong> the Docker Hub password).</li>
 </ol>
@@ -565,7 +565,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Job 1 runs the same <code>docker build</code> and <code>docker push</code> as Individual Assignment 2, on an Intel/AMD and an ARM computer at the same time. Job 2 puts the two images under one tag. Change only the <code>IMAGE</code> line.</p>
+<p>Job 1 runs the same <code>docker build</code> and <code>docker push</code> as Individual Assignment 2, on an Intel/AMD and an ARM computer at the same time. Job 2 puts the two images under one tag. Job 3 writes that new tag into your <code>docker-compose.yml</code> and commits it to the branch you pushed. You don’t need to change anything: the workflow names your image from the <code>DOCKER_USERNAME</code> secret and your GitHub repository’s name.</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>.github/workflows/publish-dockerhub.yml</strong></pre>
@@ -589,64 +589,105 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> .github/workflows/publish-dockerhub.yml</span></span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="fu">env</span><span class="kw">:</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">  # CHANGE THIS LINE: your Docker Hub username / repository name, in lowercase</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">IMAGE</span><span class="kw">:</span><span class="at"> your-docker-hub-username/your-repository-name</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co">  # Job 1: build the image on two computers at the same time,</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co">  # one Intel/AMD and one ARM, and push one tag from each</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">build</span><span class="kw">:</span></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">strategy</span><span class="kw">:</span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">matrix</span><span class="kw">:</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">include</span><span class="kw">:</span></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="kw">-</span><span class="at"> </span><span class="fu">runner</span><span class="kw">:</span><span class="at"> ubuntu-latest</span><span class="co">     # Intel/AMD</span></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="at">            </span><span class="fu">arch</span><span class="kw">:</span><span class="at"> amd64</span></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="kw">-</span><span class="at"> </span><span class="fu">runner</span><span class="kw">:</span><span class="at"> ubuntu-24.04-arm</span><span class="co">  # ARM</span></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="at">            </span><span class="fu">arch</span><span class="kw">:</span><span class="at"> arm64</span></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ${{ matrix.runner }}</span></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="co">      # 1. Copy your repository onto the computer</span></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Check out the repository</span></span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v7</span></span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="co">      # 2. Log in to Docker Hub with your two repository secrets</span></span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Log in to Docker Hub</span></span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> docker/login-action@v4</span></span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">username</span><span class="kw">:</span><span class="at"> ${{ secrets.DOCKER_USERNAME }}</span></span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">password</span><span class="kw">:</span><span class="at"> ${{ secrets.DOCKER_PASSWORD }}</span></span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="co">      # 3. Build the image for this computer, tagged for example sha-1a2b3c4-arm64</span></span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="co">      #    (sha- plus the first 7 characters of the commit ID, plus the chip)</span></span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Build the image</span></span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">run</span><span class="kw">:</span><span class="at"> docker build --tag "$IMAGE:sha-${GITHUB_SHA::7}-${{ matrix.arch }}" .</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">  # Your image: your Docker Hub username / this GitHub repository's name.</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">  # Nothing to change here.</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">IMAGE_NAME</span><span class="kw">:</span><span class="at"> ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co">  # Job 1: build the image on two computers at the same time,</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co">  # one Intel/AMD and one ARM, and push one tag from each</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">build</span><span class="kw">:</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">strategy</span><span class="kw">:</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">matrix</span><span class="kw">:</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">include</span><span class="kw">:</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="kw">-</span><span class="at"> </span><span class="fu">runner</span><span class="kw">:</span><span class="at"> ubuntu-latest</span><span class="co">     # Intel/AMD</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="at">            </span><span class="fu">arch</span><span class="kw">:</span><span class="at"> amd64</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="kw">-</span><span class="at"> </span><span class="fu">runner</span><span class="kw">:</span><span class="at"> ubuntu-24.04-arm</span><span class="co">  # ARM</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="at">            </span><span class="fu">arch</span><span class="kw">:</span><span class="at"> arm64</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ${{ matrix.runner }}</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="co">      # 1. Docker image names must be lowercase, so save a lowercase copy as IMAGE</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Make the image name lowercase</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">run</span><span class="kw">:</span><span class="at"> echo "IMAGE=$(echo "$IMAGE_NAME" | tr '[:upper:]' '[:lower:]')" &gt;&gt; "$GITHUB_ENV"</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="co">      # 2. Copy your repository onto the computer</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Check out the repository</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v7</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="co">      # 3. Log in to Docker Hub with your two repository secrets</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Log in to Docker Hub</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> docker/login-action@v4</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">username</span><span class="kw">:</span><span class="at"> ${{ secrets.DOCKER_USERNAME }}</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">password</span><span class="kw">:</span><span class="at"> ${{ secrets.DOCKER_PASSWORD }}</span></span>
 <span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="co">      # 4. Upload it to Docker Hub</span></span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Push the image</span></span>
-<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">run</span><span class="kw">:</span><span class="at"> docker push "$IMAGE:sha-${GITHUB_SHA::7}-${{ matrix.arch }}"</span></span>
-<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a><span class="co">  # Job 2: after both builds finish, put the two images under one tag,</span></span>
-<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="co">  # so each computer downloads the one for its chip</span></span>
-<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">combine</span><span class="kw">:</span></span>
-<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">needs</span><span class="kw">:</span><span class="at"> build</span></span>
-<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
-<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
-<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Log in to Docker Hub</span></span>
-<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> docker/login-action@v4</span></span>
-<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">username</span><span class="kw">:</span><span class="at"> ${{ secrets.DOCKER_USERNAME }}</span></span>
-<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">password</span><span class="kw">:</span><span class="at"> ${{ secrets.DOCKER_PASSWORD }}</span></span>
-<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a><span class="co">      # Make the tags latest and sha-1a2b3c4, each holding both images</span></span>
-<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Combine the two images under one tag</span></span>
-<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a><span class="fu">        run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>          docker buildx imagetools create \</span>
-<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>            --tag "$IMAGE:latest" \</span>
-<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>            --tag "$IMAGE:sha-${GITHUB_SHA::7}" \</span>
-<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>            "$IMAGE:sha-${GITHUB_SHA::7}-amd64" \</span>
-<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>            "$IMAGE:sha-${GITHUB_SHA::7}-arm64"</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="co">      # 4. Build the image for this computer, tagged for example sha-1a2b3c4-arm64</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="co">      #    (sha- plus the first 7 characters of the commit ID, plus the chip)</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Build the image</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">run</span><span class="kw">:</span><span class="at"> docker build --tag "$IMAGE:sha-${GITHUB_SHA::7}-${{ matrix.arch }}" .</span></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="co">      # 5. Upload it to Docker Hub</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Push the image</span></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">run</span><span class="kw">:</span><span class="at"> docker push "$IMAGE:sha-${GITHUB_SHA::7}-${{ matrix.arch }}"</span></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="co">  # Job 2: after both builds finish, put the two images under one tag,</span></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="co">  # so each computer downloads the one for its chip</span></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">combine</span><span class="kw">:</span></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">needs</span><span class="kw">:</span><span class="at"> build</span></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a><span class="co">      # Docker image names must be lowercase, so save a lowercase copy as IMAGE</span></span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Make the image name lowercase</span></span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">run</span><span class="kw">:</span><span class="at"> echo "IMAGE=$(echo "$IMAGE_NAME" | tr '[:upper:]' '[:lower:]')" &gt;&gt; "$GITHUB_ENV"</span></span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Log in to Docker Hub</span></span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> docker/login-action@v4</span></span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">username</span><span class="kw">:</span><span class="at"> ${{ secrets.DOCKER_USERNAME }}</span></span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">password</span><span class="kw">:</span><span class="at"> ${{ secrets.DOCKER_PASSWORD }}</span></span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a><span class="co">      # Make the tags latest and sha-1a2b3c4, each holding both images</span></span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Combine the two images under one tag</span></span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a><span class="fu">        run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>          docker buildx imagetools create \</span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>            --tag "$IMAGE:latest" \</span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a>            --tag "$IMAGE:sha-${GITHUB_SHA::7}" \</span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a>            "$IMAGE:sha-${GITHUB_SHA::7}-amd64" \</span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>            "$IMAGE:sha-${GITHUB_SHA::7}-arm64"</span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a><span class="co">  # Job 3: write the new tag into docker-compose.yml and commit it</span></span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a><span class="co">  # to the branch you pushed, so your team only has to git pull</span></span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">update-compose</span><span class="kw">:</span></span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">needs</span><span class="kw">:</span><span class="at"> combine</span></span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a><span class="co">    # lets this job push a commit to your repository</span></span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">permissions</span><span class="kw">:</span></span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">contents</span><span class="kw">:</span><span class="at"> write</span></span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Check out the repository</span></span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v7</span></span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a><span class="co">      # Replace the image: line, e.g. image: yourname/your-repo:sha-1a2b3c4</span></span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a><span class="co">      # (skipped if you have no docker-compose.yml yet)</span></span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Put the new tag in docker-compose.yml</span></span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">if</span><span class="kw">:</span><span class="at"> hashFiles('docker-compose.yml') != ''</span></span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a><span class="fu">        run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>          IMAGE=$(echo "$IMAGE_NAME" | tr '[:upper:]' '[:lower:]')</span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a>          sed -i "s|^\( *image:\).*|\1 $IMAGE:sha-${GITHUB_SHA::7}|" docker-compose.yml</span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a><span class="co">      # Commit and push the change (does nothing if the file didn't change)</span></span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Commit and push docker-compose.yml</span></span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">if</span><span class="kw">:</span><span class="at"> hashFiles('docker-compose.yml') != ''</span></span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a><span class="fu">        run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a>          git config user.name "github-actions[bot]"</span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a>          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"</span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a>          git add docker-compose.yml</span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a>          git diff --cached --quiet &amp;&amp; exit 0</span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a>          git commit -m "Use image tag sha-${GITHUB_SHA::7} in docker-compose.yml"</span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a>          git pull --rebase</span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a>          git push</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>It runs on its own when a push changes the <code>Dockerfile</code>, a lock file or the workflow file. To run it by hand: <strong>Actions</strong> tab &gt; <strong>Publish image to Docker Hub</strong> &gt; <strong>Run workflow</strong>. On Docker Hub you will see four tags: <code>latest</code>, <code>sha-1a2b3c4</code>, and the two halves <code>sha-1a2b3c4-amd64</code> and <code>sha-1a2b3c4-arm64</code>. Use the one without <code>-amd64</code> or <code>-arm64</code> in <code>docker-compose.yml</code>.</p>
+<p>It runs on its own when a push changes the <code>Dockerfile</code>, a lock file or the workflow file. To run it by hand: <strong>Actions</strong> tab &gt; <strong>Publish image to Docker Hub</strong> &gt; <strong>Run workflow</strong>. On Docker Hub you will see four tags: <code>latest</code>, <code>sha-1a2b3c4</code>, and the two halves <code>sha-1a2b3c4-amd64</code> and <code>sha-1a2b3c4-arm64</code>. Job 3 puts the one without <code>-amd64</code> or <code>-arm64</code> in <code>docker-compose.yml</code> for you. Then run <strong><code>git pull</code></strong> to get that commit, and <code>docker compose pull</code> to download the new image.</p>
 </div>
 </div>
 </div>
@@ -673,17 +714,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">services</span><span class="kw">:</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">  # the service name: `docker compose run analysis-env ...` uses it</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">analysis-env</span><span class="kw">:</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">    # CHANGE THIS LINE: your image on Docker Hub,</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">    # with the sha- tag your workflow pushed (not latest)</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> your-docker-hub-username/your-repository-name:sha-1a2b3c4</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">      # 2222 on your computer, 22 (ssh) in the container</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"2222:22"</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">      # your project folder, at /workspace in the container</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> .:/workspace</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">      # your ssh public key, so you can log in (ro: read-only)</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ~/.ssh/id_ed25519.pub:/root/.ssh/authorized_keys:ro</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">    # CHANGE THIS LINE once: your Docker Hub username / your GitHub repository's</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">    # name in lowercase, with the sha- tag your workflow pushed (not latest).</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">    # After that, the workflow updates the tag for you.</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> your-docker-hub-username/your-github-repo-name:sha-1a2b3c4</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">      # 2222 on your computer, 22 (ssh) in the container</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"2222:22"</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">volumes</span><span class="kw">:</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">      # your project folder, at /workspace in the container</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> .:/workspace</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">      # your ssh public key, so you can log in (ro: read-only)</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ~/.ssh/id_ed25519.pub:/root/.ssh/authorized_keys:ro</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>There is no <code>build: .</code> line: everyone downloads the image your workflow published, instead of building their own.</p>
 </div>
@@ -702,7 +744,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 Add your report’s path after <code>quarto render</code> if your project has no <code>_quarto.yml</code> that lists it.</li>
 <li>Work in the container: <code>docker compose up -d</code> starts it, then connect with Positron over ssh. <code>docker compose down</code> stops it.</li>
-<li>Update the container: add a package with your environment manager, commit and push, wait for GitHub Actions to publish the new image, then update the tag in <code>docker-compose.yml</code> and run <code>docker compose pull</code>.</li>
+<li>Update the container: add a package with your environment manager, commit and push, wait for GitHub Actions to publish the new image and update the tag in <code>docker-compose.yml</code>, then run <code>git pull</code> and <code>docker compose pull</code>.</li>
 </ol>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
