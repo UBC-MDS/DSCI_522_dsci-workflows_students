@@ -4069,7 +4069,7 @@
     "href": "slides/slides/slides_03.html#ia2-in-three-steps",
     "title": "DSCI 522 Lecture 3",
     "section": "IA2 in three steps",
-    "text": "IA2 in three steps\n\n\n\n\n\n\n\n\nStep\nWhat you make\nWhere it runs\n\n\n\n\n1\nA uv project with cowsay and numpy, pinned with ==\nyour laptop\n\n\n2\nA Dockerfile that installs them, tested with docker build and docker run\nyour laptop\n\n\n3\nA workflow that builds the image and pushes it to Docker Hub\nGitHub Actions\n\n\n\nInstructions and all the code: Individual Assignment 2\n\nLaptop → GitHub → GitHub Actions → Docker Hub → your teammate’s laptop\n\n\nPoint at the arrows: this is the same path your Milestone 2 image takes. IA2 is the small practice version with two packages.\nThe assignment page has all the code in collapsible boxes. Today I demo it live from that page, so you see where each piece comes from and what can go wrong. The slides only hold what is not on the IA2 page."
+    "text": "IA2 in three steps\n\n\n\n\n\n\n\n\nStep\nWhat you make\nWhere it runs\n\n\n\n\n1\nA uv project with cowsay and numpy, pinned with ==\nyour laptop\n\n\n2\nA Dockerfile that installs them, tested with docker build and docker run\nyour laptop\n\n\n3\nA workflow that builds the image and pushes it to Docker Hub\nGitHub Actions\n\n\n\nInstructions and all the code: Individual Assignment 2\n\nLaptop → GitHub → GitHub Actions → Docker Hub → your teammate’s laptop"
   },
   {
     "objectID": "slides/slides/slides_03.html#some-data-science-conventions",
