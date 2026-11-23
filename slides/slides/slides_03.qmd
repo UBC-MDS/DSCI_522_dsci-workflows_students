@@ -87,12 +87,12 @@ You are welcome to book a time with me here, to chat about Milestone 1, Mileston
 # 1. open a container, install cowsay, check it works
 docker run --rm -it python:3.14-slim bash
 pip install cowsay
-python -c "import cowsay"      # works
+python -c "import cowsay; cowsay.cow('Hello from the container!')"     # works
 exit
 
 # 2. open the same image again
 docker run --rm -it python:3.14-slim bash
-python -c "import cowsay"
+python -c "import cowsay; cowsay.cow('Hello from the container!')"
 ```
 
 What happens in step 2?
@@ -102,8 +102,6 @@ What happens in step 2?
 :::
 
 ::: {.notes}
-Ask the class to guess before revealing. Run it live if there is time (tested: step 2 prints `ModuleNotFoundError: No module named 'cowsay'`).
-
 Back to the classroom container from last lecture: the image is the blueprint, a container is one room built from it. Installing cowsay changed the room, not the blueprint. `--rm` demolished the room. The next `docker run` builds a fresh room from the same blueprint, without cowsay.
 
 So: if we want cowsay in every room, we have to change the blueprint. That is today.
