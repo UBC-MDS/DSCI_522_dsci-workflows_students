@@ -190,7 +190,8 @@ If your team doesn't have both, ask another team to test them.
     a branch for each feature or fix, reviewed by at least one teammate before the pull request is merged.
 -   Commit and push every time you work on the project, with meaningful commit messages
     (one or two less meaningful ones are OK).
--   Talk to your teammates in GitHub issues, not email or Slack.
+-   Talk to your teammates in GitHub issues, not email or Slack:
+    at least 3 issues per person on average in this milestone.
 -   Your question, analysis and visualization should make sense. They don't have to be complicated.
 -   Your analysis should be correct and run reproducibly from your `README` instructions.
 -   Follow the [black style guide](https://black.readthedocs.io/en/stable/the_black_code_style/index.html) (Python)
