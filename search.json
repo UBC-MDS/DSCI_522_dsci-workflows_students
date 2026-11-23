@@ -711,7 +711,7 @@
     "href": "slides/lecture.html",
     "title": "Lecture Overview",
     "section": "",
-    "text": "Title\n\n\nDescription\n\n\n\n\n\n\n1. Introduction to Reproducible and Trustworthy Data Science Workflow\n\n\nSee what goes wrong when analyses are untested or cannot be reproduced. Learn what makes an analysis reproducible, auditable and trustworthy.\n\n\n\n\n2. uv Lock Files, Containerization, and Docker\n\n\nRecap uv: what pyproject.toml, uv.lock and .python-version each hold and how uv sync rebuilds an environment. Then meet Docker: what a container is, how it differs from a virtual machine, and how to run one with ports, volumes and environment variables.\n\n\n\n\n3. Customizing and Building Containers coming soon\n\n\nRecap virtual environments and lock files, launch containers with a docker-compose.yml file, and write a Dockerfile to build your own image from the command line.\n\n\n\n\n4. Data Validation with Pandera coming soon\n\n\nAutomate building and pushing a Docker image to Docker Hub with GitHub Actions, organize the complete workflow, then walk through the data validation checklist and check a dataset with Pandera.\n\n\n\n\n5. Non-interactive scripts coming soon\n\n\nWrap up Docker, then compare interactive (REPL) work with scripts. Organize a Python script, write docstrings, parse command line arguments with click, and save model objects.\n\n\n\n\n6. Reproducible reports coming soon\n\n\nRecap the Python main guard, see why reports written in WYSIWYG editors are hard to reproduce, and learn about syntax of writing beautiful Quarto report.\n\n\n\n\n7. Data Analysis Pipeline and GNU Make coming soon\n\n\nLearn what a data analysis pipeline is, run one with a shell script, see where shell scripts fall short, and use a Makefile to rebuild only what changed.\n\n\n\n\n8. Testing Code & Conclusion coming soon\n\n\nModularize scripts into functions, plan test cases, create simple test data, and write tests in Python and R. Then a look back at everything in the course.\n\n\n\n\nNo matching items",
+    "text": "Title\n\n\nDescription\n\n\n\n\n\n\n1. Introduction to Reproducible and Trustworthy Data Science Workflow\n\n\nSee what goes wrong when analyses are untested or cannot be reproduced. Learn what makes an analysis reproducible, auditable and trustworthy.\n\n\n\n\n2. uv Lock Files, Containerization, and Docker\n\n\nRecap uv: what pyproject.toml, uv.lock and .python-version each hold and how uv sync rebuilds an environment. Then meet Docker: what a container is, how it differs from a virtual machine, and how to run one with ports, volumes and environment variables.\n\n\n\n\n3. Customizing and Building Containers\n\n\nRecap virtual environments and lock files, launch containers with a docker-compose.yml file, and write a Dockerfile to build your own image from the command line.\n\n\n\n\n4. Data Validation with Pandera coming soon\n\n\nAutomate building and pushing a Docker image to Docker Hub with GitHub Actions, organize the complete workflow, then walk through the data validation checklist and check a dataset with Pandera.\n\n\n\n\n5. Non-interactive scripts coming soon\n\n\nWrap up Docker, then compare interactive (REPL) work with scripts. Organize a Python script, write docstrings, parse command line arguments with click, and save model objects.\n\n\n\n\n6. Reproducible reports coming soon\n\n\nRecap the Python main guard, see why reports written in WYSIWYG editors are hard to reproduce, and learn about syntax of writing beautiful Quarto report.\n\n\n\n\n7. Data Analysis Pipeline and GNU Make coming soon\n\n\nLearn what a data analysis pipeline is, run one with a shell script, see where shell scripts fall short, and use a Makefile to rebuild only what changed.\n\n\n\n\n8. Testing Code & Conclusion coming soon\n\n\nModularize scripts into functions, plan test cases, create simple test data, and write tests in Python and R. Then a look back at everything in the course.\n\n\n\n\nNo matching items",
     "crumbs": [
       "Lecture Overview"
     ]
@@ -721,7 +721,7 @@
     "href": "slides/lecture.html#schedule",
     "title": "Lecture Overview",
     "section": "",
-    "text": "Title\n\n\nDescription\n\n\n\n\n\n\n1. Introduction to Reproducible and Trustworthy Data Science Workflow\n\n\nSee what goes wrong when analyses are untested or cannot be reproduced. Learn what makes an analysis reproducible, auditable and trustworthy.\n\n\n\n\n2. uv Lock Files, Containerization, and Docker\n\n\nRecap uv: what pyproject.toml, uv.lock and .python-version each hold and how uv sync rebuilds an environment. Then meet Docker: what a container is, how it differs from a virtual machine, and how to run one with ports, volumes and environment variables.\n\n\n\n\n3. Customizing and Building Containers coming soon\n\n\nRecap virtual environments and lock files, launch containers with a docker-compose.yml file, and write a Dockerfile to build your own image from the command line.\n\n\n\n\n4. Data Validation with Pandera coming soon\n\n\nAutomate building and pushing a Docker image to Docker Hub with GitHub Actions, organize the complete workflow, then walk through the data validation checklist and check a dataset with Pandera.\n\n\n\n\n5. Non-interactive scripts coming soon\n\n\nWrap up Docker, then compare interactive (REPL) work with scripts. Organize a Python script, write docstrings, parse command line arguments with click, and save model objects.\n\n\n\n\n6. Reproducible reports coming soon\n\n\nRecap the Python main guard, see why reports written in WYSIWYG editors are hard to reproduce, and learn about syntax of writing beautiful Quarto report.\n\n\n\n\n7. Data Analysis Pipeline and GNU Make coming soon\n\n\nLearn what a data analysis pipeline is, run one with a shell script, see where shell scripts fall short, and use a Makefile to rebuild only what changed.\n\n\n\n\n8. Testing Code & Conclusion coming soon\n\n\nModularize scripts into functions, plan test cases, create simple test data, and write tests in Python and R. Then a look back at everything in the course.\n\n\n\n\nNo matching items",
+    "text": "Title\n\n\nDescription\n\n\n\n\n\n\n1. Introduction to Reproducible and Trustworthy Data Science Workflow\n\n\nSee what goes wrong when analyses are untested or cannot be reproduced. Learn what makes an analysis reproducible, auditable and trustworthy.\n\n\n\n\n2. uv Lock Files, Containerization, and Docker\n\n\nRecap uv: what pyproject.toml, uv.lock and .python-version each hold and how uv sync rebuilds an environment. Then meet Docker: what a container is, how it differs from a virtual machine, and how to run one with ports, volumes and environment variables.\n\n\n\n\n3. Customizing and Building Containers\n\n\nRecap virtual environments and lock files, launch containers with a docker-compose.yml file, and write a Dockerfile to build your own image from the command line.\n\n\n\n\n4. Data Validation with Pandera coming soon\n\n\nAutomate building and pushing a Docker image to Docker Hub with GitHub Actions, organize the complete workflow, then walk through the data validation checklist and check a dataset with Pandera.\n\n\n\n\n5. Non-interactive scripts coming soon\n\n\nWrap up Docker, then compare interactive (REPL) work with scripts. Organize a Python script, write docstrings, parse command line arguments with click, and save model objects.\n\n\n\n\n6. Reproducible reports coming soon\n\n\nRecap the Python main guard, see why reports written in WYSIWYG editors are hard to reproduce, and learn about syntax of writing beautiful Quarto report.\n\n\n\n\n7. Data Analysis Pipeline and GNU Make coming soon\n\n\nLearn what a data analysis pipeline is, run one with a shell script, see where shell scripts fall short, and use a Makefile to rebuild only what changed.\n\n\n\n\n8. Testing Code & Conclusion coming soon\n\n\nModularize scripts into functions, plan test cases, create simple test data, and write tests in Python and R. Then a look back at everything in the course.\n\n\n\n\nNo matching items",
     "crumbs": [
       "Lecture Overview"
     ]
@@ -759,14 +759,20 @@
     "href": "slides/lec_03.html",
     "title": "3. Customizing and Building Containers",
     "section": "",
-    "text": "View slides in full screen"
+    "text": "View slides in full screen",
+    "crumbs": [
+      "3. Customizing and Building Containers"
+    ]
   },
   {
     "objectID": "slides/lec_03.html#slides-for-section-001",
     "href": "slides/lec_03.html#slides-for-section-001",
     "title": "3. Customizing and Building Containers",
     "section": "",
-    "text": "View slides in full screen"
+    "text": "View slides in full screen",
+    "crumbs": [
+      "3. Customizing and Building Containers"
+    ]
   },
   {
     "objectID": "slides/lec_01.html",
@@ -2070,6 +2076,20 @@
     "text": "What is version control?\n\nAn example of collaborative version control: moo4feed R package development\nGoing back in time with Git\nGit branches\n\n\n\nlanding page, functions, tutorials etc\nTravel back in time: commits –&gt; time to “April 2025” –&gt; &lt; &gt;\nissues for communication –&gt; “labels”, “assignees”, “@someone”\nproject for organizing issues\nbranches for developing new features –&gt; meaningful name (what are you doing), not your own name\nPR show number 83 –&gt; communication, human review, cursor bugbot review double check\nshow the branch history and merge history on cursor for moo4feed\n.gitignore file"
   },
   {
+    "objectID": "slides/slides/slides_03.html#milestone-1",
+    "href": "slides/slides/slides_03.html#milestone-1",
+    "title": "DSCI 522 Lecture 3",
+    "section": "Milestone 1",
+    "text": "Milestone 1\n\n\nImage generated by OpenAI gpt-image-2.5-sunburst.\n\n\n\nI really appreciate all of your feedback about Milestone 1!\nSincere apology for confusion, changes in home page.\nshow Milestone2, new webpage."
+  },
+  {
+    "objectID": "slides/slides/slides_03.html#office-hours-by-appointment",
+    "href": "slides/slides/slides_03.html#office-hours-by-appointment",
+    "title": "DSCI 522 Lecture 3",
+    "section": "Office hours: by appointment",
+    "text": "Office hours: by appointment\nYou are welcome to book a time with me here, to chat about Milestone 1, Milestone 2, or otters, life, anything!\nhttps://cal.com/sky-sheng-iubzdr/dsci-522-sky-oh-by-appointment"
+  },
+  {
     "objectID": "slides/slides/slides_03.html#iclicker-how-is-your-group-collaboration-going",
     "href": "slides/slides/slides_03.html#iclicker-how-is-your-group-collaboration-going",
     "title": "DSCI 522 Lecture 3",
@@ -2077,102 +2097,151 @@
     "text": "😺 iClicker: How is your group collaboration going?\n\n\n(A)\n\n\n\n\n\n\n(B)\n\n\n\n\n\n\n(C)\n\n\n\n\n\nSource"
   },
   {
-    "objectID": "slides/slides/slides_03.html#uv-recap-which-command-would-you-type-to",
-    "href": "slides/slides/slides_03.html#uv-recap-which-command-would-you-type-to",
+    "objectID": "slides/slides/slides_03.html#where-did-cowsay-go",
+    "href": "slides/slides/slides_03.html#where-did-cowsay-go",
     "title": "DSCI 522 Lecture 3",
-    "section": "uv recap: which command would you type to…",
-    "text": "uv recap: which command would you type to…\n\n\nstart a new project\nchoose the Python version\nadd a package\nremove a package\nrebuild .venv/ after cloning a teammate’s repository\nrun a script inside the environment\nupgrade the packages to newer versions\nsee which package pulled in which\n\n\n\nAsk the class to shout out the commands before showing the next slide. This is a two minute recap of lecture 2: the Dockerfile demo today uses the same three files."
+    "section": "Where did cowsay go?",
+    "text": "Where did cowsay go?\n# 1. open a container, install cowsay, check it works\ndocker run --rm -it python:3.14-slim bash\npip install cowsay\npython -c \"import cowsay\"      # works\nexit\n\n# 2. open the same image again\ndocker run --rm -it python:3.14-slim bash\npython -c \"import cowsay\"\nWhat happens in step 2?\n\nModuleNotFoundError: No module named 'cowsay'\n\n\nAsk the class to guess before revealing. Run it live if there is time (tested: step 2 prints ModuleNotFoundError: No module named 'cowsay').\nBack to the classroom container from last lecture: the image is the blueprint, a container is one room built from it. Installing cowsay changed the room, not the blueprint. --rm demolished the room. The next docker run builds a fresh room from the same blueprint, without cowsay.\nSo: if we want cowsay in every room, we have to change the blueprint. That is today."
   },
   {
-    "objectID": "slides/slides/slides_03.html#uv-recap-the-answers",
-    "href": "slides/slides/slides_03.html#uv-recap-the-answers",
+    "objectID": "slides/slides/slides_03.html#change-the-blueprint-not-the-room",
+    "href": "slides/slides/slides_03.html#change-the-blueprint-not-the-room",
     "title": "DSCI 522 Lecture 3",
-    "section": "uv recap: the answers",
-    "text": "uv recap: the answers\n\n\n\n\nTask\nCommand\n\n\n\n\nStart a new project\nuv init --bare\n\n\nChoose the Python version\nuv python pin 3.14\n\n\nAdd a package\nuv add pandas\n\n\nRemove a package\nuv remove pandas\n\n\nRebuild .venv/ from uv.lock\nuv sync\n\n\nRun a script inside the environment\nuv run python script.py\n\n\nUpgrade the packages\nuv lock --upgrade, then uv sync\n\n\nSee which package pulled in which\nuv tree\n\n\n\n\nPush pyproject.toml, uv.lock and .python-version. Never push .venv/.\n\nMore commands: uv cheatsheet and the DSCI 521 uv notes."
+    "section": "Change the blueprint, not the room",
+    "text": "Change the blueprint, not the room\n\nA Dockerfile is a plain text file with the instructions to build an image\ndocker build follows it, line by line, and saves the result as an image\nEveryone who builds it, or downloads the image, gets the same rooms\n\n\nToday we walk through Individual Assignment 2 together, step by step.\n\n\n\nA Dockerfile is the written list of instructions the builders follow, so anyone can rebuild the same blueprint. Building an image by hand and saving it (docker commit) also exists, but nobody can see what you did. The Dockerfile is transparent: it is in Git, people can read it and review it."
+  },
+  {
+    "objectID": "slides/slides/slides_03.html#ia2-in-three-steps",
+    "href": "slides/slides/slides_03.html#ia2-in-three-steps",
+    "title": "DSCI 522 Lecture 3",
+    "section": "IA2 in three steps",
+    "text": "IA2 in three steps\n\n\n\n\n\n\n\n\nStep\nWhat you make\nWhere it runs\n\n\n\n\n1\nA uv project with cowsay and numpy, pinned with ==\nyour laptop\n\n\n2\nA Dockerfile that installs them, tested with docker build and docker run\nyour laptop\n\n\n3\nA workflow that builds the image and pushes it to Docker Hub\nGitHub Actions\n\n\n\nInstructions and all the code: Individual Assignment 2\n\nLaptop → GitHub → GitHub Actions → Docker Hub → your teammate’s laptop\n\n\nPoint at the arrows: this is the same path your Milestone 2 image takes. IA2 is the small practice version with two packages.\nThe assignment page has all the code in collapsible boxes. Today I demo it live from that page, so you see where each piece comes from and what can go wrong. The slides only hold what is not on the IA2 page."
   },
   {
     "objectID": "slides/slides/slides_03.html#some-data-science-conventions",
     "href": "slides/slides/slides_03.html#some-data-science-conventions",
     "title": "DSCI 522 Lecture 3",
     "section": "Some data science conventions",
-    "text": "Some data science conventions\n\n\n🐍 Use snake_case for all folder & file names (lowercase + underscore)\nUse Markdown for documentation.\n\nNeed a review? Here is the markdown tutorial\n\nyaml (.yml or .yaml) files for data storage and system configurations (NOT for documentation)\n\nYAML = Yet Another Markup Language\nNo use of strict symbols (e.g., braces, square brackets)\nUse # for comments\nPython style indentation using whitespace (NOT TABS)\nJSON is subset of YAML. JSON file can be parsed by a YAML parser."
+    "text": "Some data science conventions\n\nFolder and file names: snake_case (lowercase + underscore), no spaces\nDocumentation (README.md): Markdown. Need a review? Markdown tutorial\nSettings and configuration: YAML (.yml or .yaml), not for documentation\n\nStructure comes from indentation with spaces, never tabs\n# starts a comment\nJSON is a subset of YAML: a YAML reader can read a JSON file\n\n\n\nToday we write two YAML files: the GitHub Actions workflow and docker-compose.yml. A tab instead of spaces is the most common reason they break.\nRepository and image names are the exception to snake_case: GitHub and Docker Hub names usually use hyphens, like dsci522-dockerfile-practice, and Docker Hub names must be lowercase."
   },
   {
-    "objectID": "slides/slides/slides_03.html#docker-recap",
-    "href": "slides/slides/slides_03.html#docker-recap",
+    "objectID": "slides/slides/slides_03.html#demo-ia2-steps-1-and-2",
+    "href": "slides/slides/slides_03.html#demo-ia2-steps-1-and-2",
     "title": "DSCI 522 Lecture 3",
-    "section": "🚢 Docker Recap",
-    "text": "🚢 Docker Recap\n\n⚠️ Command lines are very sensitive to whitespace and quotation marks!\n\ndocker run \\\n    --rm \\\n    -p 8788:8787 \\\n    -e PASSWORD=\"apassword\" \\\n    rocker/rstudio:4.4.2\n\n🏷️ Don’t use the TAG latest for the image, use the specific version tag instead.\nDocker commands: Docker cheatsheet"
+    "section": "Demo: IA2 steps 1 and 2",
+    "text": "Demo: IA2 steps 1 and 2\nFollow along on the IA2 page: make the repository and the uv project.\n\nOpen the IA2 page in the browser, steps 1 and 2, and the “Commands to make the project” box (uv tab). Work from it.\nBrowser, step by step:\n\ngithub.com, top right +, New repository.\nOwner: my personal account. Name: dsci522-dockerfile-practice. Public. Tick “Add a README”. Create repository.\nGreen Code button, copy the HTTPS URL.\n\nTerminal, step by step (tested with uv 0.12.10, Docker 29.7.2):\n\ncd ~/Desktop/github/dsci522\ngit clone &lt;paste the URL&gt;\ncd dsci522-dockerfile-practice\nuv init --bare → only pyproject.toml.\nuv python pin 3.14 → .python-version.\nnano pyproject.toml, add at the bottom:\n[tool.uv]\nadd-bounds = \"exact\"\nthen Ctrl + X, Y, Enter.\nuv add cowsay numpy → installs cowsay 6.1 and numpy 2.5.5.\ncat pyproject.toml → point at \"cowsay==6.1\" and \"numpy==2.5.5\". The == is what the rubric checks: without add-bounds = \"exact\" uv writes &gt;=, which is minus 15%.\necho \".venv/\" &gt;&gt; .gitignore\ngit add pyproject.toml uv.lock .python-version .gitignore\ngit commit -m \"Add uv project with cowsay and numpy\"\ngit push"
   },
   {
-    "objectID": "slides/slides/slides_03.html#docker-compose.yml-file-comes-to-the-rescue",
-    "href": "slides/slides/slides_03.html#docker-compose.yml-file-comes-to-the-rescue",
+    "objectID": "slides/slides/slides_03.html#how-to-write-a-dockerfile-without-pain",
+    "href": "slides/slides/slides_03.html#how-to-write-a-dockerfile-without-pain",
     "title": "DSCI 522 Lecture 3",
-    "section": "🤩 docker-compose.yml file comes to the rescue!",
-    "text": "🤩 docker-compose.yml file comes to the rescue!\nservices:\n  analysis-env:\n    image: rocker/rstudio:4.4.2\n    ports:\n      - \"8789:8787\"\n    volumes:\n      - .:/home/rstudio/project\n    environment:\n      PASSWORD: password\n    deploy:\n      resources:\n        limits:\n          memory: 5G"
+    "section": "How to write a Dockerfile without pain",
+    "text": "How to write a Dockerfile without pain\n\nPick a base image from Docker Hub, write FROM &lt;base image&gt;\nOpen a container from it: docker run --rm -it &lt;base image&gt; bash\nTry your install commands by hand until they work\nCopy the ones that worked into the Dockerfile\ndocker build after every 2 or 3 new lines\nWorks on your laptop? Only then move to GitHub Actions\n\n\nFrom the textbook chapter “Customizing and building containers”. Debugging a build on GitHub Actions takes minutes per try. Debugging in a container on your laptop takes seconds.\nLive, step 2 and 3 (short):\n\ndocker run --rm -it ubuntu:24.04 bash\ncat /etc/os-release → Ubuntu 24.04.\npython3 --version → command not found. Ubuntu has no Python at all. Good: uv installs the Python version we pinned, so we get exactly 3.14.\nexit"
   },
   {
-    "objectID": "slides/slides/slides_03.html#but-how-to-use-docker-compose.yml",
-    "href": "slides/slides/slides_03.html#but-how-to-use-docker-compose.yml",
+    "objectID": "slides/slides/slides_03.html#demo-ia2-steps-3-and-4",
+    "href": "slides/slides/slides_03.html#demo-ia2-steps-3-and-4",
     "title": "DSCI 522 Lecture 3",
-    "section": "😳 But how to use docker-compose.yml?",
-    "text": "😳 But how to use docker-compose.yml?\n\nLaunch the container: docker compose up\nStop the container: type Cntrl + C in the terminal where you launched the container, and then type docker-compose rm\nRead more in the textbook here"
+    "section": "Demo: IA2 steps 3 and 4",
+    "text": "Demo: IA2 steps 3 and 4\nFollow along on the IA2 page: write the Dockerfile, build it, test it.\n\nIA2 page: step 3, open “The Dockerfile (step 3)” box (uv tab), then step 4, “Commands to test your image (step 4)”.\nWriting the Dockerfile:\nLive: nano Dockerfile (or code . and make a new file named Dockerfile, no extension), paste the uv version from the IA2 page, save. Then click through the highlights:\n\nFROM: the base image. Ubuntu Linux, no Python. Exact tag, never latest.\nCOPY --from: copy the uv program out of the image uv publishes. The tag 0.13.7 pins uv’s own version.\nWORKDIR: like cd, for the rest of the build and for containers from this image. It creates the folder.\nENV UV_PROJECT_ENVIRONMENT: put the environment in /opt/venv, not in /workspace/.venv. Why: later you mount your project folder over /workspace with -v, and a mount hides whatever was there. Worse, uv would find your laptop’s .venv and replace it with a Linux one.\nCOPY: only the three files that list the packages. Not your code, not .venv/. Ask: why not just copy .venv/? Because on a Mac, file .venv/bin/python3 says Mach-O 64-bit executable arm64, a program that does not run on Linux. And uv.lock is enough to rebuild the same versions inside the image. Same as last lecture: the shopping list and the receipt travel, the electronics are bought again where you land.\nRUN uv sync --locked: runs during the build. Installs Python 3.14 and exactly the versions in uv.lock.\n\nBuild and test:\nTerminal, step by step:\n\ndocker build --tag dsci522-test . → point at the dot: “build from this folder” (the build context, where COPY finds the files). --tag names the image. Point at the steps [1/5] to [5/5], one per line of the Dockerfile. It takes about 7 seconds.\ndocker images dsci522-test → about 386 MB.\nThe test command from the slide → a cow says “numpy says 1 + 2 + 3 = 6”. If a package were missing, it would be a ModuleNotFoundError instead.\nLook around: docker run --rm -it dsci522-test bash\n\nls -a → only .python-version, pyproject.toml, uv.lock. No .venv.\npython3 --version → still command not found: Python is not on the PATH.\nuv run which python → /opt/venv/bin/python. uv knows where the environment is.\nexit\n\ndocker history dsci522-test | head -7 → one row per line of the Dockerfile, newest on top. RUN uv sync is about 147 MB, ENV is 0B. These rows are the layers: next slide."
   },
   {
-    "objectID": "slides/slides/slides_03.html#todays-topic-lets-build-our-own-container",
-    "href": "slides/slides/slides_03.html#todays-topic-lets-build-our-own-container",
+    "objectID": "slides/slides/slides_03.html#each-line-is-a-layer-and-layers-are-reused",
+    "href": "slides/slides/slides_03.html#each-line-is-a-layer-and-layers-are-reused",
     "title": "DSCI 522 Lecture 3",
-    "section": "Today’s topic: Let’s build our own container!",
-    "text": "Today’s topic: Let’s build our own container!"
+    "section": "Each line is a layer, and layers are reused",
+    "text": "Each line is a layer, and layers are reused\n\nDocker saves the result of each line as a layer\nRebuild: a line whose input did not change says CACHED and is reused\nChange one line, and that line and every line below it run again\nSo: things that change rarely go at the top, things that change often at the bottom\n\n\nLive: add a CMD line at the bottom of the Dockerfile:\nCMD [\"uv\", \"run\", \"python\", \"-c\", \"import cowsay; cowsay.cow('Moo from my image')\"]\n\ndocker build --tag dsci522-test . → steps 2 to 5 all say CACHED, the build takes about a second.\ndocker run --rm dsci522-test → no command after the image name, so the CMD runs: “Moo from my image”.\nCMD is the default command. A command after the image name replaces it (like bash did earlier).\n\nRemove the CMD line again afterwards, so the Dockerfile matches the assignment (the CMD is not wrong, just not needed).\nThis is why we copy only the three uv files, not the whole folder: editing a script does not reinstall the packages.\nAsk: a teammate runs uv add pandas, then docker build. Which steps run again? The COPY of the uv files and RUN uv sync: Docker checks the files a COPY reads, not only the text of the Dockerfile. The image does not update itself, so build again after every change to uv.lock."
   },
   {
-    "objectID": "slides/slides/slides_03.html#code-we-run-in-class-docker-compose.yml-practice",
-    "href": "slides/slides/slides_03.html#code-we-run-in-class-docker-compose.yml-practice",
+    "objectID": "slides/slides/slides_03.html#what---locked-protects-you-from",
+    "href": "slides/slides/slides_03.html#what---locked-protects-you-from",
     "title": "DSCI 522 Lecture 3",
-    "section": "Code we run in class: docker-compose.yml practice",
-    "text": "Code we run in class: docker-compose.yml practice\nStep-by-step instructions:\n# 1. Please first `cd` to a local folder of your choice, don't put all files in your home directory!\n# Example `cd` command: \ncd /Users/skysheng/Desktop/github/dsci522\n\n# 2. make a new folder called `demo_docker` (or any other name you like)\nmkdir demo_docker\n\n# 3. move into that folder we just created\ncd demo_docker\n\n# 4. create a docker-copose.yml file using nano\nnano docker-compose.yml"
+    "section": "What --locked protects you from",
+    "text": "What --locked protects you from\nSomeone types \"pandas==3.1.1\" into pyproject.toml by hand, without uv add:\n =&gt; ERROR [stage-0 5/5] RUN uv sync --locked\nerror: The lockfile at `uv.lock` needs to be updated, but `--locked` was provided.\nhint: To update the lockfile, run `uv lock`.\n\n\nWithout --locked, uv would quietly make a new lock file inside the image\nThe image would no longer match the uv.lock in your repository\nFix: uv lock, then commit pyproject.toml and uv.lock together\n\n\n\nLive (tested, the error above is copied from the test):\n\nnano pyproject.toml, add \"pandas==3.1.1\", to dependencies, save.\ndocker build --tag dsci522-test . → the error on the slide.\nUndo it: git checkout pyproject.toml.\ndocker build --tag dsci522-test . → works again.\n\nA failing build is good news here: it fails on your laptop, loudly, instead of shipping an image that differs from your repository."
   },
   {
-    "objectID": "slides/slides/slides_03.html#code-we-run-in-class-docker-compose.yml-practice-1",
-    "href": "slides/slides/slides_03.html#code-we-run-in-class-docker-compose.yml-practice-1",
+    "objectID": "slides/slides/slides_03.html#the-image-works-on-my-laptop.-now-what",
+    "href": "slides/slides/slides_03.html#the-image-works-on-my-laptop.-now-what",
     "title": "DSCI 522 Lecture 3",
-    "section": "Code we run in class: docker-compose.yml practice",
-    "text": "Code we run in class: docker-compose.yml practice\n\n\nCopy and paste the following code into the docker-compose.yml file. Local port is set at 8789, password is set to password, username is rstudio.\n\nservices:\n  analysis-env:\n    image: rocker/rstudio:4.4.2\n    ports:\n      - \"8789:8787\"\n    volumes:\n      - .:/home/rstudio/project\n    environment:\n      PASSWORD: password\n    deploy:\n      resources:\n        limits:\n          memory: 5G\n\nYou can also create this file using Graphical user interface (GUI) like VSCode.\nIf you used nano to create this file, you need to press Cntrl + X to attempt exit, by default it will ask you to save the file. Press Y and then press Enter to save the file."
+    "section": "The image works on my laptop. Now what?",
+    "text": "The image works on my laptop. Now what?\n\nYour teammate could build it too, but every build takes time, and could differ\nDocker Hub stores images, the way GitHub stores code\nWe could docker push from our laptop… but it would be built from whatever is on our laptop\nGitHub Actions builds it on a fresh computer, from the files in the repository\n\n\nAsk first: “how does your teammate get this image?” Let them answer before showing the bullets.\nWhy not push from my laptop: maybe I have changes I never committed, or an old uv.lock. Nobody can check what went into that image. When GitHub Actions builds it, the image comes from the commit, and the log shows every step. Anyone can check it.\nLecture 2 recap: python:3.14-slim and ubuntu:24.04 came from Docker Hub too, with docker pull. Today we put our own image next to them."
   },
   {
-    "objectID": "slides/slides/slides_03.html#code-we-run-in-class-docker-compose.yml-practice-2",
-    "href": "slides/slides/slides_03.html#code-we-run-in-class-docker-compose.yml-practice-2",
+    "objectID": "slides/slides/slides_03.html#demo-ia2-steps-5-and-6",
+    "href": "slides/slides/slides_03.html#demo-ia2-steps-5-and-6",
     "title": "DSCI 522 Lecture 3",
-    "section": "Code we run in class: docker-compose.yml practice",
-    "text": "Code we run in class: docker-compose.yml practice\n\n# 6. Print out the content of the file to make sure it is correct.\ncat docker-compose.yml\n\n# 7. Launch the container using docker compose files.\ndocker compose up\n\nAfter the container is launched, your terminal will be hanging. You can open your browser and go to http://localhost:8789 to access RStudio.\nTo stop the container, you need to type Cntrl + C in the terminal where you launched the container, and then type:\n\n# 10. Remove the container.\ndocker-compose rm"
+    "section": "Demo: IA2 steps 5 and 6",
+    "text": "Demo: IA2 steps 5 and 6\nFollow along on the IA2 page: Docker Hub token, two GitHub secrets, the workflow file, push.\n\nDone when: a green check mark on the Actions tab, and two tags on Docker Hub, latest and sha-xxxxxxx\n\n\nIA2 page: step 5, open “Setting up Docker Hub and the GitHub secrets (step 5)”, then “The workflow file (step 5)”. Step 6 is the check.\nSecrets:\nBrowser, step by step:\n\nhub.docker.com, log in. Top right avatar, Account settings, Personal access tokens, Generate new token. Description dsci522, permissions Read & Write, Generate. (I made one before class: it is in my text file. Show the page but do not show the token on the projector.)\nMy GitHub repository, Settings tab, Secrets and variables, Actions, New repository secret.\nName DOCKER_USERNAME, value: my Docker Hub username. Add secret.\nNew repository secret again. Name DOCKER_PASSWORD, value: paste the token. Add secret.\nPoint out: I can never see the value again, only replace it. In the logs GitHub prints *** instead.\n\nThe names must be exactly these two, because the workflow file asks for them by name.\nThe workflow file (scroll through it on the IA2 page):\nStudents copy it from the IA2 page, unchanged.\nYAML reminder: indentation with spaces (never tabs) is the structure, # starts a comment.\nWalk through it:\n\non: when it runs. By hand (workflow_dispatch, a button on the Actions tab), or on a push that changes one of these files. A push that only changes the README does nothing.\nenv: IMAGE: the image name, &lt;docker hub username&gt;/&lt;repository name&gt;. Docker Hub needs your username in front.\ncheckout: copy the repository onto GitHub’s fresh Linux computer.\nlogin: log in with the two secrets.\ndocker build: the same command we typed, with two tags. latest, and sha- plus the first 7 characters of the commit ID, so you can always find the image a commit made.\ndocker push --all-tags: upload both tags.\n\nAbout latest: we said never to use latest when you pull. We still publish it, as a convenience pointer to the newest image. When you use the image (Milestone 2, docker-compose.yml), use the sha- tag, which never moves.\nPush and watch it publish:\nTerminal and browser, step by step:\n\nmkdir -p .github/workflows\nnano .github/workflows/publish-dockerhub.yml, paste the workflow from the IA2 page (the full one, with comments), Ctrl + X, Y, Enter.\ngit add .github/workflows/publish-dockerhub.yml\ngit commit -m \"Publish image to Docker Hub\"\ngit push → if Git refuses to push the workflow file, the personal access token needs the workflow scope (checked before class).\nBrowser: my repository, Actions tab → “Publish image to Docker Hub” is running (yellow dot). Click it, click the publish job, open “Build the image”: the same [1/5] to [5/5] steps as on my laptop. Takes about a minute.\nGreen check mark. Open hub.docker.com, Repositories → dsci522-dockerfile-practice, Tags tab → latest and sha- plus 7 characters. Check that the repository is public (IA2 asks for this).\nTerminal: docker pull &lt;docker hub username&gt;/dsci522-dockerfile-practice:latest\ndocker run --rm &lt;docker hub username&gt;/dsci522-dockerfile-practice:latest uv run python -c \"import cowsay; cowsay.cow('Hello from Docker Hub')\"\nOn my Mac it prints: WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8), then the cow. GitHub built it on an Intel/AMD computer. My Mac runs it by emulating that processor, which is slow. Cliffhanger: next lecture we build for both kinds of computer (Milestone 2 needs it).\n\nIf the workflow did not start (for example the push changed no listed file): Actions tab, Publish image to Docker Hub, Run workflow."
   },
   {
-    "objectID": "slides/slides/slides_03.html#demo-put-our-uv-environment-into-our-own-image",
-    "href": "slides/slides/slides_03.html#demo-put-our-uv-environment-into-our-own-image",
+    "objectID": "slides/slides/slides_03.html#we-dont-like-manual-work",
+    "href": "slides/slides/slides_03.html#we-dont-like-manual-work",
     "title": "DSCI 522 Lecture 3",
-    "section": "Demo: put our uv environment into our own image",
-    "text": "Demo: put our uv environment into our own image\npython:3.14-slim has Python but no pandas. We write a Dockerfile that copies in our three uv files and runs uv sync inside the image.\n\nTextbook: Customizing and building containers\nuv in Docker: uv docs\n\n\nTerminal, step by step (tested with uv 0.12.10 and Docker 29.7.2):\n\ncd ~/Desktop/github/dsci522\nmkdir dockerfile_demo\ncd dockerfile_demo\nuv init --bare → only pyproject.toml.\nuv python pin 3.14 → .python-version. It matches the Python inside python:3.14-slim.\nuv add pandas pandera → creates .venv/ and uv.lock. Point out: pandas 3.1.1, pandera 0.36.0.\nls -a → .python-version, .venv, pyproject.toml, uv.lock.\nnano Dockerfile, paste the Dockerfile from the slide, then Ctrl + X, Y, Enter. (Or open the folder in VS Code with code .)\ncat Dockerfile → walk through it line by line with the highlights on the next slide.\ndocker build --tag dockerfile_demo . → point at the dot: “build from this folder”. Point at the RUN uv sync --locked step in the output: uv installs the packages inside the image.\ndocker images dockerfile_demo → about 410 MB.\ndocker run --rm dockerfile_demo python -c \"import pandas, pandera; print(pandas.__version__, pandera.__version__)\" → 3.1.1 0.36.0, the same versions as in uv.lock.\ndocker run --rm -it dockerfile_demo bash → now inside the container. Type ls -a → only the three uv files, no .venv/ (the environment lives in /opt/venv). Type which python → /opt/venv/bin/python. Type exit.\nAsk: what happens if a teammate runs uv add requests but forgets to rebuild the image? Answer: the image still has the old environment. Rebuild after every change to uv.lock."
+    "section": "We don’t like manual work!",
+    "text": "We don’t like manual work!\ndocker run --rm \\\n    -v \"/$(pwd)\":/workspace \\\n    &lt;your_dockerhub_username&gt;/dsci522-dockerfile-practice:sha-xxxxxxx \\\n    uv run python hello.py\n\n\n\n\nSource: Minions movie\n\n\nAsk: do you want to type this every day? And get every flag, quote and slash right, on every teammate’s laptop? A typo in the image tag and you run a different image without noticing."
   },
   {
-    "objectID": "slides/slides/slides_03.html#the-dockerfile-line-by-line",
-    "href": "slides/slides/slides_03.html#the-dockerfile-line-by-line",
+    "objectID": "slides/slides/slides_03.html#version-1-run-one-command",
+    "href": "slides/slides/slides_03.html#version-1-run-one-command",
     "title": "DSCI 522 Lecture 3",
-    "section": "The Dockerfile, line by line",
-    "text": "The Dockerfile, line by line\nFROM python:3.14-slim\n\nCOPY --from=ghcr.io/astral-sh/uv:0.13.7 /uv /uvx /usr/local/bin/\n\nWORKDIR /home/project\nENV UV_PROJECT_ENVIRONMENT=/opt/venv\nCOPY pyproject.toml uv.lock .python-version ./\nRUN uv sync --locked\nENV PATH=\"/opt/venv/bin:$PATH\"\n\nClick through the highlights:\n\nFROM: start from an image that already has Python 3.14. Never latest.\nCOPY --from: copy the uv program out of uv’s official image. No need to install it.\nWORKDIR: the folder inside the image where the next commands run (like cd).\nENV UV_PROJECT_ENVIRONMENT: put the environment in /opt/venv instead of .venv/, so it is not hidden when we mount our project folder over /home/project with -v.\nCOPY: the shopping list, the receipt and the Python version. Not .venv/: the electronics are bought again inside the image, with chargers for Linux.\nRUN uv sync --locked: build the environment from uv.lock. --locked stops the build if uv.lock does not match pyproject.toml.\nENV PATH: so typing python finds the environment’s Python without uv run."
+    "section": "Version 1: run one command",
+    "text": "Version 1: run one command\nWrite the settings once, in docker-compose.yml in your repository:\nservices:\n  analysis-env:\n    image: &lt;your_dockerhub_username&gt;/dsci522-dockerfile-practice:sha-xxxxxxx\n    volumes:\n      - .:/workspace\n\nThen everyone types the same short command:\ndocker compose run --rm analysis-env uv run python hello.py\n\n\nClick through the highlights:\n\nservices: the containers this file manages. We have one.\nanalysis-env: a name we choose for it, the service name. Commands use it to say which container.\nimage: the image we just published, with the sha- tag, not latest. sha- never moves, so everyone gets exactly the same image, even after someone pushes a new one.\nvolumes: the same as -v. . is the folder this file is in (the project), shown as /workspace in the container, the WORKDIR from our Dockerfile.\n\nMap it back to the long command: -v became volumes, the image name became image. Only the command we want to run stays on the command line.\nThe file goes in Git, so the whole team shares the same settings."
   },
   {
-    "objectID": "slides/slides/slides_03.html#commands-we-ran-in-class-dockerfile",
-    "href": "slides/slides/slides_03.html#commands-we-ran-in-class-dockerfile",
+    "objectID": "slides/slides/slides_03.html#demo-version-1-with-our-ia2-image",
+    "href": "slides/slides/slides_03.html#demo-version-1-with-our-ia2-image",
     "title": "DSCI 522 Lecture 3",
-    "section": "Commands we ran in class: Dockerfile",
-    "text": "Commands we ran in class: Dockerfile\n# 1. make a folder for the demo and move into it\ncd ~/Desktop/github/dsci522\nmkdir dockerfile_demo\ncd dockerfile_demo\n\n# 2. make a uv project with Python 3.14 and two packages\nuv init --bare\nuv python pin 3.14\nuv add pandas pandera\n\n# 3. write the Dockerfile from the previous slide\nnano Dockerfile\n\n# 4. build the image (do not forget the dot at the end)\ndocker build --tag dockerfile_demo .\n\n# 5. run one command inside it, then open a terminal inside it\ndocker run --rm dockerfile_demo \\\n    python -c \"import pandas; print(pandas.__version__)\"\ndocker run --rm -it dockerfile_demo bash\n\nShow this slide right after the live demo, so students can copy the commands. In nano, save with Ctrl + X, then Y, then Enter."
+    "section": "Demo: version 1 with our IA2 image",
+    "text": "Demo: version 1 with our IA2 image\n\nWrite docker-compose.yml in the IA2 repository\nPull the image from Docker Hub, run a script with it\nNot part of the IA2 submission, but your team needs one in Milestone 2\nTextbook: Containers: Docker Compose\n\n\nTerminal, step by step (tested with Docker Compose v5.5.1, using the image built on my laptop):\n\ncd ~/Desktop/github/dsci522/dsci522-dockerfile-practice\nnano hello.py, paste:\nimport cowsay\nimport numpy\n\ncowsay.cow(f\"numpy says 1 + 2 + 3 = {numpy.sum([1, 2, 3])}\")\nCtrl + X, Y, Enter.\nDocker Hub in the browser, my repository, Tags tab: copy the sha- tag.\nnano docker-compose.yml, paste version 1 from the slide, replace the username and the tag. Save.\ncat docker-compose.yml → check the indentation: spaces, two per level.\ndocker compose pull → downloads the image named in the file.\ndocker compose run --rm analysis-env uv run python hello.py → the cow says “numpy says 1 + 2 + 3 = 6”. hello.py is not in the image: it comes from my laptop, through the volume.\ndocker compose run --rm analysis-env bash → a shell inside. ls -a → now I see all my project files, including my laptop’s .venv. exit.\nfile .venv/bin/python3 on my laptop → still Mach-O 64-bit executable arm64. The container used /opt/venv and left my .venv alone. This is why the Dockerfile set UV_PROJECT_ENVIRONMENT=/opt/venv.\nOn my Mac the platform warning shows again (the image is Intel/AMD only): fixed next lecture.\nTry docker compose up → it starts and says exited with code 0 right away. Nothing is wrong: the container has no job that keeps it running. Version 2 gives it one."
+  },
+  {
+    "objectID": "slides/slides/slides_03.html#version-2-a-container-that-keeps-running",
+    "href": "slides/slides/slides_03.html#version-2-a-container-that-keeps-running",
+    "title": "DSCI 522 Lecture 3",
+    "section": "Version 2: a container that keeps running",
+    "text": "Version 2: a container that keeps running\nAdd a server: here, Python’s built in web server, showing our project folder.\nservices:\n  analysis-env:\n    image: &lt;your_dockerhub_username&gt;/dsci522-dockerfile-practice:sha-xxxxxxx\n    volumes:\n      - .:/workspace\n    ports:\n      - \"8000:8000\"\n    command: uv run python -m http.server 8000\n\nLast lecture’s RStudio and Ollama, and your Milestone 2 ssh server, work the same way.\n\n\nClick through the highlights:\n\nports: the same as -p. Port 8000 on my laptop goes to port 8000 in the container (lecture 2: the door number).\ncommand: what the container runs when it starts, in place of the image’s default (Ubuntu’s bash). A web server waits for visitors forever, so the container keeps running.\n\nNo new image needed: Python’s http.server comes with Python, and our image has Python.\nIn Milestone 2, the image’s own CMD starts the ssh server, so your docker-compose.yml has ports but no command line."
+  },
+  {
+    "objectID": "slides/slides/slides_03.html#start-it-check-it-stop-it",
+    "href": "slides/slides/slides_03.html#start-it-check-it-stop-it",
+    "title": "DSCI 522 Lecture 3",
+    "section": "Start it, check it, stop it",
+    "text": "Start it, check it, stop it\n\n\n\n\n\n\n\nCommand\nWhat it does\n\n\n\n\ndocker compose up\nStart the containers, show their output here (Ctrl + C stops them)\n\n\ndocker compose up -d\nStart them in the background, give me my terminal back\n\n\ndocker compose ps\nList the containers this file started\n\n\ndocker compose logs\nShow their output so far\n\n\ndocker compose stop / start\nPause them / start them again, nothing deleted\n\n\ndocker compose down\nStop and remove them\n\n\ndocker compose pull\nDownload the image named in the file\n\n\ndocker compose run --rm &lt;service&gt; &lt;command&gt;\nOne command in a new container (version 1)\n\n\n\n\nTerminal and browser, step by step (tested):\n\nnano docker-compose.yml, add the ports and command lines from version 2. Save. cat docker-compose.yml.\ndocker compose up → the output shows up here. Browser: http://localhost:8000 → a list of my project files: hello.py, pyproject.toml, docker-compose.yml… Back in the terminal, a new log line per page view (\"GET / HTTP/1.1\" 200). Ctrl + C to stop.\ndocker compose up -d → Started, and I get my terminal back.\ndocker compose ps → analysis-env, STATUS Up, PORTS 0.0.0.0:8000-&gt;8000/tcp.\nRefresh the browser, then docker compose logs → the visits.\ndocker compose stop → stopped, not deleted: docker compose ps -a still lists it (Exited). docker compose start → running again.\ndocker compose down → removes the container and the network compose made. docker compose ps -a → empty. The browser page no longer loads.\n\nEvery command reads docker-compose.yml in the current folder, so run them from the project folder.\nRule of thumb: up -d in the morning, down when you finish. run --rm when you just need one command."
+  },
+  {
+    "objectID": "slides/slides/slides_03.html#commands-we-ran-in-class-docker-compose.yml-12",
+    "href": "slides/slides/slides_03.html#commands-we-ran-in-class-docker-compose.yml-12",
+    "title": "DSCI 522 Lecture 3",
+    "section": "Commands we ran in class: docker-compose.yml (1/2)",
+    "text": "Commands we ran in class: docker-compose.yml (1/2)\n# 1. in your IA2 repository: a small script to run in the container\nnano hello.py\n\n# 2. write version 1 of docker-compose.yml (copy it from the slide,\n#    put your Docker Hub username and your sha- tag in the image line)\nnano docker-compose.yml\ncat docker-compose.yml\n\n# 3. download the image named in the file\ndocker compose pull\n\n# 4. run one command in a new container, removed when it finishes\ndocker compose run --rm analysis-env uv run python hello.py\ndocker compose run --rm analysis-env bash"
+  },
+  {
+    "objectID": "slides/slides/slides_03.html#commands-we-ran-in-class-docker-compose.yml-22",
+    "href": "slides/slides/slides_03.html#commands-we-ran-in-class-docker-compose.yml-22",
+    "title": "DSCI 522 Lecture 3",
+    "section": "Commands we ran in class: docker-compose.yml (2/2)",
+    "text": "Commands we ran in class: docker-compose.yml (2/2)\n# 5. add the ports and command lines (version 2), then start it\nnano docker-compose.yml\ndocker compose up            # Ctrl + C to stop\ndocker compose up -d         # in the background\n\n# 6. check it: open http://localhost:8000 in your browser\ndocker compose ps\ndocker compose logs\n\n# 7. pause and restart, then stop and remove\ndocker compose stop\ndocker compose start\ndocker compose down"
+  },
+  {
+    "objectID": "slides/slides/slides_03.html#docker-commands-you-will-use-all-the-time-12",
+    "href": "slides/slides/slides_03.html#docker-commands-you-will-use-all-the-time-12",
+    "title": "DSCI 522 Lecture 3",
+    "section": "Docker commands you will use all the time (1/2)",
+    "text": "Docker commands you will use all the time (1/2)\n\n\n\n\n\n\n\nCommand\nWhat it does\n\n\n\n\ndocker pull &lt;image&gt;:&lt;tag&gt;\nDownload an image\n\n\ndocker images\nList the images on your laptop\n\n\ndocker build --tag &lt;name&gt; .\nBuild an image from the Dockerfile in this folder\n\n\ndocker run --rm -it &lt;image&gt; bash\nOpen a shell in a new container, delete it when you leave\n\n\ndocker ps / docker ps -a\nList running containers / all containers, stopped ones too\n\n\ndocker stop &lt;name&gt;\nStop a running container\n\n\ndocker rm &lt;name&gt; / docker rmi &lt;image&gt;\nDelete a container / an image\n\n\n\n\nMost of these we used today or last lecture. docker rmi is useful when Docker fills your disk: images are big (ours is about 386 MB, RStudio over 1 GB)."
+  },
+  {
+    "objectID": "slides/slides/slides_03.html#docker-commands-you-will-use-all-the-time-22",
+    "href": "slides/slides/slides_03.html#docker-commands-you-will-use-all-the-time-22",
+    "title": "DSCI 522 Lecture 3",
+    "section": "Docker commands you will use all the time (2/2)",
+    "text": "Docker commands you will use all the time (2/2)\ndocker run flags:\n\n\n\nFlag\nWhat it does\n\n\n\n\n--rm\nDelete the container when it stops\n\n\n-it\nInteractive: you can type into it\n\n\n-v \"/$(pwd)\":/workspace\nShow this folder inside the container\n\n\n-p 8787:8787\nYour laptop’s port → the container’s port\n\n\n-d\nRun in the background\n\n\n\n\n\n⚠️ Commands are sensitive to spaces and quotes: copy them carefully\nAlways use an exact tag (python:3.14-slim, sha-1a2b3c4), never latest\nMore: Docker cheatsheet"
   },
   {
     "objectID": "slides/slides/slides_03.html#readings-for-this-lecture",
     "href": "slides/slides/slides_03.html#readings-for-this-lecture",
     "title": "DSCI 522 Lecture 3",
     "section": "Readings for this lecture",
-    "text": "Readings for this lecture\n\n\n\nWhat\nWhere\n\n\n\n\nRequired\nTextbook: Customizing and building containers\n\n\nDocker Compose\nTextbook: Containers: Docker Compose\n\n\nOptional\nTen simple rules for writing Dockerfiles for reproducible data science\n\n\nCommands\nDocker cheatsheet, uv cheatsheet\n\n\n\n\nReadings come from the schedule table in the course syllabus. The Docker Compose chapter is listed under lecture 2 in the syllabus, but we practise it today."
+    "text": "Readings for this lecture\n\n\n\nWhat\nWhere\n\n\n\n\nRequired\nCustomizing and building containers\n\n\nRequired\nPython packages with uv in an image or R packages with renv in an image\n\n\nRequired\nPython and R in one image\n\n\nRequired\nWorking in a container over ssh with Positron\n\n\nRequired\nBuilding images for several platforms (up to publishing for one platform)\n\n\nOptional\nGitHub Secrets, Containers outside class, Ten simple rules for writing Dockerfiles"
   },
   {
     "objectID": "slides/slides/slides_05.html#iclicker-how-are-you-getting-along-with-docker",
