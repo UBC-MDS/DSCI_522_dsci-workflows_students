@@ -89,11 +89,12 @@ Use it as your model: compare your repository with it before you submit.
     It builds for `linux/amd64` (Intel/AMD) and `linux/arm64` (ARM, such as Apple silicon Macs)
     and publishes them under two [tags]{.term tabindex="0" data-tip="A tag is a label on a Docker image, written after a colon (e.g. python:3.14-slim). One image can have several tags. Here latest always points to your newest image, and the sha- tag names the commit that built it."}: `latest` and `sha-` plus 7 characters of the commit ID.
     Check that the run succeeds and that your image's tag on Docker Hub lists **both** platforms.
+    **Don't turn on [branch protection]{.term tabindex="0" data-tip="Branch protection is a GitHub setting (Settings > Branches or Rules) that puts rules on a branch, such as: nobody may push to main directly, every change must come through a reviewed pull request. Here the workflow pushes the new image tag straight to your branch, including main, so those rules would block it and the run would fail."} for `main`**: the workflow commits the new image tag straight to your branches, and branch protection would block it.
 
 5.  **Add `docker-compose.yml`.**
     Copy the [file below](#compose-file) into the root of your repository, and change its `image:` line to your image,
     pinned to the [commit-SHA tag]{.term tabindex="0" data-tip="Every Git commit has a unique ID called its SHA (e.g. 1a2b3c4). Your workflow tags each image it pushes with the start of the SHA of the commit that built it, so the tag always points to that one exact image. The latest tag, by contrast, changes every time you publish."} your workflow pushed, not `latest`
-    (for example, `image: yourname/your-github-repo-name:sha-1a2b3c4`).
+    (for example, `image: yourname/your-github-repo-name:sha-1a2b3c4`, all in lowercase).
     You only do this once: after that, the workflow updates the tag for you.
     Keep the [service name]{.term tabindex="0" data-tip="In Docker Compose, a service is one container it manages, named under services: in docker-compose.yml. Commands such as docker compose run use that name to say which container you mean. Here the name is analysis-env."} `analysis-env`, so the [commands below](#readme-steps) work as written.
 
@@ -102,6 +103,8 @@ Use it as your model: compare your repository with it before you submit.
     To add a package: add it with uv or renv on a branch, commit the changed files together and push.
     GitHub Actions publishes a new image and commits its tag to `docker-compose.yml` on that branch.
     Then `git pull` and `docker compose pull`, and merge the branch in a pull request.
+    The merge builds the image once more and commits a new tag to `main`,
+    so when that run finishes, everyone runs `git pull` on `main` and `docker compose pull` again.
 
 7.  **Update your `README` and `CONTRIBUTING.md`** so their instructions use the container (see [below](#readme-steps)).
 
@@ -312,8 +315,12 @@ on:
   push:
     paths:
       - Dockerfile
+      - pyproject.toml
       - uv.lock
+      - .python-version
       - renv.lock
+      - .Rprofile
+      - renv/activate.R
       - .github/workflows/publish-dockerhub.yml
 
 env:
@@ -416,7 +423,7 @@ jobs:
           git push
 ```
 
-It runs on its own when a push changes the `Dockerfile`, a lock file or the workflow file.
+It runs on its own when a push changes the `Dockerfile`, a file the `Dockerfile` copies into the image, or the workflow file.
 To run it by hand: **Actions** tab \> **Publish image to Docker Hub** \> **Run workflow**.
 On Docker Hub you will see four tags: `latest`, `sha-1a2b3c4`, and the two halves `sha-1a2b3c4-amd64` and `sha-1a2b3c4-arm64`.
 Job 3 puts the one without `-amd64` or `-arm64` in `docker-compose.yml` for you.
