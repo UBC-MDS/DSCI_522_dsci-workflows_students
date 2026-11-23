@@ -25,7 +25,7 @@ class only.
 
 ## 2026-27, section 2
 
-### 2026-11-19 lecture
+### Nov 19 · Git issues and pull requests, then an introduction to Docker containers
 
 - [Notes (claude-opus-5-5)](2026-27/section-02/2026-11-19-lecture/notes-class-main--claude-opus-5-5.md)
 - [Notes (qwen3.6-35b-a3b)](2026-27/section-02/2026-11-19-lecture/notes-class-main--qwen3.6-35b-a3b.md)
@@ -54,7 +54,7 @@ class only.
 - [Older prompt's notes (qwen3.6-35b-a3b)](2026-27/section-02/2026-11-19-lecture/comparison/notes-class-original--qwen3.6-35b-a3b.md)
 - [Older prompt's notes (qwen3.8-27b-sglang)](2026-27/section-02/2026-11-19-lecture/comparison/notes-class-original--qwen3.8-27b-sglang.md)
 
-### 2026-11-17 lecture
+### Nov 17 · Git Branches, Pull Requests, Code Review and Rebasing to Fix Conflicts
 
 - [Notes (claude-opus-5-5)](2026-27/section-02/2026-11-17-lecture/notes-class-main--claude-opus-5-5.md)
 - [Notes (qwen3.6-35b-a3b)](2026-27/section-02/2026-11-17-lecture/notes-class-main--qwen3.6-35b-a3b.md)
