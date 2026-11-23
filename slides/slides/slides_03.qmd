@@ -133,12 +133,6 @@ Instructions and all the code: [Individual Assignment 2](https://ubc-mds.github.
 Laptop &rarr; GitHub &rarr; GitHub Actions &rarr; Docker Hub &rarr; your teammate's laptop
 :::
 
-::: {.notes}
-Point at the arrows: this is the same path your Milestone 2 image takes. IA2 is the small practice version with two packages.
-
-The assignment page has all the code in collapsible boxes. Today I demo it live from that page, so you see where each piece comes from and what can go wrong. The slides only hold what is not on the IA2 page.
-:::
-
 # Step 1: the uv project
 
 ## Some data science conventions {style="font-size: 0.85em;"}
