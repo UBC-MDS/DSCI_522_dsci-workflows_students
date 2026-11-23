@@ -1,7 +1,11 @@
 ---
 title: "Section 2 class notes"
 shift-heading-level-by: 0
+toc: false
 ---
+
+Pick a lecture from the sidebar, or from the **Section 2 Notes** menu at the top: each
+lecture's notes, review questions, readings, commands and drawings are listed under it.
 
 Notes from section 2's lectures, written by AI models from each class's recording, the
 commands typed in class, and the textbook sections the class used. Each model writes its
@@ -22,63 +26,3 @@ AI-written notes can contain mistakes. If something matters, check it against th
 textbook, or against the class recording: each topic in the notes gives its time in the
 recording, and the transcripts are in the course repository on github.ubc.ca, for the
 class only.
-
-## 2026-27, section 2
-
-### Nov 19 · Git issues and pull requests, then an introduction to Docker containers
-
-- [Notes (claude-opus-5-5)](2026-27/section-02/2026-11-19-lecture/notes-class-main--claude-opus-5-5.md)
-- [Notes (qwen3.6-35b-a3b)](2026-27/section-02/2026-11-19-lecture/notes-class-main--qwen3.6-35b-a3b.md)
-- [Notes (qwen3.8-27b-sglang)](2026-27/section-02/2026-11-19-lecture/notes-class-main--qwen3.8-27b-sglang.md)
-- [Review questions 1, Remember (claude-opus-5-5)](2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-1-remember--claude-opus-5-5.md)
-- [Review questions 2, Understand (claude-opus-5-5)](2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-2-understand--claude-opus-5-5.md)
-- [Review questions 3, Apply (claude-opus-5-5)](2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-3-apply--claude-opus-5-5.md)
-- [Review questions 4, Analyze (claude-opus-5-5)](2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-4-analyze--claude-opus-5-5.md)
-- [Review questions 5, Evaluate (claude-opus-5-5)](2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-5-evaluate--claude-opus-5-5.md)
-- [Review questions 1, Remember (qwen3.6-35b-a3b)](2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-1-remember--qwen3.6-35b-a3b.md)
-- [Review questions 2, Understand (qwen3.6-35b-a3b)](2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-2-understand--qwen3.6-35b-a3b.md)
-- [Review questions 3, Apply (qwen3.6-35b-a3b)](2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-3-apply--qwen3.6-35b-a3b.md)
-- [Review questions 4, Analyze (qwen3.6-35b-a3b)](2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-4-analyze--qwen3.6-35b-a3b.md)
-- [Review questions 5, Evaluate (qwen3.6-35b-a3b)](2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-5-evaluate--qwen3.6-35b-a3b.md)
-- [Review questions 1, Remember (qwen3.8-27b-sglang)](2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-1-remember--qwen3.8-27b-sglang.md)
-- [Review questions 2, Understand (qwen3.8-27b-sglang)](2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-2-understand--qwen3.8-27b-sglang.md)
-- [Review questions 3, Apply (qwen3.8-27b-sglang)](2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-3-apply--qwen3.8-27b-sglang.md)
-- [Review questions 4, Analyze (qwen3.8-27b-sglang)](2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-4-analyze--qwen3.8-27b-sglang.md)
-- [Review questions 5, Evaluate (qwen3.8-27b-sglang)](2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-5-evaluate--qwen3.8-27b-sglang.md)
-- [Readings](2026-27/section-02/2026-11-19-lecture/materials.md)
-- [Readings for next class](2026-27/section-02/2026-11-19-lecture/materials-next-class.md)
-- [Commands typed (history.txt)](2026-27/section-02/2026-11-19-lecture/history.txt)
-- [Commands and output (terminal.txt)](2026-27/section-02/2026-11-19-lecture/terminal.txt)
-- [Plaud's summary](2026-27/section-02/2026-11-19-lecture/notes-plaud.md)
-- [Older prompt's notes (claude-opus-5-5)](2026-27/section-02/2026-11-19-lecture/comparison/notes-class-original--claude-opus-5-5.md)
-- [Older prompt's notes (qwen3.6-35b-a3b)](2026-27/section-02/2026-11-19-lecture/comparison/notes-class-original--qwen3.6-35b-a3b.md)
-- [Older prompt's notes (qwen3.8-27b-sglang)](2026-27/section-02/2026-11-19-lecture/comparison/notes-class-original--qwen3.8-27b-sglang.md)
-
-### Nov 17 · Git Branches, Pull Requests, Code Review and Rebasing to Fix Conflicts
-
-- [Notes (claude-opus-5-5)](2026-27/section-02/2026-11-17-lecture/notes-class-main--claude-opus-5-5.md)
-- [Notes (qwen3.6-35b-a3b)](2026-27/section-02/2026-11-17-lecture/notes-class-main--qwen3.6-35b-a3b.md)
-- [Notes (qwen3.8-27b-sglang)](2026-27/section-02/2026-11-17-lecture/notes-class-main--qwen3.8-27b-sglang.md)
-- [Review questions 1, Remember (claude-opus-5-5)](2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-1-remember--claude-opus-5-5.md)
-- [Review questions 2, Understand (claude-opus-5-5)](2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-2-understand--claude-opus-5-5.md)
-- [Review questions 3, Apply (claude-opus-5-5)](2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-3-apply--claude-opus-5-5.md)
-- [Review questions 4, Analyze (claude-opus-5-5)](2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-4-analyze--claude-opus-5-5.md)
-- [Review questions 5, Evaluate (claude-opus-5-5)](2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-5-evaluate--claude-opus-5-5.md)
-- [Review questions 1, Remember (qwen3.6-35b-a3b)](2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-1-remember--qwen3.6-35b-a3b.md)
-- [Review questions 2, Understand (qwen3.6-35b-a3b)](2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-2-understand--qwen3.6-35b-a3b.md)
-- [Review questions 3, Apply (qwen3.6-35b-a3b)](2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-3-apply--qwen3.6-35b-a3b.md)
-- [Review questions 4, Analyze (qwen3.6-35b-a3b)](2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-4-analyze--qwen3.6-35b-a3b.md)
-- [Review questions 5, Evaluate (qwen3.6-35b-a3b)](2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-5-evaluate--qwen3.6-35b-a3b.md)
-- [Review questions 1, Remember (qwen3.8-27b-sglang)](2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-1-remember--qwen3.8-27b-sglang.md)
-- [Review questions 2, Understand (qwen3.8-27b-sglang)](2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-2-understand--qwen3.8-27b-sglang.md)
-- [Review questions 3, Apply (qwen3.8-27b-sglang)](2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-3-apply--qwen3.8-27b-sglang.md)
-- [Review questions 4, Analyze (qwen3.8-27b-sglang)](2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-4-analyze--qwen3.8-27b-sglang.md)
-- [Review questions 5, Evaluate (qwen3.8-27b-sglang)](2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-5-evaluate--qwen3.8-27b-sglang.md)
-- [Readings](2026-27/section-02/2026-11-17-lecture/materials.md)
-- [Commands and output (terminal.txt)](2026-27/section-02/2026-11-17-lecture/terminal.txt)
-- [Drawing: git1.png](2026-27/section-02/2026-11-17-lecture/git1.png)
-- [Drawing: git2.png](2026-27/section-02/2026-11-17-lecture/git2.png)
-- [Plaud's summary](2026-27/section-02/2026-11-17-lecture/notes-plaud.md)
-- [Older prompt's notes (claude-opus-5-5)](2026-27/section-02/2026-11-17-lecture/comparison/notes-class-original--claude-opus-5-5.md)
-- [Older prompt's notes (qwen3.6-35b-a3b)](2026-27/section-02/2026-11-17-lecture/comparison/notes-class-original--qwen3.6-35b-a3b.md)
-- [Older prompt's notes (qwen3.8-27b-sglang)](2026-27/section-02/2026-11-17-lecture/comparison/notes-class-original--qwen3.8-27b-sglang.md)
