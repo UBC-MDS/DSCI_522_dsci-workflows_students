@@ -3,23 +3,29 @@ title: "Team project reflection"
 format:
   html:
     toc: true
+editor_options:
+  markdown:
+    wrap: sentence
 ---
 
-:::{.callout-tip}
-Deadline: **Sunday, December 14, 2025 at 6PM.**
-:::
+## Reflection summary
 
-The purpose of this individual report is to give you an avenue to present your viewpoint as to how the project went,
-how the group worked together,
-and your role in the group.
-Each group member must complete this form to report on the contributions of **yourself**
-and the other group members.
-That information can, if needed, be used to adjust final grades of individuals.
-This is a private report, meaning that none of your classmates will see this report.
+This is a short, **private** report on how your team project went: your teammates never see it.
+You rate **yourself and each teammate**, and describe what everyone contributed.
+We read it alongside your GitHub history to set the team work multiplier
+(see [Deliverables](../index.qmd#deliverables) in the syllabus, which also has the due date).
 
-Evaluate each member of your group by writing the number that best reflects the extent to which they participated,
-prepared, helped the group excel, and was a team player.
-Use the following ratings:
+- [ ] Copy the four rating tables and the questions below into a `.qmd` or `.md` file
+- [ ] Rate every team member, **including yourself**, from 1 to 4
+- [ ] Describe each person's contributions and how the team worked
+- [ ] Render it to PDF and submit it on Gradescope
+
+Write it in your own words, and keep your teammates' information out of AI tools
+(see the [AI policy](../index.qmd#use-of-generative-ai)).
+
+## 1. Rate each team member
+
+Use this scale for each of the four areas below:
 
 | Rating | Description                             |
 |--------|-----------------------------------------|
@@ -29,10 +35,7 @@ Use the following ratings:
 | 1      | Rarely (never or once in a great while) |
 
 **Preparation.**
-Prepared for group meetings and presentations;
-has spent time becoming familiar with the material relevant for the project;
-understands the project's goal and expectations; does what they say they will do on time;\
-attends and is on time to group meetings and presentations.
+Prepares for meetings; knows the material and the project's goals; does what they say they will do, on time; comes to meetings on time.
 
 ``` markdown
 |        Name       | Preparation rating |
@@ -43,9 +46,8 @@ attends and is on time to group meetings and presentations.
 |                   |                    |
 ```
 
-**Participation & communication.**\
-Articulates ideas effectively when speaking or writing;
-work is without grammatical errors; listens to others; encourages others to talk.
+**Participation and communication.**
+Explains ideas clearly in speech and writing; listens to others; encourages others to talk.
 
 ``` markdown
 |        Name       | Participation & communication rating |
@@ -56,11 +58,8 @@ work is without grammatical errors; listens to others; encourages others to talk
 |                   |                                      |
 ```
 
-**Helps group excel.**\
-Expresses great interest in group success by evaluating ideas and suggestions;
-initiates problem solving; influences and encourages others to set up high standards;
-doesn't accept just any idea but looks for the best ideas;
-stays motivated from beginning to end of project.
+**Helps the group excel.**
+Cares about the team's success; weighs ideas and looks for the best one; starts solving problems; keeps the standard high; stays motivated to the end.
 
 ``` markdown
 |        Name       | Helps group excel rating |
@@ -71,11 +70,8 @@ stays motivated from beginning to end of project.
 |                   |                          |
 ```
 
-\pagebreak
-
 **Team player (cooperation).**
-Knows when to be a leader and a follower; keeps an open mind;
-compromises when appropriate; can take criticism; respects others.
+Knows when to lead and when to follow; keeps an open mind; compromises when it makes sense; takes criticism; respects others.
 
 ``` markdown
 |        Name       | Team player (cooperation) rating |
@@ -86,16 +82,14 @@ compromises when appropriate; can take criticism; respects others.
 |                   |                                  |
 ```
 
-Below, briefly describe the specific contribution(s) each team member (**including yourself**) made to your project.
-Point form is fine.
-Specifically, comment on the following areas:
+## 2. Describe the contributions
 
--   how the team worked together as a whole, including:
-    -   what was your role in the group?
-        That is, what sort of things did you do to contribute to the evolution of the project?
-    -   what were the roles of others in your group?
--   what went well and poorly throughout the team project experience?
+Briefly (point form is fine), answer:
 
-## Submission
+-   What was **your** role, and what did you do for the project?
+-   What were the roles of each of your teammates?
+-   How did the team work together? What went well, and what went poorly?
 
-When you have filled this out, please render the document as a PDF and submit it to Gradescope.
+## Submission instructions
+
+Render your file to PDF and submit it on Gradescope.
