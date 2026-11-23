@@ -342,7 +342,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><strong>Build and publish the image with GitHub Actions.</strong> One team member sets up Docker Hub and the GitHub <span class="term" tabindex="0" data-tip="A repository secret is a password or token saved in your GitHub repository's settings. Workflows can use it, but nobody can read it back, and it never shows up in your code or logs. Here the two secrets let the workflow log in to Docker Hub as your team.">secrets</span> (see <a href="#docker-hub-secrets">below</a>). Copy the <a href="#workflow-file">workflow below</a> into <code>.github/workflows/publish-dockerhub.yml</code>, then commit and push (you don’t need to change anything in it). It builds for <code>linux/amd64</code> (Intel/AMD) and <code>linux/arm64</code> (ARM, such as Apple silicon Macs) and publishes them under two <span class="term" tabindex="0" data-tip="A tag is a label on a Docker image, written after a colon (e.g. python:3.14-slim). One image can have several tags. Here latest always points to your newest image, and the sha- tag names the commit that built it.">tags</span>: <code>latest</code> and <code>sha-</code> plus 7 characters of the commit ID. Check that the run succeeds and that your image’s tag on Docker Hub lists <strong>both</strong> platforms.</p></li>
 <li><p><strong>Add <code>docker-compose.yml</code>.</strong> Copy the <a href="#compose-file">file below</a> into the root of your repository, and change its <code>image:</code> line to your image, pinned to the <span class="term" tabindex="0" data-tip="Every Git commit has a unique ID called its SHA (e.g. 1a2b3c4). Your workflow tags each image it pushes with the start of the SHA of the commit that built it, so the tag always points to that one exact image. The latest tag, by contrast, changes every time you publish.">commit-SHA tag</span> your workflow pushed, not <code>latest</code> (for example, <code>image: yourname/your-github-repo-name:sha-1a2b3c4</code>). You only do this once: after that, the workflow updates the tag for you. Keep the <span class="term" tabindex="0" data-tip="In Docker Compose, a service is one container it manages, named under services: in docker-compose.yml. Commands such as docker compose run use that name to say which container you mean. Here the name is analysis-env.">service name</span> <code>analysis-env</code>, so the <a href="#readme-steps">commands below</a> work as written.</p></li>
 <li><p><strong>Work in the container from now on</strong>, with Positron over <span class="term" tabindex="0" data-tip="ssh (secure shell) lets you log in to another computer and work on it from your own. Here the other computer is your container: Positron connects to it over ssh, so your code runs with the container's software while your files stay in your project folder.">ssh</span> (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-ssh-positron.html">Working in a container over ssh with Positron</a>). To add a package: add it with uv or renv on a branch, commit the changed files together and push. GitHub Actions publishes a new image and commits its tag to <code>docker-compose.yml</code> on that branch. Then <code>git pull</code> and <code>docker compose pull</code>, and merge the branch in a pull request.</p></li>
-<li><p><strong>Update your <code>README</code></strong> so its instructions use the container (see the next section).</p></li>
+<li><p><strong>Update your <code>README</code> and <code>CONTRIBUTING.md</code></strong> so their instructions use the container (see <a href="#readme-steps">below</a>).</p></li>
 </ol>
 <div id="dockerfile" class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
@@ -732,8 +732,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <section id="readme-steps" class="level4">
-<h4 class="anchored" data-anchor-id="readme-steps">Your <code>README</code>: how to run the analysis</h4>
-<p>Write these steps in your <code>README</code>, in this order:</p>
+<h4 class="anchored" data-anchor-id="readme-steps">Your <code>README</code> and <code>CONTRIBUTING.md</code></h4>
+<p>Your <code>README</code> is for someone who wants to <strong>run</strong> your analysis. Your <code>CONTRIBUTING.md</code> is for a teammate or contributor who wants to <strong>change</strong> it. Keep each set of steps in its own file.</p>
+<p><strong>In your <code>README</code></strong>, write these steps, in this order:</p>
 <ol type="1">
 <li>Make an <span class="term" tabindex="0" data-tip="An ssh key is a pair of files that proves who you are without a password: a private key you keep secret (~/.ssh/id_ed25519) and a public key you can share (~/.ssh/id_ed25519.pub). Here docker-compose.yml puts your public key in the container, so ssh lets you in.">ssh key</span> if you don’t have one: <code>ssh-keygen -t ed25519</code>, pressing Enter at each question. (Without it, Docker makes a <em>folder</em> named <code>~/.ssh/id_ed25519.pub</code>, and ssh into the container fails until you delete that folder and make the key.)</li>
 <li>Download the image: <code>docker compose pull</code>.</li>
@@ -743,8 +744,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>R only: <code>docker compose run --rm analysis-env quarto render</code></li>
 </ul>
 Add your report’s path after <code>quarto render</code> if your project has no <code>_quarto.yml</code> that lists it.</li>
+</ol>
+<p>Then add a link to your <code>CONTRIBUTING.md</code> for anyone who wants to change the project.</p>
+<p><strong>In your <code>CONTRIBUTING.md</code></strong>, replace any setup steps from Milestone 1 (such as installing packages on your own computer) with these. Link to your <code>README</code> for the setup steps above instead of repeating them.</p>
+<ol type="1">
 <li>Work in the container: <code>docker compose up -d</code> starts it, then connect with Positron over ssh. <code>docker compose down</code> stops it.</li>
-<li>Update the container: add a package with your environment manager, commit and push, wait for GitHub Actions to publish the new image and update the tag in <code>docker-compose.yml</code>, then run <code>git pull</code> and <code>docker compose pull</code>.</li>
+<li>Add or update a package: add it with your environment manager on a branch, commit and push, wait for GitHub Actions to publish the new image and update the tag in <code>docker-compose.yml</code>, then run <code>git pull</code> and <code>docker compose pull</code>.</li>
+<li>Publish the report: after re-rendering, copy it to <code>docs/index.html</code> and push (see <a href="#publish-your-report-on-github-pages">part 2</a>).</li>
 </ol>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -874,6 +880,7 @@ Add your report’s path after <code>quarto render</code> if your project has no
 <li><label><input type="checkbox">(Python) <code>pyproject.toml</code> pins every package and lists <code>ipykernel</code>, <code>nbclient</code> and <code>pyyaml</code></label></li>
 <li><label><input type="checkbox">(R) <code>DESCRIPTION</code> pins every package and lists <code>knitr</code> and <code>rmarkdown</code></label></li>
 <li><label><input type="checkbox">Someone on Windows and someone on Mac followed your <code>README</code> steps exactly and rendered the report</label></li>
+<li><label><input type="checkbox">Your <code>CONTRIBUTING.md</code> says how to work in the container, add a package and republish the report, and your <code>README</code> doesn’t</label></li>
 <li><label><input type="checkbox">Your report on GitHub Pages shows in full, with its figures, and matches your release</label></li>
 <li><label><input type="checkbox">The GitHub Pages URL is in your <code>README</code> and in the repository’s <strong>About</strong> section</label></li>
 <li><label><input type="checkbox">You created the <code>1.0.0</code> release</label></li>
