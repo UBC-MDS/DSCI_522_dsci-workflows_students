@@ -293,13 +293,14 @@ See the DSCI 521 notes for [uv](https://ubc-mds.github.io/DSCI_521_platforms-dsc
 or [renv](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/virtual-environments-renv.html).
 
 ::: callout-important
-## 5 all-or-nothing points for your README instructions
+## Reproducibility is worth 20 points
 
-If someone can't set up your environment and run your analysis by following your README
-**exactly as written**, you lose all 5 points.
+We launch your container and run your analysis by following your `README` **exactly as written**.
+The less of it we can run (a missing package, a wrong file path, a step we had to guess or fix), the more points you lose.
 Test them on **both Windows and Mac**.
 If your team doesn't have both, ask another team to test them.
 :::
+
 
 ## Submission instructions
 
