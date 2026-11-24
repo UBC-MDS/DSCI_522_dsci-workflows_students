@@ -1,9 +1,11 @@
 ---
 title: "4. Data Validation with Pandera"
 description: "Publishing Docker images with GitHub Actions, and validating data with Pandera."
+# This year only the graduation slide is shown; slides_04.qmd is kept for next year.
+deck: "slides/slides/slides_04_sky_graduating.qmd"
 description-short: "Automate building and pushing a Docker image to Docker Hub with GitHub Actions, organize the complete workflow, then walk through the data validation checklist and check a dataset with Pandera."
 ---
 
 ## Slides for Section 001
 
-{{< revealjs "slides/slides_04.html" height="600px" class="ratio ratio-16x9" >}}
+{{< revealjs "slides/slides_04_sky_graduating.html" height="600px" class="ratio ratio-16x9" >}}

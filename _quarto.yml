@@ -31,7 +31,8 @@ project:
     - "slides/slides/slides_01.qmd"
     - "slides/slides/slides_02.qmd"
     - "slides/slides/slides_03.qmd"
-    # - "slides/slides/slides_04.qmd"
+    # - "slides/slides/slides_04.qmd"   # 2026: lecture 4 shows slides_04_sky_graduating instead
+    - "slides/slides/slides_04_sky_graduating.qmd"
     # - "slides/slides/slides_05.qmd"
     # - "slides/slides/slides_06.qmd"
     # - "slides/slides/slides_07.qmd"
@@ -154,7 +155,7 @@ website:
         - slides/lec_01.qmd
         - slides/lec_02.qmd
         - slides/lec_03.qmd
-        # - slides/lec_04.qmd
+        - slides/lec_04.qmd
         # - slides/lec_05.qmd
         # - slides/lec_06.qmd
         # - slides/lec_07.qmd

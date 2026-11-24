@@ -7,7 +7,8 @@
 // page; upcoming ones show the same title and description as plain text with a
 // "coming soon" badge.
 //
-// Page to deck: slides/lec_NN.qmd -> slides/slides/slides_NN.qmd, slides/lab_NN.qmd -> slides/slides/slides_lab_NN.qmd.
+// Page to deck: slides/lec_NN.qmd -> slides/slides/slides_NN.qmd, slides/lab_NN.qmd -> slides/slides/slides_lab_NN.qmd,
+// unless the page names its deck in front matter (`deck: "slides/slides/<file>.qmd"`).
 const rendered = (items[0] && items[0].project && items[0].project.render) || [];
 const deckFor = (filename) => "slides/slides/" + filename.replace(/^lec_/, "slides_").replace(/^lab_/, "slides_lab_");
 // The Recording column only shows once a page sets `recording:` in its front matter.
@@ -22,7 +23,7 @@ const pageHref = (item) => item.outputHref.split("/").pop();
 </thead>
 <tbody class="list">
 <% for (const item of items) { %>
-<% const released = item.outputHref && rendered.includes(deckFor(item.filename)); %>
+<% const released = item.outputHref && rendered.includes(item.deck || deckFor(item.filename)); %>
 <tr <%- metadataAttrs(item) %>>
 <td>
 <% if (released) { %>
