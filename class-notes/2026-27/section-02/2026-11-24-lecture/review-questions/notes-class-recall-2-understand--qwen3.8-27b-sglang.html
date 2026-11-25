@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>notes-class-recall-2-understand--qwen3.8-27b-sglang – DSCI 522: Data Science Workflows</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../../">
+<script src="../../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../../site_libs/quarto-html/quarto-syntax-highlighting-5a8ea6506bd74de719dafad1d662b7b4.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-31f71cfee8fb6cb433a9ce015cec3520.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../../../site_libs/quarto-html/quarto-syntax-highlighting-5a8ea6506bd74de719dafad1d662b7b4.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../../site_libs/bootstrap/bootstrap-86abfff4ea397ce80fca2e08295ab694.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../../site_libs/bootstrap/bootstrap-dark-5de2174b4b58a5f5dfb3c6166fd0d0b7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../../site_libs/bootstrap/bootstrap-86abfff4ea397ce80fca2e08295ab694.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../../../../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../../../index.html">
+    <span class="navbar-title">DSCI 522: Data Science Workflows</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-cheatsheets" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Cheatsheets</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-cheatsheets">    
+        <li>
+    <a class="dropdown-item" href="../../../../../cheatsheets/command_line.html">
+ <span class="dropdown-text">Command Line</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../../cheatsheets/git.html">
+ <span class="dropdown-text">Git</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../../cheatsheets/docker.html">
+ <span class="dropdown-text">Docker &amp; Docker Compose</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../../cheatsheets/uv.html">
+ <span class="dropdown-text">uv</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../../cheatsheets/quarto.html">
+ <span class="dropdown-text">Quarto</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../../cheatsheets/makefile.html">
+ <span class="dropdown-text">Makefile</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-section-1-slides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Section 1 Slides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-section-1-slides">    
+        <li>
+    <a class="dropdown-item" href="../../../../../slides/index.html">
+ <span class="dropdown-text">Section 001 Info</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../../slides/lecture.html">
+ <span class="dropdown-text">Lectures</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../../slides/lab.html">
+ <span class="dropdown-text">Labs</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-section-2-notes" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Section 2 Notes</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-section-2-notes">    
+        <li>
+    <a class="dropdown-item" href="../../../../../class-notes/index.html">
+ <span class="dropdown-text">Lectures</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../../class-notes/2026-27/section-02/2026-11-24-lecture/notes-class-main--claude-opus-5-5.html">
+ <span class="dropdown-text">Nov 24 · Building a Python analysis image with uv, volume mounts and Docker Compose</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../../class-notes/2026-27/section-02/2026-11-19-lecture/notes-class-main--claude-opus-5-5.html">
+ <span class="dropdown-text">Nov 19 · Git issues and pull requests, then an introduction to Docker containers</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../../class-notes/2026-27/section-02/2026-11-17-lecture/notes-class-main--claude-opus-5-5.html">
+ <span class="dropdown-text">Nov 17 · Git Branches, Pull Requests, Code Review and Rebasing to Fix Conflicts</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/"> 
+<span class="menu-text">Textbook</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students"> <i class="bi bi-github" role="img" aria-label="Course GitHub repository">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" aria-label="Toolbar">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../class-notes/2026-27/section-02/2026-11-24-lecture/notes-class-main--claude-opus-5-5.html">Nov 24 · Building a Python analysis image with uv, volume mounts and Docker Compose</a></li><li class="breadcrumb-item"><a href="../../../../../class-notes/2026-27/section-02/2026-11-24-lecture/review-questions/notes-class-recall-1-remember--qwen3.8-27b-sglang.html">Review questions (qwen3.8-27b-sglang)</a></li><li class="breadcrumb-item"><a href="../../../../../class-notes/2026-27/section-02/2026-11-24-lecture/review-questions/notes-class-recall-2-understand--qwen3.8-27b-sglang.html">2 Understand</a></li></ol></nav>
+        <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto" aria-label="Section">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lectures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Nov 24 · Building a Python analysis image with uv, volume mounts and Docker Compose</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-24-lecture/notes-class-main--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes (claude-opus-5-5)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-24-lecture/notes-class-main--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes (qwen3.6-35b-a3b)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-24-lecture/notes-class-main--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes (qwen3.8-27b-sglang)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Review questions (claude-opus-5-5)</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-24-lecture/review-questions/notes-class-recall-1-remember--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 Remember</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-24-lecture/review-questions/notes-class-recall-2-understand--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 Understand</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-24-lecture/review-questions/notes-class-recall-3-apply--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 Apply</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-24-lecture/review-questions/notes-class-recall-4-analyze--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 Analyze</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-24-lecture/review-questions/notes-class-recall-5-evaluate--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 Evaluate</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-controls="quarto-sidebar-section-3" aria-expanded="false">
+ <span class="menu-text" id="quarto-sidebar-section-3-label">Review questions (qwen3.6-35b-a3b)</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-3" aria-labelledby="quarto-sidebar-section-3-label" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-24-lecture/review-questions/notes-class-recall-1-remember--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 Remember</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-24-lecture/review-questions/notes-class-recall-2-understand--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 Understand</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-24-lecture/review-questions/notes-class-recall-3-apply--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 Apply</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-24-lecture/review-questions/notes-class-recall-4-analyze--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 Analyze</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-24-lecture/review-questions/notes-class-recall-5-evaluate--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 Evaluate</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Review questions (qwen3.8-27b-sglang)</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-24-lecture/review-questions/notes-class-recall-1-remember--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 Remember</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-24-lecture/review-questions/notes-class-recall-2-understand--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">2 Understand</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-24-lecture/review-questions/notes-class-recall-3-apply--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 Apply</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-24-lecture/review-questions/notes-class-recall-4-analyze--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 Analyze</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-24-lecture/review-questions/notes-class-recall-5-evaluate--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 Evaluate</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-24-lecture/materials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Readings</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-24-lecture/terminal.txt" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Commands and output (terminal.txt)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-24-lecture/notes-plaud.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Plaud’s summary</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-controls="quarto-sidebar-section-5" aria-expanded="false">
+ <span class="menu-text" id="quarto-sidebar-section-5-label">Older prompt’s notes</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-5" aria-labelledby="quarto-sidebar-section-5-label" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-24-lecture/comparison/notes-class-original--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">claude-opus-5-5</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-24-lecture/comparison/notes-class-original--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">qwen3.6-35b-a3b</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-24-lecture/comparison/notes-class-original--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">qwen3.8-27b-sglang</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-controls="quarto-sidebar-section-6" aria-expanded="false">
+ <span class="menu-text" id="quarto-sidebar-section-6-label">Nov 19 · Git issues and pull requests, then an introduction to Docker containers</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-6" aria-labelledby="quarto-sidebar-section-6-label" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-19-lecture/notes-class-main--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes (claude-opus-5-5)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-19-lecture/notes-class-main--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes (qwen3.6-35b-a3b)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-19-lecture/notes-class-main--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes (qwen3.8-27b-sglang)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-controls="quarto-sidebar-section-7" aria-expanded="false">
+ <span class="menu-text" id="quarto-sidebar-section-7-label">Review questions (claude-opus-5-5)</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-7" aria-labelledby="quarto-sidebar-section-7-label" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-1-remember--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 Remember</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-2-understand--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 Understand</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-3-apply--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 Apply</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-4-analyze--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 Analyze</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-5-evaluate--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 Evaluate</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-controls="quarto-sidebar-section-8" aria-expanded="false">
+ <span class="menu-text" id="quarto-sidebar-section-8-label">Review questions (qwen3.6-35b-a3b)</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-8" aria-labelledby="quarto-sidebar-section-8-label" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-1-remember--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 Remember</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-2-understand--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 Understand</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-3-apply--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 Apply</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-4-analyze--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 Analyze</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-5-evaluate--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 Evaluate</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-controls="quarto-sidebar-section-9" aria-expanded="false">
+ <span class="menu-text" id="quarto-sidebar-section-9-label">Review questions (qwen3.8-27b-sglang)</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-9" aria-labelledby="quarto-sidebar-section-9-label" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-1-remember--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 Remember</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-2-understand--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 Understand</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-3-apply--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 Apply</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-4-analyze--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 Analyze</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-19-lecture/review-questions/notes-class-recall-5-evaluate--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 Evaluate</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-19-lecture/materials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Readings</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-19-lecture/materials-next-class.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Readings for next class</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-19-lecture/history.txt" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Commands typed (history.txt)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-19-lecture/terminal.txt" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Commands and output (terminal.txt)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-19-lecture/notes-plaud.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Plaud’s summary</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-controls="quarto-sidebar-section-10" aria-expanded="false">
+ <span class="menu-text" id="quarto-sidebar-section-10-label">Older prompt’s notes</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-10" aria-labelledby="quarto-sidebar-section-10-label" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-19-lecture/comparison/notes-class-original--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">claude-opus-5-5</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-19-lecture/comparison/notes-class-original--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">qwen3.6-35b-a3b</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-19-lecture/comparison/notes-class-original--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">qwen3.8-27b-sglang</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-controls="quarto-sidebar-section-11" aria-expanded="false">
+ <span class="menu-text" id="quarto-sidebar-section-11-label">Nov 17 · Git Branches, Pull Requests, Code Review and Rebasing to Fix Conflicts</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-11" aria-labelledby="quarto-sidebar-section-11-label" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-17-lecture/notes-class-main--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes (claude-opus-5-5)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-17-lecture/notes-class-main--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes (qwen3.6-35b-a3b)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-17-lecture/notes-class-main--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes (qwen3.8-27b-sglang)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-controls="quarto-sidebar-section-12" aria-expanded="false">
+ <span class="menu-text" id="quarto-sidebar-section-12-label">Review questions (claude-opus-5-5)</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-12" aria-labelledby="quarto-sidebar-section-12-label" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-1-remember--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 Remember</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-2-understand--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 Understand</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-3-apply--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 Apply</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-4-analyze--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 Analyze</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-5-evaluate--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 Evaluate</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" aria-controls="quarto-sidebar-section-13" aria-expanded="false">
+ <span class="menu-text" id="quarto-sidebar-section-13-label">Review questions (qwen3.6-35b-a3b)</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-13" aria-labelledby="quarto-sidebar-section-13-label" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-1-remember--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 Remember</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-2-understand--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 Understand</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-3-apply--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 Apply</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-4-analyze--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 Analyze</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-5-evaluate--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 Evaluate</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" aria-controls="quarto-sidebar-section-14" aria-expanded="false">
+ <span class="menu-text" id="quarto-sidebar-section-14-label">Review questions (qwen3.8-27b-sglang)</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-14" aria-labelledby="quarto-sidebar-section-14-label" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-1-remember--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 Remember</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-2-understand--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 Understand</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-3-apply--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 Apply</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-4-analyze--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 Analyze</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-17-lecture/review-questions/notes-class-recall-5-evaluate--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 Evaluate</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-17-lecture/materials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Readings</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-17-lecture/terminal.txt" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Commands and output (terminal.txt)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-17-lecture/git1.png" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Drawing: git1.png</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-17-lecture/git2.png" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Drawing: git2.png</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-17-lecture/notes-plaud.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Plaud’s summary</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" aria-controls="quarto-sidebar-section-15" aria-expanded="false">
+ <span class="menu-text" id="quarto-sidebar-section-15-label">Older prompt’s notes</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-15" aria-labelledby="quarto-sidebar-section-15-label" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-17-lecture/comparison/notes-class-original--claude-opus-5-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">claude-opus-5-5</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-17-lecture/comparison/notes-class-original--qwen3.6-35b-a3b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">qwen3.6-35b-a3b</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../class-notes/2026-27/section-02/2026-11-17-lecture/comparison/notes-class-original--qwen3.8-27b-sglang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">qwen3.8-27b-sglang</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#warm-up-exercise-and-course-logistics" id="toc-warm-up-exercise-and-course-logistics" class="nav-link active" data-scroll-target="#warm-up-exercise-and-course-logistics">1. Warm-up exercise and course logistics</a></li>
+  <li><a href="#creating-the-repository-with-a-coding-agent" id="toc-creating-the-repository-with-a-coding-agent" class="nav-link" data-scroll-target="#creating-the-repository-with-a-coding-agent">2. Creating the repository with a coding agent</a></li>
+  <li><a href="#reviewing-the-dockerfile-the-cmd-command-29.2.1-cmd-or-entrypoint" id="toc-reviewing-the-dockerfile-the-cmd-command-29.2.1-cmd-or-entrypoint" class="nav-link" data-scroll-target="#reviewing-the-dockerfile-the-cmd-command-29.2.1-cmd-or-entrypoint">3. Reviewing the <code>Dockerfile</code>: the <code>CMD</code> command (29.2.1 <code>CMD</code> or <code>ENTRYPOINT</code>?)</a></li>
+  <li><a href="#building-the-image-docker-build-and-the-.-29-customizing-and-building-containers" id="toc-building-the-image-docker-build-and-the-.-29-customizing-and-building-containers" class="nav-link" data-scroll-target="#building-the-image-docker-build-and-the-.-29-customizing-and-building-containers">4. Building the image: <code>docker build</code> and the <code>.</code> (29 Customizing and building containers)</a></li>
+  <li><a href="#running-the-image-docker-run---rm--it-28-using-and-running-containers" id="toc-running-the-image-docker-run---rm--it-28-using-and-running-containers" class="nav-link" data-scroll-target="#running-the-image-docker-run---rm--it-28-using-and-running-containers">5. Running the image: <code>docker run</code>, <code>--rm</code>, <code>-it</code> (28 Using and running containers)</a></li>
+  <li><a href="#choosing-a-base-image-and-installing-uv-30-python-packages-with-uv-in-an-image" id="toc-choosing-a-base-image-and-installing-uv-30-python-packages-with-uv-in-an-image" class="nav-link" data-scroll-target="#choosing-a-base-image-and-installing-uv-30-python-packages-with-uv-in-an-image">6. Choosing a base image and installing <code>uv</code> (30 Python packages with uv in an image)</a></li>
+  <li><a href="#pinning-exact-versions-with-pyproject.toml-22-uv-pinning-exact-versions" id="toc-pinning-exact-versions-with-pyproject.toml-22-uv-pinning-exact-versions" class="nav-link" data-scroll-target="#pinning-exact-versions-with-pyproject.toml-22-uv-pinning-exact-versions">7. Pinning exact versions with <code>pyproject.toml</code> (22 uv: pinning exact versions)</a></li>
+  <li><a href="#the-uv-dockerfile-three-files-and-uv-sync---locked-30-python-packages-with-uv-in-an-image" id="toc-the-uv-dockerfile-three-files-and-uv-sync---locked-30-python-packages-with-uv-in-an-image" class="nav-link" data-scroll-target="#the-uv-dockerfile-three-files-and-uv-sync---locked-30-python-packages-with-uv-in-an-image">8. The uv <code>Dockerfile</code>: three files and <code>uv sync --locked</code> (30 Python packages with uv in an image)</a></li>
+  <li><a href="#layer-caching-and-ordering-29.1.3-layer-caching" id="toc-layer-caching-and-ordering-29.1.3-layer-caching" class="nav-link" data-scroll-target="#layer-caching-and-ordering-29.1.3-layer-caching">9. Layer caching and ordering (29.1.3 Layer caching)</a></li>
+  <li><a href="#separating-compute-from-source-code-30-python-packages-with-uv-in-an-image" id="toc-separating-compute-from-source-code-30-python-packages-with-uv-in-an-image" class="nav-link" data-scroll-target="#separating-compute-from-source-code-30-python-packages-with-uv-in-an-image">10. Separating compute from source code (30 Python packages with uv in an image)</a></li>
+  <li><a href="#mounting-volumes-with--v-28.1.2-mounting-volumes-to-containers" id="toc-mounting-volumes-with--v-28.1.2-mounting-volumes-to-containers" class="nav-link" data-scroll-target="#mounting-volumes-with--v-28.1.2-mounting-volumes-to-containers">11. Mounting volumes with <code>-v</code> (28.1.2 Mounting volumes to containers)</a></li>
+  <li><a href="#keeping-the-environment-in-optvenv-30.5-why-the-packages-go-in-optvenv" id="toc-keeping-the-environment-in-optvenv-30.5-why-the-packages-go-in-optvenv" class="nav-link" data-scroll-target="#keeping-the-environment-in-optvenv-30.5-why-the-packages-go-in-optvenv">12. Keeping the environment in <code>/opt/venv</code> (30.5 Why the packages go in <code>/opt/venv</code>)</a></li>
+  <li><a href="#docker-compose-33-containers-docker-compose" id="toc-docker-compose-33-containers-docker-compose" class="nav-link" data-scroll-target="#docker-compose-33-containers-docker-compose">13. Docker Compose (33 Containers: Docker Compose)</a></li>
+  <li><a href="#the-homework-a-dockerfile-as-compute-environment-30-python-packages-with-uv-in-an-image" id="toc-the-homework-a-dockerfile-as-compute-environment-30-python-packages-with-uv-in-an-image" class="nav-link" data-scroll-target="#the-homework-a-dockerfile-as-compute-environment-30-python-packages-with-uv-in-an-image">14. The homework: a <code>Dockerfile</code> as compute environment (30 Python packages with uv in an image)</a></li>
+  <li><a href="#docker-compose-outside-the-class-33-containers-docker-compose" id="toc-docker-compose-outside-the-class-33-containers-docker-compose" class="nav-link" data-scroll-target="#docker-compose-outside-the-class-33-containers-docker-compose">15. Docker Compose outside the class (33 Containers: Docker Compose)</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students/edit/main/class-notes/2026-27/section-02/2026-11-24-lecture/review-questions/notes-class-recall-2-understand--qwen3.8-27b-sglang.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../class-notes/2026-27/section-02/2026-11-24-lecture/notes-class-main--claude-opus-5-5.html">Nov 24 · Building a Python analysis image with uv, volume mounts and Docker Compose</a></li><li class="breadcrumb-item"><a href="../../../../../class-notes/2026-27/section-02/2026-11-24-lecture/review-questions/notes-class-recall-1-remember--qwen3.8-27b-sglang.html">Review questions (qwen3.8-27b-sglang)</a></li><li class="breadcrumb-item"><a href="../../../../../class-notes/2026-27/section-02/2026-11-24-lecture/review-questions/notes-class-recall-2-understand--qwen3.8-27b-sglang.html">2 Understand</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Building a reproducible Docker + uv compute environment: review questions, tier 2 — Understand</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Date: 2026-11-24</p>
+<blockquote class="blockquote">
+<p>Generated by qwen3.8-27b-sglang, a local model, from the class recording, logs and readings. It can be wrong, or say things the class didn’t cover.</p>
+</blockquote>
+<p>Instructor: Daniel Chen</p>
+<p><em>Tier 2 of 5: Understand. Explain each answer in your own words before you read it; tier 1 (Remember) covers the facts, tiers 3 to 5 put them to use.</em></p>
+<section id="warm-up-exercise-and-course-logistics" class="level1">
+<h1>1. Warm-up exercise and course logistics</h1>
+<p><em>00:00:00–00:07:15</em></p>
+<ul>
+<li><strong>Q:</strong> Why did the course website’s colours and layout change?
+<ul>
+<li><strong>A:</strong> Because the other instructor had the materials from her own class folded into the student repository. She teaches out of slide decks rather than summary notes, so the site now hosts her slide decks and the summary notes directly, meaning you no longer have to look in the UBC student repository for the notes. <em>(00:04:44)</em></li>
+</ul></li>
+<li><strong>Q:</strong> Why are the per-lecture review notes written at different levels of Bloom’s taxonomy?
+<ul>
+<li><strong>A:</strong> To test different levels of understanding. Some questions are basic factual ones, while others are more complicated and require you to actually know what is going on under the hood, so a lecture can be broken down into question-and-answer topics at each level. <em>(00:05:48)</em></li>
+</ul></li>
+<li><strong>Q:</strong> Why does the instructor stress that everyone make sure Docker Desktop is actually running before running Docker commands?
+<ul>
+<li><strong>A:</strong> Because if it is not running, any <code>docker</code> command will not reach the daemon — Docker usually prompts “do you mean to turn on Docker?” but you should not rely on that prompt and instead start it deliberately. It is flagged especially because one student in the class is on a Linux machine (which does not use Docker Desktop) while the rest are on Windows or Mac. <em>(00:07:04)</em></li>
+</ul></li>
+</ul>
+</section>
+<section id="creating-the-repository-with-a-coding-agent" class="level1">
+<h1>2. Creating the repository with a coding agent</h1>
+<p><em>00:07:15–00:11:00</em></p>
+<ul>
+<li><strong>Q:</strong> Why did specifying the exact image name and the word <code>Dockerfile</code> in the prompt matter for the coding agent?
+<ul>
+<li><strong>A:</strong> Because the information you feed into the prompt is what steers the result toward the correct answer; the instructor contrasted this with a vague “go make a thing” prompt from someone who has never heard of Docker, which would fail. Knowing the tooling vocabulary lets you point the agent at the right image and file. <em>(00:08:38)</em></li>
+</ul></li>
+<li><strong>Q:</strong> What shell commands did the coding agent run before writing the files, and why?
+<ul>
+<li><strong>A:</strong> It ran ordinary shell commands — <code>ls</code>, <code>mkdir</code>, and <code>docker</code> — to check its environment: whether <code>docker</code> and the <code>gh</code> command exist, and what type of computer it was on. This is the kind of setup an agent performs before writing the <code>Dockerfile</code>. <em>(00:09:20)</em></li>
+</ul></li>
+<li><strong>Q:</strong> Why did the agent create a <code>Makefile</code> and a <code>README.md</code> even though the warm-up only asked for a <code>Dockerfile</code>?
+<ul>
+<li><strong>A:</strong> Because those are things the instructor typically asks for, and his machine is set up with defaults learned in DSCI 522, so the agent reproduces those defaults; a student with their own templates can do the same. <em>(00:11:24)</em></li>
+</ul></li>
+</ul>
+</section>
+<section id="reviewing-the-dockerfile-the-cmd-command-29.2.1-cmd-or-entrypoint" class="level1">
+<h1>3. Reviewing the <code>Dockerfile</code>: the <code>CMD</code> command (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html#cmd-or-entrypoint">29.2.1 <code>CMD</code> or <code>ENTRYPOINT</code>?</a>)</h1>
+<p><em>00:11:00–00:12:45</em></p>
+<ul>
+<li><strong>Q:</strong> In the instructor’s “double-click a file” analogy, what does the <code>CMD ["R"]</code> line answer?
+<ul>
+<li><strong>A:</strong> It answers “what opens by default” when you start the container with no other input; here, R opens. <code>CMD</code> is the line that sets that default command for the container. <em>(00:12:28)</em></li>
+</ul></li>
+<li><strong>Q:</strong> Why did the warm-up <code>Dockerfile</code> need only the <code>FROM rocker/r-ver:4.6.2</code> line to meet the requirement, yet Claude still added <code>CMD ["R"]</code>?
+<ul>
+<li><strong>A:</strong> The base-image line was enough to fulfill the task, but Claude recognized the base was an R container and inferred you would want to do R things with it, so it set R as the default command. <em>(00:11:44)</em></li>
+</ul></li>
+<li><strong>Q:</strong> If the container’s <code>CMD</code> is <code>["R"]</code>, why is <code>CMD</code> a default rather than a hard requirement?
+<ul>
+<li><strong>A:</strong> Because you can always give the container other parameters or commands when you run it to start something that is not R; <code>CMD</code> only controls what happens when you provide no other input. <em>(00:12:19)</em></li>
+</ul></li>
+</ul>
+</section>
+<section id="building-the-image-docker-build-and-the-.-29-customizing-and-building-containers" class="level1">
+<h1>4. Building the image: <code>docker build</code> and the <code>.</code> (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html">29 Customizing and building containers</a>)</h1>
+<p><em>00:12:45–00:16:40</em></p>
+<ul>
+<li><strong>Q:</strong> Why does <code>docker build --tag 2026-11-24-docker .</code> end with a dot <code>.</code>?
+<ul>
+<li><strong>A:</strong> The dot comes from DSCI 521 week 1, where <code>.</code> meant “your current location.” <code>docker build</code> looks for a file called <code>Dockerfile</code> (capital D) by default and must be given a location to look; the dot says that default file is where you currently are. It is like a function that needs an input, so you cannot leave it empty. <em>(00:14:46)</em></li>
+</ul></li>
+<li><strong>Q:</strong> Why did rebuilding the R image build so quickly this time?
+<ul>
+<li><strong>A:</strong> Because the base <code>rocker/r-ver:4.6.2</code> image was already available locally, so the build just ran through the steps fast. Had you pointed at an R version you had not downloaded, the pull step would have taken a couple of seconds to minutes depending on your internet speed. <em>(00:15:45)</em></li>
+</ul></li>
+<li><strong>Q:</strong> What does the <code>--tag</code> (or <code>-t</code>) flag do, and why can the tag be anything?
+<ul>
+<li><strong>A:</strong> It names the image you are building. The tag can be any name you choose — the instructor joked you could call it “pizza” — it simply labels the image locally. <em>(00:14:13)</em></li>
+</ul></li>
+</ul>
+</section>
+<section id="running-the-image-docker-run---rm--it-28-using-and-running-containers" class="level1">
+<h1>5. Running the image: <code>docker run</code>, <code>--rm</code>, <code>-it</code> (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html">28 Using and running containers</a>)</h1>
+<p><em>00:16:40–00:20:05</em></p>
+<ul>
+<li><strong>Q:</strong> What do the <code>--rm</code> and <code>-it</code> flags each do in <code>docker run --rm -it 2026-11-24-docker</code>?
+<ul>
+<li><strong>A:</strong> <code>--rm</code> makes the container ephemeral: when you exit (or Ctrl-C), it is deleted and any changes inside are undone. <code>-it</code> gives you an interactive terminal, meaning Docker captures what you type and passes it along to the container. <em>(00:16:53)</em></li>
+</ul></li>
+<li><strong>Q:</strong> Why is a container run with <code>--rm</code> a good place to try a risky install such as PyTorch?
+<ul>
+<li><strong>A:</strong> Because exiting deletes the container and undoes all of your changes — the instructor compared it to “another version of Git that automatically resets all of your changes.” If the install goes wrong, you just restart it and nothing bad has happened. <em>(00:19:50)</em></li>
+</ul></li>
+<li><strong>Q:</strong> Why do you start at the root of the filesystem inside the container, and why is there no dedicated user?
+<ul>
+<li><strong>A:</strong> Because a lot of Docker containers are set up with stuff just thrown in, so you end up seeing the operating-system files from the system level. For this class the container is a self-contained analysis setup, not a public service, so ownership is not a concern and commands start at the root. <em>(00:18:24)</em></li>
+</ul></li>
+<li><strong>Q:</strong> Why does adding <code>bash</code> after the image name in <code>docker run --rm -it 2026-11-24-docker bash</code> give you a normal shell instead of starting R?
+<ul>
+<li><strong>A:</strong> Because a command after the image name overwrites the container’s default <code>CMD</code> of R; you then have normal terminal access, just like Git Bash on Windows or your terminal on a Mac, with the same type of access to that machine. <em>(00:17:26)</em></li>
+</ul></li>
+</ul>
+</section>
+<section id="choosing-a-base-image-and-installing-uv-30-python-packages-with-uv-in-an-image" class="level1">
+<h1>6. Choosing a base image and installing <code>uv</code> (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-uv.html">30 Python packages with uv in an image</a>)</h1>
+<p><em>00:20:05–00:27:40</em></p>
+<ul>
+<li><strong>Q:</strong> Why did the class choose <code>ubuntu:24.04</code> as the base image instead of keeping the R image?
+<ul>
+<li><strong>A:</strong> Because the R image has a lot of R-specific stuff installed, and the instructor wanted something smaller to be respectful of other people’s disk space — he noted disk is “very expensive now because of the AI boom.” <code>Alpine</code> is even smaller but may need more manual installs, so Ubuntu is a good general starting point. <em>(00:23:55)</em></li>
+</ul></li>
+<li><strong>Q:</strong> What is the <code>COPY --from=ghcr.io/astral-sh/uv:0.13.7 /uv /uvx /usr/local/bin/</code> line doing, and why copy from that registry image?
+<ul>
+<li><strong>A:</strong> It copies the <code>uv</code> and <code>uvx</code> programs out of the image that uv publishes — “copy from one image to another image” — into the new container’s <code>/usr/local/bin</code>. The <code>ghcr.io/...</code> name is a registry path (a username, a repository, a version), and the version is pinned by tag the way a lockfile pins a package; this line comes straight from uv’s Docker guide. <em>(00:25:14)</em></li>
+</ul></li>
+<li><strong>Q:</strong> What does <code>WORKDIR /workspace</code> do, and why set it?
+<ul>
+<li><strong>A:</strong> It changes the working directory of the container (creating the folder if it does not exist), so when you start the container you land in <code>/workspace</code> instead of the root. The working-directory idea comes from DSCI 521 and from R/Python, where commands always need a starting point. <em>(00:26:42)</em></li>
+</ul></li>
+<li><strong>Q:</strong> If most of the class is on Windows or Mac, why does a container run on Linux?
+<ul>
+<li><strong>A:</strong> Because Docker containers work on top of some version of Linux; as soon as you are inside a container you are in the Linux world, most likely some version of Ubuntu. <em>(00:23:33)</em></li>
+</ul></li>
+</ul>
+</section>
+<section id="pinning-exact-versions-with-pyproject.toml-22-uv-pinning-exact-versions" class="level1">
+<h1>7. Pinning exact versions with <code>pyproject.toml</code> (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/virtual-environments-python-uv-exact-pins.html">22 uv: pinning exact versions</a>)</h1>
+<p><em>00:27:40–00:34:45</em></p>
+<ul>
+<li><strong>Q:</strong> Why pin <code>cowsay==6.1</code> with <code>==</code> rather than the <code>cowsay&gt;=6.1</code> that <code>uv add</code> writes by default?
+<ul>
+<li><strong>A:</strong> Because a lower bound is a liability for a long-running project: if cowsay released 7.0 and you rebuilt the container, you would pull it, and when a package’s first number changes it is typically a backwards-compatibility-breaking change that can break the analysis. Pinning with <code>==</code> keeps the declared and locked versions identical, so a version only moves when someone edits the pin. <em>(00:30:51)</em></li>
+</ul></li>
+<li><strong>Q:</strong> What does <code>add-bounds = "exact"</code> in the <code>[tool.uv]</code> table of <code>pyproject.toml</code> change?
+<ul>
+<li><strong>A:</strong> It makes every future <code>uv add</code> write an exact version (<code>==</code>) instead of a lower bound (<code>&gt;=</code>). Because the setting lives in <code>pyproject.toml</code>, everyone on the project gets the same behaviour from <code>uv add</code>. <em>(00:31:06)</em></li>
+</ul></li>
+<li><strong>Q:</strong> What is the difference between <code>pyproject.toml</code> and <code>uv.lock</code>?
+<ul>
+<li><strong>A:</strong> <code>pyproject.toml</code> is a general Python metadata file that holds the explicit versions you care about, while <code>uv.lock</code> pins the whole set (including downstream dependencies) to specific versions and is generated from the <code>toml</code>. You specify what matters in the <code>toml</code> and let the resolver handle the rest, though you may pin extra downstream packages if one updates and breaks things. <em>(00:33:35)</em></li>
+</ul></li>
+</ul>
+</section>
+<section id="the-uv-dockerfile-three-files-and-uv-sync---locked-30-python-packages-with-uv-in-an-image" class="level1">
+<h1>8. The uv <code>Dockerfile</code>: three files and <code>uv sync --locked</code> (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-uv.html">30 Python packages with uv in an image</a>)</h1>
+<p><em>00:35:00–00:39:25</em></p>
+<ul>
+<li><strong>Q:</strong> What is the <code>.python-version</code> file for, and how does it differ from <code>uv.lock</code>?
+<ul>
+<li><strong>A:</strong> It tells uv what version of Python to install; it is a separate file that says, if you were to install again, which Python version to use, because you do not always want the latest. <code>uv.lock</code>, by contrast, only locks the packages and their dependencies, not the Python version. <em>(00:36:38)</em></li>
+</ul></li>
+<li><strong>Q:</strong> Why does the class pin the Python version at all?
+<ul>
+<li><strong>A:</strong> Because the version of Python determines which dependency versions of a package are installable — not everything is compatible with the latest Python. His biggest example is PyTorch, which is almost never compatible with the latest Python, so you often have to pin a version; it also lets a package author test against an upcoming Python release. <em>(00:35:59)</em></li>
+</ul></li>
+<li><strong>Q:</strong> What does <code>RUN uv sync --locked</code> do at build time, and what does the <code>--locked</code> flag add?
+<ul>
+<li><strong>A:</strong> It installs the Python and the packages at build time, exactly as you would run <code>uv sync</code> on your machine. The <code>--locked</code> flag makes the step error out if <code>uv.lock</code> and <code>pyproject.toml</code> are out of sync — the instructor called these “little placeholders” so the build fails when you want it to, instead of quietly updating the lockfile inside the image. <em>(00:39:14)</em></li>
+</ul></li>
+</ul>
+</section>
+<section id="layer-caching-and-ordering-29.1.3-layer-caching" class="level1">
+<h1>9. Layer caching and ordering (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html#layer-caching">29.1.3 Layer caching</a>)</h1>
+<p><em>00:39:25–00:44:30</em></p>
+<ul>
+<li><strong>Q:</strong> How does Docker’s layer caching work, and what does it mean for rebuild speed?
+<ul>
+<li><strong>A:</strong> Docker saves each step’s result as a layer, and reuses a layer when that step and the steps above it have not changed; if a layer is unchanged it just uses the cached version. That is why a build can finish very quickly. <em>(00:41:35)</em></li>
+</ul></li>
+<li><strong>Q:</strong> Why put the slow, rarely-changing steps near the top of the <code>Dockerfile</code> and the frequently-changing steps near the bottom?
+<ul>
+<li><strong>A:</strong> Because any change to a layer forces Docker to rerun that layer and everything below it. If <code>uv sync</code> takes a long time and you copied your code before it, a typo in a script would make you wait through the slow install again — his example was that the tidyverse can take around fifteen minutes — so copying code last avoids that. <em>(00:42:40)</em></li>
+</ul></li>
+<li><strong>Q:</strong> Why did copying <code>hello.py</code> at the end make the next rebuild fast?
+<ul>
+<li><strong>A:</strong> Because copying a file is super fast, and the earlier <code>uv sync</code> layer was already cached, so only the copy step had to run. <em>(00:43:54)</em></li>
+</ul></li>
+<li><strong>Q:</strong> What are the two ways to hand someone a working copy of your analysis once the image is built?
+<ul>
+<li><strong>A:</strong> You can give them the <code>Dockerfile</code> and have them build it, or you can publish the image to a registry and have them <code>docker pull</code> it so the image is already there and they skip the build entirely. <em>(00:44:16)</em></li>
+</ul></li>
+</ul>
+</section>
+<section id="separating-compute-from-source-code-30-python-packages-with-uv-in-an-image" class="level1">
+<h1>10. Separating compute from source code (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-uv.html">30 Python packages with uv in an image</a>)</h1>
+<p><em>00:49:36–00:52:15</em></p>
+<ul>
+<li><strong>Q:</strong> Why is copying all of your code into the image and rebuilding a poor way to work on an actively developed project?
+<ul>
+<li><strong>A:</strong> Because it snapshots the code at one moment, so you then have to worry about who copied what and when, and remember to commit/push and re-copy and rebuild so the image matches. The instructor called this not a very scalable way to deal with work that is actively being developed. <em>(00:50:27)</em></li>
+</ul></li>
+<li><strong>Q:</strong> Why is installing Git inside the container and cloning the repository a valid but inferior alternative?
+<ul>
+<li><strong>A:</strong> Because the goal is to separate compute (the installed software/packages) from source code; installing Git just re-introduces the code into the container. The instructor said it is totally valid and he has done it (for example, to mimic a student’s terminal), but there is always a better way. <em>(00:51:40)</em></li>
+</ul></li>
+<li><strong>Q:</strong> Why remove the <code>COPY hello.py</code> line from the <code>Dockerfile</code> while keeping the <code>pyproject.toml</code>, <code>uv.lock</code>, and <code>.python-version</code> copies?
+<ul>
+<li><strong>A:</strong> Because the three package-listing files are required for the build — without them the container could not build — whereas the actual code is brought in another way (mounted) so the container holds only the installed software. <em>(00:52:30)</em></li>
+</ul></li>
+</ul>
+</section>
+<section id="mounting-volumes-with--v-28.1.2-mounting-volumes-to-containers" class="level1">
+<h1>11. Mounting volumes with <code>-v</code> (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html#mounting-volumes-to-containers">28.1.2 Mounting volumes to containers</a>)</h1>
+<p><em>00:52:15–00:59:35</em></p>
+<ul>
+<li><strong>Q:</strong> What does the <code>-v</code> flag in <code>docker run --rm -it -v "$(pwd):/workspace" 2026-11-24-docker bash</code> do?
+<ul>
+<li><strong>A:</strong> It “mounts” a volume: it takes a folder from your computer and makes it available in the container when it runs, so the container sees your live files. It is like a shared drive — changes you make on your computer appear in the container and vice-versa, because it is the same folder, not a synced copy. <em>(00:54:30)</em></li>
+</ul></li>
+<li><strong>Q:</strong> Why use <code>$(pwd)</code> in the <code>-v</code> flag instead of a hard-coded path?
+<ul>
+<li><strong>A:</strong> The <code>$</code> in <code>$(pwd)</code> is a Bash way to pull in a command’s output, and <code>pwd</code> prints your current working directory, so the flag takes your current directory as the folder to share. That keeps you from hard-coding a local path. <em>(00:56:59)</em></li>
+</ul></li>
+<li><strong>Q:</strong> Why is the mounting done in the <code>docker run</code> process rather than the <code>docker build</code> process?
+<ul>
+<li><strong>A:</strong> Because at build time Docker can only <code>COPY</code> a snapshot of the files, but at run time it can mount a live folder and keep it in sync at that location. <em>(00:56:06)</em></li>
+</ul></li>
+<li><strong>Q:</strong> Why don’t you need to install Git (with SSH keys or a personal access token) inside the container when you use the mount?
+<ul>
+<li><strong>A:</strong> Because the shared drive means you are not doing <code>git push</code>/<code>pull</code> in the container; otherwise every rebuild would create a new SSH key you would have to re-register, which makes Git a big problem. You are just working by yourself on the same file, so there is no risk of clobbering a teammate’s work. <em>(00:54:52)</em></li>
+</ul></li>
+<li><strong>Q:</strong> Why did the instructor warn to pay attention to the terminal prompt?
+<ul>
+<li><strong>A:</strong> Because he was jumping between his local machine and the container, and mixing them up means you might edit or run commands in the wrong environment. <em>(00:52:53)</em></li>
+</ul></li>
+</ul>
+</section>
+<section id="keeping-the-environment-in-optvenv-30.5-why-the-packages-go-in-optvenv" class="level1">
+<h1>12. Keeping the environment in <code>/opt/venv</code> (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-uv.html#why-the-packages-go-in-optvenv">30.5 Why the packages go in <code>/opt/venv</code></a>)</h1>
+<p><em>00:59:35–01:07:00</em></p>
+<ul>
+<li><strong>Q:</strong> Why is a local <code>.venv</code> folder not portable across a team’s different machines?
+<ul>
+<li><strong>A:</strong> Because the <code>.venv</code> holds the actual Python binary and the installed packages, all built for your machine’s operating system and CPU architecture. A team spans Windows/Mac/Linux and two CPU architectures (amd64 and arm64), so a <code>.venv</code> built on a Mac will not run on Windows — like you cannot double-click a Mac Excel file on Windows and expect it to work. <em>(01:00:45)</em></li>
+</ul></li>
+<li><strong>Q:</strong> What went wrong when the project folder (with its local <code>.venv</code>) was mounted over <code>/workspace</code>?
+<ul>
+<li><strong>A:</strong> The mount overwrote the image’s Linux-built <code>.venv</code>; running <code>uv run</code> in the container then found your local <code>.venv</code>, warned that it was “linked to non-existent Python interpreter,” removed it, and created a Linux one in its place. The result is that your Mac <code>.venv</code> is gone and the new one does not work on your machine. <em>(01:02:40)</em></li>
+</ul></li>
+<li><strong>Q:</strong> Why set <code>ENV UV_PROJECT_ENVIRONMENT=/opt/venv</code> in the <code>Dockerfile</code>?
+<ul>
+<li><strong>A:</strong> It tells uv to put the project’s virtual environment in <code>/opt/venv</code> instead of <code>.venv</code> inside the mounted project folder, and it must be set before <code>uv sync</code> runs. Then the container ignores the mounted local <code>.venv</code> and uses the Linux environment the image built, which makes the image portable across the team’s machines. <em>(01:04:35)</em></li>
+</ul></li>
+<li><strong>Q:</strong> Why does <code>uv.lock</code> already contain the package information for other operating systems even though <code>uv sync</code> only installed your local one?
+<ul>
+<li><strong>A:</strong> Because the lock file records the hashes, locations, and dependencies for all the other operating systems; <code>uv sync</code> simply did not install them locally because you do not need them on your machine. When the container builds on Linux, it is those Linux entries in the lock file that are used. <em>(01:01:22)</em></li>
+</ul></li>
+<li><strong>Q:</strong> How did the instructor verify that the container now uses <code>/opt/venv</code>?
+<ul>
+<li><strong>A:</strong> By running <code>uv run which python</code> inside the container, which returned <code>/opt/venv/bin/python</code>, confirming uv was no longer looking in <code>.venv</code>. <em>(01:06:27)</em></li>
+</ul></li>
+</ul>
+</section>
+<section id="docker-compose-33-containers-docker-compose" class="level1">
+<h1>13. Docker Compose (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-docker-compose.html">33 Containers: Docker Compose</a>)</h1>
+<p><em>01:07:00–01:14:05</em></p>
+<ul>
+<li><strong>Q:</strong> Why use a <code>docker-compose.yml</code> file instead of a long <code>docker run</code> command?
+<ul>
+<li><strong>A:</strong> Because as the <code>docker run</code> command accumulates flags (<code>-v</code>, and <code>-p</code> for ports when using JupyterLab or RStudio on port 8787) it becomes long and painful to edit — you cannot click into the middle of a pasted command to fix it. A file is nicer because it can be version controlled and tracked, and you rely on simple commands to run. <em>(01:11:28)</em></li>
+</ul></li>
+<li><strong>Q:</strong> What are the parts of the <code>docker-compose.yml</code> the class wrote for the <code>analysis-env</code> service?
+<ul>
+<li><strong>A:</strong> It is a YAML file that, under <code>services:</code>, lists one container: <code>build: .</code> (build the image from the current <code>Dockerfile</code>), <code>image: 2026-11-24-docker</code> (the tag to build into), <code>volumes:</code> with <code>.:/workspace</code> (mount the current directory at <code>/workspace</code>), and optionally <code>ports:</code>. <em>(01:10:34)</em></li>
+</ul></li>
+<li><strong>Q:</strong> Why is Docker Compose useful beyond a single container?
+<ul>
+<li><strong>A:</strong> Because it is really for running several containers at once — for example a dashboard plus its database in a microservices setup, where some people only care about the database and you want separation between the pieces. One service is a bit overkill here but still useful. <em>(01:08:53)</em></li>
+</ul></li>
+<li><strong>Q:</strong> What does <code>docker compose up --detach</code> do compared with <code>docker compose up</code>?
+<ul>
+<li><strong>A:</strong> <code>--detach</code> (or <code>up -d</code>) starts the container in the background so the prompt returns, whereas a plain <code>up</code> attaches. In this session <code>up</code> created the container but it exited with code 0 immediately, and the instructor said he would fix the demo next class. <em>(01:12:14)</em></li>
+</ul></li>
+</ul>
+</section>
+<section id="the-homework-a-dockerfile-as-compute-environment-30-python-packages-with-uv-in-an-image" class="level1">
+<h1>14. The homework: a <code>Dockerfile</code> as compute environment (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-uv.html">30 Python packages with uv in an image</a>)</h1>
+<p><em>01:14:05–01:17:00</em></p>
+<ul>
+<li><strong>Q:</strong> Why might the <code>Dockerfile</code> need extra system tools beyond the Python packages installed by uv?
+<ul>
+<li><strong>A:</strong> Because some packages need system tools to actually function — the instructor’s example was geospatial analysis, which needs many system tools and the underlying libraries those Python packages are built on. The requirement is that you understand why you are installing each thing. <em>(01:16:16)</em></li>
+</ul></li>
+<li><strong>Q:</strong> How is this week’s <code>Dockerfile</code> milestone graded, and what does that grading check?
+<ul>
+<li><strong>A:</strong> The TA takes your repository, builds a container from it, and runs the analysis inside that container. It checks that you have a reproducible compute environment — hand someone the <code>Dockerfile</code> or an image and the analysis is fully contained. <em>(01:15:09)</em></li>
+</ul></li>
+<li><strong>Q:</strong> Why must the container mount your project folder and render with <code>uv run quarto render</code>?
+<ul>
+<li><strong>A:</strong> Because the homework requires that you mount the folders that need to be mounted and that <code>uv run quarto render</code> renders your report inside the container, so the analysis is verified to run in the container and not just on your machine. <em>(01:14:44)</em></li>
+</ul></li>
+</ul>
+</section>
+<section id="docker-compose-outside-the-class-33-containers-docker-compose" class="level1">
+<h1>15. Docker Compose outside the class (<a href="https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-docker-compose.html">33 Containers: Docker Compose</a>)</h1>
+<p><em>01:17:00–01:20:10</em></p>
+<ul>
+<li><strong>Q:</strong> Why can you stand up whole applications with just <code>docker compose up</code> if you know your way around Docker?
+<ul>
+<li><strong>A:</strong> Because many open-source tools ship a <code>docker-compose.yml</code> that defines the service(s), image, ports, and environment variables; <code>docker compose up</code> then downloads the image, runs the software, and exposes the port, so you do not have to learn each tool’s install steps. <em>(01:19:44)</em></li>
+</ul></li>
+<li><strong>Q:</strong> What did the Actual Budget compose file define, and what does <code>docker compose up -d</code> do for it?
+<ul>
+<li><strong>A:</strong> It defines one service (<code>actual-server</code>) with an image, some ports, the environment variables it needs, some volumes, and a health check. <code>docker compose up -d</code> downloads the image, runs the software, and exposes the port, giving you your own personal-finance app in a browser. <em>(01:18:19)</em></li>
+</ul></li>
+<li><strong>Q:</strong> Why do tools like Jellyfin, N8N, and the recipe app “run like RStudio”?
+<ul>
+<li><strong>A:</strong> Because they all run on a port in a browser; the only thing you have to arrange is a machine to run them on, whether an old laptop or a machine you pay for in the cloud. <em>(01:19:21)</em></li>
+</ul></li>
+<li><strong>Q:</strong> Explain how the compose-file skill used for the class’s compute environment applies to deploying these open-source apps.
+<ul>
+<li><strong>A:</strong> It is the same skill: read the <code>docker-compose.yml</code> and run <code>docker compose up</code>, so Docker is not only for reproducible analysis — the same mechanism stands up whole applications. <em>(01:19:56)</em></li>
+</ul></li>
+</ul>
+<hr>
+<ul>
+<li>prompt: prompt-recall-2-understand.md @ 65eb21c</li>
+<li>prompt-hash: 17df43f38e78</li>
+<li>model: qwen3.8-27b-sglang (requested: qwen3.8-27b-sglang)</li>
+<li>backend: local (SGLang)</li>
+<li>inputs: transcript-plaud.md, terminal.txt, materials.md, notes-class-main–qwen3.8-27b-sglang.md</li>
+<li>generated: 2026-11-24</li>
+<li>notes-input: notes-class-main–qwen3.8-27b-sglang.md @ cb5f14090666, links and section references removed</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/UBC-MDS\.github\.io\/DSCI_522_dsci-workflows_students\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/UBC-MDS/DSCI_522_dsci-workflows_students/edit/main/class-notes/2026-27/section-02/2026-11-24-lecture/review-questions/notes-class-recall-2-understand--qwen3.8-27b-sglang.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer><script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs";
+mermaid.run({ querySelector: "pre.mermaid" });
+</script>
+
+
+
+
+</body></html>
