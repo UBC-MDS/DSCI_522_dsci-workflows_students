@@ -1,0 +1,369 @@
+dan@dhcp-206-87-243-80 ~ % cd ~/temp/2026-11-24-docker 
+dan@dhcp-206-87-243-80 2026-11-24-docker % ls
+Dockerfile	Makefile	README.md
+dan@dhcp-206-87-243-80 2026-11-24-docker % ls -alh
+total 24
+drwxr-xr-x   6 dan  staff   192B Nov 24 09:39 .
+drwxr-xr-x@ 11 dan  staff   352B Nov 24 09:38 ..
+drwxr-xr-x  15 dan  staff   480B Nov 24 09:42 .git
+-rw-r--r--   1 dan  staff    35B Nov 24 09:38 Dockerfile
+-rw-r--r--   1 dan  staff   351B Nov 24 09:38 Makefile
+-rw-r--r--   1 dan  staff   252B Nov 24 09:38 README.md
+dan@dhcp-206-87-243-80 2026-11-24-docker % positron .
+dan@dhcp-206-87-243-80 2026-11-24-docker % ls
+Dockerfile	Makefile	README.md
+dan@dhcp-206-87-243-80 2026-11-24-docker % docker images
+                                                             i Info →   U  In Use
+IMAGE                            ID             DISK USAGE   CONTENT SIZE   EXTRA
+2026-11-24-docker:latest         8ce8917b59c1       1.44GB          388MB        
+docker-uv-renv:latest            27e59146b16c       2.98GB          794MB        
+hello-cowsay:latest              abd88b403482       1.45GB          390MB        
+moby/buildkit:buildx-stable-1    cec9f139f45e        358MB          108MB    U   
+python@sha256:f85c5697265c178cc6887276c55fe16cf3d14ca35c3df6a5eab3b360534a55d2
+                                 f85c5697265c        206MB           46MB        
+quay.io/jupyter/datascience-notebook:2025-03-14
+                                 bf25d19758c0       9.06GB         2.17GB        
+recordings:dev                   3cea68731bf5        357MB         79.3MB        
+rocker/r-ver:4.3.2               4e32addfc4da       1.11GB          313MB        
+rocker/r-ver:4.6.2               8739c76d2d93       1.85GB          795MB        
+rocker/rstudio:4.4.2             6bfc87fb66d0       3.16GB          734MB        
+traefik:v3.6.1                   fd5932c796f7        225MB         48.6MB        
+ubuntu:24.04                     008173c23f95        141MB         30.9MB        
+dan@dhcp-206-87-243-80 2026-11-24-docker % docker build --tag 2026-11-24-docker .
+[+] Building 0.2s (5/5) FINISHED                            docker:desktop-linux
+ => [internal] load build definition from Dockerfile                        0.0s
+ => => transferring dockerfile: 72B                                         0.0s
+ => [internal] load metadata for docker.io/rocker/r-ver:4.6.2               0.0s
+ => [internal] load .dockerignore                                           0.0s
+ => => transferring context: 2B                                             0.0s
+ => CACHED [1/1] FROM docker.io/rocker/r-ver:4.6.2@sha256:8739c76d2d931669  0.0s
+ => => resolve docker.io/rocker/r-ver:4.6.2@sha256:8739c76d2d9316698a7145b  0.0s
+ => exporting to image                                                      0.0s
+ => => exporting layers                                                     0.0s
+ => => exporting manifest sha256:45c89c2ab290b08c3d25ad4de1e9725b8e7940a7a  0.0s
+ => => exporting config sha256:cbc5e7e3d9313e47074c9c4fc1cdf7fd8dc46686c23  0.0s
+ => => exporting attestation manifest sha256:74891f39a754cbb5be896f1b0912d  0.0s
+ => => exporting manifest list sha256:2fb68836b117c71449e8f0762224f6d54671  0.0s
+ => => naming to docker.io/library/2026-11-24-docker:latest                 0.0s
+ => => unpacking to docker.io/library/2026-11-24-docker:latest              0.0s
+dan@dhcp-206-87-243-80 2026-11-24-docker % docker run --rm -it 2026-11-24-docker
+
+R version 4.6.2 (2026-10-29) -- "Diversified Portfolio"
+Copyright (C) 2026 The R Foundation for Statistical Computing
+Platform: aarch64-unknown-linux-gnu
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> q()
+dan@dhcp-206-87-243-80 2026-11-24-docker % docker run --rm -it 2026-11-24-docker bash
+root@2b7037cc8d8c:/# pwd
+/
+root@2b7037cc8d8c:/# ls
+bin   dev  home  media  opt   rocker_scripts  run   srv  tmp  var
+boot  etc  lib   mnt    proc  root            sbin  sys  usr
+root@2b7037cc8d8c:/# cd home/
+root@2b7037cc8d8c:/home# ls
+root@2b7037cc8d8c:/home# ls -alh
+total 8.0K
+drwxr-xr-x 1 root root 4.0K Nov  8 02:37 .
+drwxr-xr-x 1 root root 4.0K Nov 24 16:48 ..
+root@2b7037cc8d8c:/home# cd
+root@2b7037cc8d8c:~# exit
+exit
+dan@dhcp-206-87-243-80 2026-11-24-docker % pwd
+/Users/dan/temp/2026-11-24-docker
+dan@dhcp-206-87-243-80 2026-11-24-docker % uv init --bare
+Initialized project `2026-11-24-docker`
+dan@dhcp-206-87-243-80 2026-11-24-docker % uv add cowsay
+Using CPython 3.14.3
+Creating virtual environment at: .venv
+Resolved 2 packages in 126ms
+Installed 1 package in 7ms
+ + cowsay==6.1
+dan@dhcp-206-87-243-80 2026-11-24-docker % uv sync
+Resolved 2 packages in 37ms
+Checked 1 package in 1ms
+dan@dhcp-206-87-243-80 2026-11-24-docker % uv run hello.py 
+  ___________
+| hello, moo. |
+  ===========
+           \
+            \
+              ^__^
+              (oo)\_______
+              (__)\       )\/\
+                  ||----w |
+                  ||     ||
+dan@dhcp-206-87-243-80 2026-11-24-docker % ls
+Dockerfile	Makefile	README.md
+hello.py	pyproject.toml	uv.lock
+dan@dhcp-206-87-243-80 2026-11-24-docker % docker build --tag 2026-11-24-docker .
+[+] Building 6.4s (12/12) FINISHED                          docker:desktop-linux
+ => [internal] load build definition from Dockerfile                        0.0s
+ => => transferring dockerfile: 233B                                        0.0s
+ => [internal] load metadata for docker.io/library/ubuntu:24.04             0.0s
+ => [internal] load metadata for ghcr.io/astral-sh/uv:0.13.7                0.9s
+ => [internal] load .dockerignore                                           0.0s
+ => => transferring context: 2B                                             0.0s
+ => FROM ghcr.io/astral-sh/uv:0.13.7@sha256:96f40d3904aad8d0bd010539001d36  0.0s
+ => => resolve ghcr.io/astral-sh/uv:0.13.7@sha256:96f40d3904aad8d0bd010539  0.0s
+ => [internal] load build context                                           0.0s
+ => => transferring context: 979B                                           0.0s
+ => [stage-0 1/5] FROM docker.io/library/ubuntu:24.04@sha256:008173c23f95b  0.0s
+ => => resolve docker.io/library/ubuntu:24.04@sha256:008173c23f95b17020435  0.0s
+ => CACHED [stage-0 2/5] COPY --from=ghcr.io/astral-sh/uv:0.13.7 /uv /uvx   0.0s
+ => CACHED [stage-0 3/5] WORKDIR /workspace                                 0.0s
+ => [stage-0 4/5] COPY pyproject.toml uv.lock .python-version ./            0.0s
+ => [stage-0 5/5] RUN uv sync --locked                                      2.3s
+ => exporting to image                                                      3.0s 
+ => => exporting layers                                                     2.2s 
+ => => exporting manifest sha256:0e1b3da5e9d5cb402857514226bc63d336233652e  0.0s 
+ => => exporting config sha256:78d57dc35b4683960d51c0158a77ef144121387e44f  0.0s 
+ => => exporting attestation manifest sha256:fe871b9ea213f2c36f60371faaccc  0.0s
+ => => exporting manifest list sha256:17a07586aa00a2fe02fb70ad2e743893914e  0.0s
+ => => naming to docker.io/library/2026-11-24-docker:latest                 0.0s
+ => => unpacking to docker.io/library/2026-11-24-docker:latest              0.8s
+dan@dhcp-206-87-243-80 2026-11-24-docker % docker run --rm -it 2026-11-24-docker bash
+root@f5ed54581a54:/workspace# pwd
+/workspace
+root@f5ed54581a54:/workspace# ls
+pyproject.toml  uv.lock
+root@f5ed54581a54:/workspace# ls -a
+.  ..  .python-version  .venv  pyproject.toml  uv.lock
+root@f5ed54581a54:/workspace# exit
+exit
+dan@dhcp-206-87-243-80 2026-11-24-docker % docker build --tag 2026-11-24-docker . 
+
+[+] Building 0.9s (13/13) FINISHED                          docker:desktop-linux
+ => [internal] load build definition from Dockerfile                        0.0s
+ => => transferring dockerfile: 250B                                        0.0s
+ => [internal] load metadata for docker.io/library/ubuntu:24.04             0.0s
+ => [internal] load metadata for ghcr.io/astral-sh/uv:0.13.7                0.7s
+ => [internal] load .dockerignore                                           0.0s
+ => => transferring context: 2B                                             0.0s
+ => [internal] load build context                                           0.0s
+ => => transferring context: 175B                                           0.0s
+ => [stage-0 1/6] FROM docker.io/library/ubuntu:24.04@sha256:008173c23f95b  0.0s
+ => => resolve docker.io/library/ubuntu:24.04@sha256:008173c23f95b17020435  0.0s
+ => FROM ghcr.io/astral-sh/uv:0.13.7@sha256:96f40d3904aad8d0bd010539001d36  0.0s
+ => => resolve ghcr.io/astral-sh/uv:0.13.7@sha256:96f40d3904aad8d0bd010539  0.0s
+ => CACHED [stage-0 2/6] COPY --from=ghcr.io/astral-sh/uv:0.13.7 /uv /uvx   0.0s
+ => CACHED [stage-0 3/6] WORKDIR /workspace                                 0.0s
+ => CACHED [stage-0 4/6] COPY pyproject.toml uv.lock .python-version ./     0.0s
+ => CACHED [stage-0 5/6] RUN uv sync --locked                               0.0s
+ => [stage-0 6/6] COPY hello.py ./                                          0.0s
+ => exporting to image                                                      0.1s
+ => => exporting layers                                                     0.0s
+ => => exporting manifest sha256:a6faf159cc67577f8e1dbc376b3f4390c879b3991  0.0s
+ => => exporting config sha256:57fad4e6ce05dd99cdc855f31b04fc2123a7d6542ac  0.0s
+ => => exporting attestation manifest sha256:2fa29043cf189b51ef7fa98fde9f4  0.0s
+ => => exporting manifest list sha256:a9f328d2015899a5231b6d8574a65f503d35  0.0s
+ => => naming to docker.io/library/2026-11-24-docker:latest                 0.0s
+ => => unpacking to docker.io/library/2026-11-24-docker:latest              0.0s
+dan@dhcp-206-87-243-80 2026-11-24-docker % docker run --rm -it 2026-11-24-docker bash
+root@23d925b5a9bf:/workspace# ls
+hello.py  pyproject.toml  uv.lock
+root@23d925b5a9bf:/workspace# uv run hello.py 
+  ___________
+| hello, moo. |
+  ===========
+           \
+            \
+              ^__^
+              (oo)\_______
+              (__)\       )\/\
+                  ||----w |
+                  ||     ||
+root@23d925b5a9bf:/workspace# exit
+exit
+dan@dhcp-206-87-243-80 2026-11-24-docker % docker build --tag 2026-11-24-docker . 
+
+[+] Building 0.8s (12/12) FINISHED                          docker:desktop-linux
+ => [internal] load build definition from Dockerfile                        0.0s
+ => => transferring dockerfile: 233B                                        0.0s
+ => [internal] load metadata for ghcr.io/astral-sh/uv:0.13.7                0.6s
+ => [internal] load metadata for docker.io/library/ubuntu:24.04             0.0s
+ => [internal] load .dockerignore                                           0.0s
+ => => transferring context: 2B                                             0.0s
+ => FROM ghcr.io/astral-sh/uv:0.13.7@sha256:96f40d3904aad8d0bd010539001d36  0.0s
+ => => resolve ghcr.io/astral-sh/uv:0.13.7@sha256:96f40d3904aad8d0bd010539  0.0s
+ => [stage-0 1/5] FROM docker.io/library/ubuntu:24.04@sha256:008173c23f95b  0.0s
+ => => resolve docker.io/library/ubuntu:24.04@sha256:008173c23f95b17020435  0.0s
+ => [internal] load build context                                           0.0s
+ => => transferring context: 97B                                            0.0s
+ => CACHED [stage-0 2/5] COPY --from=ghcr.io/astral-sh/uv:0.13.7 /uv /uvx   0.0s
+ => CACHED [stage-0 3/5] WORKDIR /workspace                                 0.0s
+ => CACHED [stage-0 4/5] COPY pyproject.toml uv.lock .python-version ./     0.0s
+ => CACHED [stage-0 5/5] RUN uv sync --locked                               0.0s
+ => exporting to image                                                      0.0s
+ => => exporting layers                                                     0.0s
+ => => exporting manifest sha256:0e1b3da5e9d5cb402857514226bc63d336233652e  0.0s
+ => => exporting config sha256:78d57dc35b4683960d51c0158a77ef144121387e44f  0.0s
+ => => exporting attestation manifest sha256:0ce6e8237c90d869cb8f627a04dfa  0.0s
+ => => exporting manifest list sha256:b8807ecd9c406ef42ca5d922b6b9a0a48d4f  0.0s
+ => => naming to docker.io/library/2026-11-24-docker:latest                 0.0s
+ => => unpacking to docker.io/library/2026-11-24-docker:latest              0.0s
+dan@dhcp-206-87-243-80 2026-11-24-docker % docker run --rm -it -v "$(pwd):/workspace"  2026-11-24-docker bash
+root@e0c6678dfd7e:/workspace# ls
+Dockerfile  README.md  my_secrets.txt  uv.lock
+Makefile    hello.py   pyproject.toml
+root@e0c6678dfd7e:/workspace# nano my_secrets.txt 
+bash: nano: command not found
+root@e0c6678dfd7e:/workspace# vi my_secrets.txt 
+bash: vi: command not found
+root@e0c6678dfd7e:/workspace# cat my_secrets.txt 
+i'm afraid of the dark.
+root@e0c6678dfd7e:/workspace# cat my_secrets.txt 
+i'm afraid of the dark.
+i eat baby food.
+root@e0c6678dfd7e:/workspace# uv run hello.py 
+warning: Ignoring existing virtual environment linked to non-existent Python interpreter: `.venv/bin/python` -> `/Users/dan/.local/share/uv/python/cpython-3.14-macos-aarch64-none/bin/python3.14`
+Using CPython 3.14.10
+Removed virtual environment at: .venv
+Creating virtual environment at: .venv
+░░░░░░░░░░░░░░░░░░░░ [0/1] Installing wheels...                                  warning: Failed to hardlink files; falling back to full copy. This may lead to degraded performance.
+         If the cache and target directories are on different filesystems, hardlinking may not be supported.
+         If this is intentional, set `export UV_LINK_MODE=copy` or use `--link-mode=copy` to suppress this warning.
+Installed 1 package in 38ms
+  ___________
+| hello, moo. |
+  ===========
+           \
+            \
+              ^__^
+              (oo)\_______
+              (__)\       )\/\
+                  ||----w |
+                  ||     ||
+root@e0c6678dfd7e:/workspace# ls 0alh
+ls: cannot access '0alh': No such file or directory
+root@e0c6678dfd7e:/workspace# ls -alh
+total 36K
+drwxr-xr-x 12 root root  384 Nov 24 17:30 .
+drwxr-xr-x  1 root root 4.0K Nov 24 17:28 ..
+drwxr-xr-x 17 root root  544 Nov 24 17:30 .git
+-rw-r--r--  1 root root    4 Nov 24 17:07 .python-version
+drwxr-xr-x  9 root root  288 Nov 24 17:30 .venv
+-rw-r--r--  1 root root  194 Nov 24 17:23 Dockerfile
+-rw-r--r--  1 root root  351 Nov 24 16:38 Makefile
+-rw-r--r--  1 root root  252 Nov 24 16:38 README.md
+-rw-r--r--  1 root root   41 Nov 24 17:04 hello.py
+-rw-r--r--  1 root root   41 Nov 24 17:29 my_secrets.txt
+-rw-r--r--  1 root root  192 Nov 24 17:04 pyproject.toml
+-rw-r--r--  1 root root  658 Nov 24 17:05 uv.lock
+root@e0c6678dfd7e:/workspace# python
+bash: python: command not found
+root@e0c6678dfd7e:/workspace# exit  
+exit
+
+What's next:
+    Debug this container error with Gordon → docker ai "help me fix this container error"
+dan@dhcp-206-87-243-80 2026-11-24-docker % docker build --tag 2026-11-24-docker . 
+
+[+] Building 6.1s (12/12) FINISHED                          docker:desktop-linux
+ => [internal] load build definition from Dockerfile                        0.0s
+ => => transferring dockerfile: 269B                                        0.0s
+ => [internal] load metadata for ghcr.io/astral-sh/uv:0.13.7                0.7s
+ => [internal] load metadata for docker.io/library/ubuntu:24.04             0.0s
+ => [internal] load .dockerignore                                           0.0s
+ => => transferring context: 2B                                             0.0s
+ => FROM ghcr.io/astral-sh/uv:0.13.7@sha256:96f40d3904aad8d0bd010539001d36  0.0s
+ => => resolve ghcr.io/astral-sh/uv:0.13.7@sha256:96f40d3904aad8d0bd010539  0.0s
+ => [internal] load build context                                           0.0s
+ => => transferring context: 97B                                            0.0s
+ => [stage-0 1/5] FROM docker.io/library/ubuntu:24.04@sha256:008173c23f95b  0.0s
+ => => resolve docker.io/library/ubuntu:24.04@sha256:008173c23f95b17020435  0.0s
+ => CACHED [stage-0 2/5] COPY --from=ghcr.io/astral-sh/uv:0.13.7 /uv /uvx   0.0s
+ => CACHED [stage-0 3/5] WORKDIR /workspace                                 0.0s
+ => CACHED [stage-0 4/5] COPY pyproject.toml uv.lock .python-version ./     0.0s
+ => [stage-0 5/5] RUN uv sync --locked                                      2.4s
+ => exporting to image                                                      2.9s 
+ => => exporting layers                                                     2.1s 
+ => => exporting manifest sha256:bfbe2cf6e8e966ce404b6835020879ce5c5df8ea8  0.0s 
+ => => exporting config sha256:0e3b4d4414778528b1baa154b7b11f0940f05da4937  0.0s
+ => => exporting attestation manifest sha256:1f798245de4d7416743903dabd9e9  0.0s
+ => => exporting manifest list sha256:5c19592ddad70c08ce0dc6a27470d3f357a3  0.0s
+ => => naming to docker.io/library/2026-11-24-docker:latest                 0.0s
+ => => unpacking to docker.io/library/2026-11-24-docker:latest              0.8s
+dan@dhcp-206-87-243-80 2026-11-24-docker % docker run --rm -it -v "$(pwd):/workspace" 2026-11-24-docker bash
+root@193c14ac4f1a:/workspace# which uv
+/usr/local/bin/uv
+root@193c14ac4f1a:/workspace# uv tree
+Resolved 2 packages in 1ms
+2026-11-24-docker v0.1.0
+└── cowsay v6.1
+root@193c14ac4f1a:/workspace# uv which python
+error: unrecognized subcommand 'which'
+
+Usage: uv [OPTIONS] <COMMAND>
+
+For more information, try '--help'.
+root@193c14ac4f1a:/workspace# uv run which python
+/opt/venv/bin/python
+root@193c14ac4f1a:/workspace# exit
+exit
+dan@dhcp-206-87-243-80 2026-11-24-docker % docker run --rm -it -v "$(pwd):/workspace" 2026-11-24-docker bash
+dan@dhcp-206-87-243-80 2026-11-24-docker % docker compose build
+[+] Building 1.1s (14/14) FINISHED                                               
+ => [internal] load local bake definitions                                  0.0s
+ => => reading from stdin 549B                                              0.0s
+ => [internal] load build definition from Dockerfile                        0.0s
+ => => transferring dockerfile: 269B                                        0.0s
+ => [internal] load metadata for docker.io/library/ubuntu:24.04             0.0s
+ => [internal] load metadata for ghcr.io/astral-sh/uv:0.13.7                0.6s
+ => [internal] load .dockerignore                                           0.0s
+ => => transferring context: 2B                                             0.0s
+ => FROM ghcr.io/astral-sh/uv:0.13.7@sha256:96f40d3904aad8d0bd010539001d36  0.0s
+ => => resolve ghcr.io/astral-sh/uv:0.13.7@sha256:96f40d3904aad8d0bd010539  0.0s
+ => [stage-0 1/5] FROM docker.io/library/ubuntu:24.04@sha256:008173c23f95b  0.0s
+ => => resolve docker.io/library/ubuntu:24.04@sha256:008173c23f95b17020435  0.0s
+ => [internal] load build context                                           0.0s
+ => => transferring context: 97B                                            0.0s
+ => CACHED [stage-0 2/5] COPY --from=ghcr.io/astral-sh/uv:0.13.7 /uv /uvx   0.0s
+ => CACHED [stage-0 3/5] WORKDIR /workspace                                 0.0s
+ => CACHED [stage-0 4/5] COPY pyproject.toml uv.lock .python-version ./     0.0s
+ => CACHED [stage-0 5/5] RUN uv sync --locked                               0.0s
+ => exporting to image                                                      0.0s
+ => => exporting layers                                                     0.0s
+ => => exporting manifest sha256:dece66714ca9f25f78d9f651beb9d317796d78394  0.0s
+ => => exporting config sha256:a541b8cded7deb77aaa2e4ac5db07f972d1d5ab1033  0.0s
+ => => exporting attestation manifest sha256:149f0073c72928d0df09d935acd45  0.0s
+ => => exporting manifest list sha256:8f080083628b073dbee106e2f4fbe0a2ff75  0.0s
+ => => naming to docker.io/library/2026-11-24-docker:latest                 0.0s
+ => => unpacking to docker.io/library/2026-11-24-docker:latest              0.0s
+ => resolving provenance for metadata file                                  0.0s
+[+] build 1/1
+ ✔ Image 2026-11-24-docker Built                                             1.2s
+dan@dhcp-206-87-243-80 2026-11-24-docker % docker compose up          
+[+] up 2/2
+ ✔ Network 2026-11-24-docker_default          Created                        0.0s
+ ✔ Container 2026-11-24-docker-analysis-env-1 Created                        0.0s
+Attaching to analysis-env-1
+analysis-env-1 exited with code 0
+dan@dhcp-206-87-243-80 2026-11-24-docker % docker compose up --detatch
+unknown flag: --detatch
+
+What's next:
+    Debug this Compose error with Gordon → docker ai "help me fix this compose error"
+dan@dhcp-206-87-243-80 2026-11-24-docker % docker compose ps
+NAME      IMAGE     COMMAND   SERVICE   CREATED   STATUS    PORTS
+dan@dhcp-206-87-243-80 2026-11-24-docker % docker compose exec analysis-env bash
+service "analysis-env" is not running
+
+What's next:
+    Debug this Compose error with Gordon → docker ai "help me fix this compose error"
+dan@dhcp-206-87-243-80 2026-11-24-docker % docker compose exec 2026-11-24-docker bash
+service "2026-11-24-docker" is not running
+dan@dhcp-206-87-243-80 2026-11-24-docker % docker compose build
