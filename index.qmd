@@ -1,5 +1,9 @@
 ---
 title: "DSCI 522: Data Science Workflows"
+# The Section 001 info page (slides/index.qmd) moved here: keep its old URL working.
+# remove this next year
+aliases:
+  - slides/index.html
 ---
 
 ## Introduction
@@ -18,6 +22,24 @@ This page
 [https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science)
 
 **Slack Channel**: [https://ubc-mds.slack.com/messages/522_dsci-workflows](https://ubc-mds.slack.com/messages/522_dsci-workflows)
+
+**Canvas**: [https://canvas.ubc.ca/courses/191038](https://canvas.ubc.ca/courses/191038)
+
+**Gradescope**: [https://www.gradescope.ca/courses/42925](https://www.gradescope.ca/courses/42925)
+
+## Sections
+
+### Section 001
+
+Taught by [Sky (Kehan) Sheng](https://www.skysheng.io/).
+Lecture and lab slides are under **Section 1 Slides** in the navbar.
+
+**iClicker**: [https://join.iclicker.com/VAVK](https://join.iclicker.com/VAVK)
+
+### Section 002
+
+Taught by [Daniel Chen](https://chendaniely.github.io/).
+Lecture note summaries are under [**Class Notes**](class-notes/index.qmd) in the navbar.
 
 ## Learning Outcomes
 

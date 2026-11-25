@@ -74,8 +74,6 @@ website:
             text: "Makefile"
       - text: "Section 1 Slides"
         menu:
-          - href: slides/index.qmd
-            text: "Section 001 Info"
           - href: slides/lecture.qmd
             text: "Lectures"
           - href: slides/lab.qmd
