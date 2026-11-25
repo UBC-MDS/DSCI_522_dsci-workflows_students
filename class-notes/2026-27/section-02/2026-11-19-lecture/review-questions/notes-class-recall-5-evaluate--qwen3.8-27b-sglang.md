@@ -1,4 +1,4 @@
-# Running and Building Shareable Containers: review questions, tier 5 — Evaluate
+# Containers and Git workflows: review questions, tier 5 — Evaluate
 
 Date: 2026-11-19
 
@@ -8,136 +8,129 @@ Instructor: Daniel Chen
 
 *Tier 5 of 5: Evaluate. Decide and justify your verdict before you read the answer; the criteria are the ones given in class.*
 
-## 1. Docker Desktop and pre-lecture pulls ([Download the images before you start](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html#download-the-images-before-you-start))
+## 1. Pre-lecture Docker setup ([27 Introduction to containerization](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html))
 
 *00:00:14–00:01:41*
 
-- **Q:** A teammate plans to run the three pre-lecture `docker pull` commands on a laptop while Docker Desktop is closed, because they want to download the images before class. Is that plan acceptable for the class setup?
-  **A:** No, the instructor says Docker Desktop must be open before running these commands; otherwise Docker may report that it cannot be found and tell you to turn it on. The pre-lecture pulls are meant to have the images ready while the class is checking the environment. *(00:00:33)*
+- **Q:** Judge whether a teammate can run the three pre-lecture `docker pull` commands with Docker Desktop closed, because the command will download the needed image automatically.
+    - **A:** Do not approve it. The instructor said to make sure Docker Desktop is open before running these commands; otherwise Docker cannot be found or the commands will tell you to turn it on. The pre-lecture pulls assume Docker is already running. *(00:00:33)*
 
-## 2. Project scope: keep it simple and correct
+## 2. Project scope and correctness
 
 *00:01:41–00:06:05*
 
-- **Q:** A group project plan replaces the required simple regression with a neural network because the team wants a more impressive portfolio model in this course. Would you approve that plan?
-  **A:** No, the instructor's biggest tip is to keep the analysis simple and technically correct, and if the model is fitting a straight line, fit the straight-line model. DSCI 522 is not a model-fitting course, and over-complicating the analysis now is the mistake that can backfire later. *(00:02:03)*
+- **Q:** A group proposes replacing a simple straight-line model with a neural network because they want the DSCI 522 project to be a portfolio piece. Assess whether that plan is acceptable.
+    - **A:** Reject the plan for this course project. The instructor’s main tip is not to make the analysis difficult and not to turn the assignment into a portfolio project; DSCI 522 is about workflows, not model fitting. The model can be simple, but the data science and machine-learning techniques must still be technically correct. *(00:03:27)*
 
-- **Q:** A teammate proposes fitting logistic regression to predict a numeric outcome because the outcome scale is 0 to 1. Is that acceptable according to the class's correctness criterion?
-  **A:** No, the instructor explicitly says you should not be fitting logistic regression when you are trying to predict a numeric outcome. The class cares that the data science and machine-learning technique is technically correct, not that the model has a high accuracy score. *(00:05:24)*
+- **Q:** A teammate’s plan keeps the analysis short but fits logistic regression to predict a numeric outcome. Decide whether you would accept that analysis.
+    - **A:** No, accept it only if that mistake is fixed. The class criterion is that model results do not have to be impressive, but techniques must be technically correct; fitting logistic regression to a numeric outcome is called out as wrong. Simplicity is allowed, correctness is not optional. *(00:05:24)*
 
-## 3. Branch, commit, and push for the pull-request task
+## 3. Branch workflow before committing
 
 *00:06:05–00:09:50*
 
-- **Q:** A branch plan edits `README.md`, runs `git add README.md` and `git commit` while `git status` shows `main`, then creates the `today` branch after the commit. Is that acceptable for the class's branch workflow?
-  **A:** No, in a branch workflow you should check the branch with `git status` right before `git add` and definitely before `git commit`. The demonstrated workflow creates the branch with `git switch -c today` before committing the `README.md` change. *(00:08:08)*
+- **Q:** A teammate plans to `git add` and `git commit` on a branch without first checking `git status`, because they believe they are still on `today`. Judge that plan for the group project.
+    - **A:** The plan is unsafe and should not be accepted. In a branch workflow, the instructor said to check the branch you are on right before `git add` and definitely before `git commit`. This habit prevents committing the `README.md` change to the wrong branch, such as `main`. *(00:08:08)*
 
-- **Q:** A plan skips `git pull origin main` before creating a branch because the local repository was just cloned. Is that acceptable in an actively collaborating environment?
-  **A:** No, the instructor says to make sure `main` is pulled so your work is not based on something out of date. That matters when multiple people are actively working in multiple branches. *(00:08:27)*
+- **Q:** A plan skips pulling `main` before creating a feature branch because the teammate has already cloned the repository. Assess that plan in an active team environment.
+    - **A:** It is not acceptable in an active team environment. The instructor said to pull `main` so everything is up to date before making changes; otherwise you may be working from an outdated branch. This is a new concern once multiple people are working in multiple branches. *(00:08:27)*
 
-## 4. Issues as a project board
+## 4. Using GitHub issues as the project board
 
 *00:09:50–00:16:17*
 
-- **Q:** A teammate argues that the demo repository's issue #1 and issue #2 require two separate pull requests, one for each issue, even though the `today` branch changes the same `README.md`. Is that required by the class?
-  **A:** No, the class says one extreme is one issue, one branch, and one pull request, but one pull request is allowed to deal with all of your issues. The requirement is to have three issues and practice the project-board system, not to split every issue into its own pull request. *(00:14:23)*
+- **Q:** A team proposes to keep the meeting plan and responsible parties in a shared Google Doc instead of creating GitHub issues. Judge that approach.
+    - **A:** Do not recommend it for this course’s Git workflow. Issues are the lightweight project board for tracking what is happening and who is responsible, and the instructor explicitly contrasted this with relying on a Google Doc of notes. Issues also create shared numbers that can cross-reference pull requests. *(00:15:48)*
 
-## 5. Pull-request descriptions, checkboxes, and auto-close keywords
+- **Q:** A teammate argues that pull request #3 should be rejected because it is associated with both issue #1 and issue #2. Decide whether that objection is correct.
+    - **A:** The objection is not correct under the class criterion. One pull request does not have to fix exactly one issue; the instructor said it is okay for one pull request to deal with all three required issues. The issues and pull requests are on the same numbering system precisely so they can be cross-referenced. *(00:14:23)*
+
+## 5. Pull-request description and auto-close
 
 *00:16:17–00:22:18*
 
-- **Q:** A pull request's first comment only says “update README”; the necessary `fixes #2` is added in a later comment after discussion. Would you approve that description?
-  **A:** No, the class says the first comment should carry the references and context because people look there rather than the whole conversation. A strategic first comment can use `closes` or `fixes` so that merging the pull request auto-closes the referenced issues. *(00:16:40)*
+- **Q:** A pull request’s first comment says only “see conversation below” and leaves out the issue numbers, while the later comments explain what the PR changes. Judge whether that description meets the class standard.
+    - **A:** It does not meet the standard. The instructor said the first comment should contain all the references and context because readers focus on what is happening and why the item exists, not on the later conversation. If a decision changes later, update the first comment rather than relying on the thread. *(00:16:40)*
 
-## 6. Merging the pull request and cleaning up branches
+- **Q:** A team plans to merge the pull request and then manually close issue #1 and issue #2 one by one. Assess that plan when the pull request message can say `closes #1 fixes #2`.
+    - **A:** The manual-closing plan is unnecessary and less aligned with the class workflow. The instructor explained that when a sentence in the pull request ends with `closes` or `fixes` and an issue number, GitHub auto-closes that issue when the pull request merges. Writing the message strategically avoids going back and closing each issue. *(00:19:30)*
+
+## 6. Merging and branch cleanup
 
 *00:22:18–00:25:29*
 
-- **Q:** A team rule says a merged pull request is not finished until the remote branch and local branch are deleted. Is that a requirement in this course?
-  **A:** No, the class explicitly says it is not requiring branch deletion; you may keep branches as a record, and other teams may use different Git practices. `git fetch --prune` and `git branch -d today` are cleanup steps, not a course rule. *(00:23:16)*
+- **Q:** A teammate claims that after pull request #3 is merged, the team must delete the `today` branch on GitHub and locally, or the merge is not complete. Judge that claim.
+    - **A:** The claim is too strong. The instructor said the class is not saying you have to delete branches; you may keep them as a record. Cleanup such as deleting the branch and removing references is a way to avoid confusing Git states, but it is not the only valid way teams work. *(00:23:16)*
 
-## 7. Why containers: a stable, shareable compute environment ([27.1 Documenting and loading dependencies](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html#documenting-and-loading-dependencies))
+## 7. Choosing a shareable compute environment ([27 Introduction to containerization](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html))
 
 *00:25:29–00:33:21*
 
-- **Q:** For a team project where members use Macs and Windows machines with different CPU architectures, a teammate says the `uv.lock` file alone is enough because it pins package versions. Is that sufficient?
-  **A:** No, lock files pin package versions but do not capture the tooling or system environment. The class's criterion is a shareable compute environment that can run the same code across different operating systems and architectures, which a container provides as a virtual computer. *(00:38:46)*
+- **Q:** A teammate proposes installing every package the team might use, even unused ones, to avoid having to adjust the package list later. Judge that approach for the group project.
+    - **A:** Do not approve it. The instructor said the package list should be the bare minimum of what the project needs, because installing unused packages wastes disk space and can create update-compatibility problems later. The goal is a stable, shareable environment, not a maximal one. *(00:27:38)*
 
-## 8. Containers versus virtual machines ([27.3 Contrasting containers with virtual machines](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html#contrasting-containers-with-virtual-machines))
+## 8. Container versus virtual machine ([27 Introduction to containerization](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html))
 
 *00:33:21–00:36:47*
 
-- **Q:** Two setup options are a full Windows virtual machine with a graphical interface and a container with only R and the analysis stack. Which would you recommend for sharing a command-line reproducible analysis, and why?
-  **A:** Recommend the container, because the class contrasts virtual machines as full operating systems that can take 50 to 80 GB with containers as stripped-down environments that are lighter in disk, memory, and compute. A container can still run the full computational stack while fitting the command-line workflow. *(00:36:01)*
+- **Q:** Assess whether a full Windows virtual machine with a graphical desktop is a better shared environment than a container for a data-science project that must be shared with teammates.
+    - **A:** A container is the better fit for this course’s goal. The instructor contrasted a virtual machine as a full operating system with visual components, which can be 50–80 GB, with a container as a stripped-down, lighter environment that still runs the computational stack. Containers are preferred when the criterion is a shareable, lower-resource compute environment. *(00:36:32)*
 
-## 9. Running the R container: `docker pull` and `docker run` ([28.1 Launching containers using Docker at the command line](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html#launch-containers-using-docker-at-the-command-line))
+## 9. Running the R container ([27 Introduction to containerization](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html))
 
 *00:36:47–00:45:01*
 
-- **Q:** A teammate proposes running `docker run -it rocker/r-ver:4.3.2` for a short practice and keeping the stopped container because they might need it later. Is that the class's preferred practice?
-  **A:** No, the class uses `--rm` so the container is deleted automatically when it stops, avoiding stopped containers piling up. Without `--rm`, you would have to manually delete the container afterward. *(00:40:55)*
+- **Q:** A teammate runs `docker run -it rocker/r-ver:4.3.2` without `--rm`, leaving stopped R containers on the machine. Assess whether that command matches the class workflow.
+    - **A:** It does not match the demonstrated workflow. The class command includes `--rm` so Docker deletes the container when it stops; otherwise you have to manually delete stopped containers. This keeps repeated practice from piling up container instances. *(00:40:55)*
 
-- **Q:** A plan says `library(tidyverse)` should work in `rocker/r-ver:4.3.2` because it works in the host terminal. Is that reasoning acceptable?
-  **A:** No, the container is a separate virtual computer, and the bare R image does not include `tidyverse`. The class showed that `library(tidyverse)` fails in the container while it works on the host, using the prompt as the cue that you are typing in a different machine. *(00:43:54)*
-
-## 10. Web-app containers: RStudio and browser-first tools ([27.2 What is a container?](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html#what-is-a-container))
-
-*00:45:01–00:54:10*
-
-- **Q:** A plan says the RStudio container is useless unless the end user also installs RStudio locally. Is that acceptable according to the class's discussion of browser-first tools?
-  **A:** No, the class treats RStudio as a web application that runs inside the container and is opened through a browser. That is the same browser-first idea shown for JupyterLab and VS Code, so the container can provide the application interface without a local install. *(00:48:04)*
-
-## 11. Port mapping the RStudio container ([28.1.3 Mapping ports to containers with web apps](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html#mapping-ports-to-containers-with-web-apps))
+## 10. Port mapping for RStudio ([28 Using and running containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html))
 
 *00:54:10–00:59:14*
 
-- **Q:** A teammate proposes running a second RStudio container with `docker run --rm -p 8788:8788 rocker/rstudio:4.4.2` because the local port must be 8788. Is that command acceptable?
-  **A:** No, the class's `-p host:container` mapping requires the container side to be the port RStudio listens on, 8787. To run a second instance on a free local port, map that port to 8787, for example `-p 8788:8787`. *(00:57:05)*
+- **Q:** A plan tries to run two `rocker/rstudio:4.4.2` containers at the same time using `-p 8787:8787` for both. Judge whether that plan will let both be used in a browser.
+    - **A:** It is not a good plan. The container side is fixed at 8787, but the local host port can be redirected to a different number so multiple containers can run at the same time. One host port cannot serve both, so the second container should use a different host port mapping. *(00:57:05)*
 
-## 12. Environment variables and running dashboards in containers ([27.2 What is a container?](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html#what-is-a-container))
+## 11. Environment variables and dashboard sharing ([28 Using and running containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html))
 
 *00:59:20–01:03:00*
 
-- **Q:** A teammate proposes omitting `-e PASSWORD="apassword"` and using whatever random password the first RStudio container prints. Is that the better approach for reproducible team use?
-  **A:** No, the class shows you can pass the `PASSWORD` environment variable with `-e` so the container uses a known password instead of a generated one. The demonstrated command is `docker run --rm -p 8787:8787 -e PASSWORD="apassword" rocker/rstudio:4.4.2`. *(01:00:05)*
+- **Q:** A 532 dashboard plan asks end users to install the environment, Quarto, and packages on their own machines. Judge that plan when the class says the dashboard can be put into a container.
+    - **A:** The plan is not the recommended one. The instructor said a dashboard can be containerized so the end user only needs Docker and can run `docker run` with the right flags; the heavy installation is already done inside the container. That makes the shared compute environment easier to reproduce. *(01:02:20)*
 
-- **Q:** A plan claims that mapping `-p 8787:8787` makes the RStudio web app available to anyone on the local network. Is that the class's conclusion?
-  **A:** No, the class checked that if a person cannot log into the physical machine, the mapped `localhost` port is not available to them. The demonstrated point is that the container is reached locally after mapping the host and container ports. *(01:00:28)*
-
-## 13. Building interactively: base image and the `cowsay` package ([29.1.1 Workflow for building a Dockerfile](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html#workflow-for-building-a-dockerfile))
+## 12. Testing commands before writing the Dockerfile ([29 Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html))
 
 *01:03:00–01:08:46*
 
-- **Q:** A teammate installs `cowsay` in a running `rocker/r-ver:4.6.2` container, exits, and tells the team to use that same container later because it now has the package. Is that acceptable?
-  **A:** No, the class showed that a container has no save state: after exiting and starting the image again, the runtime-installed package is gone. The reproducible alternative is to document the working install command in a `Dockerfile` and build an image. *(01:07:04)*
+- **Q:** A teammate writes `RUN Rscript -e "install.packages('cowsay')"` into the `Dockerfile` before ever running the command inside the container. Assess that workflow.
+    - **A:** It is not the workflow the class used. The instructor’s method is to start the base image with `bash`, try the install commands interactively, and only after they work document them in the `Dockerfile` with `RUN`. That reduces troubleshooting by recording commands that are known to work. *(01:06:01)*
 
-## 14. Writing the `Dockerfile`: `FROM`, `RUN`, and `CMD` ([29 Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html))
+## 13. Writing the `Dockerfile`: `FROM`, `RUN`, and `CMD` ([29 Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html))
 
 *01:08:46–01:15:01*
 
-- **Q:** A `Dockerfile` line says `RUN install.packages("cowsay")` because that is the R command used interactively. Is that line acceptable?
-  **A:** No, `RUN` runs a Bash command during the image build, so the R expression must be executed through the command-line interface. The class used `RUN Rscript -e "install.packages('cowsay')"` because `Rscript -e` runs the R expression for the build step. *(01:12:44)*
+- **Q:** A proposed `Dockerfile` for the `hello-cowsay` image has `FROM rocker/r-ver:4.6.2` and a `CMD` that calls `cowsay::say(...)`, but no `RUN Rscript -e "install.packages('cowsay')"` line. Judge whether it will satisfy the class goal.
+    - **A:** It does not satisfy the goal. The `RUN` line is what installs `cowsay` into the image during the build; without it, the container is just the base `rocker/r-ver:4.6.2` image. A `CMD` can set the default command, but it does not install the package. *(01:12:44)*
 
-## 15. Building and running the `hello-cowsay` image ([29.1.2 Build your first image](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html#build-your-first-image))
+## 14. Building and running the `hello-cowsay` image ([29 Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html))
 
 *01:15:01–01:18:44*
 
-- **Q:** A plan runs `docker build --tag hello-cowsay .` from inside a subdirectory while the `Dockerfile` is in the repository root. Is that acceptable?
-  **A:** No, the `.` tells Docker to use the current directory as the build context where it looks for the `Dockerfile`. The class assumes you run this from the directory containing the `Dockerfile`, which is the repository root for milestone-one style instructions. *(01:15:38)*
+- **Q:** A teammate runs `docker build --tag hello-cowsay .` from a subfolder that does not contain the project’s `Dockerfile`, expecting Docker to find the `Dockerfile` at the repository root. Judge that plan.
+    - **A:** It is not acceptable as stated. The `.` in `docker build` is the current directory / build context, so Docker looks for the `Dockerfile` there. The class convention is to assume commands are run from the root of the directory, as in the milestone-one instructions. *(01:16:29)*
 
-## 16. Version pinning and wrap-up ([29 Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html))
+## 15. Version pinning in the `Dockerfile` ([29 Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html))
 
 *01:18:44–01:20:39*
 
-- **Q:** A `Dockerfile` installs Quarto with a command that always takes the latest version instead of pinning a version. Would you approve it for a reproducible group project?
-  **A:** No, the class's warning is to hard-pin tool versions so a build does not silently change when something updates. The instructor's unpinned example broke after an overnight update, turning the work into hours of fixing an unexpected tool change. *(01:19:50)*
+- **Q:** A proposed `Dockerfile` installs Quarto and other tools without version numbers, so the next build can pick up newly released versions automatically. Judge whether that meets the class standard.
+    - **A:** It does not meet the standard. The instructor warned that unpinned tool versions can update without you saying so and can break a previously working build; he gave an example where a restart without hard version pinning met an overnight update. Pin the version in the install line so the environment remains stable until you deliberately change it. *(01:19:55)*
 
 ---
 
-- prompt: prompt-recall-5-evaluate.md @ 8bcc190
-- prompt-hash: 91dbb814d755
+- prompt: prompt-recall-5-evaluate.md @ 65eb21c
+- prompt-hash: 6b82591e2f8e
 - model: qwen3.8-27b-sglang (requested: qwen3.8-27b-sglang)
 - backend: local (SGLang)
 - inputs: transcript-plaud.md, history.txt, terminal.txt, materials.md, notes-class-main--qwen3.8-27b-sglang.md
-- generated: 2026-11-20
-- notes-input: notes-class-main--qwen3.8-27b-sglang.md @ de2dd7c39a15, links and section references removed
+- generated: 2026-11-25
+- notes-input: notes-class-main--qwen3.8-27b-sglang.md @ de2dd7c39a15, links and section references removed, diagrams removed

@@ -1,4 +1,4 @@
-# Git Branching, Pull Requests, and Containers: review questions, tier 3 — Apply
+# Git Workflow and Container Basics: review questions, tier 3 — Apply
 
 Date: 2026-11-19
 
@@ -8,64 +8,57 @@ Instructor: Daniel Chen
 
 *Tier 3 of 5: Apply. Work each situation through before you read the answer; tiers 1 (Remember) and 2 (Understand) cover the facts and reasons it relies on.*
 
-## 1. Git Branching and Pull Requests
+## 1. Git Branching and Pull Requests 
 
 *00:06:05–00:25:29*
 
-- **Q:** You edit a file on `main` by mistake and want to move your uncommitted changes to a new branch called `feature` before committing. Which command do you run to create the new branch and switch to it?
-  **A:** Run `git switch -c <branch-name>` to create a new branch and immediately switch your working directory to it, preserving your unstaged changes on the new branch instead of committing them to `main`. *(00:09:17)*
+- **Q:** You edit `README.md` but forget to create a new branch before staging the changes. `git status` shows the change on `main`. What commands do you run to safely move the change to a new branch named `docker-topic` without losing your work?
+    - **A:** Run `git switch -c docker-topic` to create and switch to the new branch while keeping your unstaged modifications. Verify with `git status` that you are now on `docker-topic` before proceeding to stage and commit the changes. *(00:08:08)*
 
-- **Q:** After finishing work on a feature branch and merging it to `main` on GitHub, you want to completely remove the remote branch reference from your local machine. What two commands do you run to prune the remote tracking reference and delete the local branch?
-  **A:** Run `git fetch --prune` to remove the deleted remote tracking references, then run `git branch -d <branch-name>` to delete the local branch reference. *(00:24:30)*
+- **Q:** You are creating a pull request to merge your `docker-topic` branch into `main`. You also opened Issue #5 earlier to track this task. What keyword and syntax should you add to the pull request description so that merging the pull request automatically closes Issue #5?
+    - **A:** Add `fixes #5` or `closes #5` anywhere in the pull request description text. GitHub recognizes these keywords as special patterns and automatically closes the referenced issue once the pull request is successfully merged. *(00:18:33)*
 
-- **Q:** You create a pull request to fix two open issues. How should you write the pull request description so that merging the pull request automatically closes both issues?
-  **A:** Include the keywords `fixes #<number>` or `closes #<number>` at the end of a sentence in the pull request description, which triggers GitHub to automatically close the referenced issues when the pull request is merged. *(00:18:33)*
+- **Q:** After your pull request for the `docker-topic` branch is merged and deleted on GitHub, you run `git log --oneline --graph --all` and still see a visual reference to the merged branch. What command removes the local remote-tracking reference for that deleted branch?
+    - **A:** Run `git fetch --prune` to synchronize local tracking references with the remote repository and remove any stale references to deleted branches. This cleans up the graph output so only active branch history remains visible. *(00:24:05)*
 
-## 2. Introduction to Containers and Docker ([27 Introduction to containerization](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html))
+- **Q:** You want to completely remove the local `docker-topic` branch from your machine after cleaning up remote references. Which command deletes the local branch reference?
+    - **A:** Run `git branch -d docker-topic` to delete the local branch. This removes the local shortcut reference to that commit history, though the merged commits remain safely stored in `main`. *(00:24:30)*
 
-*00:25:33–00:46:44*
-
-- **Q:** You need to run R version 4.3.2 on your Mac, but your system has R version 4.6.2 installed. Which Docker command runs the older R version interactively without leaving stopped containers cluttering your machine?
-  **A:** Run `docker run --rm -it rocker/r-ver:4.3.2`, which downloads the specific versioned image if missing, starts an interactive R session, and automatically deletes the container instance when you quit. *(00:40:41)*
-
-- **Q:** You are exploring a newly started container and notice the terminal prompt shows `root@<container_id>:/#`. How do you verify that the R version running inside matches the one you requested in the `docker run` command, rather than the one on your host machine?
-  **A:** Type `R --version` inside the R session to verify the version matches the requested tag, while noting that your host terminal remains on the system's default R version. *(00:43:10)*
-
-- **Q:** You accidentally install a package inside an interactive container session, but when you stop the container and restart it, the package is gone. Why does this happen, and what is the intended use case for this behavior?
-  **A:** Containers do not save state between runs; they reset to the exact configuration defined in the image each time, which is intentionally designed so you can safely experiment or test commands without risking your host machine. *(00:08:10)*
-
-## 3. Running Web Applications in Containers ([28 Using and running containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html))
+## 2. Running Web Applications in Containers ([28.1.3 Mapping ports to containers with web apps](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html#mapping-ports-to-containers-with-web-apps))
 
 *00:46:47–01:03:00*
 
-- **Q:** You want to run RStudio Server inside a container and access it through your web browser. Which flag and syntax do you use in the `docker run` command to map the container's default port to your local machine?
-  **A:** Use the `-p` flag with the format `-p <host_port>:<container_port>` (e.g., `-p 8787:8787`), which forwards network traffic from a specified port on your local machine directly to the web application inside the container. *(00:56:55)*
+- **Q:** You run `docker run --rm -it rocker/rstudio:4.4.2` but realize the container starts an RStudio web app that you want to access from your local browser. What flag and syntax do you need to add to the command to map the container's default port to your local machine's port 8787?
+    - **A:** Add `-p 8787:8787` to the `docker run` command. This binds port 8787 on your local host to port 8787 inside the container, allowing you to access the RStudio Server web interface via `localhost:8787` in your browser. *(00:57:05)*
 
-- **Q:** The RStudio container you just started generates a random default password for login. How can you modify your `docker run` command to set a custom password instead?
-  **A:** Append `-e PASSWORD="yourpassword"` to your run command, which passes the environment variable to the container to override the default auto-generated login credentials. *(01:00:05)*
+- **Q:** By default, the `rocker/rstudio` container generates a random password at startup. You want to set a custom password so you don't have to look it up in the terminal logs every time. What environment variable flag and syntax do you use to set the password to `mySecurePass123`?
+    - **A:** Use `-e PASSWORD="mySecurePass123"` in the `docker run` command. This passes the `PASSWORD` environment variable into the container, overriding the auto-generated credential during startup so you can log in with your chosen password. *(01:00:05)*
 
-- **Q:** You try to run two separate RStudio containers simultaneously, but both fail to start on port 8787. What modification do you make to the port mapping for the second container to allow both to run?
-  **A:** Change the host port number in the `-p` flag for the second container (e.g., `-p 8788:8787`), which maps the container's internal port to a different available port on your local machine to prevent conflicts. *(00:57:29)*
+- **Q:** You need to run two separate `rocker/rstudio` containers simultaneously for testing. The first uses the default port 8787 on the host. How do you configure the second container's port mapping so it doesn't conflict with the first one?
+    - **A:** Map the second container to a different host port, such as `-p 8788:8787`. This binds port 8788 on your local machine to port 8787 inside the container, allowing both instances to run concurrently without network conflicts. *(00:57:29)*
 
-## 4. Building Custom Containers with Dockerfile ([29 Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html))
+## 3. Building Custom Containers with Dockerfile ([29.1.2 Build your first image](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html#build-your-first-image))
 
 *01:03:00–01:20:39*
 
-- **Q:** You are designing a custom R container and have just tested an installation command at the Bash prompt. How do you translate that command into a `Dockerfile` so it executes during the image build process?
-  **A:** Prefix the tested command with `RUN` in the `Dockerfile` (e.g., `RUN Rscript -e "install.packages('cowsay')"`) so that it executes as a step during the image build sequence rather than at runtime. *(01:12:41)*
+- **Q:** You interactively install an R package inside a running container, but when you exit and restart the container, the package is gone. You want to permanently include this package in a new image. Which `Dockerfile` instruction and command format do you use to execute the installation during the image build process?
+    - **A:** Use the `RUN` instruction followed by a shell command, such as `RUN Rscript -e "install.packages('cowsay')"`. This executes the installation command during the image build phase, permanently baking the package into the image layers. *(01:08:59)*
 
-- **Q:** You have finished writing a `Dockerfile` in your project root that installs a package. Which command do you run to compile this file into a named Docker image named `hello-cowsay`?
-  **A:** Run `docker build --tag hello-cowsay .`, which reads the `Dockerfile` in your current directory and compiles the specified instructions into a named Docker image on your local machine. *(01:15:38)*
+- **Q:** You have written a `Dockerfile` starting with `FROM rocker/r-ver:4.6.2` and adding `RUN` commands. You want the container to automatically run an R script that prints a message every time it starts, instead of opening the R interactive prompt. Which instruction and syntax do you add to the `Dockerfile` to set this default behavior?
+    - **A:** Add `CMD ["Rscript", "-e", "cowsay::say('Hello from my first image!')"]` to the `Dockerfile`. The `CMD` instruction defines the default executable that runs when a container starts from this image, replacing the base image's default startup command. *(01:13:39)*
 
-- **Q:** After building a custom image, you want it to automatically run a specific R script every time it starts, instead of opening an interactive terminal. Which `Dockerfile` instruction do you use to define this default startup behavior?
-  **A:** Use the `CMD` instruction with JSON array syntax (e.g., `CMD ["Rscript", "-e", "cowsay::say('Hello')"]`) to specify the command that runs by default when a container starts from this image. *(01:13:36)*
+- **Q:** After creating a `Dockerfile` in your project directory, you run the build command but forget to include the final argument that specifies the build context. What is the correct command to build the image and tag it as `hello-cowsay` using the `Dockerfile` in the current directory?
+    - **A:** Run `docker build --tag hello-cowsay .`. The dot `.` specifies the current directory as the build context, telling Docker where to locate the `Dockerfile` and any other files required for the build process. *(01:15:38)*
+
+- **Q:** You want to override the default `CMD` in your custom `hello-cowsay` image and instead get an interactive Bash shell inside the newly built container. What command do you run to launch the container with this override?
+    - **A:** Run `docker run --rm -it hello-cowsay bash`. Appending `bash` to the `docker run` command replaces the image's default `CMD`, granting you direct interactive shell access to the container environment. *(01:17:28)*
 
 ---
 
-- prompt: prompt-recall-3-apply.md @ 8bcc190
-- prompt-hash: 068025368bc2
+- prompt: prompt-recall-3-apply.md @ 65eb21c
+- prompt-hash: 49276171f719
 - model: qwen3.6-35b-a3b (requested: qwen3.6-35b-a3b)
 - backend: local (llama-swap)
 - inputs: transcript-plaud.md, history.txt, terminal.txt, materials.md, notes-class-main--qwen3.6-35b-a3b.md
-- generated: 2026-11-20
-- notes-input: notes-class-main--qwen3.6-35b-a3b.md @ 5842e35a1a11, links and section references removed
+- generated: 2026-11-23
+- notes-input: notes-class-main--qwen3.6-35b-a3b.md @ 5842e35a1a11, links and section references removed, diagrams removed

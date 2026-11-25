@@ -1,4 +1,4 @@
-# Branches, Pull Requests, and Conflict Resolution: review questions, tier 3 — Apply
+# Git Branches, Pull Requests, and Conflict Resolution: review questions, tier 3 — Apply
 
 Date: 2026-11-17
 
@@ -8,64 +8,64 @@ Instructor: Daniel Chen
 
 *Tier 3 of 5: Apply. Work each situation through before you read the answer; tiers 1 (Remember) and 2 (Understand) cover the facts and reasons it relies on.*
 
-## 1. Creating and managing branches locally ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 1. Creating and managing branches locally ([Creating a branch using the command line](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#creating-a-branch-using-the-command-line))
 
 *00:09:43–00:25:12*
 
-- **Q:** You are starting a new feature and want to work in isolation from the `main` branch. You have already synced your local copy with the remote. What command do you run to create a new branch named `feature-x` and immediately switch to it?
-  **A:** Run `git switch -c feature-x`. This creates the new branch and moves the `HEAD` pointer to it in a single step, detaching it from `origin/main` so your subsequent commits only affect the new branch *(00:20:18)*.
+- **Q:** You are starting a new feature in a shared project. Sequence the two commands you should run first to ensure your local environment is synchronized and your new branch is created safely.
+    - **A:** Run `git pull origin main` to fetch the latest coordinated updates, then run `git switch -c <branch_name>` to create the branch and move the `HEAD` pointer to it. This sequence guarantees you are building on the most recent stable state, preventing base mismatch errors. *(00:18:03)*
 
-- **Q:** After creating the branch, you want to verify that your `HEAD` is pointing to the new branch and visually confirm how the commit history diverges from `origin/main`. Which command produces this graph?
-  **A:** Run `git log --oneline --graph --decorate --all`. This command renders a text-based visualization of all branches and commits, clearly showing the `HEAD` attached to your new branch while `origin/main` remains static *(00:21:15)*.
+- **Q:** You need to switch your working directory back to the default branch to review existing documentation, without creating a new branch. Choose the correct command to complete this task.
+    - **A:** Run `git switch main`. This command moves the `HEAD` pointer to the existing `main` branch, allowing you to inspect the stable codebase while preserving all your previous commits on the feature branch. *(00:25:22)*
 
-- **Q:** You are working in a group and create a new branch for your assigned task. What naming convention should you use to help teammates identify who is responsible for that specific line of development?
-  **A:** Prefix the branch name with your username (e.g., `dan-b1`). This naming practice signals to collaborators who is actively developing on the branch, making it easier to coordinate and troubleshoot issues *(00:20:48)*.
+- **Q:** You want to apply the recommended naming convention for a collaborative repository to clearly indicate ownership. Modify your branch creation workflow to sequence the proper prefix and command.
+    - **A:** Prefix the branch name with your username (e.g., `dan-b1`) so teammates can immediately identify the responsible developer, then run `git switch -c <name>`. This convention organizes the commit history and makes it easier for collaborators to track active development streams. *(00:20:48)*
 
-## 2. Pushing branches and initiating Pull Requests ([9 Pull requests](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-pull-requests.html))
+## 2. Pushing branches and initiating Pull Requests ([Creating a pull request](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-pull-requests.html#creating-a-pull-request))
 
 *00:25:12–00:46:00*
 
-- **Q:** You have finished adding commits to your local feature branch and need to send them to the remote repository so your teammates can begin reviewing your work. What command do you run?
-  **A:** Run `git push origin <branch_name>`. This uploads your local branch's commits to the remote, after which GitHub typically displays a prompt offering to create a Pull Request immediately *(00:30:44)*.
+- **Q:** You have finished writing code on your feature branch and want to sequence the workflow to share it for peer review. Predict the exact command to run, and demonstrate what to do if the GitHub banner prompting a pull request disappears.
+    - **A:** Run `git push origin <branch_name>` to upload the branch to the remote. If the banner disappears, navigate to the branches tab, click the expansion menu next to your branch, and select "new pull request" to initiate the review process. *(00:30:44, 00:35:00)*
 
-- **Q:** You are starting a task that will take several days, but you want your team to see your progress early and prevent anyone from accidentally merging incomplete code. How do you set up the Pull Request on GitHub?
-  **A:** Click the dropdown arrow beside the "Create pull request" button and select "Create draft pull request". This converts the PR into a draft, grays out the merge button, and signals to the team that the work is still in progress *(00:53:52)*.
+- **Q:** Your feature will take several days to complete, but you want to share your progress and prevent teammates from accidentally merging unfinished work. Choose the correct UI option when opening the pull request and predict the visual and functional changes it introduces.
+    - **A:** Select "Convert to Draft" when creating the pull request. This changes the interface bar from green to gray, disables the merge button to prevent accidental integrations, and clearly signals to the team that the branch is still a work in progress. *(00:53:52, 00:54:04)*
 
-- **Q:** After opening a Pull Request, you realize you forgot to add a file and need to make a small fix. How do you update the Pull Request on GitHub without closing it and creating a new one?
-  **A:** Go back to your local computer, make the changes on the same branch, run `git add`, `git commit`, and `git push origin <branch_name>`. The GitHub Pull Request automatically updates to reflect the new commits *(00:43:15)*.
+- **Q:** A reviewer comments on your pull request's "Files Changed" tab suggesting you remove a temporary debugging print statement. You modify the file locally, commit, and push the update. Predict how the pull request interface reflects this new commit and what happens to the original comment.
+    - **A:** The pull request automatically updates to show the new diff when you push the updated branch. The original comment may auto-collapse with an "outdated" tag if it refers to an edited line, but it remains in the conversation history for context. *(00:44:43, 00:45:20)*
 
-## 3. Merging, cleanup, and local synchronization ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 3. Merging, cleanup, and local synchronization ([Useful command line Git branching commands](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#useful-command-line-git-branching-commands))
 
 *00:52:17–01:03:51*
 
-- **Q:** A teammate merges their Pull Request into `main` and deletes the branch on GitHub. You switch to your local `main` branch and synchronize your history, but your local terminal still lists the deleted branch. What command cleans up the tracking references for branches deleted on the remote?
-  **A:** Run `git fetch --prune`. This synchronizes the local repository with the remote and automatically removes any local tracking references that correspond to branches deleted on GitHub *(01:01:30)*.
+- **Q:** Your pull request has been merged into `main` on GitHub and the remote branch was deleted. Sequence the commands you must run locally to update your history and remove the stale tracking reference that still appears in `git branch -a`.
+    - **A:** Run `git pull origin main` to fast-forward your local `main` branch to include the merge commit, then run `git fetch --prune` to remove local tracking references for branches deleted on GitHub. This synchronizes your local repository with the remote's current state without modifying working files. *(01:00:08, 01:01:30, 01:02:07)*
 
-- **Q:** After synchronizing with the remote, you want to delete the merged branch from your local computer to keep your workspace tidy. Which command should you use to safely remove a branch that has already been merged, and why is this specific flag recommended?
-  **A:** Run `git branch -d <branch_name>`. The lowercase `-d` flag is a safe deletion option that prevents you from accidentally deleting unmerged work, whereas uppercase `-D` would force delete and risk permanently losing commits *(01:02:46)*.
+- **Q:** You need to complete the local cleanup of a feature branch that has already been successfully merged into `main`. Choose the correct deletion command and explain why the specific flag is important for data safety.
+    - **A:** Run `git branch -d <branch_name>`. The lowercase `-d` flag acts as a safety guard that prevents you from accidentally deleting a branch containing unmerged work, thereby protecting your commits from permanent loss. *(01:02:46, 01:03:02)*
 
-- **Q:** You just merged a Pull Request on GitHub and switched back to your local `main` branch. The local history is still one commit behind the remote. What command fetches and applies the new commits from the remote `main` branch to your local machine?
-  **A:** Run `git pull origin main`. This retrieves the changes from the remote and fast-forwards your local `main` branch so it matches the current state on GitHub *(01:00:27)*.
+- **Q:** Your team enforces strict compliance rules that require keeping all historical branches, but your local repository is accumulating a long list of inactive remote branches. Apply the command that updates your local reference list without triggering a merge or changing any files on your disk.
+    - **A:** Run `git fetch --prune`. This command synchronizes your local repository's history with the remote, refreshing your view of active branches while cleaning up tracking references for deleted ones, leaving all working files and local commits completely untouched. *(01:01:52, 01:02:07)*
 
-## 4. Resolving merge conflicts via rebase ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 4. Resolving merge conflicts via rebase ([Using rebase](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#what-happens-when-my-feature-branch-falls-behind-main))
 
 *01:03:51–01:21:43*
 
-- **Q:** You have an open Pull Request, but another team member merges a different Pull Request into `main` that modifies the same lines of your `README.md`. When you try to merge your branch, GitHub reports a conflict. To resolve this locally using your preferred method, you switch to your branch and run a command that replays your commits on top of the updated `main`. What is this command?
-  **A:** Run `git rebase main`. This replays your branch's commits sequentially on top of the latest `main`, triggering the conflict resolution process locally where you can manually edit the conflict markers *(01:14:04)*.
+- **Q:** A teammate merged a pull request that modified the same lines of a file that you are editing locally. Sequence the commands you should run to replay your commits on top of the updated `main` branch, and demonstrate how to finish the process after fixing the conflict markers in your editor.
+    - **A:** Ensure `main` is updated locally, switch to your branch, and run `git rebase main` to replay your commits. After editing the file to remove the `<<<<<<<`, `=======`, and `>>>>>>>` markers, run `git add <file>` to mark the resolution, then run `git rebase --continue` to apply the commit. *(01:16:33, 01:18:44)*
 
-- **Q:** After resolving the conflict markers in your text editor, you want to mark the resolution and continue the replay process. What sequence of commands do you run to finalize the rebase?
-  **A:** Run `git add <conflicted_file>` to mark the conflict as resolved, then run `git rebase --continue`. This applies the resolved commit and completes the rebase process *(01:17:32)*.
+- **Q:** After successfully rebasing and fixing a conflict, you attempt to push the branch to GitHub but receive an error because the remote history no longer matches your locally rewritten history. Complete the push using the safest command to update the remote, and explain why the specific flag is required.
+    - **A:** Run `git push --force-with-lease origin <branch_name>`. This flag is required because rebasing rewrites commit history, and it safely updates the remote only if no new, untracked commits were added by others in the meantime, preventing accidental overwrites of collaborative work. *(01:19:34, 01:20:02)*
 
-- **Q:** Once the rebase is finished, your local commit history has been rewritten. What command do you use to push these changes to the remote branch, and why is a standard push insufficient?
-  **A:** Run `git push --force-with-lease origin <branch_name>`. Because rebasing rewrites the commit history, a standard push will be rejected by the remote; force-with-lease safely updates the branch while checking that no other new commits were pushed by others in the meantime *(01:19:34)*.
+- **Q:** You are resolving a merge conflict in a Python script. After removing the conflict markers and keeping the correct variable names, you notice that a function call later in the file references the old variable name. Apply the recommended workflow principle to determine your responsibility beyond fixing the conflict markers.
+    - **A:** You must ensure the entire file or script runs correctly from top to bottom, as resolving one conflict marker does not guarantee the rest of the code is consistent. You are responsible for catching and fixing any downstream breakages or mismatched dependencies that resulted from the merge. *(01:11:39, 01:12:13)*
 
 ---
 
-- prompt: prompt-recall-3-apply.md @ 8bcc190
-- prompt-hash: 068025368bc2
+- prompt: prompt-recall-3-apply.md @ 65eb21c
+- prompt-hash: 49276171f719
 - model: qwen3.6-35b-a3b (requested: qwen3.6-35b-a3b)
 - backend: local (llama-swap)
 - inputs: transcript-plaud.md, terminal.txt, materials.md, notes-class-main--qwen3.6-35b-a3b.md
-- generated: 2026-11-20
-- notes-input: notes-class-main--qwen3.6-35b-a3b.md @ 6ad35f92b4e6, links and section references removed
+- generated: 2026-11-25
+- notes-input: notes-class-main--qwen3.6-35b-a3b.md @ 6ad35f92b4e6, links and section references removed, diagrams removed

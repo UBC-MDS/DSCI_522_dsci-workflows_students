@@ -8,367 +8,331 @@ Instructor: Daniel Chen
 
 *Tier 1 of 5: Remember. Answer each question before you read its answer; tiers 2 to 5 build on these.*
 
-## 1. Class setup: Docker Desktop and the pre-lecture `docker pull` commands
+## 1. Class setup: Docker Desktop and pre-lecture pulls
 
 *00:00:14–00:01:41*
 
-- **Q:** What application must be open before you run any Docker command on macOS and Windows?
-  **A:** Docker Desktop. If you get an error that Docker can't be found, that is when you install Docker. *(00:00:33)*
+- **Q:** What application must be open before you run `docker` commands on macOS or Windows?
+    - **A:** Docker Desktop. *(00:00:33)*
 
-- **Q:** List the three `docker pull` commands students were asked to run before class.
-  **A:** `docker pull rocker/r-ver:4.3.2`, `docker pull rocker/rstudio:4.4.2`, and `docker pull quay.io/jupyter/datascience-notebook:2025-03-14`. *(00:00:18)*
+- **Q:** How many `docker pull` commands were posted in Slack for students to run before the session?
+    - **A:** Three. *(00:00:18)*
 
-- **Q:** What Git exercise was the class practising at the start of the session?
-  **A:** Making a branch, creating a pull request, and merging it. *(00:00:43)*
+- **Q:** What is the exercise for the day, as stated at the start of the session?
+    - **A:** Practice making a branch, creating a pull request, and merging it. *(00:00:43)*
 
 ## 2. Project advice: keep the analysis simple and correct
 
 *00:01:41–00:06:05*
 
-- **Q:** What did the instructor call the "biggest tip" for the group project?
-  **A:** Do not make your analysis difficult. *(00:01:56)*
+- **Q:** What is the "biggest tip" the instructor gives for the group project?
+    - **A:** "Do not make your analysis difficult." *(00:01:56)*
 
-- **Q:** What did the instructor say the course title tells you about the lecture content?
-  **A:** The course is not model fitting, so you will almost not see any machine learning code in the lectures. *(00:02:16)*
+- **Q:** What does the instructor warn will happen if you turn a simple task into a complicated model now?
+    - **A:** "You're going to have a very bad time in about two weeks." *(00:02:16)*
 
-- **Q:** State the instructor's warning about turning a simple task into a complicated model.
-  **A:** "You're going to have a very bad time in about two weeks if you do that." *(00:02:03)*
+- **Q:** According to the instructor, what must be true about the model even if its accuracy is low?
+    - **A:** It must be technically correct; the instructor says they "don't care if your model is sixty percent accurate, but it does have to be technically correct." *(00:03:04)*
 
-- **Q:** What did the instructor say about model accuracy versus correctness?
-  **A:** The model does not have to be highly accurate (60 percent is fine), but it must be technically correct. *(00:03:04)*
+- **Q:** What specific modelling mistake does the instructor cite as "just wrong" when the outcome is numeric?
+    - **A:** Fitting logistic regression when you're trying to predict a numeric outcome. *(00:05:24)*
 
-- **Q:** What specific mistake did the instructor cite as an example of incorrect technique?
-  **A:** Fitting logistic regression when you are trying to predict a numeric outcome. *(00:05:24)*
+- **Q:** What is this week's individual assignment focus, and what is next week's?
+    - **A:** This week is getting everything on Git; next week is containers. *(00:04:49)*
 
-- **Q:** What was this week's individual assignment focus, and what was next week's?
-  **A:** This week is getting everything on Git; next week is containers. *(00:04:49)*
+- **Q:** Over how many weeks is the group project built?
+    - **A:** Three or four weeks. *(00:05:37)*
 
 ## 3. Git review: branch, commit, and push for the pull-request task
 
 *00:06:05–00:09:50*
 
-- **Q:** What command did the instructor use to create and switch to the `today` branch?
-  **A:** `git switch -c today`. *(00:08:57)*
+- **Q:** What command did the instructor use to create and switch to the new branch called `today`?
+    - **A:** `git switch -c today`. *(00:09:17)*
 
-- **Q:** What commit message did the instructor use for the commit on the `today` branch?
-  **A:** "today we are talking about containers". *(00:09:25)*
+- **Q:** What commit message was used on the `today` branch?
+    - **A:** "today we are talking about containers". *(00:09:25)*
 
-- **Q:** What file did the instructor edit to create the change for the pull request?
-  **A:** `README.md`. *(00:09:25)*
+- **Q:** Which file was modified, staged, and committed in the Git workflow demo?
+    - **A:** `README.md`. *(00:09:25)*
 
-- **Q:** What did the instructor say to check right before you run `git add` and definitely before `git commit`?
-  **A:** Make sure you are looking at the branch that you are on. *(00:08:08)*
+- **Q:** What command was used to push the `today` branch to GitHub?
+    - **A:** `git push origin today`. *(00:09:44)*
 
-- **Q:** What did the instructor recommend pulling before starting work in a branch in a collaborating environment?
-  **A:** The main branch, so everything is up to date and you are not making changes to something that is out of date. *(00:08:27)*
+- **Q:** What habit does the instructor recommend immediately before running `git add` and `git commit`?
+    - **A:** Check the branch you are on (e.g., with `git status`) to confirm you are on the correct branch. *(00:08:08)*
 
 ## 4. Issues as a project board
 
 *00:09:50–00:16:17*
 
-- **Q:** What are issues a good way to track in a project?
-  **A:** What is happening in your project, including who is responsible for what. *(00:10:08)*
+- **Q:** What is the title of issue #1 in the demo repository `chendaniely/2026-11-19-docker`?
+    - **A:** "what are we doing today?" *(00:10:49)*
 
-- **Q:** How do issues and pull requests share numbering on GitHub?
-  **A:** They are on the same counting; if you create a new issue and then a pull request right after, the pull request gets the next number in the sequence. *(00:11:54)*
+- **Q:** What is the title of issue #2 in the demo repository?
+    - **A:** "edit the readme with today's topic". *(00:11:37)*
 
-- **Q:** What is a "two-way reference" in the context of GitHub issues and pull requests?
-  **A:** When you reference a hash number in one item, it creates a back-link so you can get a reference back to the other item; everything links to each other automatically. *(00:13:34)*
+- **Q:** How are issues and pull requests numbered on GitHub, according to the instructor?
+    - **A:** They share the same numbering counter; an issue and a pull request are not separate counting sequences. *(00:11:54)*
 
-- **Q:** Name the titles of issues #1 and #2 in the demo repository.
-  **A:** Issue #1 is "what are we doing today?" and issue #2 is "edit the readme with today's topic". *(00:10:49)*
+- **Q:** Besides tracking tasks, what else can the issue board be used for, per the instructor's MDS example?
+    - **A:** Keeping meeting notes. *(00:10:49)*
 
-- **Q:** What did the instructor say you can use the issue board for besides tracking tasks?
-  **A:** As meeting notes; MDS uses the issue board of an internal repository to keep meeting notes. *(00:10:49)*
+- **Q:** How many issues does the class require students to create for the project?
+    - **A:** Three. *(00:14:23)*
 
-- **Q:** How many issues does the class require for the project board exercise?
-  **A:** Three issues. *(00:14:23)*
+- **Q:** Can a single pull request close more than one issue, and does the instructor allow this?
+    - **A:** Yes; the instructor says it is okay if one pull request deals with all three issues. *(00:14:23)*
 
 ## 5. Pull-request descriptions, checkboxes, and auto-close keywords
 
 *00:16:17–00:22:18*
 
-- **Q:** What are the two keywords the instructor named that can be used in a pull request to reference issues?
-  **A:** `closes` and `fixes`. *(00:18:33)*
+- **Q:** What are the two keywords that trigger auto-closing of issues when a pull request is merged?
+    - **A:** `closes` and `fixes`. *(00:18:33)*
 
-- **Q:** What happens when a pull request containing `fixes #2` is merged?
-  **A:** GitHub auto-closes issue #2. *(00:19:30)*
+- **Q:** What happens to a referenced issue when a pull request whose message contains "fixes #2" is merged?
+    - **A:** The issue is automatically closed. *(00:19:30)*
 
-- **Q:** Is the auto-close feature a Git feature or a GitHub feature?
-  **A:** It is a GitHub feature, not a Git version-control feature. *(00:18:54)*
+- **Q:** Is the auto-close keyword behaviour a feature of Git or of the GitHub service?
+    - **A:** It is a GitHub service feature, not the version-control Git feature. *(00:18:54)*
 
-- **Q:** What Markdown notation can be used inside issues and pull requests to track tasks?
-  **A:** Checkboxes, written as `- [x] item 1` and `- [ ] item 2`. *(00:17:43)*
+- **Q:** Which of the two auto-close keywords does the instructor say he "almost always use[s] all the time"?
+    - **A:** `fixes`. *(00:19:55)*
 
-- **Q:** What is the number and title of the pull request created in the demo repository?
-  **A:** Pull request #3, "today we are talking about containers". *(00:22:53)*
+- **Q:** What Markdown notation can be used inside issues and pull requests to track individual tasks?
+    - **A:** Checkboxes, e.g. `- [x] item 1` and `- [ ] item 2`. *(00:17:49)*
 
-- **Q:** What does the description of pull request #3 contain?
-  **A:** "this is the fix for #2", two checkbox items (item 1 checked, item 2 unchecked), and the line "closes #1 fixes #2". *(00:14:14)*
+- **Q:** What does the instructor say about the first comment on an issue or pull request?
+    - **A:** It should contain all the references and context you need, because people read the first comment rather than the later conversation. *(00:16:24)*
 
 ## 6. Merging the pull request and cleaning up branches
 
 *00:22:18–00:25:29*
 
-- **Q:** What two Git commands did the instructor run after the pull request merged to update the local `main` branch?
-  **A:** `git switch main` and `git pull origin main`. *(00:22:25)*
+- **Q:** What is the pull request number for the `today` branch in the demo repository?
+    - **A:** #3. *(00:22:53)*
 
-- **Q:** What GitHub button can you click after merging to delete the remote branch?
-  **A:** The "delete the branch" button in the pull request view, or the trash can in the branches view. *(00:22:49)*
+- **Q:** After the pull request is merged, what two commands does the instructor run to bring the merge down to local `main`?
+    - **A:** `git switch main` and `git pull origin main`. *(00:22:25)*
 
-- **Q:** What command did the instructor run to drop the remote-tracking reference to the deleted branch?
-  **A:** `git fetch --prune`. *(00:24:30)*
+- **Q:** What command drops the remote-tracking branch reference after the GitHub branch has been deleted?
+    - **A:** `git fetch --prune`. *(00:24:30)*
 
-- **Q:** What command did the instructor run to delete the local `today` branch?
-  **A:** `git branch -d today`. *(00:24:30)*
+- **Q:** What command deletes the local branch `today`?
+    - **A:** `git branch -d today`. *(00:24:30)*
 
-- **Q:** What did the instructor say about whether you must delete your branches in this class?
-  **A:** The class does not require deleting branches; you can keep them as a record. *(00:23:16)*
+- **Q:** What button appears on GitHub after merging a pull request that allows you to delete the branch?
+    - **A:** A "delete branch" button. *(00:22:49)*
+
+- **Q:** Is deleting the branch after a merge required in this class?
+    - **A:** No; the instructor says you can keep branches as a record if you want. *(00:23:16)*
 
 ## 7. Why containers: a stable, shareable compute environment ([27 Introduction to containerization](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html))
 
 *00:25:29–00:33:21*
 
-- **Q:** What did the instructor say a container is trying to do?
-  **A:** It says "here is a computer that I'm going to build from scratch, and I'm going to give you this computer, and now you do all of your code on that computer instead of locally on your actual computer." *(00:31:49)*
+- **Q:** What is the stated goal of DSCI 522 regarding compute environments?
+    - **A:** To create a compute environment that you can share with other people and run all of your code through, rather than relying on "this works on my machine." *(00:29:32)*
 
-- **Q:** What did the instructor say is the performance implication of using a container?
-  **A:** There is a performance hit because there is an extra layer on top. *(00:32:34)*
+- **Q:** How does the instructor describe what a container does in one sentence?
+    - **A:** "Here is a computer that I'm going to build from scratch... I'm going to give you this computer, and now you do all of your code on that computer instead of locally on your actual computer." *(00:31:49)*
 
-- **Q:** What did the instructor say happens if you mess up a container?
-  **A:** You can just restart it and get a new sandbox. *(00:33:05)*
+- **Q:** What performance tradeoff does the instructor mention about containers?
+    - **A:** There is a performance hit because there is an extra layer on top. *(00:32:34)*
 
-- **Q:** Which container tools did the instructor name besides Docker?
-  **A:** LXC, LXD, and Podman. *(00:34:01)*
+- **Q:** What other container tools besides Docker did the instructor name?
+    - **A:** LXC, LXD, and Podman. *(00:33:30)*
 
-- **Q:** What did the instructor say about cloud compute instances?
-  **A:** They are almost like containers; Google gives you a container on one of their servers rather than an actual machine. *(00:33:21)*
+- **Q:** What does the instructor say you can do if you mess up inside a container?
+    - **A:** Restart it; you get a new sandbox. *(00:33:05)*
 
 ## 8. Containers versus virtual machines ([27 Introduction to containerization](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html))
 
 *00:33:21–00:36:47*
 
-- **Q:** What is the main difference between a virtual machine and a container, as the instructor described it?
-  **A:** A virtual machine has a full operating system with a graphical interface that you log into; a container is a stripped-down version with no graphical interface, containing only the bare minimum set of things you install. *(00:34:48)*
+- **Q:** How does the instructor describe a virtual machine?
+    - **A:** A full-blown operating system install (e.g., Windows) with all the buttons and a graphical interface you log into. *(00:34:48)*
 
-- **Q:** How large did the instructor say a virtual machine install (like Windows) can be?
-  **A:** 50 to 80 gigabytes. *(00:36:16)*
+- **Q:** How does the instructor describe a container relative to a virtual machine?
+    - **A:** A container is a virtual machine with all the visual bits and the full operating system removed; it is the bare minimum set of things you install. *(00:35:33)*
 
-- **Q:** How large did the instructor say the containers they work with are?
-  **A:** Less than two gigabytes or less than one gigabyte. *(00:36:16)*
+- **Q:** What approximate sizes did the instructor give for a virtual machine versus the containers used in class?
+    - **A:** A virtual machine takes about 50–80 GB; the containers used in class are less than 2 GB or less than 1 GB. *(00:36:16)*
 
-- **Q:** What analogy did the instructor use to describe the relationship between a virtual machine and a container?
-  **A:** A virtual machine is a container with all of the visual bits and the full operating system added; a container is whatever bare minimum set of things you are installing. *(00:35:33)*
+- **Q:** In terms of resources, what advantage do containers have over virtual machines according to the instructor?
+    - **A:** They use less disk space, memory, and compute because there is less stuff in them. *(00:36:32)*
 
 ## 9. Running the R container: `docker pull` and `docker run` ([28 Using and running containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html))
 
 *00:36:47–00:45:01*
 
-- **Q:** What does `docker pull` do?
-  **A:** It downloads a container image (a "computer") onto your computer; if you already have it, it reports the image is up to date and shows a content hash. *(00:37:02)*
+- **Q:** What does `docker pull rocker/r-ver:4.3.2` download?
+    - **A:** An image (a pre-built "computer") that has R version 4.3.2 installed. *(00:37:05)*
 
-- **Q:** What does the `rocker` organization create?
-  **A:** Machines (containers) that only have R installed. *(00:37:05)*
+- **Q:** What R version does the tag `4.3.2` in `rocker/r-ver:4.3.2` select?
+    - **A:** R version 4.3.2. *(00:37:26)*
 
-- **Q:** What version of R is running on the instructor's Mac?
-  **A:** R 4.6.2. *(00:37:32)*
+- **Q:** What version of R is installed on the instructor's host machine, as shown by `R --version`?
+    - **A:** R 4.6.2. *(00:37:32)*
 
-- **Q:** What version of R does the `rocker/r-ver:4.3.2` container run?
-  **A:** R 4.3.2. *(00:37:26)*
+- **Q:** What does the `--rm` flag do in a `docker run` command?
+    - **A:** When you turn off (stop) the container, it automatically deletes the container so stopped containers do not pile up. *(00:40:55)*
 
-- **Q:** What does the `--rm` flag do when used with `docker run`?
-  **A:** It deletes the container (the machine) automatically when you turn it off, so you do not have to manually delete it. *(00:40:55)*
+- **Q:** What do the single-letter flags `-i` and `-t` each stand for in `docker run -it`?
+    - **A:** `-i` is for interactive (gives you a terminal to type in) and `-t` is for TTY (connects you to a terminal you can interact with). *(00:41:48)*
 
-- **Q:** What do the letters `i` and `t` in the `-it` flag stand for?
-  **A:** `-i` stands for interactive (you get a terminal and start typing stuff); `-t` stands for TTY (you get a terminal you can interact with). *(00:41:48)*
+- **Q:** What error message does `library(tidyverse)` produce inside the bare `rocker/r-ver:4.3.2` container?
+    - **A:** "there is no package called 'tidyverse'". *(00:43:54)*
 
-- **Q:** What error did the instructor see when running `library(tidyverse)` inside the `rocker/r-ver:4.3.2` container?
-  **A:** "there is no package called 'tidyverse'". *(00:43:54)*
+- **Q:** What do `uv` or `renv` lock files track that a container additionally pins?
+    - **A:** Lock files track package versions; a container additionally pins the system tools themselves (e.g., the version of Git installed on the machine). *(00:38:46)*
 
-- **Q:** What did the instructor say is a real use case for needing two versions of R on one computer?
-  **A:** Pharmaceutical or clinical trials research where the analysis must stay stable over multiple years, and a drug submission requires the code plus the exact compute environment. *(00:37:54)*
+- **Q:** What real-world use case does the instructor give for needing a fixed R version over multiple years?
+    - **A:** Pharmaceutical clinical-trial analysis, where the analysis must remain stable for years and a drug submission requires the code plus the exact compute environment. *(00:37:58)*
 
-- **Q:** What did the instructor say is the difference between what a lock file pins and what a container pins?
-  **A:** A lock file tracks the package versions, but a container pins the actual system tools (like the version of Git) on the system. *(00:39:02)*
-
-- **Q:** What does `docker run` do if the image is not already on your computer?
-  **A:** It downloads (pulls) the image first, then runs it. *(00:42:16)*
-
-## 10. Web-app containers: RStudio and browser-first tools ([28 Using and running containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html))
+## 10. Web-app containers and browser-first tools ([28 Using and running containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html))
 
 *00:45:01–00:54:10*
 
-- **Q:** What did the instructor say RStudio is?
-  **A:** An actual application. *(00:47:11)*
+- **Q:** What technology does the instructor name as the reason many applications run in a browser?
+    - **A:** Electron. *(00:47:39)*
 
-- **Q:** What is Electron, according to the instructor?
-  **A:** A browser that is made into an application; it shows up in application builds because the application is running in a browser. *(00:47:39)*
+- **Q:** What URL pattern does the instructor mention for Jupyter Lab?
+    - **A:** `localhost:8888`. *(00:48:04)*
 
-- **Q:** Why did the instructor say Jupyter Lab is a browser app you access at `localhost:8888`?
-  **A:** It is built to run on a remote container that can have more cores and memory, but you still want the same application interface. *(00:48:04)*
+- **Q:** How does the instructor describe VS Code in relation to browsers?
+    - **A:** VS Code is "really like a giant browser application that's running." *(00:48:33)*
 
-- **Q:** What did the instructor say GitHub Codespaces is?
-  **A:** VS Code in a browser. *(00:48:49)*
+- **Q:** What does clicking the "Code Space" button in GitHub give you?
+    - **A:** VS Code in a browser. *(00:48:49)*
 
 ## 11. Port mapping the RStudio container ([28 Using and running containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html))
 
 *00:54:10–00:59:14*
 
-- **Q:** What command did the instructor use to run the RStudio container with port mapping?
-  **A:** `docker run --rm -p 8787:8787 rocker/rstudio:4.4.2`. *(00:55:06)*
+- **Q:** What port does the `rocker/rstudio` image use internally?
+    - **A:** 8787. *(00:55:56)*
 
-- **Q:** What port does the RStudio container listen on?
-  **A:** Port 8787. *(00:55:56)*
+- **Q:** What does the flag `-p 8787:8787` do in the `docker run` command?
+    - **A:** It maps port 8787 on your local computer to port 8787 inside the container, so you can reach the web app at `localhost:8787`. *(00:56:38)*
 
-- **Q:** What does the `-p` flag do in `docker run`?
-  **A:** It maps a port on your local computer to a port in the container; the left side is the local port and the right side is the container port. *(00:56:38)*
+- **Q:** What username does the instructor say to use when signing in to the containerized RStudio?
+    - **A:** `rstudio`. *(00:58:29)*
 
-- **Q:** How can you run multiple RStudio containers at the same time?
-  **A:** The container side is fixed at 8787, but you can map it to a different local port (up to roughly 60,000 ports), so multiple containers run on different local ports. *(00:56:31)*
+- **Q:** What does the instructor say about running multiple RStudio containers at the same time?
+    - **A:** The container side is fixed at 8787, but you can redirect it to a different local port so multiple instances run simultaneously. *(00:56:38)*
 
-- **Q:** What URL did the instructor say to open in the browser to access RStudio?
-  **A:** `localhost:8787`. *(00:57:51)*
+- **Q:** What approximate upper limit on port numbers did the instructor mention?
+    - **A:** Sixty thousand. *(00:57:29)*
 
-- **Q:** What username did the instructor say to use for the RStudio container?
-  **A:** `rstudio`. *(00:58:29)*
-
-- **Q:** What password was printed by the first RStudio container run?
-  **A:** `ooph3Aef2Ohcahcu`. *(00:57:51)*
-
-- **Q:** What did the instructor say about local RStudio versus the containerized RStudio?
-  **A:** The local RStudio runs the host's R (4.6.2), while the containerized RStudio runs a different version from the `rocker/rstudio:4.4.2` image; they are completely different machines. *(00:58:41)*
-
-## 12. Environment variables and running dashboards in containers ([28 Using and running containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html))
+## 12. Environment variables and dashboard containers ([28 Using and running containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html))
 
 *00:59:20–01:03:00*
 
-- **Q:** What flag is used to pass an environment variable into a container at run time?
-  **A:** `-e` (for environment variable). *(01:00:05)*
+- **Q:** What flag is used to pass an environment variable into a running container?
+    - **A:** `-e`. *(00:59:34)*
 
-- **Q:** What environment variable did the instructor use to set the RStudio password?
-  **A:** `PASSWORD`. *(01:00:05)*
+- **Q:** What is the name of the environment variable that sets the RStudio login password?
+    - **A:** `PASSWORD`. *(00:59:34)*
 
-- **Q:** What command did the instructor use to run RStudio with a custom password?
-  **A:** `docker run --rm -p 8787:8787 -e PASSWORD="apassword" rocker/rstudio:4.4.2`. *(01:00:05)*
+- **Q:** What does the instructor say about who can access `localhost:8787` when the container is running on his machine?
+    - **A:** Only someone who can log into his physical machine can reach port 8787; it is not available to others. *(01:00:28)*
 
-- **Q:** What did the instructor say about whether every container exposes the same environment variables?
-  **A:** Not every container has this; it depends on how whoever is setting it up is building it. *(01:00:05)*
-
-- **Q:** What did the instructor say about who can access `localhost:8787`?
-  **A:** Only someone who has access to the physical machine; if you cannot log into the machine, port 8787 is not available to you. *(01:00:16)*
-
-- **Q:** What did the instructor say about dashboards in DSCI 532?
-  **A:** You can put all your dashboarding code into a container, and the end user only needs Docker to run it; they do not have to go through the entire installation process. *(01:01:47)*
+- **Q:** What does the instructor say about containerizing a dashboard for DSCI 532?
+    - **A:** The end user only needs Docker installed; they run `docker run` with the right flags and the application is running, without going through the entire installation process. *(01:02:20)*
 
 ## 13. Building interactively: base image and the `cowsay` package ([29 Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html))
 
 *01:03:00–01:08:46*
 
-- **Q:** What base image did the instructor use for the building exercise?
-  **A:** `rocker/r-ver:4.6.2`. *(01:04:44)*
+- **Q:** What command did the instructor use to start a `rocker/r-ver:4.6.2` container with a bash shell instead of the default R prompt?
+    - **A:** `docker run --rm -it rocker/r-ver:4.6.2 bash`. *(01:04:44)*
 
-- **Q:** What command did the instructor use to get a shell (bash) instead of the image's default R?
-  **A:** `docker run --rm -it rocker/r-ver:4.6.2 bash`. *(01:04:44)*
+- **Q:** Which R package did the instructor install inside the container for the demo?
+    - **A:** `cowsay`. *(01:06:08)*
 
-- **Q:** What R package did the instructor install to demonstrate the building process?
-  **A:** `cowsay`. *(01:06:08)*
+- **Q:** What happens to the `cowsay` package when the instructor exits the container and starts it again?
+    - **A:** It is gone; the container has no save state and resets to the image. *(01:07:10)*
 
-- **Q:** What does the `cowsay` package do?
-  **A:** It draws ASCII art of a cow with some text. *(01:06:08)*
-
-- **Q:** What happened when the instructor exited the container and re-entered it after installing `cowsay`?
-  **A:** The package was gone; the container has no save state and resets back to how it was set up. *(01:07:04)*
-
-- **Q:** What did the instructor say about using a container to practice destructive commands or experiment with new packages?
-  **A:** It is a good place to do it because if you delete the computer it is in a container; you just turn it off and back on and it is as if you never ran that command. *(01:07:25)*
+- **Q:** What does the instructor say about using a container as a safe place to try destructive commands or new packages?
+    - **A:** It is a good place because it will delete the computer (the container), but it is in a container, so you just turn it off and back on and it resets. *(01:07:25)*
 
 ## 14. Writing the `Dockerfile`: `FROM`, `RUN`, and `CMD` ([29 Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html))
 
 *01:08:46–01:15:01*
 
-- **Q:** What is a Dockerfile?
-  **A:** A special file (capital D, no extension) that designates the instructions on how to install and set up a particular computer (container). *(01:10:22)*
+- **Q:** What is the name of the file that holds the instructions for building a container, and how is it capitalised?
+    - **A:** `Dockerfile`, with a capital D. *(01:10:22)*
 
-- **Q:** What is the first line in almost every Dockerfile?
-  **A:** `FROM` (in all caps), which states your starting point machine or base image. *(01:11:10)*
+- **Q:** What is the first line of the `Dockerfile` the class wrote, and what does `FROM` specify?
+    - **A:** `FROM rocker/r-ver:4.6.2`; `FROM` states the base image (starting-point machine) the new image is built on. *(01:11:30)*
 
-- **Q:** What base image did the instructor write in the `FROM` line of the class Dockerfile?
-  **A:** `rocker/r-ver:4.6.2`. *(01:11:30)*
+- **Q:** What does the `RUN` instruction in a Dockerfile do?
+    - **A:** It specifies bash commands to run during the image build process. *(01:12:44)*
 
-- **Q:** What does the `RUN` command in a Dockerfile do?
-  **A:** It specifies the bash commands you want the container to do in the building process. *(01:12:44)*
+- **Q:** What command does the class use inside `RUN` to install the `cowsay` package from the command line?
+    - **A:** `Rscript -e "install.packages('cowsay')"`. *(01:12:52)*
 
-- **Q:** What `RUN` line did the instructor write in the Dockerfile?
-  **A:** `RUN Rscript -e "install.packages('cowsay')"`. *(01:12:52)*
+- **Q:** What does the `-e` flag in `Rscript -e` mean?
+    - **A:** It means "expression"; you give it an R expression to run from the command line. *(01:09:38)*
 
-- **Q:** What does the `CMD` command in a Dockerfile do?
-  **A:** It sets the default command the container runs when it starts, if you do not specify something else. *(01:13:25)*
+- **Q:** What does the `CMD` instruction set in a Dockerfile?
+    - **A:** The default command the container runs when it starts; in this class's Dockerfile it runs `cowsay::say('Hello from my first image!')`. *(01:13:52)*
 
-- **Q:** What `CMD` line did the instructor write in the Dockerfile?
-  **A:** `CMD ["Rscript", "-e", "cowsay::say('Hello from my first image!')"]`. *(01:13:52)*
+- **Q:** What is the other Dockerfile command the instructor mentions alongside `CMD`, and how does he characterise its commonness?
+    - **A:** `ENTRYPOINT`; he says it is "pretty rare." *(01:13:36)*
 
-- **Q:** What did the instructor say about `ENTRYPOINT`?
-  **A:** It is pretty rare; you would have to build very specific things if that is what you want. *(01:13:36)*
-
-- **Q:** What command did the instructor name for running an R expression from the command line, and what does the `-e` flag mean?
-  **A:** `Rscript -e`; the `-e` stands for expression. *(01:09:16)*
-
-- **Q:** What did the instructor say about quoting in the `Rscript` command?
-  **A:** Use double quotes on the outside and single quotes on the inside. *(01:09:41)*
-
-- **Q:** What did the instructor say you would do in a Python container with `COPY`?
-  **A:** Copy in your lock files and then run `uv sync` so all the packages are installed in the container at build time. *(01:14:15)*
+- **Q:** For a Python container, what two-step process does the instructor mention for installing packages at build time?
+    - **A:** Use a `COPY` command to copy in your lock files, then run `uv sync`. *(01:14:15)*
 
 ## 15. Building and running the `hello-cowsay` image ([29 Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html))
 
 *01:15:01–01:18:44*
 
-- **Q:** What command did the instructor use to build the image?
-  **A:** `docker build --tag hello-cowsay .`. *(01:15:06)*
+- **Q:** What is the full command used to build the `hello-cowsay` image?
+    - **A:** `docker build --tag hello-cowsay .` *(01:15:06)*
 
-- **Q:** What does `--tag` (or `-t`) do in `docker build`?
-  **A:** It gives the machine (image) a name. *(01:15:11)*
+- **Q:** What does the `--tag` (or `-t`) flag do in `docker build`?
+    - **A:** It gives the image a name (tag). *(01:15:11)*
 
-- **Q:** What does the `.` at the end of `docker build --tag hello-cowsay .` tell Docker?
-  **A:** To look for the Dockerfile in the current directory. *(01:15:38)*
+- **Q:** What does the `.` at the end of `docker build --tag hello-cowsay .` signify?
+    - **A:** It tells Docker to look for the `Dockerfile` in the current directory (the build context). *(01:15:38)*
 
 - **Q:** What file does `docker build` look for by default?
-  **A:** A file called `Dockerfile` with a capital D. *(01:15:57)*
+    - **A:** A file called `Dockerfile` with a capital D. *(01:15:57)*
 
-- **Q:** What command did the instructor use to verify the image was built?
-  **A:** `docker images`. *(01:17:01)*
+- **Q:** What command lists all local Docker images?
+    - **A:** `docker images`. *(01:17:01)*
 
-- **Q:** What did the instructor say about the assumption for where to run these build commands?
-  **A:** From the root of the directory; this is the same assumption used in the milestone one instructions. *(01:16:29)*
+- **Q:** What does running `docker run --rm -it hello-cowsay` (without appending `bash`) execute?
+    - **A:** The `CMD` from the Dockerfile, which prints the cowsay message "Hello from my first image!". *(01:17:14)*
 
-- **Q:** What did `docker run --rm -it hello-cowsay` print?
-  **A:** A cowsay ASCII art message: "Hello from my first image!". *(01:17:14)*
-
-- **Q:** What did the instructor do to verify that `cowsay` was installed in the built image?
-  **A:** Ran `docker run --rm -it hello-cowsay bash`, then opened R and ran `library(cowsay)`, which loaded without error. *(01:17:30)*
+- **Q:** What working-directory assumption does the instructor state for these build commands, in relation to milestone one?
+    - **A:** Assume all commands are run from the root of the directory. *(01:16:29)*
 
 ## 16. Version pinning and wrap-up ([29 Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html))
 
 *01:18:44–01:20:39*
 
-- **Q:** What did the instructor say about pinning tool versions in the Dockerfile?
-  **A:** As long as you do not mess with the install command, a year from now you are still on the same versions of that tool. *(01:19:25)*
+- **Q:** What does the instructor say about controlling tool versions in the Dockerfile?
+    - **A:** You specify the version explicitly: "here's the version I want you to install, and you're not going to change until I tell you until I update that line." *(01:20:27)*
 
-- **Q:** What did the instructor say the Dockerfile is, as a control point?
-  **A:** You say "here is the version I want you to install, and you're not going to change until I tell you until I update that line." *(01:20:27)*
+- **Q:** What happened to the instructor when he restarted a container without hard-version-pinning its tool versions?
+    - **A:** Something updated the day before and nothing worked; he spent hours fixing the update instead of doing the actual work. *(01:19:50)*
 
-- **Q:** What did the instructor recount happening in another class when a container was restarted without version-pinning its tools?
-  **A:** Something updated the day before, and nothing worked; hours were spent fixing the update instead of doing the actual work. *(01:19:50)*
+- **Q:** What does the instructor say is the next class's topic after this introduction to containers?
+    - **A:** More about containers, including how to string up multiple containers together. *(01:20:39)*
 
-- **Q:** What did the instructor say the next class would cover?
-  **A:** More about containers and how to string up multiple containers together. *(01:20:39)*
+- **Q:** What does the instructor say about the Dockerfile build relative to this week's lab assignment?
+    - **A:** You do not need it for this week's lab; it is all you need for next week. *(01:18:48)*
 
 ---
 
-- prompt: prompt-recall-1-remember.md @ 8bcc190
-- prompt-hash: cbbf92455214
+- prompt: prompt-recall-1-remember.md @ 65eb21c
+- prompt-hash: e448f8420cdb
 - model: qwen3.8-27b-sglang (requested: qwen3.8-27b-sglang)
 - backend: local (SGLang)
 - inputs: transcript-plaud.md, history.txt, terminal.txt, materials.md, notes-class-main--qwen3.8-27b-sglang.md
-- generated: 2026-11-20
-- notes-input: notes-class-main--qwen3.8-27b-sglang.md @ de2dd7c39a15, links and section references removed
+- generated: 2026-11-25
+- notes-input: notes-class-main--qwen3.8-27b-sglang.md @ de2dd7c39a15, links and section references removed, diagrams removed

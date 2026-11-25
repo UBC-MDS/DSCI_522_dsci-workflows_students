@@ -1,4 +1,4 @@
-# Branches, Pull Requests, and Conflict Resolution: review questions, tier 4 — Analyze
+# Git branches, pull requests, and conflict resolution: review questions, tier 4 — Analyze
 
 Date: 2026-11-17
 
@@ -12,43 +12,43 @@ Instructor: Daniel Chen
 
 *00:04:04–00:09:43*
 
-- **Q:** Break down the coordination friction caused by pushing directly to `main` versus using branches: how does the required step change for collaborators before pushing, and how does the `HEAD` pointer behave differently in each workflow?
-  **A:** Pushing directly to `main` forces every collaborator to execute a `pull` before every `push` to coordinate changes, creating constant friction that bottlenecks parallel development. In a branch workflow, the `HEAD` pointer is detached and moved to a new branch using `git switch -c`, allowing commits to accumulate independently without altering `origin/main`. This structural separation means developers can work in isolated environments until a deliberate merge step intentionally combines the lines of development. *(00:07:50)*
+- **Q:** Trace the workflow of two collaborators working directly on `main` versus using separate branches: which pointers (`HEAD`, `main`, `origin/main`) advance in each scenario, and how does branching prevent the pull-before-push friction the class experienced in 521?
+    - **A:** When two people work directly on `main`, both local `HEAD` and remote `origin/main` compete on a single line of history, forcing one person to constantly pull before pushing and causing merge conflicts. With branches, `HEAD` detaches and advances independently on a parallel line, allowing commits to accumulate without interfering with the stable `main` branch. This separation transforms a single shared line into parallel streams where teammates can work freely until they coordinate through a Pull Request. *(00:08:19)*
 
 ## 2. Creating and managing branches locally ([8.1 Creating a branch using the command line](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#creating-a-branch-using-the-command-line))
 
 *00:09:43–00:25:12*
 
-- **Q:** Examine how `git switch -c <name>` and the legacy `git checkout -b <name>` command manipulate the Git repository state: which component does each command move, and why does the instructor advise prioritizing `switch` for learners?
-  **A:** Both commands create a new branch and immediately move the `HEAD` pointer to it, establishing an independent line of development. However, `checkout` historically handled multiple roles, including switching branches and restoring files, which creates ambiguity about what each part of the command actually modifies. The instructor recommends `switch` because it isolates branch navigation into a dedicated command, reducing the risk of accidentally overwriting local changes or misusing the command when safety is a concern. *(00:26:53)*
+- **Q:** Examine the output of `git log --oneline --graph --decorate --all` after running `git switch -c dan-b1` and making a commit: which pointer moves forward, which pointer remains static, and what does this graph tell you about where your new changes are safely stored?
+    - **A:** The `HEAD` pointer moves forward to point at your new commit on `dan-b1`, while `origin/main` and `origin/HEAD` remain static at the last shared commit. The graph visually separates your branch as a new line branching off the main line, proving that your commits are isolated and do not affect the repository's main history. This structure confirms that your experimental work is safely stored on a parallel track, ready to be integrated later without disrupting the stable codebase. *(00:14:34)*
 
 ## 3. Pushing branches and initiating Pull Requests ([9 Pull requests](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-pull-requests.html))
 
 *00:25:12–00:46:00*
 
-- **Q:** Trace how a Pull Request on GitHub stays synchronized with ongoing local work: what happens to the PR interface and the "Files Changed" tab when you make additional commits on the same branch, and how does this relate to the review process?
-  **A:** A Pull Request is tied directly to a remote branch, so any new commits pushed to that branch automatically update the PR's commit count and visual state on GitHub. The "Files Changed" tab continuously reflects the diff between the base branch and the latest commits on the feature branch, meaning the diff grows dynamically as you push updates. This allows the PR to serve as a living review document where peers can track progress and leave comments without needing to close and reopen the request. *(00:44:43)*
+- **Q:** Follow a new branch from your local terminal to the GitHub interface: which command links your local work to the remote, what visual cue does GitHub provide to start a review, and how does converting the request to a draft alter the interface to prevent accidental integration?
+    - **A:** Running `git push origin dan-b1` uploads the new branch to GitHub, which immediately triggers a banner prompting you to click "Compare & pull request" to initiate a review. The Pull Request page presents a "Files Changed" tab where teammates can inspect the diff and leave comments on the proposed code. Converting the request to a draft grays out the merge button and displays a gray progress bar, explicitly signaling that the work is incomplete and protecting `main` from being accidentally merged. *(00:30:44)*
 
-## 4. Merging, cleanup, and local synchronization ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 4. Merging, cleanup, and local synchronization ([8.1.2 Getting remote branches you did not create locally](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#getting-remote-branches-you-did-not-create-locally))
 
 *00:52:17–01:03:51*
 
-- **Q:** Separate the post-merge cleanup workflow into its remote and local components: which actions manage the remote repository, and which commands synchronize the local machine to fully reflect that deletion?
-  **A:** On the remote repository, the merge operation automatically closes the Pull Request, and the instructor manually deletes the branch via the GitHub UI dropdown to clear the visual list. On the local machine, `git pull origin main` fast-forwards the local `main` branch to include the newly merged commits. Following that, `git fetch --prune` removes the remote tracking reference for the now-deleted branch, and `git branch -d <name>` finally removes the local branch pointer, ensuring the local and remote states are completely aligned. *(00:56:27)*
+- **Q:** Break down the cleanup workflow after a Pull Request is merged on GitHub: how do `git pull origin main`, `git fetch --prune`, and `git branch -d` each address a different part of the synchronization process between your local machine and the remote repository?
+    - **A:** After merging on GitHub, `git pull origin main` fast-forwards your local `main` branch to include the newly integrated commits. `git fetch --prune` communicates with the remote to remove local tracking references for branches that were deleted on GitHub. Finally, `git branch -d dan-b1` safely removes the local branch itself, ensuring your local repository no longer tracks stale or redundant lines of development. *(01:00:34)*
 
-## 5. Resolving merge conflicts via rebase ([8.3 What happens when my feature branch falls behind main?](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#what-happens-when-my-feature-branch-falls-behind-main))
+## 5. Resolving merge conflicts via rebase ([8.3.2 Using rebase](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#8.3.2-using-rebase))
 
 *01:03:51–01:21:43*
 
-- **Q:** Differentiate how `git rebase` resolves a conflict compared to a standard merge workflow: what structural change does it apply to the commit history, and why does this necessitate a `--force-with-lease` push afterward?
-  **A:** Instead of creating a new merge commit to join two divergent histories, `git rebase` replays the feature branch's commits sequentially on top of the updated `main` branch, effectively rewriting the commit history to be linear. Because the commit hashes change during this replay, the local branch no longer matches the remote branch's history. This structural change requires `git push --force-with-lease` to overwrite the remote branch safely, as a standard push would be rejected for having diverged history. *(01:19:34)*
+- **Q:** Compare the local commit history before and after running `git rebase main` on a branch that falls behind an updated `main`: how does rebasing restructure the history, what specific markers appear in the file to signal the conflict, and why is a force push required afterward?
+    - **A:** Rebasing replays your branch's commits sequentially on top of the updated `main` branch, rewriting the history so your work appears as if it was started from the latest commit rather than an older one. When Git encounters the same modified lines, it halts and inserts conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`) into the file for you to manually resolve. Because rebasing creates new commit hashes, a standard push will be rejected, so you must use `git push --force-with-lease origin dan-delete` to safely update the remote branch with the rewritten history. *(01:19:22)*
 
 ---
 
-- prompt: prompt-recall-4-analyze.md @ 8bcc190
-- prompt-hash: ccb0e5a939c5
+- prompt: prompt-recall-4-analyze.md @ 65eb21c
+- prompt-hash: 7dde50dd5ebf
 - model: qwen3.6-35b-a3b (requested: qwen3.6-35b-a3b)
 - backend: local (llama-swap)
 - inputs: transcript-plaud.md, terminal.txt, materials.md, notes-class-main--qwen3.6-35b-a3b.md
-- generated: 2026-11-20
+- generated: 2026-11-23
 - notes-input: notes-class-main--qwen3.6-35b-a3b.md @ 6ad35f92b4e6, links and section references removed

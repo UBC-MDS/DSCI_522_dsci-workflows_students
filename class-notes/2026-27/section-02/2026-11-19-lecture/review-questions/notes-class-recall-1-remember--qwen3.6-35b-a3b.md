@@ -1,4 +1,4 @@
-# Introduction to Containers and Git Workflow: review questions, tier 1 — Remember
+# Containers and Git Workflow Review: review questions, tier 1 — Remember
 
 Date: 2026-11-19
 
@@ -12,75 +12,73 @@ Instructor: Daniel Chen
 
 *00:00:14–00:05:43*
 
-- **Q:** What advice does the instructor give regarding the complexity of the data analysis for the group project?
-  **A:** Keep the analysis very simple; for example, fit a straight-line model if that is appropriate, rather than using complex models like neural networks. *(00:02:03)*
-- **Q:** Instead of model accuracy or the written report, what is the primary focus of the course grade?
-  **A:** The grade focuses on doing technically correct data science and implementing reproducible workflow practices. *(00:02:41)*
-- **Q:** According to the course roadmap, what topic is the main focus for this week's assignment compared to next week?
-  **A:** This week focuses on getting everything onto Git (branching and pull requests), while next week focuses on containers. *(00:04:49)*
-- **Q:** What application must be open on macOS and Windows before running the Docker commands provided in Slack?
-  **A:** Docker Desktop must be open, or the terminal will return an error that Docker cannot be found. *(00:00:33)*
+- **Q:** What is the instructor's primary tip regarding the complexity of the group project's data analysis?
+    - **A:** The instructor advises keeping the analysis very simple, such as fitting a straight line if appropriate, and explicitly warns against using complex models like neural networks. *(00:02:03)*
+
+- **Q:** According to the lecture, which aspect of the machine learning project is explicitly not graded or important for this course?
+    - **A:** The accuracy or results of the model do not matter, as the course focuses entirely on technically correct data science practices and reproducible workflows. *(00:03:04)*
+
+- **Q:** What is the main focus of this week's lab assignment compared to next week's assignment?
+    - **A:** This week focuses on setting up Git branching and pull requests, while next week introduces containers. *(00:04:49)*
 
 ## 2. Git Branching and Pull Requests
 
 *00:06:05–00:25:29*
 
-- **Q:** What command creates a new branch named `today` and switches to it in the demo repository?
-  **A:** `git switch -c today` *(00:09:05)*
-- **Q:** Which GitHub feature is recommended for tracking project tasks, meeting notes, and assigning team responsibilities?
-  **A:** GitHub Issues *(00:10:08)*
-- **Q:** What two keywords can be placed in a pull request description to automatically close a referenced issue number when the pull request is merged?
-  **A:** `fixes` or `closes` *(00:18:33)*
-- **Q:** What command should be run to remove local references to branches that have been deleted on the remote?
-  **A:** `git fetch --prune` *(00:24:30)*
+- **Q:** What command did the instructor run to create and switch to a new branch named `today`?
+    - **A:** The instructor ran `git switch -c today`. *(00:09:05)*
 
-## 3. Introduction to Containers and Docker
+- **Q:** Which keywords can be placed in a pull request description to automatically close linked issues upon merging?
+    - **A:** The keywords `fixes` or `closes` followed by the issue number will automatically close the issue when the pull request is merged. *(00:18:33)*
+
+- **Q:** What command removes local tracking references for branches that have been deleted on the remote repository?
+    - **A:** Running `git fetch --prune` removes the local tracking references to deleted remote branches. *(00:24:30)*
+
+## 3. Introduction to Containers and Docker ([27 Introduction to containerization](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html))
 
 *00:25:33–00:46:44*
 
-- **Q:** What command downloads a container image from a registry without running it?
-  **A:** `docker pull` *(00:36:55)*
-- **Q:** Which flag passed to `docker run` instructs Docker to automatically delete the container instance when it stops?
-  **A:** `--rm` *(00:40:50)*
-- **Q:** What are the two single-letter flags combined as `-it` that enable an interactive terminal session inside a container?
-  **A:** `-i` (interactive) and `-t` (TTY) *(00:41:16)*
-- **Q:** How does a container differ from a virtual machine in terms of size and operating system usage?
-  **A:** A container shares the host's operating system and is lightweight (often under 1 GB), whereas a virtual machine emulates a full OS and hardware, making it heavyweight. *(00:35:33)*
+- **Q:** What does the `--rm` flag do when used with `docker run`?
+    - **A:** The `--rm` flag tells Docker to automatically delete the container instance when it stops running. *(00:40:50)*
+
+- **Q:** What does the `-it` flag combination enable in a `docker run` command?
+    - **A:** The `-it` flags enable an interactive session by keeping the container's input open and connecting it to a terminal. *(00:41:16)*
+
+- **Q:** According to the instructor, what is the primary advantage of containers over virtual machines regarding size and resource usage?
+    - **A:** Containers are much smaller and more performant because they strip away the visual interface and full operating system, consuming significantly fewer disk space and memory resources. *(00:35:20)*
 
 ## 4. Running Web Applications in Containers ([28 Using and running containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html))
 
 *00:46:47–01:03:00*
 
-- **Q:** Which `docker run` flag is used to map a port on the host machine to a port inside the container?
-  **A:** `-p` *(00:56:38)*
-- **Q:** What is the default port number used by RStudio Server inside the `rocker/rstudio` container image?
-  **A:** 8787 *(00:56:05)*
-- **Q:** What flag and environment variable syntax can be used to set a custom password for the RStudio container instead of the auto-generated one?
-  **A:** `-e PASSWORD="apassword"` *(00:59:45)*
-- **Q:** Why do tools like JupyterLab, RStudio Server, and VS Code run effectively inside containers and require a web browser to access?
-  **A:** They are built as browser-first applications (often using technologies like Electron), allowing them to be accessed via `localhost` regardless of the underlying host machine. *(00:47:39)*
+- **Q:** What flag is used to map a container's internal port to a specific port on the host machine?
+    - **A:** The `-p` flag is used to map ports, formatted as `-p <host_port>:<container_port>`. *(00:56:35)*
+
+- **Q:** Which environment variable can be passed to the `rocker/rstudio` container to set a custom login password?
+    - **A:** The `PASSWORD` environment variable can be passed using the `-e` flag to set a custom password. *(01:00:05)*
+
+- **Q:** What URL address is used to access the RStudio Server web application running inside a Docker container on the local machine?
+    - **A:** The application is accessed via `localhost` followed by the mapped port number (e.g., `localhost:8787`). *(00:58:19)*
 
 ## 5. Building Custom Containers with Dockerfile ([29 Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html))
 
 *01:03:00–01:20:39*
 
-- **Q:** What is the standard name for the plain-text file that contains the instructions to build a Docker image?
-  **A:** `Dockerfile` *(01:10:22)*
-- **Q:** Which `Dockerfile` instruction specifies the base image that the new image will be built on top of?
-  **A:** `FROM` *(01:11:17)*
-- **Q:** Which `Dockerfile` instruction is used to run shell commands (like installing packages) during the image build process?
-  **A:** `RUN` *(01:12:44)*
-- **Q:** Which `Dockerfile` instruction sets the default command that a container runs when it is started from the built image?
-  **A:** `CMD` *(01:13:36)*
-- **Q:** What command builds a Docker image locally using the `Dockerfile` in the current directory?
-  **A:** `docker build --tag <image_name> .` *(01:15:11)*
+- **Q:** Which Dockerfile instruction specifies the base image to build upon?
+    - **A:** The `FROM` instruction specifies the base image that the new Docker image will be built on top of. *(01:11:15)*
+
+- **Q:** What command was used to build the custom image named `hello-cowsay` from the current directory?
+    - **A:** The command `docker build --tag hello-cowsay .` was used to build the image. *(01:15:24)*
+
+- **Q:** In a `Dockerfile`, which instruction is used to execute shell commands that permanently modify the image layers during the build process?
+    - **A:** The `RUN` instruction is used to execute shell commands during the image build process. *(01:12:45)*
 
 ---
 
-- prompt: prompt-recall-1-remember.md @ 8bcc190
-- prompt-hash: cbbf92455214
+- prompt: prompt-recall-1-remember.md @ 65eb21c
+- prompt-hash: e448f8420cdb
 - model: qwen3.6-35b-a3b (requested: qwen3.6-35b-a3b)
 - backend: local (llama-swap)
 - inputs: transcript-plaud.md, history.txt, terminal.txt, materials.md, notes-class-main--qwen3.6-35b-a3b.md
-- generated: 2026-11-20
-- notes-input: notes-class-main--qwen3.6-35b-a3b.md @ 5842e35a1a11, links and section references removed
+- generated: 2026-11-23
+- notes-input: notes-class-main--qwen3.6-35b-a3b.md @ 5842e35a1a11, links and section references removed, diagrams removed

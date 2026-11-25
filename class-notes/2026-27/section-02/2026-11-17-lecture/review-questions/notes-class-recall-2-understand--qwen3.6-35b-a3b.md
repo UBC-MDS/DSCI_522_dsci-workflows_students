@@ -1,4 +1,4 @@
-# Branches, Pull Requests, and Conflict Resolution: review questions, tier 2 — Understand
+# Git branches, pull requests, and conflict resolution: review questions, tier 2 — Understand
 
 Date: 2026-11-17
 
@@ -8,93 +8,67 @@ Instructor: Daniel Chen
 
 *Tier 2 of 5: Understand. Explain each answer in your own words before you read it; tier 1 (Remember) covers the facts, tiers 3 to 5 put them to use.*
 
-## 1. Parallel work and the role of branches ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 1. The problem with parallel work on `main` ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
 
-*00:04:07–00:09:43*
+*00:04:04–00:09:43*
 
-- **Q:** Why did the instructor introduce branches after reviewing basic Git commands?
-  **A:** He introduced them to solve the constant pull-before-push friction and merge conflicts that happen when multiple teammates push directly to the `main` branch, allowing individual responsibilities to proceed independently. *(00:07:57)*
+- **Q:** Why does the instructor recommend creating branches instead of having all group members push directly to `main` at the same time?
+    - **A:** Pushing directly to `main` causes constant pull-before-push friction and merge conflicts when multiple people work simultaneously. Branches isolate each person's work into parallel streams, allowing individuals to commit and push without interfering with teammates until the work is ready for review and merging. *(00:08:07)*
+- **Q:** What is the difference between the `main` branch and a feature branch in terms of the code they contain?
+    - **A:** The `main` branch is treated as the stable, working production state where everything should be finished and functional. Feature branches are used for exploratory work, testing, or developing new features that are not yet ready to be combined with the stable codebase. *(00:15:10)*
+- **Q:** Why does the instructor advise syncing your local repository with `git pull origin main` before creating a new branch?
+    - **A:** Syncing ensures your local repository is up to date with what your teammates have already pushed. Starting a branch from an outdated local state means you might redo work that was already completed elsewhere, wasting time and creating unnecessary coordination overhead. *(00:18:09)*
 
-- **Q:** How does the instructor describe the benefit of working on branches instead of `main` directly?
-  **A:** Branches act as isolated "playgrounds" or separate worlds where you can explore, test, and develop new features without breaking the stable, working order of the `main` branch for everyone else. *(00:14:34)*
-
-- **Q:** Why does the instructor recommend syncing with `git pull origin main` before creating a new branch?
-  **A:** To ensure your new branch starts from the most up-to-date coordinated code, which saves time and prevents you from accidentally losing work that a teammate has already pushed to the remote. *(00:18:25)*
-
-## 2. Managing branches locally ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 2. Creating and managing branches locally ([8.1 Creating a branch using the command line](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#creating-a-branch-using-the-command-line))
 
 *00:09:43–00:25:12*
 
-- **Q:** How does `git switch -c` change the state of the repository compared to just making commits on `main`?
-  **A:** It creates a new named branch and moves the `HEAD` pointer to it, meaning subsequent `git add` and `git commit` commands will increment that new branch name instead of moving `main`. *(00:20:09)*
-
-- **Q:** Why does the instructor advise using `git switch` instead of the older `git checkout` command?
-  **A:** Because `checkout` historically handled both branch switching and file restoration/reverting, whereas `switch` is specialized for moving the `HEAD` around branches, reducing the risk of accidentally losing work if you are unfamiliar with the command. *(00:27:09)*
-
-- **Q:** What is the practical benefit of viewing the repository in the VS Code Git interface while working with branches?
-  **A:** It provides a visual graph that maps out the commit history, clearly showing where `main`, `origin/main`, and your local branch `HEAD` point to confirm that your branch is developing independently. *(00:23:51)*
+- **Q:** How does the `git switch -c` command change the state of the Git repository compared to the standard commit workflow?
+    - **A:** The `-c` flag creates a new branch and immediately moves the `HEAD` pointer to it, so all subsequent commits increment that new branch name instead of `main`. This keeps the `main` branch stationary while your experimental work develops independently in its own timeline. *(00:20:18)*
+- **Q:** What is the purpose of the `git log --oneline --graph --decorate --all` command during branch development?
+    - **A:** This command visualizes the commit history and clearly shows where the `HEAD` pointer is attached to a specific branch. It helps you see that while your new branch advances with each commit, the `origin/main` reference remains static until you sync or push. *(00:21:15)*
+- **Q:** Why does the instructor prefer using `git switch` over the older `git checkout` command for branch management?
+    - **A:** `git checkout` historically performed multiple functions, including branch switching, file restoration, and commit history modification. `git switch` was introduced to specialize specifically in moving the `HEAD` pointer, making it safer to use and reducing the risk of accidentally overwriting local work. *(00:26:59)*
 
 ## 3. Pushing branches and initiating Pull Requests ([9 Pull requests](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-pull-requests.html))
 
 *00:25:12–00:46:00*
 
-- **Q:** Why should you run `git push origin <branch_name>` instead of just `git push` when you are on a new branch?
-  **A:** Running just `git push` without a specified branch might not do anything or push to the wrong target; explicitly naming the branch sends your isolated work to the remote so teammates can see it. *(00:29:50)*
+- **Q:** What is the function of a Draft Pull Request in a collaborative workflow?
+    - **A:** A Draft Pull Request signals to the team that the work is still in progress and not yet ready for review or merging. It grays out the merge button to prevent accidental integration and allows the author to continue pushing commits and updating the PR before marking it as ready. *(00:53:52)*
+- **Q:** How does the GitHub interface communicate that a Pull Request has been updated after the author pushes new commits?
+    - **A:** The Pull Request page is tied directly to the branch, so pushing additional commits to the same branch automatically updates the PR's commit history and file diffs. GitHub refreshes the view to reflect the new state without requiring a new PR to be created. *(00:43:56)*
+- **Q:** What should you look for when reviewing the "Files Changed" tab of a Pull Request?
+    - **A:** You should verify that all intended code changes are present in the diff and check for stray temporary files like `.DS_Store` or `.ipynb_checkpoints` that shouldn't be in the repository. This second line of defense ensures the `.gitignore` is working and the PR contains only relevant work. *(00:38:26)*
 
-- **Q:** How does creating a Pull Request change how you review your own work or an AI-generated commit?
-  **A:** It presents a "Files Changed" diff that you can inspect directly on GitHub, allowing you to catch stray temporary files, verify intended changes, and leave inline comments before merging. *(00:38:15)*
-
-- **Q:** Why does the instructor recommend starting a Pull Request immediately after pushing a branch, even if the work isn't finished?
-  **A:** The "Compare & Pull Request" banner tends to disappear after a day, so starting it right away ensures you don't lose the easy prompt to open the review workflow. *(00:35:28)*
-
-## 4. Draft Pull Requests ([9 Pull requests](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-pull-requests.html))
-
-*00:46:59–00:55:41*
-
-- **Q:** What visual cues and restrictions does a Draft Pull Request display on GitHub?
-  **A:** It displays a gray bar instead of a green one and disables the merge button, signaling that the work is explicitly not ready for integration. *(00:53:59)*
-
-- **Q:** Why is it useful to convert an open Pull Request into a Draft while working on a long-term task?
-  **A:** It acts as a clear signal to teammates and automated agents that the branch is a work-in-progress, preventing accidental merges and discouraging agents from blindly merging green checks. *(00:54:48)*
-
-- **Q:** How do you revert a Draft Pull Request back to an open state?
-  **A:** Scroll to the bottom of the conversation tab, click "Ready for review," which turns the gray bar green and re-enables the green merge button. *(00:55:23)*
-
-## 5. Merging, cleanup, and local synchronization ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 4. Merging, cleanup, and local synchronization ([8.1.3 Useful command line Git branching commands](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#useful-command-line-git-branching-commands))
 
 *00:52:17–01:03:51*
 
-- **Q:** Why is it important to run `git fetch --prune` after deleting a branch on GitHub?
-  **A:** It removes the local tracking references for that remote branch, preventing your local branch list from becoming cluttered with inactive markers. *(01:01:30)*
+- **Q:** Why does the instructor recommend deleting branches on GitHub after they have been merged?
+    - **A:** Over the lifetime of a project, repositories can accumulate a long list of inactive branches that clutter the interface. Deleting merged branches cleans up the repository, though it does not remove the commits from history since they are now part of `main`. *(00:56:08)*
+- **Q:** What does the `git fetch --prune` command accomplish on your local machine?
+    - **A:** This command synchronizes your local repository with the remote and actively removes local tracking references for branches that were deleted on GitHub. It prevents your local branch list from becoming outdated or cluttered with ghost references. *(01:01:30)*
+- **Q:** Why does the lowercase `-d` flag in `git branch -d` refuse to delete a branch that hasn't been merged, while uppercase `-D` does not?
+    - **A:** The lowercase `-d` flag is a safety mechanism that prevents accidental deletion of unmerged work, which could result in lost commits. The uppercase `-D` bypasses this check for forced deletion, which carries a high risk of permanently destroying work and should be used very carefully. *(01:02:46)*
 
-- **Q:** What is the difference between using `git branch -d` and `git branch -D` when deleting a local branch?
-  **A:** Lowercase `-d` safely deletes only merged branches to prevent accidental data loss, while uppercase `-D` force-deletes regardless of merge status, carrying a high risk of permanently losing unmerged work. *(01:02:46)*
-
-- **Q:** Why must you run `git pull origin main` after merging a Pull Request on GitHub?
-  **A:** To fast-forward your local `main` branch to the remote, updating your local computer with the newly integrated commits that were not present on your machine before the merge. *(01:00:17)*
-
-## 6. Resolving merge conflicts via rebase ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 5. Resolving merge conflicts via rebase ([8.3.2 Using rebase](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#using-rebase))
 
 *01:03:51–01:21:43*
 
-- **Q:** Why does a merge conflict occur when merging a second Pull Request after the first has been accepted?
-  **A:** Merging the first PR updates the `main` branch, so when the second PR tries to merge, it rechecks against the new `main` and finds that both branches independently changed the same lines. *(01:10:19)*
-
-- **Q:** What is the purpose of running `git rebase main` on a branch that has fallen behind `main`?
-  **A:** It replays your branch's commits sequentially on top of the updated `main` branch, triggering the conflict locally so you can fix it and push the resolved version. *(01:14:10)*
-
-- **Q:** Why does the instructor emphasize that fixing a conflict marker does not guarantee the code will run correctly?
-  **A:** Resolving the conflict at one specific line (e.g., line 13) might leave broken dependencies elsewhere (e.g., line 50) if variable names or logic shifted, so you must verify the entire file works top to bottom. *(01:11:39)*
-
-- **Q:** Why must you use `git push --force-with-lease` instead of a standard `git push` after rebasing?
-  **A:** Rebasinrewrites the commit history, so a standard push would be rejected; `--force-with-lease` safely updates the remote branch only if no new, untracked commits were added by others in the meantime. *(01:19:47)*
+- **Q:** Why does a merge conflict typically appear only after the first Pull Request has already been merged into `main`?
+    - **A:** When the first PR merges, `main` advances and incorporates new commits. When the second PR attempts to merge, Git rechecks its diff against the updated `main`. If both branches edited the same lines independently, Git detects the overlapping changes and flags a conflict to prevent overwriting one team member's work. *(01:10:08)*
+- **Q:** How does `git rebase main` change the local commit history to help resolve a conflict?
+    - **A:** The command replays your branch's commits sequentially on top of the updated `main` branch locally. This triggers the conflict resolution process on your machine before you push, allowing you to edit the conflict markers and fix the code in a controlled environment. *(01:14:16)*
+- **Q:** Why is `git push --force-with-lease` required after resolving a merge conflict via rebase?
+    - **A:** Rebasing rewrites the commit history of the branch, changing its SHA hashes. A standard push will be rejected because the remote history no longer matches your local history. Force-pushing updates the remote branch to match your rewritten history, and the `--lease` flag adds a safety check to prevent overwriting teammates' new commits. *(01:19:34)*
 
 ---
 
-- prompt: prompt-recall-2-understand.md @ 8bcc190
-- prompt-hash: d3d1585a5f4d
+- prompt: prompt-recall-2-understand.md @ 65eb21c
+- prompt-hash: 17df43f38e78
 - model: qwen3.6-35b-a3b (requested: qwen3.6-35b-a3b)
 - backend: local (llama-swap)
 - inputs: transcript-plaud.md, terminal.txt, materials.md, notes-class-main--qwen3.6-35b-a3b.md
-- generated: 2026-11-20
+- generated: 2026-11-23
 - notes-input: notes-class-main--qwen3.6-35b-a3b.md @ 6ad35f92b4e6, links and section references removed

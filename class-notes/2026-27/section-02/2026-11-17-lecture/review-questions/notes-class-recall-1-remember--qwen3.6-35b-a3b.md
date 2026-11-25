@@ -1,4 +1,4 @@
-# Git Branches, Pull Requests, and Conflict Resolution: review questions, tier 1 — Remember
+# Git branches, pull requests, and conflict resolution: review questions, tier 1 — Remember
 
 Date: 2026-11-17
 
@@ -8,90 +8,70 @@ Instructor: Daniel Chen
 
 *Tier 1 of 5: Remember. Answer each question before you read its answer; tiers 2 to 5 build on these.*
 
-## 1. Course logistics and project structure ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 1. Course logistics and project structure (00:00:01–00:04:04)
 
-*00:00:01–00:04:04*
-
-- **Q:** What specific metadata is the instructor collecting from all students, and what is its stated purpose?
-  **A:** The instructor is collecting GitHub usernames, which will be used as metadata throughout the rest of the program under the hood. *(00:02:01)*
-
-- **Q:** What is the purpose of the "interview week" column in the lab sections repository?
-  **A:** It schedules 7-minute, ungraded technical interviews where TAs assess students' understanding of their group project's code base. *(00:02:50)*
-
-- **Q:** What is the instructor's stated reason for making lab attendance mandatory during the group project phase?
-  **A:** TAs will circulate to talk to every single group and conduct the ungraded technical interviews. *(00:02:30)*
+- **Q:** What is the duration and grading status of the "interview week" sessions conducted during lab?
+    - **A:** They are seven-minute sessions that are not graded, designed to assess a student's understanding of their group's code base. *(00:02:50)*
+- **Q:** Why does the instructor collect students' GitHub usernames as metadata?
+    - **A:** It is used everywhere under the hood in the rest of the program and to create a main list for lab section coordination. *(00:02:01)*
+- **Q:** What is the attendance requirement for lab sessions in this course, and why?
+    - **A:** Attendance is mandatory during lab because the course centers on a large group project where TAs will circulate to check group progress. *(00:02:19)*
 
 ## 2. The problem with parallel work on `main` ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
 
-*00:04:04–00:09:43*
+- **Q:** According to the house construction metaphor used in class, what does the `main` branch represent?
+    - **A:** It represents the foundation of the house, which must be stable before other parallel work like walls or floors can begin. *(00:15:07)*
+- **Q:** What is the primary benefit of working in parallel branches instead of everyone pushing directly to `main` at the same time?
+    - **A:** It prevents constant pull-before-push friction and merge conflicts, allowing individual responsibilities to proceed independently. *(00:08:41)*
+- **Q:** If a student's work only exists on their local computer, how does the instructor describe its status for project purposes?
+    - **A:** It effectively does not exist, because the code has not been shipped or pushed anywhere to be graded or published. *(00:10:53)*
 
-- **Q:** What command must you run before creating a new branch to ensure your starting point is up to date?
-  **A:** You should run `git pull origin main` to sync your local repository with the remote. *(00:18:55)*
+## 3. Creating and managing branches locally ([8.1 Creating a branch using the command line](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#creating-a-branch-using-the-command-line))
 
-- **Q:** If your work exists only on your local computer and has not been pushed to the remote repository, what is its status for grading purposes?
-  **A:** It effectively does not exist for grading or project purposes because the code is not shipped or accessible to reviewers. *(00:11:11)*
-
-- **Q:** What analogy did the instructor use to describe the relationship between the `main` branch and exploratory work on branches?
-  **A:** The instructor compared `main` to the foundation of a house that must be stable before parallel work like building walls or floors (branches) can occur. *(00:14:50)*
-
-## 3. Creating and managing branches locally ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
-
-*00:09:43–00:25:12*
-
-- **Q:** What command and flag are used to create a new branch and immediately switch to it?
-  **A:** The command is `git switch -c <branch_name>`, which creates the branch and moves the `HEAD` pointer to it. *(00:20:18)*
-
-- **Q:** What older Git command, commonly used before 2020, also handled branch switching but was later split into specialized commands?
-  **A:** `git checkout` was the legacy command that handled both branch switching and file restoration before `git switch` was introduced. *(00:27:09)*
-
-- **Q:** What visual cue in `git status` indicates which branch you are currently on?
-  **A:** The output explicitly states "On branch \<branch_name\>" instead of "On branch main". *(00:21:03)*
+- **Q:** Which command and flag combination did the instructor demonstrate to create a new branch and immediately switch to it?
+    - **A:** `git switch -c <branch_name>` *(00:20:15)*
+- **Q:** What visual cue in the terminal output tells you which branch you are currently on after running `git status`?
+    - **A:** The line that says "On branch <branch_name>". *(00:21:03)*
+- **Q:** Which command provides a visual graph of the commit history, showing how `HEAD` advances on a new branch while `origin/main` remains static?
+    - **A:** `git log --oneline --graph --decorate --all` *(00:13:17)*
+- **Q:** The instructor mentioned that `git checkout` is an older command. What modern command should you use instead to avoid accidentally restoring files or losing work?
+    - **A:** `git switch` *(00:26:59)*
 
 ## 4. Pushing branches and initiating Pull Requests ([9 Pull requests](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-pull-requests.html))
 
-*00:25:12–00:46:00*
+- **Q:** What specific GitHub command did you type to push a local branch named `dan-b1` to the remote repository?
+    - **A:** `git push origin dan-b1` *(00:30:44)*
+- **Q:** How does a Draft Pull Request visually signal to teammates that the work is not ready yet, and what button does it disable?
+    - **A:** It displays a gray bar instead of a green one, and it disables the merge button so no one can accidentally merge it. *(00:54:04)*
+- **Q:** When reviewing a Pull Request on GitHub, what specific sub-tab allows you to see the diff between the original file and the proposed changes?
+    - **A:** The "Files Changed" tab *(00:41:22)*
+- **Q:** What two types of stray files did the instructor explicitly warn reviewers to check for that should not be in the repository?
+    - **A:** Temporary checkpoint files like `.ipynb_checkpoints` and hidden system files like `.DS_Store` *(00:39:23)*
 
-- **Q:** What command is used to push a local branch to the remote GitHub repository?
-  **A:** You run `git push origin <branch_name>` to send the branch's commits to GitHub. *(00:30:44)*
+## 5. Merging, cleanup, and local synchronization ([8.3.1 Using merge](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#using-merge))
 
-- **Q:** What is the name of the GitHub UI tab that displays the diff of changes for code review?
-  **A:** The "Files Changed" tab shows the diff between the original file and the proposed changes. *(00:41:22)*
+- **Q:** After merging a Pull Request on GitHub, what two commands did the instructor run locally to sync `main` and remove tracking references for deleted remote branches?
+    - **A:** `git pull origin main` followed by `git fetch --prune` *(01:00:27)*
+- **Q:** Which command flag allows you to safely delete a local branch that has already been merged, refusing to delete unmerged work to prevent data loss?
+    - **A:** `git branch -d` (lowercase `-d`) *(01:02:46)*
+- **Q:** What happens to the commit history after you merge a Pull Request and then delete the branch marker on GitHub?
+    - **A:** The commits are not lost; they remain in the history, often accompanied by a new merge commit. *(00:58:10)*
 
-- **Q:** What visual indicator does GitHub show to communicate that a Pull Request is still a work-in-progress draft?
-  **A:** GitHub displays a gray bar at the top of the page instead of a green bar. *(00:54:04)*
+## 6. Resolving merge conflicts via rebase ([8.3.2 Using rebase](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#using-rebase))
 
-## 5. Merging, cleanup, and local synchronization ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
-
-*00:52:17–01:03:51*
-
-- **Q:** What command removes local tracking references for remote branches that have been deleted on GitHub?
-  **A:** `git fetch --prune` synchronizes the history and removes local markers for deleted remote branches. *(01:01:30)*
-
-- **Q:** Which flag for `git branch` should you use to safely delete a local branch that has already been merged?
-  **A:** The lowercase `-d` flag is used for safe deletion, preventing accidental deletion of unmerged work. *(01:02:46)*
-
-- **Q:** After a Pull Request is merged and the remote branch is deleted, what command must you run on your local `main` branch to update it with the new commits?
-  **A:** You run `git pull origin main` to fast-forward your local `main` branch to match the remote. *(01:00:27)*
-
-## 6. Resolving merge conflicts via rebase ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
-
-*01:03:51–01:21:43*
-
-- **Q:** What command replays a local branch's commits sequentially on top of an updated `main` branch to resolve conflicts locally?
-  **A:** `git rebase main` replays the commits and triggers conflict resolution in the local text editor. *(01:17:08)*
-
-- **Q:** After resolving a conflict and finishing the rebase, why is a standard `git push` insufficient to update the remote branch?
-  **A:** Because rebasing rewrites commit history, you must use a force push to update the remote. *(01:19:47)*
-
-- **Q:** What flag should you use with `git push` to safely force-push rewritten history to the remote repository?
-  **A:** The `--force-with-lease` flag safely updates the remote branch only if no new, untracked commits were added by others. *(01:19:47)*
+- **Q:** Which command replays the commits from your current branch on top of the updated `main` branch to trigger and resolve conflicts locally?
+    - **A:** `git rebase main` *(01:17:14)*
+- **Q:** After resolving conflict markers in a text editor and staging the file, which command does Git guide you to run to finish the rebase process?
+    - **A:** `git rebase --continue` *(01:18:54)*
+- **Q:** Because rebasing rewrites commit history, which force-push flag did the instructor successfully type (after a spelling mistake) to update the remote branch?
+    - **A:** `--force-with-lease` *(01:19:47)*
 
 ---
 
-- prompt: prompt-recall-1-remember.md @ 8bcc190
-- prompt-hash: cbbf92455214
+- prompt: prompt-recall-1-remember.md @ 65eb21c
+- prompt-hash: e448f8420cdb
 - model: qwen3.6-35b-a3b (requested: qwen3.6-35b-a3b)
 - backend: local (llama-swap)
 - inputs: transcript-plaud.md, terminal.txt, materials.md, notes-class-main--qwen3.6-35b-a3b.md
-- generated: 2026-11-20
-- notes-input: notes-class-main--qwen3.6-35b-a3b.md @ 6ad35f92b4e6, links and section references removed
+- generated: 2026-11-23
+- notes-input: notes-class-main--qwen3.6-35b-a3b.md @ 6ad35f92b4e6, links and section references removed, diagrams removed

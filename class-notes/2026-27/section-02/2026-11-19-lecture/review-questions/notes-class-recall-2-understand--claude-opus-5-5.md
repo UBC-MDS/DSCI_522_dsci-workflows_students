@@ -6,367 +6,345 @@ Instructor: Daniel Chen
 
 *Tier 2 of 5: Understand. Explain each answer in your own words before you read it; tier 1 (Remember) covers the facts, tiers 3 to 5 put them to use.*
 
-## 1. Opening: pull the Docker images and start the branch exercise
-
-*00:00:14–00:01:41*
-
-- **Q:** Why were students asked to run the three `docker pull` commands from Slack at the very start of class, before anything else?
-  **A:** The downloads take about ten minutes. Starting them at the beginning meant they would finish while the class was checking everything else, so nobody would wait for them later. *(00:00:18)*
-
-- **Q:** Docker can fail in two ways at the start: with an error that it "can't find Docker", or by asking you to turn it on. What does each one mean?
-  **A:** An error that Docker can't be found means Docker isn't installed, so you need to install the Docker application. If Docker is installed but Docker Desktop isn't running, the commands tell you to turn it on. That is why you open Docker Desktop before running them. *(00:00:33)*
-
-- **Q:** Why did the warm-up exercise practise making a branch, opening a pull request and merging it, together with issues?
-  **A:** Branches, pull requests and issues are part of how students will work on all their project-based courses from now on. The exercise gets them practising that workflow right away. *(00:00:57)*
-
-## 2. Project advice: keep the analysis simple
+## 1. Project advice: keep the analysis simple
 
 *00:01:41–00:05:57*
 
-- **Q:** Why did the instructor say to keep the group project's analysis simple, for example a straight-line model rather than a neural net?
-  **A:** This is not a model-fitting course. The course title is about workflows, and there is almost no machine learning code in the lectures. The report is not the point of the class, and there is a lot more to do, so an ambitious model means "a very bad time in about two weeks." *(00:02:16)*
+- **Q:** Explain why the instructor urged students to keep the group project's analysis simple, even if they could build something more ambitious.
+    - **A:** An ambitious model, such as a neural net instead of a straight line, means "a very bad time in about two weeks." This is a workflows course, not a model-fitting course, and there is almost no machine learning code in the lectures. The report is not the point of the class, and there is a lot more work to do around it. *(00:02:16)*
 
-- **Q:** What is the difference between a model that is "simple" and one that is "incorrect", in terms of how the project is judged?
-  **A:** A simple model is fine: the results don't matter, so 60% accuracy is acceptable, and linear or logistic regression won't be penalised. The techniques must still be technically correct data science. Fitting logistic regression to predict a numeric outcome, for example, is just wrong. *(00:03:08, 00:05:24)*
+- **Q:** Compare how the project treats a model's performance with how it treats its correctness.
+    - **A:** Performance doesn't matter: a model that is sixty percent accurate is fine, and a simple linear or logistic regression is not penalised. The techniques must still be correct data science and correct machine learning. Fitting logistic regression to predict a numeric outcome, for example, "is just wrong." *(00:03:08)*
 
-- **Q:** Why did the instructor advise against turning this group project into a portfolio piece?
-  **A:** A lot is happening in this class, and you don't want to deal with a complicated report at the same time. If you really want a portfolio project, build it separately, in parallel. *(00:03:27)*
+- **Q:** If the lectures show almost no machine learning code, why does the group project still need a machine learning analysis?
+    - **A:** You need a machine learning project to start with. The project is the same analysis, built on over three or four weeks: Git this week, then containers next week. The analysis is what the workflow is applied to, even though class never teaches the modelling. *(00:05:43)*
 
-- **Q:** Explain why the project needs a machine learning analysis even though the lectures show almost no machine learning code.
-  **A:** The class teaches the workflow around an analysis, not the modelling. You still need a machine learning project to start with, because that analysis is what you build the workflow on over three or four weeks. *(00:05:37, 00:05:43)*
+- **Q:** Explain why a student who wants a portfolio piece should build it in parallel rather than in this assignment.
+    - **A:** A lot is happening in this class, and the instructor said you definitely don't want to deal with a complicated report at the same time. If you want a portfolio version, do it separately, in parallel. *(00:03:27)*
 
-## 3. Git review: working on a branch
+## 2. Git review: working on a branch
 
 *00:06:16–00:09:50*
 
-- **Q:** The instructor edited `README.md` while still on `main`. Why could he fix this just by running `git switch -c today`?
-  **A:** He had only edited the file and had not committed anything yet, so he could still create the new branch. After `git switch -c today`, `git status` showed "On branch today" with the same modified `README.md`, ready to commit there. *(00:08:57, 00:09:17)*
+- **Q:** The instructor edited `README.md` in the `2026-11-19-docker` repository while still on `main`. Why could he still move that work onto a new branch with `git switch -c today`?
+    - **A:** He had only edited the file and had not committed anything yet. He could therefore create the branch at that point: `git status` then showed he was on branch `today` with the same modification. If you have already made commits on `main`, you need the textbook's cheat sheet of commands to move them. *(00:08:57)*
 
-- **Q:** Why should you look at which branch you are on right before `git add`, and especially before `git commit`?
-  **A:** From now on the course assumes a branch workflow, so commits belong on a branch, not on `main`. Once you have committed on `main`, you need extra commands to move the work around; the textbook has a cheat sheet for this. Checking first avoids the problem. *(00:07:44, 00:08:08)*
+- **Q:** Why should you look at which branch you are on right before `git add`, and definitely before `git commit`?
+    - **A:** The course assumes a branch workflow from now on, and the change is supposed to land on a branch, not on `main`. Checking `git status` before you stage and commit catches the mistake while it is still easy to fix. In the demo it showed the instructor was still on `main`. *(00:08:08)*
 
-- **Q:** Why pull `main` before starting new work when you are actively collaborating?
-  **A:** It keeps your copy up to date, so you aren't making changes to something that is out of date. With several people working on several branches, this is something you now have to pay attention to. *(00:08:27, 00:08:41)*
+- **Q:** When you are actively collaborating, why pull the `main` branch before starting new work?
+    - **A:** Pulling brings everything up to date, so you aren't working on and changing something that is out of date. With several people actively working on several branches, this is something you now have to pay attention to. *(00:08:27)*
 
-- **Q:** What did the `git diff` output on the `today` branch show before staging?
-  **A:** It showed the uncommitted change to `README.md`: the lines starting with `+` were the new blank line and the added line "- today we will talk about containers". That is the change he then staged with `git add README.md` and committed. *(00:09:25)*
-
-## 4. GitHub issues as a project board
+## 3. GitHub issues as a project board
 
 *00:09:50–00:16:17*
 
-- **Q:** What are GitHub issues for, beyond reporting bugs?
-  **A:** They track what is happening in a project, as a simple project board, including who is responsible for what. MDS uses one internal repository's issues for meeting notes. Action items assigned to people are then spawned as separate issues from the notes issue. *(00:10:08, 00:10:28, 00:10:49)*
+- **Q:** Explain why GitHub issues and pull requests share one numbering sequence. In the `2026-11-19-docker` demo, what number did the pull request get, and why?
+    - **A:** Issues and pull requests are counted together so that, inside any issue or pull request, you can refer to any other item by its number. In the demo there were two issues first, so the pull request became #3. *(00:12:07)*
 
-- **Q:** Why do issues and pull requests in the demo repository `2026-11-19-docker` share one numbering sequence, so that after issues #1 and #2 the pull request was #3?
-  **A:** Because they share one counter, any issue or pull request can refer to any other item just by its number. *(00:12:07, 00:12:20)*
+- **Q:** What does it mean that a `#` reference on GitHub is a "two-way reference"?
+    - **A:** When you write something like "meeting from #1" in issue #2, it links to item 1, and item 1 also shows a link back. Everything links to everything else automatically. The instructor named this kind of issue and pull request tracking as one of the reasons GitHub, and not only Git, became so popular. *(00:13:34)*
 
-- **Q:** What does it mean that a `#` reference is "two-way", as when issue #2 said "meeting from #1"?
-  **A:** Writing `#1` in issue #2 links to issue #1, and issue #1 automatically shows a reference back to #2. Everything links to everything else without extra work. The instructor called this one of the reasons GitHub, rather than just Git, became so popular as a project management system. *(00:13:34, 00:13:47)*
+- **Q:** How can an issue board serve as a team's meeting notes?
+    - **A:** You can keep the meeting notes in one big issue, as MDS does in one of its internal repositories. After the meeting, any action items or to-dos for other people become separate issues spawned from that note. *(00:10:49)*
 
-- **Q:** Why does the instructor sometimes ask a coding agent to file an issue for a passing idea instead of opening GitHub himself?
-  **A:** Switching to a browser risks ending up on a site he doesn't need and losing track of his work. Asking the agent to file the issue records the idea without breaking his focus. *(00:13:06, 00:13:24)*
+- **Q:** Why does the instructor sometimes ask a coding agent to file an issue for a passing idea?
+    - **A:** Opening a browser tab risks ending up on a site he doesn't need to be on and losing track of what he was doing. Telling the agent to file the issue lets him throw the idea somewhere without breaking focus. Issues are a good place to dump ideas, such as a neural net someone would like to try later. *(00:13:06)*
 
-- **Q:** What is the difference between being an assignee and being a reviewer on a pull request?
-  **A:** Assigning yourself claims the pull request as your responsibility. A reviewer is a teammate asked to look over your work. Some projects block changes until someone has actually reviewed them. In the demo, the instructor added Copilot as a reviewer. *(00:14:47, 00:15:14)*
+- **Q:** What is the difference between assigning someone to a pull request and adding them as a reviewer?
+    - **A:** You usually assign yourself to your own pull request, which claims it as your responsibility. A reviewer is someone else, such as a teammate, whom you ask to look over your work. In larger projects there are sometimes ways to block changes until someone has actually reviewed them. *(00:14:47)*
 
-- **Q:** Why is it acceptable for one pull request to deal with all three issues the lab asks for?
-  **A:** One issue, one branch and one pull request is only one extreme, and it isn't always how work happens. The lab asks for issues so you gain experience with the project board system, not to force a one-to-one match. *(00:14:23)*
+- **Q:** Why is it acceptable for one pull request to deal with all three issues the lab asks you to create?
+    - **A:** One issue, one branch, one pull request is only one extreme; it isn't always how the work splits up. The lab's goal is for you to get experience with the project board system, not to match issues to pull requests one-for-one. *(00:14:23)*
 
-## 5. Pull request descriptions, checkboxes and closing keywords
+- **Q:** Compare tracking a team's work in cross-referenced GitHub issues with keeping it in a shared Google Doc.
+    - **A:** Issues and pull requests that reference each other keep all the notes and decisions connected to the work itself. You can see this in any large open-source project. The instructor called it a very good way to keep track of what is happening on your team without relying on a document of notes. *(00:15:48)*
+
+## 4. Pull request descriptions, checkboxes and closing keywords
 
 *00:16:17–00:22:18*
 
-- **Q:** Why did the instructor edit the first comment of the pull request instead of adding new comments as the work changed?
-  **A:** People coming to an issue or pull request want to know what is happening and why it exists, and they won't read the whole conversation. The first comment should hold all the references and any big decisions. It is editable because the work evolves, and project owners can usually edit others' comments too. *(00:16:40, 00:16:56)*
+- **Q:** Why should the first comment of an issue or pull request be edited to stay up to date?
+    - **A:** People coming to it won't read the whole conversation. They want to know what is happening and why the thing exists, and that should already be in the first comment. If a big decision is made later in the discussion, update the opening comment; project owners can usually edit others' comments too. These comments are editable because they evolve over time. *(00:16:56)*
 
-- **Q:** How do Markdown checkboxes in a pull request description compare with marking the pull request as a draft?
-  **A:** Both show teammates that the work isn't done yet. Checkboxes such as `- [ ] item 2` also let you track your own remaining to-dos as you fix things. They show what is still unchecked even if you never use the draft button. *(00:17:49, 00:18:21)*
+- **Q:** How do Markdown checkboxes in a pull request description help you and your teammates?
+    - **A:** They let you track for yourself what still needs doing as you fix things. They also tell teammates at a glance that the pull request isn't done yet, because not every box is checked. That makes them an alternative to marking the pull request as a draft. *(00:17:49)*
 
-- **Q:** How does writing `fixes #2` in pull request #3's description close issue #2?
-  **A:** `fixes` (and `closes`) followed by an issue number is a special pattern that GitHub recognises. When that pull request is merged, the issues it says it fixes are closed automatically. This is a GitHub feature, not a feature of Git itself. *(00:18:33, 00:18:54, 00:19:30)*
+- **Q:** Explain how a closing keyword such as `fixes #2` in a pull request description closes an issue.
+    - **A:** A sentence containing a keyword like `fixes #2` (or `closes #1`) declares that the pull request resolves that issue. When the pull request is merged, GitHub closes the referenced issue automatically. This is a GitHub feature, not a feature of Git, the version control system. The instructor wasn't sure `closes` had worked in the demo and said he almost always uses `fixes`. *(00:19:30)*
 
-- **Q:** Why write closing keywords in the pull request message rather than in a commit message?
-  **A:** They also work in a commit message, but they are harder to see there. Putting them in the pull request message makes it visible which issues the work deals with. *(00:19:55)*
+- **Q:** Closing keywords also work in commit messages. Why write them in the pull request description instead?
+    - **A:** The instructor said you could put them in a commit message, but they are harder to see there. Writing the keyword in the pull request message makes it visible that this work deals with that issue. *(00:19:55)*
 
-- **Q:** Why does auto-closing issues help with project management?
-  **A:** As pull requests merge, the issues tab gets smaller, so you don't have to think about finished items again or click close on each one. The instructor works this way on the textbook: file an issue, do the work, write "fixes" in the pull request, then take the next item from the issues list. *(00:20:12, 00:20:28, 00:21:02)*
+- **Q:** Why do closing keywords make the issues tab more useful as a project management tool?
+    - **A:** As work merges, the issues it fixes close themselves, so the issues tab gets smaller and you don't have to think about those items again. You don't have to click "close" on several issues by hand. You just look down the list for the next thing to work on, which is how the instructor works on the textbook. *(00:20:12)*
 
 - **Q:** Why is it fine to leave stretch-goal issues open at the end of the course?
-  **A:** Closing all your issues is not what the course grades. Issues are a place to keep longer-term ideas and things to explore, so creating them is good practice even if they stay open. *(00:21:50)*
+    - **A:** The course does not grade you on closing all your issues. Creating issues for longer-term ideas or things you'd like to explore is good practice with the system, so open ones are fine. *(00:21:50)*
 
-## 6. Cleaning up after a merge
+## 5. Cleaning up after a merge
 
 *00:22:18–00:25:19*
 
-- **Q:** What is the difference between what `git fetch --prune` and `git branch -d today` each removed?
-  **A:** `git fetch --prune` removed the local reference to the branch that had been deleted on GitHub, `origin/today`. `git branch -d today` then deleted the local `today` branch. Both only clean up references. *(00:24:30)*
+- **Q:** After the `today` branch was deleted on GitHub, why did the instructor still run `git fetch --prune` and `git branch -d today` locally?
+    - **A:** Deleting the branch on GitHub doesn't remove your local copies of the references, and `git log --oneline --graph --all` still showed them. `git fetch --prune` drops the reference to the branch that was deleted on GitHub (`origin/today`). `git branch -d today` deletes the local branch itself. *(00:24:30)*
 
-- **Q:** After both cleanup commands, what did `git log --oneline --graph --all` still show, and what had been lost?
-  **A:** Commit `3c6d82a` and the merge commit were still in the graph, so you could still tell a merge had happened. Only the branch labels were gone: the quick shortcut reference to that commit. *(00:24:30)*
+- **Q:** When you delete a merged branch, what do you lose and what stays?
+    - **A:** The history stays: the commit and the merge are still in the graph, so you can tell something happened there. What you lose is the quick shortcut name pointing to that location. *(00:24:30)*
 
-- **Q:** Why do some people prefer not to delete merged branches?
-  **A:** Deleting a branch loses the convenient reference to that point in history. With the branch kept, you can type `git switch today` instead of `git switch 3c6d82a`. *(00:24:05, 00:25:05)*
+- **Q:** Why do some people choose not to delete merged branches?
+    - **A:** Deleting loses the reference. Keeping the branch name means you can type `git switch today` instead of `git switch 3c6d82a`. *(00:25:05)*
 
-- **Q:** Why might you clean up branch references anyway?
-  **A:** Leftover references can leave you in weird Git states where the graph has too many colours and labels to see what is happening. Cleaning up makes the history readable again. *(00:24:05)*
+- **Q:** Why does the instructor sometimes clean up branches anyway?
+    - **A:** You can end up in very weird Git states where there are so many branch colours and labels on the screen that you can't see what is happening anymore. Removing stale references makes the graph readable again. *(00:24:05)*
 
-- **Q:** Why is deleting branches optional in this course?
-  **A:** You may want to keep branches as a record. Teams and companies handle Git very differently, even within one company. The course shows one way, and others are modifications of it. *(00:23:16, 00:23:22)*
+- **Q:** Why does the course not require you to delete branches after merging?
+    - **A:** Keeping branches as a record is perfectly fine. Teams and companies handle Git very differently, even groups within the same company. The class shows one way, and other workflows are modifications of it. *(00:23:22)*
 
-## 7. Why data science workflows need stable environments ([27.1 Documenting and loading dependencies](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html#documenting-and-loading-dependencies))
+## 6. Why data science workflows need stable environments ([27.1 Documenting and loading dependencies](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html#documenting-and-loading-dependencies))
 
 *00:25:29–00:30:13*
 
-- **Q:** How does working on a project differ from earlier MDS homework when it comes to packages?
-  **A:** In homework, the instructors gave you the package file. In projects, each group chooses its own tools, such as R or Python, or Altair, Plotly or Matplotlib, so you must adapt the environment to your project. That is also how it works at a company. *(00:25:52, 00:27:06, 00:27:38)*
+- **Q:** How does setting up a project's environment differ from the homework you have done so far in MDS?
+    - **A:** For homework you were given the package file. In a project, each group picks its own language and libraries (Python or R, and Altair, Plotly or Matplotlib), so the package requirements differ. You have to adapt the environment to your own project, just as every project at a company has different requirements. *(00:27:06)*
 
 - **Q:** Why keep a project's package list to the bare minimum instead of installing everything?
-  **A:** Installing packages you don't use wastes disk space. Packages also have different update cycles, so updating a big environment in one go can make things incompatible. You can end up unable to install everything. *(00:27:38, 00:28:04)*
+    - **A:** Installing packages you don't use wastes disk space. Packages also have different update cycles, so if you later try to update everything in one go, some may be incompatible and you can end up unable to install them all. *(00:28:04)*
 
-- **Q:** Explain the two kinds of stability a long-running group project needs.
-  **A:** You need your own environment to stay stable over days, weeks, months or even years. It also has to work for someone else, because "this works on my machine" doesn't help a teammate who can't run your code. *(00:28:20, 00:28:34, 00:29:39)*
+- **Q:** Explain why sharing a stable compute environment with a teammate is harder than keeping your own stable.
+    - **A:** The teammate may have a different operating system, and even a different CPU chip: Macs and Windows machines differ, and Windows now ships on both ARM and Intel chips. Different architectures mean software gets installed in different ways. Your code has to run on a machine that isn't set up like yours at all. *(00:28:53)*
 
-- **Q:** Why is reproducing an environment on a teammate's computer harder than copying it to "just another Mac"?
-  **A:** The teammate may be on Windows, and the CPU chips differ between machines, so software is installed differently. Even two Windows machines can differ, because Windows now runs on both ARM and Intel chips. *(00:28:53)*
+- **Q:** Why is "it works on my machine" not good enough for a data science project?
+    - **A:** It doesn't help a teammate who is trying to do the same analysis and can't run your code. The goal of the course is a compute environment you can share, so everyone runs the code through that same environment. *(00:29:39)*
 
-- **Q:** Why does the course care about modular pipelines, not just a finished report?
-  **A:** Other people may need different parts of your analysis, not only the report. The pipeline has to be built so those parts can be used separately. *(00:29:55)*
+- **Q:** Why do data science pipelines need to be modular?
+    - **A:** Other people might need different parts of your analysis, not just the final report. *(00:29:55)*
 
-## 8. What a container is ([27.2 What is a container?](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html#what-is-a-container))
+## 7. What a container is ([27.2 What is a container?](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html#what-is-a-container))
 
 *00:30:13–00:34:28*
 
-- **Q:** If you can hand a teammate a `uv` lock file, what problem is still left over?
-  **A:** The lock file lets them install the Python packages, but their computer may be set up differently. They may not use `uv` at all, and installing it might mess up other things on their computer. *(00:30:40, 00:31:06, 00:31:17)*
+- **Q:** If you hand a teammate your `uv.lock` file, why might that still not be enough for them to run your analysis?
+    - **A:** The lock file only lets them install the Python packages, and their computer may be set up differently from yours. They might not use `uv` at all. Installing it could mess up other things their computer is set up for. *(00:31:17)*
 
-- **Q:** Explain the idea of a container in the instructor's "here's my computer" terms.
-  **A:** Instead of giving you his physical computer, he builds a virtual computer from scratch and gives you that. You do your work on that virtual computer instead of directly on your own. Everyone is effectively sharing the same computer while sitting at different physical machines. *(00:31:17, 00:31:49, 00:31:56)*
+- **Q:** Explain the idea behind a container as the instructor described it.
+    - **A:** Instead of handing over your physical computer, you build a virtual computer from scratch and give that to everyone. Everyone then does their work on that virtual computer. You are all effectively sharing the same computer even though you are on different physical machines. *(00:31:49)*
 
-- **Q:** Why are containers useful when you prototype on a laptop but run the full analysis on a bigger machine?
-  **A:** The bigger machine may be the one with access to all the data. A container makes the compute environment exactly the same on your machine and on that machine, and on any number of other machines. *(00:32:06, 00:32:15)*
+- **Q:** Why are containers useful when you prototype on your laptop but run the full analysis on a bigger machine?
+    - **A:** The bigger machine has access to all the data, and the compute environment must be exactly the same on both. A container gives you that same environment on your laptop, on the other machine, and across multiple machines. *(00:32:15)*
 
-- **Q:** What is the cost of a container, and why might it be worth paying on a remote machine?
-  **A:** There is a performance hit, because a container adds an extra layer. However, you often can't install things directly on a shared remote machine, or the admins don't trust what you'd install. A container gives you a sandbox to play in instead. *(00:32:34)*
+- **Q:** Containers carry a performance cost. Why use them anyway on remote machines?
+    - **A:** The extra layer causes an unavoidable performance hit. But you often can't install everything directly on a remote machine: other work may be running there, or the administrator doesn't trust you to install what you think you need. A container gives you a sandbox to play in, and if you mess it up, it is restarted and you get a new sandbox. *(00:32:34)*
 
-- **Q:** Why is a container a good place to learn by "mucking around" with an operating system?
-  **A:** If you break the sandbox, you restart it and get a new one. Blowing up a container costs nothing, unlike blowing up your own computer. *(00:33:05, 00:33:13)*
+- **Q:** How do containers relate to the "instances" offered by cloud providers?
+    - **A:** Cloud providers such as Google typically don't give you bare access to an actual machine. They give you a container on one of their servers, and you work inside it. Pretty much all cloud compute runs on some version of containers. *(00:33:30)*
 
-- **Q:** How do containers relate to the "instances" you get from cloud providers?
-  **A:** Containers are almost like instances. A provider such as Google usually gives you a container on one of its servers, not bare access to a machine. Pretty much all cloud compute runs on some version of containers. *(00:33:30)*
+- **Q:** How does a container deal with the problem of software versions that cannot coexist on one computer?
+    - **A:** A container is a little machine with everything it needs installed inside it. Two versions of the same software can live in separate containers even when they couldn't both be installed together on one machine. *(00:34:03)*
 
-- **Q:** How does a container deal with two versions of software that can't be installed side by side?
-  **A:** A container is a little machine with everything it needs installed inside it. Each version can live in its own container, separate from your computer. *(00:34:03)*
-
-## 9. Containers versus virtual machines ([27.3 Contrasting containers with virtual machines](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html#contrasting-containers-with-virtual-machines))
+## 8. Containers versus virtual machines ([27.3 Contrasting containers with virtual machines](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html#contrasting-containers-with-virtual-machines))
 
 *00:34:31–00:36:40*
 
 - **Q:** What is the main difference between a virtual machine and a container?
-  **A:** A virtual machine is a full-blown operating system, such as all of Windows, with the graphical interface and all the buttons to click. A container is stripped down: it typically has no graphical interface and contains only the bare minimum you install. *(00:34:48, 00:35:00, 00:35:33)*
+    - **A:** A virtual machine is a full-blown operating system, such as all of Windows, with its graphical interface and buttons. A container is a stripped-down version that typically has no graphical interface. It contains only the bare minimum that you install into it. *(00:35:33)*
 
-- **Q:** Why are containers more performant than virtual machines?
-  **A:** A container has less in it and no visual parts, so it uses fewer resources. A Windows virtual machine can take 50–80 GB. Some containers used in class are under one or two gigabytes and still run a full computational stack, using less disk, memory and compute. *(00:35:33, 00:36:16, 00:36:32)*
+- **Q:** Explain why containers perform better than virtual machines.
+    - **A:** A container has less in it and no visual parts, so it uses fewer resources. A Windows virtual machine can take 50 to 80 GB. The containers used in class are under two gigabytes, or even under one, yet still run a full computational stack, using less disk, memory and compute. *(00:36:16)*
 
-- **Q:** How does the container's lack of a graphical interface explain why DSCI 521 pushed you to type commands in the terminal?
-  **A:** In a container, and in many other places, the terminal may be the only interface you have. You can't double-click through folders, so you have to type commands such as `cd` to get around. *(00:35:00)*
+- **Q:** How does the container's lack of a graphical interface explain why DSCI 521 pushed you to work by typing commands in the terminal?
+    - **A:** There will be many times, inside a container or on a remote machine, when the terminal is the only interface you have. You can't double-click through folders there. You have to type commands such as `cd` to get around. *(00:35:00)*
 
-- **Q:** Why does the instructor still use virtual machines?
-  **A:** When testing the MDS installation instructions, he has to pretend to be on a Windows machine. That needs a whole different operating system, which is what a virtual machine provides. *(00:36:01)*
+- **Q:** If containers are lighter, why does the instructor still use virtual machines?
+    - **A:** He uses them to test the MDS installation instructions, where he has to pretend he is on a Windows machine. That situation needs a full operating system. *(00:36:01)*
 
-## 10. Pulling and running a container: R 4.3.2 beside local R ([28.1.1 Launch and run containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html#launch-and-run-containers))
+## 9. Pulling and running a container: R 4.3.2 beside local R ([28.1.1 Launch and run containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html#launch-and-run-containers))
 
 *00:36:40–00:45:01*
 
-- **Q:** Explain what each part of the image name `rocker/r-ver:4.3.2` means.
-  **A:** The name looks like a GitHub username and repository because it works similarly. `rocker` is the organisation, which makes machines that have only R installed. The tag after the colon picks the version, here a machine with R 4.3.2. *(00:37:05, 00:37:22, 00:37:26)*
+- **Q:** The instructor's laptop has R 4.6.2. Why might someone need to run R 4.3.2 in a container?
+    - **A:** Some work has to stay on one version of R for years. Clinical trials research at a pharmaceutical company can last several years, while R updates every six months, and you don't want to redo or recheck your work each time. Regulators reviewing a drug submission want your code and the whole compute environment so they can reproduce it, so you give them the container that ran the analysis. *(00:38:07)*
 
-- **Q:** Why would anyone want R 4.3.2 in a container when `R --version` on the laptop shows R 4.6.2?
-  **A:** Some work needs an older, fixed version, as in pharmaceutical clinical trials research that runs for years while R updates every six months. You don't want to redo or check your work every six months. Regulators may also require your code and the full compute environment, so you hand over the container that ran the analysis. *(00:37:54, 00:38:10, 00:38:23)*
+- **Q:** How does what a container pins differ from what the `uv` and `renv` lock files pin?
+    - **A:** Lock files track only the package versions, not the tools installed on the system. A container goes one level deeper and fixes the tools themselves, such as R or Git. For example, a container with a 2019 version of Git would stop anyone from running `git switch`. *(00:39:02)*
 
-- **Q:** How does what a container pins differ from what a `uv` or `renv` lock file pins?
-  **A:** Lock files track package versions only. A container goes one level deeper and fixes the tools on the system as well, such as the version of R itself or of Git. For example, a container with a 2019 Git would prevent anyone from running `git switch`. *(00:38:46, 00:39:02)*
+- **Q:** When the instructor ran `docker pull rocker/r-ver:4.3.2` and the output said "Image is up to date," what did that mean?
+    - **A:** He already had that image downloaded, and it matched the current version. If a newer version had been published, the pull would have downloaded it. The hash in the output identifies the exact version. *(00:39:51)*
 
-- **Q:** What does the output "Status: Image is up to date" with a `Digest: sha256:...` line mean after `docker pull rocker/r-ver:4.3.2`?
-  **A:** The image was already downloaded and no newer version exists, so nothing new was pulled. The hash identifies the exact version of the image you have. *(00:39:47, 00:39:51)*
+- **Q:** Why is the command called `docker pull`, and what does the similarity to `git pull` tell you?
+    - **A:** In both commands you are pulling something onto your computer. Tools in the data science and compute stack overlap and borrow words from one another, so a familiar word often hints at what a command does. *(00:40:33)*
 
-- **Q:** Why does `docker pull` sound so much like `git pull`?
-  **A:** Tools in the data science and compute stack borrow words from one another. Both commands pull something onto your computer. *(00:40:22, 00:40:33)*
+- **Q:** In `docker run --rm -it rocker/r-ver:4.3.2`, what does `--rm` do, and why does it have two dashes?
+    - **A:** Two dashes mark a flag whose name is several letters long. `--rm` means that when you turn the container off, the machine itself is deleted automatically. Otherwise you would have to delete it manually. *(00:40:55)*
 
-- **Q:** What does `--rm` do in `docker run --rm -it rocker/r-ver:4.3.2`, and what does its double dash tell you?
-  **A:** Two dashes mark a flag that is several letters long. `--rm` deletes the container automatically when you turn it off; otherwise you would have to delete it by hand. *(00:40:55)*
+- **Q:** Explain what `-it` means in `docker run --rm -it rocker/r-ver:4.3.2`, and why it is written as one flag.
+    - **A:** Single-dash flags are single letters and can be chained, as in `ls -alh`, so `-it` is really two flags. `-i` is interactive: you will type into it. `-t` gives you an actual terminal (TTY) to interact with. *(00:41:48)*
 
-- **Q:** Explain `-it` in `docker run --rm -it rocker/r-ver:4.3.2`.
-  **A:** It is two single-letter flags chained together, the same way `ls -alh` chains three. `-i` (interactive) lets you type into the container, and `-t` (TTY) gives you an actual terminal to interact with. *(00:41:20, 00:41:48)*
+- **Q:** In class, `library(tidyverse)` failed inside the `rocker/r-ver:4.3.2` container but loaded in a local R session. Why?
+    - **A:** The container has only R installed, and nobody told it to install anything else. The local computer has tidyverse installed. The two terminals run on the same laptop, but the container is effectively a totally different machine. *(00:43:54)*
 
-- **Q:** Why did `library(tidyverse)` fail inside the `rocker/r-ver:4.3.2` container but load in a local terminal on the same laptop?
-  **A:** The container has only R in it; nobody had told it to install tidyverse. The laptop has tidyverse installed. The two terminals behave like two different machines because the container effectively is a different machine. *(00:43:49, 00:44:09)*
+- **Q:** How is working in a Docker container like working on a cloud machine?
+    - **A:** In both cases you are connected to another machine through pretty much the same interface. The difference is that the Docker container happens to run on the same hardware you are typing on. *(00:44:31)*
 
-- **Q:** How is running a Docker container like connecting to a cloud machine?
-  **A:** In both cases you are connected to another machine, through pretty much the same interface. With Docker, that other machine just happens to run on the same hardware you're typing on. *(00:44:31)*
-
-## 11. Know which machine you are typing on
+## 10. Know which machine you are typing on
 
 *00:45:01–00:46:44*
 
-- **Q:** Why does paying attention to your terminal prompt matter once you use containers and remote systems?
-  **A:** The prompt is often your only visual cue about which machine you are on. After quitting the container, the laptop's own prompt came back, which showed he was on his actual computer again. *(00:45:04)*
+- **Q:** Why is it important to read your terminal prompt when you work with containers or remote systems?
+    - **A:** The prompt is often the only reference you have to which machine you are on. After quitting the container, the instructor's laptop prompt returned, and that was the visual cue that he was back on his own computer. You should know where you are typing before you type. *(00:45:04)*
 
-- **Q:** What did the instructor's terminal on a computer in his closet at home show about remote work?
-  **A:** Commands typed there ran on that other computer. The only visual cue was the hostname he had given it, a Game of Thrones sword name. Sometimes you get nothing but a blinking cursor, so these cues are what tell you where you are. *(00:45:45, 00:45:48, 00:46:08)*
+- **Q:** The instructor opened a terminal on a computer in his closet at home. What did that example show?
+    - **A:** It looks like any other terminal, but the commands run over there. The only visual cue that he was on a different machine was the hostname he had given it. Sometimes you really are given just a blinking cursor. *(00:45:48)*
 
-- **Q:** Explain why a command like `whoami` exists, as discussed in DSCI 521.
-  **A:** It reports the username on that computer. That is another way to check that you are on the machine you think you're working on. *(00:46:08, 00:46:29)*
+- **Q:** Explain why a command like `whoami` exists, in terms of knowing which machine you are on.
+    - **A:** It reports the username on the computer you are using. That gives you another way to check you are on the machine you think you are working on. *(00:46:08)*
 
-## 12. Why so many data science tools run in a browser
+## 11. Why so many data science tools run in a browser
 
 *00:46:44–00:49:11*
 
-- **Q:** Why are so many applications built on Electron as "browser-first" apps?
-  **A:** Electron makes a browser into the application. An app built that way can run in a container, or on another machine, and be opened in a browser. *(00:47:39)*
+- **Q:** Why are so many applications built on Electron, essentially as browsers?
+    - **A:** A browser-first application can run inside a container and be opened in a browser. Making the browser the application is why so many tools you install are essentially browser applications. *(00:47:39)*
 
-- **Q:** Why do you open Jupyter Lab at a `localhost` address instead of double-clicking an app?
-  **A:** Jupyter Lab was made to run on a remote container that can have many more cores and much more memory than your laptop, while keeping the same interface. Building it as a browser app means you just connect your browser to wherever it is running. *(00:48:04, 00:48:33)*
+- **Q:** Explain why you open Jupyter Lab at a `localhost` address in a browser instead of double-clicking an app.
+    - **A:** Jupyter Lab was built to run on a remote container that can have many more cores and much more memory than your laptop, while giving you the same application interface. Because it runs in a browser, you just connect your browser to wherever it is running. *(00:48:04)*
 
-- **Q:** What does GitHub's Codespaces button show about running tools in a browser?
-  **A:** It opens VS Code in a browser on another machine whose whole compute environment someone has set up. You get the same interface while working on the same versions of all the software. *(00:48:49, 00:49:00, 00:49:07)*
+- **Q:** What is the point of GitHub's Codespaces button giving you VS Code in a browser?
+    - **A:** VS Code is effectively a big browser application, so it can run in a container. Codespaces gives you the same interface on a different machine. That machine's entire compute environment has been set up for you, so you work on the same versions of all the software. *(00:49:00)*
 
-## 13. Running RStudio in a container and mapping ports ([28.1.3 Mapping ports to containers with web apps](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html#mapping-ports-to-containers-with-web-apps))
+## 12. Running RStudio in a container and mapping ports ([28.1.3 Mapping ports to containers with web apps](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html#mapping-ports-to-containers-with-web-apps))
 
 *00:54:10–00:58:59*
 
-- **Q:** Why keep `--rm` when running `rocker/rstudio:4.4.2`, especially while practising with several containers?
-  **A:** `--rm` shuts the machine down and cleans it up when you exit; otherwise it keeps running. Every running container takes up RAM. Leave several running and your computer stops working well, because you've turned on "five computers" that each use resources. *(00:55:06, 00:55:17, 00:55:24)*
+- **Q:** If you prefer a Jupyter notebook interface to Quarto, why does running RStudio in a container matter to you?
+    - **A:** The project is written in Quarto, but some students are used to working in Jupyter notebooks. The same setup that runs RStudio from a container applies to running Jupyter from one. *(00:54:23)*
 
-- **Q:** Why does running RStudio in a container need a port at all?
-  **A:** As with Jupyter Lab, the application is running somewhere else, inside the container. You have to connect your browser on your machine to the place where it is running, and the port is that connection point. *(00:55:41, 00:55:56)*
+- **Q:** Why keep the `--rm` flag when running `rocker/rstudio:4.4.2`?
+    - **A:** `--rm` shuts down and deletes the machine when you exit; without it, the container keeps running. Each container takes up RAM. If you have started five containers while practising, your computer stops working because five computers are using its resources. *(00:55:17)*
 
-- **Q:** In `docker run --rm -p 8787:8787 rocker/rstudio:4.4.2`, what do the numbers on each side of the colon mean?
-  **A:** The left number is the port on your local computer. The right number is the port inside the container, where RStudio is running. `-p 8787:8787` takes the container's 8787 and puts it on the Mac's 8787. *(00:56:38, 00:57:05)*
+- **Q:** Explain what `-p 8787:8787` does in `docker run --rm -p 8787:8787 rocker/rstudio:4.4.2`.
+    - **A:** RStudio runs on port 8787 inside the container, and you must connect your browser to it, just as with Jupyter Lab's port. `-p` connects a port on your local computer (the left number) to a port in the container (the right number). Here the container's 8787 appears on the Mac's 8787, so `localhost:8787` reaches RStudio in the container. *(00:57:05)*
 
-- **Q:** How can you run two RStudio containers at the same time if both listen on 8787?
-  **A:** The container side stays 8787, but you redirect each container to a different port on your machine. Things can run side by side as long as they use different local ports, which you specify with `-p`. *(00:56:38, 00:57:29)*
+- **Q:** How can you run two RStudio containers at the same time when both listen on port 8787?
+    - **A:** Each container runs on 8787 internally, but you can redirect it to a different port on your own machine. Things running at the same time just use different host ports, which you specify in the left-hand number of `-p`. *(00:56:38)*
 
-- **Q:** Why does RStudio Server use 8787 when Jupyter Lab uses a different number?
-  **A:** The numbers are arbitrary. Each tool's developers picked one, and you could pick whatever you want. *(00:55:56, 00:56:19)*
+- **Q:** Why does RStudio use port 8787, when Jupyter Lab uses a different number?
+    - **A:** The numbers are very arbitrary. Each tool's developers picked one, and that is the number they work with. Many tools happen to use numbers starting with eight. *(00:56:19)*
 
-- **Q:** What did comparing RStudio at `localhost:8787` with the desktop RStudio show?
-  **A:** The desktop RStudio runs the laptop's R 4.6.2. The browser RStudio runs R 4.4.2 inside the container, which also differs from the R 4.3.2 in the earlier `r-ver` container. You can treat them as completely different machines: one terminal-only, one an application running in a browser. *(00:58:41, 00:58:51, 00:58:59)*
+- **Q:** In class, why did the RStudio in the browser and the RStudio desktop app show different versions of R?
+    - **A:** They are effectively completely different machines. The browser RStudio runs inside the `rocker/rstudio:4.4.2` container with that container's R. The desktop RStudio uses the R installed on the laptop, 4.6.2. Both differ from the R 4.3.2 in the earlier `r-ver` container. *(00:58:51)*
 
-## 14. Passing environment variables into a container
+## 13. Passing environment variables into a container
 
 *00:59:20–01:02:53*
 
-- **Q:** Why did the instructor rerun RStudio with `-e PASSWORD="apassword"`?
-  **A:** Without it, the container generates a password that is very annoying to remember. The start-up output itself says you can set your own by setting the `PASSWORD` environment variable. Passing `-e` with the same `docker run` command sets that variable, and the container used it as the login password. *(00:59:45, 01:00:05, 01:00:39)*
+- **Q:** What does `-e PASSWORD="apassword"` do in `docker run --rm -p 8787:8787 -e PASSWORD="apassword" rocker/rstudio:4.4.2`, and why use it?
+    - **A:** `-e` passes an environment variable into the container as it runs. The RStudio container reads the variable `PASSWORD` and uses it as the login password. That replaces the hard-to-remember generated password that was printed at start-up. *(01:00:05)*
 
-- **Q:** Why can't you assume every container understands a variable like `PASSWORD`?
-  **A:** Whether a container reads certain variables depends on how whoever built it set it up. Containers behave differently depending on how they were built. *(01:00:05, 01:01:08)*
+- **Q:** Why can't you assume that every container accepts a `PASSWORD` environment variable?
+    - **A:** Containers behave differently depending on how whoever built them set them up. A container might use certain variables, but not every container has them. *(01:01:08)*
 
-- **Q:** Why was it acceptable for the instructor to show his RStudio password on screen?
-  **A:** The container's port is only reachable through his physical machine. If you can't log into his laptop, port 8787 on it isn't available to you. *(01:00:16, 01:00:28)*
+- **Q:** The instructor typed his RStudio password in front of the class. Why wasn't that a security problem?
+    - **A:** The only way to reach that container is through his physical machine. Even though it is running on port 8787, if you can't log into his machine, his 8787 is not available to you. *(01:00:28)*
 
-- **Q:** Explain the benefit of putting a dashboard (as in DSCI 532) into a container.
-  **A:** You've done all the installation, so the end user doesn't have to install `renv`, restore a snapshot or go through the setup at all. If they have Docker, they `docker run` it with some flags and open the port. You've essentially given them a computer you built from scratch. *(01:01:47, 01:02:20)*
+- **Q:** Why would you put a DSCI 532 dashboard into a container?
+    - **A:** A dashboard runs in the browser, so someone can load your container, go to its port and see your dashboard. You have already done all the installation. The end user doesn't have to go through the whole install process with `renv`, snapshots and so on. With Docker they just `docker run` with some flags, because you've given them a computer you built from scratch. *(01:02:20)*
 
-## 15. Starting from a base image and working inside it ([29.1.1 Workflow for building a Dockerfile](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html#workflow-for-building-a-dockerfile))
+## 14. Starting from a base image and working inside it ([29.1.1 Workflow for building a Dockerfile](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html#workflow-for-building-a-dockerfile))
 
 *01:03:00–01:08:19*
 
-- **Q:** Why start your own container from `rocker/r-ver:4.6.2` instead of a completely blank machine?
-  **A:** Whoever designed that image has already installed R and probably the system pieces a brand-new computer needs for R to work. Those are like the Xcode or compiler tools students installed on their own laptops. Starting there lets you skip steps. *(01:04:00, 01:04:29)*
+- **Q:** When building your own container, why start from an existing machine like `rocker/r-ver:4.6.2`?
+    - **A:** Whoever designed that image has already installed R, and probably the other things a brand-new computer needs for R to work. Those are like the compiler tools you installed on your own laptop for R. Starting from it lets you skip a few steps. *(01:04:00)*
 
-- **Q:** What does adding `bash` to the end of `docker run --rm -it rocker/r-ver:4.6.2 bash` change?
-  **A:** It tells the container not to start its default program, R, and to give you a terminal instead. The prompt changes to the container's own, and you can do anything there. You can still type `R` to start R. *(01:04:53, 01:05:20)*
+- **Q:** How did adding `bash` to `docker run --rm -it rocker/r-ver:4.6.2 bash` change what happened compared with running the R container without it?
+    - **A:** Without it, the container starts its default program, R, and drops you at the R prompt. With `bash` it skips that default and gives you a terminal on the container, and the prompt changes to show you are on that machine. You can still type `R` there to start R. *(01:05:20)*
 
-- **Q:** Why try install steps interactively in a shell before writing them down?
-  **A:** You go through the steps first, and once they work you document them. You end up with instructions for building the machine from scratch that you know succeed. *(01:05:43, 01:05:48)*
+- **Q:** Why open a shell in the base image and try your install steps by hand before writing them down?
+    - **A:** It lets you go through the steps first and see that they work. Only then do you document them, so you end up with working instructions for building the machine from scratch. *(01:05:43)*
 
-- **Q:** Why did `library(cowsay)` fail after the instructor exited the container and started it again, right after installing the package?
-  **A:** A container has no saved state. Each time it starts, it resets back to how its image was set up. Anything installed by hand in the previous session was gone. *(01:07:10, 01:08:11)*
+- **Q:** The instructor installed `cowsay` in a running `rocker/r-ver:4.6.2` container. Why did `library(cowsay)` fail after he exited and started it again?
+    - **A:** A container has no real save state. When you turn it back on, it resets to how it was set up, so anything installed by hand in the previous session is gone. The instructor called this a benefit "for better or for worse." *(01:07:10)*
 
-- **Q:** Why is a container a safe place to run destructive commands, like the "delete the computer" command warned about in DSCI 521?
-  **A:** The damage only happens inside the container. Once you turn it off and on again, it is as if you never ran the command. That makes containers a good place to try packages and learn Linux without messing up your own computer. *(01:07:25, 01:07:37)*
+- **Q:** Why is a container a good place to try the destructive commands that DSCI 521 warned you about?
+    - **A:** Even a command that deletes the whole computer only deletes the container. When you turn it back on, it is as if you never ran the command. That makes containers a safe place to try new packages or learn Linux without messing up your actual computer. *(01:07:37)*
 
-- **Q:** Why is the reset also a problem when sharing an analysis?
-  **A:** Users would have to follow your README install steps every time they load the container. Installing tidyverse on Linux can take 15 minutes, and spending that before every 30-second analysis is really painful. *(01:08:19)*
+- **Q:** Why is it a poor solution to make users follow README install steps every time they start your container?
+    - **A:** It is extremely painful to repeat those instructions on every start. A tidyverse install on a poorly set up Linux machine can take 15 minutes. You would be spending 15 minutes to run a 30-second analysis. *(01:08:19)*
 
-## 16. Running R from the command line with `Rscript -e` ([29.1.2 Build your first image](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html#build-your-first-image))
+## 15. Running R from the command line with `Rscript -e` ([29.1.2 Build your first image](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html#build-your-first-image))
 
 *01:08:19–01:10:18*
 
-- **Q:** Why did the instructor need a terminal command for installing `cowsay` rather than `install.packages()` typed inside R?
-  **A:** Saving the setup comes down to knowing the terminal command that makes it happen. He needed R to execute the install from the command line, not to open an interactive R session where he types it. *(01:08:54, 01:08:59)*
+- **Q:** Why did the instructor switch from `install.packages()` typed inside R to `Rscript -e "install.packages('cowsay')"`?
+    - **A:** Saving the setup comes down to knowing the terminal command that makes it happen. He needed R to execute the install from the command line, not just to open R. `Rscript` is how R runs commands in the terminal. *(01:08:59)*
 
-- **Q:** Explain each part of `Rscript -e "install.packages('cowsay')"`.
-  **A:** `Rscript` is how R runs commands from the terminal. `-e` means "here is an R expression", and the expression is the `install.packages` call. The quoting matters: double quotes on the outside and single quotes inside. *(01:09:23, 01:09:27, 01:09:41)*
+- **Q:** Explain each part of `Rscript -e "install.packages('cowsay')"`, including the quotes.
+    - **A:** `Rscript` runs R from the terminal, and `-e` says "I'm going to give you an R expression." The expression is the install command. Pay attention to the quotes: the expression is wrapped in double quotes, so the package name inside uses single quotes. *(01:09:41)*
 
-- **Q:** After `Rscript -e "install.packages('cowsay')"` worked, why was `cowsay` missing again in the next container?
-  **A:** The install happened only in that running container, and exiting threw it away. Knowing the command isn't enough: the information has to be saved somewhere, which is what the `Dockerfile` is for. *(01:10:01, 01:10:13, 01:10:18)*
+- **Q:** After `Rscript -e "install.packages('cowsay')"` worked in the container, why was the problem still not solved?
+    - **A:** It showed the terminal command was right, because `library(cowsay)` then loaded. But on exiting and re-entering the container, the package was gone again. The information had to be saved somewhere, which led to the `Dockerfile`. *(01:10:13)*
 
-## 17. The `Dockerfile`: `FROM`, `RUN`, `CMD` ([29.2 `Dockerfile` command summary](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html#dockerfile-command-summary))
+## 16. The `Dockerfile`: `FROM`, `RUN`, `CMD` ([29.1 Building container images from `Dockerfile`’s](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html#building-container-images-from-dockerfiles))
 
 *01:10:18–01:15:01*
 
-- **Q:** What is a `Dockerfile`, and how does it explain why the RStudio container works as soon as you run it?
-  **A:** A `Dockerfile`, named with a capital D by convention, holds the instructions for installing and setting up a computer. The RStudio image has its own `Dockerfile` that installs RStudio and opens the ports. That is why RStudio is ready when you load the container. *(01:10:22, 01:10:41, 01:10:45)*
+- **Q:** What is a `Dockerfile` for, and how does it explain why the `rocker/rstudio` image starts with RStudio ready?
+    - **A:** A `Dockerfile`, named with a capital D, holds the instructions for installing and setting up a computer. The RStudio image has its own `Dockerfile`, which installs RStudio and opens the ports. That is why RStudio is there when you load the container. *(01:10:45)*
 
-- **Q:** What does the `FROM rocker/r-ver:4.6.2` line do, and why is a fairly large base image acceptable?
-  **A:** `FROM` names the starting-point machine, here one with R 4.6.2 already installed. You could start from a bare-minimum Linux and install everything by hand. Disk space is relatively cheap compared with other costs, so a beefier starting machine is fine. *(01:11:25, 01:11:30, 01:12:02, 01:12:15)*
+- **Q:** Explain the role of the `FROM rocker/r-ver:4.6.2` line in the class's `Dockerfile`.
+    - **A:** `FROM` is normally the first line, and it states the starting-point machine. Here that is a machine that already has R 4.6.2 installed. Everything after it builds on top of that machine. *(01:11:30)*
 
-- **Q:** What is the difference between `RUN` and `CMD` in the class's `Dockerfile`?
-  **A:** `RUN` holds the bash commands the container executes while it is being built, here installing `cowsay` with `Rscript`. `CMD` is the last thing, the default the machine runs when you turn it on: printing "Hello from my first image!". *(01:12:44, 01:13:52, 01:14:05)*
+- **Q:** You could start from a bare-minimum Linux image and install everything yourself. Why is a beefier base image acceptable?
+    - **A:** Disk space is cheaper than other resources, so starting from a bigger machine is fine if that's what you want. The bare-minimum route means installing every single thing by hand. That is a good way to learn Linux on your own time, not a requirement. *(01:12:02)*
 
-- **Q:** How does `CMD` relate to adding `bash` at the end of `docker run`?
-  **A:** `CMD` is only the default behaviour, used when you don't say something like `bash`. Naming a command when you run the container overrides it. *(01:13:52, 01:14:05)*
+- **Q:** What is the difference between `RUN` and `CMD` in a `Dockerfile`?
+    - **A:** `RUN` holds the bash commands the container runs during the build, such as the `Rscript -e "install.packages('cowsay')"` line. `CMD` sets what a container from the new image does by default when it starts, here printing "Hello from my first image!". `CMD` is the last thing the machine runs, and you can override it. *(01:14:05)*
 
-- **Q:** How is `CMD ["Rscript", "-e", "cowsay::say('Hello from my first image!')"]` written differently from the same command typed in a shell?
-  **A:** It looks like a bash command, but instead of separating terms with spaces it writes them as a list. *(01:13:40)*
+- **Q:** How is `CMD ["Rscript", "-e", "cowsay::say('Hello from my first image!')"]` written differently from a shell command, and when does it run?
+    - **A:** It looks like a bash command, but it is written as a list instead of terms separated by spaces. It runs by default when the container starts, unless you give another command, such as `bash`, which overrides it. *(01:14:05)*
 
-- **Q:** Explain how the middle of a `Dockerfile` would differ for a Python project.
-  **A:** In place of the `Rscript` install, you'd run the command that installs `uv` and use a copy command to bring in your lock files. Then you'd run `uv sync`. The packages are then installed in the container, so the machine has your compute environment ready. *(01:14:15)*
+- **Q:** How would the middle of a `Dockerfile` look for a Python project using `uv`?
+    - **A:** The `RUN` lines would install `uv`. A copy command would bring in your lock files, and then you would run `uv sync`. All the packages would then be installed in the container, so the machine itself has your compute environment ready. *(01:14:15)*
 
-## 18. Building and running your own image ([29.4.3 3. How do I build an image locally on my laptop?](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html#how-do-i-build-an-image-locally-on-my-laptop))
+## 17. Building and running your own image ([29.1.2 Build your first image](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html#build-your-first-image))
 
 *01:15:01–01:18:44*
 
-- **Q:** Explain each part of `docker build --tag hello-cowsay .`.
-  **A:** `--tag` gives the new machine the name `hello-cowsay`. The `.` tells Docker where to look for the `Dockerfile`: the current directory. It may be the first time a lone dot is something you must type. By default, `docker build` looks there for a file named exactly `Dockerfile`. *(01:15:11, 01:15:38)*
+- **Q:** In `docker build --tag hello-cowsay .`, what does the final `.` mean?
+    - **A:** It tells Docker where to look for the `Dockerfile`: right here, in the current directory. By default `docker build` looks for a file named exactly `Dockerfile` with a capital D. The instructor noted this is probably the first time a lone dot is something you have to type. *(01:15:38)*
 
-- **Q:** Why does the course assume `docker build` and other project commands are run from the repository root?
-  **A:** Then every command in the instructions can just be copy-pasted. Nobody has to worry about changing directories in the middle of something. Milestone instructions make the same assumption. *(01:16:11, 01:16:29)*
+- **Q:** Why does the course assume commands like `docker build --tag hello-cowsay .` are run from the root of the repository?
+    - **A:** You could give `docker build` a full path, but the course assumes every command is run from the project root. That lets commands be copied and pasted without changing directories in the middle of something. Milestone instructions are written on that assumption. *(01:16:11)*
 
-- **Q:** What is the difference between `docker run --rm -it hello-cowsay` and `docker run --rm -it hello-cowsay bash`?
-  **A:** Without `bash`, the container runs its `CMD` and prints the cow saying "Hello from my first image!". With `bash`, the default is overridden and you get a terminal inside the machine instead. *(01:17:14, 01:17:28, 01:17:30)*
+- **Q:** Why did `library(cowsay)` load inside `hello-cowsay` but not in a fresh `rocker/r-ver:4.6.2` container?
+    - **A:** The `Dockerfile` gave the instructions for installing `cowsay`, and the image was then built from them. Every container started from `hello-cowsay` therefore begins with the package installed. Nothing was installed by hand. *(01:17:52)*
 
-- **Q:** Why does `library(cowsay)` work inside `hello-cowsay` when it kept failing in containers from `rocker/r-ver:4.6.2`?
-  **A:** The install instructions are now in the `Dockerfile`, and the machine was built from them. Every container started from `hello-cowsay` therefore begins with `cowsay` installed, instead of resetting to a machine without it. *(01:17:52)*
+- **Q:** What is the difference between `docker run --rm -it hello-cowsay` and `docker run --rm -it hello-cowsay bash`, and why is the second useful?
+    - **A:** Without `bash`, the container runs its default `CMD` and prints the cow saying hello. With `bash`, you get shell access inside the image instead. That lets you play inside the container directly, for example to work out why code runs on your machine but not in the container. *(01:17:30)*
 
-- **Q:** Why is shell access to your own image useful?
-  **A:** When code works on your machine but not in the container, you can play inside the container directly to find out why. *(01:17:30)*
+- **Q:** Why does writing a `Dockerfile` depend on knowing shell commands?
+    - **A:** A `Dockerfile` usually has one starting point and a middle full of `RUN` and copy commands. Every one of those lines is a command you must give the machine to install what you need. If you don't know the shell command, you can't write the step. *(01:18:07)*
 
-- **Q:** Why does writing a `Dockerfile` depend so much on knowing bash?
-  **A:** Apart from the starting point, the middle of a `Dockerfile` is all commands, such as `RUN` and copy commands. You have to give it the exact shell commands it needs to install whatever you need. *(01:18:07)*
-
-## 19. Pinning versions, and what comes next
+## 18. Pinning versions, and what comes next
 
 *01:18:44–01:20:39*
 
-- **Q:** Why should a project container pin the versions of its tools?
-  **A:** Things updating without you being explicit, and without you knowing an update happened, is very annoying. Pinning in Docker means a version doesn't change until you change that line. You control what gets updated and when. *(01:19:35, 01:19:46, 01:20:27)*
+- **Q:** How does a container keep the version of Quarto stable for a project?
+    - **A:** The install line in the container names a specific version, even an older one. As long as you don't change that install command, a year later you are still on the same version of the tool. *(01:19:35)*
 
-- **Q:** What went wrong when the instructor restarted a container in another class, and what does it show?
-  **A:** He hadn't hard-pinned any versions, and something had updated the day before, so nothing worked. On a real job you'd spend hours fixing the broken update instead of doing the actual work. That is the reason to pin. *(01:19:55)*
+- **Q:** What went wrong when the instructor restarted a container in another class a few weeks earlier, and why?
+    - **A:** He had not hard-pinned the versions in the container. Something had updated the day before, and nothing worked. In a real job you would spend hours fixing the update instead of doing the actual work. *(01:19:55)*
 
-- **Q:** How does a `Dockerfile` keep a project on the same versions a year from now?
-  **A:** The `FROM` line fixes the version of R. The install lines can name specific versions of other tools, even an older Quarto than the latest. As long as you don't change those install commands, a year later you are still on the same versions. *(01:18:53, 01:19:14, 01:19:35)*
+- **Q:** Explain why the instructor wants explicit control over when software updates, and how Docker gives it.
+    - **A:** Things updating without you being explicit about it, and without you knowing an update happened, is very annoying. It can also break your work. A `Dockerfile` says "here's the version I want," and that version does not change until you edit that line. *(01:20:27)*
 
 ---
 
-- prompt: prompt-recall-2-understand.md @ 8bcc190
-- prompt-hash: d3d1585a5f4d
+- prompt: prompt-recall-2-understand.md @ 65eb21c
+- prompt-hash: 17df43f38e78
 - model: claude-opus-5-5 (requested: opus)
 - backend: claude
 - inputs: transcript-plaud.md, history.txt, terminal.txt, materials.md, notes-class-main--claude-opus-5-5.md
-- generated: 2026-11-20
+- generated: 2026-11-23
 - notes-input: notes-class-main--claude-opus-5-5.md @ 1c708a29f65f, links and section references removed

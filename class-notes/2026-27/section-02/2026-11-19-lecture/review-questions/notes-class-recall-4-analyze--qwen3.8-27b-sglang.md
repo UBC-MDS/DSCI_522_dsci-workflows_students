@@ -1,4 +1,4 @@
-# Containers: running and building a shareable compute environment: review questions, tier 4 — Analyze
+# Containers: Running and Building a Shareable Compute Environment: review questions, tier 4 — Analyze
 
 Date: 2026-11-19
 
@@ -8,124 +8,117 @@ Instructor: Daniel Chen
 
 *Tier 4 of 5: Analyze. Take each one apart yourself before you read the answer; tiers 1 to 3 cover the facts, reasons and steps it relies on.*
 
-## 1. Class setup: Docker Desktop and pre-lecture pulls ([Download the images before you start](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html#download-the-images-before-you-start))
+## 1. Pre-lecture Docker setup ([27 Introduction to containerization](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html))
 
 *00:00:14–00:01:41*
 
-- **Q:** In the opening Docker setup, break down the roles of Docker Desktop, the three pre-lecture `docker pull` commands, and the image names `rocker/r-ver:4.3.2`, `rocker/rstudio:4.4.2`, and `quay.io/jupyter/datascience-notebook:2025-03-14`.
-  **A:** Docker Desktop must be open because it provides the Docker engine that later commands talk to; if Docker cannot be found, the commands will fail or tell you to turn it on. Each `docker pull` downloads one image to the local machine before the lecture's `docker run` commands need it. The registry/organization part selects where the image lives, the image name selects the software, and the tag selects the version. Pulling them first avoids waiting for long downloads during the live exercise. *(00:00:43)*
+- **Q:** Trace the setup the instructor asked students to finish before the Git exercise: what must be installed and running, what the three `docker pull` commands download, and how that prepared state changes what happens when `docker run` is later used?
+    - **A:** The computer must have the Docker application installed and Docker Desktop open, because otherwise the commands can say that Docker cannot be found or is not running. The three pre-lecture commands pull `rocker/r-ver:4.3.2`, `rocker/rstudio:4.4.2`, and `quay.io/jupyter/datascience-notebook:2025-03-14` onto the local machine. `docker pull` downloads the images without running them, so the large downloads are mostly finished before class. Later, `docker run` can start a container from an already-present image instead of first waiting for a download, making the live examples faster. *(00:00:33)*
 
-## 2. Project advice: simple but technically correct
-
-*00:01:41–00:06:05*
-
-- **Q:** Examine the instructor's warning about making the project analysis difficult: where in the group-project workflow does over-scoping bite, and what downstream pieces does it affect?
-  **A:** The warning bites at the start of the project because the same project is built on for three or four weeks, so an early complicated model stays in the workflow. The instructor says a straight-line model is acceptable if that is the analysis, while adding a neural network for show creates a harder project two weeks later. Even a short analysis still includes code that downloads data, some cleaning, EDA code, modelling code, and figures/tables. Model accuracy is not the point; the data science and machine-learning technique must be technically correct, such as not fitting logistic regression to a numeric outcome. *(00:02:59)*
-
-## 3. Git review: branch, commit, and push
+## 2. Git branch-and-pull-request workflow
 
 *00:06:05–00:09:50*
 
-- **Q:** Follow the `today` branch in the `2026-11-19-docker` demo repository from the modified `README.md` to the pushed remote branch: which local commands change the local state, which command creates the remote branch, and how does that make GitHub's pull-request path possible?
-  **A:** `git switch -c today` creates and moves to `today`, so the subsequent commit will not go to `main`. `git add README.md` stages the one-line change shown by `git diff`, and `git commit -m "today we are talking about containers"` creates the local commit on `today`. `git push origin today` sends that commit to GitHub and creates the remote `today` branch. The push response prints a GitHub URL for creating a pull request from that remote branch. *(00:09:25)*
+- **Q:** Trace the instructor's `README.md` change in the `2026-11-19-docker` repository from the working tree to pull request #3: which file, branch, commit, and remote artifact change at each step, and what would the branch workflow look like if `git add` were run before confirming the branch?
+    - **A:** The change begins as an unstaged modification to `README.md` while `git status` still shows `main`. `git switch -c today` creates and moves to `today`, carrying the unstaged change with it, so `git add README.md` and `git commit -m "today we are talking about containers"` create commit `3c6d82a` on `today` rather than `main`. `git push origin today` creates the remote `today` branch and GitHub offers pull request #3 for that branch. If the change had been staged or committed on `main`, the work would enter the mainline history and the later pull request would no longer be a clean branch-based change, so the branch would need to be moved or rebased. *(00:09:44)*
 
-## 4. Issues as a project board
+## 3. Issues as a project board
 
 *00:09:50–00:16:17*
 
-- **Q:** Examine issue #1, issue #2, and pull request #3 in the `2026-11-19-docker` demo repository: how do GitHub's shared numbering and two-way hash references turn a meeting note, an action item, and a code change into one tracked project thread?
-  **A:** Issues and pull requests use one shared counter, so the meeting note is #1, the action item is #2, and the branch change becomes #3. Referencing `#1` in issue #2 creates a back-link, so the action item points to the meeting that produced it. Put the same references in the pull request description, and the pull request links back to the issues it addresses. This makes the project board show responsibility, progress, and related work without a separate document. *(00:13:34)*
+- **Q:** Set GitHub issues and pull requests in the demo repository side by side: what issue #1 and issue #2 track, how their numbering relates to pull request #3, and how an assignee or reviewer differs from the code change in a pull request.
+    - **A:** Issue #1 tracks the broader question of today's topic, while issue #2 tracks the concrete action of editing `README.md`. Issues and pull requests share one repository counter, so after issue #2 the next item can be pull request #3, and hash references such as `#1` create two-way links between the items. A pull request carries the branch diff and merge decision, while issue assignment claims responsibility for a task and a pull-request reviewer asks someone to look at the change. This separation lets the project board record who owns what and why the work exists without relying on a separate document. *(00:14:23)*
 
-## 5. Pull-request descriptions and auto-close keywords
+## 4. Pull-request descriptions and auto-close keywords
 
 *00:16:17–00:22:18*
 
-- **Q:** Separate the parts of pull request #3's description in the `2026-11-19-docker` demo repository that provide context, that track task status, and that make GitHub close issues automatically when the pull request is merged.
-  **A:** The first comment's "this is the fix for #2" tells readers the purpose and links the related issue. The Markdown checkboxes `- [x] item 1` and `- [ ] item 2` show which tasks are done and which remain. The sentence `closes #1 fixes #2` uses GitHub keywords that reference issue #1 and issue #2. When the pull request merges, those referenced issues are closed automatically. *(00:19:30)*
+- **Q:** Take the description of pull request #3 apart: which part is a status checklist, which part creates the automatic link to issues #1 and #2, and why does the instructor keep the first comment current even if later comments discuss changes?
+    - **A:** The checkbox lines `- [x] item 1` and `- [ ] item 2` show what is done and what remains without turning the pull request into a draft. The sentence ending with `closes #1 fixes #2` is the GitHub keyword pattern that references those issues and makes them auto-close when pull request #3 merges. The first comment is the summary that future readers use to understand why the pull request exists, so the instructor edits it rather than relying on later conversation. This makes the merged record contain the decision context and the issue closure in one place. *(00:18:50)*
 
-## 6. Merging the pull request and cleaning up branch references
+## 5. Merging and cleaning up the `today` branch
 
 *00:22:18–00:25:29*
 
-- **Q:** Trace what happens to the `2026-11-19-docker` demo repository after pull request #3 is merged: what `main` receives, what deleting the GitHub branch removes, and what `git fetch --prune` and `git branch -d today` remove locally.
-  **A:** After the merge, `git switch main` and `git pull origin main` bring the merge commit into local `main`, updating the README with the merged change. Deleting the `today` branch on GitHub removes the remote branch, but the merge still exists in `main`'s history. `git fetch --prune` drops the stale `origin/today` reference from the local remote-tracking branches. `git branch -d today` deletes the local `today` shortcut, while `git log --oneline --graph --all` still shows the merged commit. *(00:24:30)*
+- **Q:** Follow the `today` branch after pull request #3 merges: which commands remove which references, and what remains in `git log --oneline --graph --all` that still records the merge?
+    - **A:** After merging, `git switch main` and `git pull origin main` bring the merge commit `d25ddfa` into local `main`. Deleting the branch on GitHub removes the remote `today` branch, and `git fetch --prune` then drops the local remote-tracking reference `origin/today`. `git branch -d today` deletes the local `today` branch, so the quick shortcut `git switch today` is gone. The commit `3c6d82a` and the merge commit remain in the graph, so the history still shows that the `today` work was merged even though the branch names are no longer shown. *(00:24:30)*
 
-## 7. Why containers: a stable, shareable compute environment ([27.1 Documenting and loading dependencies](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html#documenting-and-loading-dependencies))
+## 6. Lock files versus containers ([27 Introduction to containerization](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html))
 
 *00:25:29–00:33:21*
 
-- **Q:** Break down the course's "stable, shareable compute environment" goal into package lock files, operating-system/architecture differences, and the container.
-  **A:** The class moves from instructor-supplied package lists to team projects where package needs differ by project and language. A lock file such as `uv.lock` or `renv.lock` keeps package versions consistent on one machine, but a teammate may have a different operating system or CPU architecture, such as Mac versus Windows or ARM versus Intel. The instructor's solution is to build a virtual computer and share that container instead of asking everyone to replicate the local machine. This lets everyone run the same code through one shareable compute environment instead of depending on a private local machine. *(00:31:17)*
+- **Q:** Set a `uv` or `renv` lock file and a Docker container side by side: what each one pins, what a teammate on another operating system or CPU architecture still has to do, and how that changes the meaning of “this works on my machine.”
+    - **A:** A lock file pins the versions of language packages, so a teammate can install the same R or Python packages if they already have the right language, system tools, and installer. A container pins a virtual computer that includes the language, packages, and system tools, so the teammate can run the same environment on a different Mac, Windows, Intel, or ARM machine without rebuilding the host system. The instructor’s point is that `uv` and `renv` solve package consistency on one machine, while Docker goes one level deeper by making the compute environment itself shareable. That changes “this works on my machine” from a private statement into a shared, reproducible environment that the whole team can run. *(00:39:02)*
 
-## 8. Containers versus virtual machines ([27.3 Contrasting containers with virtual machines](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html#contrasting-containers-with-virtual-machines))
+## 7. Virtual machines versus containers ([27 Introduction to containerization](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html))
 
 *00:33:21–00:36:47*
 
-- **Q:** Set a virtual machine and a container side by side on interface, operating system, and resource use, using the instructor's comparison from class.
-  **A:** A virtual machine installs a full operating system, such as Windows, and gives a graphical interface you log into. A container is stripped down to the bare minimum needed for the task and normally has only a terminal, not a graphical interface. The instructor contrasts a virtual machine's 50 to 80 GB size with containers used in class that can be under about one to two gigabytes. Because containers carry fewer resources, they are lighter in disk, memory, and compute. *(00:36:16)*
+- **Q:** Differentiate a virtual machine and a container as the instructor described them: what full operating-system parts each includes, how that affects disk, memory, and compute usage, and which one matches the class’s command-line habit?
+    - **A:** A virtual machine installs a full operating system, such as Windows with its graphical interface, so the user can log in and click through the whole system. A container is a stripped-down environment containing only the tools installed for the task, typically accessed through a terminal rather than a graphical interface. The instructor contrasted a virtual machine as a 50–80 GB install with containers under about 1–2 GB, which use less disk, memory, and compute because there is less software to run. The container model therefore fits the DSCI 521 habit of typing commands, while the virtual machine keeps the “visual bits” that many data-science workflows do not need. *(00:36:16)*
 
-## 9. Running the R container ([28 Using and running containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html))
+## 8. Running the R container ([28 Using and running containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html))
 
 *00:36:47–00:45:01*
 
-- **Q:** Deduce from the host `R --version`, `docker pull rocker/r-ver:4.3.2`, `docker run --rm -it rocker/r-ver:4.3.2`, and the failed `library(tidyverse)` why the container is a separate machine rather than just another terminal on the host.
-  **A:** The host reports R 4.6.2, while the pulled `rocker/r-ver:4.3.2` image supplies a Linux container with R 4.3.2. `docker run --rm -it rocker/r-ver:4.3.2` starts that container and gives an interactive R session from the container's own environment. `library(tidyverse)` fails in the container because the image only has R, while the host terminal can load `tidyverse` from the host's installed packages. The different version and different package availability show that the two terminals are operating in different machines. *(00:44:09)*
+- **Q:** Break down `docker run --rm -it rocker/r-ver:4.3.2` and the terminal result: which part selects the image, what `--rm`, `-i`, and `-t` each do, and which output lines prove that the container is running a different R than the host?
+    - **A:** `rocker/r-ver:4.3.2` names the R 4.3.2 image, and `docker run` starts a container from that image, downloading it first if it is not already local. `--rm` deletes the container when it stops, while `-i` keeps standard input open and `-t` attaches a TTY so the session behaves interactively. The container startup prints `R version 4.3.2` on `aarch64-unknown-linux-gnu`, whereas the host `R --version` shows R 4.6.2 on the Mac. `library(tidyverse)` fails inside the bare container but works on the host, confirming that the two terminals are effectively two different machines. *(00:44:09)*
 
-## 10. Web-app containers: RStudio and browser-first tools ([27.2 What is a container?](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html#what-is-a-container))
+## 9. Browser-first web apps and containers ([28 Using and running containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html))
 
 *00:45:01–00:54:10*
 
-- **Q:** Examine the instructor's point that RStudio, JupyterLab, and VS Code are browser-first applications: what does that make possible when such an application is placed in a container, and where does the user's interface actually run?
-  **A:** Browser-first tools are built to serve their interface over a browser instead of requiring a local desktop double-click. Placing one in a container lets the application run inside the container while the user still opens the familiar interface in a local browser. The container supplies the compute environment and the application server, while the browser provides the graphical front end. This is the same idea as connecting to a remote cloud machine: the interface is local, but the work is done on another machine. *(00:48:33)*
+- **Q:** Set the terminal-only R container and browser-first applications such as RStudio, JupyterLab, and VS Code side by side: where the user types in each case, what runs on the host versus in the container or remote machine, and why the browser interface matters for sharing a compute environment.
+    - **A:** In the terminal-only R container, the user types R commands directly into the terminal that `docker run` opened. In browser-first applications, the interface appears in a browser, but the computational work can run in a container or on another machine, as with JupyterLab at `localhost:8888` or the Code Space button in GitHub opening VS Code in a browser. The instructor explained that making the application browser-first lets the same interface connect to a machine with the required compute environment, rather than installing that whole environment on the user's laptop. This is why a web app such as RStudio can be reached through a mapped port while the actual R session is running inside the container. *(00:48:33)*
 
-## 11. Port mapping the RStudio container ([28.1.3 Mapping ports to containers with web apps](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html#mapping-ports-to-containers-with-web-apps))
+## 10. Port mapping for RStudio ([28 Using and running containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html))
 
 *00:54:10–00:59:14*
 
-- **Q:** Break down `docker run --rm -p 8787:8787 rocker/rstudio:4.4.2` into the container-side port, the host-side port, and the browser address that makes RStudio reachable.
-  **A:** Inside `rocker/rstudio:4.4.2`, RStudio listens on port 8787. The `-p 8787:8787` flag maps a port on the local host to that container port, so the container's service becomes reachable from the host. The user then opens `localhost:8787` in a browser to get the RStudio sign-in page. To run another RStudio container at the same time, the container side can stay 8787 while the host side is mapped to a different available port. *(00:57:05)*
+- **Q:** Trace the RStudio web app from `docker run --rm -p 8787:8787 rocker/rstudio:4.4.2` to the browser: what the two sides of `-p 8787:8787` mean, how the class could run two RStudio containers at once, and what credential or version difference shows that the browser is using the container?
+    - **A:** In `-p 8787:8787`, the left `8787` is the port on the local computer and the right `8787` is the port where RStudio listens inside the container. Because only the container side is fixed by the image, a second RStudio container can be mapped to a different host port, such as `8788:8787`, so both web apps can be open at the same time. The terminal prints the generated password for the first run, and the `rstudio` username is used to sign in at `localhost:8787`. The local RStudio on the host runs the host’s R, while the containerized RStudio runs the image’s R version, so the browser session is not the host application. *(00:58:51)*
 
-## 12. Environment variables and running dashboards in containers ([27.2 What is a container?](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html#what-is-a-container))
+## 11. Environment variables in the RStudio container ([28 Using and running containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html))
 
 *00:59:20–01:03:00*
 
-- **Q:** Distinguish the first RStudio container run from the second run with `-e PASSWORD="apassword"` in terms of what the terminal shows and what password the browser login accepts.
-  **A:** In the first run, the container prints that it has set a generated password and suggests setting the `PASSWORD` environment variable to choose one. The second run passes `-e PASSWORD="apassword"`, so the container is told to use that supplied password instead of a random one. The browser login then uses the `rstudio` user name and the password set on the command line. The mapped port still does not expose the app to anyone who cannot reach the host machine. *(01:00:39)*
+- **Q:** Set the first RStudio run and the run with `-e PASSWORD="apassword"` side by side: what the terminal shows in each case, what the environment variable changes, and what the instructor checked about who can reach `localhost:8787`?
+    - **A:** Without `-e PASSWORD`, the `rocker/rstudio` image prints a generated password in the terminal, such as the random string shown during the first run. With `-e PASSWORD="apassword"`, the image receives the `PASSWORD` environment variable and uses that value as the RStudio login password instead of generating one. The instructor then checked that the exposed port is not a public service: if someone cannot log into the physical host machine, `localhost:8787` is not available to them. This separates the container’s configuration, which comes from environment variables, from the host’s network access, which controls who can reach the mapped port. *(01:00:28)*
 
-## 13. Building interactively: base image and the `cowsay` package ([29.1.1 Workflow for building a Dockerfile](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html#workflow-for-building-a-dockerfile))
+## 12. Testing the base image before writing the Dockerfile ([29 Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html))
 
 *01:03:00–01:08:46*
 
-- **Q:** Trace why installing `cowsay` inside an interactive `rocker/r-ver:4.6.2` container disappears after exit, and why the class runs `docker run --rm -it rocker/r-ver:4.6.2 bash` before writing the `Dockerfile`.
-  **A:** The command ends with `bash`, which replaces the image's default startup command, so the user gets a shell instead of immediately starting R. Inside that shell, `Rscript -e "install.packages('cowsay')"` can be tested as a non-interactive command that later fits a `RUN` line. When the container exits, `--rm` removes the running container, and the image has no saved state for packages installed only in that run. Starting the container again returns to the original image, so `cowsay` is missing until it is installed at build time. *(01:07:25)*
+- **Q:** Break down the instructor’s interactive test of `rocker/r-ver:4.6.2`: why `docker run --rm -it rocker/r-ver:4.6.2 bash` starts a shell instead of R, what the `cowsay` install and call prove, and what happens when the container exits and is started again?
+    - **A:** The `rocker/r-ver:4.6.2` base image already contains R and enough Linux support to install packages, so it saves the manual compiler setup a fresh machine might need. Adding `bash` at the end overrides the image’s default `R` command and gives the instructor a shell where the installation command can be tried first. Running `install.packages("cowsay")` and then `cowsay::say('hello')` proves that the non-interactive install command works and that the package can be loaded. Because `--rm` deletes the container on exit and containers have no saved state, a new run of the same image does not still have `cowsay` installed. *(01:07:10)*
 
-## 14. Writing the `Dockerfile`: `FROM`, `RUN`, and `CMD` ([29.2 Dockerfile command summary](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html#dockerfile-command-summary))
+## 13. Writing the Dockerfile: `FROM`, `RUN`, and `CMD` ([29 Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html))
 
 *01:08:46–01:15:01*
 
-- **Q:** Break down the class `Dockerfile` into its `FROM`, `RUN`, and `CMD` lines, and say what each contributes to the behavior of the `hello-cowsay` image.
-  **A:** `FROM rocker/r-ver:4.6.2` chooses the base image and supplies R 4.6.2 as the starting machine. `RUN Rscript -e "install.packages('cowsay')"` installs `cowsay` while the image is built, so the package is baked into the image. `CMD ["Rscript", "-e", "cowsay::say('Hello from my first image!')"]` sets the default command that runs when a container starts from this image. A command after the image name in `docker run`, such as `bash`, can override that default for a one-time run. *(01:13:40)*
+- **Q:** Take the class's `Dockerfile` apart: what `FROM`, `RUN`, and `CMD` each contribute to the `hello-cowsay` image, and how does the quoting in the `RUN` line match the command that was typed at the container shell?
+    - **A:** `FROM rocker/r-ver:4.6.2` sets the base image, so the new image starts with R 4.6.2 already installed. `RUN Rscript -e "install.packages('cowsay')"` runs the install command during the image build, making `cowsay` part of the image instead of a temporary container. `CMD ["Rscript", "-e", "cowsay::say('Hello from my first image!')"]` sets the default command that runs when a container starts from this image. The double quotes on the outside and single quotes on the inside mirror the shell command `Rscript -e "install.packages('cowsay')"` that the instructor tested interactively. *(01:13:12)*
 
-## 15. Building and running the `hello-cowsay` image ([29.1.2 Build your first image](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html#build-your-first-image))
+## 14. Building and running `hello-cowsay` ([29 Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html))
 
 *01:15:01–01:18:44*
 
-- **Q:** Trace how `docker build --tag hello-cowsay .`, `docker images`, `docker run --rm -it hello-cowsay`, and `docker run --rm -it hello-cowsay bash` together prove that the `Dockerfile` was built and that the image's `CMD` can be overridden.
-  **A:** `docker build --tag hello-cowsay .` reads the `Dockerfile` from the current directory and builds an image named `hello-cowsay`. `docker images` shows that local image, confirming it exists after the build. `docker run --rm -it hello-cowsay` runs without an extra command, so it executes the `CMD` and prints the cowsay message. `docker run --rm -it hello-cowsay bash` replaces the `CMD` with a shell, where `library(cowsay)` works because the `RUN` step installed it. *(01:17:14)*
+- **Q:** Follow the `hello-cowsay` image from `docker build --tag hello-cowsay .` to the two `docker run` commands: what the `.` means, what `docker images` confirms, and what each run form shows about the `CMD` and the `RUN` step?
+    - **A:** The final `.` in `docker build --tag hello-cowsay .` is the build context, the current directory where Docker reads the `Dockerfile`. `docker images` confirms that the local image `hello-cowsay:latest` exists and shows its disk usage. `docker run --rm -it hello-cowsay` executes the image’s `CMD`, so the container prints the cowsay greeting and exits. `docker run --rm -it hello-cowsay bash` overrides the `CMD` with a shell, and `library(cowsay)` succeeds there because the earlier `RUN` step installed the package into the image. *(01:17:30)*
 
-## 16. Version pinning and wrap-up ([29 Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html))
+## 15. Version pinning in the Dockerfile ([29 Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html))
 
 *01:18:44–01:20:39*
 
-- **Q:** Examine where unpinned tool versions can break the Dockerfile-based workflow the class just built, and identify which Dockerfile lines act as the control point for keeping versions stable.
-  **A:** The warning bites when a Dockerfile installs tools with floating or latest versions, so an external update can change the image without the user changing the project. The instructor's example was restarting a container after an unpinned tool updated, after which nothing worked and hours were spent fixing the update. A pinned `FROM` line fixes the base language/tool version, and pinned `RUN` install lines fix the versions of later tools such as Quarto, `uv`, or `renv`. As long as those lines are not changed, rebuilding should keep the same tool versions instead of silently updating them. *(01:20:27)*
+- **Q:** Trace the instructor’s warning about floating tool versions through the `Dockerfile`: where a pinned version would be written, what can update if that line is not pinned, and what happened in the instructor’s story when a container was restarted without hard pinning?
+    - **A:** A pinned version is written in the `Dockerfile` install step, such as a `RUN` line that installs a specific Quarto or language tool version. That line becomes the control point: as long as it is not changed, the image should install the same tool version even when newer versions appear later. If the install line is not hard-pinned, a rebuild or restart can pick up an overnight update without the user asking for it. In the instructor’s example, a container was restarted after an unpinned update had appeared, and nothing worked, turning the project work into hours of fixing the broken update instead of doing the analysis. *(01:19:55)*
 
 ---
 
-- prompt: prompt-recall-4-analyze.md @ 8bcc190
-- prompt-hash: ccb0e5a939c5
+- prompt: prompt-recall-4-analyze.md @ 65eb21c
+- prompt-hash: 7dde50dd5ebf
 - model: qwen3.8-27b-sglang (requested: qwen3.8-27b-sglang)
 - backend: local (SGLang)
 - inputs: transcript-plaud.md, history.txt, terminal.txt, materials.md, notes-class-main--qwen3.8-27b-sglang.md
-- generated: 2026-11-20
+- generated: 2026-11-25
 - notes-input: notes-class-main--qwen3.8-27b-sglang.md @ de2dd7c39a15, links and section references removed

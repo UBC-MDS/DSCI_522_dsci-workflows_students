@@ -1,4 +1,4 @@
-# Git Workflows and Containers: review questions, tier 5 — Evaluate
+# Git Workflows and Docker Containers: review questions, tier 5 — Evaluate
 
 Date: 2026-11-19
 
@@ -12,61 +12,46 @@ Instructor: Daniel Chen
 
 *00:00:14–00:05:43*
 
-- **Q:** A teammate suggests building a complex neural network for the group project's milestone to showcase advanced modeling skills. Based on the class guidance, should you approve this plan, and what is the reasoning?
-  **A:** No, you should not approve this plan. The instructor explicitly warned to keep the analysis simple (e.g., fitting a straight line) because the course focuses on reproducible workflows, not model fitting or accuracy, and overcomplicating the analysis will cause significant workflow and reproducibility problems later. *(00:02:03)*
+- **Q:** A teammate proposes spending the entire milestone building a complex neural network with hyperparameter tuning to boost their portfolio, arguing that the project grade is primarily about model performance. Judge this plan against the course's explicit grading criteria and explain why it will fail.
+    - **A:** Judge the plan as unacceptable. The instructor explicitly warned that the course is not a model fitting course and the grade focuses on technically correct data science practices and reproducible workflows, not model accuracy. Pursuing a complex model will cause a "very bad time" because it distracts from the core learning objectives and makes managing the workflow significantly harder. *(00:02:03)*
 
-- **Q:** A student argues that the written report is the primary deliverable for the milestone and should take precedence over writing the code for data downloading, cleaning, and EDA. Is this an acceptable approach for this assignment, and what criterion decides this?
-  **A:** No, this approach is not acceptable. The class emphasized that the report is not the main point of the course; the focus is on correctly implementing the underlying data science practices, including downloading data, cleaning, EDA, and modeling code within a reproducible workflow. *(00:02:41)*
-
-## 2. Git Branching and Pull Requests ([Documenting and loading dependencies](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html#documenting-and-loading-dependencies))
+## 2. Git Branching and Pull Requests
 
 *00:06:05–00:25:29*
 
-- **Q:** Your team decides to keep all historical Git branches in the repository as a permanent record of every task completed, even after the pull requests are merged. Based on the class demonstration, would you approve of this practice for a class project, and what is the reason?
-  **A:** You would find it acceptable, though it is not required. The class explicitly stated that deleting branches after merging is optional and depends on the specific team or company's workflow; while cleaning up references with `git fetch --prune` and `git branch -d` helps avoid confusing Git states, keeping them as a record is also valid. *(00:23:22)*
+- **Q:** A team member creates a pull request description that only says "Updated README." They do not link it to any existing issues or use any keywords to close them. Judge whether this PR description meets the class standard for project management and explain your reasoning.
+    - **A:** Judge the description as inadequate. The class emphasized that the first comment in a PR or issue should be up-to-date and contain all necessary references because reviewers look there first and ignore the subsequent conversation. Failing to link to issues or use keywords like `fixes #<number>` or `closes #<number>` misses the opportunity to auto-close tasks and keeps the issue board cluttered, violating the class's recommended project management workflow. *(00:18:33)*
 
-- **Q:** A pull request description consists entirely of a brief, evolving back-and-forth conversation between two reviewers, with no summary or checklist in the first comment. Would you approve this PR based on the class's advice on PR descriptions, and what criterion decides this?
-  **A:** No, you should not approve it in this state. The instructor advised keeping the first comment up to date as the primary summary of what is happening, because reviewers and future team members will focus on that initial description rather than scrolling through the entire conversation thread. *(00:16:40)*
+- **Q:** After merging a pull request, a team member deletes the branch on GitHub but leaves all local branch references untouched on their laptop, arguing it doesn't matter because the work is merged. Judge whether this leaves the local repository in a healthy state and explain the potential consequence.
+    - **A:** Judge the state as messy and prone to confusion. The class warned that leaving remote tracking references intact can lead to "weird Git states" where the local repository is cluttered with stale references, making it harder to see what is happening (e.g., too many colors in `git log --graph`). The class recommended running `git fetch --prune` to remove deleted remote references and `git branch -d` to clean up local branches. *(00:24:05)*
 
-- **Q:** A teammate submits a pull request to fix three separate issues but omits the `fixes #1 fixes #2 fixes #3` keywords in the description, instead closing each issue manually after the merge. Is this an acceptable workflow according to the instructor's recommendation, and why?
-  **A:** No, this is not the recommended workflow. The instructor emphasized writing the message strategically with `closes` or `fixes` keywords so that GitHub automatically closes the referenced issues upon merge, which streamlines project management and avoids manually clicking to close issues one by one. *(00:20:23)*
-
-## 3. Introduction to Containers and Docker ([What is a container?](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html#what-is-a-container))
+## 3. Introduction to Containers and Docker ([27 Introduction to containerization](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html))
 
 *00:25:33–00:46:44*
 
-- **Q:** A student runs a container to test a new R package, manually installs it inside the interactive session, and exits without building an image. They then restart the same container image expecting the package to be available. Would you consider this a reliable workflow for setting up a shared analysis environment, and what criterion decides this?
-  **A:** No, you should not consider it reliable. The instructor explained that containers reset to their initial base state when stopped; any interactive changes or installations are lost upon exit unless explicitly saved via a `Dockerfile` or volume mount. *(00:08:10)*
+- **Q:** A student argues that using `docker run --rm -it rocker/r-ver:latest` is sufficient for a multi-week group project because it pulls the newest R version every time. Judge this approach against the class's warning about software updates and explain the risk.
+    - **A:** Judge the approach as risky and likely to fail. The class warned against relying on unversioned updates because an upstream package or tool update can break the build or analysis unexpectedly, causing hours of debugging instead of actual work. Pinning exact versions in the `Dockerfile` (e.g., `rocker/r-ver:4.6.2`) ensures the environment remains stable and reproducible over time, preventing silent breaks. *(01:19:25)*
 
-- **Q:** A teammate argues that using a full virtual machine is better than a container for this course because VMs are heavier and provide better isolation. Based on the class comparison, would you agree, and what criterion weighs against their argument?
-  **A:** No, you would not agree. The class emphasized that containers are significantly lighter in size and resource usage, start faster, and are more portable because they share the host OS, making them preferable for sharing compute environments without the massive storage and performance overhead of emulating an entire OS like a VM. *(00:36:01)*
-
-## 4. Running Web Applications in Containers ([Mapping ports to containers with web apps](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html#mapping-ports-to-containers-with-web-apps))
+## 4. Running Web Applications in Containers ([28.1.3 Mapping ports to containers with web apps](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html#mapping-ports-to-containers-with-web-apps))
 
 *00:46:47–01:03:00*
 
-- **Q:** A student wants to run two separate RStudio containers simultaneously for testing purposes but only specifies port `8787` for both in their `docker run` commands. Would you approve this configuration for simultaneous access, and what criterion decides this?
-  **A:** No, you should not approve this configuration. The instructor explained that you must map different host ports to each container (e.g., `-p 8787:8787` for the first and `-p 8788:8787` for the second) to avoid port conflicts and allow simultaneous local access. *(00:57:19)*
+- **Q:** A teammate wants to run two separate RStudio containers simultaneously on their laptop to test different analyses. They plan to use `-p 8787:8787` for both containers. Judge whether this command setup will work and explain why or why not.
+    - **A:** Judge the setup as flawed. The class explained that `-p` maps a host port to a container port. If both containers try to map to port `8787` on the host machine, they will conflict. To run multiple containers simultaneously, each must be mapped to a different host port (e.g., `-p 8788:8787` for the second container) so the browser can distinguish between the two running applications. *(00:57:15)*
 
-- **Q:** For a containerized RStudio setup used by an external collaborator, a teammate proposes leaving the default auto-generated password in the terminal output instead of passing a custom one via `-e PASSWORD="securepass"`. Is this a practical recommendation for sharing the container, and what is the reasoning?
-  **A:** It is not a practical recommendation. The class noted that the default password is randomly generated and cumbersome to remember or securely share; using the `-e` flag to set a predictable password is a better workflow, provided access to the host machine itself is controlled. *(00:59:34)*
-
-## 5. Building Custom Containers with Dockerfile ([Build your first image](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html#build-your-first-image))
+## 5. Building Custom Containers with Dockerfile ([29.1.2 Build your first image](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html#build-your-first-image))
 
 *01:03:00–01:20:39*
 
-- **Q:** A developer writes a `Dockerfile` to set up an analysis environment and relies on the base image's default command `CMD ["R"]` to run their analysis script instead of defining a custom `CMD`. Would you approve this approach for automating the workflow, and what criterion decides this?
-  **A:** No, you should not approve this approach for automation. The class demonstrated that `CMD` defines the startup command, so relying on the base image's default will only launch an interactive R session; they must define a custom `CMD` to execute the analysis script automatically. *(01:13:36)*
-
-- **Q:** During a container build, a student accidentally misspells a package name in the `RUN` instruction, e.g., `install.packages('cowsya')`. The build completes without returning an error. Would you assess this behavior as a safe way to validate dependencies during the build process, and what criterion decides this?
-  **A:** No, you should not assess it as safe. The class demonstrated that `install.packages()` only throws a warning and exits with status 0, which Docker interprets as success; to properly validate dependencies, they should append `library(misspelled_package)` to halt the build with a fatal error on failure. *(01:12:44)*
+- **Q:** A student writes a `Dockerfile` that uses `RUN Rscript -e "cowsay::say('Hello')"` and expects the container to output the message every time it starts. They omit the `CMD` instruction. Judge whether this plan will achieve the desired default startup behavior and explain what actually happens.
+    - **A:** Judge the plan as ineffective. `RUN` executes commands only during the image build process, not at runtime. Without a `CMD` instruction, the container will simply start and exit silently (or run the base image's default command if not overridden). To run a command at startup, they must use `CMD ["Rscript", "-e", "cowsay::say('Hello')"]` to define the default behavior when the container instance launches. *(01:13:36)*
 
 ---
 
-- prompt: prompt-recall-5-evaluate.md @ 8bcc190
-- prompt-hash: 91dbb814d755
+- prompt: prompt-recall-5-evaluate.md @ 65eb21c
+- prompt-hash: 6b82591e2f8e
 - model: qwen3.6-35b-a3b (requested: qwen3.6-35b-a3b)
 - backend: local (llama-swap)
 - inputs: transcript-plaud.md, history.txt, terminal.txt, materials.md, notes-class-main--qwen3.6-35b-a3b.md
-- generated: 2026-11-20
-- notes-input: notes-class-main--qwen3.6-35b-a3b.md @ 5842e35a1a11, links and section references removed
+- generated: 2026-11-23
+- notes-input: notes-class-main--qwen3.6-35b-a3b.md @ 5842e35a1a11, links and section references removed, diagrams removed

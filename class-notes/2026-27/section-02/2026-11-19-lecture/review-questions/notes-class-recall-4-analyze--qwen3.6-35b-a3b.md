@@ -1,4 +1,4 @@
-# Introduction to Containers and Git Workflow Review: review questions, tier 4 — Analyze
+# Git Workflows and Containerization: review questions, tier 4 — Analyze
 
 Date: 2026-11-19
 
@@ -8,47 +8,43 @@ Instructor: Daniel Chen
 
 *Tier 4 of 5: Analyze. Take each one apart yourself before you read the answer; tiers 1 to 3 cover the facts, reasons and steps it relies on.*
 
-## 1. Project Advice and Course Logistics
-
-*00:00:14–00:05:43*
-
-- **Q:** Break down the instructor’s advice on the project assignment: which specific components of a data science project are explicitly required, and how do their relative importance and grading weight relate to each other?
-  **A:** The instructor requires code for downloading data, cleaning, EDA, modeling, and producing figures or tables, but explicitly states that model accuracy does not matter as long as the techniques are technically correct. The written report is secondary to the underlying workflow, meaning students should prioritize reproducible practices over complex analytical choices like neural networks. This hierarchy exists because the course evaluates workflow management rather than statistical sophistication, so overcomplicating the analysis would unnecessarily burden the reproducibility pipeline. *(00:01:56)*
-
-## 2. Git Branching and Pull Requests
+## 1. Git Branching and Pull Requests Workflow
 
 *00:06:05–00:25:29*
 
-- **Q:** Trace the lifecycle of a feature branch in the demonstrated Git workflow: which local and remote actions correspond to each stage, and how does cleaning up the local references relate to the state of the remote repository?
-  **A:** The workflow begins locally by creating and switching to a new branch, committing changes, and pushing them to the remote. Once merged via a pull request on GitHub, the instructor demonstrates that the remote branch can be deleted via the UI, but local tracking references remain until `git fetch --prune` removes the remote pointers. Finally, `git branch -d` removes the local branch reference, leaving only the merged history in `git log`. These steps ensure that local metadata aligns with the remote repository’s actual state, preventing confusion from stale branch pointers. *(00:22:25)*
+- **Q:** Break down the lifecycle of the `today` branch in the demo repository: trace the sequence of Git commands used to isolate the change, push it, and then clean up both the remote and local tracking references after the pull request was merged. How do the outputs of `git log --oneline --graph --all` differ before and after running `git fetch --prune` followed by `git branch -d today`?
+    - **A:** The workflow starts by switching to a new branch (`git switch -c today`) to isolate the edit, then staging and committing it before pushing to the remote. After the pull request is merged into `main`, the remote branch is deleted on GitHub, and running `git fetch --prune` removes the `origin/today` remote tracking reference from the local repository. Finally, `git branch -d today` deletes the local branch reference. Before pruning, `git log` shows the `origin/today` pointer still attached to the commit, but after running both cleanup commands, only the merged commit history on `main` remains visible with the remote branch pointer gone. *(00:22:41)*
 
-## 3. Introduction to containerization ([27 Introduction to containerization](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html))
+- **Q:** Examine the relationship between GitHub Issues and pull requests as demonstrated in class: how do the shared numbering system, the cross-reference syntax, and the closing keywords work together to transform a Git repository into a project management system?
+    - **A:** GitHub assigns a single sequential number to both issues and pull requests, allowing them to reference each other directly using `#<number>`. When a pull request description includes `fixes #<number>` or `closes #<number>`, GitHub creates a two-way link between the PR and the issue, so viewing one shows the other. Upon merging that pull request, the keyword triggers an automatic state change that closes the linked issue. This integration replaces external tracking documents by keeping task assignments, status updates, and solution records in a single, interconnected version-controlled workspace. *(00:12:07)*
+
+## 2. Introduction to Containers and Docker ([27 Introduction to containerization](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html))
 
 *00:25:33–00:46:44*
 
-- **Q:** Differentiate between virtual environments, containers, and virtual machines based on their isolation levels and resource overhead: how does the architectural layer each strategy virtualizes determine its portability and disk usage?
-  **A:** Virtual environments isolate only application-level dependencies like programming languages and packages, making them extremely lightweight but porous to OS-level conflicts. Containers virtualize the operating system user space, allowing them to capture system-level dependencies and different software versions while remaining significantly smaller and faster than full virtual machines. Virtual machines emulate entire hardware and operating systems, providing maximum isolation at the cost of heavy disk and memory usage. This architectural progression explains why containers are preferred for sharing reproducible compute environments across different host machines. *(00:28:50)*
+- **Q:** Differentiate between virtual environments, virtual machines, and Docker containers based on their level of isolation and resource consumption as explained in class. How does this distinction solve the problem of running different versions of the same software on one machine?
+    - **A:** Virtual environments isolate only programming language packages on the host OS, making them extremely lightweight but porous to host-level dependencies. Virtual machines emulate entire hardware and operating systems, providing maximum isolation but consuming gigabytes of disk space and memory. Containers sit in the middle by virtualizing the OS user space, sharing the host kernel while keeping the filesystem and installed software completely separate. This structure allows a container to run a specific software version (like R 4.3.2) alongside the host version (R 4.6.2) without conflicts, ensuring reproducible environments regardless of the physical machine's configuration. *(00:28:50)*
 
-## 4. Using and running containers ([28 Using and running containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html))
+## 3. Running Web Applications in Containers ([28 Using and running containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html))
 
 *00:46:47–01:03:00*
 
-- **Q:** Examine the `docker run` command used to launch RStudio Server: how do the port mapping flag and the environment variable flag interact to make the containerized application accessible and configurable from the host machine?
-  **A:** The `-p` flag maps a local port on the host machine (e.g., `8787`) to the corresponding port inside the container, allowing a web browser on the host to route requests to the application running in the isolated environment. The `-e` flag passes configuration parameters, such as a custom password, directly into the container’s environment variables before the application starts. Together, these flags bridge the network and configuration boundaries of the container, enabling interactive access without modifying the underlying container image. *(00:56:31)*
+- **Q:** Trace how the `docker run` command translates configuration flags into accessible application behavior when launching RStudio Server inside a container. How do the `-p` and `-e` flags modify the container's network and authentication state compared to its default settings?
+    - **A:** By default, the RStudio container image exposes port 8787 internally but requires a randomly generated password for security. The `-p 8787:8787` flag maps the container's internal port to the host machine's localhost, routing browser traffic from the user directly to the application. The `-e PASSWORD="value"` flag intercepts the container's startup environment variables to override the default credentials with a user-defined password. Together, these flags transform an isolated, terminal-based container into a locally accessible, password-protected web application without exposing it to the wider network. *(00:55:41)*
 
-## 5. Customizing and building containers ([29 Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html))
+## 4. Building Custom Containers with Dockerfile ([29 Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html))
 
 *01:03:00–01:20:39*
 
-- **Q:** Break down the three primary instructions in the demonstrated `Dockerfile` and explain how each contributes to transforming a base image into a self-contained, executable container:
-  **A:** The `FROM` instruction establishes the base operating system and software layer, providing a known starting point for the build. The `RUN` instruction executes commands during the image build phase, permanently baking dependencies like the `cowsay` package into the image’s layers so they persist across future container runs. The `CMD` instruction defines the default command that executes automatically when a container launches, replacing the base image’s original startup behavior. Together, these instructions convert a temporary shell session into a reproducible, standalone application environment. *(01:05:43)*
+- **Q:** Break down the workflow for persisting software installations into a Docker image. How do the `Dockerfile` instructions `FROM`, `RUN`, and `CMD` each contribute to transforming a temporary container session into a permanent, reproducible computational environment?
+    - **A:** The `FROM` instruction establishes the base image, providing the starting OS and pre-installed tools like R. The `RUN` instruction executes shell commands during the image build phase, permanently baking software installations into the new image's layers so they survive container restarts. Finally, `CMD` defines the default command that executes automatically when a container from this image starts, replacing the base image's original startup behavior. This sequence replaces manual, ephemeral terminal sessions with a version-controlled blueprint that guarantees identical environments across any machine. *(01:08:46)*
 
 ---
 
-- prompt: prompt-recall-4-analyze.md @ 8bcc190
-- prompt-hash: ccb0e5a939c5
+- prompt: prompt-recall-4-analyze.md @ 65eb21c
+- prompt-hash: 7dde50dd5ebf
 - model: qwen3.6-35b-a3b (requested: qwen3.6-35b-a3b)
 - backend: local (llama-swap)
 - inputs: transcript-plaud.md, history.txt, terminal.txt, materials.md, notes-class-main--qwen3.6-35b-a3b.md
-- generated: 2026-11-20
+- generated: 2026-11-23
 - notes-input: notes-class-main--qwen3.6-35b-a3b.md @ 5842e35a1a11, links and section references removed

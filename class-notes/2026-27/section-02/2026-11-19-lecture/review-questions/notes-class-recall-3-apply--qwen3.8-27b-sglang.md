@@ -1,4 +1,4 @@
-# Git workflow review and Docker containers: review questions, tier 3 — Apply
+# Running and building containers: review questions, tier 3 — Apply
 
 Date: 2026-11-19
 
@@ -8,238 +8,223 @@ Instructor: Daniel Chen
 
 *Tier 3 of 5: Apply. Work each situation through before you read the answer; tiers 1 (Remember) and 2 (Understand) cover the facts and reasons it relies on.*
 
-## 1. Pre-lecture setup: Docker Desktop and the `docker pull` commands ([27 Introduction to containerization](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html))
+## 1. Class setup: Docker Desktop and the pre-lecture `docker pull` commands ([27 Introduction to containerization](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html))
 
 *00:00:14–00:01:41*
 
-- **Q:** You open a new terminal, type `docker pull rocker/r-ver:4.3.2`, and get an error saying Docker cannot be found. What is the most likely cause, and what do you do before re-running the command?
-  **A:** The Docker Desktop application is not running. On macOS and Windows, Docker commands require the Docker engine managed by Docker Desktop; you need to open Docker Desktop (the application called Docker) so the engine is available, then re-run the `docker pull` command. *(00:00:33)*
+- **Q:** You are on macOS and a teammate says `docker pull rocker/r-ver:4.3.2` returned an error suggesting Docker cannot be found. What do you check before retrying, and what is the fix?
+    - **A:** Check that Docker Desktop is running; start it if it is not. If Docker itself is not installed, install the Docker application, then open Docker Desktop and retry the pull. The commands need the Docker app to be on before they can talk to Docker. *(00:00:33)*
 
-- **Q:** You are preparing for the day's container exercises and have four actions in front of you: (a) run `docker pull rocker/r-ver:4.3.2`, (b) open Docker Desktop, (c) run `docker pull quay.io/jupyter/datascience-notebook:2025-03-14`, and (d) run `docker pull rocker/rstudio:4.4.2`. Put them in the order you should perform them, and explain why the first one must come first.
-  **A:** Open Docker Desktop (b) first, then run the three `docker pull` commands (a, c, d in any order). Docker commands require the Docker engine to be running; if Docker Desktop is not open, the commands will fail with a "can't find Docker" error. *(00:00:33)*
+- **Q:** You have not run any of the three pre-lecture image downloads. Complete the setup order for getting `rocker/r-ver:4.3.2`, `rocker/rstudio:4.4.2`, and `quay.io/jupyter/datascience-notebook:2025-03-14` onto your computer without starting them.
+    - **A:** Start Docker Desktop, then run `docker pull rocker/r-ver:4.3.2`, `docker pull rocker/rstudio:4.4.2`, and `docker pull quay.io/jupyter/datascience-notebook:2025-03-14`. `docker pull` downloads the images from a registry without running them, so doing this before class avoids waiting for downloads later. *(00:00:18)*
 
-- **Q:** You are following the pre-lecture instructions and have the three `docker pull` commands ready. A teammate asks, "Why do we run `docker pull` now instead of just using `docker run` later when we need the container?" What is the difference, and why is `pull` the correct preparation step?
-  **A:** `docker pull` downloads the image to your machine without starting a container, so it is ready and waiting when you later run `docker run`. `docker run` would start a container immediately (pulling the image first if it is missing), but the pre-lecture task is to have all three images downloaded in advance so the session can begin without waiting on downloads. *(00:00:14)*
+- **Q:** You run `docker pull rocker/r-ver:4.3.2` and see `Status: Image is up to date for rocker/r-ver:4.3.2` followed by a digest. What does that tell you, and what should you not keep doing if your goal was only to have the image available?
+    - **A:** It tells you the image is already local and the digest identifies that image content, so no new download is needed. You can move on to using the image later; you do not need to keep re-running `docker pull` just to have it available. *(00:39:51)*
 
-## 2. Project scoping: keep the analysis simple and correct
+## 2. Project advice: keep the analysis simple and correct
 
 *00:01:41–00:06:05*
 
-- **Q:** Your project's outcome is a continuous value (for example, house price). You are choosing between a logistic regression model and a linear regression model for the modelling step. Which one do you use, and why would the other choice be technically incorrect?
-  **A:** Use linear regression. Logistic regression is for binary or categorical outcomes; fitting it to a numeric outcome is technically wrong. The guidance is that the model must be correct even if it is simple — a 60 %-accurate linear model is acceptable, but the technique must match the outcome type. *(00:05:24)*
+- **Q:** You plan to predict a continuous numeric outcome, but your draft uses a logistic regression model. What must you fix before the milestone?
+    - **A:** Use a model appropriate to a numeric outcome, such as a linear regression model, instead of logistic regression. Logistic regression is wrong for predicting a numeric outcome, even if the pipeline still runs. Keep the analysis simple but technically correct. *(00:05:24)*
 
-- **Q:** Your project uses a simple linear regression for the modelling step. A code reviewer checks your pipeline and says it is missing components. Even though the model is just a straight line, what types of code must still be present in the pipeline?
-  **A:** Data-download code, some cleaning code, EDA (exploratory data analysis) code, modelling code, and code for figures and tables. Keeping the analysis short does not mean skipping these stages; they are still required, just kept simple. *(00:02:41)*
+- **Q:** Your analysis is currently a single straight-line model, and a teammate wants to add a neural network before the next milestone. What should you choose, and what risk does the other choice create?
+    - **A:** Keep the analysis at the simple level needed for the workflow assignment; if the current model is a straight line, fit the straight line. Adding a complicated model now risks a very bad time in a couple of weeks because the assignment is about reproducible workflows, not model sophistication. *(00:02:03)*
 
-- **Q:** You are scoping your project. Your model currently fits a straight line, and a teammate suggests adding a neural network because "it's our time to shine." What do you decide, and what is the specific risk that was highlighted for making the analysis too complicated this week?
-  **A:** Keep the straight-line model. The course is about workflows, not model fitting, and the risk of over-scoping now is "you're going to have a very bad time in about two weeks" because the project will be hard to finish with all the workflow infrastructure (Git, containers, reports) still in place. If you want a portfolio piece, build it in parallel, not inside this assignment. *(00:02:03)*
+- **Q:** You want the project to become a portfolio piece, but you still need to complete the current workflows project. What do you do with the portfolio work?
+    - **A:** Do not fold the portfolio complexity into this assignment; build the portfolio project in parallel if you really want it. The goal here is a short, correct analysis with data download, cleaning, EDA, modelling, and figures or tables. *(00:03:27)*
 
-## 3. Git review: branch, commit, and push on the demo repository
+## 3. Git review: branch, commit, and push for the pull-request task
 
 *00:06:05–00:09:50*
 
-- **Q:** You have cloned the `2026-11-19-docker` demo repository, and `git status` shows you are on branch `main` with `README.md` modified but uncommitted. You want to commit the change on a new branch called `today`. Put the Git commands in the order you would run them, including the step where you verify you are on the right branch.
-  **A:** `git switch -c today` (create and switch to the new branch), `git status` (confirm you are on `today` and that `README.md` is still modified), `git add README.md`, `git commit -m "today we are talking about containers"`, then `git push origin today`. Checking the branch before `add` and `commit` is the habit the session emphasised. *(00:08:57)*
+- **Q:** You cloned the demo repository, edited `README.md`, and `git status` still says `On branch main` with no commits yet. What command moves your uncommitted work onto a new branch named `today`?
+    - **A:** Run `git switch -c today`. It creates the branch and switches to it while leaving the working-tree change to `README.md` uncommitted so you can add it on `today`. After that, `git status` should show `On branch today`. *(00:08:57)*
 
-- **Q:** You accidentally ran `git add README.md` and `git commit` while still on branch `main` instead of your feature branch. You have not pushed yet. What should you have checked before running `git add` and `git commit`, and where in the textbook can you find commands to move the commit to the correct branch?
-  **A:** Run `git status` right before `git add` and definitely before `git commit` to confirm which branch you are on. If you committed on `main` by mistake, the textbook has a cheat sheet with commands for moving commits around so you can move the commit to the intended branch. *(00:07:44)*
+- **Q:** You are about to `git add README.md` in an actively collaborated repository but have not checked where you are. What two checks should you complete immediately before adding or committing, and what do they prevent?
+    - **A:** Run `git status` to confirm you are on the intended branch, and make sure `main` is up to date, for example with `git pull origin main` before starting branch work. This prevents committing to the wrong branch and building changes on an old version of the repository. *(00:08:27)*
 
-- **Q:** You are on branch `main` in the demo repository and a teammate has just pushed a new commit to `main` on GitHub. Before you create your feature branch, you run `git pull origin main`. Predict: what does this command do to your local `main`, and why is it recommended before starting work in a new branch?
-  **A:** It downloads and merges the latest `main` commits from the remote into your local `main`. In a multi-person, multi-branch environment, your local `main` may be behind the remote; pulling first ensures you are not building your branch on an outdated base. *(00:08:27)*
+- **Q:** Put in order the commands used to finish the `README.md` change after the branch `today` already exists.
+    - **A:** Run `git diff`, then `git add README.md`, then `git commit -m "today we are talking about containers"`, then `git push origin today`. The push creates the remote `today` branch and prints the URL for opening the pull request. *(00:09:25)*
 
-- **Q:** You are on branch `main` in the demo repository. You have edited `README.md` (adding a new line) but have not staged or committed the change. You now decide to create a branch called `today` for this edit. Can you create the branch now, and what happens to your uncommitted change when you switch to `today`?
-  **A:** Yes. Run `git switch -c today`. The uncommitted change carries over to the new branch because it lives in the working directory, not yet in any commit. After switching, `git status` shows you are on `today` with `README.md` still modified. *(00:08:57)*
-
-## 4. Issues as a project board on the demo repository
+## 4. Issues as a project board
 
 *00:09:50–00:16:17*
 
-- **Q:** You have created issue #1 "what are we doing today?" and issue #2 "edit the readme with today's topic" in the `2026-11-19-docker` repository. You want issue #2 to link back to issue #1 so anyone viewing #2 can find the original topic. What do you type in issue #2's text to create the link, and what does GitHub do automatically?
-  **A:** Type `#1` (the hash followed by the issue number) in issue #2's text, for example in a sentence like "meeting from #1." GitHub creates a two-way reference: from #2 you see a link to #1, and from #1 you see that #2 references it. The shared numbering means every issue and pull request gets a unique hash you can use this way. *(00:12:30)*
+- **Q:** You just finished a planning meeting with issue `#1` containing the meeting note. Three action items come out of that meeting. Complete the issue-board setup.
+    - **A:** Create separate issues for the action items that spawn out of the meeting note, and assign the responsible person in each issue. The meeting issue records the discussion while the separate issues track each to-do. *(00:11:08)*
 
-- **Q:** Your group meeting just ended and produced three to-do items: set up the Git repository, download and clean the data, and write the first Quarto report. You are on the demo repository's issue board. How do you set up the issues to track the meeting and the action items?
-  **A:** Create a meeting-note issue with the general topic (for example, "Meeting from #1"), then create three separate issues for the to-do items and assign each one to the responsible team member. The meeting note can hold the discussion, and the individual issues "spawn out of" it so each task has its own tracking thread and owner. *(00:10:49)*
+- **Q:** You write in issue `#2`: `meeting from #1`. What happens to that reference, and why is it useful?
+    - **A:** GitHub creates a two-way link between issue `#2` and issue `#1`, so you can move from one item to the other. It makes the project board cross-reference related items without keeping a separate document. *(00:13:34)*
 
-- **Q:** You just opened a pull request on the demo repository from your `today` branch. A teammate asks whether they should assign themselves to the pull request or use the reviewer section. In what situation would you assign a teammate to the pull request rather than yourself, and what is the difference between the two sections?
-  **A:** You assign yourself to a pull request because it is your work and you are claiming responsibility for it. The reviewer section is where you request that a teammate look over the changes; in larger projects a merge can be blocked until a reviewer approves. You typically do not assign a teammate to your own pull request unless they are the one who must approve or block the merge. *(00:14:47)*
+- **Q:** You need to record that a teammate is responsible for an issue and that another teammate must review the pull request before merging. Where do you set each?
+    - **A:** Use the assign section to assign the responsible teammate to the issue or pull request, claiming responsibility. Use the reviewer section on the pull request to request the review; larger projects can block merging until a reviewer approves. *(00:14:47)*
 
 ## 5. Pull-request descriptions, checkboxes, and auto-close keywords
 
 *00:16:17–00:22:18*
 
-- **Q:** You are writing the description for pull request #3 in the `2026-11-19-docker` repository, which addresses issues #1 and #2. What exact text do you include in the description so that GitHub automatically closes both issues when the pull request merges, and what happens to the issues at merge time?
-  **A:** Include `closes #1 fixes #2` (or any sentence ending with those keywords) in the pull request description. When the pull request merges, GitHub auto-closes both referenced issues. The keywords `closes` and `fixes` are GitHub service features, not part of the Git version-control system. *(00:18:33)*
+- **Q:** Your pull request will fix issue `#2` and close issue `#1` when merged. What should you include in the pull request description to make that automatic?
+    - **A:** Include a sentence ending with `closes #1` and `fixes #2`, for example `closes #1 fixes #2`. When the pull request merges, GitHub auto-closes the referenced issues. This auto-close behavior is a GitHub service feature, not part of Git itself. *(00:18:33)*
 
-- **Q:** You have been working on a pull request and have completed some changes but not all. You want to track your progress visibly for your teammates without turning the pull request into a draft. What Markdown syntax do you add to the pull request description, and how will it appear to your teammates in the GitHub interface?
-  **A:** Add lines like `- [x] item 1` and `- [ ] item 2`. They render as Markdown checkboxes: a check mark for done items, an empty box for remaining items. Teammates can see at a glance what is complete without reading the full conversation thread. *(00:17:43)*
+- **Q:** Your pull request description has a Markdown task list. How do you show that item 1 is done and item 2 is still open?
+    - **A:** Write `- [x] item 1` and `- [ ] item 2`. Teammates can see the status at a glance, especially if the pull request is not marked as a draft. *(00:17:37)*
 
-- **Q:** A teammate edited the first comment of a pull request weeks ago, but a major decision was made in the comment thread last week and the first comment no longer reflects it. As the project owner, what can you do to fix this, and why does the first comment matter more than the later conversation?
-  **A:** You can edit the first comment (project owners have access to edit other people's comments) to add the reference or decision. The first comment matters because most people look at it to understand what the pull request is about and why it exists; they do not read through the entire conversation thread, so the first comment should hold all the context. *(00:16:40)*
+- **Q:** A teammate's pull request later contains an important decision, but the first comment still describes the original scope. What should you do, and why?
+    - **A:** Edit the first comment to include the decision and current references, because readers mainly look at the first comment to understand why the pull request exists. Project owners can edit comments to keep the primary description current. *(00:16:56)*
 
 ## 6. Merging the pull request and cleaning up branches
 
 *00:22:18–00:25:29*
 
-- **Q:** Pull request #3 has been merged on GitHub. You are still on branch `today` locally in the `2026-11-19-docker` repository. Put the complete sequence of steps in order: get the merged code onto your local `main`, delete the remote `today` branch on GitHub, and clean up the local branch references.
-  **A:** `git switch main`, then `git pull origin main` to bring the merge down locally. On GitHub, use the "delete branch" button on the merged pull request (or the branches view) to delete the remote `today` branch. Then run `git fetch --prune` to drop the remote-tracking reference, and `git branch -d today` to delete the local branch. *(00:22:25)*
+- **Q:** Pull request `#3` from `today` has merged into `main`, but your local `main` does not have the merged `README.md` line. What commands bring it down?
+    - **A:** Run `git switch main`, then `git pull origin main`. This updates local `main` with the merge commit and the README change from the merged pull request. *(00:22:25)*
 
-- **Q:** After merging PR #3 and deleting the branch on GitHub, you run `git log --oneline --graph --all` and still see the `today` branch label next to commit `3c6d82a`. What two commands do you run locally to remove the remaining references, and what does each one specifically remove?
-  **A:** `git fetch --prune` removes the remote-tracking reference (`origin/today`), and `git branch -d today` removes the local branch. After both, the commit `3c6d82a` is still visible in the merge history (the merge commit records it), but the quick `git switch today` shortcut is gone. *(00:24:30)*
+- **Q:** After deleting the `today` branch on GitHub, `git log --oneline --graph --all` still shows a `today` reference. What two commands remove the remaining references, and what does each remove?
+    - **A:** Run `git fetch --prune` to remove the remote-tracking reference `origin/today`, then `git branch -d today` to delete the local branch. The merge commit still remains in `main`; you are only deleting the quick branch reference. *(00:24:30)*
 
-- **Q:** You want to delete the `today` branch on GitHub after merging PR #3, but you are not in the pull request view. Where else in GitHub's interface can you find and delete the branch, and what visual cue tells you it is safe to delete?
-  **A:** Go to the branches view (the list of all branches on the repository). Find the `today` branch; it shows that it was pull request #3 and that it was merged. Click the trash-can icon to delete it on GitHub. The merged status is the cue that it is safe to delete. *(00:22:53)*
-
-- **Q:** You have deleted the `today` branch both on GitHub and locally. A week later you need to check out commit `3c6d82a` for a quick fix. You try `git switch today` and get an error. What alternative does the session mention for reaching that commit without the branch, and what did you lose by deleting the branch?
-  **A:** You can switch directly to the commit hash: `git switch 3c6d82a` (or the longer hash). Deleting the branch loses the named shortcut `git switch today`; the merge commit still records that the work happened, but the quick reference by branch name is gone. *(00:25:05)*
+- **Q:** You do not want to lose the shortcut `git switch today`, but you have already merged the pull request. What is the safe choice?
+    - **A:** Keep the local `today` branch instead of deleting it, or use the commit hash if you need the exact commit. The merge is still recorded in `main`, but deleting the branch removes the convenient name for the branch tip. *(00:25:05)*
 
 ## 7. Why containers: a stable, shareable compute environment ([27 Introduction to containerization](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html))
 
 *00:25:29–00:33:21*
 
-- **Q:** Your teammate is on a Windows machine with an ARM chip, and you are on a Mac. You send your `uv` lock file, but your teammate reports that a compiled package will not install because the binary was built for a different architecture. Why does the lock file alone not solve this, and what is the course's answer for sharing the environment across different operating systems and CPU architectures?
-  **A:** A lock file pins the versions of the packages but not the underlying operating system, CPU architecture, or system tools. The course's answer is to build a container — a virtual computer that includes the exact OS, architecture, system tools, and packages — and share that container so everyone runs the same environment regardless of their physical machine. *(00:28:34)*
+- **Q:** Your teammate will run the project on an ARM Windows machine while your environment is a Mac. What do you need beyond a `uv` or `renv` lock file, and why?
+    - **A:** Use a container that includes the language, packages, and system tools as a shareable virtual computer. Lock files pin package versions but not the underlying tools or OS dependencies, so a different CPU architecture or operating system can still fail. *(00:28:53)*
 
-- **Q:** You are prototyping an analysis on your laptop and later need to run the same pipeline on a larger machine with access to the full dataset. How does the container approach let you guarantee the compute environment is identical on both machines?
-  **A:** Build the environment as a container image (specifying the exact OS, tools, and packages). Run the same container image on your laptop and on the larger machine. Because the container is a self-contained virtual computer, the environment is identical on both; you do not need to reinstall or reconfigure on the second machine. *(00:32:15)*
+- **Q:** You prototype on your laptop and later need to run the same code on a bigger machine with access to data. What do you compare to ensure the environments match?
+    - **A:** Use the same container image on both machines, so the code runs through the same virtual computer. This addresses “works on my machine” by sharing the compute environment rather than asking the other machine to install everything locally. *(00:32:15)*
 
-- **Q:** You accidentally run a destructive command (for example, deleting a system file) inside a `rocker/r-ver` container. Predict how this differs from running the same command on your host machine, and what you do to "reset" the environment.
-  **A:** Inside the container, the command only affects the container's isolated filesystem; your host machine is unaffected. You exit the container (or it is removed by `--rm`), and when you start a new container from the same image, it resets to the clean image state. A container has no save state, so any changes are gone — making it a safe sandbox for experimentation. *(00:33:05)*
+- **Q:** You accidentally break the container while learning Linux commands. What do you do, and why is this safer than breaking the host machine?
+    - **A:** Restart the container to get a fresh sandbox. If the container gets messed up, you can discard it and start again without damaging the physical machine. *(00:33:05)*
 
 ## 8. Containers versus virtual machines ([27 Introduction to containerization](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html))
 
 *00:33:21–00:36:47*
 
-- **Q:** Your team needs to share the project's compute environment with a teammate on a different operating system. You have a container image (under 2 GB) and a virtual-machine image (about 80 GB). Based on the size and resource trade-offs, which do you use for the shared project, and what is the one performance trade-off you accept?
-  **A:** The container. It is far smaller in disk, memory, and compute usage, making it practical to download, build, and share. The trade-off is a performance hit from the extra virtualization layer, which is unavoidable ("there's no way around that"). *(00:36:32)*
+- **Q:** You need to test an MDS installation by pretending to use a full Windows desktop with a graphical interface. Which environment do you choose, and why?
+    - **A:** Choose a virtual machine. A VM installs a full operating system with the visual interface you can log into, whereas a container is a stripped-down environment without a graphical interface. *(00:34:48)*
 
-- **Q:** You are writing the project's `README` and need to explain the difference between the container and a virtual machine to a new teammate. Your teammate writes: "A container is a full operating system in a box, just like a VM but smaller." Based on the session's description, what is the specific thing the container does NOT include that the virtual machine does?
-  **A:** The container does not include a full operating system with a graphical interface. It is a stripped-down environment containing only the software you install, accessed through a terminal. A virtual machine emulates an entire computer including a complete OS (for example, a full Windows install) that you log into with a GUI. *(00:35:00)*
+- **Q:** You need to share a lightweight analysis environment that includes R, packages, and required system tools but does not need a desktop. Which do you choose, and what size contrast supports that choice?
+    - **A:** Choose a container. Containers can be under about 1–2 GB and still run the computational stack, while a virtual machine can be a 50–80 GB full operating system install. *(00:36:16)*
 
-- **Q:** Your team needs to test the MDS software installation on a Windows machine, but no one on the team has a Windows laptop. Based on the session's description, which tool (container or virtual machine) do you use for this specific test, and why does a container not replace it here?
-  **A:** A virtual machine. The session noted that a VM is still used to test the MDS installation while pretending to be on a Windows machine, because it provides a full Windows OS with a graphical interface. A container has no GUI and cannot replicate the full Windows desktop experience needed for that test. *(00:36:16)*
+- **Q:** Your laptop has limited RAM and you need several isolated analysis environments. What feature of containers helps compared with several full virtual machines?
+    - **A:** Containers are lighter in disk, memory, and compute because they contain only the bare minimum software you install. A virtual machine includes a full operating system and graphical layer, which consumes more resources. *(00:36:01)*
 
 ## 9. Running the R container: `docker pull` and `docker run` ([28 Using and running containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html))
 
 *00:36:47–00:45:01*
 
-- **Q:** You run `docker run --rm -it rocker/r-ver:4.3.2` and R 4.3.2 opens. You type `library(tidyverse)` and get `Error: there is no package called 'tidyverse'`. You open a second terminal on the same machine, type `R`, and `library(tidyverse)` loads without error. Explain why the two terminals behave differently, and what this tells you about the container.
-  **A:** The first terminal is running R 4.3.2 inside the `rocker/r-ver:4.3.2` container, which is a separate, isolated machine that only has R installed (no additional packages). The second terminal is running R 4.6.2 on your host machine, where `tidyverse` is installed. The container has its own filesystem and package library, independent of the host. *(00:43:49)*
+- **Q:** You have already downloaded `rocker/r-ver:4.3.2`. What command starts an interactive container where R opens, and what do the flags do?
+    - **A:** Run `docker run --rm -it rocker/r-ver:4.3.2`. `--rm` removes the container when it stops; `-it` chains `-i` interactive and `-t` TTY so R runs as an interactive terminal. *(00:40:55)*
 
-- **Q:** You run `docker run --rm -it rocker/r-ver:4.3.2` and R opens. You type `q()` to quit R. Predict: what happens to the container process, and what would be different without the `--rm` flag?
-  **A:** With `--rm`, the container is automatically deleted when R exits. Without `--rm`, the container would remain on your machine in a stopped state, and you would have to manually delete it. The `--rm` flag prevents stopped containers from piling up. *(00:40:55)*
+- **Q:** Inside that container, `library(tidyverse)` returns an error. What does that prove, and how would you test the host version?
+    - **A:** It proves the container is a separate machine whose R does not have `tidyverse` installed, even if your host has it. Open another terminal on the host and run `library(tidyverse)` or start host R to compare the two environments. *(00:43:54)*
 
-- **Q:** You are working inside the `rocker/r-ver:4.3.2` container and want to confirm you are inside the container and not back on your host machine. The session noted that the only reliable visual cue is the prompt. What do you look for in the prompt, and what other command can you run to verify which machine you are on?
-  **A:** The container's prompt looks different from the host's (for example, `root@<container-id>:/#` versus your normal host prompt). You can also run `whoami` to see the username (`root` inside the container versus your own username on the host). Knowing where you are typing is critical because a blinking cursor gives no other context. *(00:45:04)*
+- **Q:** Your host `R --version` says 4.6.2, but the container starts R 4.3.2. What is the advantage of being able to run both at once?
+    - **A:** You can use an older R version for a stable project without changing the host R. This supports reproducible analyses that require a fixed tool version, not just fixed package versions. *(00:37:43)*
 
-- **Q:** You need to pin R to version 4.3.2 for a multi-year clinical-trial analysis, but your host machine has R 4.6.2 and R releases a new version every six months. Your `renv` lock file pins all the R package versions. Why does the lock file not solve the problem of R itself upgrading, and what does the container add that the lock file does not?
-  **A:** A lock file pins the versions of the packages but not the R tool itself or other system tools. The container pins the entire system, including the specific R version (4.3.2) and the OS dependencies, so the environment stays stable even as R releases new versions. The session's example: if you wanted to block `git switch`, you could ship a container with a 2019 version of Git that does not support it. *(00:39:02)*
+- **Q:** You type `docker run --rm -it rocker/r-ver:4.3.2` but the image is not local. What happens?
+    - **A:** Docker downloads the image first, then runs the container. `docker run` can pull the image if it does not already exist locally. *(00:42:16)*
 
 ## 10. Web-app containers: RStudio and browser-first tools ([28 Using and running containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html))
 
 *00:45:01–00:54:10*
 
-- **Q:** A new student asks why JupyterLab is accessed at `localhost:8888` in a browser rather than by double-clicking an application icon. Based on the session's explanation of browser-first tools, what is the reason for the browser-based interface, and how does this design benefit the container workflow?
-  **A:** JupyterLab (like VS Code and GitHub Codespaces) is built as a browser-first application so the same interface can run on a remote machine or inside a container. This means you can run JupyterLab in a container on a powerful remote server and access it from your local browser, without installing Jupyter or its dependencies on your own machine. *(00:48:04)*
+- **Q:** You need to give a teammate the same RStudio interface without installing RStudio on their machine. What do you run, and where do they access it?
+    - **A:** Run the `rocker/rstudio` image with port mapping, for example `docker run --rm -p 8787:8787 rocker/rstudio:4.4.2`, and open `http://localhost:8787` in a browser. The container runs RStudio Server as a web app. *(00:58:19)*
 
-- **Q:** Your teammate asks, "Why does the course teach us to run RStudio in a container with `docker run --rm -p 8787:8787 rocker/rstudio:4.4.2` instead of just installing RStudio on our laptops?" What is the key benefit of the container approach that the session highlighted?
-  **A:** The container gives every team member the same RStudio interface running in an isolated environment with a specific, shared version of R and RStudio, regardless of what is installed on their individual machines. You are all working on the same virtual computer, which is the goal of the course: a compute environment you can share and run all your code through. *(00:49:00)*
+- **Q:** You see JupyterLab open at `localhost:8888` in a browser. What does that interface imply about where the compute is running?
+    - **A:** It implies Jupyter is running as a web app on another machine or container, with the browser as the interface. The same idea applies to containerized or remote compute: you connect to a browser interface rather than double-clicking a local desktop application. *(00:48:04)*
 
-- **Q:** The session mentioned Electron as the technology behind many browser-first applications. Your teammate is building a small tool and asks, "Should I use Electron because the course talked about it?" What is the actual point the session made about Electron, and does it apply to your teammate's decision to build a new tool?
-  **A:** The session's point is that existing data-science tools (JupyterLab, VS Code, RStudio Server) are already browser-first, which is why they can run inside a container and be accessed through a browser. It is not a recommendation to build every tool with Electron; it explains why certain tools are compatible with the container workflow. Your teammate's decision depends on their tool's requirements, not on the course's container setup. *(00:47:15)*
+- **Q:** You click the Codespaces button in GitHub and see VS Code open in a browser. What does that tell you about using the same interface on a different machine?
+    - **A:** It shows that a browser-first application can run on a different machine or in a container while giving the same interface. The browser connection is the way to reach the compute environment you are working on. *(00:48:49)*
 
 ## 11. Port mapping the RStudio container ([28 Using and running containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html))
 
 *00:54:10–00:59:14*
 
-- **Q:** You want to run two `rocker/rstudio:4.4.2` containers at the same time. The RStudio application inside the image always listens on port 8787. How do you map the ports for both containers so they are accessible from your local machine, and what URLs do you use in the browser for each?
-  **A:** First container: `docker run --rm -p 8787:8787 rocker/rstudio:4.4.2` (browser: `localhost:8787`). Second container: `docker run --rm -p 8788:8787 rocker/rstudio:4.4.2` (browser: `localhost:8788`). The container side is always 8787; you change the host-side port to a different number (up to roughly 60 000) to avoid conflicts. *(00:56:31)*
+- **Q:** You run `docker run --rm -p 8787:8787 rocker/rstudio:4.4.2`. What does `-p 8787:8787` mean, and what URL do you open?
+    - **A:** It maps port 8787 on your local computer to port 8787 inside the container, where RStudio Server listens. Open `http://localhost:8787` to reach the container’s RStudio. *(00:56:57)*
 
-- **Q:** You run `docker run --rm -p 8787:8787 rocker/rstudio:4.4.2` and the terminal prints `The password is set to ooph3Aef2Ohcahcu`. You open `localhost:8787` in your browser, type that password in the password field, and the login fails. What went wrong, and what is the correct username?
-  **A:** You need the username as well as the password. The username for the `rocker/rstudio` image is `rstudio`. The first run generates a random password (printed in the terminal), but the login form requires both the username `rstudio` and the generated password. *(00:58:32)*
+- **Q:** You already have one RStudio container mapped to local port 8787 and want a second one at the same time. How do you choose the second command?
+    - **A:** Keep the container port 8787 on the right side, but choose a different host port on the left, such as `-p 8788:8787`, then open `http://localhost:8788`. The container port is fixed by the application; the host port is the local connection point. *(00:56:38)*
 
-- **Q:** You are running the RStudio container and want to confirm you are using the container's R, not your host's R. Your host has R 4.6.2. What did the session compare between the two RStudio instances to verify they were running independent versions of R?
-  **A:** The R version. The local RStudio desktop runs the host's R (4.6.2), while the containerized RStudio runs the R version bundled in the `rocker/rstudio:4.4.2` image, which is different. Two different R versions in two RStudio instances confirms they are independent machines. *(00:58:41)*
-
-- **Q:** You have started four RStudio containers and your laptop is becoming sluggish. The session explained that each running container takes up RAM. What flag in your `docker run` command helps prevent stopped containers from piling up and holding resources, and what does it do when you exit the container?
-  **A:** The `--rm` flag. It automatically deletes the container when it stops, so stopped containers do not accumulate on your machine and keep holding resources. Without it, each exited container remains and you must manually clean up, which contributes to the resource pressure. *(00:55:17)*
+- **Q:** You open `localhost:8787` but see the local RStudio desktop instead of the container. What should you check?
+    - **A:** Confirm the container is running with the `-p 8787:8787` mapping and that the browser is pointing to the host port mapped to the container. Compare R versions: local RStudio uses the host R, while containerized RStudio uses the R version inside the image. *(00:58:41)*
 
 ## 12. Environment variables and running dashboards in containers ([28 Using and running containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html))
 
 *00:59:20–01:03:00*
 
-- **Q:** You run `docker run --rm -p 8787:8787 rocker/rstudio:4.4.2` and the terminal prints a random password you do not want to memorise. You want to set your own password instead. How do you modify the command, and what is the environment variable name?
-  **A:** Add the `-e` flag with the `PASSWORD` variable: `docker run --rm -p 8787:8787 -e PASSWORD="apassword" rocker/rstudio:4.4.2`. The `rocker/rstudio` image reads the `PASSWORD` environment variable to set the login password instead of generating a random one. *(01:00:05)*
+- **Q:** Your first `docker run` of `rocker/rstudio:4.4.2` prints a random password such as `The password is set to ...`. How do you rerun it with a known password?
+    - **A:** Add `-e PASSWORD="apassword"` to the same `docker run` command, for example `docker run --rm -p 8787:8787 -e PASSWORD="apassword" rocker/rstudio:4.4.2`. The image uses the `PASSWORD` environment variable to set the login password. *(01:00:05)*
 
-- **Q:** You set `-e PASSWORD="apassword"` and start the RStudio container on your laptop. A teammate on the same Wi-Fi network tries to open `localhost:8787` from their own computer and cannot reach it. Based on the check the session performed, why is this expected?
-  **A:** The port mapping exposes the service only on your host machine's `localhost`. The session verified that even though the container runs on port 8787, it is only reachable by someone who can log into your physical machine. A teammate's `localhost` resolves to their own computer, not yours, so they cannot reach your container's port. *(01:00:28)*
+- **Q:** You set `PASSWORD="apassword"` and map `-p 8787:8787`. Is the port automatically reachable by anyone on the network? What did the session check?
+    - **A:** No; the check was that `localhost:8787` is only reachable by someone who can log into the host machine. Port mapping connects to the local machine, so access to the host is still required. *(01:00:28)*
 
-- **Q:** You are preparing to share a dashboard (a browser-based application) with an end user who has no Python, R, or Quarto installed. Based on the session's description of the dashboard workflow, what does the end user need to have on their machine, and what command do they run to start the dashboard?
-  **A:** The end user needs Docker installed. They run `docker run` with the appropriate flags (port mapping, environment variables) to start the container that contains all the dashboard code and dependencies. The end user does not need to install the environment, Quarto, or any packages — everything is already inside the container image. *(01:02:20)*
+- **Q:** You are containerizing a dashboard for an end user who only has Docker. What advantage does the container give the end user?
+    - **A:** The end user only needs Docker and the right `docker run` flags; all packages and environment setup are already inside the container. They avoid installing the environment, Quarto, and other dependencies manually. *(01:02:20)*
 
 ## 13. Building interactively: base image and the `cowsay` package ([29 Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html))
 
 *01:03:00–01:08:46*
 
-- **Q:** You want to build a custom container starting from `rocker/r-ver:4.6.2`. You run `docker run --rm -it rocker/r-ver:4.6.2 bash` instead of `docker run --rm -it rocker/r-ver:4.6.2`. What is the difference in what opens, and why is the `bash` version the correct choice for the building workflow?
-  **A:** Without `bash`, the container starts R (the image's default `CMD`). With `bash`, you get a terminal instead, so you can type and test installation commands interactively before writing them into the `Dockerfile`. The `bash` option is the "try before you write" step: you verify the commands work, then document them. *(01:04:53)*
+- **Q:** You want to test install commands for an R image before writing a `Dockerfile`. What command starts the base image with a shell instead of starting R?
+    - **A:** Run `docker run --rm -it rocker/r-ver:4.6.2 bash`. The trailing `bash` replaces the image’s default `R` command, giving you the container’s terminal prompt. *(01:04:44)*
 
-- **Q:** Inside the `rocker/r-ver:4.6.2` container's bash shell, you run `Rscript -e "install.packages('cowsay')"` and it succeeds. You exit the container. You start a new container from the same image and type `R`, then `library(cowsay)`. Predict what happens, and explain why.
-  **A:** `library(cowsay)` fails with `Error: there is no package called 'cowsay'`. The container has no save state: when you exit, the container is deleted (because of `--rm`), and any packages you installed are gone. Starting a new container resets to the clean image, as if you never ran the install. *(01:07:04)*
+- **Q:** Inside that shell, you run `Rscript -e "install.packages('cowsay')"` and then exit. You start the same image again and run `R`. Why is `cowsay` missing?
+    - **A:** The container has no save state; exiting and restarting returns to the original image. Packages installed interactively are not persisted unless you record the install command in a `Dockerfile` and build a new image. *(01:07:10)*
 
-- **Q:** You are in the `rocker/r-ver:4.6.2` container's bash shell and type `install.packages("cowsay")`. You get `bash: install.packages: command not found`. What is the problem, and what is the correct command to run the R expression from the shell?
-  **A:** `install.packages()` is an R function, not a bash command. From the bash shell you need to invoke R explicitly: `Rscript -e "install.packages('cowsay')"`. The `Rscript -e` form runs an R expression from the command line, which is the form a `RUN` line in a `Dockerfile` requires. *(01:09:16)*
-
-- **Q:** You want to test a new R package that you are not sure will install cleanly, and you do not want to risk breaking your host R installation. How do you use the container to do this safely, and what is the benefit if the installation goes wrong?
-  **A:** Run `docker run --rm -it <image> bash`, install the package inside the container, and test it. If it works, you document the command in the `Dockerfile`. If it fails or you break the container, you just exit and start a new one — the host is unaffected because the container is isolated, and the `--rm` flag means the broken container is deleted on exit. *(01:07:37)*
+- **Q:** You are deciding whether to run a risky `rm` command on your laptop or in a container. Where do you run it, and why?
+    - **A:** Run it in a container because the sandbox can be discarded and restarted without damaging the host machine. If the container gets messed up, turning it back on resets it to the built image. *(01:07:37)*
 
 ## 14. Writing the `Dockerfile`: `FROM`, `RUN`, and `CMD` ([29 Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html))
 
 *01:08:46–01:15:01*
 
-- **Q:** You have tested `Rscript -e "install.packages('cowsay')"` inside the container and it works. You are now writing the `Dockerfile` for the `hello-cowsay` image. Put the three lines of the `Dockerfile` in the correct order, and state what each line does.
-  **A:** Line 1: `FROM rocker/r-ver:4.6.2` — sets the base image (the starting machine). Line 2: `RUN Rscript -e "install.packages('cowsay')"` — runs the install command during the image build. Line 3: `CMD ["Rscript", "-e", "cowsay::say('Hello from my first image!')"]` — sets the default command a container from this image runs when it starts. *(01:11:10)*
+- **Q:** You have tested `Rscript -e "install.packages('cowsay')"` inside `rocker/r-ver:4.6.2`. What two lines do you write in the `Dockerfile` to start from that image and install the package at build time?
+    - **A:** Write `FROM rocker/r-ver:4.6.2` and `RUN Rscript -e "install.packages('cowsay')"` . `FROM` sets the base image, and `RUN` executes the shell command during the image build. Use double quotes on the outside and single quotes inside for the R expression. *(01:12:44)*
 
-- **Q:** Your `Dockerfile` has the line `RUN Rscript -e "install.packages(cowsay)"` (no quotes around `cowsay`). When you build and run the image, `library(cowsay)` fails. What is the problem with the quoting, and what is the correct form?
-  **A:** Without quotes around `cowsay`, R interprets it as an undefined variable rather than a string, so the install fails silently. The correct form uses single quotes on the inside because the outer shell quotes are double: `Rscript -e "install.packages('cowsay')"`. The session emphasised paying attention to the quoting: double quotes on the outside, single quotes on the inside. *(01:09:41)*
+- **Q:** You want the new image to print a cow message by default when someone runs it. What `Dockerfile` line do you add?
+    - **A:** Add `CMD ["Rscript", "-e", "cowsay::say('Hello from my first image!')"]`. `CMD` sets the default command a container runs when it starts, replacing the base image’s default R command. *(01:13:52)*
 
-- **Q:** You are writing a `Dockerfile` for a Python project. You need to get the project's lock files into the container and install the packages. Based on the placeholder pattern the session described, what `Dockerfile` commands do you use, and what is the sequence after the `FROM` line?
-  **A:** Use `COPY` to copy the lock files (for example, `uv.lock`) into the container's filesystem, then use `RUN uv sync` to install the packages from the lock file. The sequence after `FROM` is: `COPY` the lock files, then `RUN uv sync`. This bakes the full package environment into the image at build time. *(01:14:15)*
+- **Q:** Your Python project already has `uv.lock`. How did the session say to install the Python packages inside a container image?
+    - **A:** Use `COPY` to bring the lock files into the image, then run `uv sync` with a `RUN` line so packages are installed during the build. That bakes the compute environment into the image instead of installing it on each host. *(01:14:15)*
 
 ## 15. Building and running the `hello-cowsay` image ([29 Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html))
 
 *01:15:01–01:18:44*
 
-- **Q:** You are in the root directory of the `2026-11-19-docker` repository, where the `Dockerfile` is located. You type `docker build --tag hello-cowsay .`. What does the `.` at the end do, and why does the session assume you run this command from the repository root?
-  **A:** The `.` is the build context: it tells Docker to look for the `Dockerfile` in the current directory. The convention is to run `docker build` from the directory that contains the `Dockerfile` (the project root), which is why the milestone instructions assume all commands are run from the root — you do not have to change directories in the middle of a pipeline. *(01:15:38)*
+- **Q:** You are in the project root where `Dockerfile` lives. What command builds and names the image `hello-cowsay`, and what does `.` mean?
+    - **A:** Run `docker build --tag hello-cowsay .`. The `.` is the current directory, or build context, where Docker looks for the `Dockerfile`; `--tag` names the image. *(01:15:38)*
 
-- **Q:** After running `docker build --tag hello-cowsay .`, you run `docker images` to verify the build succeeded. What image name and tag should you see in the list, and what does the tag `latest` mean in the context of your command?
-  **A:** You should see `hello-cowsay:latest` in the list (about 1.45 GB disk usage). Because you did not specify a version after the colon in `--tag` (for example, `hello-cowsay:0.1`), Docker assigns the tag `latest`. *(01:17:01)*
+- **Q:** After building, how do you confirm the image exists locally?
+    - **A:** Run `docker images` and look for `hello-cowsay:latest` in the image list. It shows the local image ID and disk usage. *(01:17:01)*
 
-- **Q:** You run `docker run --rm -it hello-cowsay` and see the cowsay ASCII-art message. You then run `docker run --rm -it hello-cowsay bash` and get a shell instead of the message. Inside the shell, you type `R` and then `library(cowsay)`. What happens, and what does this prove about the `RUN` step in the `Dockerfile`?
-  **A:** `library(cowsay)` loads without error, proving that the `RUN Rscript -e "install.packages('cowsay')"` step baked the package into the image at build time. The `bash` after the image name overrides the `CMD`, giving you a shell where you can verify the package is present in the image. *(01:17:52)*
-
-- **Q:** You want to add a second package to the `hello-cowsay` image. You edit the `Dockerfile` to add a second `RUN` line for the new package, save the file, and run `docker run --rm -it hello-cowsay bash`. Inside the shell, you check and the new package is not there. What did you skip?
-  **A:** You edited the `Dockerfile` but did not rebuild the image. You need to run `docker build --tag hello-cowsay .` again to apply the new `RUN` line before running the container. `docker run` uses the existing image; it does not re-read the `Dockerfile`. *(01:17:01)*
+- **Q:** You run `docker run --rm -it hello-cowsay` and see the cow message without entering R. Why?
+    - **A:** The `Dockerfile`’s `CMD` runs `Rscript -e ...` and prints the message, so the container starts, runs that command, and exits. To inspect the environment instead, run `docker run --rm -it hello-cowsay bash` and then test `library(cowsay)`. *(01:17:52)*
 
 ## 16. Version pinning and wrap-up ([29 Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html))
 
 *01:18:44–01:20:39*
 
-- **Q:** You have a `Dockerfile` that installs Quarto without pinning the version. A year from now, you rebuild the image and the Quarto version has silently changed, breaking your analysis pipeline. Based on the session's warning, how do you prevent this, and what is the principle behind the fix?
-  **A:** Pin the tool version explicitly in the `Dockerfile` (for example, install Quarto at a specific version like 1.11). As long as you do not change the install line, the image will always use that version, even when the tool releases updates. The principle: the `Dockerfile` is the control point — you say "here is the version I want; it will not change until I update that line." *(01:19:14)*
+- **Q:** Your `Dockerfile` installs Quarto but leaves the version unpinned. A year later, a new Quarto release appears. What likely happens if the install command is pinned and you do not edit it?
+    - **A:** If the install command is pinned to a version, it continues installing that same version until you explicitly update the line. Pinning prevents an unexpected tool update from silently changing a validated environment. *(01:19:35)*
 
-- **Q:** You are writing the `Dockerfile` for your project and need to install both `uv` (for Python packages) and Quarto. Based on the session's placeholder pattern, how do you structure the `Dockerfile` to pin both the package manager and the report tool?
-  **A:** Add a `RUN` line that installs `uv` at a specific version, then a `RUN uv sync` line to install packages from the lock file, then a `RUN` line that installs Quarto at a specific version. Each tool is pinned to the version you tested, so the image is reproducible and a floating update cannot silently change the environment. *(01:19:02)*
+- **Q:** You remember an environment broke because a tool updated while the `Dockerfile` did not hard-pin versions. What change prevents that?
+    - **A:** Pin the tool versions explicitly in the `Dockerfile`, for example by installing a specific Quarto or other tool version. The `Dockerfile` becomes the control point: the version does not change until you edit that install command. *(01:20:27)*
 
-- **Q:** The session recounted a case where a container was restarted without hard-version-pinning any of the tool versions, and an overnight update broke the build, costing hours of debugging. Your project's `Dockerfile` currently uses `FROM rocker/r-ver:4.6.2` (pinned) but the `RUN` lines install the latest `renv` and `Quarto` without version constraints. What should you change, and what is the consequence of not changing it?
-  **A:** Pin the versions of `renv` and `Quarto` in the `RUN` lines (for example, install `renv` and `Quarto` at specific tested versions). If you do not, a future rebuild may pull in updated tool versions that are incompatible with your pipeline, and you will spend time fixing the update instead of doing the actual work. The session's warning: an un-pinned update can break everything overnight. *(01:19:50)*
+- **Q:** You need to support an older Quarto 1.10 in a project while the latest version is 1.11. How do you choose the image behavior?
+    - **A:** Write the install command in the `Dockerfile` to use Quarto 1.10, not the floating latest version. This lets you build and share the same older tool version for the project. *(01:19:14)*
 
 ---
 
-- prompt: prompt-recall-3-apply.md @ 8bcc190
-- prompt-hash: 068025368bc2
+- prompt: prompt-recall-3-apply.md @ 65eb21c
+- prompt-hash: 49276171f719
 - model: qwen3.8-27b-sglang (requested: qwen3.8-27b-sglang)
 - backend: local (SGLang)
 - inputs: transcript-plaud.md, history.txt, terminal.txt, materials.md, notes-class-main--qwen3.8-27b-sglang.md
-- generated: 2026-11-20
-- notes-input: notes-class-main--qwen3.8-27b-sglang.md @ de2dd7c39a15, links and section references removed
+- generated: 2026-11-25
+- notes-input: notes-class-main--qwen3.8-27b-sglang.md @ de2dd7c39a15, links and section references removed, diagrams removed

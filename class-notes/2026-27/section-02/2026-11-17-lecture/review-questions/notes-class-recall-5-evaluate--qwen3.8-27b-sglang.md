@@ -8,121 +8,119 @@ Instructor: Daniel Chen
 
 *Tier 5 of 5: Evaluate. Decide and justify your verdict before you read the answer; the criteria are the ones given in class.*
 
-## 1. Why branches exist: escaping the pull-before-push friction ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 1. Course logistics
+
+*00:00:01–00:04:04*
+
+- **Q:** A group decides that interview week is not graded, so they do not need to be able to explain their group codebase and Git workflow in the seven-minute conversation. Judge the plan.
+    - **A:** Reject it. The class framed the interview as a technical-interview-style check on what you know about your actual group codebase, even though it will not affect your grade. The instructor said that, as in work, you should know what you are doing and all fair game is the codebase you are working in. *(00:03:15)*
+
+## 2. Why branches exist ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
 
 *00:06:49–00:09:43*
 
-- **Q:** A teammate proposes that your group skip branches this semester and just all commit to `main` directly, the way the DSCI 521 shared slide-deck exercise worked, to keep things simple. Judge this plan using the class's reasoning about collaboration friction.
-  **A:** Not acceptable. The class standard is that branches let each person work in their own parallel stream, pushing and pulling without the constant "I have to pull before I push" friction that two people editing the same branch create; the instructor identified that friction as a problem that "always" exists in a project and said the group project moves to branches specifically so you "want to work in parallel streams." *(00:08:41)*
+- **Q:** Your group has reached a phase where each student owns a self-contained part, but a teammate proposes that everyone keep committing directly to `main` and just pull before pushing. Is that acceptable for the project?
+    - **A:** No, not the workflow the class set up. The instructor wants parallel streams so each person can work in their own branch, push and pull until the work is ready, and then wait for team review. This avoids the DSCI 521 friction of constantly needing to pull because someone else pushed. *(00:08:46)*
 
-## 2. Local repository versus remote `origin` ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 3. Local repository versus remote `origin`
 
 *00:09:46–00:11:11*
 
-- **Q:** A student has finished writing their data-cleaning script and saved the commit locally, but has not pushed to GitHub. A teammate asks whether that work counts toward the group's project milestone. Give a verdict.
-  **A:** No, it does not count. The class criterion is that the remote repository is what gets graded and published; work that exists only on your local computer "effectively doesn't really exist" for grading or project purposes, so the student must push to `origin` for the work to be recognized by the team or by the graders. *(00:10:48)*
+- **Q:** A student says their milestone is complete on their laptop, but they have not pushed to GitHub, and the group assumes the local repository can be used for submission. Would you approve that?
+    - **A:** No. The instructor said the remote is the thing that matters, is graded, and gets published. If your work exists only on your local computer, it effectively does not exist for grading or project purposes. *(00:10:53)*
 
-## 3. `main`, `origin/main`, `HEAD`, and what belongs on the default branch ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 4. `main`, `origin/main`, `HEAD`, and what a branch is ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
 
 *00:11:11–00:16:05*
 
-- **Q:** A teammate wants to push their exploratory, half-finished plots directly to `main` so the whole group can see them immediately. Is that consistent with the class's standard for what belongs on `main`?
-  **A:** No. The class defined `main` as the stable, production-like branch where "at least the code works"; exploratory analysis that is still being tested and is "not ready yet" belongs on a branch until it is finished and reviewed, so pushing unfinished plots to `main` violates that standard. *(00:15:10)*
+- **Q:** A teammate wants to merge exploratory plots and unfinished analysis into `main` because the work is still their assigned responsibility. Would you approve the merge?
+    - **A:** No. The class treated `main` as the stable, working, production-like branch where code should be in working order or finished. Exploratory, unfinished work should stay on a branch until it is ready to be incorporated. *(00:15:10)*
 
-## 4. Branches are useful even when working alone ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 5. Branches are useful even when working alone ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
 
 *00:16:05–00:17:54*
 
-- **Q:** A solo developer has made a dozen experimental commits directly on `main` in a personal repository and now wants to undo them. A peer criticizes the approach, saying they should have used a branch. Assess that criticism using the reasoning the instructor gave.
-  **A:** The criticism is valid. The instructor's criterion is that a branch makes abandonment cheap: if the experiment fails, you just delete the branch and return to `main`, whereas undoing a tangled sequence of commits on `main` means going through git history and "start[ing] copying and pasting all the bits that are actually relevant," which is much harder. *(00:16:51)*
+- **Q:** A solo student argues that branches are unnecessary for them and plans to commit many experimental changes directly to `main`, then undo with `git reset` if things go wrong. Assess that plan.
+    - **A:** It is a weaker plan than the branch approach the instructor described. Branches let you section off work and keep `main` from changing until you have reviewed and tested it. If the branch was a bad idea, it is much easier to abandon or delete the branch than to untangle commits on `main`. *(00:17:22)*
 
-## 5. Creating a branch with `git switch -c` ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 6. Creating a branch with `git switch -c` ([8.1 Creating a branch using the command line](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#creating-a-branch-using-the-command-line))
 
 *00:17:54–00:23:46*
 
-- **Q:** A student begins a new milestone by running `git switch -c milestone-branch` without first synchronizing with the remote. They build two days of work on it and then discover their starting point was missing a teammate's earlier push. What is wrong with this plan per the class standard?
-  **A:** The student skipped the sync step the class requires before coordinated branch work: running `git pull origin main` so the starting point includes everything everyone has pushed. The instructor warned that starting from a stale local state wastes time, using the multi-laptop example where the student "could have saved myself a bunch of time if I had literally synced up my work before I started to begin with." *(00:18:39)*
+- **Q:** Before starting coordinated work for the group project, a student runs `git switch -c` from their current local state without first checking their branch and synchronizing with the remote. Judge that approach.
+    - **A:** It is risky and not the practice the instructor recommended. He said to run `git status` to confirm where you are and, when building on coordinated project work, synchronize with the remote first so your starting point is up to date. Otherwise you may start from an old state and duplicate work. *(00:18:09)*
 
-## 6. Switching between branches: `switch` versus the older `checkout` ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 7. Switching between branches ([8.1.1 Switching to branches that already exist](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#switching-to-branches-that-already-exist))
 
 *00:23:46–00:28:26*
 
-- **Q:** An AI coding assistant suggests the command `git checkout main` to switch to the main branch. The student is not comfortable with `checkout` and is working in the group codebase where losing work is a risk. Should they run it, or is there a class-endorsed alternative?
-  **A:** They should not run it as-is; the class-endorsed alternative is `git switch main`. The instructor's criterion is that `checkout` also performed the behavior of `revert` and `restore`, so if you don't know what it does and you are "really scared about losing work," you should prompt the tool to use `switch` instead, which only moves `HEAD` and does nothing else. *(00:27:34)*
+- **Q:** A student is not comfortable with `git checkout`, but a tool suggests using it to switch or create branches. Should they follow that suggestion?
+    - **A:** No, they should ask the tool to use `git switch` instead. The instructor said he uses `switch` when teaching and advised that if you do not know your way around `checkout`, you should prompt for `switch`. `checkout` is an older command that did more than moving `HEAD`. *(00:27:44)*
 
-## 7. Pushing a branch to `origin` ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 8. Pushing a branch to `origin` ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
 
 *00:28:31–00:33:40*
 
-- **Q:** A student is on branch `dan-b1` with two unpushed commits and types `git push origin main`, expecting their work to appear on GitHub. The command reports "Everything up-to-date." Diagnose what is wrong with this approach.
-  **A:** The student pushed the wrong branch name. The class standard is that `git push` takes the branch you are actually on as its last argument; since they are on `dan-b1`, the correct command is `git push origin dan-b1`. Pushing `origin main` only syncs `main`, which had no new commits, so nothing from `dan-b1` was sent to GitHub. *(00:30:44)*
+- **Q:** A student wants to make their branch visible on GitHub so a teammate can inspect it, but only runs `git push` while still on `main`. Is that sufficient?
+    - **A:** No. The instructor said to check which branch you are on and push the branch with `git push origin <branch>`, not rely on a plain `git push` from `main`. In the demo, the branch was made visible with `git push origin dan-b1`, after which `origin/dan-b1` appeared. *(00:30:44)*
 
-## 8. Opening a pull request and reviewing the changed files ([9 Pull requests](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-pull-requests.html))
+## 9. Opening a pull request and reviewing the changed files ([9.1 Creating a pull request](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-pull-requests.html#creating-a-pull-request))
 
 *00:33:40–00:39:56*
 
-- **Q:** A pull request's "Files changed" tab shows the intended `README.md` edit, a `.DS_Store` file, and a `notebook.ipynb_checkpoints` directory. Would you approve this pull request for merging?
-  **A:** No. The class standard is that the reviewer checks the changed files for things that don't belong in the repository—temporary checkpoint files, hidden files like `.DS_Store`, Word backup files—and that in this course visible unwanted files "will take points off"; the `.gitignore` file is the first line of defense and the pull-request review is the second, so this pull request should not be merged until those files are excluded. *(00:38:44)*
+- **Q:** A pull request updates `README.md` but also adds `.ipynb_checkpoints` and `.DS_Store` files. Would you approve it as is?
+    - **A:** No. The class standard is to review the changed files and make sure files that do not belong in the repository are not included, such as checkpoint files and hidden backup files. The instructor warned that, in this course, visible unwanted files in a repository can cost points. *(00:39:23)*
 
-- **Q:** After pushing a second commit to the same open pull request, a student adds a new conversation comment reading "I also added the long `git log` command now" instead of editing the original pull-request description. Is that acceptable per the class standard for pull-request communication?
-  **A:** No. The instructor's criterion is that all of the changes should be "defined and explained in the very first comment," and when you make additional changes you should edit that first comment rather than just appending new notes, because "that's what people are going to read." *(00:40:48)*
-
-## 9. Pull request conversation, code review, and updating the same branch ([10 Code review on GitHub](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-code-review.html))
+## 10. Pull request conversation, code review, and updating the same branch ([10 Code review on GitHub](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-code-review.html))
 
 *00:39:56–00:45:41*
 
-- **Q:** A reviewer on a pull request sees a bug in the code and commits a fix directly to the author's branch, then merges the pull request themselves. The author was not involved in the fix. Is that consistent with the class's code-review standard?
-  **A:** No. The class standard is that "if it's your pull request, it is your job to fix it all"; the reviewer's role is to point out the problem ("rewrite this or this doesn't look right"), and it is the author's job to go back to the branch, make the fix, commit, and push to the same branch so the pull request updates. *(00:42:17)*
+- **Q:** A reviewer changes the author's code directly, then merges the pull request without asking the author to address the review comments. Judge that workflow.
+    - **A:** It does not match the class rule of thumb. The instructor said that if it is your pull request, it is your job to fix the issues; the reviewer's job is to point out what is wrong or needs rewriting. The author should make the changes, commit, and push to the same branch. *(00:42:17)*
 
-- **Q:** After receiving review comments, the pull-request author closes the PR, makes the fixes locally, and opens a brand-new pull request with the corrected code. Is that the correct workflow per the class?
-  **A:** No. The instructor explicitly stated you do not need to close and recreate the pull request; you go back to the branch the PR was working from, run `git add`, `git commit`, and `git push` to the same branch, and the existing pull request updates automatically with the new commits. *(00:43:02)*
+- **Q:** A teammate closes a pull request and opens a new one to add a small review fix instead of committing to the branch that the original pull request was using. Is that required?
+    - **A:** No. The instructor said you do not need to undo or close the pull request to make a change. Go back to the branch the pull request was working from, add, commit, and push to the same branch, and the pull request updates. *(00:43:15)*
 
-## 10. Draft pull requests, merging, and deleting the remote branch ([9 Pull requests](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-pull-requests.html))
+## 11. Draft pull requests, merging, and deleting the remote branch ([9.2 Draft pull requests](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-pull-requests.html#draft-pull-requests))
 
 *00:52:11–00:58:51*
 
-- **Q:** A student opens a pull request for a feature that will take three weeks to finish. They leave it as an open, non-draft pull request with the green merge button active, reasoning that teammates can see progress. A teammate suggests converting it to a draft. Which approach is better per the class guidance, and why?
-  **A:** The draft is better. The class criterion is that for work that will last more than a day, you should use a draft to signal it is not ready; the gray bar and disabled merge button prevent someone from "actually accidentally merge[ing] something that is very explicitly saying this not working or this not ready yet." The instructor has kept draft pull requests open for "three or four months" as a standing signal to the team. *(00:53:50)*
+- **Q:** A pull request is still being worked on, but the team leaves it open with the normal green merge button available. Would you recommend converting it to a draft?
+    - **A:** Yes. The instructor said a draft pull request signals that the work is not ready, shows a gray bar instead of a green one, and disables the merge button so nobody accidentally merges something explicitly not ready. When the work is ready, it can be marked ready for review. *(00:54:12)*
 
-- **Q:** After merging pull request #1 from `dan-b1` on GitHub, a student leaves the remote branch in place, saying they might want to reference it later. A teammate says they should delete it. Who is right per the class guidance?
-  **A:** The teammate is right in this course's context. The instructor's criterion is to delete the remote branch after merging so the branch dropdown does not accumulate into a "giant list," and the commits are not lost because they remain in history including the separate merge commit. The only exception the instructor noted was a compliance law requiring retention, which does not apply to the group project. *(00:56:08)*
+- **Q:** After merging pull request #1, a teammate proposes keeping the remote `dan-b1` branch permanently because the commits are still in history. Judge that cleanup decision for this course.
+    - **A:** For this class, it is better to delete the merged remote branch after the pull request is merged. The instructor recommended deleting it so the branch dropdown does not become a long list, while noting that the commits remain in history and there are compliance cases where you must not delete things. *(00:56:08)*
 
-- **Q:** A student receives five AI-generated review comments on their pull request and merges without reading or responding to any of them, treating the AI's suggestions as binding. Is that appropriate per the class standard?
-  **A:** No. The instructor's criterion is that AI review comments are not automatically mandatory: "It doesn't mean that every single comment that the LLM is making is a comment you have to keep. Sometimes you can push back on it. Sometimes you can just reject it. Sometimes you can accept it." A person reviews and decides whether to merge; the AI assists but does not replace human judgment. *(00:52:30)*
-
-## 11. Local cleanup after a merge: `git fetch --prune` and `git branch -d` ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 12. Local cleanup after a merge ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
 
 *00:58:53–01:03:51*
 
-- **Q:** A student runs `git branch -D dan-fetch` to clean up their local branch after it was merged on GitHub. An AI tool had suggested the capital `-D` flag. Is that safe per the class standard?
-  **A:** No, it is not the safe choice. The class standard is to use lowercase `git branch -d <branch>` for normal cleanup, because lowercase `-d` only allows deletion if the branch has been merged, protecting unmerged work. The instructor specifically warned that a copied-and-pasted AI suggestion of capital `-D` (force delete) "could delete the commits that you're working on," so the student should have used `-d`. *(01:02:46)*
+- **Q:** A tool suggests running `git branch -D dan-b1` after the branch has been merged. Would you use that command as the cleanup step?
+    - **A:** No; use lowercase `git branch -d dan-b1` for normal local cleanup. The instructor said lowercase `-d` allows deletion only when the branch has been merged and protects you from deleting unmerged work. He specifically warned that a capital `-D` force-delete, especially from copied AI advice, can delete commits you were still working on. *(01:03:21)*
 
-- **Q:** After merging a pull request on GitHub, a student switches to local `main` and sees none of the merged commits. They conclude the merge failed and open a new pull request to re-apply the changes. Assess this conclusion per the class guidance.
-  **A:** The conclusion is wrong. The class stated that local `main` does not update automatically when a pull request is merged on GitHub; the student needs to run `git pull origin main` to synchronize the local `main` with the remote. The merge did succeed on GitHub; the local copy was simply out of date, so no new pull request is needed. *(01:00:08)*
-
-## 12. Creating a merge-conflict scenario with two branches ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 13. Creating a merge-conflict scenario with two branches ([8.3 What happens when my feature branch falls behind main?](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#what-happens-when-my-feature-branch-falls-behind-main))
 
 *01:03:51–01:10:51*
 
-- **Q:** A student is reviewing two open pull requests side by side in the demo repository and sees both are green and mergeable into `main`. They conclude that merging both will not cause a conflict. Is that conclusion valid per the class demonstration?
-  **A:** No, it is not valid. The class demonstrated that two pull requests can both appear green and mergeable when viewed separately, yet a conflict is not visible until one of them is actually merged; after the first merge moves `main`, GitHub rechecks the second pull request and only then reports the conflict. The instructor explicitly said "Nothing here actually tells you that a merge conflict is going to happen" when looking at the two pull requests side by side. *(01:09:28)*
+- **Q:** Two open pull requests each look green when viewed side by side, so a student concludes that both can be merged in any order without checking for conflicts. Judge that conclusion.
+    - **A:** It is not a safe conclusion. The instructor explained that after one pull request is merged into `main`, GitHub rechecks the other open pull requests against the changed `main`. A pull request that looked mergeable can become conflicted after the first merge. *(01:10:19)*
 
-## 13. Resolving the conflict locally with `git rebase main` and `git push --force-with-lease` ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 14. Resolving the conflict locally with `git rebase main` and `git push --force-with-lease` ([8.3.2 Using rebase](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#using-rebase))
 
 *01:10:51–01:20:42*
 
-- **Q:** After resolving the `<<<<<<<` markers in `README.md` during a rebase by keeping only their side of the change, a student runs `git rebase --continue` and considers the conflict "fixed." A teammate runs the notebook and gets an error on line 50 because the other side's variable definition was needed. Who is right per the class standard for what "fixing" a conflict means?
-  **A:** The teammate is right. The class standard is that fixing a conflict does not just mean removing the markers; "your code needs to work from top to bottom again." The instructor explicitly warned that just because a conflict appears on one line "doesn't mean that's the only place your code is going to affect," so the student is still responsible for making the entire notebook run correctly. *(01:11:09)*
+- **Q:** After `git rebase main` stops on a conflict in `README.md`, a student removes the conflict markers and considers the work fixed. Is that enough?
+    - **A:** No. The class standard is that the result must work from top to bottom again, not just have the conflict markers removed. A conflict on one line can affect later code, so the student is still responsible for making the whole report or script work. *(01:11:39)*
 
-- **Q:** After resolving the conflict and running `git rebase --continue`, a student types `git push origin dan-delete` to update the remote branch. Git rejects the push. What is wrong with this approach, and what is the class-endorsed command?
-  **A:** A plain push fails because rebase rewrote the commit history of the branch; the previous commit the remote has no longer matches the local history. The class-endorsed command is `git push --force-with-lease origin dan-delete`, which force-updates the branch while still checking that no one else has pushed to it in the meantime; the instructor said "you can't get around not force pushing" after a rebase changes history. *(01:19:23)*
+- **Q:** After rebase rewrites the commit on `dan-delete`, a student tries to update the branch with a normal `git push origin dan-delete`. Would you approve that?
+    - **A:** No, because rebase changed the history of a branch that was already pushed. The session showed that the update requires a force push, specifically `git push --force-with-lease origin dan-delete`, after which GitHub shows the forced update and the pull request can proceed. *(01:19:47)*
 
 ---
 
-- prompt: prompt-recall-5-evaluate.md @ 8bcc190
-- prompt-hash: 91dbb814d755
+- prompt: prompt-recall-5-evaluate.md @ 65eb21c
+- prompt-hash: 6b82591e2f8e
 - model: qwen3.8-27b-sglang (requested: qwen3.8-27b-sglang)
 - backend: local (SGLang)
 - inputs: transcript-plaud.md, terminal.txt, materials.md, notes-class-main--qwen3.8-27b-sglang.md
-- generated: 2026-11-20
-- notes-input: notes-class-main--qwen3.8-27b-sglang.md @ d2f17cf18422, links and section references removed
+- generated: 2026-11-25
+- notes-input: notes-class-main--qwen3.8-27b-sglang.md @ d2f17cf18422, links and section references removed, diagrams removed

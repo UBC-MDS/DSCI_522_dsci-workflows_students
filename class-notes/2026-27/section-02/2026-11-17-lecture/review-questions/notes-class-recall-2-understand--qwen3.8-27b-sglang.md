@@ -8,215 +8,224 @@ Instructor: Daniel Chen
 
 *Tier 2 of 5: Understand. Explain each answer in your own words before you read it; tier 1 (Remember) covers the facts, tiers 3 to 5 put them to use.*
 
-## 1. Course logistics: lab groups, GitHub usernames, and interview week
+## 1. Course logistics: lab groups, GitHub usernames, lab attendance, and interview week
 
 *00:00:01–00:04:04*
 
-- **Q:** Why did the instructor collect GitHub usernames from every student at the start of the course?
-  **A:** The instructor explained that the GitHub username is "a piece of metadata that is used everywhere else under the hood" in the program. It is not just for this course but is carried through the rest of the MDS program, which is why it is "super important." *(00:02:01)*
+- **Q:** Why did the instructor collect students' GitHub usernames, even though asking for them seemed annoying?
+    - **A:** The usernames fill a column in the lab-sections repository. They're used as metadata "everywhere else under the hood" in the program, which is why he said they're super important. *(00:02:01)*
 
 - **Q:** Why is lab attendance mandatory in DSCI 522?
-  **A:** Because the course is a group project, the TAs go around during lab and talk to every single group. Students need to be present when a TA is with their group, so attendance is mandatory. *(00:02:19)*
+    - **A:** Lab attendance is mandatory because it is a group project. During lab the TAs go around and talk to every single group, so you should be there when a TA is with your group. *(00:02:19)*
 
-- **Q:** What does the "interview week" conversation assess, and why is it described as not affecting the grade?
-  **A:** It is a roughly seven-minute, technical-interview-style conversation about how much the student knows about their Git work and their actual group codebase. The instructor said it is "not going to affect your grade" because they are "just trying things out"—the goal is to check whether you know what you are doing with Git and the code you are working in. *(00:03:08)*
+- **Q:** Why does the interview-week conversation cover a student's actual group codebase, not just Git?
+    - **A:** It's because you should know the code base you're working in, especially in the world of AI, where anything in the codebase is fair game to be asked about. The conversation is really testing how well you know what you're doing, like at work. *(00:03:15)*
 
-## 2. Why branches exist: escaping the pull-before-push friction ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 2. Why branches exist: escaping the "pull before I push" friction ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
 
 *00:06:49–00:09:43*
 
-- **Q:** Why did the shared slide deck exercise in DSCI 521 create friction even when no actual conflict occurred?
-  **A:** Because even without a conflict, there was always the step of "I have to pull first because someone else pushed before I can push again." If two people are working on the same thing at the same time, you always run into that coordination friction, whether or not a real conflict materializes. *(00:07:06)*
+- **Q:** In DSCI 521's shared slide-deck exercise, why did students often have to pull before they could push even when there was no actual conflict?
+    - **A:** Someone else had also pushed to the shared deck, so Git required you to pull their work down before you could push your own. That "I have to pull first" step happened whether or not the edits actually conflicted. *(00:07:06)*
 
-- **Q:** What is the benefit of working in parallel streams with branches?
-  **A:** You are in "your own little world" where you can push and pull until you are actually done, waiting for review from teammates. If the work is self-contained parallel work, it does not matter what other people are doing; you can work from Tuesday to Friday on your part of the project without being blocked. *(00:08:46)*
+- **Q:** Why does the instructor want each person to reach a part of the project they own and put on a branch?
+    - **A:** When two people work on the same thing at the same time, you keep hitting the friction of "I want to add something, but I can't." A branch gives you your own little world where you can push and pull until your work is ready for your teammates' review. *(00:08:19)*
 
-- **Q:** Why does the instructor say the first week of the group project will "get a little bit weird"?
-  **A:** Because not every project can start with four parallel pieces of work at the same time. There is always a part of a project where you are bound or stuck by one or two people getting the basics down first, and that problem exists in a project no matter what. *(00:07:40)*
+- **Q:** Why can't a group project simply start with everyone doing four parallel pieces of work at once?
+    - **A:** Not every project can start with four parallel pieces of work at once. There's always going to be a part where you're bound or stuck by one or two people, so the parallel-streams phase comes sooner or later as you each take ownership of your part. *(00:07:40)*
 
-## 3. Local repository versus remote `origin` ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 3. Local repository versus remote `origin`
 
 *00:09:46–00:11:11*
 
-- **Q:** Why does the instructor say that work existing only on your local computer "effectively doesn't exist" for grading or project purposes?
-  **A:** Because the remote is "the thing we grade" and "the thing that gets published." If your code is only on your computer, "your product is not shipped because the code isn't anywhere to be shipped." The remote is the state that matters. *(00:10:48)*
+- **Q:** Why did the instructor say work that exists only on your local computer "effectively doesn't really exist" for the project?
+    - **A:** The remote (`origin`) is the thing that matters — it's what gets graded and what gets published. If your code is only on your local machine, it's not anywhere to be shipped, so for grading or project purposes it's as if it doesn't exist. *(00:10:48)*
 
-- **Q:** How does the remote `origin` serve as the coordination point when multiple teammates are working on the same repository?
-  **A:** You coordinate with your GitHub remote, and your three other teammates also coordinate with the same remote. There is "a lot of coordination work that needs to happen" through that shared point, with `git push` sending your work up and `git pull` bringing others' work down. *(00:10:20)*
+- **Q:** How do a local repository and the remote `origin` stay coordinated in this workflow?
+    - **A:** `git clone` is a one-time command that brings the repository down. After that, local commits are sent up with `git push`, and work your teammates commit is brought down with `git pull`, so each person coordinates their computer with the shared remote. *(00:11:18)*
 
-- **Q:** What does it mean that `git clone` is a "one-time command" in the local/remote relationship?
-  **A:** Clone brings the repository down to your computer once; after that, the ongoing connection is maintained through `git push` (to send commits up) and `git pull` (to bring others' commits down). You do not keep cloning; you push and pull to stay in sync. *(00:11:25)*
+- **Q:** Why is there "a lot of coordination work" when several teammates use one repository?
+    - **A:** You have to coordinate your own computer with the GitHub remote, and each of your other teammates also has to coordinate with that same remote. That's why multiple local repositories all depend on the one shared remote state. *(00:10:20)*
 
-## 4. `main`, `origin/main`, `HEAD`, and what a branch is ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 4. `main`, `origin/main`, and what a branch is ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
 
 *00:11:11–00:16:05*
 
-- **Q:** What is the difference between `main` and `origin/main` in the Git diagram?
-  **A:** `main` is the local branch pointer that increments as you write commits on your computer. `origin/main` is "the remote, what your computer thinks the state of GitHub is at." If you write commits on main without pushing, your local main moves ahead of `origin/main`. *(00:13:30)*
+- **Q:** What does the `origin/main` reference in `git log` mean, and why can your local `main` run ahead of it?
+    - **A:** `origin/main` is the remote reference — what your computer thinks the state of `main` on GitHub is at. It's separate from your local `main`, so if you keep committing on `main` without pushing, your local `main` moves further ahead than `origin/main`. *(00:13:30)*
 
-- **Q:** How does a branch change the behaviour of `git commit` compared to committing on `main`?
-  **A:** Instead of incrementing where `main` is when you write a commit, you increment "some other name that you give it yourself." The same `git add` and `git commit` process applies, but the named branch moves forward while `main` stays where it is. *(00:13:55)*
+- **Q:** How does a branch differ from `main` in what moves when you commit?
+    - **A:** A branch is just another name you give. When you write a commit, instead of incrementing where `main` is, you increment that other name, so `main` (and `origin/main`) stay where they are while your branch moves. *(00:13:55)*
 
-- **Q:** Why does the instructor compare `main` to a "production final" branch?
-  **A:** Because in larger projects, you want other moving pieces to move at a steady rate. You do not want one person to try something on main and have it break on all of their teammates' computers. Everything in main should be in working order and stable, even if not finished. *(00:15:10)*
+- **Q:** Why did the instructor describe `main` as like "production" that should stay stable and working?
+    - **A:** In coordinated projects you want the moving pieces to move at a steady rate. You don't want to try something that stops working on your computer and then on all your teammates' computers, so `main` holds the stable, working state while risky or unfinished work stays off it. *(00:14:50)*
 
-- **Q:** What does it mean that `HEAD` is "attached to" a branch?
-  **A:** HEAD is the pointer into the Git history that shows which branch you are currently on. When HEAD is pointed to `main`, you are on the main branch; when you switch to a new branch, HEAD moves to point at that branch. It is the visual cue of your current location in the repository. *(00:13:17)*
+- **Q:** Why did the instructor say the only thing that belongs in `main` in this course is the already-cleaned dataset?
+    - **A:** Exploratory analysis and plots are not ready yet, because you're still exploring the dataset. So `main` should only hold the stable piece everyone is based on, and you do your individual bits of work off on branches. *(00:15:10)*
 
 ## 5. Branches are useful even when working alone ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
 
 *00:16:05–00:17:54*
 
-- **Q:** Why does the instructor say you can use branches even when working by yourself?
-  **A:** To "section off work" and test a whole bunch of stuff without the main branch changing without reviewing everything. He gave the example of the course textbook, where he did all his work in a sequence of branches so the textbook would not "start things moving around like crazy in the middle of a teaching day." *(00:16:12)*
+- **Q:** Why does the instructor use branches even when working alone on a repository such as the course textbook?
+    - **A:** He uses branches to section off work and test a whole bunch of stuff without changing `main` until he's reviewed and confirmed everything works. For the textbook he did it that way because a class was being taught and he didn't want the book moving around mid-teaching-day, then merged after lectures. *(00:16:37)*
 
-- **Q:** What is the advantage of abandoning a failed branch versus undoing a tangled set of commits on `main`?
-  **A:** If something did not work, it is "really easy to delete a branch" and come back to main. Versus if you wrote one commit that did twenty different things on main, you would have to "go through the git history, start copying and pasting all the bits that are actually relevant," which is really hard. *(00:17:00)*
+- **Q:** Why is it easier to abandon a bad idea on a branch than to undo commits made directly on `main`?
+    - **A:** If a branch was a bad idea, you can just delete it and come back to `main`. But if you wrote one big commit on `main` that did many things, undoing a portion of it means digging through the Git history copying and pasting the relevant bits, which is much harder. *(00:16:51)*
 
-- **Q:** How do `git reset` and `git revert` relate to the undo capability that branches provide?
-  **A:** The instructor acknowledged that you could use `git reset` and `git revert` (from DSCI 521) to undo commits on main, but branches "sort of just make that a little bit easier" because you can simply discard the whole branch and return to main as your starting point. *(00:17:22)*
+- **Q:** How do branches compare to `git reset` and `git revert` as undo mechanisms?
+    - **A:** You could have reset and reverted everything as an undo without branches. But branches make it a little bit easier by isolating the work so you can discard it all at once rather than untangling commits on `main`. *(00:17:22)*
 
-## 6. Creating a branch with `git switch -c` ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 6. Creating a branch with `git switch -c` ([8.1 Creating a branch using the command line](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#creating-a-branch-using-the-command-line))
 
 *00:17:54–00:23:46*
 
-- **Q:** Why should you synchronize with the remote (for example, `git pull origin main`) before creating a new branch for coordinated project work?
-  **A:** So your starting point is "essentially up to date." The instructor shared a personal example of creating a branch, forgetting he was working on three different computers, and realizing he had already done half the work on another laptop. Syncing first "could have saved [him] a bunch of time." *(00:18:09)*
+- **Q:** Why should you run `git pull origin main` (or otherwise sync) before creating a branch when you're building on coordinated project work?
+    - **A:** You want your starting point to be up to date before you branch. The instructor gave the example of creating a branch while he'd already done half the work on another laptop, which he could have avoided by syncing first, so you don't start from a stale local state. *(00:18:09)*
 
 - **Q:** What does `git switch -c <branch>` do that a plain `git switch <branch>` does not?
-  **A:** The `-c` flag stands for create: it creates a new branch and immediately moves HEAD to it. Without `-c`, `git switch` just moves HEAD to an existing branch. The instructor summarized the `-c` version as "create and move head to the branch name." *(00:20:09)*
+    - **A:** `git switch` moves `HEAD` to an existing branch. Adding `-c` also creates the new branch and then moves `HEAD` onto it, so after `git switch -c dan-b1` the only thing that changed in `git status` is that it now says you're on that new branch. *(00:20:09)*
 
-- **Q:** Why does the instructor sometimes prefix branch names with the owner's name in group repositories?
-  **A:** So that "other people know that if something's going on around here and something's weird, this is the person to talk to." It is a signal about who owns that branch and who to contact if something looks off. *(00:20:31)*
+- **Q:** Why does the instructor sometimes start a branch name with a teammate's name in group repositories?
+    - **A:** It signals ownership. If something is going on around that branch and looks weird, other people know who to talk to because the branch name carries their name. *(00:20:31)*
 
-- **Q:** What happens to the Git log immediately after running `git switch -c dan-b1` but before making any new commits?
-  **A:** Not much changes: you still have `main`, the remote references, and a new branch called `dan-b1` with HEAD on it. No new commit was made; the only difference is that HEAD is now attached to the new branch instead of `main`. *(00:21:15)*
+- **Q:** After you commit on a branch such as `dan-b1`, why does `main` not move?
+    - **A:** The commit brings along the branch you're on, not `main`. The same `git add`/`git commit` process runs, but instead of dragging along `main` it drags along your branch name, so `main` and `origin/main` stay where they were. *(00:22:58)*
 
-## 7. Switching between branches and seeing the repository state ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 7. Switching between branches and seeing the repository state ([8.1.1 Switching to branches that already exist](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#switching-to-branches-that-already-exist))
 
 *00:23:46–00:28:26*
 
-- **Q:** Why does the instructor recommend using `git switch` rather than `git checkout` when teaching?
-  **A:** `checkout` was doing what `switch` does (moving HEAD around) but also "did a lot of what revert and restore was doing." If you are not comfortable with what `checkout` does, the instructor suggests asking tools to use `switch` instead, because `switch` has a narrower, more predictable behaviour. *(00:27:09)*
+- **Q:** Why does the instructor say you need the `--all` flag when running `git log --oneline --graph --decorate` to see your other branch names?
+    - **A:** Without `--all`, the log doesn't show the other branch names. Adding `--all` includes every branch so you can see `dan-b1` alongside `main` in the same graph. *(00:25:34)*
 
-- **Q:** What is the difference between `git branch <name>` and `git switch -c <name>`?
-  **A:** `git branch` just creates the branch but "doesn't move [HEAD] to it." You still have to `checkout` or `switch` after creating it. `git switch -c` does both in one step: it creates the branch and moves HEAD to it. *(00:28:13)*
+- **Q:** How is the older `git checkout` command different from `git switch`?
+    - **A:** `checkout` is the older command that did what `switch` does (moving `HEAD`) but also did a lot of what `revert` and `restore` now do. The instructor uses `switch` when teaching and suggests that if you're not comfortable with `checkout` you should ask tools to do it with `switch` instead. *(00:26:59)*
 
-- **Q:** Why does the `--all` flag matter when running `git log --oneline --graph --decorate`?
-  **A:** Without it, you may not see your other branch names in the log output. The instructor noted that if you do not see your other branch names, that is why he has `--all` typed out; it ensures all branches appear in the graph. *(00:25:38)*
+- **Q:** Why doesn't `git branch <name>` on its own get you onto the new branch?
+    - **A:** `git branch` only creates the branch; it does not move `HEAD`. So you still have to `switch` (or `checkout`) to it afterward to actually be on it. *(00:28:13)*
 
-## 8. Pushing a branch to `origin` and viewing it on GitHub ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+- **Q:** Why does the VS Code / Positron Git graph view help when learning branches?
+    - **A:** That graph is essentially the same as what the terminal log shows — local `main`, `origin/main`, and your branch's commits. So it's a visual cue for what `git switch` and your commits are doing to `HEAD` and the branches. *(00:24:09)*
+
+## 8. Pushing a branch to `origin` and viewing it on GitHub ([8.2 Useful things you can do with branches on GitHub](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#useful-things-you-can-do-with-branches-on-github))
 
 *00:28:31–00:33:40*
 
-- **Q:** Why does the instructor say the easiest way to combine a branch into `main` is to "don't do it on your local computer"?
-  **A:** Because the class workflow uses a review process—pull requests—rather than local merges. The pull request is where you review your own work and your teammates' work before incorporating it into the project. *(00:28:58)*
+- **Q:** Why does pushing a new branch to GitHub not require any Git command beyond `git push`?
+    - **A:** `push` is the only command that links your local computer to the remote. You point it at the branch with `git push origin dan-b1`, and afterward `git log` shows an `origin/dan-b1` reference meaning GitHub now has the branch in the same place as your local one, while `main` hasn't changed. *(00:29:22)*
 
-- **Q:** What does it mean when `origin/dan-b1` appears in the `git log` after running `git push origin dan-b1`?
-  **A:** It means "GitHub also has a branch called dan b one and is in the same location as whatever exists on your local computer." The local computer now knows that the remote has that branch, but `main` has not changed at all. *(00:31:19)*
+- **Q:** Why did a plain `git push` while on `main` report that everything was up to date instead of pushing the new branch?
+    - **A:** A plain `git push` only pushes the branch you're currently on, and you were on `main`. You have to say where and what you're pushing, so the command is `git push origin dan-b1` — you change the last word from `main` to the branch you're pushing. *(00:29:34)*
 
-- **Q:** Why is it useful to view a teammate's branch on GitHub before it is merged into `main`?
-  **A:** You can see their code or work "even though it's not combined into the main branch yet." For example, if a teammate made a cool figure, you can look at their code without running it. It does not mean the work is completely reviewed and ready to merge, but you can look around. *(00:32:36)*
+- **Q:** Why is it useful that you can view the `dan-b1` branch in the GitHub branch dropdown even before it's merged into `main`?
+    - **A:** It lets you check that your work exists on GitHub. In a group, a teammate can also look at your code or a figure without running it or merging it, even though it isn't combined into `main` yet. *(00:32:36)*
 
-- **Q:** Why do you need to change the last word in `git push origin main` when pushing a new branch?
-  **A:** Because you are no longer pushing the main branch; you are pushing a different branch. The behaviour of push is "exactly the same," but the target branch name changes from `main` to whatever branch you created, such as `dan-b1`. *(00:30:44)*
-
-## 9. Opening a pull request and reviewing the changed files ([9 Pull requests](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-pull-requests.html))
+## 9. Opening a pull request and reviewing the changed files ([9.1 Creating a pull request](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-pull-requests.html#creating-a-pull-request))
 
 *00:33:40–00:39:56*
 
-- **Q:** Why does the instructor recommend opening a pull request immediately after pushing a branch, even if the work is not finished?
-  **A:** Because the "Compare and Pull Request" popup disappears after a day or so. Starting the process right away means the pull request exists and updates as you keep pushing commits, so you do not lose the opportunity to begin the review workflow. *(00:35:00)*
+- **Q:** Why did the instructor say to start the pull request right away, even before the work is finished?
+    - **A:** Starting the pull request right away means the review process exists from the start and updates as you keep pushing commits to the branch. It also lets you confirm the setup is working, and the "Compare and pull request" pop-up can disappear after a day or so, so starting early avoids losing it. *(00:35:15)*
 
-- **Q:** Why is the first comment in a pull request important, and why should you edit it rather than just appending new notes?
-  **A:** "That's what people are going to read." All of your changes should be defined and explained in the very first comment. If you keep making changes to the pull request, you should edit the first message rather than just adding new ones, so the description stays coherent. *(00:40:48)*
+- **Q:** Why is it important to check which branch a pull request is merging into before creating it?
+    - **A:** In this course `main` is usually the target branch. But in 524 it's not always `main`, and with forks or large open-source projects you have to make sure you're sending your code to the right repository and branch. *(00:35:38)*
 
-- **Q:** What two things should you check in the Files Changed tab before creating a pull request, and why does the second check matter?
-  **A:** First, confirm that all the files and bits of code you thought you worked on actually exist. Second, check for files that "don't really belong here," like `.ipynb_checkpoints`, `.DS_Store`, or Word backup files, because in this course, if such unwanted files are visible in a repository, "we will take points off." *(00:38:44)*
+- **Q:** Why does the instructor tell you to scan a pull request's changed files for things like `.ipynb_checkpoints` and `.DS_Store`?
+    - **A:** Those are temporary or hidden backup files that don't belong in the repository. In this course, if such unwanted files show up in a repository you'll lose points, so the scan is a second line of defense that your `.gitignore` is still doing its job. *(00:38:44)*
 
-- **Q:** Why does the instructor say to pay attention to where you are merging in the pull request?
-  **A:** In DSCI 522, `main` is probably the target, but in 524, "main is not always going to be the branch that you're going to be incorporating work into." In large open-source projects with forks, you also need to make sure you are sending your code to the right repository and branch. *(00:35:38)*
+- **Q:** Why should you confirm in the "Files changed" view that all the code you intended to change is actually present?
+    - **A:** If your intended code isn't in the "Files changed" view, you probably typed something wrong or forgot to `git add`, commit, and push. So the check confirms the pull request actually represents your real work. *(00:39:37)*
 
 ## 10. Pull request conversation, code review, and updating the same branch ([10 Code review on GitHub](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-code-review.html))
 
 *00:39:56–00:45:41*
 
-- **Q:** What does the "Files Changed" tab in a pull request show, and how does it relate to what "code review" means?
-  **A:** It shows "the diff between the original file and the new file." Code review is literally looking at that diff and making comments on specific lines using the plus button, which then get tracked in the main conversation tab. *(00:41:22)*
+- **Q:** Why did the instructor say to edit the very first pull-request comment instead of just adding new ones as you make more changes?
+    - **A:** The first message is what people are going to read, so all of your changes should be defined and explained in that first comment. You can edit it (or any comment) to keep it accurate as the work evolves. *(00:40:48)*
 
-- **Q:** Why is it the pull request author's job to fix issues rather than the reviewer's job?
-  **A:** The reviewer's job is to say "rewrite this" or "this doesn't look right." It is the author's job to "go and actually fix it" in the codebase. The instructor emphasized: "if it's your pull request, it is your job to fix it all." *(00:42:17)*
+- **Q:** What does the "Files changed" tab in a pull request show, and why is that what code review looks at?
+    - **A:** It shows the diff between the original file and the new file. That's what reviewers look at when doing code review — you can hover over a line and use the plus button to add a line-specific comment, which gets tracked in the conversation. *(00:41:16)*
 
-- **Q:** How does a pull request update when the author makes additional commits, and why does the author not need to close and recreate it?
-  **A:** The pull request is tied to the actual branch. You just go back to the branch, add, commit, and push to the same branch, and "the pull request will update." You do not need to close the pull request and create a new one; it keeps track of all the information as you push. *(00:43:15)*
+- **Q:** Why is it the pull-request author's job, rather than the reviewer's, to fix the issues found in review?
+    - **A:** The rule of thumb is that if it's your pull request, it's your job to fix it all. The reviewer's job is to say "rewrite this" or "this doesn't look right," not to fix the code for you. *(00:42:17)*
 
-- **Q:** What does it mean when GitHub "auto-collapses" a comment as outdated?
-  **A:** It means you changed the line that the comment was attached to, so "that original comment, probably doesn't exist anymore or is relevant anymore." GitHub collapses it "just so you don't end up looking at too much stuff." *(00:45:02)*
+- **Q:** Why don't you need to close and recreate a pull request when you need to make a change to address review?
+    - **A:** You can just go back to the branch the pull request was working from, `git add`, commit, and push to that same branch. The pull request is tied to the branch, so it updates automatically (sometimes after a refresh). *(00:43:09)*
 
-## 11. Draft pull requests, merging, and deleting the remote branch ([9 Pull requests](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-pull-requests.html))
+- **Q:** Why might GitHub collapse an earlier review comment as "outdated"?
+    - **A:** If you edited or made a change to the line the comment was on, that original comment probably doesn't exist or is relevant anymore. So GitHub collapses it so you don't end up looking at too much stale stuff. *(00:45:00)*
+
+## 11. Draft pull requests, merging, and deleting the remote branch ([9.2 Draft pull requests](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-pull-requests.html#draft-pull-requests))
 
 *00:52:11–00:58:51*
 
-- **Q:** Why does the instructor create the pull request early and then convert it to a draft rather than waiting until the work is complete?
-  **A:** To "make sure all the pipeline is working" and to signal to the team that work is in progress. The pull request updates as he keeps pushing the branch, and a draft communicates "we're still working on this" without the risk of premature merging. *(00:53:26)*
+- **Q:** Why did the instructor convert the pull request to a draft instead of just leaving it open while still working?
+    - **A:** A draft signals to you and the team that the work isn't ready yet — it shows a gray bar instead of a green one and the merge button is grayed out. That means nobody can accidentally merge something that's explicitly not ready, and he sometimes keeps drafts going for months as a "still working on this" signal. *(00:53:59)*
 
-- **Q:** What is the purpose of disabling the merge button on a draft pull request?
-  **A:** So "no one can actually accidentally merge something that is very explicitly saying this not working or this not ready yet." The gray bar instead of a green one is the visual cue that the work is not finished. *(00:54:30)*
+- **Q:** Why did the instructor say a draft pull request also helps against automated AI reviewers?
+    - **A:** He believes the draft status forces an agent not to just merge everything that's green. So the "not ready" signal protects against an automatic merge. *(00:55:03)*
 
-- **Q:** Why does deleting the remote branch after merging not remove the commits from the project's history?
-  **A:** Because the commits have been merged into main; "the commits are still there. It's not that the commits have been gone." Even after deleting the branch marker, you can see the commits in the history, including a separate merge commit that says "this stuff got merged in." *(00:58:10)*
+- **Q:** Why did the instructor recommend deleting the remote branch after merging it into `main`?
+    - **A:** Otherwise the branch dropdown slowly grows into a giant list of finished branches. Deleting the merged branch keeps things clean, and it doesn't lose the commits, which stay in the history along with the separate merge commit. *(00:56:08)*
 
-## 12. Local cleanup after a merge: `git pull`, `git branch -a`, `git fetch --prune`, and `git branch -d` ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+- **Q:** If you request an AI (Copilot) review of your pull request, why aren't all of its comments something you must accept?
+    - **A:** Having more eyes on something is a good thing, but it doesn't mean every comment the LLM makes is one you have to keep. You can push back, reject, or accept each one. *(00:52:30)*
+
+## 12. Local cleanup after a merge: `git pull`, `git fetch --prune`, and `git branch -d` ([8.1.3 Useful command line Git branching commands](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#useful-command-line-git-branching-commands))
 
 *00:58:53–01:03:51*
 
-- **Q:** Why does your local `main` branch not automatically update after a pull request is merged on GitHub?
-  **A:** Because "main doesn't automatically update itself." You need a synchronization step: switch to main and run `git pull origin main` to get the merged changes onto your local machine. *(01:00:17)*
+- **Q:** Why did the instructor say individual assignment 1 has you review merge conflicts again, even though the group project uses branches?
+    - **A:** Even when you work in branches, conflicts can still happen — agents or teammates can't help but fix a typo in the part you're working on. So you still need to know how to get yourself out of a merge conflict. *(00:59:07)*
 
-- **Q:** What is the difference between `git pull origin main` and `git fetch --prune` in terms of what happens to your local files?
-  **A:** `git pull` does two things: it runs fetch and then merge on top, which changes your files. If you do not want the files on your computer to change, you only run `git fetch`, which "is coordinating the history" without modifying files. The `--prune` flag additionally removes local references to branches that were deleted on GitHub. *(01:02:07)*
+- **Q:** Why didn't your local `main` automatically reflect the pull request that was just merged on GitHub?
+    - **A:** The merge happened on the remote, not on your machine. To update your local copy you have to switch to `main` and run `git pull origin main`, which is the synchronization step that brings the remote `main` down to your machine. *(01:00:14)*
 
-- **Q:** Why does `git branch -d` refuse to delete a branch that has not been merged?
-  **A:** Because "if you delete it, in theory, you've lost work." Git makes it harder to delete work that is kind of permanent. The lowercase `-d` only allows deletion if the branch has been merged; if it has not, the command will not delete it. *(01:02:54)*
+- **Q:** What does `git fetch --prune` do that a plain `git fetch` does not, and why run it?
+    - **A:** `git fetch` coordinates the history with the remote without changing the files on your computer. Adding `--prune` also removes the local references to any branches that were deleted on GitHub, so after deleting `dan-b1` on GitHub, `fetch --prune` drops the `origin/dan-b1` marker from your local log. *(01:01:30)*
 
-- **Q:** Why does the instructor specifically warn about capital `-D` when copying commands from tools like ChatGPT?
-  **A:** Because capital `-D` force-deletes a branch even if it has not been merged. The instructor warned: "Be very careful if you're copying and pasting commands from ChatGPT because it might just say capital D delete, force delete, and then you could delete the commits that you're working on." *(01:03:21)*
+- **Q:** Why is it safer to delete a local branch with lowercase `git branch -d` than with a capital `-D`?
+    - **A:** Lowercase `-d` will only delete a branch that has been merged, which protects you from losing unmerged work. A capital `-D` force-deletes even unmerged work, so if you copy a `-D` from a tool you could permanently delete commits you were still working on. *(01:02:38)*
 
-## 13. Creating a merge-conflict scenario with two branches ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+- **Q:** How does `git pull` relate to `git fetch` and `git merge`?
+    - **A:** When you run `git pull`, it's doing two commands — `fetch` and then `merge` on top. But if you don't want the files on your computer to change, you only run `fetch`, which just coordinates the history. *(01:01:52)*
+
+## 13. Creating a merge-conflict scenario with two branches ([8.3 What happens when my feature branch falls behind main?](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#what-happens-when-my-feature-branch-falls-behind-main))
 
 *01:03:51–01:10:51*
 
-- **Q:** Why did the instructor create two separate branches (`dan-fetch` and `dan-delete`) from the same `main` state to demonstrate a merge conflict?
-  **A:** To simulate what happens when two people make changes to the same line of the same file. The conflict arises from "the same change to the same line of the same file," which is what happens when two branches both modify a region that the other has already changed. *(01:04:00)*
+- **Q:** How does the instructor set up a merge conflict using the `dan-fetch` and `dan-delete` branches?
+    - **A:** He creates two branches from the same `main` state and makes conflicting changes to the same region of `README.md` on each. Then he pushes both and opens a pull request for each; the key is to not merge the first one immediately, so the second branch is still based on the old `main`. *(01:04:00)*
 
-- **Q:** Why does looking at the two pull requests side by side not obviously reveal that they will conflict?
-  **A:** Each pull request looks like it can merge into main individually. "It's not very obvious that their starting point is from that main branch," and "nothing here actually tells you that a merge conflict is going to happen." The conflict only becomes apparent after one branch is merged. *(01:09:17)*
+- **Q:** What does the "split" you see in `git log --graph` mean when two branches come out of the same `main` commit?
+    - **A:** It means two parallel pieces of work are happening — one branch on each side (here `dan-fetch` and `dan-delete`). Both are based on the same `main` starting point, which is the setup that lets them later conflict when merged. *(01:08:18)*
 
-- **Q:** What happens when the first pull request is merged that causes the second pull request to become conflicted?
-  **A:** The main branch changes, and then "every single pull request that is merging into main is going to recheck to see if it can be merged." The second pull request, even though it previously showed everything in green, now ends up on a conflict page because it can no longer merge cleanly. *(01:10:19)*
+- **Q:** Why didn't the two open pull requests, viewed side by side, show that they would conflict?
+    - **A:** The conflict isn't visible until one of them is merged and `main` changes. Then GitHub rechecks every open pull request that merges into `main` to see if it can still be merged, and the one that can't now shows a conflict even though it looked green before. *(01:09:28)*
 
-## 14. Resolving the conflict locally with `git rebase main` and `git push --force-with-lease` ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 14. Resolving the conflict locally with `git rebase main` and a force-with-lease push ([8.3.2 Using rebase](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#using-rebase))
 
 *01:10:51–01:20:42*
 
-- **Q:** Why does the instructor say that "fixing" a merge conflict in this course means more than just removing the conflict markers?
-  **A:** Because your code or report "needs to work from top to bottom again." A conflict on line thirteen "doesn't mean that's the only place your code is going to affect." If changing the conflict affects a variable used later in the file, that is still your problem to deal with. *(01:11:21)*
+- **Q:** Why did the instructor say "fixing" a conflict means more than just removing the conflict markers?
+    - **A:** In this course "fixed" means the report or code works from top to bottom again. A conflict on one line doesn't mean that's the only place affected — for example, changing a variable name there might break line 50, so it's still your responsibility to make the whole thing work. *(01:11:09)*
 
-- **Q:** What does `git rebase main` do, and why is it used to resolve the conflict on the `dan-delete` branch?
-  **A:** It "replay[s] all of my commits in this branch back to the main branch over the main branch." This moves the branch's commit on top of the updated main, which is where the conflict appears on your computer so you can go and fix it in your text editor. *(01:17:14)*
+- **Q:** Why did the instructor use `git rebase main` to resolve the conflict instead of just merging?
+    - **A:** Rebase replays the commits on `dan-delete` on top of the updated `main`, turning the forked state into a linear one. That's where the conflict gets triggered on his local computer, where he can fix it; it's his preferred way, though he acknowledged people have opinions and there are many ways. *(01:14:04)*
 
-- **Q:** Why can you not use a normal `git push origin dan-delete` after rebasing, and why is a force push necessary?
-  **A:** Because rebase "changed the history of that commit." The previous commit is no longer the same version of main; the history is actually changed. "You have to force push to force update the branch" because a normal push will not accept the rewritten history. *(01:19:34)*
+- **Q:** How is the conflict triggered in this branch workflow different from how it was triggered in DSCI 521?
+    - **A:** In 521 you triggered a conflict by running `git pull origin main`. Here you trigger it by replaying your commits over another branch with `git rebase main`, since your branch is based on the old `main` and needs to be re-applied on top of the new one. *(01:17:56)*
 
-- **Q:** How does the rebase approach to triggering a conflict differ from the DSCI 521 approach?
-  **A:** In DSCI 521, the conflict was triggered by running `git pull origin main` on a branch that was behind. Now it is triggered by "replaying commits over another branch" with `git rebase main`. The resolution process—finding the markers, fixing the file, running `git add`, and continuing—is the same. *(01:17:56)*
+- **Q:** Why did the instructor have to use `git push --force-with-lease origin dan-delete` instead of a normal push after the rebase?
+    - **A:** The rebase rewrote the history of a commit that had already been pushed — its previous commit changed from the old `main` to the new merge commit. So a simple push is no longer enough; you have to force-update the branch, and he noted you can't get around it because you've mangled the history. *(01:19:34)*
 
 ---
 
-- prompt: prompt-recall-2-understand.md @ 8bcc190
-- prompt-hash: d3d1585a5f4d
+- prompt: prompt-recall-2-understand.md @ 65eb21c
+- prompt-hash: 17df43f38e78
 - model: qwen3.8-27b-sglang (requested: qwen3.8-27b-sglang)
 - backend: local (SGLang)
 - inputs: transcript-plaud.md, terminal.txt, materials.md, notes-class-main--qwen3.8-27b-sglang.md
-- generated: 2026-11-20
+- generated: 2026-11-23
 - notes-input: notes-class-main--qwen3.8-27b-sglang.md @ d2f17cf18422, links and section references removed

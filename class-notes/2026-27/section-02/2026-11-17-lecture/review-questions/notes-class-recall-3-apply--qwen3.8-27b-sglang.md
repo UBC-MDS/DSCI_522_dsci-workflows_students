@@ -12,211 +12,167 @@ Instructor: Daniel Chen
 
 *00:04:07–00:06:49*
 
-- **Q:** You are in the demo repository after cloning it, on `main`, and you have edited `README.md`. Put the commands in the order you would run them to make that edit visible on GitHub for a teammate.
-  **A:** Run `git status` to confirm the file is modified, then `git diff` to inspect the change, then `git add README.md`, `git commit -m "intro and review"`, and `git push origin main`. The commit makes the change part of local `main`, but the push is what sends it to `origin`. Your teammate can only see it after it exists on the remote. *(00:06:38)*
+- **Q:** You are in the `2026-11-17-git` demo repository, on `main`, and you have edited `README.md`. In order, what do you run to inspect, stage, commit, and publish that change to `origin`?
+    - **A:** Run `git status` and `git diff` to inspect the change, then `git add README.md`, `git commit -m "intro and review"`, and `git push origin main`. The commit only updates local `main`; `git push origin main` is the step that updates the remote branch. *(00:06:38)*
 
-- **Q:** You have edited `README.md` in the demo repository and want to know whether Git sees the file as changed before you stage anything. Which command shows the current changes?
-  **A:** Use `git status`; it reports `modified: README.md` and states that no changes are staged. It also tells you the current branch and whether the working tree is clean. It is the first check before `git add`. *(00:06:13)*
+- **Q:** You commit your `README.md` change to local `main`, but a teammate’s clone does not show it. What step did you skip, and what command fixes it?
+    - **A:** You skipped pushing the local commit to the remote; run `git push origin main`. Work that exists only on your computer is not the shared repository state that the remote project uses. *(00:11:03)*
 
-- **Q:** You want to read the exact added text in `README.md` before committing. Which command shows the text difference?
-  **A:** Use `git diff` to compare the working tree to the staged or last committed version. In the demo, it showed the added branch link and review sentence. It lets you verify the edit before `git add`. *(00:06:13)*
+- **Q:** You have just committed and pushed to `main`. What does `git log --oneline --graph --decorate --all` show that tells you local `main` and `origin/main` are synchronized?
+    - **A:** It shows `HEAD -> main` and `origin/main` on the same commit. That decoration means your local branch and your local record of the remote branch point to the same place. *(00:06:38)*
 
-## 2. Why branches exist for parallel work ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 2. Branches, local state, and remote `origin` ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
 
-*00:06:49–00:09:43*
+*00:06:49–00:16:05*
 
-- **Q:** You own a self-contained analysis task in a group project, and no one else is editing that part yet. What Git workflow should you use before committing to `main`?
-  **A:** Create a feature branch for your own work stream. That gives you a separate place to commit and push without moving `main` for your teammates. You can wait for review before the work is merged. *(00:08:46)*
+- **Q:** Your teammate is still updating shared setup files, but you have a self-contained analysis task. What Git workflow do you use to avoid having to pull before every push?
+    - **A:** Create your own branch for that task and commit there until it is ready for review. A branch gives a separate stream of work that does not move `main` or block on other people’s pushes. *(00:08:41)*
 
-- **Q:** Two people are working on the same project file, and a teammate has already pushed a new commit to `main`. What must you do before your own `main` push can succeed?
-  **A:** Synchronize with the remote first, typically by running `git pull origin main`. That brings their new commit down to your local `main` before you push. Without that step, your local state is behind the shared remote. *(00:07:06)*
+- **Q:** You are on `dan-b1` and make a commit. What happens to `main` and `origin/main` in the Git graph?
+    - **A:** They stay where they were; only `HEAD -> dan-b1` moves forward. A branch commit increments the branch name you are on, not the default branch or the remote-tracking branch. *(00:14:15)*
 
-- **Q:** You finish your branch work early, but your group does not schedule review until Friday. What can you do with your branch while waiting?
-  **A:** Keep committing to, pushing, and pulling from your branch without depending on your teammates' branches. Your work stays in its own branch until the review happens. This is the parallel-stream benefit of branching. *(00:09:19)*
+- **Q:** You are making exploratory plots and tests that are not ready for teammates to rely on. Where should that work live while `main` remains stable?
+    - **A:** It should live on a branch, not on `main`. `main` is treated as the stable place, while unfinished or exploratory work can be tested on a branch until it is reviewed and merged. *(00:15:10)*
 
-## 3. Local repository versus remote origin ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 3. Creating and switching branches ([8.1 Creating a branch using the command line](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#creating-a-branch-using-the-command-line))
 
-*00:09:46–00:11:11*
+*00:17:54–00:28:26*
 
-- **Q:** You finish a feature on your laptop, but a teammate says they cannot find it on GitHub. What step did you skip?
-  **A:** You skipped pushing the work to `origin`. Work that exists only on a local computer is not available for grading or project coordination. The remote repository is the shared state teammates see. *(00:10:53)*
+- **Q:** You are on `main` and are about to start work that builds on teammates’ coordinated changes. What do you check before creating the new branch?
+    - **A:** Run `git status` to confirm you are on `main`, then synchronize with the remote using `git pull origin main`. Starting from an outdated local `main` can cause you to redo work that already exists on the remote. *(00:18:39)*
 
-- **Q:** You need to start working in the demo repository on your computer and want a local copy connected to GitHub. Which one-time command do you use?
-  **A:** Use `git clone` with the repository URL. It creates a local repository and sets up the remote reference to `origin`. After cloning, you use ordinary `push` and `pull` commands for ongoing synchronization. *(00:11:25)*
+- **Q:** You are on `main` and want to start a new branch named `feature-cleanup`. What single command creates the branch and moves `HEAD` to it?
+    - **A:** Run `git switch -c feature-cleanup`. The `-c` flag creates the branch and switches to it in one step, so subsequent commits move that branch instead of `main`. *(00:20:09)*
 
-- **Q:** A teammate pushes a commit to `origin/main`, and you need that commit on your local `main`. What command brings it down?
-  **A:** Run `git pull origin main` while on `main`. It fetches the remote state and merges the new commit into your local branch. This keeps your local `main` coordinated with the remote. *(00:11:47)*
+- **Q:** You have an existing local branch named `dan-fetch` and want to move your working tree to that branch without creating a new branch. What command do you run?
+    - **A:** Run `git switch dan-fetch`. Omit `-c` because you are not creating a branch; this moves `HEAD` to the existing branch and shows that branch’s file state. *(00:25:12)*
 
-## 4. `main`, `origin/main`, `HEAD`, and branch state ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+- **Q:** A helper suggests `git checkout -b dan-b1` for creating and switching to a new branch. If you prefer the modern command shown in the session, what do you use instead?
+    - **A:** Use `git switch -c dan-b1`. `git checkout` is the older equivalent, and using `switch` makes the intent clearer when you are only moving or creating branches. *(00:26:59)*
 
-*00:11:11–00:16:05*
+- **Q:** You need a local branch to exist but do not want to move to it immediately. What command creates it, and what command later moves to it?
+    - **A:** Run `git branch <branch>` to create it without moving `HEAD`, then later run `git switch <branch>` to move to it. This two-step workflow differs from `git switch -c`, which creates and switches in one command. *(00:28:10)*
 
-- **Q:** You are on `main`, create `dan-b1`, and make one commit without pushing. What will `git log --oneline --graph --decorate --all` show about `main` and `dan-b1`?
-  **A:** It will show local `dan-b1` one commit ahead, with `HEAD -> dan-b1`, while `main` and `origin/main` remain at the older commit. The new commit moved the branch name you are on, not `main`. The remote reference has not changed because nothing was pushed. *(00:14:06)*
+## 4. Pushing a branch and opening a pull request ([9.1 Creating a pull request](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-pull-requests.html#creating-a-pull-request))
 
-- **Q:** You need to know which branch will move when you make the next commit. How can you check from Git history?
-  **A:** Look for `HEAD` in the output of `git log --oneline --graph --decorate --all`; the arrow shows the branch `HEAD` is attached to. You can also use `git status` to see `On branch <name>`. That current branch is the one that increments on your next commit. *(00:13:17)*
+*00:28:31–00:39:56*
 
-- **Q:** You are making exploratory plots that may not work and you do not want teammates' `main` to become unstable. Where should that exploratory work live?
-  **A:** Put it on a feature branch, not on `main`. Keep `main` as the stable, working state for the shared project. The exploratory branch can be reviewed or discarded without disturbing the default branch. *(00:15:49)*
+- **Q:** You are on `main` and run plain `git push`; it says `Everything up-to-date`. You still need to publish the commit you made on `dan-b1`. What sequence publishes that branch?
+    - **A:** Run `git switch dan-b1`, then `git push origin dan-b1`. The remote branch name must match the local branch you want to push; `git push` from `main` does not push `dan-b1`. *(00:30:05)*
 
-## 5. Branches when working alone ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+- **Q:** After `git push origin dan-b1`, what does `git log --oneline --graph --decorate --all` show that proves your local computer now knows GitHub has that branch?
+    - **A:** It shows `origin/dan-b1` on the pushed commit. That reference is the local record of the remote branch; it appears after the push even before the branch is merged into `main`. *(00:31:19)*
 
-*00:16:05–00:17:54*
+- **Q:** You pushed a new branch but the GitHub “Compare and pull request” popup is gone a day later. How do you start the same pull-request process?
+    - **A:** Go to the repository’s branches view, find the branch, and use its menu to start a new pull request. This reaches the same compare-and-pull-request page that the temporary popup used to provide. *(00:34:32)*
 
-- **Q:** You are the only person working in a repository, but you want to test a large change without immediately changing the stable `main` branch. What workflow should you use?
-  **A:** Create a branch with `git switch -c <branch-name>` and do the testing there. This sections off the work so `main` only changes after you review and merge it. Branching is useful even when there is only one collaborator. *(00:16:25)*
+- **Q:** You are preparing the pull request for `dan-b1` to `main`. Before clicking `Create pull request`, what two things should you verify in the changed files?
+    - **A:** Check that every file you intended to work on is present, and that files that do not belong in the repository are absent, such as `.ipynb_checkpoints` or `.DS_Store`. Missing files usually mean you did not `git add`, commit, and push; extra junk files can lose points. *(00:39:16)*
 
-- **Q:** You tried a branch, it did not work, and you do not want to dig through many commits to undo them. What is the easier recovery?
-  **A:** Switch back to `main` with `git switch main` and leave or delete the bad branch. The failed work remains isolated on that branch instead of tangling `main`. Deleting a branch is easier than reversing a tangled commit on `main`. *(00:17:22)*
-
-- **Q:** You have finished work on `dan-b1` but have not merged it. What does `main` contain after you switch back to `main`?
-  **A:** It contains only the commits that were already on `main`, not the new `dan-b1` commits. The working files revert to the state stored at `main`. The branch-specific changes remain available when you switch to `dan-b1`. *(00:16:25)*
-
-## 6. Creating a branch with `git switch -c` ([8.1 Creating a branch using the command line](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#creating-a-branch-using-the-command-line))
-
-*00:17:54–00:23:46*
-
-- **Q:** Before creating a branch for coordinated group work, what two checks should you perform?
-  **A:** Run `git status` to confirm you are on `main` and your working tree is ready. Then synchronize with the shared remote, for example with `git pull origin main`, so the branch starts from an up-to-date state. This avoids building on an old local state. *(00:18:09)*
-
-- **Q:** You type `git switch -c dan-b1` in the demo repository. What immediately happens to the repository state?
-  **A:** Git creates the new branch `dan-b1` and moves `HEAD` to it. `git status` now says `On branch dan-b1`. No new commit is created; the new branch starts at the same commit as `main`. *(00:21:03)*
-
-- **Q:** You edit `README.md` on `dan-b1` and want to record the branch-creation note. Put the commands in order after the edit.
-  **A:** Run `git add README.md`, then `git commit -m "define swtich -c"`, and then use `git log --oneline --graph --decorate --all` to confirm `dan-b1` moved. The commit moves `dan-b1` while `main` and `origin/main` stay where they were. *(00:22:43)*
-
-## 7. Switching branches and inspecting state ([8.1.1 Switching to branches that already exist](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#switching-to-branches-that-already-exist))
-
-*00:23:46–00:28:26*
-
-- **Q:** You are on `dan-b1` and need your working files to match the state stored on `main`. What command do you run?
-  **A:** Run `git switch main`. That moves `HEAD` back to `main` and restores the files to the `main` state. Your `dan-b1` commits remain on that branch. *(00:25:22)*
-
-- **Q:** Your branch names do not appear in `git log --oneline --graph --decorate`. What flag did you omit?
-  **A:** Add `--all` to the command, as in `git log --oneline --graph --decorate --all`. That tells Git to show references for all branches, including local and remote branches. Without it, some branch names may be missing from the graph. *(00:25:38)*
-
-- **Q:** A tool suggests `git checkout dan-b1` for switching to an existing branch. What command should you use instead in this workflow?
-  **A:** Use `git switch dan-b1`. The session taught `switch` as the modern command for moving `HEAD` to an existing branch. If you are unsure about `checkout`, ask the tool to use `switch` instead. *(00:27:41)*
-
-## 8. Pushing a branch to `origin` and viewing it ([9 Pull requests](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-pull-requests.html))
-
-*00:28:31–00:33:40*
-
-- **Q:** You are on `dan-b1` and have one local commit that GitHub does not have. What command pushes that branch?
-  **A:** Run `git push origin dan-b1`. The final word is the branch name, not `main`, so the commit is sent to the remote `dan-b1` branch. Afterward, `git log --oneline --graph --decorate --all` shows `origin/dan-b1`. *(00:30:36)*
-
-- **Q:** You are on `main` in the demo repository and run a bare `git push` after `main` is already synchronized with `origin/main`. What will Git report?
-  **A:** It will report `Everything up-to-date`. There are no new local `main` commits to send. A bare `push` only pushes the current branch if there is something new to send. *(00:29:50)*
-
-- **Q:** Your teammate wants to read the code on your pushed `dan-fetch` branch before a pull request is merged. Where can they look on GitHub?
-  **A:** They can use the branch selector in the repository interface to view the `dan-fetch` branch. That lets them inspect the branch's files without merging it into `main`. It is not the same as accepting or merging the branch. *(00:32:24)*
-
-## 9. Opening a pull request and reviewing changed files ([9 Pull requests](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-pull-requests.html))
-
-*00:33:40–00:39:56*
-
-- **Q:** You pushed `dan-fetch`, but the GitHub pop-up for creating a pull request has disappeared. How do you start the pull-request process?
-  **A:** Go to the repository's branches view, find `dan-fetch`, and choose the option to create a new pull request. That reaches the same pull-request page as the pop-up. This is useful when you want to open the review process early. *(00:35:00)*
-
-- **Q:** You are about to create a pull request from `dan-delete` to the demo repository. What should you check at the top of the page before proceeding?
-  **A:** Check the target branch, which should be `main` for this project. Also confirm the branch being merged is the one you are working on. In larger projects, the target may not always be `main`, so the words must make sense. *(00:36:08)*
-
-- **Q:** While reviewing the Files Changed tab of your pull request, you see `.ipynb_checkpoints` or `.DS_Store` files. What does that tell you, and what should happen before merging?
-  **A:** Those temporary or hidden files do not belong in the repository. You should keep them out of the commit, for example by ensuring `.gitignore` handles them. In this project, visible unwanted files in the repository can cost points. *(00:39:16)*
-
-- **Q:** Your pull request diff does not include a file you thought you had changed. What likely went wrong?
-  **A:** You probably did not complete `git add`, `git commit`, and `git push` for that file on the branch. The pull request only shows commits that were actually pushed to the branch. Check the branch history and working tree to find the missing step. *(00:39:37)*
-
-## 10. Code review and updating the same branch ([10 Code review on GitHub](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-code-review.html))
+## 5. Reviewing and updating a pull request ([10 Code review on GitHub](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-code-review.html))
 
 *00:39:56–00:45:41*
 
-- **Q:** A teammate comments on your pull request that a section should be rewritten. Who is responsible for making the code change?
-  **A:** You are, because it is your pull request. The reviewer points out the problem, but you fix it by returning to the branch, editing the code, committing, and pushing to the same branch. The pull request updates automatically. *(00:42:17)*
+- **Q:** You want to add a line-specific review comment in the `Files changed` tab of a pull request. What UI action starts the inline comment?
+    - **A:** Hover over the diff line and click the `+` button. The comment is tracked in the pull request conversation while the code review happens on the diff. *(00:41:32)*
 
-- **Q:** You need to add a new line to `README.md` after pull request #1 is already open. Put the commands in order to include that change in the same pull request.
-  **A:** First make sure you are on `dan-b1` with `git switch dan-b1`, then run `git add README.md`, `git commit -m "show you the long git log command"`, and `git push origin dan-b1`. The pull request is tied to that branch, so the new commit appears there. Refresh the pull-request page if it does not update immediately. *(00:43:58)*
+- **Q:** The review comment says your code is wrong. Whose job is it to change the code, and what do you do without closing the pull request?
+    - **A:** It is your job as the pull-request author to fix it; go back to the branch, make the change, `git add` the file, commit, and push to the same branch. The open pull request updates automatically with the new commit, after refreshing if needed. *(00:43:15)*
 
-- **Q:** Where on a GitHub pull request do you add a line-specific review comment?
-  **A:** Use the Files Changed tab and the plus button beside the diff line. That comment is tracked in the conversation tab. It is how reviewers point at specific code without rewriting the whole pull request description. *(00:41:34)*
+- **Q:** You add a second commit to `dan-b1` and push it with `git push origin dan-b1`. What happens to pull request #1?
+    - **A:** Pull request #1 remains open and now includes the new commit because it is tied to the `dan-b1` branch. You do not need to close and recreate the pull request to add more work. *(00:44:43)*
 
-- **Q:** You edit the exact line that a teammate previously commented on. What may happen to that old comment?
-  **A:** GitHub may collapse it as outdated because the line changed. It does not mean the comment was ignored; it indicates the original context may no longer be relevant. You can still reply or address it in the conversation. *(00:45:02)*
+- **Q:** You edit a line that has an existing inline comment, and the comment looks like it disappears from the review. What is likely happening?
+    - **A:** GitHub may collapse the comment as outdated because the code line it referred to was changed. The review conversation still exists; the collapse is a signal that the original comment may no longer apply to the new line. *(00:45:10)*
 
-## 11. Draft pull requests, merging, and remote cleanup ([9.2 Draft pull requests](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-pull-requests.html#draft-pull-requests))
+- **Q:** You write the first pull-request comment, then make more changes. What should you do to the description?
+    - **A:** Edit the original first comment so it explains the full set of changes, rather than only appending notes. Readers use the first comment as the main description of the pull request. *(00:40:55)*
+
+## 6. Draft pull requests, merging, and remote cleanup ([9.2 Draft pull requests](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-pull-requests.html#draft-pull-requests))
 
 *00:52:11–00:58:51*
 
-- **Q:** You open a pull request for work that will take more than a day. What GitHub control signals that it is not ready for review?
-  **A:** Click the control to convert it to a draft. The pull request then shows a gray bar instead of a green one. It tells teammates that the work is in progress and not ready to merge. *(00:53:52)*
+- **Q:** Your pull request will take several days. What GitHub control do you use to tell teammates not to merge it yet?
+    - **A:** Use “Convert to Draft” on the open pull request. The pull request then shows a gray visual cue and the merge control is disabled so it is not accidentally merged. *(00:54:04)*
 
-- **Q:** A teammate wants to merge your draft pull request by accident. What visual or interface cue prevents that?
-  **A:** The merge control is grayed out on a draft pull request. The draft state explicitly signals that the branch is not ready. This prevents someone from merging work that is still in progress. *(00:54:30)*
+- **Q:** Your draft pull request is now ready for review. What control turns it back into a mergeable open pull request?
+    - **A:** Click “Ready for review” in the pull request conversation or merge area. It turns the draft back into an open pull request, restoring the green merge controls. *(00:55:28)*
 
-- **Q:** Your draft pull request is finished and ready for merge. What do you click to make it open again?
-  **A:** Click `Ready for review` at the bottom of the pull request conversation. That turns the draft back into an open pull request. The normal green merge controls become available. *(00:55:28)*
+- **Q:** After pull request #1 is merged into `main`, what cleanup do you perform on the `dan-b1` branch on GitHub?
+    - **A:** Delete the remote branch from GitHub after merging so the branch dropdown does not accumulate finished branches. The commits are still in `main` history, including the merge commit, even though the branch marker is removed. *(00:58:10)*
 
-- **Q:** After you merge pull request #1 from `dan-b1`, what cleanup step do you perform on GitHub?
-  **A:** Delete the remote `dan-b1` branch. The commits are still in `main`'s history, including the merge commit. Deleting the branch keeps the branch list from growing with finished work. *(00:56:27)*
+- **Q:** You merge a pull request and then look at `main` on GitHub. What do you expect to see in the commit history?
+    - **A:** You see the branch’s commits and a separate merge commit describing that the pull request was merged. Deleting the branch later does not remove those commits from history. *(00:58:10)*
 
-## 12. Local cleanup after a merge ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 7. Cleaning local branches after a merge ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
 
 *00:58:53–01:03:51*
 
-- **Q:** Pull request #1 was merged on GitHub, but your local `main` does not yet have those changes. What commands update your local `main`?
-  **A:** Run `git switch main` and then `git pull origin main`. The first command moves `HEAD` to `main`; the second brings the merged changes down from `origin`. Afterward, `main` matches the remote state. *(01:00:27)*
+- **Q:** Pull request #1 has been merged on GitHub, but your local `main` is still behind. What two commands bring local `main` up to date?
+    - **A:** Run `git switch main` if you are not already there, then `git pull origin main`. Local `main` does not update automatically when a remote pull request is merged. *(01:00:27)*
 
-- **Q:** After deleting `dan-b1` on GitHub, `git branch -a` still shows `origin/dan-b1`. What command removes that stale local reference?
-  **A:** Run `git fetch --prune`. It synchronizes your local knowledge of remote branches and deletes references to branches that no longer exist on GitHub. After it runs, `origin/dan-b1` is gone from the local reference list. *(01:01:30)*
+- **Q:** You run `git branch -a` after merging `dan-b1`. What does the star next to `main` mean?
+    - **A:** It means `main` is the branch your `HEAD` is currently on. The other listed branches are local branches and remote-tracking branches that your local repository knows about. *(01:01:11)*
 
-- **Q:** You want to delete local `dan-b1` after it has been merged. What command should you use, and why is it safe?
-  **A:** Use `git branch -d dan-b1` with a lowercase `d`. Git allows that deletion only when the branch has been merged. It protects you from accidentally deleting unmerged work. *(01:02:46)*
+- **Q:** You deleted the `dan-b1` remote branch on GitHub, but `origin/dan-b1` still appears in local logs. What command removes that stale remote-tracking reference?
+    - **A:** Run `git fetch --prune`. It updates your remote-tracking references and removes local references to branches that no longer exist on GitHub. *(01:01:30)*
 
-- **Q:** You are on an unmerged local branch and an AI suggests `git branch -D <branch>`. What is the danger?
-  **A:** Capital `D` force-deletes the branch even if it has unmerged commits. That can permanently remove work you were still testing. Use lowercase `d` for normal cleanup unless you are certain the branch can be discarded. *(01:03:21)*
+- **Q:** Your local `dan-b1` branch has been merged into `main`. What command deletes it safely, and what happens if you try the same command on an unmerged branch?
+    - **A:** Use `git branch -d dan-b1` with lowercase `-d`; Git allows deletion only if the branch is merged. For an unmerged branch, lowercase `-d` refuses, protecting commits that are not yet in another branch. *(01:02:54)*
 
-- **Q:** You type `git pull main` and Git says `main` does not appear to be a git repository. What is the problem, and what is the corrected command?
-  **A:** The command is missing the remote name; `main` is a branch name, not a remote. Use `git pull origin main` to fetch and merge from the `origin` remote. This is the command used to synchronize local `main` with GitHub. *(01:00:27)*
+- **Q:** You are trying to discard an unmerged local branch that contains no work you need. A helper suggests `git branch -D branch-name`. What is the risk?
+    - **A:** Capital `-D` force-deletes the branch even if it has unmerged commits, so you can permanently lose work. Use lowercase `-d` for normal cleanup and only force-delete when you are sure the work is unnecessary. *(01:03:21)*
 
-## 13. Creating a merge-conflict scenario ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+- **Q:** You type `git pull main` after merging a pull request and get `fatal: 'main' does not appear to be a git repository`. What command retrieves the updated `main` from GitHub?
+    - **A:** Run `git pull origin main`. Git needs both the remote name, `origin`, and the branch, `main`; `main` alone is not a remote repository. *(01:00:34)*
+
+## 8. Creating a two-branch conflict scenario ([8.3 What happens when my feature branch falls behind main?](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#what-happens-when-my-feature-branch-falls-behind-main))
 
 *01:03:51–01:10:51*
 
-- **Q:** You create two branches, `dan-fetch` and `dan-delete`, from the same `main` state, and both edit the same lines in `README.md`. What event makes the second pull request conflicted?
-  **A:** Merging the first pull request moves `main` forward. GitHub then rechecks the open pull requests against the new `main`. The second pull request can become conflicted even if it looked mergeable before. *(01:10:08)*
+- **Q:** You are creating `dan-delete` from `main` and type `git switch -b dan-delete`, then get `error: unknown switch 'b'`. What command fixes the creation step?
+    - **A:** Run `git switch -c dan-delete`. `git switch` uses `-c` for create-and-switch; `-b` is the flag for the older `git checkout` create workflow. *(01:06:40)*
 
-- **Q:** You want to practice a merge conflict by yourself. After you create and push the first branch, what must you do before creating the second conflicting branch?
-  **A:** Do not immediately merge the first pull request. Switch back to `main` and create the second branch from that same base, then push it. This sets up two open pull requests based on the same starting point. *(01:06:07)*
+- **Q:** You have created the first branch and opened its pull request, but you still want to practice a conflict with a second branch. What key step must you avoid?
+    - **A:** Do not immediately merge the first pull request. Leave it open so you can create a second branch with overlapping changes and see how the second pull request becomes conflicted after the first merge. *(01:06:07)*
 
-- **Q:** You look at two open pull requests side by side and both seem mergeable. Why may the conflict still not be obvious?
-  **A:** Each pull request is compared to `main` as it existed before the other one merges. The conflict appears only after one branch changes `main` and GitHub rechecks the other. The Files Changed view does not necessarily show the future merge conflict. *(01:09:48)*
+- **Q:** You create `dan-fetch` and `dan-delete` from the same `main` state, and both edit the same region of `README.md`. Why can this produce a conflict?
+    - **A:** Both branches contain changes to the same region while `main` has not moved between their creation. If one branch is merged first, `main` changes and the other branch’s same-line edit can no longer apply cleanly. *(01:08:02)*
 
-## 14. Resolving the conflict locally with `git rebase` and force-with-lease ([8.3.2 Using rebase](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#using-rebase))
+- **Q:** You open pull requests #2 and #3 side by side before merging either one. What might the pages not tell you?
+    - **A:** They may not make it obvious that the two branches will conflict, because each pull request is evaluated against `main` before the other is merged. The conflict can only appear after one merge changes `main` and GitHub rechecks the other pull request. *(01:09:53)*
+
+- **Q:** Pull request #2 from `dan-fetch` is merged. What does GitHub do to open pull request #3 from `dan-delete`?
+    - **A:** It rechecks whether #3 can still be merged into the updated `main`. If the same lines changed in both branches, GitHub reports a merge conflict instead of allowing a clean merge. *(01:10:19)*
+
+## 9. Resolving a conflict with `git rebase` and force pushing ([8.3.2 Using rebase](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#using-rebase))
 
 *01:10:51–01:20:42*
 
-- **Q:** Pull request #3 from `dan-delete` is conflicted after pull request #2 was merged. Put the local commands in the order used to resolve it.
-  **A:** Run `git switch main`, then `git pull origin main`, then `git switch dan-delete`, and then `git rebase main`. When the conflict appears, fix `README.md`, run `git add README.md`, and run `git rebase --continue`. Finally, update the remote branch with `git push --force-with-lease origin dan-delete`. *(01:16:25)*
+- **Q:** Pull request #2 has been merged, but your local `main` is still behind before resolving conflict on `dan-delete`. What two commands synchronize local `main`?
+    - **A:** Run `git switch main` and then `git pull origin main`. This brings the merged `dan-fetch` commit into your local `main` so you can rebase against the current default branch. *(01:16:25)*
 
-- **Q:** During `git rebase main`, Git stops with `CONFLICT (content): Merge conflict in README.md`. What are the next Git commands after you edit the file?
-  **A:** Mark the resolution with `git add README.md`, then run `git rebase --continue`. `git status` can guide you by saying all conflicts are fixed. Use `git rebase --abort` if something is wrong and you want to return to the pre-rebase state. *(01:18:32)*
+- **Q:** You are on `dan-delete`, and its commit was based on the old `main`. What command replays that commit on top of the updated `main`?
+    - **A:** Run `git rebase main`. Git attempts to apply the branch’s commit onto the new `main` and stops with a conflict when the same lines were changed in both branches. *(01:17:14)*
 
-- **Q:** After rebasing `dan-delete`, why is a plain `git push origin dan-delete` not enough?
-  **A:** Rebase rewrote the commit history of a branch that was already pushed to GitHub. A normal push would not replace the old remote branch. You must use `git push --force-with-lease origin dan-delete` to update the remote branch safely. *(01:19:47)*
+- **Q:** `git rebase main` stops with `CONFLICT (content): Merge conflict in README.md`. What local steps complete the rebase?
+    - **A:** Edit `README.md` to remove the conflict markers and make the file correct, run `git add README.md`, then run `git rebase --continue`. If you are scared of the state, `git rebase --abort` returns you to the pre-rebase state. *(01:18:32)*
 
-- **Q:** You type `git push --force-with-leasse origin dan-delete` and get an unknown option error. What is wrong, and what is the corrected command?
-  **A:** The flag has a typo: `leasse` is not a Git option. The correct command is `git push --force-with-lease origin dan-delete`. This is the force-push variant used after rewriting a pushed branch. *(01:20:17)*
+- **Q:** After resolving and continuing the rebase, why can you not use a plain `git push origin dan-delete`?
+    - **A:** The rebase rewrote the commit that was already pushed to `origin/dan-delete`, so the local branch history no longer matches the remote branch. You must force-update the branch with `git push --force-with-lease origin dan-delete`. *(01:19:47)*
 
-- **Q:** You resolve the conflict markers in `README.md`, but the report still fails later in a code chunk. What does “fixing the conflict” require in this course?
-  **A:** It requires the whole report or code to work from top to bottom, not just removing the markers. A conflict on one line can affect variable names or later code. You remain responsible for making the resulting branch run as expected. *(01:11:39)*
+- **Q:** You type `git push --force-with-leasse origin dan-delete` and get `error: unknown option 'force-with-leasse'`. What is the correct command?
+    - **A:** Use `git push --force-with-lease origin dan-delete`. The option name is `--force-with-lease`; the typo makes Git treat it as an unknown flag. *(01:19:23)*
+
+- **Q:** You remove the conflict markers in `README.md`, but later find a variable name used later in the file now causes the analysis to fail. What does “fix the conflict” require?
+    - **A:** It requires making the whole file or report work from top to bottom, not only deleting the markers. A conflict on one line can affect code elsewhere, and you are responsible for the final working state. *(01:11:21)*
 
 ---
 
-- prompt: prompt-recall-3-apply.md @ 8bcc190
-- prompt-hash: 068025368bc2
+- prompt: prompt-recall-3-apply.md @ 65eb21c
+- prompt-hash: 49276171f719
 - model: qwen3.8-27b-sglang (requested: qwen3.8-27b-sglang)
 - backend: local (SGLang)
 - inputs: transcript-plaud.md, terminal.txt, materials.md, notes-class-main--qwen3.8-27b-sglang.md
-- generated: 2026-11-20
-- notes-input: notes-class-main--qwen3.8-27b-sglang.md @ d2f17cf18422, links and section references removed
+- generated: 2026-11-23
+- notes-input: notes-class-main--qwen3.8-27b-sglang.md @ d2f17cf18422, links and section references removed, diagrams removed

@@ -8,335 +8,390 @@ Instructor: Daniel Chen
 
 *Tier 1 of 5: Remember. Answer each question before you read its answer; tiers 2 to 5 build on these.*
 
-## 1. Course logistics: lab groups, attendance, and interview week
+## 1. Course logistics: lab groups, GitHub usernames, lab attendance, and interview week
 
 *00:00:01–00:04:04*
 
-- **Q:** What did the instructor say DSCI 522 is for the students?
-  **A:** It is their first big, project-based class where they actually have to work with the other people in their lab section. *(00:00:45)*
+- **Q:** What course did Daniel Chen welcome students to at the start of the session?
+    - **A:** DSCI 522. *(00:00:17)*
 
-- **Q:** What is the lab-sections repository on GitHub used for?
-  **A:** Students look up their lab section, and the column they are in gives their group number, which determines who they work with on the project. *(00:01:07)*
+- **Q:** How did he describe DSCI 522 in terms of project work?
+    - **A:** It is the students’ first big, bigger project-based class, where they work with other people in their lab section. *(00:00:45)*
 
-- **Q:** Why did the instructor collect students' GitHub usernames?
-  **A:** The usernames form a main list of metadata that is "used everywhere else under the hood" in the rest of the program. *(00:02:01)*
+- **Q:** Where did students look up their lab section?
+    - **A:** In the GitHub lab-sections repository. *(00:00:56)*
 
-- **Q:** What is the interview week conversation?
-  **A:** A roughly seven-minute, technical-interview-style conversation about a student's Git knowledge and the actual codebase of their group project. *(00:02:50)*
+- **Q:** Which lab section did the instructor say he was in that day?
+    - **A:** Lab section three. *(00:01:12)*
 
-- **Q:** Is the interview week conversation graded?
-  **A:** No; the instructor said it is "not graded" in the sense that it will not affect the course grade, even though a grade may be recorded. *(00:03:02)*
+- **Q:** Why did the instructor say he had been “really annoying” about collecting GitHub usernames?
+    - **A:** To create a main list of GitHub usernames that is used as metadata elsewhere in the program. *(00:02:01)*
 
-- **Q:** What did the instructor say the interview week might become next year?
-  **A:** He said "this might actually be the exam next year, so we'll see," conducted by talking through the student's actual codebase. *(00:03:48)*
+- **Q:** What lab attendance rule did he announce?
+    - **A:** Lab attendance is mandatory; TAs go around and talk to every group, and students should be present when a TA is there. *(00:02:19)*
 
-## 2. Review of the DSCI 521 Git cycle in the demo repository
+- **Q:** How long was an interview-week conversation intended to be?
+    - **A:** About seven minutes. *(00:02:50)*
+
+- **Q:** Did the instructor say interview-week conversations would affect the course grade?
+    - **A:** No; he said it is not graded and will not affect the grade. *(00:03:02)*
+
+## 2. Review Git basics in the demo repository ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
 
 *00:04:07–00:06:49*
 
-- **Q:** What is the name of the demo repository the instructor cloned and worked in during the session?
-  **A:** `chendaniely/2026-11-17-git`, cloned from `git@github.com:chendaniely/2026-11-17-git.git`. *(00:05:36)*
+- **Q:** What was the name of the dated demo repository the instructor created and cloned?
+    - **A:** `2026-11-17-git`. *(00:04:51)*
 
-- **Q:** What change was made to `README.md` in the demo repository?
-  **A:** A link to the Git branches chapter of the course textbook was added, with the text "we will review 521 git basics and then go into branches." *(00:05:57)*
+- **Q:** What file was modified for the first local change?
+    - **A:** `README.md`. *(00:06:13)*
 
-- **Q:** What commit message was used for the first commit on `main` in the demo repository?
-  **A:** "intro and review." *(00:06:32)*
+- **Q:** What did the first `README.md` change add?
+    - **A:** A line saying they would review DSCI 521 Git basics and then go into branches, plus a link to the Git branches chapter. *(00:05:57)*
 
-- **Q:** What did the instructor say about whether anything new had been presented on screen at that point?
-  **A:** "There is nothing new that I've presented onto the screen so far"; everything was a review of DSCI 521. *(00:06:38)*
+- **Q:** What command did the terminal use to show the changes before the file was staged?
+    - **A:** `git diff`. *(00:06:49)*
 
-## 3. Why branches exist: parallel work in a group project
+- **Q:** What commit message did the instructor use for the first commit?
+    - **A:** `intro and review`. *(00:06:38)*
 
-([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+- **Q:** What command sent the first `main` commit to GitHub?
+    - **A:** `git push origin main`. *(00:06:49)*
+
+- **Q:** What commit hash did the terminal show for the first commit after pushing?
+    - **A:** `145ff16`. *(00:06:49)*
+
+## 3. Why branches exist: escaping the “I have to pull before I push” friction ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
 
 *00:06:49–00:09:43*
 
-- **Q:** What exercise from DSCI 521 week 3 did the instructor reference to motivate the need for branches?
-  **A:** A shared slide deck where students collaborated, and even without a conflict they always had to pull before they could push. *(00:06:54)*
+- **Q:** Which DSCI 521 exercise did he use to illustrate the “pull before I push” annoyance?
+    - **A:** The week 3 shared slide deck exercise. *(00:06:49)*
 
-- **Q:** What was the recurring annoyance in the DSCI 521 slide deck exercise?
-  **A:** You had to pull first because someone else had pushed before you could push your own changes. *(00:07:06)*
+- **Q:** What did he say could happen even when there was no actual merge conflict?
+    - **A:** You could still have to pull before pushing because someone else had pushed. *(00:07:06)*
 
-- **Q:** What does a branch give you in the context of the group project, according to the instructor?
-  **A:** "Your own little world" where you can push and pull until your work is done, waiting for review from your teammates. *(00:08:46)*
+- **Q:** What did he say you want to reach in a group project?
+    - **A:** A part where the work is your responsibility and is self-contained, so you can work in parallel. *(00:08:41)*
 
-## 4. Local repository versus remote `origin`
+- **Q:** What benefit of branches did he describe as “your own little world”?
+    - **A:** You can create a branch and push or pull on your own work until it is ready for team review. *(00:08:46)*
 
-([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 4. Local repository versus remote `origin` ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
 
 *00:09:46–00:11:11*
 
-- **Q:** What two places does the instructor say you do work in Git?
-  **A:** Your local computer and the remote (cloud) repository, called `origin`. *(00:10:09)*
+- **Q:** What two places did he say you are doing Git work?
+    - **A:** On your local computer and on the remote cloud, called `origin`. *(00:10:09)*
 
-- **Q:** What is `git clone` described as?
-  **A:** A one-time command that brings the repository down to your computer. *(00:11:25)*
+- **Q:** What did he say about work that exists only on your local computer?
+    - **A:** It effectively does not really exist for grading or project purposes. *(00:10:48)*
 
-- **Q:** Which command sends local commits up to the remote, and which brings others' work down?
-  **A:** `git push` sends local commits to the remote; `git pull` brings others' commits down. *(00:11:33)*
+- **Q:** What command did he call a one-time command for bringing a repository down to your computer?
+    - **A:** `git clone`. *(00:11:25)*
 
-- **Q:** What warning did the instructor give about work that exists only on your local computer?
-  **A:** If your work exists only on your local computer, it "effectively doesn't really exist" for grading or project purposes; the remote is what matters. *(00:10:48)*
+- **Q:** Which command did he say sends local commits up to the remote, and which brings teammate work down?
+    - **A:** `git push` sends work up; `git pull` gets work down. *(00:11:33)*
 
-## 5. `main`, `origin/main`, `HEAD`, and what a branch is
-
-([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 5. `main`, `origin/main`, `HEAD`, and what a branch is ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
 
 *00:11:11–00:16:05*
 
-- **Q:** What is the `main` branch described as?
-  **A:** The default branch that represents the stable, final, or production state of the project; everything in it should be in working order. *(00:12:38)*
+- **Q:** What did he call `main`?
+    - **A:** The default branch. *(00:12:38)*
 
 - **Q:** What does `origin/main` represent?
-  **A:** What your local computer thinks the state of the remote `main` branch is on GitHub. *(00:13:30)*
+    - **A:** What your computer thinks the remote `main` branch on GitHub is at. *(00:13:30)*
 
-- **Q:** What is `HEAD` in Git?
-  **A:** The pointer to your current position in the commit history; when it points to `main`, you are on the `main` branch. *(00:19:51)*
+- **Q:** What does `HEAD` point to when you are on `main`?
+    - **A:** It is attached to, or pointed at, `main`. *(00:13:12)*
 
-- **Q:** What is a branch, essentially, according to the instructor?
-  **A:** Instead of incrementing `main` when you commit, you increment some other name you give it yourself; it is a way to section off work. *(00:13:55)*
+- **Q:** What does a branch do when you write a commit?
+    - **A:** It moves the branch name forward instead of moving `main`. *(00:13:55)*
 
-- **Q:** What kind of work should not be in the `main` branch?
-  **A:** Exploratory data analysis, unfinished plots, and work that is still being tested; those belong on a branch until they are ready. *(00:15:24)*
+- **Q:** How did he compare `main` to a software release?
+    - **A:** Like production final: stable, with working code. *(00:15:10)*
 
-## 6. Branches are useful even when working alone
+- **Q:** What kind of work did he say is not yet in `main`?
+    - **A:** Exploratory analysis, plots, and uncleaned data work. *(00:15:49)*
 
-([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 6. Branches are useful even when working alone ([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
 
 *00:16:05–00:17:54*
 
-- **Q:** Does the instructor say you need other people to use branches?
-  **A:** No; the instructor said "You don't need to do branches to collaborate with other people" and noted that many single-person Git repositories use branches. *(00:16:05)*
+- **Q:** Did he say you need branches to collaborate with other people?
+    - **A:** No; you can use branches when working by yourself. *(00:16:05)*
 
-- **Q:** What did the instructor describe doing with the course textbook?
-  **A:** All the work was done in a sequence of branches so the textbook would not move around during a teaching day; the branches were merged in after lectures and testing. *(00:16:37)*
+- **Q:** What did he say branches let you do in a one-person repository?
+    - **A:** Section off work and test it without changing `main` until you have reviewed it. *(00:16:25)*
 
-- **Q:** Why is a bad idea easier to undo on a branch than on `main`?
-  **A:** It is easy to delete a branch and go back to `main`, whereas undoing a tangled set of commits on `main` requires going through Git history copying and pasting the relevant bits. *(00:16:51)*
+- **Q:** What project did he say he worked on in a sequence of branches because teaching was happening?
+    - **A:** The course textbook. *(00:16:34)*
 
-## 7. Creating a branch with `git switch -c`
+- **Q:** Which two undo commands from DSCI 521 did he mention when discussing abandoning work?
+    - **A:** `git reset` and `git revert`. *(00:17:22)*
 
-([8.1 Creating a branch using the command line](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#creating-a-branch-using-the-command-line))
+## 7. Creating a branch with `git switch -c` ([8.1 Creating a branch using the command line](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#creating-a-branch-using-the-command-line))
 
 *00:17:54–00:23:46*
 
-- **Q:** What command creates a new branch named `dan-b1` and immediately moves `HEAD` to it?
-  **A:** `git switch -c dan-b1`. *(00:20:09)*
+- **Q:** What command did he use to create the first demo branch and move `HEAD` to it?
+    - **A:** `git switch -c dan-b1`. *(00:20:09)*
 
-- **Q:** What does the `-c` flag in `git switch` stand for?
-  **A:** Create. *(00:20:09)*
+- **Q:** What did `git status` report after creating `dan-b1`?
+    - **A:** `On branch dan-b1`. *(00:21:03)*
 
-- **Q:** What should you check before creating a branch, according to the instructor?
-  **A:** Run `git status` to make sure you are on `main`, and if you are building on coordinated project work, first synchronize with the remote using `git pull origin main`. *(00:18:01)*
+- **Q:** What branch-naming habit did he mention for group repositories?
+    - **A:** Begin a branch with the owner’s name. *(00:20:31)*
 
-- **Q:** What does `git status` show after creating and switching to the `dan-b1` branch?
-  **A:** It says "On branch dan-b1" instead of "On branch main." *(00:21:03)*
+- **Q:** What commit message did the instructor use on `dan-b1`?
+    - **A:** `define swtich -c`. *(00:22:31)*
 
-- **Q:** What did the instructor say about naming branches in a group project?
-  **A:** He sometimes begins a branch with his name so other people know who to talk to if something looks wrong. *(00:20:31)*
+- **Q:** After committing on `dan-b1`, which branch moved forward?
+    - **A:** `dan-b1` moved forward; `main` did not. *(00:22:58)*
 
-- **Q:** After committing on `dan-b1`, which branch moves forward?
-  **A:** The `dan-b1` branch moves forward; `main` and `origin/main` remain where they were. *(00:22:58)*
-
-## 8. Switching between branches and older commands
-
-([8.1.1 Switching to branches that already exist](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#switching-to-branches-that-already-exist))
+## 8. Switching between branches and seeing the repository state ([8.1.1 Switching to branches that already exist](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#switching-to-branches-that-already-exist))
 
 *00:23:46–00:28:26*
 
-- **Q:** What command switches `HEAD` back to the `main` branch?
-  **A:** `git switch main`. *(00:25:22)*
+- **Q:** What command did he use to move `HEAD` back to `main`?
+    - **A:** `git switch main`. *(00:25:22)*
 
-- **Q:** What is the difference between `git switch <branch>` and `git switch -c <branch>`?
-  **A:** `git switch <branch>` moves `HEAD` to an existing branch; `git switch -c <branch>` creates a new branch and moves `HEAD` to it. *(00:22:04)*
+- **Q:** What did he say you can see in the VS Code or Positron Git graph?
+    - **A:** Local `main`, `origin/main`, and branch-specific commits. *(00:24:09)*
 
-- **Q:** What is the full command the instructor used to display the Git history with a graph and all branch names?
-  **A:** `git log --oneline --graph --decorate --all`. *(00:43:36)*
+- **Q:** Which `git log` flag did he say is needed to see other branch names?
+    - **A:** `--all`. *(00:25:38)*
 
-- **Q:** What older command did the instructor mention that creates a new branch?
-  **A:** `git checkout -b <branch>`; the instructor said `git checkout` is the older equivalent of `git switch`. *(00:27:09)*
+- **Q:** What advice did he give if a tool suggests `git checkout` and you are unsure?
+    - **A:** Ask it to use `switch` instead. *(00:27:44)*
 
-- **Q:** What does `git branch <name>` do differently from `git switch -c <name>`?
-  **A:** `git branch <name>` creates the branch but does not move `HEAD` to it; you still have to switch or checkout after creating it. *(00:28:13)*
+- **Q:** What older command did he say corresponds to `git switch -c` for creating a branch?
+    - **A:** `git checkout -b <branch>`. *(00:28:02)*
 
-- **Q:** Did the instructor say the class would test students on `git checkout`?
-  **A:** No; the instructor said "I'm not gonna test you on that like this." *(00:26:40)*
+- **Q:** According to the instructor, what extra step is needed after `git branch <branch>`?
+    - **A:** You still have to checkout or switch to the branch. *(00:28:13)*
 
-## 9. Pushing a branch to `origin` and viewing it on GitHub
-
-([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 9. Pushing a branch to `origin` and viewing it on GitHub ([8.2 Useful things you can do with branches on GitHub](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#useful-things-you-can-do-with-branches-on-github))
 
 *00:28:31–00:33:40*
 
-- **Q:** What command pushes the `dan-b1` branch to the remote?
-  **A:** `git push origin dan-b1`. *(00:30:36)*
+- **Q:** What did the terminal print when he ran bare `git push` while on `main`?
+    - **A:** `Everything up-to-date`. *(00:29:34)*
 
-- **Q:** What did a plain `git push` while on `main` report?
-  **A:** "Everything up-to-date." *(00:29:50)*
+- **Q:** What command did he use to push the `dan-b1` branch?
+    - **A:** `git push origin dan-b1`. *(00:30:36)*
 
-- **Q:** After pushing `dan-b1`, what new reference appeared in `git log`?
-  **A:** `origin/dan-b1`, meaning the local computer now knows that GitHub has that branch. *(00:31:27)*
+- **Q:** What did he say you change in `git push origin main` when pushing `dan-b1`?
+    - **A:** The last word, from `main` to the branch name. *(00:30:44)*
 
-- **Q:** Where on the GitHub repository page can you view another branch without merging it?
-  **A:** In the branch selector (the little tab in the top-left corner that says `main`), you can switch to view another branch. *(00:32:24)*
+- **Q:** What remote reference appeared in `git log` after pushing `dan-b1`?
+    - **A:** `origin/dan-b1`. *(00:31:19)*
 
-- **Q:** What did the instructor say about teammates viewing a pushed branch before it is merged?
-  **A:** A teammate can push their changes to their branch and you can go look at their code on GitHub, even though it is not combined into `main` yet. *(00:32:36)*
+- **Q:** What remote message did GitHub print after the first `dan-b1` push?
+    - **A:** It said to create a pull request for `dan-b1` on GitHub by visiting the given URL. *(00:31:39)*
 
-## 10. Opening a pull request and reviewing the changed files
+- **Q:** Where on the GitHub repository page did he say you can view the pushed `dan-b1` branch?
+    - **A:** In the branch selector/tab in the top left corner. *(00:32:21)*
 
-([9.1 Creating a pull request](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-pull-requests.html#creating-a-pull-request))
+- **Q:** What did he say teammates can do with a pushed branch before merging?
+    - **A:** Look at the branch’s code on GitHub. *(00:32:36)*
+
+## 10. Opening a pull request and reviewing the changed files ([9.1 Creating a pull request](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-pull-requests.html#creating-a-pull-request))
 
 *00:33:40–00:39:56*
 
-- **Q:** What button on GitHub starts the pull request process after pushing a new branch?
-  **A:** The "Compare and Pull Request" button (or the green button that appears in a popup). *(00:34:25)*
+- **Q:** What GitHub button did he say appears when GitHub recognizes a newly pushed branch?
+    - **A:** “Compare and Pull Request.” *(00:34:25)*
 
-- **Q:** What did the instructor say happens to the "Compare and Pull Request" popup after a day or so?
-  **A:** It disappears; to get the same process back, go to the branches tab, find your branch, and choose "new pull request." *(00:34:32)*
+- **Q:** What did he say to do if the pull-request pop-up disappeared?
+    - **A:** Go to the branches tab, find the branch, and choose the expansion-menu option for a new pull request. *(00:35:00)*
 
-- **Q:** What title did the instructor give to pull request #1 in the demo repository?
-  **A:** "Learning about branches and PRs." *(00:37:15)*
+- **Q:** What did he recommend doing right after pushing a branch?
+    - **A:** Start the pull request process right away. *(00:35:15)*
 
-- **Q:** What did the instructor recommend doing when you start work on a branch that may take more than a day?
-  **A:** Open the pull request right away so the process exists, and keep pushing the branch; the pull request updates as you go. *(00:35:15)*
+- **Q:** In DSCI 522, which branch did he say is usually the merge target?
+    - **A:** `main`. *(00:36:08)*
 
-- **Q:** What did the instructor say to look for in the Files Changed tab of a pull request?
-  **A:** Confirm all your intended files and code changes are present, and check that no unwanted files (such as `.ipynb_checkpoints`, `.DS_Store`, or Word backup files) are in the repository. *(00:38:44)*
+- **Q:** What title did he give the first pull request?
+    - **A:** “Learning about branches and PRs.” *(00:37:15)*
 
-- **Q:** What did the instructor say about points if unwanted files appear in a repository?
-  **A:** "If we see it in a repository, even if it's not explicit, we will take points off." *(00:38:44)*
+- **Q:** What Jupyter Notebook file type did he say should not be in the repository?
+    - **A:** `.ipynb_checkpoints` files. *(00:39:16)*
 
-## 11. Pull request conversation, code review, and updating the same branch
+- **Q:** What Mac file did he say should not be in the repository?
+    - **A:** `.DS_Store` files. *(00:39:23)*
 
-([10 Code review on GitHub](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-code-review.html))
+- **Q:** What did he say to verify before clicking the green create button?
+    - **A:** All your intended work is present, and unwanted files are not present. *(00:39:33)*
+
+- **Q:** What green button created the pull request?
+    - **A:** “Create Pull Request.” *(00:39:56)*
+
+## 11. Pull request conversation, code review, and updating the same branch ([10 Code review on GitHub](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-code-review.html))
 
 *00:39:56–00:45:41*
 
-- **Q:** Which tab in a GitHub pull request is where code review happens?
-  **A:** The "Files Changed" tab, which shows the diff between the original file and the new file. *(00:41:22)*
+- **Q:** What did he say appears at the very top of the repository page after a pull request is created?
+    - **A:** A Pull Request tab. *(00:40:01)*
 
-- **Q:** What button appears when you hover over a line in the diff to start a review comment?
-  **A:** A little plus button; clicking it lets you write a comment on that specific line, which is tracked in the main conversation tab. *(00:41:34)*
+- **Q:** Why did he say the very first pull request comment is important?
+    - **A:** Because later changes should be explained by editing that first comment. *(00:40:48)*
 
-- **Q:** What is the rule of thumb about who fixes issues raised in a pull request?
-  **A:** If it is your pull request, it is your job to fix all the issues; the reviewer's job is to say "rewrite this" or "this doesn't look right," not to fix the code. *(00:42:17)*
+- **Q:** Which tab did he say is where code review happens?
+    - **A:** Files Changed. *(00:41:16)*
 
-- **Q:** How does a pull request update when you make additional changes to its branch?
-  **A:** You commit and push to the same branch; the pull request updates automatically, though you may need to refresh the page. *(00:43:15)*
+- **Q:** What does the Files Changed view show?
+    - **A:** The diff between the original file and the new file. *(00:41:22)*
 
-- **Q:** What happens to a review comment if you edit the line it was attached to?
-  **A:** GitHub may collapse the comment as "outdated" because the line it referred to has changed. *(00:45:02)*
+- **Q:** What example inline comment did he make on the diff?
+    - **A:** “Why are you using switch and not checkout?” *(00:41:34)*
 
-## 12. Draft pull requests, merging, and deleting the remote branch
+- **Q:** What did he say is the author’s responsibility when someone reviews their pull request?
+    - **A:** To fix the code themselves; the reviewer points out what is wrong. *(00:42:17)*
 
-([9.2 Draft pull requests](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-pull-requests.html#draft-pull-requests))
+- **Q:** How did he update the existing pull request after making another change?
+    - **A:** Commit and push to the same branch; the pull request updates. *(00:43:15)*
+
+- **Q:** What Git history command did the follow-up commit add to the README?
+    - **A:** `git log --oneline --graph --decorate --all`. *(00:43:36)*
+
+- **Q:** What commit message did the follow-up commit on `dan-b1` have?
+    - **A:** `show you the long git log command`. *(00:44:12)*
+
+- **Q:** What did he say can happen to a comment when you edit the line it refers to?
+    - **A:** GitHub may collapse it as outdated. *(00:45:02)*
+
+## 12. Draft pull requests, merging, and deleting the remote branch ([9.2 Draft pull requests](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/github-pull-requests.html#draft-pull-requests))
 
 *00:52:11–00:58:51*
 
-- **Q:** What button converts an open pull request into a draft?
-  **A:** The "Convert to Draft" button in the top-right corner of the pull request. *(00:53:52)*
+- **Q:** What did he say he does before starting a longer task?
+    - **A:** Create the pull request first, then keep pushing branch changes. *(00:53:26)*
 
-- **Q:** What visual cue does a draft pull request have compared to an open one?
-  **A:** A gray bar instead of a green one. *(00:54:04)*
+- **Q:** What button did he use to mark a pull request as not ready?
+    - **A:** “Convert to Draft.” *(00:53:50)*
+
+- **Q:** What visual cue did he say a draft pull request has?
+    - **A:** A gray bar instead of a green bar. *(00:54:04)*
 
 - **Q:** What happens to the merge button on a draft pull request?
-  **A:** It gets grayed out (disabled) so no one can accidentally merge something that is not ready. *(00:54:30)*
+    - **A:** It is grayed out or disabled. *(00:54:30)*
 
-- **Q:** What button turns a draft pull request back into an open one?
-  **A:** "Ready for review," found at the bottom of the pull request conversation. *(00:55:28)*
+- **Q:** What button turns a draft back into an open pull request?
+    - **A:** “Ready for review.” *(00:55:28)*
 
-- **Q:** What did the instructor say about deleting a branch on GitHub after merging a pull request?
-  **A:** The commits are still in the history, including the merge commit; deleting the branch just removes the branch name from the dropdown so the list does not grow forever. *(00:56:08)*
+- **Q:** What did he recommend doing to the remote branch after merging?
+    - **A:** Delete the branch on GitHub. *(00:56:08)*
 
-- **Q:** What did the instructor say about using AI (Copilot) to review a pull request?
-  **A:** You can request Copilot to do a review, but not every comment from the LLM has to be kept; a person still reviews and decides whether to accept or reject them. *(00:52:30)*
+- **Q:** What did he say happens to the pull request counter after merging?
+    - **A:** It goes down by one because the pull request is closed. *(00:57:42)*
 
-## 13. Local cleanup after a merge
+- **Q:** Did he say deleting the branch deletes the commits?
+    - **A:** No; the commits remain in history. *(00:58:10)*
 
-([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 13. Local cleanup after a merge: `git pull`, `git branch -a`, `git fetch --prune`, and `git branch -d` ([8.1.3 Useful command line Git branching commands](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#useful-command-line-git-branching-commands))
 
 *00:58:53–01:03:51*
 
-- **Q:** After a branch is merged on GitHub, does local `main` update automatically?
-  **A:** No; you must run `git switch main` and then `git pull origin main` to sync local `main` with the remote. *(01:00:14)*
+- **Q:** What did he say about local `main` after a pull request is merged on GitHub?
+    - **A:** It does not automatically update. *(01:00:17)*
 
-- **Q:** What command lists all branches, including remote-tracking branches?
-  **A:** `git branch -a`; the current branch has a star next to it. *(01:01:06)*
+- **Q:** What command sequence did he use to update local `main`?
+    - **A:** `git switch main` then `git pull origin main`. *(01:00:27)*
+
+- **Q:** What did `git branch -a` show?
+    - **A:** Local branches and remote-tracking branches, with a star next to the current branch. *(01:01:06)*
 
 - **Q:** What does `git fetch --prune` do?
-  **A:** It synchronizes with the remote and removes local references to branches that have been deleted on GitHub; in the demo it removed the `origin/dan-b1` reference. *(01:01:30)*
+    - **A:** It removes local references to branches that were deleted on GitHub. *(01:01:30)*
 
-- **Q:** What command deletes a local branch that has been merged?
-  **A:** `git branch -d <branch>` (lowercase `-d`). *(01:02:46)*
+- **Q:** What line did the terminal print after `git fetch --prune` removed `origin/dan-b1`?
+    - **A:** `- [deleted] (none) -> origin/dan-b1`. *(01:01:39)*
 
-- **Q:** What is the difference between lowercase `-d` and capital `-D` in `git branch`?
-  **A:** Lowercase `-d` only deletes a branch if it has been merged; capital `-D` force-deletes a branch even if it has not been merged. *(01:02:54)*
+- **Q:** What did he say `git pull` does that `git fetch` alone does not?
+    - **A:** `git pull` runs fetch and then merge on top; fetch only coordinates history. *(01:02:07)*
 
-- **Q:** What warning did the instructor give about capital `-D`?
-  **A:** Be very careful if you are copying commands from ChatGPT, because it might say capital `-D` (force delete), and you could delete commits you are still working on. *(01:03:21)*
+- **Q:** What terminal output followed `git branch -d dan-b1`?
+    - **A:** `Deleted branch dan-b1 (was b90e441).` *(01:02:38)*
 
-- **Q:** What error did the terminal show when the instructor typed `git pull main` without specifying the remote?
-  **A:** `fatal: 'main' does not appear to be a git repository`; the correct command is `git pull origin main`. *(01:02:57)*
+- **Q:** What did he say lowercase `git branch -d` will only do?
+    - **A:** Delete a branch if it has been merged. *(01:02:54)*
 
-- **Q:** What does the instructor say individual assignment 1 requires?
-  **A:** It has students review merge conflicts again, because you still need to know how to recover from them even when working in branches. *(00:59:07)*
+- **Q:** What warning did he give about capital `git branch -D`?
+    - **A:** It force-deletes a branch and can delete commits you were still working on; be careful with copied AI commands. *(01:03:21)*
 
-## 14. Creating a merge-conflict scenario with two branches
+- **Q:** What error did the terminal print when the instructor typed `git pull main` without the remote name?
+    - **A:** `fatal: 'main' does not appear to be a git repository`. *(01:03:51)*
 
-([8 Git branches](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html))
+## 14. Creating a merge-conflict scenario with two branches ([8.3 What happens when my feature branch falls behind main?](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#what-happens-when-my-feature-branch-falls-behind-main))
 
 *01:03:51–01:10:51*
 
-- **Q:** What are the names of the two branches created for the merge-conflict demonstration?
-  **A:** `dan-fetch` and `dan-delete`. *(01:04:35)*
+- **Q:** What branch did the instructor create first for the two-branch conflict demo?
+    - **A:** `dan-fetch`. *(01:04:35)*
 
-- **Q:** What is the title of pull request #2 in the demo repository?
-  **A:** "define fetch --prune," from branch `dan-fetch`. *(01:05:36)*
+- **Q:** What commit message did the `dan-fetch` branch have?
+    - **A:** `define fetch --prune`. *(01:05:45)*
 
-- **Q:** What is the title of pull request #3 in the demo repository?
-  **A:** "branch -d and -D," from branch `dan-delete`. *(01:07:51)*
+- **Q:** What error did the terminal print when the instructor first tried `git switch -b dan-delete`?
+    - **A:** `error: unknown switch 'b'`. *(01:06:40)*
 
-- **Q:** What error did the terminal show when the instructor typed `git switch -b dan-delete`?
-  **A:** `error: unknown switch 'b'`; the correct flag for creating a branch with `git switch` is `-c`. *(01:06:40)*
+- **Q:** What branch did the instructor create next for the conflict demo?
+    - **A:** `dan-delete`. *(01:06:44)*
 
-- **Q:** What happens to open pull requests when one is merged into `main`?
-  **A:** GitHub rechecks the remaining open pull requests to see if they can still be merged against the new `main`. *(01:10:19)*
+- **Q:** What commit message did the `dan-delete` branch have?
+    - **A:** `branch -d and -D`. *(01:07:57)*
 
-- **Q:** What did the instructor say about looking at the two pull requests side by side before the first merge?
-  **A:** It is "not very obvious" that they will conflict; the conflict only appears after one branch is merged and `main` moves. *(01:09:28)*
+- **Q:** What two pull requests did the instructor create for the conflict demo?
+    - **A:** PR #2 from `dan-fetch` and PR #3 from `dan-delete`. *(01:09:11)*
 
-## 15. Resolving the conflict locally with `git rebase main` and force push
+- **Q:** What did he say you do not see clearly when looking at the two pull requests side by side before merging?
+    - **A:** That they will conflict; nothing obvious tells you a merge conflict is going to happen. *(01:09:48)*
 
-([8.3.2 Using rebase](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#using-rebase))
+- **Q:** What did he say GitHub does after one branch is merged?
+    - **A:** `main` changes and open pull requests recheck whether they can be merged. *(01:10:08)*
+
+## 15. Resolving the conflict locally with `git rebase main` and `git push --force-with-lease` ([8.3.2 Using rebase](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/git-branches.html#using-rebase))
 
 *01:10:51–01:20:42*
 
-- **Q:** What command replays the commits of the `dan-delete` branch on top of the updated `main`?
-  **A:** `git rebase main`, run while on the `dan-delete` branch. *(01:17:08)*
+- **Q:** What symbols did he say to look for when fixing a conflict?
+    - **A:** Less-than, equal, and greater-than markers. *(01:10:59)*
 
-- **Q:** What does "fixing" a merge conflict mean in this course, according to the instructor?
-  **A:** It is not enough to remove the conflict markers; the resulting code or report must work from top to bottom again. *(01:11:21)*
+- **Q:** What did he mean by “fixing” a merge conflict in this course?
+    - **A:** The report or code must work from top to bottom, not just remove the markers. *(01:11:39)*
 
-- **Q:** What command is run after resolving the conflict and staging the file to continue the rebase?
-  **A:** `git rebase --continue`. *(01:18:54)*
+- **Q:** What command did he use to update local `main` before rebasing `dan-delete`?
+    - **A:** `git pull origin main` after `git switch main`. *(01:16:19)*
 
-- **Q:** Why could a plain `git push origin dan-delete` not be used after the rebase?
-  **A:** Because rebase changed (rewrote) the commit history of the branch that was already pushed; a force push is required. *(01:19:34)*
+- **Q:** What command did he run on `dan-delete` to replay its commit onto updated `main`?
+    - **A:** `git rebase main`. *(01:17:08)*
 
-- **Q:** What command was used to push the rebased branch to GitHub?
-  **A:** `git push --force-with-lease origin dan-delete`. *(01:19:34)*
+- **Q:** What conflict output did the terminal print after `git rebase main`?
+    - **A:** `CONFLICT (content): Merge conflict in README.md` and `error: could not apply cb810d5... branch -d and -D`. *(01:17:21)*
 
-- **Q:** What error did the terminal show when the instructor first typed the force-push command with a typo?
-  **A:** `error: unknown option 'force-with-leasse'` (a misspelling of `--force-with-lease`). *(01:19:20)*
+- **Q:** What command did he say can stop a rebase and return to the prior state?
+    - **A:** `git rebase --abort`. *(01:18:20)*
+
+- **Q:** What did he say to run after marking the conflict resolved with `git add README.md`?
+    - **A:** `git rebase --continue`. *(01:18:44)*
+
+- **Q:** What did he say changed about `dan-delete` after the rebase that prevented a normal push?
+    - **A:** The commit history of the branch changed. *(01:19:34)*
+
+- **Q:** What typo did the terminal show on the first force-push attempt?
+    - **A:** `error: unknown option 'force-with-leasse'`. *(01:19:47)*
+
+- **Q:** What correct command updated the rebased `dan-delete` branch on GitHub?
+    - **A:** `git push --force-with-lease origin dan-delete`. *(01:20:17)*
 
 ---
 
-- prompt: prompt-recall-1-remember.md @ 8bcc190
-- prompt-hash: cbbf92455214
+- prompt: prompt-recall-1-remember.md @ 65eb21c
+- prompt-hash: e448f8420cdb
 - model: qwen3.8-27b-sglang (requested: qwen3.8-27b-sglang)
 - backend: local (SGLang)
 - inputs: transcript-plaud.md, terminal.txt, materials.md, notes-class-main--qwen3.8-27b-sglang.md
-- generated: 2026-11-20
-- notes-input: notes-class-main--qwen3.8-27b-sglang.md @ d2f17cf18422, links and section references removed
+- generated: 2026-11-23
+- notes-input: notes-class-main--qwen3.8-27b-sglang.md @ d2f17cf18422, links and section references removed, diagrams removed

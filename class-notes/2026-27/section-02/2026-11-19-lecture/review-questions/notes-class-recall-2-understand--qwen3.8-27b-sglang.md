@@ -1,4 +1,4 @@
-# Containers: running and building a shareable compute environment: review questions, tier 2 — Understand
+# Introduction to containers: review questions, tier 2 — Understand
 
 Date: 2026-11-19
 
@@ -8,253 +8,265 @@ Instructor: Daniel Chen
 
 *Tier 2 of 5: Understand. Explain each answer in your own words before you read it; tier 1 (Remember) covers the facts, tiers 3 to 5 put them to use.*
 
-## 1. Class setup: Docker Desktop and pre-lecture Docker pulls ([27 Introduction to containerization](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html))
+## 1. Class setup: Docker Desktop and pre-lecture `docker pull` ([Download the images before you start](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html#download-the-images-before-you-start))
 
 *00:00:14–00:01:41*
 
-- **Q:** Why does the instructor ask students to run the three `docker pull` commands from Slack before the session starts?
-  **A:** Pulling the images takes a while, about ten minutes, so doing it before means they should be downloaded by the time the class is checking everything. The instructor put the commands in Slack so students could start that download before the session began. *(00:00:18)*
+- **Q:** Why run the three `docker pull` commands before the lecture?
+    - **A:** The images take time to download, and the instructor says they should be done in about ten minutes if students run the commands right away. Doing the pulls before class is meant to have the images ready by the time the session finishes checking everything. *(00:00:14)*
 
-- **Q:** What does an error like “can't find Docker” mean when you run the pre-lecture Docker commands?
-  **A:** It means Docker is not available to the shell. You need to install the Docker application and have Docker Desktop open before running the commands. *(00:00:33)*
+- **Q:** Why does the instructor say to make sure Docker Desktop is open before running Docker commands?
+    - **A:** If Docker is not installed or is not running, Docker commands can produce an error such as “can’t find Docker.” Starting Docker Desktop makes the Docker commands available for the rest of the setup. *(00:00:33)*
 
-- **Q:** Why is the day's Git exercise framed as practising a branch, pull request, and merge?
-  **A:** It gives everyone a chance to practice the branch, pull-request, and merge workflow. That is the same workflow they will use in project-based courses and future assignments. *(00:00:43)*
+- **Q:** How does the pre-lecture Docker setup connect to the day’s Git practice?
+    - **A:** While the Docker images download, students can start the exercise of making a branch, creating a pull request, and merging it. The instructor wants the downloads to be finished so the class can move through the practice without waiting on Docker. *(00:00:43)*
 
-## 2. Project advice: keep the analysis simple and correct
+## 2. Project advice
 
 *00:01:41–00:06:05*
 
-- **Q:** Why does the instructor tell students not to make the group-project analysis difficult?
-  **A:** This course is about workflows, not model fitting. If you turn a simple task into a complicated model now, you will have a bad time in about two weeks because there is a lot more workflow work to do. *(00:02:03)*
+- **Q:** Why does the instructor tell students not to make the analysis difficult?
+    - **A:** He says that if a simple model is enough, students should use the simple model because turning the project into something complicated can lead to “a very bad time in about two weeks.” The warning is about over-scoping the work in a course focused on workflows. *(00:01:56)*
 
-- **Q:** What does the instructor mean when saying the accuracy of the model does not matter?
-  **A:** A model can be only sixty percent accurate and that is acceptable. What matters is that the data science and machine-learning techniques are technically correct. *(00:03:04)*
+- **Q:** Why is DSCI 522 different from a model-fitting course?
+    - **A:** The course is about data science workflows, so the instructor says almost no machine learning code appears in the lectures. The goal is to do the workflow correctly, not to maximize model performance. *(00:02:16)*
 
-- **Q:** Why is it okay to fit a linear or logistic regression rather than a fancier model?
-  **A:** The class will not penalize simplicity. The requirement is correctness, so you should not, for example, fit logistic regression to a numeric outcome. *(00:05:12)*
+- **Q:** Why does the instructor say a sixty percent accurate model is acceptable?
+    - **A:** He says the model results do not matter, but the data science and machine learning techniques must be technically correct. For example, fitting logistic regression when the outcome is numeric would be wrong. *(00:03:04)*
 
-## 3. Git review: branch, commit, and push for the pull-request task
+- **Q:** Why should a student do a portfolio project in parallel instead of inside this assignment?
+    - **A:** There is a lot of workflow material in this class, and adding portfolio pressure to the assignment would create a more complicated report than the course needs right now. Doing a portfolio project separately keeps the course assignment focused on the required workflows. *(00:03:27)*
+
+## 3. Git review: branch, commit, and push
 
 *00:06:05–00:09:50*
 
-- **Q:** Why does the instructor say to run `git status` right before `git add` and definitely before `git commit`?
-  **A:** In a branch workflow you need to confirm which branch you are on. If you accidentally commit on `main`, the textbook has a cheat sheet of commands that can move the commits. *(00:08:08)*
+- **Q:** Why check `git status` before running `git add` and `git commit`?
+    - **A:** In a branch workflow, you may be on the wrong branch, and commits can accidentally land on `main`. Checking before adding or committing helps prevent that, and the instructor mentions a textbook cheat sheet for moving commits if this happens. *(00:08:08)*
 
-- **Q:** Why should you pull `main` before starting work on a new branch in a collaborating environment?
-  **A:** You want to start from an up-to-date `main`. That prevents you from making changes based on something that is out of date while multiple people are working on multiple branches. *(00:08:27)*
+- **Q:** Why pull `main` before starting work in a new branch?
+    - **A:** In an actively collaborating environment, other people may have pushed changes to `main`. Pulling `main` first prevents you from making changes on top of something that is out of date. *(00:08:27)*
 
-- **Q:** Why could the instructor create the `today` branch after already editing `README.md` on `main`?
-  **A:** He had not committed anything yet. `git switch -c today` created the new branch and kept the uncommitted `README.md` change on `today` instead of `main`. *(00:08:57)*
+- **Q:** Why can the instructor create the `today` branch after editing `README.md` but before committing?
+    - **A:** He had only edited the file and had not yet committed anything, so the edit was still uncommitted. Creating the branch with `git switch -c today` lets him commit that edit on `today` instead of on `main`. *(00:08:57)*
 
-- **Q:** What does `git push origin today` make possible on GitHub?
-  **A:** It uploads the `today` branch to the remote. GitHub can then show the pull-request button so you can open a pull request for that branch. *(00:09:44)*
+- **Q:** Why push the `today` branch to GitHub?
+    - **A:** Pushing the branch creates the remote branch so GitHub can show the pull request button. That is how the local branch becomes a pull request that can be reviewed and merged. *(00:09:50)*
 
 ## 4. Issues as a project board
 
 *00:09:50–00:16:17*
 
-- **Q:** Why does the instructor recommend using GitHub issues to track a project?
-  **A:** Issues give a simple project-board view of what is happening in the project. They can also record who is responsible for what and can hold meeting notes and action items. *(00:10:08)*
+- **Q:** Why use GitHub issues as a project board?
+    - **A:** Issues are a simple way to track what is happening in a project, including who is responsible for what. The instructor also says they can be used like meeting notes, with action items turned into separate issues after a meeting. *(00:10:08)*
 
-- **Q:** How can an issue board be used as meeting notes in the MDS workflow?
-  **A:** You can write a big note in an issue during a meeting. Then you create separate issues for the action items or to-do items that spawn out of that meeting note. *(00:10:49)*
+- **Q:** Why do issues and pull requests share the same numbering?
+    - **A:** The shared counter lets one item refer to another by its hash number, such as “meeting from #1.” That makes it possible to link issues and pull requests together as parts of one project board. *(00:11:54)*
 
-- **Q:** Why do issues and pull requests share the same numbering sequence?
-  **A:** The shared number lets you refer to any issue or pull request from another item with a hash number. For example, you can refer to issue `#1` from a pull request. *(00:11:54)*
+- **Q:** What does a two-way reference between issues and pull requests mean?
+    - **A:** When an item references a number, the referenced item gets a back-link automatically, so the items connect to each other. The instructor says this automatic linking is one reason GitHub became popular as a project management system. *(00:13:34)*
 
-- **Q:** What does a “two-way reference” between an issue and a pull request mean?
-  **A:** When one item references another by number, the referenced item also gets a back-reference. That makes the items link to each other automatically. *(00:13:34)*
+- **Q:** Why is it okay for one pull request to deal with three issues?
+    - **A:** The class requires three issues, but one pull request can fix all three if the work is related. Writing the pull request message with the relevant issue numbers gives students experience with the board without forcing one issue per branch. *(00:14:23)*
 
-- **Q:** Why is it acceptable for one pull request to deal with all three required issues?
-  **A:** The instructor says the point is to gain experience with the project-board system. A single pull request can therefore deal with multiple issues, even though one issue, one branch, and one pull request is the clean extreme. *(00:14:23)*
+- **Q:** Why can a team assign people to issues and pull requests?
+    - **A:** Assigning an issue shows who is responsible for it, while assigning a reviewer on a pull request asks someone to look over the work. In larger projects, a reviewer can even block changes until they have approved the work. *(00:14:47)*
 
 ## 5. Pull-request descriptions, checkboxes, and auto-close keywords
 
 *00:16:17–00:22:18*
 
-- **Q:** Why should the first comment on an issue or pull request be kept up to date?
-  **A:** Other people typically look at the first comment to understand what is happening and why the item exists. Project owners can edit it because issues and pull requests evolve over time. *(00:16:40)*
+- **Q:** Why keep the first comment on an issue or pull request up to date?
+    - **A:** People mainly read the first comment to understand what is happening and why the item exists, rather than reading the later conversation. The instructor edits the first comment so it holds the current references and explanation. *(00:16:24)*
 
-- **Q:** What are Markdown checkboxes in a pull request used for?
-  **A:** They let you track items that are done or not done in the pull request. If the pull request is not marked as a draft, teammates can see that work is still unfinished. *(00:17:37)*
+- **Q:** How do Markdown checkboxes help in a pull request?
+    - **A:** They let the author mark items as done or not done inside the pull request. If the pull request is not a draft, teammates can see at a glance what is still unfinished. *(00:17:37)*
 
-- **Q:** What do the keywords `closes` and `fixes` do when they appear in a pull-request message?
-  **A:** A sentence such as `closes #1` or `fixes #2` references those issues. When the pull request is merged, GitHub automatically closes the referenced issues. This is a GitHub service feature rather than part of the Git version-control system. *(00:18:33)*
+- **Q:** What do `closes #1` and `fixes #2` do in a pull request description?
+    - **A:** They reference issue numbers in a special GitHub pattern. When the pull request is merged, GitHub automatically closes the referenced issues. This is a GitHub service feature, not a Git version-control feature. *(00:18:40)*
 
-- **Q:** Why does the instructor prefer putting `fixes #N` in the pull-request message rather than relying on a commit message?
-  **A:** It is easier to see in the pull request than in a commit message. When the merge happens, the issue tab gets smaller automatically, so you do not have to manually close several issues. *(00:19:55)*
+- **Q:** Why does the instructor say to write the pull request message strategically?
+    - **A:** A message can reference multiple issues so that merging the pull request closes them all at once. This saves the author from going back and manually closing each issue later. *(00:21:02)*
 
 ## 6. Merging the pull request and cleaning up branches
 
 *00:22:18–00:25:29*
 
-- **Q:** What does `git switch main` followed by `git pull origin main` accomplish after pull request #3 is merged?
-  **A:** It moves the local checkout to `main`. Then `git pull origin main` brings the merged pull-request commit down from `origin/main` so the local `README.md` change is present. *(00:22:25)*
+- **Q:** Why switch to `main` and pull after pull request #3 is merged?
+    - **A:** The merged changes are on `main`, so switching and pulling brings the merge into the local `main` branch. That leaves the local repository current after the remote merge. *(00:22:25)*
 
-- **Q:** Why is deleting the merged `today` branch on GitHub optional in this course?
-  **A:** The instructor says you do not have to delete branches in this course. Some people keep branches as a record, and different teams or companies have different Git conventions. *(00:23:16)*
+- **Q:** Why does the instructor say deleting the remote branch is not required in class?
+    - **A:** Students may keep merged branches as a record, and different teams use different Git practices. The class is showing one valid cleanup path, not a universal rule. *(00:23:16)*
 
-- **Q:** Why run `git fetch --prune` and then `git branch -d today` after the remote `today` branch is deleted?
-  **A:** The local machine still has branch references that show up in `git log --oneline --graph --all`. `git fetch --prune` removes the remote-tracking reference, and `git branch -d today` deletes the local branch reference while the merge commit remains. *(00:24:30)*
+- **Q:** What does `git log --oneline --graph --all` show after the `today` branch is deleted on GitHub?
+    - **A:** It still shows the commit and the merge, so the history remains. Deleting the branch mainly removes the quick reference or shortcut to that commit, not the commit itself. *(00:23:56)*
+
+- **Q:** Why run `git fetch --prune` and then `git branch -d today`?
+    - **A:** `git fetch --prune` removes the remote-tracking reference after the branch is deleted on GitHub, and `git branch -d today` removes the local branch reference. Together they clean up the old branch names while leaving the merged history visible. *(00:24:30)*
 
 ## 7. Why containers: a stable, shareable compute environment ([27 Introduction to containerization](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html))
 
 *00:25:29–00:33:21*
 
-- **Q:** Why does DSCI 522 move from a single supplied package file to projects that need their own environments?
-  **A:** Data-science projects can last days, weeks, or years and are often team-based. Each project may need a stable compute environment that more than one person can share. *(00:26:11)*
+- **Q:** Why does the course move beyond the package files students received in earlier MDS courses?
+    - **A:** Data science projects last longer, often involve teams, and each project can have its own package needs. Students need to manage a stable environment for their own project instead of relying on an instructor-supplied list. *(00:25:52)*
 
-- **Q:** Why does the instructor say “this works on my machine” is not good enough?
-  **A:** A teammate may have a different operating system or CPU architecture, such as a Windows ARM machine versus your Mac. The course goal is a shared compute environment where all the code can run. *(00:29:32)*
+- **Q:** Why are differences in operating system and CPU architecture a problem for sharing a data science project?
+    - **A:** A teammate may be on a different machine, such as Windows versus Mac or Intel versus ARM, and software may install or run differently. A container gives everyone a shared virtual computer instead of depending on each person’s local setup. *(00:28:53)*
+
+- **Q:** What does it mean to say a container is a virtual computer?
+    - **A:** The instructor builds a computer from scratch, installs what the analysis needs, and gives that virtual machine to others. Everyone then runs code inside that same environment even though they are on different physical machines. *(00:31:49)*
+
+- **Q:** Why is a container a useful sandbox even though there is a performance hit?
+    - **A:** The extra layer has a cost, but if you break the sandbox you can restart it and get a fresh copy. That makes it a safe place to experiment with an operating system without damaging the real machine. *(00:32:34)*
 
 - **Q:** Why does the instructor advise keeping the package list to the bare minimum?
-  **A:** Installing packages you do not use wastes disk space. Later, updating everything in one go can fail because different packages have different update cycles and may become incompatible. *(00:27:38)*
+    - **A:** Installing packages that are not needed wastes disk space. It can also create problems later when packages with different update cycles are all updated together and may no longer be compatible. *(00:28:04)*
 
-- **Q:** Why can a container act as a sandbox for learning operating-system commands?
-  **A:** It adds an extra layer between you and your real machine. If you break the sandbox, you can restart it and get a new one rather than damaging your computer. *(00:33:05)*
-
-## 8. Containers versus virtual machines ([27 Introduction to containerization](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html))
+## 8. Containers versus virtual machines ([27.3 Contrasting containers with virtual machines](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html#contrasting-containers-with-virtual-machines))
 
 *00:33:21–00:36:47*
 
 - **Q:** What is the difference between a virtual machine and a container?
-  **A:** A virtual machine installs a full operating system with a graphical interface you can log into. A container is a stripped-down environment containing only the bare minimum software you need and usually just a terminal. *(00:34:48)*
+    - **A:** A virtual machine installs a full operating system, such as Windows, with the buttons and graphical interface you use to log in. A container is a stripped-down environment with only the bare minimum software and usually just a terminal. *(00:34:48)*
 
 - **Q:** Why are containers more performant than virtual machines?
-  **A:** They do not include a full visual operating system. That makes them use less disk space, memory, and compute. *(00:35:33)*
+    - **A:** They contain much less software, so they use less disk, memory, and compute. The instructor describes a container as a virtual machine without the full operating system and visual interface. *(00:35:33)*
 
-- **Q:** Why does the instructor still use virtual machines?
-  **A:** He uses them when he needs to test the MDS install by pretending he is on a Windows machine. In that case, having a full operating system is the point. *(00:36:01)*
+- **Q:** Why does the instructor still use virtual machines despite preferring containers?
+    - **A:** He uses them when he needs to pretend to be on a different system, such as testing the MDS install on Windows. They are useful for that kind of full operating-system test, even though they are larger. *(00:36:01)*
 
-## 9. Running the R container: `docker pull` and `docker run` ([28 Using and running containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html))
+## 9. Running the R container: `docker pull` and `docker run` ([28.1.1 Launch and run containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html#launch-and-run-containers))
 
 *00:36:47–00:45:01*
 
-- **Q:** What does the tag `4.3.2` mean in `docker pull rocker/r-ver:4.3.2`?
-  **A:** It selects the image whose R version is 4.3.2. That lets the container run R 4.3.2 even when the host machine has a different R version. *(00:37:26)*
+- **Q:** Why run `docker pull rocker/r-ver:4.3.2` before running the container?
+    - **A:** `docker pull` downloads or updates the image on the computer. The instructor already pulled it so that `docker run` would not need to wait for a long download during the lecture. *(00:42:16)*
 
-- **Q:** Why is running `rocker/r-ver:4.3.2` a useful example for a stable analysis environment?
-  **A:** It shows you can keep a fixed R version for a long-running analysis, such as clinical-trial or drug-submission work. The host's R can keep upgrading without changing the analysis environment. *(00:37:54)*
+- **Q:** Why can the container run R 4.3.2 while the host has R 4.6.2?
+    - **A:** The container is a separate machine with its own installed R version. Lock files track package versions, but a container can also pin system tools and the language version itself. *(00:38:46)*
 
-- **Q:** What do the flags `--rm` and `-it` do in `docker run --rm -it rocker/r-ver:4.3.2`?
-  **A:** `--rm` deletes the container when it stops so stopped containers do not pile up. `-it` gives an interactive terminal, with `-i` keeping input open and `-t` attaching a TTY. *(00:40:55)*
+- **Q:** What does `--rm` do in `docker run --rm -it rocker/r-ver:4.3.2`?
+    - **A:** It tells Docker to delete the container when it stops. That avoids manually removing stopped containers later. *(00:40:55)*
 
-- **Q:** Why does `library(tidyverse)` fail inside the bare `rocker/r-ver:4.3.2` container but work on the host?
-  **A:** The bare container only has R installed, not `tidyverse`. The host has its own packages, which shows that the two terminals are effectively different machines. *(00:43:49)*
+- **Q:** What do the `-i` and `-t` parts of `-it` mean?
+    - **A:** `-i` keeps input interactive so the user can type commands, and `-t` attaches a TTY terminal for an interactive session. Together they let R run as an interactive terminal inside the container. *(00:41:16)*
 
-- **Q:** Why does the instructor emphasize paying attention to the prompt when working in a container?
-  **A:** The prompt is often the only visual cue that you are typing in the container rather than on your local machine. This is similar to connecting to a remote machine, where you need to know which machine you are on. *(00:45:04)*
+- **Q:** What does it mean when `library(tidyverse)` fails in the `rocker/r-ver:4.3.2` container but works on the host?
+    - **A:** It means the container and the host are different machines. The bare R container does not have `tidyverse` installed, while the host has that package available. *(00:43:49)*
 
-## 10. Web-app containers: RStudio and browser-first tools ([28 Using and running containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html))
+## 10. Web-app containers: RStudio and browser-first tools ([28.1.3 Mapping ports to containers with web apps](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html#mapping-ports-to-containers-with-web-apps))
 
 *00:45:01–00:54:10*
 
-- **Q:** Why can applications such as RStudio, Jupyter Lab, and VS Code be run in a container and opened in a browser?
-  **A:** Many of these tools are browser-first applications. They can run on a remote or container machine while still giving the user the same application interface. *(00:47:15)*
+- **Q:** Why are tools such as JupyterLab, VS Code, and RStudio built as browser-first applications?
+    - **A:** If the application runs in a browser, the same interface can be used on a remote machine or inside a container. This lets the user connect to a machine that may have more cores and memory than the laptop. *(00:47:15)*
 
-- **Q:** What does it mean that Jupyter Lab is built to run in a browser?
-  **A:** It means you can connect to Jupyter Lab that is running in a container or on a bigger machine. You still use the familiar browser interface even though the compute is elsewhere. *(00:48:04)*
+- **Q:** Why is JupyterLab accessed through `localhost` in a browser instead of being treated only as a desktop app?
+    - **A:** JupyterLab is built to run in a browser so it can also run on a remote container. The local browser then connects to the running Jupyter process through a port. *(00:48:04)*
 
-- **Q:** Why does the instructor choose the RStudio container as the example for running “an actual application”?
-  **A:** The instructor calls the RStudio example the easier one to teach. RStudio can be run as a web app inside a container and then accessed through a browser. *(00:46:47)*
+- **Q:** Why can RStudio be used from a browser when running in a container?
+    - **A:** RStudio is an application that runs as a web app inside the container. Docker can expose it through a port so the browser can reach the running RStudio Server. *(00:47:11)*
 
-## 11. Port mapping the RStudio container ([28 Using and running containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html))
+## 11. Port mapping the RStudio container ([28.1.3 Mapping ports to containers with web apps](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html#mapping-ports-to-containers-with-web-apps))
 
 *00:54:10–00:59:14*
 
-- **Q:** What does `-p 8787:8787` do in `docker run --rm -p 8787:8787 rocker/rstudio:4.4.2`?
-  **A:** It maps port 8787 on the local computer to port 8787 inside the container. RStudio is listening on that internal port, so the browser can reach it at `localhost:8787`. *(00:56:31)*
+- **Q:** How does `-p 8787:8787` make the RStudio container reachable from a browser?
+    - **A:** It maps port 8787 on the user’s computer to port 8787 inside the container, where RStudio is running. The user can then open `localhost:8787` in the browser to reach that container. *(00:56:31)*
 
-- **Q:** Why can you run the RStudio container more than once at the same time?
-  **A:** The container's internal port is fixed at 8787, but you can map it to a different local port. That lets multiple RStudio containers run at the same time on different local ports. *(00:56:38)*
+- **Q:** Why can you run more than one RStudio container at the same time?
+    - **A:** The container’s internal RStudio port is fixed at 8787, but the host port can be mapped to a different local number. This lets several containers run simultaneously on different local ports. *(00:57:05)*
 
-- **Q:** What does the instructor mean by saying port numbers are “very arbitrary”?
-  **A:** The number is chosen by the tool or image, and you can map to many different local ports. Numbers like 8787 or 8888 are common conventions rather than required Docker rules. *(00:56:19)*
-
-- **Q:** Why is `--rm` useful when running several RStudio containers?
-  **A:** Each running container uses RAM on the computer. `--rm` shuts down and removes the container when you exit, so you do not leave many machines running. *(00:55:06)*
+- **Q:** Why does the instructor warn about running several containers at the same time?
+    - **A:** Each running container uses RAM on the computer, so turning on several containers can make the machine sluggish. The instructor uses this to explain why containers should be stopped when they are no longer needed. *(00:55:17)*
 
 ## 12. Environment variables and running dashboards in containers ([28 Using and running containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html))
 
 *00:59:20–01:03:00*
 
-- **Q:** What does `-e PASSWORD="apassword"` do when running the `rocker/rstudio:4.4.2` container?
-  **A:** It passes the environment variable `PASSWORD` into the container. The RStudio image uses that value to set the login password instead of generating a random one. *(00:59:29)*
+- **Q:** How does `-e PASSWORD="apassword"` work when running the RStudio container?
+    - **A:** It passes an environment variable into the container at run time. The `rocker/rstudio` image is set up to use the `PASSWORD` variable to choose the login password instead of generating a random one. *(01:00:05)*
 
-- **Q:** Why did the instructor check whether port 8787 is available to someone who cannot log into the host machine?
-  **A:** He wanted to verify what the port mapping actually exposes. If you cannot log into the physical host machine, the local port is not available to you. *(01:00:16)*
+- **Q:** Why does the instructor say not every container has the same environment variables?
+    - **A:** A container’s behavior depends on how its image was built, so only some images define variables that users can set. The `PASSWORD` variable works because that RStudio image was designed to read it. *(00:59:34)*
 
-- **Q:** Why can a dashboard be deployed as a container in a course like DSCI 532?
-  **A:** The container can include all the installation and environment setup. An end user only needs Docker, then runs the container and opens the dashboard's port. *(01:01:47)*
+- **Q:** Why does the instructor say the password is not exposed to people who cannot access the machine?
+    - **A:** Access to the mapped port depends on access to the physical machine running Docker. If someone cannot log into that machine, they cannot use port 8787 on it. *(01:00:16)*
 
-## 13. Building interactively: base image and the `cowsay` package ([29 Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html))
+- **Q:** Why put a dashboard in a container for DSCI 532?
+    - **A:** A dashboard runs in the browser, so the container can include all the installation and dependencies. The end user only needs Docker and can run the application without installing the environment, Quarto, or packages themselves. *(01:01:47)*
+
+## 13. Building interactively: base image and the `cowsay` package ([29.1.1 Workflow for building a Dockerfile](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html#workflow-for-building-a-dockerfile))
 
 *01:03:00–01:08:46*
 
-- **Q:** Why does the instructor start from `rocker/r-ver:4.6.2` instead of an empty machine?
-  **A:** The base image already has R and some of the system setup needed for R to work. It can skip several low-level installation steps, such as compiler setup that Windows and Mac users otherwise had to do by hand. *(01:03:42)*
+- **Q:** Why start from the `rocker/r-ver:4.6.2` base image?
+    - **A:** That image already has R installed and probably includes system tools that a fresh Linux install would need. It lets the instructor skip some low-level setup steps while building a custom image. *(01:04:00)*
 
-- **Q:** Why run `docker run --rm -it rocker/r-ver:4.6.2 bash` rather than letting the container start R?
-  **A:** The `bash` command overrides the image's default start-up, which would otherwise open R. It gives a terminal where you can test installation commands before writing them into a `Dockerfile`. *(01:04:44)*
+- **Q:** Why run `docker run --rm -it rocker/r-ver:4.6.2 bash` instead of the image’s default R command?
+    - **A:** Adding `bash` starts a terminal instead of R, so the instructor can type installation commands on the machine directly. This is useful for testing steps before writing them into a Dockerfile. *(01:04:53)*
 
-- **Q:** Why does `cowsay` disappear after you exit and restart the `rocker/r-ver:4.6.2` container?
-  **A:** A container has no saved state for interactive changes. When you turn it off and start the image again, it resets to the original image without the package you installed. *(01:06:49)*
+- **Q:** Why install and test `cowsay` interactively before putting the command in a Dockerfile?
+    - **A:** The instructor wants to verify the terminal command actually works on that image. Only after the step works does it become a reliable instruction for building the machine from scratch. *(01:05:43)*
 
-- **Q:** Why is a container a safe place to practice destructive command-line operations?
-  **A:** If you “delete the computer,” you are only deleting the container. You can restart from the image and get a clean machine without affecting your real computer. *(01:07:25)*
+- **Q:** Why is the `cowsay` package gone after the container is stopped and started again?
+    - **A:** A container does not save changes made inside it after the image is created. When it restarts, it resets to the image unless the installation was saved in a Dockerfile. *(01:06:49)*
 
-## 14. Writing the `Dockerfile`: `FROM`, `RUN`, and `CMD` ([29 Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html))
+## 14. Writing the `Dockerfile`: `FROM`, `RUN`, and `CMD` ([29.1 Building container images from Dockerfile’s](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html#building-container-images-from-dockerfiles))
 
 *01:08:46–01:15:01*
 
-- **Q:** What is the role of a `Dockerfile` in the class's workflow?
-  **A:** It is the plain-text file that records the instructions for building the container machine. It specifies which base image to start from and which packages or setup commands to run. *(01:10:18)*
+- **Q:** Why does the `Dockerfile` begin with `FROM rocker/r-ver:4.6.2`?
+    - **A:** `FROM` sets the base image or starting machine for the build. In this case the new image starts from an image that already has R 4.6.2 installed. *(01:11:10)*
 
-- **Q:** What does the `FROM rocker/r-ver:4.6.2` line tell Docker?
-  **A:** It sets the starting-point image for the new image. The build therefore begins with a machine that already has R 4.6.2 installed. *(01:11:17)*
+- **Q:** What does `RUN Rscript -e "install.packages('cowsay')"` do during the build?
+    - **A:** `RUN` executes a bash command while the image is being built. Here it uses `Rscript -e` to run the R expression that installs the `cowsay` package into the image. *(01:12:44)*
 
-- **Q:** Why is `Rscript -e "install.packages('cowsay')"` the form used in the Dockerfile instead of starting R interactively?
-  **A:** `RUN` lines need terminal commands, and `Rscript -e` runs an R expression from the command line. The outer double quotes and inner single quotes keep the shell quoting correct. *(01:09:07)*
+- **Q:** What is the role of `CMD ["Rscript", "-e", "cowsay::say('Hello from my first image!')"]`?
+    - **A:** It sets the default command that runs when a container from this image starts. It replaces the base image’s default behavior, so the container prints the cowsay message unless the user runs a different command such as `bash`. *(01:13:25)*
 
-- **Q:** What does `CMD ["Rscript", "-e", "cowsay::say('Hello from my first image!')"]` control?
-  **A:** It sets the default command that runs when a container from the new image starts. The container prints the cowsay message unless you override it with another command such as `bash`. *(01:13:25)*
+- **Q:** Why mention `COPY` and `uv sync` for a Python container?
+    - **A:** A Python image can copy lock files into the image and then run `uv sync` during the build. That installs the required packages so the finished container has the project’s compute environment ready. *(01:14:15)*
 
-## 15. Building and running the `hello-cowsay` image ([29 Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html))
+- **Q:** Why does the instructor say `ENTRYPOINT` is rarer than `CMD`?
+    - **A:** `ENTRYPOINT` is used for very specific containers where a fixed command always runs, while `CMD` is the common default command that can be replaced by a command after the image name. *(01:13:36)*
+
+## 15. Building and running the `hello-cowsay` image ([29.1.2 Build your first image](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html#build-your-first-image))
 
 *01:15:01–01:18:44*
 
-- **Q:** What does `docker build --tag hello-cowsay .` do?
-  **A:** It builds an image named `hello-cowsay` from the `Dockerfile` in the current directory. The `.` tells Docker where to look for that file. *(01:15:06)*
+- **Q:** Why use `docker build --tag hello-cowsay .`?
+    - **A:** `--tag` gives the new image the name `hello-cowsay`. The `.` tells Docker to use the current directory as the build context where it looks for the `Dockerfile`. *(01:15:06)*
 
-- **Q:** Why does the instructor use `.` as the build context in the build command?
-  **A:** It assumes you are running the command from the project root, where the `Dockerfile` lives. That matches the milestone instruction to assume commands are run from the directory root. *(01:16:29)*
+- **Q:** Why assume the build command is run from the repository root?
+    - **A:** The `.` convention assumes the `Dockerfile` is in the current directory, which matches how milestone instructions are written. Running from the root means the command can be copy-pasted without changing directories. *(01:16:11)*
 
-- **Q:** Why does `docker images` matter after running the build?
-  **A:** It lists the local images so you can confirm that the new `hello-cowsay` image exists. It also shows the image's disk usage. *(01:17:01)*
+- **Q:** What does `docker images` show after building `hello-cowsay`?
+    - **A:** It lists the local images on the computer, including `hello-cowsay:latest`. That confirms the build produced a named image that can be run. *(01:17:01)*
 
-- **Q:** Why does `docker run --rm -it hello-cowsay bash` show that `library(cowsay)` works?
-  **A:** The image's `RUN` step installed `cowsay` at build time. A shell started from the new image therefore has the package already present. *(01:17:52)*
+- **Q:** How do `docker run --rm -it hello-cowsay` and `docker run --rm -it hello-cowsay bash` prove the `Dockerfile` worked?
+    - **A:** The first command runs the image’s `CMD`, which prints the cowsay message. The second opens a shell where `library(cowsay)` succeeds, showing the `RUN` step installed the package into the image. *(01:17:14)*
 
 ## 16. Version pinning and wrap-up ([29 Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html))
 
 *01:18:44–01:20:39*
 
-- **Q:** Why does the instructor advise pinning tool versions, such as Quarto, in a `Dockerfile`?
-  **A:** Pinning the install line means the image will install the exact versions you chose. As long as you do not change that line, a year later you can still be on the same tool versions. *(01:19:25)*
+- **Q:** Why pin tool versions in the `Dockerfile`?
+    - **A:** Pinning tells Docker exactly which version of a tool to install, such as a specific Quarto version. As long as the install line is not changed, the environment stays on that version instead of silently updating. *(01:19:25)*
 
-- **Q:** What problem did the instructor report when a container was restarted without hard-version-pinning its tools?
-  **A:** An update had happened the day before the instructor restarted the container. After that, nothing worked, so time was spent fixing the update instead of doing the actual project work. *(01:19:50)*
+- **Q:** What problem happened when the instructor did not hard-version-pin a container?
+    - **A:** A restart picked up an overnight update, and then nothing worked. He spent hours fixing the update problem instead of doing the actual project work. *(01:19:50)*
 
-- **Q:** What is the purpose of the placeholder for the language and package setup that the instructor mentions for the `Dockerfile`?
-  **A:** It is where the `Dockerfile` will install the programming language, Quarto, and the package environment. That lets the image contain the full compute environment, not just the base language. *(01:19:02)*
+- **Q:** Why is the `Dockerfile` the control point for updates?
+    - **A:** The `Dockerfile` says which version to install, and that version will not change until the author edits that line. This gives the team control over what gets updated and when. *(01:20:27)*
 
 ---
 
-- prompt: prompt-recall-2-understand.md @ 8bcc190
-- prompt-hash: d3d1585a5f4d
+- prompt: prompt-recall-2-understand.md @ 65eb21c
+- prompt-hash: 17df43f38e78
 - model: qwen3.8-27b-sglang (requested: qwen3.8-27b-sglang)
 - backend: local (SGLang)
 - inputs: transcript-plaud.md, history.txt, terminal.txt, materials.md, notes-class-main--qwen3.8-27b-sglang.md
-- generated: 2026-11-20
+- generated: 2026-11-25
 - notes-input: notes-class-main--qwen3.8-27b-sglang.md @ de2dd7c39a15, links and section references removed

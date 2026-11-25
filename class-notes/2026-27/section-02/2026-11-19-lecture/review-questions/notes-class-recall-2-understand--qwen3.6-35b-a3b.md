@@ -12,76 +12,79 @@ Instructor: Daniel Chen
 
 *00:00:14–00:05:43*
 
-- **Q:** Why does the instructor strongly advise keeping the group project analysis simple, such as fitting a straight line if it is statistically appropriate?
-  **A:** The course focuses on teaching reproducible workflows and trustworthy practices, not on model fitting or statistical novelty. Using a complex model like a neural net would create unnecessary complications in managing the pipeline, making it significantly harder to ensure the code is technically correct and reproducible by the assignment deadline. *(00:02:16)*
+- **Q:** Why does the instructor advise keeping the group project's data analysis simple and technically correct, rather than trying to build a complex or highly accurate model?
+    - **A:** Because the course focuses on teaching reproducible data science workflows, not on model fitting or high accuracy. Attempting a complex model would complicate the workflow and make it difficult to manage the new tooling being introduced in the class at the same time. *(00:02:03)*
 
-- **Q:** What does the instructor mean when he says that the model's accuracy or results do not matter for this assignment?
-  **A:** Grading evaluates whether the data science pipeline is technically sound and properly documented, not the predictive performance of the algorithm. A straightforward model that correctly downloads, cleans, analyzes, and documents data scores just as well as a complex one, because the learning objective is mastering the workflow tooling rather than optimizing statistical outcomes. *(00:03:08)*
+- **Q:** Why shouldn't a student use this specific course assignment as an opportunity to build a complex portfolio project?
+    - **A:** There is already a significant amount of new tooling and workflow concepts being introduced in the class, and adding the burden of developing a complicated report or model simultaneously would be overwhelming and counterproductive to learning the core concepts. *(00:03:27)*
 
-- **Q:** Why is the final written report not considered the main point of the coursework in this class?
-  **A:** DSCI 522 teaches the underlying infrastructure that keeps data analysis reproducible, which includes writing code for data downloads, cleaning, exploratory analysis, and modeling. The report is merely one output of a much larger pipeline, and the core skill being assessed is the ability to build and share a reliable computational environment. *(00:02:41)*
+- **Q:** Why is the written report considered secondary to the code and data downloading, cleaning, and EDA in this class?
+    - **A:** The main point of the class is to establish a correct, reproducible data science pipeline, which encompasses all the code and data handling steps. The report is just the final output of this larger workflow, so mastering the underlying code and data processes is what truly matters for the course objectives. *(00:02:41)*
 
 ## 2. Git Branching and Pull Requests
 
 *00:06:05–00:25:29*
 
-- **Q:** Why are GitHub issues useful for tracking a group project, and how does their shared numbering system support team collaboration?
-  **A:** Issues act as a built-in project management board to document tasks, meeting notes, and assign responsibilities to specific team members. Because issues and pull requests share a single numbering sequence, team members can easily cross-reference them using the `#` symbol in descriptions or commit messages, creating automatic two-way links that keep all project activities connected. *(00:10:28)*
+- **Q:** Why is it important to check which branch you are on before running `git add` or `git commit`?
+    - **A:** Working in a branch workflow means that commits will only be recorded on the currently active branch. If you accidentally commit on `main` instead of your feature branch, you disrupt the isolation of your changes and complicate the pull request process. *(00:08:08)*
 
-- **Q:** How does using keywords like `fixes` or `closes` in a pull request description automate project management?
-  **A:** These special keywords tell GitHub to automatically close the referenced issue(s) the moment the pull request is merged. This saves time by removing the need to manually close multiple tickets and keeps the project board up to date, allowing the team to quickly see which tasks have been completed without navigating away from the main repository view. *(00:18:33)*
+- **Q:** Why do GitHub issues and pull requests share a single, unified numbering sequence instead of having separate counters?
+    - **A:** Sharing a single numbering sequence makes it easy to cross-reference different items. You can use `#<number>` to link an issue to a pull request or another issue, creating automatic two-way references that help track how different tasks and discussions relate to each other. *(00:12:07)*
 
-- **Q:** Why is it important to edit and keep the first comment of a pull request or issue up to date as work progresses?
-  **A:** The first comment serves as the primary summary of what the task is, why it exists, and how it was resolved. Reviewers and future team members typically skim the conversation and rely on this initial description to understand the context, so it must remain accurate and complete even if later comments discuss minor details or troubleshooting steps. *(00:16:40)*
+- **Q:** Why should the first comment in a pull request or issue be kept up to date with all necessary references and summaries?
+    - **A:** Teammates and reviewers primarily look at the first comment to understand the purpose and status of the request. The subsequent conversation is secondary, so keeping the initial description current ensures that anyone reviewing the work immediately understands the context and required actions. *(00:16:40)*
 
-- **Q:** Why does the instructor recommend running `git fetch --prune` and `git branch -d <branch>` after merging a pull request?
-  **A:** Merging a pull request deletes the remote branch, but local Git still retains stale tracking references to it. Running these cleanup commands removes the deleted remote branch references locally and deletes the local branch name, which prevents visual clutter in the repository history and avoids confusion when switching between branches. *(00:24:30)*
+- **Q:** Why is it recommended to run `git fetch --prune` after a pull request has been merged and the remote branch deleted?
+    - **A:** Running `git fetch --prune` removes the tracking references to the deleted remote branch from your local repository. This cleans up your local view, preventing confusion when running commands like `git log` and keeping your repository references accurate. *(00:24:30)*
 
-## 3. Introduction to Containers and Docker ([Introduction to containerization](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html))
+## 3. Introduction to Containers and Docker ([27 Introduction to containerization](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers.html))
 
 *00:25:33–00:46:44*
 
-- **Q:** How do containers differ from virtual environments like `uv` or `renv` in terms of what they isolate?
-  **A:** Virtual environments only isolate the packages for a specific programming language on the host machine. Containers go further by isolating the entire operating system user space, meaning they also capture system-level dependencies, other installed software, and the OS itself, ensuring the environment is fully reproducible regardless of the host's configuration. *(00:26:11)*
+- **Q:** How do containers solve the "it works on my machine" problem that persists even when using virtual environments like `uv` or `renv`?
+    - **A:** Virtual environments only manage programming language packages, but they do not control the underlying operating system or system dependencies. Containers isolate the entire operating system user space, ensuring that the exact same environment runs regardless of the host machine's operating system or installed software. *(00:29:32)*
 
-- **Q:** Why is a Docker container considered much more lightweight and performant than a traditional virtual machine?
-  **A:** A virtual machine emulates full hardware and runs a completely separate guest operating system, which consumes gigabytes of disk space and significant memory. A container shares the host's operating system kernel and only packages the necessary application and dependencies, making it significantly smaller, faster to start, and more efficient to share across teams. *(00:34:48)*
+- **Q:** Why are containers significantly more performant and smaller in size compared to virtual machines?
+    - **A:** Containers are stripped-down environments that only contain the bare minimum set of software and dependencies needed for the application. Unlike virtual machines, which emulate full hardware and install a complete graphical operating system, containers share the host OS and lack visual interfaces, consuming far fewer resources. *(00:35:23)*
 
-- **Q:** What specific problem does running a pinned version of software inside a Docker container solve for long-term projects?
-  **A:** Software tools and packages have frequent update cycles that can change behavior or break compatibility over time. By running a container with a strictly pinned version, a researcher guarantees that the exact same computational environment remains available years later for regulatory submissions or reproducibility audits, independent of updates on the host machine. *(00:37:58)*
+- **Q:** Why might a remote computing platform prefer to give users a container (a sandbox) instead of direct access to install software on the host machine?
+    - **A:** Remote platforms often restrict direct installation for security, stability, or to prevent users from interfering with other processes on the shared machine. Providing a container gives users a safe, isolated sandbox where they can freely experiment without risking the host system, and the container can simply be restarted if it is broken. *(00:32:34)*
 
-## 4. Running Web Applications in Containers ([Using and running containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html))
+## 4. Running Web Applications in Containers ([28.1.3 Mapping ports to containers with web apps](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-running.html#mapping-ports-to-containers-with-web-apps))
 
 *00:46:47–01:03:00*
 
-- **Q:** Why do modern data science tools like JupyterLab and RStudio Server need to be run inside a container and accessed through a web browser?
-  **A:** Many of these tools are built as web-first applications so they can run on remote or cloud machines while providing a consistent user interface. Running them in a container isolates the compute environment, and port mapping allows the local browser to securely interact with the application running inside the isolated container without requiring local installation of heavy software stacks. *(00:47:39)*
+- **Q:** Why are tools like JupyterLab and RStudio Server specifically designed to run as browser-based applications inside containers?
+    - **A:** Running as web apps allows these tools to be accessed from any browser while executing the actual computational heavy lifting inside a powerful remote container. This architecture separates the lightweight user interface from the compute environment, enabling seamless access to more cores and memory than a local laptop provides. *(00:48:04)*
 
-- **Q:** How does the `-p` flag in `docker run` allow multiple containers to run simultaneously without conflicting?
-  **A:** The `-p` flag maps a specific port on the host machine to a corresponding port inside the container. By assigning different host ports to different containers (e.g., mapping one instance to `8787` and another to `8788`), users can access multiple isolated container instances concurrently, even if the applications inside them all default to the same internal port. *(00:56:38)*
+- **Q:** How can you run multiple instances of the same container application (like RStudio) on your local machine at the same time?
+    - **A:** You use the `-p` flag in the `docker run` command to map different host ports to the same container port. For example, you can map your local port `8788` to the container's internal port `8787`, allowing you to open separate browser tabs for each instance without port conflicts. *(00:56:38)*
 
-- **Q:** Why and how can you pass environment variables like `PASSWORD` when launching a container?
-  **A:** Many pre-built containers are configured to read environment variables at startup to customize their initial behavior, such as overriding default login credentials. Using the `-e` flag allows users to inject custom settings directly into the container environment, enabling secure or memorable configurations without needing to rebuild or modify the underlying container image. *(00:59:45)*
+- **Q:** Why and how do you use the `-e` flag when starting a container that has a default, auto-generated password?
+    - **A:** You use the `-e` flag followed by the environment variable name and your desired value (e.g., `-e PASSWORD="mysecurepassword"`) to manually set configuration parameters for the container. This is useful to avoid remembering or copying a randomly generated password, provided the container's setup script supports that specific environment variable. *(01:00:05)*
 
-## 5. Building Custom Containers with Dockerfile ([Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html))
+## 5. Building Custom Containers with Dockerfile ([29 Customizing and building containers](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/lectures/containers-building.html))
 
 *01:03:00–01:20:39*
 
-- **Q:** Why is it necessary to save installation steps in a `Dockerfile` instead of just installing packages interactively inside a running container?
-  **A:** Containers are ephemeral and reset to their initial state when stopped; any packages or changes made during an interactive session are completely lost upon exit. A `Dockerfile` captures these instructions permanently in the image layers during the build process, ensuring that every time the image is launched, the environment is identically configured without requiring manual setup. *(01:08:10)*
+- **Q:** Why are changes made interactively inside a running container (like installing a package) lost when the container is stopped and restarted?
+    - **A:** Containers are ephemeral and do not save their state between runs. When you stop a container, it reverts to its initial, base configuration. Any packages or modifications made during an interactive session are only temporary and are discarded once the container exits. *(01:06:58)*
 
-- **Q:** What is the specific role of the `RUN` instruction in a `Dockerfile`?
-  **A:** The `RUN` instruction executes shell commands during the image build process rather than at runtime. It is used to install software, download files, or configure the system in a way that becomes a permanent part of the container image layers, so the installed components are automatically available to every container launched from that image. *(01:12:52)*
+- **Q:** What is the purpose of the `FROM` instruction at the beginning of a `Dockerfile`, and why might you choose a larger base image?
+    - **A:** The `FROM` instruction specifies the base image that serves as the starting point for your custom container. Choosing a larger, more established base image (like one with R pre-installed) saves time because it already includes essential compilers and system dependencies, avoiding the need to build the environment from a bare-bones Linux skeleton. *(01:11:44)*
 
-- **Q:** How does the `CMD` instruction in a `Dockerfile` control the default behavior of a container when it starts?
-  **A:** `CMD` sets the default command that runs automatically when a container is instantiated from the image, replacing any startup command set by the base image. This ensures the container performs a specific, predefined task immediately upon launch, unless a user explicitly overrides it by appending a different command to the `docker run` command line. *(01:13:52)*
+- **Q:** How does the `RUN` instruction in a `Dockerfile` differ from running the same command interactively in a terminal?
+    - **A:** Commands prefixed with `RUN` are executed during the image building process (`docker build`). This permanently bakes the results of the command—such as installed packages—into the image's layers, ensuring they are available every time a container is launched from that image, rather than just existing for a single session. *(01:12:48)*
+
+- **Q:** What is the function of the `CMD` instruction, and how does it interact with the `docker run` command?
+    - **A:** The `CMD` instruction sets the default command that a container automatically runs when it starts. If you append a different command to the end of the `docker run` command (like `bash`), it overrides the `CMD`, allowing you to interact with the container directly instead of executing the predefined startup action. *(01:13:52)*
 
 ---
 
-- prompt: prompt-recall-2-understand.md @ 8bcc190
-- prompt-hash: d3d1585a5f4d
+- prompt: prompt-recall-2-understand.md @ 65eb21c
+- prompt-hash: 17df43f38e78
 - model: qwen3.6-35b-a3b (requested: qwen3.6-35b-a3b)
 - backend: local (llama-swap)
 - inputs: transcript-plaud.md, history.txt, terminal.txt, materials.md, notes-class-main--qwen3.6-35b-a3b.md
-- generated: 2026-11-20
+- generated: 2026-11-23
 - notes-input: notes-class-main--qwen3.6-35b-a3b.md @ 5842e35a1a11, links and section references removed
