@@ -1,14 +1,15 @@
 ---
-title: "Section 2 class notes"
+title: "Class notes"
 shift-heading-level-by: 0
 toc: false
 ---
 
-Pick a lecture from the sidebar, or from the **Section 2 Notes** menu at the top: each
-lecture's notes, review questions, readings, commands and drawings are listed under it.
+Pick a lecture from the sidebar, or from the **Class Notes** menu at the top: the lectures
+are grouped by section, and each lecture's notes, review questions, readings, commands and
+drawings are listed under it.
 
-Notes from section 2's lectures, written by AI models from each class's recording, the
-commands typed in class, and the textbook sections the class used. Each model writes its
+Notes from the lectures, written by AI models from each class's recording, the commands
+typed in class, and the textbook sections the class used. Each model writes its
 own set of notes on the same class, so pick any one.
 
 - **Notes:** start here.
