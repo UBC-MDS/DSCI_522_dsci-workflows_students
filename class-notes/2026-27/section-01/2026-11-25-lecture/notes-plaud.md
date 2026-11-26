@@ -2,7 +2,7 @@
 
 [](plaud://highlight-card?title=Highlight%20Summary&detail=Detail)
 
-**A lab lecture led by Daniel Chen** covered container setup, reproducible workflows and data checks. A brief movement break interrupted the review before the lecture moved to validation.
+**A lab lecture led by Daniel Chen** covered container setup, reproducible workflows and data checks.
 
 ## Project setup — build from a template, not a full clone
 
@@ -74,5 +74,3 @@ Daniel introduced Point Blank and demonstrated checks on the Palmer Penguins dat
 - **Running checks**: The checks are defined first and run with `interrogate`. Point Blank then produces a table showing which checks passed or failed and displaying results using the specified thresholds. Daniel demonstrated that a check limited to two species values would flag other values in the dataset.
 - **Separate passing and failing data**: Point Blank can produce separate data frames for rows that pass and fail. A downstream teammate can use the passing data while cleaning continues on the failures. Those data frames can also be saved as CSV files.
 - **Where validation fits**: Checks can run after cleaning or immediately before modeling, and different parts of an analysis can validate data at different points. Daniel said the next week’s work would focus largely on data validation and breaking code into smaller pieces. [](plaud://source?type=summary&fileId=f_01a21440bf197f5894081dddd06aac5d&start_time=4848760&end_time=4859720&displayLabel=1&transcriptType=polish)
-
-Christina introduced herself as a Move You crew member and led a movement break during the review.
